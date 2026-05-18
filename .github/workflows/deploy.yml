@@ -21,7 +21,7 @@ jobs:
 
       - name: Deploy via rsync
         run: |
-          rsync -avzr --delete \
+          rsync -avzr \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='*.md' \
