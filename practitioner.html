@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<title>For Practitioners — Kyle &amp; Co</title>
+<meta name="description" content="Kyle & Co works alongside HR and TA leaders on the calls that have to hold up. The research, frameworks, and analysis are yours to use." />
+<meta property="og:title" content="For Practitioners — Kyle &amp; Co" />
+<meta property="og:description" content="Kyle & Co works alongside HR and TA leaders on the calls that have to hold up. The research, frameworks, and analysis are yours to use." />
+<meta property="og:image" content="https://kyleandco.com/aicouncil/social-preview.png" />
+<meta property="og:url" content="https://kyleandco.com/practitioners" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Kyle &amp; Co" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="For Practitioners — Kyle &amp; Co" />
+<meta name="twitter:description" content="Kyle & Co works alongside HR and TA leaders on the calls that have to hold up. The research, frameworks, and analysis are yours to use." />
+<meta name="twitter:image" content="https://kyleandco.com/aicouncil/social-preview.png" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H95H1WFLGC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H95H1WFLGC');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #273752;
+  --navy-dark: #172339;
+  --lilac: #9D92AD;
+  --ivory: #F7F1EA;
+  --slate: #555961;
+  --cream: #FDECCD;
+  --white: #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--ivory);
+  color: var(--navy);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* — NAV — */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--navy); padding: 0 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px; border-bottom: 1px solid rgba(247,241,234,0.1);
+}
+.topbar-brand {
+  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; text-decoration: none;
+  flex-shrink: 0;
+}
+.topbar-nav {
+  display: flex; gap: 1.75rem; align-items: center;
+}
+.topbar-nav a {
+  font-size: 0.8rem; color: rgba(247,241,234,0.65);
+  text-decoration: none; transition: color 0.15s; white-space: nowrap;
+}
+.topbar-nav a:hover { color: var(--ivory); }
+.topbar-nav a.active { color: var(--ivory); }
+.topbar-cta {
+  background: var(--cream); color: var(--navy-dark);
+  text-decoration: none; font-size: 0.78rem; font-weight: 600;
+  padding: 0.5rem 1.15rem; border-radius: 100px;
+  white-space: nowrap; transition: background 0.15s; flex-shrink: 0;
+}
+.topbar-cta:hover { background: #f5e0b5; }
+.mobile-menu-btn {
+  display: none; background: none; border: none;
+  color: var(--ivory); cursor: pointer; padding: 0.25rem;
+}
+
+/* — HERO — */
+.hero {
+  background: var(--navy);
+  padding: 10rem 2.5rem 7rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(45,92,148,0.45) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative;
+}
+.hero-eyebrow {
+  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+  font-weight: 300; line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--ivory); margin-bottom: 1.5rem;
+  max-width: 22ch;
+}
+.hero h1 em { font-style: italic; color: var(--cream); }
+.hero-sub {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: rgba(247,241,234,0.65); line-height: 1.65;
+  max-width: 48ch; margin-bottom: 2.5rem;
+}
+.hero-sub-no-cta {
+  margin-bottom: 0;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--cream); color: var(--navy-dark);
+  text-decoration: none; font-size: 0.9rem; font-weight: 600;
+  padding: 1rem 2rem; border-radius: 100px;
+  transition: background 0.15s;
+}
+.btn-primary:hover { background: #f5e0b5; }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: transparent; color: var(--ivory);
+  text-decoration: none; font-size: 0.9rem; font-weight: 500;
+  padding: 1rem 2rem; border-radius: 100px;
+  border: 1px solid rgba(247,241,234,0.3);
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-ghost:hover { border-color: rgba(247,241,234,0.6); color: var(--ivory); }
+
+/* — LOGO BAND — */
+.logo-band {
+  background: var(--white);
+  padding: 2.25rem 2.5rem;
+  border-bottom: 1px solid rgba(39,55,82,0.08);
+}
+.logo-band-inner {
+  max-width: 1100px; margin: 0 auto;
+}
+.logo-band-label {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1.5rem;
+  text-align: center;
+}
+.logo-band-imgs {
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 1rem;
+}
+.logo-band-imgs img {
+  max-width: 100%; height: auto;
+  opacity: 0.65; filter: grayscale(30%);
+}
+
+/* — SECTION SHARED — */
+.section {
+  padding: 6rem 2.5rem;
+}
+.section-inner {
+  max-width: 1100px; margin: 0 auto;
+}
+.section-eyebrow {
+  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1.25rem;
+}
+.section-h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300; line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--navy); margin-bottom: 1rem;
+}
+.section-h2 em { font-style: italic; color: var(--lilac); }
+.section-intro {
+  font-size: 1rem; color: var(--slate); line-height: 1.7;
+  max-width: 58ch; margin-bottom: 3.5rem;
+}
+
+/* — DIFFERENTIATORS — */
+.diff-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.diff-card {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 2.25rem 2.5rem;
+  border: 1px solid rgba(39,55,82,0.07);
+}
+.diff-number {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1rem;
+}
+.diff-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.35rem; font-weight: 400; line-height: 1.2;
+  color: var(--navy); margin-bottom: 0.85rem; letter-spacing: -0.01em;
+}
+.diff-body {
+  font-size: 0.92rem; color: var(--slate); line-height: 1.7;
+}
+
+/* — BRAND MOTIF — */
+.motif {
+  background: var(--navy);
+  padding: 5rem 2.5rem;
+  text-align: center;
+}
+.motif-tagline {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300; font-style: italic;
+  color: var(--ivory); letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.motif-tagline em { color: var(--cream); font-style: normal; }
+.motif-rule {
+  width: 48px; height: 1px;
+  background: rgba(247,241,234,0.25);
+  margin: 2rem auto 0;
+}
+
+/* — METHODOLOGY — */
+.methodology {
+  background: var(--ivory);
+}
+.methodology-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.methodology-stats {
+  display: flex; flex-direction: column; gap: 1.75rem;
+}
+.stat-item {
+  border-left: 2px solid var(--lilac);
+  padding-left: 1.5rem;
+}
+.stat-number {
+  font-family: 'Fraunces', serif;
+  font-size: 2.5rem; font-weight: 300;
+  color: var(--navy); line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.stat-label {
+  font-size: 0.88rem; color: var(--slate); line-height: 1.5;
+}
+
+/* — ENGAGEMENT BUCKETS — */
+.engage-section {
+  background: var(--white);
+}
+.engage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+.engage-card {
+  background: var(--ivory);
+  border-radius: 10px;
+  padding: 2.25rem 2.5rem;
+  display: flex; flex-direction: column;
+  border: 1px solid rgba(39,55,82,0.07);
+}
+.engage-num {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1rem;
+}
+.engage-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem; font-weight: 400; line-height: 1.2;
+  color: var(--navy); margin-bottom: 0.85rem; letter-spacing: -0.01em;
+}
+.engage-body {
+  font-size: 0.9rem; color: var(--slate); line-height: 1.7; flex: 1;
+}
+.engage-footer {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(39,55,82,0.1);
+  font-size: 0.78rem; color: var(--navy); font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.engage-cta-note {
+  margin-top: 2.5rem;
+  font-size: 0.9rem; color: var(--slate); line-height: 1.65;
+}
+.engage-cta-note a {
+  color: var(--navy); font-weight: 600; text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* — COUNCIL — */
+.council-section {
+  background: var(--navy);
+  padding: 7rem 2.5rem;
+}
+.council-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: start;
+}
+.council-eyebrow {
+  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1.25rem;
+}
+.council-h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  font-weight: 300; line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--ivory); margin-bottom: 1.75rem;
+}
+.council-body {
+  font-size: 0.95rem; color: rgba(247,241,234,0.65); line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+.council-link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  color: var(--cream); font-size: 0.88rem; font-weight: 500;
+  text-decoration: none; border-bottom: 1px solid rgba(253,236,205,0.4);
+  padding-bottom: 2px; transition: border-color 0.15s;
+}
+.council-link:hover { border-color: var(--cream); }
+.council-sidebar {
+  display: flex; flex-direction: column; gap: 1.5rem;
+  padding-top: 0.5rem;
+}
+.council-pillar {
+  background: rgba(247,241,234,0.06);
+  border: 1px solid rgba(247,241,234,0.1);
+  border-radius: 8px;
+  padding: 1.5rem 1.75rem;
+}
+.council-pillar-title {
+  font-weight: 500; color: var(--ivory); font-size: 0.92rem;
+  margin-bottom: 0.4rem;
+}
+.council-pillar-body {
+  font-size: 0.82rem; color: rgba(247,241,234,0.5); line-height: 1.6;
+}
+
+/* — TESTIMONIALS — */
+.testimonials-section {
+  background: var(--ivory);
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.testimonial-card {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 2.25rem;
+  display: flex; flex-direction: column;
+  border: 1px solid rgba(39,55,82,0.07);
+}
+.testimonial-quote {
+  font-size: 0.95rem; color: var(--slate); line-height: 1.75;
+  flex: 1; margin-bottom: 1.75rem;
+}
+.testimonial-quote::before {
+  content: '\201C';
+  font-family: 'Fraunces', serif;
+  font-size: 2.5rem; color: var(--lilac);
+  line-height: 0.5; display: block; margin-bottom: 1rem;
+}
+.testimonial-author {
+  display: flex; align-items: center; gap: 0.85rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(39,55,82,0.08);
+}
+.testimonial-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--lilac); flex-shrink: 0;
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 600; color: var(--white);
+  letter-spacing: 0.02em;
+}
+.testimonial-avatar img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.testimonial-name {
+  font-size: 0.88rem; font-weight: 600; color: var(--navy); line-height: 1.3;
+}
+.testimonial-role {
+  font-size: 0.78rem; color: var(--lilac);
+}
+
+/* — CLOSER CTA — */
+.closer-section {
+  background: var(--navy);
+  padding: 7rem 2.5rem;
+  text-align: center;
+}
+.closer-inner {
+  max-width: 640px; margin: 0 auto;
+}
+.closer-eyebrow {
+  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1.25rem;
+}
+.closer-h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  font-weight: 300; line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--ivory); margin-bottom: 1.25rem;
+}
+.closer-h2 em { font-style: italic; color: var(--cream); }
+.closer-body {
+  font-size: 0.98rem; color: rgba(247,241,234,0.6); line-height: 1.7;
+  max-width: 50ch; margin: 0 auto 2.5rem;
+}
+
+/* — FOOTER — */
+.site-footer {
+  background: var(--navy-dark);
+  padding: 3rem 2.5rem;
+  border-top: 1px solid rgba(247,241,234,0.06);
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1.25rem;
+}
+.footer-brand {
+  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; text-decoration: none;
+}
+.footer-links {
+  display: flex; gap: 1.75rem; flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 0.78rem; color: rgba(247,241,234,0.4);
+  text-decoration: none; transition: color 0.15s;
+}
+.footer-links a:hover { color: rgba(247,241,234,0.75); }
+.footer-copy {
+  font-size: 0.72rem; color: rgba(247,241,234,0.25);
+  width: 100%;
+}
+
+/* — PAGE-SPECIFIC — */
+
+/* Research card grid */
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.research-card {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 2rem 2.25rem;
+  border: 1px solid rgba(39,55,82,0.07);
+  display: flex; flex-direction: column;
+}
+.research-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.2rem; font-weight: 400; line-height: 1.25;
+  color: var(--navy); margin-bottom: 0.65rem; letter-spacing: -0.01em;
+}
+.research-card-body {
+  font-size: 0.9rem; color: var(--slate); line-height: 1.65; flex: 1;
+  margin-bottom: 1.25rem;
+}
+.research-card-link {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  color: var(--navy); font-size: 0.85rem; font-weight: 600;
+  text-decoration: none; border-bottom: 1px solid rgba(39,55,82,0.25);
+  padding-bottom: 1px; transition: border-color 0.15s;
+  align-self: flex-start;
+}
+.research-card-link:hover { border-color: var(--navy); }
+
+/* Methodology single-column body */
+.method-body {
+  font-size: 1rem; color: var(--slate); line-height: 1.75;
+  max-width: 65ch;
+}
+
+/* Three-ways-in (3-column diff variant) */
+.ways-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.way-card {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 2.25rem 2.5rem;
+  border: 1px solid rgba(39,55,82,0.07);
+}
+.way-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.35rem; font-weight: 400; line-height: 1.2;
+  color: var(--navy); margin-bottom: 0.85rem; letter-spacing: -0.01em;
+}
+.way-body {
+  font-size: 0.92rem; color: var(--slate); line-height: 1.7;
+}
+
+/* Council teaser (single column centered) */
+.council-teaser {
+  background: var(--navy);
+  padding: 7rem 2.5rem;
+  text-align: center;
+}
+.council-teaser-inner {
+  max-width: 700px; margin: 0 auto;
+}
+
+/* Org-level rail (2-col) */
+.org-rail {
+  background: var(--white);
+  padding: 6rem 2.5rem;
+}
+.org-rail-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: center;
+}
+.org-rail-services {
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.mini-card {
+  background: var(--ivory);
+  border: 1px solid rgba(39,55,82,0.09);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.92rem; font-weight: 500;
+  color: var(--navy);
+}
+
+/* Sticky floating CTA */
+.sticky-cta {
+  position: fixed;
+  bottom: 1.75rem; right: 1.75rem;
+  z-index: 200;
+  background: var(--cream);
+  color: var(--navy-dark);
+  text-decoration: none;
+  font-size: 0.85rem; font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  border-radius: 100px;
+  box-shadow: 0 4px 20px rgba(39,55,82,0.18);
+  transition: background 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+.sticky-cta:hover {
+  background: #f5e0b5;
+  box-shadow: 0 6px 28px rgba(39,55,82,0.22);
+}
+
+/* — MOBILE — */
+@media (max-width: 900px) {
+  .topbar { padding: 0 1.25rem; }
+  .topbar-nav { display: none; }
+  .mobile-menu-btn { display: flex; }
+
+  .hero { padding: 8rem 1.5rem 5rem; }
+  .section { padding: 4rem 1.5rem; }
+
+  .diff-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .methodology-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .engage-grid { grid-template-columns: 1fr; }
+  .council-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .council-section { padding: 5rem 1.5rem; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .closer-section { padding: 5rem 1.5rem; }
+  .site-footer { padding: 2.5rem 1.5rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+
+  .research-grid { grid-template-columns: 1fr; }
+  .ways-grid { grid-template-columns: 1fr; }
+  .org-rail { padding: 4rem 1.5rem; }
+  .org-rail-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .council-teaser { padding: 5rem 1.5rem; }
+}
+
+@media (max-width: 768px) {
+  .sticky-cta { display: none; }
+}
+
+@media (max-width: 600px) {
+  .logo-band { padding: 2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topbar">
+  <a href="/" class="topbar-brand">Kyle &amp; Co</a>
+  <div class="topbar-nav">
+    <a href="/">Home</a>
+    <a href="/research">Research</a>
+    <a href="/practitioners" class="active">For Practitioners</a>
+    <a href="/vendors">For Vendors</a>
+    <a href="/aicouncil">HCAIC</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+  <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="topbar-cta">Book a discovery call</a>
+  <button class="mobile-menu-btn" aria-label="Menu">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <rect y="3" width="20" height="1.5" rx="0.75" fill="currentColor"/>
+      <rect y="9.25" width="20" height="1.5" rx="0.75" fill="currentColor"/>
+      <rect y="15.5" width="20" height="1.5" rx="0.75" fill="currentColor"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">For practitioners</div>
+    <h1>The independent research HR uses to set, defend, and execute strategy.</h1>
+    <p class="hero-sub hero-sub-no-cta">Kyle &amp; Co works alongside HR and TA leaders on the calls that have to hold up. The research, frameworks, and analysis are yours to use. Reach out when you're weighing a tech call or reading a new market. You'll hear back from someone who's done the work.</p>
+  </div>
+</section>
+
+<!-- FEATURED RESEARCH -->
+<section class="section" style="background: var(--ivory);">
+  <div class="section-inner">
+    <div class="section-eyebrow">Open access</div>
+    <h2 class="section-h2">Research yours to use.</h2>
+    <div class="research-grid">
+
+      <div class="research-card">
+        <div class="research-card-title">AI Momentum Model</div>
+        <p class="research-card-body">Nine archetypes, one model. Benchmark where your org sits and what moves it forward.</p>
+        <a href="https://kyleandco.com/aicouncil/#library" class="research-card-link">Access <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="research-card">
+        <div class="research-card-title">Category Compass: AI Interviewers</div>
+        <p class="research-card-body">An independent benchmark of AI interviewer solutions. We said the market wasn't ready. Here's what we found.</p>
+        <a href="https://kyleandco.com/aicouncil/#library" class="research-card-link">Access <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="research-card">
+        <div class="research-card-title">HCAIC Toolkit</div>
+        <p class="research-card-body">Four practitioner-built frameworks on AI literacy, governance, adoption, and the future of HR. Free to use.</p>
+        <a href="https://kyleandco.com/aicouncil/#library" class="research-card-link">Access <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="research-card">
+        <div class="research-card-title">Recent reports</div>
+        <p class="research-card-body">The latest research as it ships. Subscribe to get it in your inbox.</p>
+        <a href="/blog" class="research-card-link">Access <span aria-hidden="true">→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="section" style="background: var(--white);">
+  <div class="section-inner">
+    <div class="section-eyebrow">The work</div>
+    <h2 class="section-h2">Where the research comes from.</h2>
+    <p class="method-body">Each year, we publish an annual market study, quarterly Category Compass reports, and bespoke client research. The work is built on surveys with thousands of senior HR and TA leaders. The Human-Centric AI Council adds practitioner-led work on AI. Our edge is pairing primary research with rigorous secondary analysis, because neither catches the full signal alone.</p>
+  </div>
+</section>
+
+<!-- THREE WAYS IN -->
+<section class="section" style="background: var(--ivory);">
+  <div class="section-inner">
+    <div class="section-eyebrow">Get involved</div>
+    <h2 class="section-h2">Three ways in.</h2>
+    <div class="ways-grid">
+
+      <div class="way-card">
+        <div class="way-title">Read.</div>
+        <p class="way-body">Subscribe to the newsletter. New research and event access land in your inbox. We send when there's something to say. No noise. Just signal.</p>
+      </div>
+
+      <div class="way-card">
+        <div class="way-title">Show up.</div>
+        <p class="way-body">Town halls, webinars, and working sessions are open to the list. Bring a question and you'll get one back. Replies and comments go to the team, not a bot. The conversation is the point.</p>
+      </div>
+
+      <div class="way-card">
+        <div class="way-title">Contribute.</div>
+        <p class="way-body">Submit a topic you'd want researched. Apply to the Council if you're shaping AI in your org. Get featured in the practitioner spotlight when you've got a story worth sharing. The work is better when practitioners help write it.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COUNCIL TEASER -->
+<section class="council-teaser">
+  <div class="council-teaser-inner">
+    <div class="council-eyebrow">The Council</div>
+    <h2 class="council-h2">The Human-Centric AI Council.</h2>
+    <p class="council-body">The Human-Centric AI Council is a working group of HR and TA practitioners building peer-led resources for the rest of the function on AI. If you're shaping AI literacy, governance, or adoption in your org, the application is open.</p>
+    <a href="/aicouncil" class="council-link">Apply to the Council <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<!-- ORG-LEVEL RAIL -->
+<section class="org-rail">
+  <div class="org-rail-inner">
+    <div>
+      <div class="section-eyebrow">For organizations</div>
+      <h2 class="section-h2">Want this applied to your team?</h2>
+      <p style="font-size: 1rem; color: var(--slate); line-height: 1.75; margin-bottom: 2rem; max-width: 48ch;">If your function is wrestling with a tech stack decision, a positioning question, or an AI adoption plan, Kyle &amp; Co also works with organizations directly to scope the work.</p>
+      <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="btn-primary">Start a conversation <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="org-rail-services">
+      <div class="mini-card">Tech stack evaluation</div>
+      <div class="mini-card">AI adoption planning</div>
+      <div class="mini-card">Positioning and strategy</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER CLOSER -->
+<section class="closer-section">
+  <div class="closer-inner">
+    <div class="closer-eyebrow">Stay sharp</div>
+    <h2 class="closer-h2">Stay sharp.</h2>
+    <p class="closer-body">Subscribe and you'll get the work as it ships. No spam. Just signal.</p>
+    <a href="https://kyleandco.com/blog" class="btn-primary">Subscribe <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="/" class="footer-brand">Kyle &amp; Co</a>
+    <nav class="footer-links">
+      <a href="/research">Research</a>
+      <a href="/practitioners">For Practitioners</a>
+      <a href="/vendors">For Vendors</a>
+      <a href="/aicouncil">HCAIC</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <div class="footer-copy">&copy; 2026 Kyle &amp; Co. No spam. Just signal.</div>
+  </div>
+</footer>
+
+<!-- STICKY FLOATING CTA -->
+<a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="sticky-cta">Book a discovery call →</a>
+
+</body>
+</html>

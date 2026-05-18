@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<title>Research — Kyle &amp; Co</title>
+<meta name="description" content="Built on surveys with thousands of senior HR and TA leaders, authored alongside the practitioners shaping the work." />
+<meta property="og:title" content="Research — Kyle &amp; Co" />
+<meta property="og:description" content="Built on surveys with thousands of senior HR and TA leaders, authored alongside the practitioners shaping the work." />
+<meta property="og:image" content="https://kyleandco.com/aicouncil/social-preview.png" />
+<meta property="og:url" content="https://kyleandco.com/research" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Kyle &amp; Co" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Research — Kyle &amp; Co" />
+<meta name="twitter:description" content="Built on surveys with thousands of senior HR and TA leaders, authored alongside the practitioners shaping the work." />
+<meta name="twitter:image" content="https://kyleandco.com/aicouncil/social-preview.png" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H95H1WFLGC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H95H1WFLGC');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #273752;
+  --navy-dark: #172339;
+  --lilac: #9D92AD;
+  --ivory: #F7F1EA;
+  --slate: #555961;
+  --cream: #FDECCD;
+  --white: #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--ivory);
+  color: var(--navy);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* — NAV — */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--navy); padding: 0 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px; border-bottom: 1px solid rgba(247,241,234,0.1);
+}
+.topbar-brand {
+  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; text-decoration: none;
+  flex-shrink: 0;
+}
+.topbar-nav {
+  display: flex; gap: 1.75rem; align-items: center;
+}
+.topbar-nav a {
+  font-size: 0.8rem; color: rgba(247,241,234,0.65);
+  text-decoration: none; transition: color 0.15s; white-space: nowrap;
+}
+.topbar-nav a:hover { color: var(--ivory); }
+.topbar-nav a.active { color: var(--ivory); }
+.topbar-cta {
+  background: var(--cream); color: var(--navy-dark);
+  text-decoration: none; font-size: 0.78rem; font-weight: 600;
+  padding: 0.5rem 1.15rem; border-radius: 100px;
+  white-space: nowrap; transition: background 0.15s; flex-shrink: 0;
+}
+.topbar-cta:hover { background: #f5e0b5; }
+.mobile-menu-btn {
+  display: none; background: none; border: none;
+  color: var(--ivory); cursor: pointer; padding: 0.25rem;
+}
+
+/* — HERO — */
+.hero {
+  background: var(--navy);
+  padding: 10rem 2.5rem 7rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(45,92,148,0.45) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative;
+}
+.hero-eyebrow {
+  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+  font-weight: 300; line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--ivory); margin-bottom: 1.5rem;
+  max-width: 22ch;
+}
+.hero h1 em { font-style: italic; color: var(--cream); }
+.hero-sub {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: rgba(247,241,234,0.65); line-height: 1.65;
+  max-width: 48ch;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--cream); color: var(--navy-dark);
+  text-decoration: none; font-size: 0.9rem; font-weight: 600;
+  padding: 1rem 2rem; border-radius: 100px;
+  transition: background 0.15s;
+}
+.btn-primary:hover { background: #f5e0b5; }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: transparent; color: var(--ivory);
+  text-decoration: none; font-size: 0.9rem; font-weight: 500;
+  padding: 1rem 2rem; border-radius: 100px;
+  border: 1px solid rgba(247,241,234,0.3);
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-ghost:hover { border-color: rgba(247,241,234,0.6); color: var(--ivory); }
+
+/* — LOGO BAND — */
+.logo-band {
+  background: var(--white);
+  padding: 2.25rem 2.5rem;
+  border-bottom: 1px solid rgba(39,55,82,0.08);
+}
+.logo-band-inner {
+  max-width: 1100px; margin: 0 auto;
+}
+.logo-band-label {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1.5rem;
+  text-align: center;
+}
+.logo-band-imgs {
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 1rem;
+}
+.logo-band-imgs img {
+  max-width: 100%; height: auto;
+  opacity: 0.65; filter: grayscale(30%);
+}
+
+/* — SECTION SHARED — */
+.section {
+  padding: 6rem 2.5rem;
+}
+.section-inner {
+  max-width: 1100px; margin: 0 auto;
+}
+.section-eyebrow {
+  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1.25rem;
+}
+.section-h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300; line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--navy); margin-bottom: 1rem;
+}
+.section-h2 em { font-style: italic; color: var(--lilac); }
+.section-h2-light {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300; line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--ivory); margin-bottom: 1rem;
+}
+.section-intro {
+  font-size: 1rem; color: var(--slate); line-height: 1.7;
+  max-width: 58ch; margin-bottom: 3.5rem;
+}
+
+/* — CLOSER CTA — */
+.closer-section {
+  background: var(--navy);
+  padding: 7rem 2.5rem;
+  text-align: center;
+}
+.closer-inner {
+  max-width: 640px; margin: 0 auto;
+}
+.closer-eyebrow {
+  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1.25rem;
+}
+.closer-h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  font-weight: 300; line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--ivory); margin-bottom: 1.25rem;
+}
+.closer-h2 em { font-style: italic; color: var(--cream); }
+.closer-body {
+  font-size: 0.98rem; color: rgba(247,241,234,0.6); line-height: 1.7;
+  max-width: 50ch; margin: 0 auto 2.5rem;
+}
+
+/* — FOOTER — */
+.site-footer {
+  background: var(--navy-dark);
+  padding: 3rem 2.5rem;
+  border-top: 1px solid rgba(247,241,234,0.06);
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1.25rem;
+}
+.footer-brand {
+  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; text-decoration: none;
+}
+.footer-links {
+  display: flex; gap: 1.75rem; flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 0.78rem; color: rgba(247,241,234,0.4);
+  text-decoration: none; transition: color 0.15s;
+}
+.footer-links a:hover { color: rgba(247,241,234,0.75); }
+.footer-copy {
+  font-size: 0.72rem; color: rgba(247,241,234,0.25);
+  width: 100%;
+}
+
+/* — PAGE-SPECIFIC — */
+
+/* Methodology single-col centered */
+.method-inner {
+  max-width: 700px; margin: 0 auto;
+}
+.method-body {
+  font-size: 1rem; color: var(--slate); line-height: 1.75;
+  margin-top: 1rem;
+}
+
+/* Featured research 3-col grid */
+.research-sub {
+  font-size: 1rem; color: var(--slate); line-height: 1.65;
+  margin-bottom: 2.5rem;
+}
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.featured-card {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 2rem;
+  border: 1px solid rgba(39,55,82,0.09);
+  display: flex; flex-direction: column;
+}
+.featured-card.muted {
+  opacity: 0.6;
+}
+.card-tag {
+  display: inline-block;
+  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 600;
+  background: rgba(157,146,173,0.1);
+  border-radius: 4px; padding: 0.25rem 0.6rem;
+  margin-bottom: 1rem; align-self: flex-start;
+}
+.card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem; font-weight: 400; line-height: 1.25;
+  color: var(--navy); margin-bottom: 0.65rem; letter-spacing: -0.01em;
+}
+.card-desc {
+  font-size: 0.88rem; color: var(--slate); line-height: 1.65;
+  flex: 1; margin-bottom: 1.25rem;
+}
+.card-link {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  color: var(--navy); font-size: 0.85rem; font-weight: 600;
+  text-decoration: none; border-bottom: 1px solid rgba(39,55,82,0.25);
+  padding-bottom: 1px; transition: border-color 0.15s;
+  align-self: flex-start;
+}
+.card-link:hover { border-color: var(--navy); }
+
+/* Podcast section */
+.podcast-section {
+  background: var(--navy);
+  padding: 6rem 2.5rem;
+}
+.podcast-section .section-eyebrow { color: var(--lilac); }
+.podcast-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.75rem;
+}
+.podcast-card {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex; flex-direction: column; gap: 0.6rem;
+}
+.podcast-ep {
+  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 600;
+}
+.podcast-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1rem; font-weight: 400;
+  color: var(--navy); line-height: 1.3;
+}
+.podcast-link {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  color: var(--navy); font-size: 0.82rem; font-weight: 600;
+  text-decoration: none; border-bottom: 1px solid rgba(39,55,82,0.2);
+  padding-bottom: 1px; transition: border-color 0.15s;
+  align-self: flex-start; margin-top: 0.4rem;
+}
+.podcast-link:hover { border-color: var(--navy); }
+.podcast-note {
+  font-size: 0.82rem; color: rgba(247,241,234,0.4); line-height: 1.6;
+}
+
+/* Appearances section */
+.appearances-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+.appearance-card {
+  background: var(--ivory);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid rgba(39,55,82,0.08);
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.appearance-venue {
+  font-size: 0.78rem; color: var(--lilac); font-weight: 500;
+}
+.appearance-title {
+  font-weight: 600; color: var(--navy); font-size: 0.92rem;
+}
+.appearance-date {
+  font-size: 0.78rem; color: var(--slate);
+}
+.appearance-link {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  color: var(--navy); font-size: 0.82rem; font-weight: 600;
+  text-decoration: none; border-bottom: 1px solid rgba(39,55,82,0.2);
+  padding-bottom: 1px; transition: border-color 0.15s;
+  align-self: flex-start; margin-top: 0.4rem;
+}
+.appearance-link:hover { border-color: var(--navy); }
+.section-note {
+  font-size: 0.82rem; color: var(--lilac); line-height: 1.55;
+}
+
+/* Topic filter chips */
+.topic-section {
+  background: var(--ivory);
+  padding: 6rem 2.5rem;
+}
+.filter-chips {
+  display: flex; flex-wrap: wrap; gap: 0.75rem;
+  margin-top: 2rem; margin-bottom: 1.25rem;
+}
+.chip {
+  display: inline-block;
+  padding: 0.5rem 1.1rem;
+  border-radius: 100px;
+  border: 1px solid var(--navy);
+  color: var(--navy);
+  font-size: 0.82rem; font-weight: 500;
+  cursor: default;
+  transition: background 0.15s, color 0.15s;
+}
+.chip:hover {
+  background: var(--navy);
+  color: var(--ivory);
+}
+
+/* Recent analysis cards */
+.recent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+.recent-card {
+  background: var(--ivory);
+  border-radius: 10px;
+  padding: 1.75rem;
+  border: 1px solid rgba(39,55,82,0.08);
+  display: flex; flex-direction: column;
+}
+
+/* Advisory rail (2-col) */
+.advisory-rail {
+  background: var(--ivory);
+  padding: 6rem 2.5rem;
+}
+.advisory-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: center;
+}
+.advisory-services {
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.mini-card {
+  background: var(--white);
+  border: 1px solid rgba(39,55,82,0.09);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.92rem; font-weight: 500;
+  color: var(--navy);
+}
+
+/* Sticky floating CTA */
+.sticky-cta {
+  position: fixed;
+  bottom: 1.75rem; right: 1.75rem;
+  z-index: 200;
+  background: var(--cream);
+  color: var(--navy-dark);
+  text-decoration: none;
+  font-size: 0.85rem; font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  border-radius: 100px;
+  box-shadow: 0 4px 20px rgba(39,55,82,0.18);
+  transition: background 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+.sticky-cta:hover {
+  background: #f5e0b5;
+  box-shadow: 0 6px 28px rgba(39,55,82,0.22);
+}
+
+/* — MOBILE — */
+@media (max-width: 900px) {
+  .topbar { padding: 0 1.25rem; }
+  .topbar-nav { display: none; }
+  .mobile-menu-btn { display: flex; }
+
+  .hero { padding: 8rem 1.5rem 5rem; }
+  .section { padding: 4rem 1.5rem; }
+
+  .featured-grid { grid-template-columns: 1fr; }
+  .podcast-section { padding: 4rem 1.5rem; }
+  .podcast-cards { grid-template-columns: 1fr; }
+  .appearances-grid { grid-template-columns: 1fr; }
+  .topic-section { padding: 4rem 1.5rem; }
+  .recent-grid { grid-template-columns: 1fr; }
+  .advisory-rail { padding: 4rem 1.5rem; }
+  .advisory-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .closer-section { padding: 5rem 1.5rem; }
+  .site-footer { padding: 2.5rem 1.5rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .method-inner { text-align: left; }
+}
+
+@media (max-width: 768px) {
+  .sticky-cta { display: none; }
+}
+
+@media (max-width: 600px) {
+  .logo-band { padding: 2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topbar">
+  <a href="/" class="topbar-brand">Kyle &amp; Co</a>
+  <div class="topbar-nav">
+    <a href="/">Home</a>
+    <a href="/research" class="active">Research</a>
+    <a href="/practitioners">For Practitioners</a>
+    <a href="/vendors">For Vendors</a>
+    <a href="/aicouncil">HCAIC</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+  <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="topbar-cta">Book a discovery call</a>
+  <button class="mobile-menu-btn" aria-label="Menu">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <rect y="3" width="20" height="1.5" rx="0.75" fill="currentColor"/>
+      <rect y="9.25" width="20" height="1.5" rx="0.75" fill="currentColor"/>
+      <rect y="15.5" width="20" height="1.5" rx="0.75" fill="currentColor"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Research</div>
+    <h1>Research HR uses to evaluate tools and set a defensible, adoptable, and executable strategy.</h1>
+    <p class="hero-sub">Built on surveys with thousands of senior HR and TA leaders, authored alongside the practitioners shaping the work. Carry it into vendor evaluations, leadership presentations, and the strategy decisions you have to defend.</p>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="section" style="background: var(--white);">
+  <div class="section-inner">
+    <div class="method-inner">
+      <div class="section-eyebrow">The work</div>
+      <h2 class="section-h2">How we research.</h2>
+      <p class="method-body">Each year, we publish an annual market study, quarterly Category Compass reports, and bespoke client research. The work is built on surveys with thousands of senior HR and TA leaders. The Human-Centric AI Council adds practitioner-led work on AI. Our edge is pairing primary research with rigorous secondary analysis, because neither catches the full signal alone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED RESEARCH -->
+<section class="section" style="background: var(--ivory);">
+  <div class="section-inner">
+    <div class="section-eyebrow">Flagship work</div>
+    <h2 class="section-h2">Featured research.</h2>
+    <p class="research-sub">Anchor research projects, published openly. Updated as new work ships.</p>
+    <div class="featured-grid">
+
+      <div class="featured-card">
+        <span class="card-tag">Report</span>
+        <div class="card-title">AI Momentum Model</div>
+        <p class="card-desc">Nine archetypes and a model for where your org sits. With an archetype assessment.</p>
+        <a href="https://kyleandco.com/aicouncil/#library" class="card-link">Access <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="featured-card">
+        <span class="card-tag">Compass</span>
+        <div class="card-title">Category Compass: AI Interviewers</div>
+        <p class="card-desc">An independent benchmark of AI interviewer solutions. What we found, and what it means for buyers.</p>
+        <a href="https://kyleandco.com/aicouncil/#library" class="card-link">Access <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="featured-card">
+        <span class="card-tag">Toolkit</span>
+        <div class="card-title">HCAIC Toolkit</div>
+        <p class="card-desc">Four practitioner-built frameworks on AI literacy, governance, adoption, and the future of HR.</p>
+        <a href="https://kyleandco.com/aicouncil/#library" class="card-link">Access <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="featured-card">
+        <span class="card-tag">Report</span>
+        <div class="card-title">Quality of Hire Imperative</div>
+        <p class="card-desc">What quality of hire actually means, how to measure it, and how to defend it to the business.</p>
+        <a href="https://kyleandco.com/" class="card-link">Access <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="featured-card">
+        <span class="card-tag">Report</span>
+        <div class="card-title">Intelligent, Intentional Transformation</div>
+        <p class="card-desc">The strategy framework for HR teams moving from AI exploration to execution.</p>
+        <a href="https://kyleandco.com/" class="card-link">Access <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="featured-card muted">
+        <span class="card-tag">Coming soon</span>
+        <div class="card-title">Candidate Fraud Research</div>
+        <p class="card-desc">Forthcoming research on AI-enabled candidate fraud: scope, patterns, and what HR teams can do.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PODCAST SECTION -->
+<section class="podcast-section">
+  <div class="section-inner">
+    <div class="section-eyebrow">Transformation Realness</div>
+    <h2 class="section-h2-light">Transformation Realness.</h2>
+    <p style="font-size: 0.98rem; color: rgba(247,241,234,0.6); line-height: 1.65; max-width: 50ch; margin-top: 0.75rem;">Conversations with the practitioners doing the work. Subscribe wherever you listen.</p>
+    <div class="podcast-cards">
+
+      <div class="podcast-card">
+        <div class="podcast-ep">Episode</div>
+        <div class="podcast-title">Latest episode</div>
+        <a href="#" class="podcast-link">Listen <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="podcast-card">
+        <div class="podcast-ep">Episode</div>
+        <div class="podcast-title">Latest episode</div>
+        <a href="#" class="podcast-link">Listen <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="podcast-card">
+        <div class="podcast-ep">Episode</div>
+        <div class="podcast-title">Latest episode</div>
+        <a href="#" class="podcast-link">Listen <span aria-hidden="true">→</span></a>
+      </div>
+
+    </div>
+    <p class="podcast-note">Full archive and subscribe links coming. Episodes pinned by Brandice.</p>
+  </div>
+</section>
+
+<!-- FEATURED ELSEWHERE -->
+<section class="section" style="background: var(--white);">
+  <div class="section-inner">
+    <div class="section-eyebrow">In the conversation</div>
+    <h2 class="section-h2">Featured elsewhere.</h2>
+    <p style="font-size: 1rem; color: var(--slate); line-height: 1.65; margin-bottom: 0; max-width: 52ch;">Podcasts, panels, and webinars where Kyle has been a guest or speaker. Updated as new appearances ship.</p>
+    <div class="appearances-grid">
+
+      <div class="appearance-card">
+        <div class="appearance-venue">Venue / host</div>
+        <div class="appearance-title">Appearance</div>
+        <div class="appearance-date">Date</div>
+        <a href="#" class="appearance-link">Watch <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="appearance-card">
+        <div class="appearance-venue">Venue / host</div>
+        <div class="appearance-title">Appearance</div>
+        <div class="appearance-date">Date</div>
+        <a href="#" class="appearance-link">Watch <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="appearance-card">
+        <div class="appearance-venue">Venue / host</div>
+        <div class="appearance-title">Appearance</div>
+        <div class="appearance-date">Date</div>
+        <a href="#" class="appearance-link">Watch <span aria-hidden="true">→</span></a>
+      </div>
+
+    </div>
+    <p class="section-note">New appearances added by the team as they're confirmed.</p>
+  </div>
+</section>
+
+<!-- BY TOPIC NAV -->
+<section class="topic-section">
+  <div class="section-inner">
+    <div class="section-eyebrow">Browse</div>
+    <h2 class="section-h2">By topic.</h2>
+    <div class="filter-chips">
+      <span class="chip">AI in HR</span>
+      <span class="chip">Talent acquisition</span>
+      <span class="chip">HR technology</span>
+      <span class="chip">Workforce strategy</span>
+      <span class="chip">Innovation cycles</span>
+      <span class="chip">Adoption and change</span>
+    </div>
+    <p class="section-note">Taxonomy to be finalized. Brandice to confirm final list.</p>
+  </div>
+</section>
+
+<!-- RECENT ANALYSIS -->
+<section class="section" style="background: var(--white);">
+  <div class="section-inner">
+    <div class="section-eyebrow">Latest</div>
+    <h2 class="section-h2">Recent analysis.</h2>
+    <div class="recent-grid">
+
+      <div class="recent-card">
+        <span class="card-tag">Category</span>
+        <div class="card-title" style="font-size: 1rem; margin-bottom: 0.5rem;">Recent post</div>
+        <p class="card-desc" style="font-size: 0.85rem;">Date</p>
+        <a href="/blog" class="card-link">Read <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="recent-card">
+        <span class="card-tag">Category</span>
+        <div class="card-title" style="font-size: 1rem; margin-bottom: 0.5rem;">Recent post</div>
+        <p class="card-desc" style="font-size: 0.85rem;">Date</p>
+        <a href="/blog" class="card-link">Read <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="recent-card">
+        <span class="card-tag">Category</span>
+        <div class="card-title" style="font-size: 1rem; margin-bottom: 0.5rem;">Recent post</div>
+        <p class="card-desc" style="font-size: 0.85rem;">Date</p>
+        <a href="/blog" class="card-link">Read <span aria-hidden="true">→</span></a>
+      </div>
+
+    </div>
+    <p class="section-note">Auto-populated from the blog.</p>
+  </div>
+</section>
+
+<!-- NEWSLETTER SIGNUP -->
+<section class="closer-section">
+  <div class="closer-inner">
+    <div class="closer-eyebrow">Stay sharp</div>
+    <h2 class="closer-h2">Stay sharp.</h2>
+    <p class="closer-body">Subscribe and you'll get the work as it ships. No spam. Just signal.</p>
+    <a href="/blog" class="btn-primary">Subscribe <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<!-- SOFT ADVISORY RAIL -->
+<section class="advisory-rail">
+  <div class="advisory-inner">
+    <div>
+      <div class="section-eyebrow">Go deeper</div>
+      <h2 class="section-h2">Want this research applied to your work?</h2>
+      <p style="font-size: 1rem; color: var(--slate); line-height: 1.75; margin-bottom: 2rem; max-width: 48ch;">If your team is using a Kyle &amp; Co report to evaluate a tool, defend strategy, or set positioning, Kyle &amp; Co can scope a deeper engagement. Workshops, advisory hours, and bespoke research projects fit alongside the published work.</p>
+      <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="btn-primary">Start a conversation <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="advisory-services">
+      <div class="mini-card">Workshop: evaluating vendor claims</div>
+      <div class="mini-card">Advisory: strategy and positioning</div>
+      <div class="mini-card">Bespoke research project</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="/" class="footer-brand">Kyle &amp; Co</a>
+    <nav class="footer-links">
+      <a href="/research">Research</a>
+      <a href="/practitioners">For Practitioners</a>
+      <a href="/vendors">For Vendors</a>
+      <a href="/aicouncil">HCAIC</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <div class="footer-copy">&copy; 2026 Kyle &amp; Co. No spam. Just signal.</div>
+  </div>
+</footer>
+
+<!-- STICKY FLOATING CTA -->
+<a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="sticky-cta">Book a discovery call →</a>
+
+</body>
+</html>
