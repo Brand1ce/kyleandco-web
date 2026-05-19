@@ -129,22 +129,6 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
 .motif p em { color: var(--lilac); font-style: normal; font-weight: 400; }
 .motif .label { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--slate); margin-bottom: 1.25rem; }
 
-.methodology { background: var(--ivory); padding: 7rem 2.5rem; }
-.methodology-layout {
-  max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
-}
-.methodology-text h2 {
-  font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1.08; letter-spacing: -.02em;
-  color: var(--navy); margin-bottom: 1.25rem; max-width: 16ch;
-}
-.methodology-text h2 em { font-style: italic; color: var(--lilac); }
-.methodology-text p { font-size: 1rem; color: var(--slate); line-height: 1.75; max-width: 52ch; }
-.methodology-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.stat-item { background: var(--white); border-radius: var(--r-md); padding: 1.75rem 1.5rem; border-top: 3px solid var(--lilac); }
-.stat-num { font-family: var(--font-display); font-size: 2.5rem; font-weight: 400; font-style: italic; color: var(--navy); line-height: 1; margin-bottom: .35rem; }
-.stat-label { font-size: .82rem; color: var(--slate); line-height: 1.5; }
 
 .engage { background: var(--white); padding: 7rem 2.5rem; }
 .engage-inner { max-width: 1200px; margin: 0 auto; }
@@ -234,7 +218,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
 .closer p { font-size: 1.15rem; color: var(--navy); line-height: 1.6; max-width: 56ch; margin: 0 auto 2.5rem; font-weight: 300; }
 
 @media (max-width: 900px) {
-  .hero-home, .diffs, .the-work, .methodology, .engage, .council, .tests, .team, .closer { padding: 4rem 1.5rem; }
+  .hero-home, .diffs, .the-work, .engage, .council, .tests, .team, .closer { padding: 4rem 1.5rem; }
   .the-work-grid { grid-template-columns: 1fr; }
   .hero-home-inner, .methodology-layout, .council-feature, .logo-band-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .diff-grid { grid-template-columns: 1fr; }
@@ -318,6 +302,11 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
   </div>
 </section>
 
+<div class="motif">
+  <div class="label">The work</div>
+  <p>Where Research <em>Meets Reality.</em></p>
+</div>
+
 <section class="the-work">
   <div class="the-work-inner">
     <div class="the-work-head">
@@ -348,39 +337,6 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
       <span>Thousands of senior HR and TA leaders surveyed annually.</span>
       <span class="work-stat-dot">·</span>
       <span>The AI Council shapes the work on AI.</span>
-    </div>
-  </div>
-</section>
-
-<div class="motif">
-  <div class="label">The work</div>
-  <p>Where Research <em>Meets Reality.</em></p>
-</div>
-
-<section class="methodology">
-  <div class="methodology-layout">
-    <div class="methodology-text">
-      <div class="kc-eyebrow" style="margin-bottom:1rem;">The work</div>
-      <h2>Where the research <em>comes from.</em></h2>
-      <p>Each year, we publish an annual market study, quarterly Category Compass reports, and bespoke client research. Built on surveys with thousands of senior HR and TA leaders. The Human-Centric AI Council adds practitioner-led work on AI. Our edge is pairing primary research with rigorous secondary analysis, because neither catches the full signal alone.</p>
-    </div>
-    <div class="methodology-stats">
-      <div class="stat-item">
-        <div class="stat-num">1</div>
-        <div class="stat-label">Annual market study published each year</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">Quarterly</div>
-        <div class="stat-label">Category Compass reports</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">1,000s</div>
-        <div class="stat-label">Senior HR and TA leaders surveyed</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">Free</div>
-        <div class="stat-label">Every report, every time. No gate.</div>
-      </div>
     </div>
   </div>
 </section>
