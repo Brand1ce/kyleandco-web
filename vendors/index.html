@@ -138,7 +138,7 @@ body[data-page="vendors"] { --accent: var(--lilac); }
       <div class="eyebrow"><span class="dot"></span> For Vendors</div>
       <h1>Where HR-tech vendors earn the trust <em>they can't buy.</em></h1>
       <p class="sub">Kyle &amp; Co works with vendors who want to be trusted in the function, not just sold to it. Research, underwriting, advisory, and events that put your work in front of practitioners on the practitioners' terms.</p>
-      <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="btn-primary">Book a discovery call <span aria-hidden="true">→</span></a>
+      <button class="btn-primary" onclick="document.getElementById('vendor-modal').classList.add('open')">Book a discovery call <span aria-hidden="true">→</span></button>
     </div>
   </div>
 </section>
@@ -277,6 +277,81 @@ body[data-page="vendors"] { --accent: var(--lilac); }
     <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="btn-primary">Book a discovery call <span aria-hidden="true">→</span></a>
   </div>
 </section>
+
+<!-- VENDOR MODAL -->
+<div id="vendor-modal" class="kc-modal-overlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="kc-modal-box">
+    <button class="kc-modal-close" onclick="document.getElementById('vendor-modal').classList.remove('open')" aria-label="Close">&#x2715;</button>
+    <div id="vendor-form-view">
+      <div class="kc-modal-eyebrow">Start the conversation</div>
+      <h3 class="kc-modal-title">Back the work. <em>Stand in the room.</em></h3>
+      <p class="kc-modal-sub">Tell us a bit about your team and what you're trying to solve. Kyle &amp; Co will follow up within two business days.</p>
+      <iframe name="ml-vendor-frame" style="display:none;"></iframe>
+      <form action="https://assets.mailerlite.com/jsonp/1555935/forms/159836007953335925/subscribe" method="post" target="ml-vendor-frame" onsubmit="setTimeout(()=>document.getElementById('vendor-form-view').style.display='none'||document.getElementById('vendor-success').style.display='block',1000)">
+        <div class="kc-form-row">
+          <input required type="text" name="fields[name]" placeholder="First name" class="kc-input">
+          <input required type="text" name="fields[last_name]" placeholder="Last name" class="kc-input">
+        </div>
+        <input required type="email" name="fields[email]" placeholder="Work email" class="kc-input">
+        <div class="kc-form-row">
+          <input required type="text" name="fields[job_title]" placeholder="Title" class="kc-input">
+          <input required type="text" name="fields[company]" placeholder="Company" class="kc-input">
+        </div>
+        <select required name="fields[initiative_interest]" class="kc-input kc-select">
+          <option value="">Which initiatives are you interested in supporting?</option>
+          <option value="The Human Centric AI Council">The Human-Centric AI Council</option>
+          <option value="General research underwriting">General research underwriting</option>
+        </select>
+        <select required name="fields[underwriting_objective]" class="kc-input kc-select">
+          <option value="">What's your main objective?</option>
+          <option value="Brand visibility">Brand visibility</option>
+          <option value="Demand Generation">Demand generation</option>
+          <option value="AI Messaging and/or product validation">AI messaging or product validation</option>
+        </select>
+        <textarea name="fields[anything_else]" placeholder="Anything else we should know? (optional)" rows="3" class="kc-input kc-textarea"></textarea>
+        <input type="hidden" name="ml-submit" value="1">
+        <input type="hidden" name="anticsrf" value="true">
+        <button type="submit" class="kc-modal-btn">Get the full overview <span aria-hidden="true">→</span></button>
+        <p class="kc-modal-note">Kyle &amp; Co will follow up within two business days.</p>
+      </form>
+    </div>
+    <div id="vendor-success" style="display:none;padding:2rem 0;text-align:center;">
+      <div class="kc-modal-eyebrow">Message received</div>
+      <h3 class="kc-modal-title" style="font-size:1.75rem;">We'll be in touch.</h3>
+      <p class="kc-modal-sub">Your submission is in. Expect a reply within two business days.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.kc-modal-overlay { display:none; position:fixed; inset:0; background:rgba(23,35,57,.55); z-index:300; align-items:flex-start; justify-content:center; padding:5rem 1.5rem 3rem; overflow-y:auto; }
+.kc-modal-overlay.open { display:flex; animation:kcFadeUp .3s cubic-bezier(.22,1,.36,1); }
+@keyframes kcFadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+.kc-modal-box { background:var(--ivory); max-width:540px; width:100%; border-radius:16px; padding:2.75rem; position:relative; box-shadow:0 30px 80px rgba(23,35,57,.25); }
+.kc-modal-close { position:absolute; top:1rem; right:1.25rem; background:none; border:none; font-size:1.2rem; color:var(--slate); cursor:pointer; padding:.3rem .6rem; line-height:1; }
+.kc-modal-close:hover { color:var(--navy); }
+.kc-modal-eyebrow { font-family:var(--font-mono); font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:var(--lilac); font-weight:500; margin-bottom:.9rem; }
+.kc-modal-title { font-family:var(--font-display); font-size:1.85rem; font-weight:400; line-height:1.1; letter-spacing:-.02em; color:var(--navy); margin-bottom:.9rem; }
+.kc-modal-title em { font-style:italic; color:var(--lilac); }
+.kc-modal-sub { font-size:.93rem; color:var(--slate); line-height:1.6; margin-bottom:1.75rem; }
+form { display:flex; flex-direction:column; gap:.75rem; }
+.kc-form-row { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }
+.kc-input { width:100%; padding:.8rem 1rem; border:1px solid rgba(39,55,82,.16); border-radius:8px; font-size:.9rem; font-family:inherit; color:var(--navy); background:var(--white); outline:none; transition:border-color .15s; }
+.kc-input:focus { border-color:var(--navy); }
+.kc-input::placeholder { color:var(--lilac); }
+.kc-select { appearance:none; -webkit-appearance:none; cursor:pointer; }
+.kc-textarea { resize:vertical; line-height:1.5; }
+.kc-modal-btn { margin-top:.25rem; background:var(--navy); color:var(--ivory); border:none; border-radius:100px; padding:1rem 1.75rem; font-size:.9rem; font-weight:500; font-family:inherit; cursor:pointer; display:inline-flex; align-items:center; gap:.5rem; transition:opacity .15s; }
+.kc-modal-btn:hover { opacity:.88; }
+.kc-modal-note { font-size:.72rem; color:var(--slate); text-align:center; margin-top:.25rem; }
+@media (max-width:600px) { .kc-form-row { grid-template-columns:1fr; } .kc-modal-box { padding:2rem 1.5rem; } }
+</style>
+
+<script>
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') document.querySelectorAll('.kc-modal-overlay.open').forEach(m => m.classList.remove('open'));
+});
+</script>
 
 <footer class="site-footer">
   <div class="footer-inner">
