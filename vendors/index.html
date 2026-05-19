@@ -1,22 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/png" href="/favicon.png" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/favicon.png">
 <title>For Vendors — Kyle &amp; Co</title>
-<meta name="description" content="Where HR-tech vendors earn the trust they can't buy. Kyle & Co partners with vendors who want a front-row seat to the problems practitioners are working through." />
-<meta property="og:title" content="For Vendors — Kyle &amp; Co" />
-<meta property="og:description" content="Where HR-tech vendors earn the trust they can't buy. Kyle & Co partners with vendors who want a front-row seat to the problems practitioners are working through." />
-<meta property="og:image" content="https://kyleandco.com/aicouncil/social-preview.png" />
-<meta property="og:url" content="https://kyleandco.com/vendors" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Kyle &amp; Co" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="For Vendors — Kyle &amp; Co" />
-<meta name="twitter:description" content="Where HR-tech vendors earn the trust they can't buy. Kyle & Co partners with vendors who want a front-row seat to the problems practitioners are working through." />
-<meta name="twitter:image" content="https://kyleandco.com/aicouncil/social-preview.png" />
-<!-- Google tag (gtag.js) -->
+<meta name="description" content="Kyle &amp; Co works with HR-tech vendors who want to be trusted in the function, not just sold to it. Research, underwriting, advisory, and events on the practitioners' terms.">
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H95H1WFLGC"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -24,526 +14,213 @@
   gtag('js', new Date());
   gtag('config', 'G-H95H1WFLGC');
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/site.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* VENDORS — persona accent: lilac */
+body[data-page="vendors"] { --accent: var(--lilac); }
 
-:root {
-  --navy: #273752;
-  --navy-dark: #172339;
-  --lilac: #9D92AD;
-  --ivory: #F7F1EA;
-  --slate: #555961;
-  --cream: #FDECCD;
-  --white: #ffffff;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: var(--ivory);
-  color: var(--navy);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* — NAV — */
-.topbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: var(--navy); padding: 0 2.5rem;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 56px; border-bottom: 1px solid rgba(247,241,234,0.1);
-}
-.topbar-brand {
-  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--lilac); font-weight: 500; text-decoration: none;
-  flex-shrink: 0;
-}
-.topbar-nav {
-  display: flex; gap: 1.75rem; align-items: center;
-}
-.topbar-nav a {
-  font-size: 0.8rem; color: rgba(247,241,234,0.65);
-  text-decoration: none; transition: color 0.15s; white-space: nowrap;
-}
-.topbar-nav a:hover { color: var(--ivory); }
-.topbar-nav a.active { color: var(--ivory); }
-.topbar-cta {
-  background: var(--cream); color: var(--navy-dark);
-  text-decoration: none; font-size: 0.78rem; font-weight: 600;
-  padding: 0.5rem 1.15rem; border-radius: 100px;
-  white-space: nowrap; transition: background 0.15s; flex-shrink: 0;
-}
-.topbar-cta:hover { background: #f5e0b5; }
-.mobile-menu-btn {
-  display: none; background: none; border: none;
-  color: var(--ivory); cursor: pointer; padding: 0.25rem;
-}
-
-/* — HERO — */
-.hero {
-  background: var(--navy);
-  padding: 10rem 2.5rem 7rem;
+.hero-vendors {
+  background: var(--ivory); padding: 8rem 2.5rem 6rem;
   position: relative; overflow: hidden;
+  background-image:
+    linear-gradient(rgba(39,55,82,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(39,55,82,.035) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 80% 50%, rgba(45,92,148,0.45) 0%, transparent 65%);
-  pointer-events: none;
-}
-.hero-inner {
-  max-width: 1100px; margin: 0 auto;
-  position: relative;
-}
-.hero-eyebrow {
-  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--lilac); font-weight: 500; margin-bottom: 1.5rem;
-}
-.hero h1 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2.75rem, 5.5vw, 4.75rem);
-  font-weight: 300; line-height: 1.05; letter-spacing: -0.02em;
-  color: var(--ivory); margin-bottom: 1.5rem;
-  max-width: 22ch;
-}
-.hero h1 em { font-style: italic; color: var(--cream); }
-.hero-sub {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  color: rgba(247,241,234,0.65); line-height: 1.65;
-  max-width: 48ch; margin-bottom: 2.5rem;
-}
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: var(--cream); color: var(--navy-dark);
-  text-decoration: none; font-size: 0.9rem; font-weight: 600;
-  padding: 1rem 2rem; border-radius: 100px;
-  transition: background 0.15s;
-}
-.btn-primary:hover { background: #f5e0b5; }
-.btn-ghost {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: transparent; color: var(--ivory);
-  text-decoration: none; font-size: 0.9rem; font-weight: 500;
-  padding: 1rem 2rem; border-radius: 100px;
-  border: 1px solid rgba(247,241,234,0.3);
-  transition: border-color 0.15s, color 0.15s;
-}
-.btn-ghost:hover { border-color: rgba(247,241,234,0.6); color: var(--ivory); }
+.hero-vendors > img.corner-mark { position: absolute; right: -4%; bottom: -12%; width: 48%; max-width: 560px; opacity: .06; pointer-events: none; }
+.hero-vendors-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-vendors-text { max-width: 28ch; }
+.hero-vendors .eyebrow { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--slate); font-weight: 400; display: inline-flex; align-items: center; gap: .7rem; margin-bottom: 2rem; }
+.hero-vendors .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lilac); box-shadow: 0 0 0 3px rgba(157,146,173,.25); animation: kcPulseDot 2.2s ease-in-out infinite; }
+.hero-vendors h1 { font-family: var(--font-display); font-weight: 400; font-variation-settings: "SOFT" 50, "WONK" 0; font-size: clamp(2.75rem, 6.5vw, 5.5rem); line-height: .98; letter-spacing: -.022em; color: var(--navy); margin-bottom: 2.25rem; }
+.hero-vendors h1 em { font-style: italic; color: var(--lilac); font-weight: 400; }
+.hero-vendors p.sub { font-family: var(--font-body); font-size: 1.15rem; line-height: 1.55; color: var(--navy); max-width: 56ch; margin-bottom: 2.5rem; font-weight: 300; }
 
-/* — LOGO BAND — */
-.logo-band {
-  background: var(--white);
-  padding: 2.25rem 2.5rem;
-  border-bottom: 1px solid rgba(39,55,82,0.08);
-}
-.logo-band-inner {
-  max-width: 1100px; margin: 0 auto;
-}
-.logo-band-label {
-  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--lilac); font-weight: 500; margin-bottom: 1.5rem;
-  text-align: center;
-}
-.logo-band-imgs {
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 1rem;
-}
-.logo-band-imgs img {
-  max-width: 100%; height: auto;
-  opacity: 0.65; filter: grayscale(30%);
-}
+.vendor-logos { background: var(--ivory); padding: 3rem 2.5rem; border-bottom: 1px solid rgba(39,55,82,.08); border-top: 1px solid rgba(39,55,82,.06); }
+.vendor-logos-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center; }
+.vendor-logos-label { font-family: var(--font-display); font-size: 1rem; font-style: italic; color: var(--navy); max-width: 14ch; line-height: 1.2; }
+.vendor-logos-label em { color: var(--lilac); font-style: normal; }
+.vendor-logos-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; align-items: center; border-left: 1px solid rgba(157,146,173,.3); }
+.vendor-logos-grid > div { height: 56px; display: flex; align-items: center; justify-content: center; border-right: 1px solid rgba(157,146,173,.3); padding: 0 1rem; }
+.vendor-logos-grid img { max-height: 24px; max-width: 100%; opacity: .65; filter: grayscale(40%); transition: opacity .2s, filter .2s; }
+.vendor-logos-grid > div:hover img { opacity: 1; filter: grayscale(0); }
 
-/* — SECTION SHARED — */
-.section {
-  padding: 6rem 2.5rem;
-}
-.section-inner {
-  max-width: 1100px; margin: 0 auto;
-}
-.section-eyebrow {
-  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--lilac); font-weight: 500; margin-bottom: 1.25rem;
-}
-.section-h2 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 300; line-height: 1.1; letter-spacing: -0.02em;
-  color: var(--navy); margin-bottom: 1rem;
-}
-.section-h2 em { font-style: italic; color: var(--lilac); }
-.section-intro {
-  font-size: 1rem; color: var(--slate); line-height: 1.7;
-  max-width: 58ch; margin-bottom: 3.5rem;
-}
+.shift { background: var(--white); padding: 7rem 2.5rem; position: relative; }
+.shift-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
+.shift h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1.05; letter-spacing: -.02em; color: var(--navy); max-width: 14ch; }
+.shift h2 em { font-style: italic; color: var(--lilac); }
+.shift-body { font-size: 1.02rem; color: var(--slate); line-height: 1.8; }
+.shift-body p { margin-bottom: 1.25rem; }
+.shift-body strong { color: var(--navy); font-weight: 600; }
+.shift-cream { margin-top: 2.5rem; background: var(--cream); border-radius: var(--r-lg); padding: 2.5rem 2.75rem; position: relative; overflow: hidden; }
+.shift-cream .label { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; color: var(--navy); opacity: .55; margin-bottom: .75rem; }
+.shift-cream blockquote { font-family: var(--font-display); font-weight: 400; font-style: italic; font-size: clamp(1.3rem, 2.2vw, 1.8rem); line-height: 1.25; color: var(--navy-dark); letter-spacing: -.01em; max-width: 28ch; position: relative; z-index: 1; }
+.shift-cream blockquote em { font-style: normal; color: var(--lilac); font-weight: 500; }
 
-/* — ENGAGEMENT BUCKETS — */
-.engage-section {
-  background: var(--white);
-}
-.engage-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-top: 0.5rem;
-}
-.engage-card {
-  background: var(--ivory);
-  border-radius: 10px;
-  padding: 2.25rem 2.5rem;
-  display: flex; flex-direction: column;
-  border: 1px solid rgba(39,55,82,0.07);
-}
-.engage-num {
-  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--lilac); font-weight: 500; margin-bottom: 1rem;
-}
-.engage-title {
-  font-family: 'Fraunces', serif;
-  font-size: 1.25rem; font-weight: 400; line-height: 1.2;
-  color: var(--navy); margin-bottom: 0.85rem; letter-spacing: -0.01em;
-}
-.engage-body {
-  font-size: 0.9rem; color: var(--slate); line-height: 1.7; flex: 1;
-}
-.engage-footer {
-  margin-top: 1.75rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba(39,55,82,0.1);
-  font-size: 0.78rem; color: var(--navy); font-weight: 600;
-  letter-spacing: 0.04em;
-}
-.engage-cta-note {
-  margin-top: 2.5rem;
-  font-size: 0.9rem; color: var(--slate); line-height: 1.65;
-}
-.engage-cta-note a {
-  color: var(--navy); font-weight: 600; text-decoration: underline;
-  text-underline-offset: 2px;
-}
+.engage-v { background: var(--ivory); padding: 7rem 2.5rem; }
+.engage-v-inner { max-width: 1200px; margin: 0 auto; }
+.engage-v-head { margin-bottom: 3rem; max-width: 56ch; }
+.engage-v-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1.05; letter-spacing: -.02em; color: var(--navy); margin-bottom: 1rem; }
+.engage-v-head h2 em { font-style: italic; color: var(--lilac); }
+.engage-v-head p { font-size: 1.05rem; color: var(--slate); line-height: 1.7; max-width: 52ch; }
+.engage-v-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+.engage-v-card { background: var(--white); border: 1px solid rgba(39,55,82,.07); border-left: 3px solid var(--lilac); border-radius: var(--r-md); padding: 2rem 2.25rem; display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; transition: border-color .3s, box-shadow .3s, transform .3s cubic-bezier(.22,1,.36,1); }
+.engage-v-card:hover { border-left-color: var(--navy); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.engage-v-num { font-family: var(--font-display); font-style: italic; font-size: 2.75rem; font-weight: 400; color: var(--lilac); line-height: 1; align-self: start; padding-top: .25rem; }
+.engage-v-card h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; line-height: 1.2; color: var(--navy); margin-bottom: .65rem; letter-spacing: -.01em; }
+.engage-v-card h3 em { font-style: italic; color: var(--lilac); }
+.engage-v-card p { font-size: .93rem; color: var(--slate); line-height: 1.7; }
+.engage-v-card .tag { display: inline-block; margin-top: 1.25rem; font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 600; color: var(--lilac); }
 
-/* — TESTIMONIALS — */
-.testimonials-section {
-  background: var(--ivory);
-}
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-.testimonial-card {
-  background: var(--white);
-  border-radius: 10px;
-  padding: 2.25rem;
-  display: flex; flex-direction: column;
-  border: 1px solid rgba(39,55,82,0.07);
-}
-.testimonial-quote {
-  font-size: 0.95rem; color: var(--slate); line-height: 1.75;
-  flex: 1; margin-bottom: 1.75rem;
-}
-.testimonial-quote::before {
-  content: '\201C';
-  font-family: 'Fraunces', serif;
-  font-size: 2.5rem; color: var(--lilac);
-  line-height: 0.5; display: block; margin-bottom: 1rem;
-}
-.testimonial-author {
-  display: flex; align-items: center; gap: 0.85rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba(39,55,82,0.08);
-}
-.testimonial-avatar {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: var(--lilac); flex-shrink: 0;
-  overflow: hidden; display: flex; align-items: center; justify-content: center;
-  font-size: 0.8rem; font-weight: 600; color: var(--white);
-  letter-spacing: 0.02em;
-}
-.testimonial-avatar img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-}
-.testimonial-name {
-  font-size: 0.88rem; font-weight: 600; color: var(--navy); line-height: 1.3;
-}
-.testimonial-role {
-  font-size: 0.78rem; color: var(--lilac);
-}
+.proof { background: var(--navy); padding: 7rem 2.5rem; position: relative; overflow: hidden; }
+.proof > img.corner-mark { position: absolute; left: -4%; bottom: -14%; width: 44%; max-width: 520px; opacity: .08; filter: invert(1); pointer-events: none; transform: scaleX(-1); }
+.proof-inner { max-width: 1200px; margin: 0 auto; position: relative; }
+.proof-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.proof-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.85rem, 3vw, 2.5rem); line-height: 1.08; letter-spacing: -.02em; color: var(--ivory); max-width: 18ch; }
+.proof-head h2 em { font-style: italic; color: var(--lilac); }
+.proof-head p { font-size: .98rem; color: rgba(247,241,234,.62); max-width: 44ch; line-height: 1.65; }
+.proof-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 1rem; height: 460px; }
+.proof-tile { border-radius: var(--r-md); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; color: var(--ivory); }
+.proof-tile .tag { position: absolute; top: 1rem; left: 1rem; font-family: var(--font-body); font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; color: var(--ivory); padding: .3rem .65rem; background: rgba(26,36,56,.55); backdrop-filter: blur(4px); border-radius: 100px; }
+.proof-tile .vendor { font-family: var(--font-display); font-size: 1.05rem; font-style: italic; color: var(--cream); margin-bottom: .25rem; }
+.proof-tile .caption { font-size: .8rem; color: rgba(247,241,234,.85); line-height: 1.35; max-width: 28ch; }
+.proof-tile.p1 { grid-row: span 2; background: linear-gradient(160deg, rgba(157,146,173,.6), rgba(39,55,82,.85)); }
+.proof-tile.p2 { background: linear-gradient(135deg, rgba(253,236,205,.4), rgba(157,146,173,.5), rgba(39,55,82,.7)); }
+.proof-tile.p3 { background: linear-gradient(135deg, rgba(154,184,220,.5), rgba(39,55,82,.7)); }
+.proof-tile.p4 { background: linear-gradient(160deg, rgba(157,146,173,.55), rgba(26,36,56,.85)); }
+.proof-tile.p5 { background: linear-gradient(135deg, rgba(253,236,205,.45), rgba(39,55,82,.8)); }
+.proof-tile::before { content: ''; position: absolute; inset: 0; background-image: url('/assets/img/pattern.png'); background-size: 200px; opacity: .1; mix-blend-mode: overlay; }
 
-/* — CLOSER CTA — */
-.closer-section {
-  background: var(--navy);
-  padding: 7rem 2.5rem;
-  text-align: center;
-}
-.closer-inner {
-  max-width: 640px; margin: 0 auto;
-}
-.closer-eyebrow {
-  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--lilac); font-weight: 500; margin-bottom: 1.25rem;
-}
-.closer-h2 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2.25rem, 4vw, 3.25rem);
-  font-weight: 300; line-height: 1.1; letter-spacing: -0.02em;
-  color: var(--ivory); margin-bottom: 1.25rem;
-}
-.closer-h2 em { font-style: italic; color: var(--cream); }
-.closer-body {
-  font-size: 0.98rem; color: rgba(247,241,234,0.6); line-height: 1.7;
-  max-width: 50ch; margin: 0 auto 2.5rem;
-}
+.closer-v { background: var(--ivory); padding: 7rem 2.5rem; position: relative; overflow: hidden; text-align: center; border-top: 1px solid rgba(39,55,82,.08); }
+.closer-v > img.corner-mark { position: absolute; right: -4%; bottom: -14%; width: 44%; max-width: 520px; opacity: .06; pointer-events: none; }
+.closer-v-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+.closer-v .eyebrow { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--slate); font-weight: 400; display: inline-flex; align-items: center; gap: .65rem; margin-bottom: 1.5rem; }
+.closer-v .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lilac); box-shadow: 0 0 0 3px rgba(157,146,173,.25); animation: kcPulseDot 2.2s ease-in-out infinite; }
+.closer-v h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; letter-spacing: -.025em; color: var(--navy); margin-bottom: 1.5rem; }
+.closer-v h2 em { font-style: italic; color: var(--lilac); }
+.closer-v p { font-size: 1.15rem; color: var(--navy); line-height: 1.6; margin: 0 auto 2.5rem; max-width: 54ch; font-weight: 300; }
 
-/* — FOOTER — */
-.site-footer {
-  background: var(--navy-dark);
-  padding: 3rem 2.5rem;
-  border-top: 1px solid rgba(247,241,234,0.06);
-}
-.footer-inner {
-  max-width: 1100px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 1.25rem;
-}
-.footer-brand {
-  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--lilac); font-weight: 500; text-decoration: none;
-}
-.footer-links {
-  display: flex; gap: 1.75rem; flex-wrap: wrap;
-}
-.footer-links a {
-  font-size: 0.78rem; color: rgba(247,241,234,0.4);
-  text-decoration: none; transition: color 0.15s;
-}
-.footer-links a:hover { color: rgba(247,241,234,0.75); }
-.footer-copy {
-  font-size: 0.72rem; color: rgba(247,241,234,0.25);
-  width: 100%;
-}
-
-/* — PAGE-SPECIFIC — */
-
-/* The Shift section (2-col) */
-.shift-section {
-  background: var(--ivory);
-  padding: 6rem 2.5rem;
-}
-.shift-inner {
-  max-width: 1100px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 5rem; align-items: start;
-}
-.shift-copy p {
-  font-size: 1rem; color: var(--slate); line-height: 1.8;
-  margin-bottom: 1.5rem;
-}
-.shift-copy p:last-child { margin-bottom: 0; }
-.shift-accent {
-  display: flex; align-items: flex-start; padding-top: 1.5rem;
-}
-.shift-rule {
-  width: 3px; background: var(--lilac); border-radius: 2px;
-  height: 120px; flex-shrink: 0;
-}
-
-/* Methodology single-col centered */
-.method-section {
-  background: var(--ivory);
-  padding: 6rem 2.5rem;
-}
-.method-inner {
-  max-width: 700px; margin: 0 auto; text-align: center;
-}
-.method-body {
-  font-size: 1rem; color: var(--slate); line-height: 1.75;
-  margin-top: 1rem;
-}
-
-/* Sticky floating CTA */
-.sticky-cta {
-  position: fixed;
-  bottom: 1.75rem; right: 1.75rem;
-  z-index: 200;
-  background: var(--cream);
-  color: var(--navy-dark);
-  text-decoration: none;
-  font-size: 0.85rem; font-weight: 600;
-  padding: 0.8rem 1.5rem;
-  border-radius: 100px;
-  box-shadow: 0 4px 20px rgba(39,55,82,0.18);
-  transition: background 0.15s, box-shadow 0.15s;
-  white-space: nowrap;
-}
-.sticky-cta:hover {
-  background: #f5e0b5;
-  box-shadow: 0 6px 28px rgba(39,55,82,0.22);
-}
-
-/* — MOBILE — */
 @media (max-width: 900px) {
-  .topbar { padding: 0 1.25rem; }
-  .topbar-nav { display: none; }
-  .mobile-menu-btn { display: flex; }
-
-  .hero { padding: 8rem 1.5rem 5rem; }
-  .section { padding: 4rem 1.5rem; }
-
-  .engage-grid { grid-template-columns: 1fr; }
-  .testimonials-grid { grid-template-columns: 1fr; }
-  .closer-section { padding: 5rem 1.5rem; }
-  .site-footer { padding: 2.5rem 1.5rem; }
-  .footer-inner { flex-direction: column; align-items: flex-start; }
-
-  .shift-section { padding: 4rem 1.5rem; }
+  .hero-vendors, .shift, .engage-v, .proof, .closer-v { padding: 4rem 1.5rem; }
   .shift-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .shift-accent { display: none; }
-  .method-section { padding: 4rem 1.5rem; }
-  .method-inner { text-align: left; }
-}
-
-@media (max-width: 768px) {
-  .sticky-cta { display: none; }
-}
-
-@media (max-width: 600px) {
-  .logo-band { padding: 2rem 1.5rem; }
+  .engage-v-grid { grid-template-columns: 1fr; }
+  .vendor-logos-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .vendor-logos-grid { grid-template-columns: repeat(2, 1fr); border-left: 0; border-top: 1px solid rgba(157,146,173,.3); }
+  .proof-grid { grid-template-columns: 1fr; height: auto; }
+  .proof-tile { aspect-ratio: 4/3; }
+  .proof-tile.p1 { grid-row: auto; }
 }
 </style>
 </head>
-<body>
+<body data-page="vendors">
 
-<!-- NAV -->
 <nav class="topbar">
-  <a href="/index.html" class="topbar-brand">Kyle &amp; Co</a>
+  <a href="/index.html" class="topbar-brand">
+    <img src="/assets/img/logo-primary.svg" alt="Kyle &amp; Co">
+  </a>
   <div class="topbar-nav">
     <a href="/index.html">Home</a>
-    <a href="/research">Research</a>
-    <a href="/practitioners">For Practitioners</a>
-    <a href="/vendors" class="active">For Vendors</a>
+    <a href="/research/">Research</a>
+    <a href="/practitioners/">For Practitioners</a>
+    <a href="/vendors/" class="active">For Vendors</a>
     <a href="/aicouncil">HCAIC</a>
     <a href="/blog">Blog</a>
     <a href="/contact.html">Contact</a>
   </div>
   <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="topbar-cta">Book a discovery call</a>
-  <button class="mobile-menu-btn" aria-label="Menu">
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <rect y="3" width="20" height="1.5" rx="0.75" fill="currentColor"/>
-      <rect y="9.25" width="20" height="1.5" rx="0.75" fill="currentColor"/>
-      <rect y="15.5" width="20" height="1.5" rx="0.75" fill="currentColor"/>
-    </svg>
-  </button>
 </nav>
+<div class="persona-band vendors"></div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow">For vendors</div>
-    <h1>Where HR-tech vendors earn the trust they can't buy.</h1>
-    <p class="hero-sub">Vendor marketing has a structural trust problem: it's hard to build credibility with the people you're selling to. Kyle &amp; Co partners with vendors who want a front-row seat to the problems practitioners are working through. That's how vendors stay ahead of innovation cycles based on market need, not just competitive edge.</p>
-    <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="btn-primary">Book a discovery call <span aria-hidden="true">→</span></a>
+<section class="hero-vendors">
+  <img class="corner-mark" src="/assets/img/icon-ampersand.svg" alt="" aria-hidden="true">
+  <div class="hero-vendors-inner">
+    <div class="hero-vendors-text">
+      <div class="eyebrow"><span class="dot"></span> For Vendors</div>
+      <h1>Where HR-tech vendors earn the trust <em>they can't buy.</em></h1>
+      <p class="sub">Kyle &amp; Co works with vendors who want to be trusted in the function, not just sold to it. Research, underwriting, advisory, and events that put your work in front of practitioners on the practitioners' terms.</p>
+      <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="btn-primary">Book a discovery call <span aria-hidden="true">→</span></a>
+    </div>
   </div>
 </section>
 
-<!-- THE SHIFT -->
-<section class="shift-section">
+<div class="vendor-logos">
+  <div class="vendor-logos-inner">
+    <div class="vendor-logos-label">Vendors <em>in the work</em></div>
+    <div class="vendor-logos-grid">
+      <div><img src="/vendor-logos-line1.png" alt="Findem" style="object-position: 0 0; object-fit: none; width:100px; height:30px;"></div>
+      <div><img src="/vendor-logos-line1.png" alt="CodeSignal" style="object-position: -120px 0; object-fit: none; width:100px; height:30px;"></div>
+      <div><img src="/vendor-logos-line1.png" alt="Humanly" style="object-position: -240px 0; object-fit: none; width:100px; height:30px;"></div>
+      <div><img src="/vendor-logos-line1.png" alt="Warden AI" style="object-position: -360px 0; object-fit: none; width:100px; height:30px;"></div>
+      <div><img src="/vendor-logos-line1.png" alt="GoodTime" style="object-position: -480px 0; object-fit: none; width:100px; height:30px;"></div>
+      <div><img src="/vendor-logos-line2.png" alt="Gem" style="object-position: 0 0; object-fit: none; width:100px; height:30px;"></div>
+      <div><img src="/vendor-logos-line2.png" alt="HiBob" style="object-position: -120px 0; object-fit: none; width:100px; height:30px;"></div>
+      <div><img src="/vendor-logos-line2.png" alt="Rival" style="object-position: -240px 0; object-fit: none; width:100px; height:30px;"></div>
+      <div><img src="/vendor-logos-line2.png" alt="SAP" style="object-position: -360px 0; object-fit: none; width:100px; height:30px;"></div>
+      <div><img src="/vendor-logos-line2.png" alt="Indeed" style="object-position: -480px 0; object-fit: none; width:100px; height:30px;"></div>
+    </div>
+  </div>
+</div>
+
+<section class="shift">
   <div class="shift-inner">
-    <div class="shift-copy">
-      <div class="section-eyebrow">The problem</div>
-      <h2 class="section-h2" style="margin-bottom: 1.75rem;">The shift.</h2>
-      <p>Your marketing isn't broken. Your team talks with practitioners, shares innovation insights, and surfaces best practices. The work means well and often lands at one altitude: feature feedback, broad signals, the metrics leaders are chasing.</p>
-      <p>The deeper conversations happen elsewhere. Practitioners talk candidly with each other behind closed doors. They compare what's working, what isn't, what they wouldn't say on a panel. That's a gap your team can't close, no matter how many roundtables you host. A mile wide, an inch deep.</p>
-      <p>Kyle &amp; Co works at that depth. Practitioners shape the research and surface what they're working through. As a partner, you take a seat at the same table and bring the technology expertise the market needs to make sense of what's coming next.</p>
+    <div>
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">The shift</div>
+      <h2>The market is <em>changing fast.</em></h2>
     </div>
-    <div class="shift-accent">
-      <div class="shift-rule"></div>
+    <div class="shift-body">
+      <p>HR is making more big bets, more often, on technology they can't afford to get wrong. Vendor marketing is louder than ever and trusted less than ever. <strong>The buyer wants someone in the room who doesn't have anything to sell.</strong></p>
+      <p>That's the work Kyle &amp; Co does for practitioners. For vendors, it means the practitioner room is where credibility is built. Kyle &amp; Co is how vendors get into that room, without faking it.</p>
+
+      <div class="shift-cream">
+        <div class="label">Why this works</div>
+        <blockquote>"Practitioner-built beats <em>practitioner-targeted</em>. Credibility is built before the moment it's needed."</blockquote>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ENGAGEMENT BUCKETS -->
-<section class="section engage-section">
-  <div class="section-inner">
-    <div class="section-eyebrow">Working together</div>
-    <h2 class="section-h2">Four ways to strategically work with us.</h2>
-    <div class="engage-grid">
-
-      <div class="engage-card">
-        <div class="engage-num">01</div>
-        <div class="engage-title">Underwriting.</div>
-        <p class="engage-body">Your category is crowded. Buyers trust each other more than they trust your content. The Human-Centric AI Council is the room where HR practitioners compare notes on what's working. Underwriting puts your brand in that room over multiple quarters, not just once.</p>
-        <div class="engage-footer">Multi-quarter partnership</div>
-      </div>
-
-      <div class="engage-card">
-        <div class="engage-num">02</div>
-        <div class="engage-title">Activations.</div>
-        <p class="engage-body">A product launch, a market entry, a conference week. The moments where most vendors throw money at noise. Kyle &amp; Co builds activations around the moment that produce something practitioners pass around. Event panels, executive briefings, post-event recap content with reach.</p>
-        <div class="engage-footer">Launch &amp; activation</div>
-      </div>
-
-      <div class="engage-card">
-        <div class="engage-num">03</div>
-        <div class="engage-title">Research.</div>
-        <p class="engage-body">You have a market claim that needs data behind it. Or a category that needs an independent voice to map it. Custom research, Category Compass collaborations, focus groups. The work is yours to cite for as long as the data holds.</p>
-        <div class="engage-footer">Research &amp; data</div>
-      </div>
-
-      <div class="engage-card">
-        <div class="engage-num">04</div>
-        <div class="engage-title">Advisory.</div>
-        <p class="engage-body">You're rebuilding positioning. You're sizing a new product bet. You're trying to read where the category is going and what your seat is in it. Strategic advisory hours, product advisory, executive workshops. We're the thinking partner who's seen this from the buying side.</p>
-        <div class="engage-footer">Advisory</div>
-      </div>
-
+<section class="engage-v">
+  <div class="engage-v-inner">
+    <div class="engage-v-head">
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">Engagement</div>
+      <h2>Four ways to strategically <em>work with us.</em></h2>
+      <p>Each is scoped in a discovery call. We pick the fit based on what you're solving, not what we're selling.</p>
     </div>
-    <p class="engage-cta-note">Every engagement starts with a discovery call. <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer">Book yours.</a></p>
-  </div>
-</section>
+    <div class="engage-v-grid">
 
-<!-- METHODOLOGY -->
-<section class="method-section">
-  <div class="method-inner">
-    <div class="section-eyebrow">Why it works</div>
-    <h2 class="section-h2">Why this works.</h2>
-    <p class="method-body">Each year, Kyle &amp; Co publishes an annual market study, quarterly Category Compass reports, and bespoke client research. The work is built on surveys with thousands of senior HR and TA leaders. The Human-Centric AI Council adds practitioner-led work on AI. Our edge is pairing primary research with rigorous secondary analysis, because neither catches the full signal alone. That's the research base your team can cite, your sellers can quote, and your buyers can fact-check on the open web.</p>
-  </div>
-</section>
-
-<!-- PROOF SECTION -->
-<section class="section" style="background: var(--white);">
-  <div class="section-inner">
-    <div class="section-eyebrow">Vendors already in the work</div>
-    <h2 class="section-h2" style="margin-bottom: 2rem;">Vendors already in the work.</h2>
-    <div class="logo-band-imgs" style="margin-bottom: 3rem;">
-      <img src="/vendor-logos-line1.png" alt="Findem, CodeSignal, Humanly, Warden AI, GoodTime" />
-      <img src="/vendor-logos-line2.png" alt="Gem, HiBob, Rival, SAP, Indeed" />
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
-
-      <div class="testimonial-card">
-        <p class="testimonial-quote">The team at Kyle &amp; Co is on the pulse of the market. Through this initiative they've been hungry for insight, sharp with their questions, and operated through a practitioner's lens. They're committed to ensuring buyers have the most complete information possible.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">KF</div>
-          <div>
-            <div class="testimonial-name">Katie Fairbank</div>
-            <div class="testimonial-role">Director of Product Marketing, CodeSignal</div>
-          </div>
+      <div class="engage-v-card">
+        <div class="engage-v-num">01</div>
+        <div>
+          <h3>Underwrite <em>the work.</em></h3>
+          <p>Multi-quarter partnership built around the Human-Centric AI Council. Brand alignment with practitioner-led work on AI in HR. Ongoing visibility, advisory access, and the relationships that come with sustained presence.</p>
+          <div class="tag">Long-term partnership</div>
         </div>
       </div>
 
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Every time we meet with Kyle and his team, we walk away smarter. They're constantly exploring the newest trends in our space, and their thoughtful questions help reveal what really matters to practitioners.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">BF</div>
-          <div>
-            <div class="testimonial-name">Birch Faber</div>
-            <div class="testimonial-role">Director of Marketing, Humanly</div>
-          </div>
+      <div class="engage-v-card">
+        <div class="engage-v-num">02</div>
+        <div>
+          <h3>Drive a <em>moment.</em></h3>
+          <p>Bounded engagements around a product launch, market entry, or conference. Event activations, executive briefings, content sprints. Specific outcome, specific timeline.</p>
+          <div class="tag">Launch &amp; activation</div>
+        </div>
+      </div>
+
+      <div class="engage-v-card">
+        <div class="engage-v-num">03</div>
+        <div>
+          <h3>Build the <em>research.</em></h3>
+          <p>Custom studies, Category Compass collaborations, messaging audits, focus groups. For vendors who need data they can cite or positioning they can defend.</p>
+          <div class="tag">Research &amp; data</div>
+        </div>
+      </div>
+
+      <div class="engage-v-card">
+        <div class="engage-v-num">04</div>
+        <div>
+          <h3>Get a <em>thinking partner.</em></h3>
+          <p>Strategic advisory hours, product advisory, executive workshops. For vendors building GTM motions, refining positioning, or evaluating new bets.</p>
+          <div class="tag">Advisory</div>
         </div>
       </div>
 
@@ -551,24 +228,63 @@ body {
   </div>
 </section>
 
-<!-- CLOSER CTA -->
-<section class="closer-section">
-  <div class="closer-inner">
-    <div class="closer-eyebrow">Let's talk</div>
-    <h2 class="closer-h2">Bring us the question.</h2>
-    <p class="closer-body">The category your team is trying to map. The launch that has to land. The positioning that hasn't moved the buyer. The strategy you're sizing. Bring any of it to a 30-minute discovery call and we'll scope what fits.</p>
+<section class="proof">
+  <img class="corner-mark" src="/assets/img/icon-ampersand.svg" alt="" aria-hidden="true">
+  <div class="proof-inner">
+    <div class="proof-head">
+      <div>
+        <div class="kc-eyebrow" style="margin-bottom:.75rem;">In the room</div>
+        <h2>Vendors <em>already in the work.</em></h2>
+      </div>
+      <p>Photos from sponsor sessions, council underwriting, and event activations. Real moments, not stock.</p>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-tile p1">
+        <span class="tag">Council session · 2025</span>
+        <div class="vendor">Goodtime</div>
+        <div class="caption">Underwriting the HCAIC working sessions. Quarterly readouts to leadership.</div>
+      </div>
+      <div class="proof-tile p2">
+        <span class="tag">Sponsor stage</span>
+        <div class="vendor">CodeSignal</div>
+        <div class="caption">Compass: AI Interviewers benchmark study.</div>
+      </div>
+      <div class="proof-tile p3">
+        <span class="tag">Transform · 2025</span>
+        <div class="vendor">Humanly</div>
+        <div class="caption">Conference activation + practitioner roundtable.</div>
+      </div>
+      <div class="proof-tile p4">
+        <span class="tag">Workshop</span>
+        <div class="vendor">Findem</div>
+        <div class="caption">Executive briefings + GTM advisory.</div>
+      </div>
+      <div class="proof-tile p5">
+        <span class="tag">Town hall</span>
+        <div class="vendor">Warden AI</div>
+        <div class="caption">Practitioner-led webinar series.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closer-v">
+  <img class="corner-mark" src="/assets/img/icon-ampersand.svg" alt="" aria-hidden="true">
+  <div class="closer-v-inner">
+    <div class="eyebrow"><span class="dot"></span> Let's talk</div>
+    <h2>Bring us your <em>hard question.</em></h2>
+    <p>You came here with a question. A market shift, a launch, a category move, positioning that isn't sticking. Bring it to a 30-minute discovery call and we'll scope what fits.</p>
     <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="btn-primary">Book a discovery call <span aria-hidden="true">→</span></a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-inner">
     <a href="/index.html" class="footer-brand">Kyle &amp; Co</a>
     <nav class="footer-links">
-      <a href="/research">Research</a>
-      <a href="/practitioners">For Practitioners</a>
-      <a href="/vendors">For Vendors</a>
+      <a href="/research/">Research</a>
+      <a href="/practitioners/">For Practitioners</a>
+      <a href="/vendors/">For Vendors</a>
       <a href="/aicouncil">HCAIC</a>
       <a href="/blog">Blog</a>
       <a href="/contact.html">Contact</a>
@@ -576,9 +292,6 @@ body {
     <div class="footer-copy">&copy; 2026 Kyle &amp; Co. No spam. Just signal.</div>
   </div>
 </footer>
-
-<!-- STICKY FLOATING CTA -->
-<a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="sticky-cta">Book a discovery call →</a>
 
 </body>
 </html>

@@ -1,0 +1,338 @@
+/* ============================================================
+   Kyle & Co — Colors & Type
+   Source of truth: Kyle_Co Brand Guidelines 2025
+   Primary font: Fraunces (variable, serif)
+   Body font:    Roboto (secondary)
+   ============================================================ */
+
+/* -----------------------------------------------------------
+   Fonts
+   ----------------------------------------------------------- */
+@font-face {
+  font-family: 'Fraunces';
+  src: url('fonts/Fraunces-Variable.ttf') format('truetype-variations'),
+       url('fonts/Fraunces-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Fraunces';
+  src: url('fonts/Fraunces-Variable-Italic.ttf') format('truetype-variations'),
+       url('fonts/Fraunces-Variable-Italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face { font-family: 'Roboto'; src: url('fonts/Roboto-Light.ttf')   format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Roboto'; src: url('fonts/Roboto-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Roboto'; src: url('fonts/Roboto-Italic.ttf')  format('truetype'); font-weight: 400; font-style: italic;  font-display: swap; }
+@font-face { font-family: 'Roboto'; src: url('fonts/Roboto-Medium.ttf')  format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Roboto'; src: url('fonts/Roboto-Bold.ttf')    format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Roboto'; src: url('fonts/Roboto-Black.ttf')   format('truetype'); font-weight: 900; font-style: normal; font-display: swap; }
+
+/* -----------------------------------------------------------
+   Core color tokens
+   ----------------------------------------------------------- */
+:root {
+  /* Brand — from 2025 Brand Guidelines */
+  --kc-insight-navy:  #273752;   /* primary anchor — confidence, depth */
+  --kc-lilac:         #9D92AD;   /* human, thoughtful accent */
+  --kc-ivory-sand:    #F7F1EA;   /* warm bg / calm accent */
+  --kc-cream:         #FDECCD;   /* warm highlight accent */
+  --kc-deep-slate:    #555961;   /* grounded neutral */
+
+  /* Short aliases */
+  --kc-navy:          var(--kc-insight-navy);
+  --kc-ivory:         var(--kc-ivory-sand);
+  --kc-slate:         var(--kc-deep-slate);
+  --kc-cloud-white:   #FFFFFF;   /* clean canvas */
+
+  /* Secondary accents observed in brand collateral
+     (live-webinar squares, HCAIC illustrations) */
+  --kc-sky-blue:      #9AB8DC;   /* illustrative sky — from tint ramp #9AB8DC */
+  --kc-signal-red:    #D9342B;   /* live-webinar "Live" label red */
+
+  /* Navy shade ramp (from guidelines) */
+  --kc-navy-50:   #E7ECF8;
+  --kc-navy-100:  #CAD9EC;
+  --kc-navy-200:  #9AB8DC;
+  --kc-navy-300:  #6394C6;
+  --kc-navy-400:  #3C77B1;
+  --kc-navy-500:  #2D5C94;
+  --kc-navy-600:  #264B78;
+  --kc-navy-700:  #244065;
+  --kc-navy-800:  #273752;   /* === Insight Navy === */
+  --kc-navy-900:  #172339;
+
+  /* Lilac tint ramp (from guidelines) */
+  --kc-lilac-50:   #F8F8FA;
+  --kc-lilac-100:  #F2F2F5;
+  --kc-lilac-200:  #EAE7ED;
+  --kc-lilac-300:  #D8D3E0;
+  --kc-lilac-400:  #C1BACD;
+  --kc-lilac-500:  #9D92AD;   /* === Lilac === */
+  --kc-lilac-600:  #9684A4;
+  --kc-lilac-700:  #837390;
+  --kc-lilac-800:  #6D6079;
+  --kc-lilac-900:  #5B5064;
+  --kc-lilac-950:  #3B3442;
+
+  /* Ivory/sand (lighter variants) */
+  --kc-ivory-0:   #FFFFFF;
+  --kc-ivory-50:  #FBF7F2;
+  --kc-ivory-100: #F7F1EA;
+  --kc-ivory-200: #F0E8DB;
+
+  /* -----------------------------------------------------------
+     Semantic tokens
+     ----------------------------------------------------------- */
+  /* Foreground text */
+  --fg-1: var(--kc-insight-navy);       /* primary text */
+  --fg-2: var(--kc-deep-slate);         /* secondary text */
+  --fg-3: var(--kc-lilac-700);          /* tertiary / meta */
+  --fg-4: var(--kc-lilac-500);          /* muted / hint */
+  --fg-inverse: var(--kc-ivory-sand);   /* text on navy */
+  --fg-accent: var(--kc-lilac);         /* lilac for emphasis */
+
+  /* Backgrounds */
+  --bg-page: var(--kc-ivory-sand);      /* default ivory page */
+  --bg-surface: var(--kc-cloud-white);  /* cards, panels */
+  --bg-sunken: var(--kc-lilac-100);     /* tinted sections */
+  --bg-inverse: var(--kc-insight-navy); /* dark sections, CTAs */
+  --bg-warm: var(--kc-cream);           /* highlight panels */
+  --bg-accent: var(--kc-lilac);         /* lilac accent bg */
+
+  /* Borders / dividers */
+  --border-subtle: rgba(39, 55, 82, 0.08);
+  --border-default: rgba(39, 55, 82, 0.16);
+  --border-strong: var(--kc-insight-navy);
+  --border-accent: var(--kc-lilac);
+  --border-inverse: rgba(247, 241, 234, 0.16);
+
+  /* Status */
+  --color-live: var(--kc-signal-red);
+
+  /* Shadows — soft, practitioner calm (not techy) */
+  --shadow-xs: 0 1px 2px rgba(39, 55, 82, 0.05);
+  --shadow-sm: 0 2px 6px rgba(39, 55, 82, 0.07);
+  --shadow-md: 0 8px 24px rgba(39, 55, 82, 0.08);
+  --shadow-lg: 0 16px 40px rgba(39, 55, 82, 0.12);
+  --shadow-xl: 0 24px 64px rgba(39, 55, 82, 0.16);
+
+  /* Radii — restrained. The brand uses soft corners but not pills
+     except for CTA buttons. */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* Spacing scale (4px grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* -----------------------------------------------------------
+     Typography tokens
+     ----------------------------------------------------------- */
+  --font-display: 'Fraunces', 'Times New Roman', Georgia, serif;
+  --font-body:    'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+
+  /* Fraunces display tuning (per brand guide: headings SemiBold / subheads Regular) */
+  --fraunces-display-settings: "opsz" 144, "SOFT" 50, "WONK" 0;
+  --fraunces-text-settings:    "opsz" 48,  "SOFT" 50, "WONK" 0;
+
+  /* Type scale — hierarchy from Brand Guide p.20
+     (heading >= 35pt ~ 47px, subheading >= 20pt ~ 27px, body >= 12pt ~ 16px)
+     Sizes here target screen display; print stays at min sizes. */
+  --text-display-xl: clamp(3.5rem, 7vw, 6rem);    /* 56 → 96 */
+  --text-display:    clamp(2.75rem, 5vw, 4.25rem);/* 44 → 68 */
+  --text-h1:         clamp(2.25rem, 4vw, 3.125rem);/* 36 → 50 */
+  --text-h2:         clamp(1.75rem, 3vw, 2.25rem);
+  --text-h3:         1.625rem;   /* 26 */
+  --text-h4:         1.375rem;   /* 22 — min subhead per guide */
+  --text-body-lg:    1.125rem;   /* 18 */
+  --text-body:       1rem;       /* 16 */
+  --text-body-sm:    0.9375rem;  /* 15 */
+  --text-caption:    0.8125rem;  /* 13 */
+  --text-micro:      0.75rem;    /* 12 — brand minimum body size */
+
+  /* Line heights */
+  --lh-tight:   1.05;   /* display */
+  --lh-snug:    1.15;   /* h1/h2 */
+  --lh-normal:  1.35;   /* h3-h4 */
+  --lh-relaxed: 1.55;   /* body */
+  --lh-loose:   1.75;   /* long reading */
+
+  /* Letter-spacing */
+  --tracking-display: -0.02em;
+  --tracking-heading: -0.01em;
+  --tracking-body:    0;
+  --tracking-eyebrow: 0.22em;   /* ALL CAPS eyebrow / mono tags */
+
+  /* Weight tokens */
+  --w-light:    300;
+  --w-regular:  400;
+  --w-medium:   500;
+  --w-semi:     600;
+  --w-bold:     700;
+}
+
+/* -----------------------------------------------------------
+   Base / reset-ish
+   ----------------------------------------------------------- */
+body {
+  font-family: var(--font-body);
+  font-weight: var(--w-regular);
+  font-size: var(--text-body);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-1);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* -----------------------------------------------------------
+   Semantic type classes
+   ----------------------------------------------------------- */
+.kc-display-xl,
+.kc-display,
+.kc-h1,
+.kc-h2,
+.kc-h3,
+.kc-h4,
+.kc-subheading {
+  font-family: var(--font-display);
+  color: var(--fg-1);
+  font-feature-settings: "ss01", "kern";
+  text-wrap: balance;
+}
+
+.kc-display-xl {
+  font-size: var(--text-display-xl);
+  font-weight: var(--w-regular);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-display);
+  font-variation-settings: var(--fraunces-display-settings);
+}
+.kc-display {
+  font-size: var(--text-display);
+  font-weight: var(--w-regular);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-display);
+  font-variation-settings: var(--fraunces-display-settings);
+}
+
+/* Headings — Fraunces SemiBold per guide */
+.kc-h1 {
+  font-size: var(--text-h1);
+  font-weight: var(--w-semi);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-heading);
+}
+.kc-h2 {
+  font-size: var(--text-h2);
+  font-weight: var(--w-semi);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-heading);
+}
+.kc-h3 {
+  font-size: var(--text-h3);
+  font-weight: var(--w-semi);
+  line-height: var(--lh-normal);
+  letter-spacing: var(--tracking-heading);
+}
+.kc-h4 {
+  font-size: var(--text-h4);
+  font-weight: var(--w-semi);
+  line-height: var(--lh-normal);
+}
+
+/* Subheading — Fraunces Regular per guide */
+.kc-subheading {
+  font-size: var(--text-h4);
+  font-weight: var(--w-regular);
+  line-height: var(--lh-normal);
+  color: var(--fg-2);
+  font-style: italic;   /* common brand treatment for subheads */
+}
+
+/* Body — Roboto Light/Regular per guide */
+.kc-body-lg {
+  font-family: var(--font-body);
+  font-size: var(--text-body-lg);
+  font-weight: var(--w-regular);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-1);
+}
+.kc-body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--w-regular);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-1);
+}
+.kc-body-sm {
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  font-weight: var(--w-regular);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-2);
+}
+.kc-caption {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--w-regular);
+  line-height: var(--lh-normal);
+  color: var(--fg-3);
+}
+
+/* Eyebrow / tag — small-caps mono-ish. Uppercase, wide-track. */
+.kc-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--w-medium);
+  line-height: 1;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+/* Italic pull-quote / emphasis — italic Fraunces, often in lilac */
+.kc-emphasis {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: var(--w-regular);
+  color: var(--fg-accent);
+}
+
+/* Link */
+.kc-link {
+  color: var(--fg-1);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-default);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.kc-link:hover { color: var(--fg-accent); border-bottom-color: var(--fg-accent); }
+
+/* -----------------------------------------------------------
+   Native element defaults
+   ----------------------------------------------------------- */
+h1 { font: var(--w-semi) var(--text-h1) / var(--lh-snug) var(--font-display); letter-spacing: var(--tracking-heading); color: var(--fg-1); text-wrap: balance; }
+h2 { font: var(--w-semi) var(--text-h2) / var(--lh-snug) var(--font-display); letter-spacing: var(--tracking-heading); color: var(--fg-1); text-wrap: balance; }
+h3 { font: var(--w-semi) var(--text-h3) / var(--lh-normal) var(--font-display); color: var(--fg-1); }
+h4 { font: var(--w-semi) var(--text-h4) / var(--lh-normal) var(--font-display); color: var(--fg-1); }
+p  { font: var(--w-regular) var(--text-body) / var(--lh-relaxed) var(--font-body); color: var(--fg-1); text-wrap: pretty; }
+code, pre { font-family: var(--font-mono); font-size: 0.9em; }
+small { font-size: var(--text-caption); color: var(--fg-2); }
