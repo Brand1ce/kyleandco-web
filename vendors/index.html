@@ -127,7 +127,7 @@ body[data-page="vendors"] { --accent: var(--lilac); }
     <a href="/blog">Blog</a>
     <a href="/contact.html">Contact</a>
   </div>
-  <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="topbar-cta">Book a discovery call</a>
+  <a href="#" onclick="event.preventDefault();document.getElementById('kco-modal').classList.add('open')" class="topbar-cta">Book a discovery call</a>
 </nav>
 <div class="persona-band vendors"></div>
 
@@ -138,7 +138,7 @@ body[data-page="vendors"] { --accent: var(--lilac); }
       <div class="eyebrow"><span class="dot"></span> For Vendors</div>
       <h1>Where HR-tech vendors earn the trust <em>they can't buy.</em></h1>
       <p class="sub">Kyle &amp; Co works with vendors who want to be trusted in the function, not just sold to it. Research, underwriting, advisory, and events that put your work in front of practitioners on the practitioners' terms.</p>
-      <button class="btn-primary" onclick="document.getElementById('vendor-modal').classList.add('open')">Book a discovery call <span aria-hidden="true">→</span></button>
+      <button class="btn-primary" onclick="document.getElementById('kco-modal').classList.add('open')">Book a discovery call <span aria-hidden="true">→</span></button>
     </div>
   </div>
 </section>
@@ -281,13 +281,13 @@ body[data-page="vendors"] { --accent: var(--lilac); }
 <!-- VENDOR MODAL -->
 <div id="vendor-modal" class="kc-modal-overlay" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="kc-modal-box">
-    <button class="kc-modal-close" onclick="document.getElementById('vendor-modal').classList.remove('open')" aria-label="Close">&#x2715;</button>
+    <button class="kc-modal-close" onclick="document.getElementById('kco-modal').classList.remove('open')" aria-label="Close">&#x2715;</button>
     <div id="vendor-form-view">
       <div class="kc-modal-eyebrow">Kyle &amp; Co</div>
       <h3 class="kc-modal-title">Let's talk about <em>your work.</em></h3>
       <p class="kc-modal-sub">Tell us where you're starting from and what you're working through. Kyle &amp; Co typically responds within two business days.</p>
       <iframe name="ml-vendor-frame" style="display:none;"></iframe>
-      <form action="https://assets.mailerlite.com/jsonp/1555935/forms/185371122148050837/subscribe" method="post" target="ml-vendor-frame" onsubmit="setTimeout(function(){document.getElementById('vendor-form-view').style.display='none';document.getElementById('vendor-success').style.display='block';},1000)">
+      <form action="https://assets.mailerlite.com/jsonp/1555935/forms/185371122148050837/subscribe" method="post" target="ml-vendor-frame" onsubmit="setTimeout(function(){document.getElementById('kco-form-view').style.display='none';document.getElementById('kco-success').style.display='block';},1000)">
         <div class="kc-form-row">
           <input required type="text" name="fields[name]" placeholder="First name" class="kc-input">
           <input required type="text" name="fields[last_name]" placeholder="Last name" class="kc-input">

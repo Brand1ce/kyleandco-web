@@ -157,7 +157,7 @@ body[data-page="practitioners"] { --accent: var(--cream); }
     <a href="/blog">Blog</a>
     <a href="/contact.html">Contact</a>
   </div>
-  <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="topbar-cta">Book a discovery call</a>
+  <a href="#" onclick="event.preventDefault();document.getElementById('kco-modal').classList.add('open')" class="topbar-cta">Book a discovery call</a>
 </nav>
 <div class="persona-band practitioners"></div>
 
@@ -321,7 +321,7 @@ body[data-page="practitioners"] { --accent: var(--cream); }
     <div class="eyebrow">The Council</div>
     <h2>The Human-Centric <em>AI Council.</em></h2>
     <p>The HCAIC is a working group of HR and TA practitioners building peer-led resources for the rest of the function on AI. If you're shaping AI literacy, governance, or adoption in your org, the application is open.</p>
-    <button class="btn-primary" onclick="document.getElementById('apply-modal').classList.add('open')">Apply to the Council <span aria-hidden="true">→</span></button>
+    <button class="btn-primary" onclick="document.getElementById('kco-modal').classList.add('open')">Apply to the Council <span aria-hidden="true">→</span></button>
   </div>
 </section>
 
@@ -331,7 +331,7 @@ body[data-page="practitioners"] { --accent: var(--cream); }
       <div class="kc-eyebrow" style="margin-bottom:1rem;">For organizations</div>
       <h2>Want this <em>applied</em> to your team?</h2>
       <p>If your function is wrestling with a tech stack decision, a positioning question, or an AI adoption plan, Kyle &amp; Co also works with organizations directly to scope the work.</p>
-      <button class="btn-primary" onclick="document.getElementById('apply-modal').classList.add('open')">Start a conversation <span aria-hidden="true">→</span></button>
+      <button class="btn-primary" onclick="document.getElementById('kco-modal').classList.add('open')">Start a conversation <span aria-hidden="true">→</span></button>
     </div>
     <div class="org-services">
       <div class="mini-card">Tech stack evaluation</div>
@@ -369,13 +369,13 @@ body[data-page="practitioners"] { --accent: var(--cream); }
 <!-- CONTACT MODAL -->
 <div id="apply-modal" class="kc-modal-overlay" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="kc-modal-box">
-    <button class="kc-modal-close" onclick="document.getElementById('apply-modal').classList.remove('open')" aria-label="Close">&#x2715;</button>
+    <button class="kc-modal-close" onclick="document.getElementById('kco-modal').classList.remove('open')" aria-label="Close">&#x2715;</button>
     <div id="apply-form-view">
       <div class="kc-modal-eyebrow">Kyle &amp; Co</div>
       <h3 class="kc-modal-title">Let's talk about <em>your work.</em></h3>
       <p class="kc-modal-sub">Tell us where you're starting from and what you're working through. Kyle &amp; Co typically responds within two business days.</p>
       <iframe name="ml-prac-frame" style="display:none;"></iframe>
-      <form action="https://assets.mailerlite.com/jsonp/1555935/forms/185371122148050837/subscribe" method="post" target="ml-prac-frame" onsubmit="setTimeout(function(){document.getElementById('apply-form-view').style.display='none';document.getElementById('apply-success').style.display='block';},1000)">
+      <form action="https://assets.mailerlite.com/jsonp/1555935/forms/185371122148050837/subscribe" method="post" target="ml-prac-frame" onsubmit="setTimeout(function(){document.getElementById('kco-form-view').style.display='none';document.getElementById('kco-success').style.display='block';},1000)">
         <div class="kc-form-row">
           <input required type="text" name="fields[name]" placeholder="First name" class="kc-input">
           <input required type="text" name="fields[last_name]" placeholder="Last name" class="kc-input">
