@@ -104,13 +104,15 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
 .the-work-head h2 em { font-style: italic; color: var(--lilac); }
 .the-work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
 .work-card {
-  background: var(--white); border-radius: var(--r-md); padding: 2.25rem 2rem;
-  border: 1px solid rgba(39,55,82,.07); border-top: 3px solid var(--lilac);
+  background: var(--white); border-radius: var(--r-md); overflow: hidden;
+  border: 1px solid rgba(39,55,82,.07);
   display: flex; flex-direction: column; text-decoration: none;
   transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s;
 }
-.work-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-top-color: var(--navy); }
-.work-card-tag { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--lilac); font-weight: 500; margin-bottom: 1rem; }
+.work-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--lilac); }
+.work-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+.work-card-body { padding: 1.75rem 2rem 2rem; display: flex; flex-direction: column; flex: 1; }
+.work-card-tag { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--lilac); font-weight: 500; margin-bottom: .85rem; }
 .work-card-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; color: var(--navy); margin-bottom: .75rem; line-height: 1.2; letter-spacing: -.01em; }
 .work-card-sub { font-size: .9rem; color: var(--slate); line-height: 1.65; flex: 1; margin-bottom: 1.5rem; }
 .work-card-cta { font-size: .82rem; font-weight: 600; color: var(--navy); }
@@ -314,23 +316,32 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
       <h2>The <em>work.</em></h2>
     </div>
     <div class="the-work-grid">
-      <a href="/aicouncil" class="work-card">
-        <div class="work-card-tag">Annual benchmark</div>
-        <div class="work-card-title">AI Momentum Model</div>
-        <p class="work-card-sub">The annual benchmark on AI momentum in HR. Where your team sits, what's driving it.</p>
-        <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
+      <a href="https://kyleandco.com/wp-content/uploads/2025/10/Kyle-C0_The-AI-Momentum-Model-Redefining-Readiness-and-Driving-Action-in-HR.pdf?utm_source=kyleandco_website&utm_medium=research_card&utm_campaign=ai_momentum_model" target="_blank" rel="noopener noreferrer" class="work-card">
+        <img class="work-card-img" src="/assets/img/research-01-momentum.png" alt="AI Momentum Model report cover">
+        <div class="work-card-body">
+          <div class="work-card-tag">Annual benchmark</div>
+          <div class="work-card-title">AI Momentum Model</div>
+          <p class="work-card-sub">The annual benchmark on AI momentum in HR. Where your team sits, what's driving it.</p>
+          <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
+        </div>
       </a>
-      <a href="/aicouncil" class="work-card">
-        <div class="work-card-tag">Category Compass</div>
-        <div class="work-card-title">Category Compass: AI Interviewers</div>
-        <p class="work-card-sub">A research framework for HR tech categories that are too new to rank. Latest edition: AI Interviewers.</p>
-        <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
+      <a href="https://kyleandco.com/wp-content/uploads/2026/02/Category-Compass-Navigating-AI-Interviewers-KyleandCo.pdf?utm_source=kyleandco_website&utm_medium=research_card&utm_campaign=ai_interviewers" target="_blank" rel="noopener noreferrer" class="work-card">
+        <img class="work-card-img" src="/assets/img/research-02-compass.png" alt="Category Compass: AI Interviewers report cover">
+        <div class="work-card-body">
+          <div class="work-card-tag">Category Compass</div>
+          <div class="work-card-title">Category Compass: AI Interviewers</div>
+          <p class="work-card-sub">A research framework for HR tech categories that are too new to rank. Latest edition: AI Interviewers.</p>
+          <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
+        </div>
       </a>
-      <a href="/aicouncil" class="work-card">
-        <div class="work-card-tag">Practitioner toolkit</div>
-        <div class="work-card-title">AI Council Toolkit</div>
-        <p class="work-card-sub">Practitioner-led frameworks for AI literacy, governance, evaluation, and change management.</p>
-        <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
+      <a href="/aicouncil?utm_source=kyleandco_website&utm_medium=research_card&utm_campaign=ai_council_toolkit" class="work-card">
+        <img class="work-card-img" src="/assets/img/research-03-toolkit.png" alt="AI Council Toolkit cover">
+        <div class="work-card-body">
+          <div class="work-card-tag">Practitioner toolkit</div>
+          <div class="work-card-title">AI Council Toolkit</div>
+          <p class="work-card-sub">Practitioner-led frameworks for AI literacy, governance, evaluation, and change management.</p>
+          <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
+        </div>
       </a>
     </div>
     <div class="work-stat-strip">
