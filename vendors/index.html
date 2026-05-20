@@ -283,42 +283,35 @@ body[data-page="vendors"] { --accent: var(--lilac); }
   <div class="kc-modal-box">
     <button class="kc-modal-close" onclick="document.getElementById('vendor-modal').classList.remove('open')" aria-label="Close">&#x2715;</button>
     <div id="vendor-form-view">
-      <div class="kc-modal-eyebrow">Start the conversation</div>
-      <h3 class="kc-modal-title">Back the work. <em>Stand in the room.</em></h3>
-      <p class="kc-modal-sub">Tell us a bit about your team and what you're trying to solve. Kyle &amp; Co will follow up within two business days.</p>
+      <div class="kc-modal-eyebrow">Kyle &amp; Co</div>
+      <h3 class="kc-modal-title">Let's talk about <em>your work.</em></h3>
+      <p class="kc-modal-sub">Tell us where you're starting from and what you're working through. Kyle &amp; Co typically responds within two business days.</p>
       <iframe name="ml-vendor-frame" style="display:none;"></iframe>
-      <form action="https://assets.mailerlite.com/jsonp/1555935/forms/159836007953335925/subscribe" method="post" target="ml-vendor-frame" onsubmit="setTimeout(()=>document.getElementById('vendor-form-view').style.display='none'||document.getElementById('vendor-success').style.display='block',1000)">
+      <form action="https://assets.mailerlite.com/jsonp/1555935/forms/185371122148050837/subscribe" method="post" target="ml-vendor-frame" onsubmit="setTimeout(function(){document.getElementById('vendor-form-view').style.display='none';document.getElementById('vendor-success').style.display='block';},1000)">
         <div class="kc-form-row">
           <input required type="text" name="fields[name]" placeholder="First name" class="kc-input">
           <input required type="text" name="fields[last_name]" placeholder="Last name" class="kc-input">
         </div>
         <input required type="email" name="fields[email]" placeholder="Work email" class="kc-input">
-        <div class="kc-form-row">
-          <input required type="text" name="fields[job_title]" placeholder="Title" class="kc-input">
-          <input required type="text" name="fields[company]" placeholder="Company" class="kc-input">
+        <input required type="text" name="fields[company]" placeholder="Company" class="kc-input">
+        <div class="kc-check-group">
+          <div class="kc-check-label">What would you like help with?</div>
+          <label class="kc-check-opt"><input type="checkbox" name="fields[what_would_you_like_help_with][]" value="General Advisory"> General Advisory</label>
+          <label class="kc-check-opt"><input type="checkbox" name="fields[what_would_you_like_help_with][]" value="GTM Strategy"> GTM Strategy</label>
+          <label class="kc-check-opt"><input type="checkbox" name="fields[what_would_you_like_help_with][]" value="Field Marketing Activation"> Field Marketing Activation</label>
+          <label class="kc-check-opt"><input type="checkbox" name="fields[what_would_you_like_help_with][]" value="Schedule an Analyst Briefing"> Schedule an Analyst Briefing</label>
         </div>
-        <select required name="fields[initiative_interest]" class="kc-input kc-select">
-          <option value="">Which initiatives are you interested in supporting?</option>
-          <option value="The Human Centric AI Council">The Human-Centric AI Council</option>
-          <option value="General research underwriting">General research underwriting</option>
-        </select>
-        <select required name="fields[underwriting_objective]" class="kc-input kc-select">
-          <option value="">What's your main objective?</option>
-          <option value="Brand visibility">Brand visibility</option>
-          <option value="Demand Generation">Demand generation</option>
-          <option value="AI Messaging and/or product validation">AI messaging or product validation</option>
-        </select>
         <textarea name="fields[anything_else]" placeholder="Anything else we should know? (optional)" rows="3" class="kc-input kc-textarea"></textarea>
         <input type="hidden" name="ml-submit" value="1">
         <input type="hidden" name="anticsrf" value="true">
-        <button type="submit" class="kc-modal-btn">Get the full overview <span aria-hidden="true">→</span></button>
-        <p class="kc-modal-note">Kyle &amp; Co will follow up within two business days.</p>
+        <button type="submit" class="kc-modal-btn">Send message <span aria-hidden="true">→</span></button>
+        <p class="kc-modal-note">Kyle &amp; Co typically responds within two business days.</p>
       </form>
     </div>
     <div id="vendor-success" style="display:none;padding:2rem 0;text-align:center;">
       <div class="kc-modal-eyebrow">Message received</div>
       <h3 class="kc-modal-title" style="font-size:1.75rem;">We'll be in touch.</h3>
-      <p class="kc-modal-sub">Your submission is in. Expect a reply within two business days.</p>
+      <p class="kc-modal-sub">Kyle &amp; Co typically responds within two business days. In the meantime, take a look at the research in the library.</p>
     </div>
   </div>
 </div>
@@ -344,6 +337,10 @@ form { display:flex; flex-direction:column; gap:.75rem; }
 .kc-modal-btn { margin-top:.25rem; background:var(--navy); color:var(--ivory); border:none; border-radius:100px; padding:1rem 1.75rem; font-size:.9rem; font-weight:500; font-family:inherit; cursor:pointer; display:inline-flex; align-items:center; gap:.5rem; transition:opacity .15s; }
 .kc-modal-btn:hover { opacity:.88; }
 .kc-modal-note { font-size:.72rem; color:var(--slate); text-align:center; margin-top:.25rem; }
+.kc-check-group { padding:.85rem 1rem; border:1px solid rgba(39,55,82,.16); border-radius:8px; background:var(--white); display:flex; flex-direction:column; gap:.5rem; }
+.kc-check-label { font-size:.82rem; color:var(--slate); font-weight:500; margin-bottom:.25rem; }
+.kc-check-opt { display:flex; align-items:center; gap:.6rem; font-size:.88rem; color:var(--navy); cursor:pointer; }
+.kc-check-opt input[type="checkbox"] { accent-color:var(--navy); width:15px; height:15px; flex-shrink:0; cursor:pointer; }
 @media (max-width:600px) { .kc-form-row { grid-template-columns:1fr; } .kc-modal-box { padding:2rem 1.5rem; } }
 </style>
 
