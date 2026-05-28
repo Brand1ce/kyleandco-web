@@ -59,17 +59,26 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
 .hero-home-actions { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
 
 .logo-band {
-  background: var(--navy); padding: 2.5rem 2.5rem;
+  background: var(--navy);
+  padding: 2rem 0;
   border-bottom: 1px solid rgba(247,241,234,.08);
+  overflow: hidden;
 }
-.logo-band-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center;
+.logo-band-label {
+  font-family: var(--font-display); font-size: 0.78rem; font-style: italic;
+  color: rgba(247,241,234,.45); text-align: center; letter-spacing: .04em;
+  margin-bottom: 1.25rem; padding: 0 2.5rem;
 }
-.logo-band-label { font-family: var(--font-display); font-size: 1rem; font-style: italic; color: var(--ivory); max-width: 14ch; line-height: 1.2; }
 .logo-band-label em { color: var(--cream); font-style: normal; }
-.logo-band-imgs { display: flex; align-items: center; gap: 2rem; justify-content: space-between; flex-wrap: wrap; opacity: .7; filter: brightness(10); }
-.logo-band-imgs img { max-width: 100%; height: 28px; width: auto; }
+.logo-marquee-track { display: flex; width: max-content; animation: kcMarquee 40s linear infinite; }
+.logo-marquee-track:hover { animation-play-state: paused; }
+@keyframes kcMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.logo-marquee-track img {
+  height: 28px; width: auto; margin: 0 2.5rem;
+  opacity: .65; filter: brightness(10) grayscale(.2);
+  transition: opacity .2s;
+  flex-shrink: 0;
+}
 
 .diffs { padding: 3rem 2.5rem; background: var(--white); position: relative; overflow: hidden; }
 .diffs-inner { max-width: 1200px; margin: 0 auto; position: relative; }
@@ -222,7 +231,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
 @media (max-width: 900px) {
   .hero-home, .diffs, .the-work, .engage, .council, .tests, .team, .closer { padding: 1.75rem 1.5rem; }
   .the-work-grid { grid-template-columns: 1fr; }
-  .hero-home-inner, .methodology-layout, .council-feature, .logo-band-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-home-inner, .methodology-layout, .council-feature { grid-template-columns: 1fr; gap: 2.5rem; }
   .diff-grid { grid-template-columns: 1fr; }
   .engage-grid { grid-template-columns: 1fr 1fr; }
   .council-pillars { grid-template-columns: 1fr 1fr; }
@@ -264,10 +273,45 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
 </section>
 
 <div class="logo-band">
-  <div class="logo-band-inner">
-    <div class="logo-band-label">Partners <em>in the work</em></div>
-    <div class="logo-band-imgs">
-      <img src="/vendor-logos-line1.png" alt="Findem, CodeSignal, Humanly, Warden AI, GoodTime">
+  <div class="logo-band-label">Partners <em>in the work</em></div>
+  <div style="overflow:hidden;">
+    <div class="logo-marquee-track">
+      <!-- set 1 -->
+      <img src="/assets/img/logos/findem.svg" alt="Findem">
+      <img src="/assets/img/logos/codesignal.svg" alt="CodeSignal">
+      <img src="/assets/img/logos/humanly.png" alt="Humanly">
+      <img src="/assets/img/logos/warden.svg" alt="Warden AI">
+      <img src="/assets/img/logos/goodtime.png" alt="GoodTime">
+      <img src="/assets/img/logos/gem.webp" alt="Gem">
+      <img src="/assets/img/logos/hibob.png" alt="HiBob">
+      <img src="/assets/img/logos/rival.png" alt="Rival HR">
+      <img src="/assets/img/logos/glider.webp" alt="Glider">
+      <img src="/assets/img/logos/isolved.png" alt="iSolved">
+      <img src="/assets/img/logos/adp.svg" alt="ADP">
+      <img src="/assets/img/logos/charthop.svg" alt="ChartHop">
+      <img src="/assets/img/logos/workday.png" alt="Workday">
+      <img src="/assets/img/logos/indeed.webp" alt="Indeed">
+      <img src="/assets/img/logos/sap.png" alt="SAP">
+      <img src="/assets/img/logos/symphony.svg" alt="Symphony Talent">
+      <img src="/assets/img/logos/reelist.png" alt="Reelist">
+      <!-- set 2 — duplicate for seamless loop -->
+      <img src="/assets/img/logos/findem.svg" alt="">
+      <img src="/assets/img/logos/codesignal.svg" alt="">
+      <img src="/assets/img/logos/humanly.png" alt="">
+      <img src="/assets/img/logos/warden.svg" alt="">
+      <img src="/assets/img/logos/goodtime.png" alt="">
+      <img src="/assets/img/logos/gem.webp" alt="">
+      <img src="/assets/img/logos/hibob.png" alt="">
+      <img src="/assets/img/logos/rival.png" alt="">
+      <img src="/assets/img/logos/glider.webp" alt="">
+      <img src="/assets/img/logos/isolved.png" alt="">
+      <img src="/assets/img/logos/adp.svg" alt="">
+      <img src="/assets/img/logos/charthop.svg" alt="">
+      <img src="/assets/img/logos/workday.png" alt="">
+      <img src="/assets/img/logos/indeed.webp" alt="">
+      <img src="/assets/img/logos/sap.png" alt="">
+      <img src="/assets/img/logos/symphony.svg" alt="">
+      <img src="/assets/img/logos/reelist.png" alt="">
     </div>
   </div>
 </div>
