@@ -1,5 +1,3 @@
-DirectoryIndex index.html index.php
-
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
