@@ -70,13 +70,15 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
   margin-bottom: 1.25rem; padding: 0 2.5rem;
 }
 .logo-band-label em { color: var(--cream); font-style: normal; }
-.logo-marquee-track { display: flex; width: max-content; animation: kcMarquee 40s linear infinite; }
+.logo-marquee-track { display: flex; width: max-content; animation: kcMarquee 70s linear infinite; align-items: center; }
 .logo-marquee-track:hover { animation-play-state: paused; }
 @keyframes kcMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .logo-marquee-track img {
-  height: 28px; width: auto; margin: 0 2.5rem;
-  opacity: .65; filter: brightness(10) grayscale(.2);
-  transition: opacity .2s;
+  height: 24px !important; width: 110px !important;
+  object-fit: contain !important;
+  margin: 0 2.75rem;
+  filter: brightness(0) invert(1) !important;
+  opacity: .7;
   flex-shrink: 0;
 }
 
