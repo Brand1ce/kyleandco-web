@@ -65,11 +65,11 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
   overflow: hidden;
 }
 .logo-band-label {
-  font-family: var(--font-display); font-size: 0.78rem; font-style: italic;
-  color: rgba(247,241,234,.45); text-align: center; letter-spacing: .04em;
-  margin-bottom: 1.25rem; padding: 0 2.5rem;
+  font-family: var(--font-mono); font-size: .72rem; font-style: normal;
+  font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--lilac); text-align: center;
+  margin-bottom: 1.5rem; padding: 0 2.5rem;
 }
-.logo-band-label em { color: var(--cream); font-style: normal; }
 .logo-marquee-track { display: flex; width: max-content; animation: kcMarquee 70s linear infinite; align-items: center; }
 .logo-marquee-track:hover { animation-play-state: paused; }
 @keyframes kcMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -275,7 +275,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
 </section>
 
 <div class="logo-band">
-  <div class="logo-band-label">Partners <em>in the work</em></div>
+  <div class="logo-band-label">Partners in the work</div>
   <div style="overflow:hidden;">
     <div class="logo-marquee-track">
       <!-- set 1 -->
