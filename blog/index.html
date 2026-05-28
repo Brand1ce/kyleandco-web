@@ -3,8 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="icon" type="image/png" href="/aicouncil/ampersand-favicon.png" />
 <title>Insights & Analysis — Kyle & Co</title>
+<meta name="description" content="Where analysts and practitioners share what we're seeing, testing, and learning about AI, talent, and what's next in HR." />
+<meta property="og:title" content="Insights & Analysis — Kyle & Co" />
+<meta property="og:description" content="Where analysts and practitioners share what we're seeing, testing, and learning about AI, talent, and what's next in HR." />
+<meta property="og:image" content="https://kyleandco.com/aicouncil/og-blog.png" />
+<meta property="og:url" content="https://kyleandco.com/blog" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Insights & Analysis — Kyle & Co" />
+<meta name="twitter:description" content="Where analysts and practitioners share what we're seeing, testing, and learning about AI, talent, and what's next in HR." />
+<meta name="twitter:image" content="https://kyleandco.com/aicouncil/og-blog.png" />
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -74,34 +84,6 @@ body {
   max-width: 52ch; line-height: 1.7;
 }
 
-/* — HERO TWO-COL — */
-.blog-hero-cols {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 5rem; align-items: center;
-}
-
-.hero-stat-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1px; background: rgba(247,241,234,0.1);
-  border: 1px solid rgba(247,241,234,0.1);
-  border-radius: 10px; overflow: hidden;
-}
-.hero-stat {
-  display: flex; flex-direction: column;
-  padding: 1.75rem 2rem;
-  background: rgba(247,241,234,0.04);
-  gap: 0.35rem;
-}
-.hero-stat-num {
-  font-size: 2.8rem; font-weight: 300;
-  color: var(--cream); letter-spacing: -0.03em;
-  line-height: 1;
-}
-.hero-stat-label {
-  font-size: 0.68rem; letter-spacing: 0.14em;
-  text-transform: uppercase; color: rgba(247,241,234,0.45);
-  font-weight: 500;
-}
 
 /* — FEATURED CARD EXTRAS — */
 .featured-kicker {
@@ -122,6 +104,103 @@ body {
   font-size: 0.78rem; font-weight: 600;
   color: var(--navy); letter-spacing: 0.04em;
 }
+
+/* — HERO SUBSCRIBE BTN — */
+.hero-subscribe-btn {
+  display: inline-flex; align-items: center;
+  margin-top: 2rem;
+  background: var(--cream); color: var(--navy-dark);
+  text-decoration: none; font-size: 0.85rem; font-weight: 600;
+  padding: 0.85rem 1.75rem; border-radius: 100px;
+  transition: background 0.15s;
+}
+.hero-subscribe-btn:hover { background: #f5e0b5; }
+
+/* — SUBSCRIBE FOOTER — */
+.subscribe-footer {
+  background: var(--navy);
+  padding: 5rem 2.5rem 0;
+}
+.subscribe-inner {
+  max-width: 560px; margin: 0 auto; text-align: center;
+}
+.subscribe-kicker {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1rem;
+}
+.subscribe-footer h3 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 300;
+  color: var(--ivory); letter-spacing: -0.02em;
+  line-height: 1.15; margin-bottom: 0.75rem;
+}
+.subscribe-footer h3 em { font-style: italic; color: var(--cream); }
+.subscribe-footer > .subscribe-inner > p {
+  font-size: 0.92rem; color: rgba(247,241,234,0.6);
+  margin-bottom: 2rem; line-height: 1.6;
+}
+.subscribe-form { max-width: 480px; margin: 0 auto 1rem; }
+.subscribe-form input[type="hidden"] { display: none; }
+.subscribe-fields {
+  display: flex; flex-direction: column; gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+.subscribe-form input[type="text"],
+.subscribe-form input[type="email"] {
+  width: 100%; padding: 0.85rem 1.25rem;
+  background: rgba(247,241,234,0.08);
+  border: 1px solid rgba(247,241,234,0.2);
+  border-radius: 8px; color: var(--ivory);
+  font-size: 0.88rem; font-family: inherit;
+  outline: none;
+}
+.subscribe-form input::placeholder { color: rgba(247,241,234,0.35); }
+.subscribe-persona { margin-bottom: 1.25rem; text-align: left; }
+.persona-label {
+  font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(247,241,234,0.45); margin-bottom: 0.75rem;
+}
+.persona-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;
+}
+.persona-option {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: rgba(247,241,234,0.06);
+  border: 1px solid rgba(247,241,234,0.15);
+  border-radius: 6px; padding: 0.6rem 0.75rem;
+  cursor: pointer; font-size: 0.8rem; color: rgba(247,241,234,0.7);
+  transition: background 0.15s;
+}
+.persona-option:hover { background: rgba(247,241,234,0.12); }
+.persona-option input[type="checkbox"] { width: 14px; height: 14px; accent-color: var(--cream); flex-shrink: 0; }
+.subscribe-form button {
+  width: 100%; background: var(--cream); color: var(--navy-dark);
+  border: none; border-radius: 8px;
+  padding: 0.95rem 1.5rem; font-size: 0.9rem;
+  font-weight: 600; font-family: inherit;
+  cursor: pointer; margin-top: 0.25rem;
+}
+.subscribe-form button:hover { background: #f5e0b5; }
+.subscribe-success h4 {
+  font-size: 1.4rem; font-weight: 300; color: var(--ivory);
+  margin-bottom: 0.5rem;
+}
+.subscribe-success h4 em { font-style: italic; color: var(--cream); }
+.subscribe-success p { color: rgba(247,241,234,0.6); font-size: 0.9rem; }
+.subscribe-note {
+  font-size: 0.7rem; color: rgba(247,241,234,0.35);
+}
+.subscribe-divider {
+  border: none; border-top: 1px solid rgba(247,241,234,0.1);
+  margin: 3rem auto 0; max-width: 560px;
+}
+.page-footer-bar {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.72rem; color: rgba(247,241,234,0.35);
+  flex-wrap: wrap; gap: 0.75rem; padding: 2rem 0 3rem;
+}
+.page-footer-bar a { color: rgba(247,241,234,0.5); text-decoration: none; }
+.page-footer-bar a:hover { color: var(--ivory); }
 
 /* — FILTER BAR — */
 .filter-bar {
@@ -178,12 +257,14 @@ body {
   box-shadow: 0 12px 32px rgba(39,55,82,0.1);
 }
 .post-card-img {
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/3;
   overflow: hidden;
-  background: var(--navy);
+  background: var(--ivory);
 }
 .post-card-img img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
+  width: 100% !important; height: 100% !important;
+  object-fit: contain; display: block;
+  max-width: none !important;
   transition: transform 0.4s;
 }
 .post-card:hover .post-card-img img { transform: scale(1.03); }
@@ -225,6 +306,7 @@ body {
   width: 50%; flex-shrink: 0; aspect-ratio: auto;
   min-height: 280px;
 }
+.post-card.featured .post-card-img img { object-fit: cover !important; }
 .post-card.featured .post-card-body { padding: 2.5rem; justify-content: center; }
 .post-card.featured .post-card-title {
   font-size: 1.5rem; line-height: 1.25;
@@ -238,14 +320,6 @@ body {
   font-size: 1rem;
 }
 
-/* — FOOTER — */
-.page-footer {
-  background: var(--navy); color: rgba(247,241,234,0.6);
-  padding: 2rem 4rem;
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 0.75rem; flex-wrap: wrap; gap: 1rem;
-}
-.page-footer a { color: var(--cream); text-decoration: none; }
 
 /* — FADE IN — */
 .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.4s ease, transform 0.4s ease; }
@@ -253,15 +327,11 @@ body {
 
 /* — RESPONSIVE — */
 @media (max-width: 900px) {
-  .blog-hero-cols { grid-template-columns: 1fr; gap: 3rem; }
-  .hero-stat-grid { grid-template-columns: repeat(4, 1fr); }
   .blog-grid { grid-template-columns: repeat(2, 1fr); }
   .post-card.featured { flex-direction: column; }
   .post-card.featured .post-card-img { width: 100%; min-height: 220px; aspect-ratio: 16/9; }
 }
 @media (max-width: 700px) {
-  .blog-hero-cols { grid-template-columns: 1fr; gap: 2.5rem; }
-  .hero-stat-grid { grid-template-columns: repeat(2, 1fr); }
   .topbar { padding: 0 1.25rem; }
   .topbar-links { display: none; }
   .blog-hero { padding: 8rem 1.5rem 4rem; }
@@ -280,45 +350,25 @@ body {
 
 <!-- NAV -->
 <nav class="topbar">
-  <a href="https://kyleandco.com" class="topbar-brand">Kyle &amp; Co</a>
+  <a href="/index.html" class="topbar-brand">Kyle &amp; Co</a>
   <div class="topbar-links">
-    <a href="https://kyleandco.com">Home</a>
-    <a href="https://kyleandco.com/aicouncil">AI Council</a>
-    <a href="https://kyleandco.com/contact">Contact</a>
+    <a href="/index.html">Home</a>
+    <a href="/research/">Research</a>
+    <a href="/practitioners/">For Practitioners</a>
+    <a href="/vendors/">For Vendors</a>
+    <a href="/aicouncil">HCAIC</a>
+    <a href="/blog/">Blog</a>
   </div>
-  <a href="https://kyleandco.com/aicouncil" class="topbar-cta">Explore the Council →</a>
+  <a href="#" onclick="event.preventDefault();document.getElementById('kco-modal').classList.add('open')" class="topbar-cta">Book a discovery call</a>
 </nav>
 
 <!-- HERO -->
 <div class="blog-hero">
   <div class="blog-hero-inner">
-    <div class="blog-hero-cols">
-      <div class="blog-hero-left">
-        <p class="blog-hero-kicker">Kyle &amp; Co · Insights &amp; Analysis</p>
-        <h1>Sharp takes on talent,<br /><em>technology, and what's next.</em></h1>
-        <p>Analysis and perspective from the team at Kyle &amp; Co — covering HR transformation, TA, and the tools and decisions shaping how organizations lead. Written by practitioners, for practitioners.</p>
-      </div>
-      <div class="blog-hero-right">
-        <div class="hero-stat-grid">
-          <div class="hero-stat">
-            <span class="hero-stat-num">27</span>
-            <span class="hero-stat-label">Articles &amp; Analyses</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">6</span>
-            <span class="hero-stat-label">Contributing Voices</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">5</span>
-            <span class="hero-stat-label">Coverage Areas</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">1</span>
-            <span class="hero-stat-label">Point of View</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <p class="blog-hero-kicker">Kyle &amp; Co · Insights &amp; Analysis</p>
+    <h1>Insights and analysis to move<br /><em>the industry forward.</em></h1>
+    <p>Where analysts and practitioners share what we're seeing, testing, and learning about AI, talent, and what's next in HR.</p>
+    <a href="#subscribe" class="hero-subscribe-btn">Get insights delivered to your inbox →</a>
   </div>
 </div>
 
@@ -340,11 +390,11 @@ body {
 <div class="blog-grid-wrap">
   <div class="blog-grid" id="blog-grid">
 
-    <a class="post-card featured fade-in" href="blog-next-chapter.html" data-category="Thought Leadership">
-      <div class="post-card-img"><img src="blog-assets/next-chapter/kyle-kyleandco.jpg" alt="Navigating The Next Chapter in AI" loading="lazy" /></div>
+    <a class="post-card featured fade-in" href="/blog/new-generation-ai-leaders-hr" data-category="Industry News">
+      <div class="post-card-img"><img src="/aicouncil/blog-assets/next-chapter/blog-featured-next-chapter.png" alt="Navigating The Next Chapter in AI" loading="lazy" /></div>
       <div class="post-card-body">
         <p class="featured-kicker">Latest</p>
-        <div class="post-card-meta"><span class="post-card-cat">Thought Leadership</span><span class="post-card-date">May 13, 2026</span></div>
+        <div class="post-card-meta"><span class="post-card-cat">Industry News</span><span class="post-card-date">May 15, 2026</span></div>
         <div class="post-card-title">Navigating The Next Chapter in AI: A New Generation of Leaders Emerge</div>
         <p class="featured-desc">The next chapter of AI in HR won't be defined by what AI can do. After a spring on the road — Workday, Ashby One, Findem, and a glass of wine with one of the most influential executives in the space — here's what I keep coming back to.</p>
         <div class="featured-footer">
@@ -588,7 +638,7 @@ body {
       </div>
     </a>
 
-    <a class="post-card fade-in" href="https://kyleandco.com/mobley-workday-ai-hr-lawsuit/" data-category="Industry News">
+    <a class="post-card fade-in" href="https://kyleandco.com/mobley-workday-ai-hr-lawsuit/" data-category="Industry News" data-draft="true">
       <div class="post-card-img"><img src="https://kyleandco.com/wp-content/uploads/2025/07/assets_task_01jz37xfqzerybbqfkzhhxcv5b_1751381955_img_2.webp" alt="Mobley v. Workday: AI and HR Lawsuit" loading="lazy" /></div>
       <div class="post-card-body">
         <div class="post-card-meta"><span class="post-card-cat">Industry News</span><span class="post-card-date">July 1, 2025</span></div>
@@ -600,13 +650,52 @@ body {
   </div>
 </div>
 
-<!-- FOOTER -->
-<footer class="page-footer">
-  <div>© 2026 Kyle &amp; Co · Human-Centric AI Council</div>
-  <div><a href="https://kyleandco.com/aicouncil">Explore the Council →</a></div>
+<!-- SUBSCRIBE FOOTER -->
+<footer id="subscribe" class="subscribe-footer">
+  <div class="subscribe-inner">
+    <p class="subscribe-kicker">Kyle &amp; Co · Insights Community</p>
+    <h3>Don't miss what's<br /><em>next.</em></h3>
+    <p>New analysis, takes, and practitioner perspectives — straight to your inbox. No noise, no vendor pitches. Just the work.</p>
+    <form class="subscribe-form" id="subscribe-form" action="https://assets.mailerlite.com/jsonp/1555935/forms/155676694376613273/subscribe" method="post" target="ml-submit-frame">
+      <div class="subscribe-fields">
+        <input type="text" name="fields[name]" placeholder="First name" required />
+        <input type="email" name="fields[email]" placeholder="Work email" required />
+        <input type="text" name="fields[company]" placeholder="Company" />
+      </div>
+      <div class="subscribe-persona">
+        <p class="persona-label">I'm a —</p>
+        <div class="persona-grid">
+          <label class="persona-option"><input type="checkbox" name="fields[practitioners]" value="yes" /><span>Practitioner</span></label>
+          <label class="persona-option"><input type="checkbox" name="fields[vendors]" value="yes" /><span>Vendor</span></label>
+          <label class="persona-option"><input type="checkbox" name="fields[consultants]" value="yes" /><span>Consultant</span></label>
+          <label class="persona-option"><input type="checkbox" name="fields[press]" value="yes" /><span>Press</span></label>
+        </div>
+      </div>
+      <input type="hidden" name="ml-submit" value="1" />
+      <input type="hidden" name="anticsrf" value="true" />
+      <button type="submit">Join the community →</button>
+    </form>
+    <div class="subscribe-success" id="subscribe-success" style="display:none;">
+      <h4>You're in. <em>Welcome.</em></h4>
+      <p>Expect research and perspectives worth your time — nothing else.</p>
+    </div>
+    <iframe name="ml-submit-frame" style="display:none;"></iframe>
+    <p class="subscribe-note">We'll only use your email to share updates from Kyle &amp; Co. Unsubscribe anytime.</p>
+  </div>
+  <hr class="subscribe-divider" />
+  <div class="page-footer-bar">
+    <span>© 2026 Kyle &amp; Co</span>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="https://kyleandco.com/aicouncil">AI Council</a>
+      <a href="https://kyleandco.com">kyleandco.com</a>
+    </div>
+  </div>
 </footer>
 
 <script>
+// Hide draft posts
+document.querySelectorAll('[data-draft="true"]').forEach(el => el.style.display = 'none');
+
 // Category filter
 const btns = document.querySelectorAll('.filter-btn');
 const cards = document.querySelectorAll('.post-card');
@@ -640,6 +729,18 @@ btns.forEach(btn => {
     }
   });
 });
+
+// Subscribe form success state
+const subForm = document.getElementById('subscribe-form');
+const subSuccess = document.getElementById('subscribe-success');
+if (subForm) {
+  subForm.addEventListener('submit', () => {
+    setTimeout(() => {
+      subForm.style.display = 'none';
+      subSuccess.style.display = 'block';
+    }, 1000);
+  });
+}
 
 // Fade-in on scroll
 const observer = new IntersectionObserver((entries) => {
