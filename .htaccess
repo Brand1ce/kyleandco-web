@@ -4,6 +4,10 @@ DirectoryIndex index.html index.php
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
+
+# Pass /blog/ itself to WordPress (physical dir exists but WP owns the index)
+RewriteRule ^blog/?$ /index.php [L]
+
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
