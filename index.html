@@ -74,12 +74,15 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
 .logo-marquee-track:hover { animation-play-state: paused; }
 @keyframes kcMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .logo-marquee-track img {
-  height: 24px !important; width: 110px !important;
+  height: 28px !important; width: 120px !important;
   object-fit: contain !important;
   margin: 0 2.75rem;
   filter: brightness(0) invert(1) !important;
   opacity: .7;
   flex-shrink: 0;
+}
+.logo-marquee-track img.logo-lg {
+  height: 40px !important; width: 150px !important;
 }
 
 .diffs { padding: 3rem 2.5rem; background: var(--white); position: relative; overflow: hidden; }
@@ -250,7 +253,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
   </a>
   <div class="topbar-nav">
     <a href="/index.html" class="active">Home</a>
-    <a href="/research/">Research</a>
+    <a href="/research/">Resources</a>
     <a href="/practitioners/">For Practitioners</a>
     <a href="/vendors/">For Vendors</a>
     <a href="/aicouncil">HCAIC</a>
@@ -269,7 +272,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
     <p class="sub">We help leaders close the gap between innovation and adoption. Built on surveys with thousands of senior HR and TA leaders, written alongside the practitioners shaping the work, and informed by close ties to the vendors building what's next. The combination is what helps the market innovate and adopt with intention, not reaction.</p>
     <div class="hero-home-actions">
       <button class="btn-primary" onclick="document.getElementById('kco-modal').classList.add('open')">Book a discovery call <span aria-hidden="true">→</span></button>
-      <a href="/research/" class="btn-ghost">Read the research</a>
+      <a href="/research/" class="btn-ghost" target="_blank" rel="noopener noreferrer">Read the research</a>
     </div>
   </div>
 </section>
@@ -284,14 +287,14 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
       <img src="/assets/img/logos/humanly.png" alt="Humanly">
       <img src="/assets/img/logos/warden.svg" alt="Warden AI">
       <img src="/assets/img/logos/goodtime.png" alt="GoodTime">
-      <img src="/assets/img/logos/gem.webp" alt="Gem">
-      <img src="/assets/img/logos/hibob.png" alt="HiBob">
+      <img src="/assets/img/logos/gem.webp" alt="Gem" class="logo-lg">
+      <img src="/assets/img/logos/hibob.png" alt="HiBob" class="logo-lg">
       <img src="/assets/img/logos/rival.png" alt="Rival HR">
       <img src="/assets/img/logos/glider.webp" alt="Glider">
       <img src="/assets/img/logos/isolved.png" alt="iSolved">
       <img src="/assets/img/logos/adp.svg" alt="ADP">
       <img src="/assets/img/logos/charthop.svg" alt="ChartHop">
-      <img src="/assets/img/logos/workday.png" alt="Workday">
+      <img src="/assets/img/logos/workday.png" alt="Workday" class="logo-lg">
       <img src="/assets/img/logos/indeed.webp" alt="Indeed">
       <img src="/assets/img/logos/sap.png" alt="SAP">
       <img src="/assets/img/logos/symphony.svg" alt="Symphony Talent">
@@ -302,14 +305,14 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
       <img src="/assets/img/logos/humanly.png" alt="">
       <img src="/assets/img/logos/warden.svg" alt="">
       <img src="/assets/img/logos/goodtime.png" alt="">
-      <img src="/assets/img/logos/gem.webp" alt="">
-      <img src="/assets/img/logos/hibob.png" alt="">
+      <img src="/assets/img/logos/gem.webp" alt="" class="logo-lg">
+      <img src="/assets/img/logos/hibob.png" alt="" class="logo-lg">
       <img src="/assets/img/logos/rival.png" alt="">
       <img src="/assets/img/logos/glider.webp" alt="">
       <img src="/assets/img/logos/isolved.png" alt="">
       <img src="/assets/img/logos/adp.svg" alt="">
       <img src="/assets/img/logos/charthop.svg" alt="">
-      <img src="/assets/img/logos/workday.png" alt="">
+      <img src="/assets/img/logos/workday.png" alt="" class="logo-lg">
       <img src="/assets/img/logos/indeed.webp" alt="">
       <img src="/assets/img/logos/sap.png" alt="">
       <img src="/assets/img/logos/symphony.svg" alt="">
@@ -362,7 +365,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
       <h2>The <em>work.</em></h2>
     </div>
     <div class="the-work-grid">
-      <a href="/research/ai-momentum-model/" class="work-card">
+      <a href="/research/ai-momentum-model/" class="work-card" target="_blank" rel="noopener noreferrer">
         <img class="work-card-img" src="/assets/img/research-01-momentum.png" alt="AI Momentum Model report cover">
         <div class="work-card-body">
           <div class="work-card-tag">Annual benchmark</div>
@@ -371,7 +374,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
           <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
         </div>
       </a>
-      <a href="/research/category-compass/" class="work-card">
+      <a href="/research/category-compass/" class="work-card" target="_blank" rel="noopener noreferrer">
         <img class="work-card-img" src="/assets/img/research-02-compass.png" alt="Category Compass: AI Interviewers report cover">
         <div class="work-card-body">
           <div class="work-card-tag">Category Compass</div>
@@ -380,7 +383,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
           <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
         </div>
       </a>
-      <a href="/aicouncil?utm_source=kyleandco_website&utm_medium=research_card&utm_campaign=ai_council_toolkit" class="work-card">
+      <a href="/aicouncil?utm_source=kyleandco_website&utm_medium=research_card&utm_campaign=ai_council_toolkit" class="work-card" target="_blank" rel="noopener noreferrer">
         <img class="work-card-img" src="/assets/img/research-03-toolkit.png" alt="AI Council Toolkit cover">
         <div class="work-card-body">
           <div class="work-card-tag">Practitioner toolkit</div>
@@ -448,7 +451,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
         <h2>The HCAIC, by the <em>practitioners doing the work.</em></h2>
         <p>The HCAIC is a working group of HR and TA practitioners building peer-led resources for the rest of the function on AI. Members write, review, and ship their own contributions.</p>
         <p>Underwriters get visibility around the Council. Not access to its members. The Council does not exist to be a buyer panel.</p>
-        <a href="/aicouncil" class="link">Learn more about the Council <span aria-hidden="true">→</span></a>
+        <a href="/aicouncil" class="link" target="_blank" rel="noopener noreferrer">Learn more about the Council <span aria-hidden="true">→</span></a>
       </div>
     </div>
     <div class="council-pillars">
@@ -576,7 +579,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
   <div class="footer-inner">
     <a href="/index.html" class="footer-brand">Kyle &amp; Co</a>
     <nav class="footer-links">
-      <a href="/research/">Research</a>
+      <a href="/research/">Resources</a>
       <a href="/practitioners/">For Practitioners</a>
       <a href="/vendors/">For Vendors</a>
       <a href="/aicouncil">HCAIC</a>
