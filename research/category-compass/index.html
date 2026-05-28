@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/favicon.png">
+<title>Category Compass: AI Interviewers — Kyle &amp; Co Research</title>
+<meta name="description" content="An independent benchmark of AI interviewer solutions. We said the market wasn't ready to rank. Here's what we found.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H95H1WFLGC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H95H1WFLGC');</script>
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+body[data-page="research"] { --accent: var(--sky); }
+
+.rp-hero {
+  background: var(--navy); padding: 7rem 2.5rem 5rem;
+  position: relative; overflow: hidden;
+  background-image: linear-gradient(rgba(39,55,82,.035) 1px,transparent 1px), linear-gradient(90deg,rgba(39,55,82,.035) 1px,transparent 1px);
+  background-size: 56px 56px;
+}
+.rp-hero > img.corner-mark { position:absolute; right:-4%; bottom:-12%; width:44%; max-width:520px; opacity:.07; filter:invert(1); pointer-events:none; }
+.rp-hero-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; position:relative; z-index:1; }
+.rp-eyebrow { font-family:var(--font-mono); font-size:.68rem; letter-spacing:.22em; text-transform:uppercase; color:var(--sky); font-weight:500; margin-bottom:1.5rem; }
+.rp-hero h1 { font-family:var(--font-display); font-weight:400; font-variation-settings:"SOFT" 50,"WONK" 0; font-size:clamp(2.5rem,5vw,4rem); line-height:1.02; letter-spacing:-.022em; color:var(--ivory); margin-bottom:1.5rem; }
+.rp-hero h1 em { font-style:italic; color:var(--cream); }
+.rp-hero p.sub { font-size:1rem; line-height:1.7; color:rgba(247,241,234,.7); margin-bottom:2rem; max-width:46ch; }
+.rp-hero-stats { display:flex; gap:2rem; flex-wrap:wrap; padding-top:1.5rem; border-top:1px solid rgba(247,241,234,.1); }
+.rp-stat-n { font-family:var(--font-display); font-size:2rem; font-weight:400; font-style:italic; color:var(--cream); line-height:1; }
+.rp-stat-l { font-size:.75rem; color:rgba(247,241,234,.5); margin-top:.2rem; }
+.rp-cover { border-radius:var(--r-md); overflow:hidden; box-shadow:0 24px 64px rgba(0,0,0,.3); }
+.rp-cover img { width:100%; display:block; }
+
+.rp-section { padding:4rem 2.5rem; }
+.rp-section-inner { max-width:1100px; margin:0 auto; }
+
+.rp-what { background:var(--white); }
+.rp-what-layout { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+.rp-what h2 { font-family:var(--font-display); font-weight:400; font-size:clamp(1.85rem,3vw,2.5rem); line-height:1.08; letter-spacing:-.02em; color:var(--navy); margin-bottom:1.25rem; }
+.rp-what h2 em { font-style:italic; color:var(--lilac); }
+.rp-what p { font-size:1rem; color:var(--slate); line-height:1.75; margin-bottom:1rem; }
+
+.rp-findings { display:flex; flex-direction:column; gap:1rem; }
+.rp-finding { background:var(--ivory); border-radius:var(--r-md); padding:1.5rem 1.75rem; border-left:3px solid var(--sky); }
+.rp-finding-title { font-family:var(--font-display); font-size:1rem; font-weight:500; color:var(--navy); margin-bottom:.4rem; }
+.rp-finding-body { font-size:.85rem; color:var(--slate); line-height:1.6; }
+
+.rp-approach { background:var(--ivory); }
+.rp-approach h2 { font-family:var(--font-display); font-weight:400; font-size:clamp(1.85rem,3vw,2.5rem); line-height:1.08; letter-spacing:-.02em; color:var(--navy); margin-bottom:1.25rem; }
+.rp-approach h2 em { font-style:italic; color:var(--lilac); }
+.rp-approach-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; margin-top:2rem; }
+.rp-approach-card { background:var(--white); border-radius:var(--r-md); padding:1.75rem; border:1px solid rgba(39,55,82,.07); }
+.rp-approach-card h3 { font-family:var(--font-display); font-size:1.05rem; font-weight:500; color:var(--navy); margin-bottom:.5rem; }
+.rp-approach-card p { font-size:.85rem; color:var(--slate); line-height:1.6; }
+
+.rp-cta { background:var(--navy); text-align:center; position:relative; overflow:hidden; }
+.rp-cta > img.corner-mark { position:absolute; right:-4%; bottom:-14%; width:44%; max-width:520px; opacity:.08; filter:invert(1); pointer-events:none; }
+.rp-cta-inner { max-width:640px; margin:0 auto; position:relative; z-index:1; }
+.rp-cta-eyebrow { font-family:var(--font-mono); font-size:.68rem; letter-spacing:.22em; text-transform:uppercase; color:var(--sky); font-weight:500; margin-bottom:1.25rem; }
+.rp-cta h2 { font-family:var(--font-display); font-weight:400; font-size:clamp(2rem,3.5vw,3rem); line-height:1.08; letter-spacing:-.02em; color:var(--ivory); margin-bottom:1.25rem; }
+.rp-cta h2 em { font-style:italic; color:var(--cream); }
+.rp-cta p { font-size:1rem; color:rgba(247,241,234,.65); line-height:1.7; margin-bottom:2rem; }
+.rp-cta-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+@media(max-width:900px){
+  .rp-hero { padding:6rem 1.5rem 4rem; }
+  .rp-hero-inner, .rp-what-layout, .rp-approach-grid { grid-template-columns:1fr; gap:2.5rem; }
+  .rp-cover { max-width:400px; }
+  .rp-section { padding:3rem 1.5rem; }
+}
+</style>
+</head>
+<body data-page="research">
+
+<nav class="topbar">
+  <a href="/index.html" class="topbar-brand"><img src="/assets/img/logo-primary.svg" alt="Kyle &amp; Co"></a>
+  <div class="topbar-nav">
+    <a href="/index.html">Home</a>
+    <a href="/research/" class="active">Research</a>
+    <a href="/practitioners/">For Practitioners</a>
+    <a href="/vendors/">For Vendors</a>
+    <a href="/aicouncil">HCAIC</a>
+    <a href="/blog">Blog</a>
+  </div>
+  <a href="#" onclick="event.preventDefault();document.getElementById('kco-modal').classList.add('open')" class="topbar-cta">Book a discovery call</a>
+</nav>
+
+<section class="rp-hero">
+  <img class="corner-mark" src="/assets/img/icon-ampersand.svg" alt="" aria-hidden="true">
+  <div class="rp-hero-inner">
+    <div>
+      <div class="rp-eyebrow">Kyle &amp; Co · Category Compass</div>
+      <h1>AI Interviewers: <em>A Category Compass.</em></h1>
+      <p class="sub">When this category was new, we benchmarked solutions instead of ranking them. We said the market wasn't ready to rank, on the record. Here's what we found.</p>
+      <div class="rp-hero-stats">
+        <div class="rp-stat"><div class="rp-stat-n">6+</div><div class="rp-stat-l">Solutions benchmarked</div></div>
+        <div class="rp-stat"><div class="rp-stat-n">2026</div><div class="rp-stat-l">Latest edition</div></div>
+        <div class="rp-stat"><div class="rp-stat-n">Free</div><div class="rp-stat-l">Open access</div></div>
+      </div>
+    </div>
+    <div class="rp-cover">
+      <img src="/assets/img/compass-cover.png" alt="Category Compass: AI Interviewers report cover">
+    </div>
+  </div>
+</section>
+
+<section class="rp-section rp-what">
+  <div class="rp-section-inner">
+    <div class="rp-what-layout">
+      <div>
+        <div class="kc-eyebrow" style="margin-bottom:1rem;">What it is</div>
+        <h2>A benchmark, not <em>a ranking.</em></h2>
+        <p>The Category Compass is Kyle &amp; Co's framework for evaluating HR tech categories that are too new, too volatile, or too buyer-dependent to rank fairly. Instead of telling you which vendor is best, it tells you what to look for — and why the differences between solutions matter more than a leaderboard.</p>
+        <p>The AI Interviewers edition was the first. It mapped the category's real capabilities, surfaced the gaps buyers weren't asking about, and gave HR teams a defensible framework for evaluation.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.75rem;">
+          <a href="https://kyleandco.com/wp-content/uploads/2026/02/Category-Compass-Navigating-AI-Interviewers-KyleandCo.pdf?utm_source=kyleandco_website&utm_medium=research_page&utm_campaign=ai_interviewers" target="_blank" rel="noopener noreferrer" class="btn-primary">Download the report <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="rp-findings">
+        <div class="kc-eyebrow" style="margin-bottom:1rem;">What we found</div>
+        <div class="rp-finding">
+          <div class="rp-finding-title">The category wasn't ready to rank.</div>
+          <div class="rp-finding-body">Vendor capabilities varied too much, buyer use cases were too different, and the category was moving too fast for a static ranking to mean anything defensible.</div>
+        </div>
+        <div class="rp-finding">
+          <div class="rp-finding-title">Candidate experience is the blind spot.</div>
+          <div class="rp-finding-body">Most buyers focus on efficiency. The risk that gets underweighted: what an AI interviewer does to your employer brand when it doesn't work the way candidates expect.</div>
+        </div>
+        <div class="rp-finding">
+          <div class="rp-finding-title">Your screening process is your brand.</div>
+          <div class="rp-finding-body">The vendors who get this right treat the interaction design as seriously as the detection logic. Most don't.</div>
+        </div>
+        <div class="rp-finding">
+          <div class="rp-finding-title">Fraud detection is table stakes, not a differentiator.</div>
+          <div class="rp-finding-body">Every vendor claims it. The real differentiation is in what happens after the signal — the workflow, the human review layer, the documentation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rp-section rp-approach">
+  <div class="rp-section-inner">
+    <div class="kc-eyebrow" style="margin-bottom:1rem;">The compass framework</div>
+    <h2>How to use <em>this research.</em></h2>
+    <p style="font-size:1rem;color:var(--slate);line-height:1.7;max-width:58ch;">The report gives you four things to evaluate any AI interviewer — use them in vendor conversations, RFPs, and internal alignment discussions.</p>
+    <div class="rp-approach-grid">
+      <div class="rp-approach-card">
+        <h3>Capability mapping</h3>
+        <p>What the solution actually does vs. what the marketing says. Broken down by detection, interaction design, integrations, and human oversight.</p>
+      </div>
+      <div class="rp-approach-card">
+        <h3>Buyer context</h3>
+        <p>Why the right answer depends on your volume, your roles, your brand risk tolerance, and your existing stack. No single solution fits every context.</p>
+      </div>
+      <div class="rp-approach-card">
+        <h3>What to ask vendors</h3>
+        <p>The questions most buyers aren't asking. Specifically on fraud handling workflows, candidate escalation paths, and bias audit documentation.</p>
+      </div>
+      <div class="rp-approach-card">
+        <h3>Red flags and green lights</h3>
+        <p>Patterns we saw across the category that should accelerate or kill a procurement conversation before you get to a demo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rp-section rp-cta">
+  <img class="corner-mark" src="/assets/img/icon-ampersand.svg" alt="" aria-hidden="true">
+  <div class="rp-cta-inner">
+    <div class="rp-cta-eyebrow">Free · Open access</div>
+    <h2>Read the full <em>report.</em></h2>
+    <p>The full Category Compass includes solution profiles, the buyer evaluation framework, and the contrarian takes that didn't make the press release. No gate.</p>
+    <div class="rp-cta-btns">
+      <a href="https://kyleandco.com/wp-content/uploads/2026/02/Category-Compass-Navigating-AI-Interviewers-KyleandCo.pdf?utm_source=kyleandco_website&utm_medium=research_cta&utm_campaign=ai_interviewers" target="_blank" rel="noopener noreferrer" class="btn-primary">Download the report <span aria-hidden="true">→</span></a>
+      <a href="/research/" class="btn-ghost" style="color:var(--ivory);border-color:rgba(247,241,234,.3);">All research</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="/index.html" class="footer-brand">Kyle &amp; Co</a>
+    <nav class="footer-links">
+      <a href="/research/">Research</a>
+      <a href="/practitioners/">For Practitioners</a>
+      <a href="/vendors/">For Vendors</a>
+      <a href="/aicouncil">HCAIC</a>
+      <a href="/blog">Blog</a>
+    </nav>
+    <div class="footer-copy">&copy; 2026 Kyle &amp; Co. No spam. Just signal.</div>
+  </div>
+</footer>
+
+<!-- KCO CONTACT MODAL -->
+<div id="kco-modal" class="kc-modal-overlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="kc-modal-box">
+    <button class="kc-modal-close" onclick="document.getElementById('kco-modal').classList.remove('open')" aria-label="Close">&#x2715;</button>
+    <div id="kco-form-view">
+      <div class="kc-modal-eyebrow">Kyle &amp; Co</div>
+      <h3 class="kc-modal-title">Let's talk about <em>your work.</em></h3>
+      <p class="kc-modal-sub">Tell us where you're starting from. Kyle &amp; Co typically responds within two business days.</p>
+      <iframe name="ml-kco-c-frame" style="display:none;"></iframe>
+      <form action="https://assets.mailerlite.com/jsonp/1555935/forms/185371122148050837/subscribe" method="post" target="ml-kco-c-frame" onsubmit="setTimeout(function(){document.getElementById('kco-form-view').style.display='none';document.getElementById('kco-success').style.display='block';},1000)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;">
+          <input required type="text" name="fields[name]" placeholder="First name" class="kc-input">
+          <input required type="text" name="fields[last_name]" placeholder="Last name" class="kc-input">
+        </div>
+        <input required type="email" name="fields[email]" placeholder="Work email" class="kc-input" style="margin-bottom:.75rem;">
+        <input required type="text" name="fields[company]" placeholder="Company" class="kc-input" style="margin-bottom:.75rem;">
+        <input type="hidden" name="ml-submit" value="1"><input type="hidden" name="anticsrf" value="true">
+        <button type="submit" class="kc-modal-btn">Send message <span aria-hidden="true">→</span></button>
+      </form>
+    </div>
+    <div id="kco-success" style="display:none;padding:2rem 0;text-align:center;">
+      <div class="kc-modal-eyebrow">Message received</div>
+      <h3 class="kc-modal-title" style="font-size:1.75rem;">We'll be in touch.</h3>
+      <p class="kc-modal-sub">Kyle &amp; Co typically responds within two business days. Need to chat sooner? Reach out at <a href="mailto:info@kyleandco.com" style="color:var(--navy);font-weight:500;">info@kyleandco.com</a>.</p>
+    </div>
+  </div>
+</div>
+<style>
+.kc-modal-overlay{display:none;position:fixed;inset:0;background:rgba(23,35,57,.55);z-index:300;align-items:flex-start;justify-content:center;padding:5rem 1.5rem 3rem;overflow-y:auto;}
+.kc-modal-overlay.open{display:flex;animation:kcFadeUp .3s cubic-bezier(.22,1,.36,1);}
+@keyframes kcFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.kc-modal-box{background:var(--ivory);max-width:540px;width:100%;border-radius:16px;padding:2.75rem;position:relative;box-shadow:0 30px 80px rgba(23,35,57,.25);}
+.kc-modal-close{position:absolute;top:1rem;right:1.25rem;background:none;border:none;font-size:1.2rem;color:var(--slate);cursor:pointer;padding:.3rem .6rem;line-height:1;}
+.kc-modal-eyebrow{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lilac);font-weight:500;margin-bottom:.9rem;}
+.kc-modal-title{font-family:var(--font-display);font-size:1.85rem;font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--navy);margin-bottom:.9rem;}
+.kc-modal-title em{font-style:italic;color:var(--lilac);}
+.kc-modal-sub{font-size:.93rem;color:var(--slate);line-height:1.6;margin-bottom:1.75rem;}
+.kc-input{width:100%;padding:.8rem 1rem;border:1px solid rgba(39,55,82,.16);border-radius:8px;font-size:.9rem;font-family:inherit;color:var(--navy);background:#fff;outline:none;transition:border-color .15s;display:block;}
+.kc-input:focus{border-color:var(--navy);}
+.kc-input::placeholder{color:var(--lilac);}
+.kc-modal-btn{margin-top:.25rem;background:var(--navy);color:var(--ivory);border:none;border-radius:100px;padding:1rem 1.75rem;font-size:.9rem;font-weight:500;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:opacity .15s;}
+.kc-modal-btn:hover{opacity:.88;}
+</style>
+<script>document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll(".kc-modal-overlay.open").forEach(function(m){m.classList.remove("open");});});</script>
+
+</body>
+</html>
