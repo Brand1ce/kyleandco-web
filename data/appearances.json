@@ -1,0 +1,57 @@
+[
+  {
+    "status": "upcoming",
+    "date": "",
+    "month": "TBD",
+    "day": "—",
+    "type": "Webinar",
+    "venue": "",
+    "title": "No upcoming sessions scheduled",
+    "description": "Check back soon — new sessions are added regularly.",
+    "url": ""
+  },
+  {
+    "status": "past",
+    "date": "2025-02-03",
+    "month": "Feb",
+    "day": "3",
+    "type": "Podcast",
+    "venue": "People Proud",
+    "title": "AI in HR: Navigating the real opportunities and hype",
+    "description": "Kyle on navigating market hype cycles, enhancing HR's strategic credibility, and selecting AI solutions thoughtfully rather than chasing trends.",
+    "url": "https://open.spotify.com/episode/6ZsEXvqnm06HdVTIwucOAv"
+  },
+  {
+    "status": "past",
+    "date": "2025-01-27",
+    "month": "Jan",
+    "day": "27",
+    "type": "Webinar",
+    "venue": "Beamery",
+    "title": "Transformation Realness Live: Skills-Based Everything",
+    "description": "A panel on how skills-based solutions are shaping workforce strategy — state of HR tech, practical applications, and what \"skills-based\" actually requires to work.",
+    "url": "https://beamery.com/resources/webinars/transformation-realness-live-skills-based-everything"
+  },
+  {
+    "status": "past",
+    "date": "2024-01-01",
+    "month": "",
+    "day": "",
+    "type": "Webinar",
+    "venue": "UNLEASH × Glider AI",
+    "title": "Human Leadership in the AI Era: HR's Evolving Mandate",
+    "description": "Why HR must lead — not support — organizational AI strategy. Only 14% of orgs report HR leading their AI initiatives. That has to change.",
+    "url": "https://glider.ai/blog/ai-transformation-webinar-unleash/"
+  },
+  {
+    "status": "past",
+    "date": "2024-01-01",
+    "month": "",
+    "day": "",
+    "type": "Webinar",
+    "venue": "Warden AI",
+    "title": "Mobley vs. Workday: What the Case Means for HR Tech",
+    "description": "A discussion on the legal and governance implications of the landmark AI bias case — and what it means for HR teams evaluating algorithmic tools.",
+    "url": "https://webinars.warden-ai.com/mobley-vs-workday/"
+  }
+]

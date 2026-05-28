@@ -403,73 +403,78 @@ body[data-page="research"] { --accent: var(--sky); }
   </div>
 </section>
 
-<!-- ═══ WEBINARS ═══ -->
+<!-- ═══ WEBINARS / APPEARANCES ═══ -->
 <section class="webinars" id="webinars">
   <div class="webinars-inner">
     <div class="webinars-head">
-      <div class="kc-eyebrow" style="margin-bottom:1rem;">Live &amp; on-demand</div>
-      <h2>Webinars &amp; <em>events.</em></h2>
-      <p>Panels, webinars, and guest appearances where Kyle and the team are in the conversation. Upcoming dates and past recordings.</p>
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">Kyle &amp; Co in the conversation</div>
+      <h2>Our voice in <em>the market.</em></h2>
+      <p>Webinars, panels, and podcast appearances where Kyle and the team are shaping the conversation on AI in HR. Upcoming sessions and past recordings.</p>
     </div>
-
-    <!-- TO ADD A NEW UPCOMING WEBINAR: copy an .upcoming webinar-card block below and update the date, tag, title, sub, and register href -->
-    <div class="webinar-group-label">Upcoming</div>
-    <div class="webinar-list">
-      <div class="webinar-card upcoming">
-        <div class="webinar-date-col">
-          <div class="month">TBD</div>
-          <div class="day">—</div>
-        </div>
-        <div class="webinar-meta">
-          <div class="webinar-tag">Webinar</div>
-          <div class="webinar-title">No upcoming sessions scheduled</div>
-          <div class="webinar-sub">Check back soon — new sessions are added regularly.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TO ADD A PAST WEBINAR: copy a past webinar-card block and update date, tag, title, sub, and watch/listen href -->
-    <div class="webinar-group-label">Past</div>
-    <div class="webinar-list">
-      <div class="webinar-card">
-        <div class="webinar-date-col">
-          <div class="month">Oct</div>
-          <div class="day">14</div>
-        </div>
-        <div class="webinar-meta">
-          <div class="webinar-tag">Keynote · Workday Summit</div>
-          <div class="webinar-title">The AI Layoff Wave is a Trap.</div>
-          <div class="webinar-sub">Why the narrative around AI eliminating HR roles misses what's actually happening — and what leaders should be watching instead.</div>
-        </div>
-        <div class="webinar-action"><a href="#" target="_blank" rel="noopener noreferrer">Watch recording <span aria-hidden="true">→</span></a></div>
-      </div>
-      <div class="webinar-card">
-        <div class="webinar-date-col">
-          <div class="month">Sep</div>
-          <div class="day">22</div>
-        </div>
-        <div class="webinar-meta">
-          <div class="webinar-tag">Panel · Transform</div>
-          <div class="webinar-title">Why HR can't outsource AI governance.</div>
-          <div class="webinar-sub">A panel discussion on where accountability has to sit when AI is embedded in hiring and people decisions.</div>
-        </div>
-        <div class="webinar-action"><a href="#" target="_blank" rel="noopener noreferrer">Watch recording <span aria-hidden="true">→</span></a></div>
-      </div>
-      <div class="webinar-card">
-        <div class="webinar-date-col">
-          <div class="month">Aug</div>
-          <div class="day">7</div>
-        </div>
-        <div class="webinar-meta">
-          <div class="webinar-tag">Podcast · Recruiting Future</div>
-          <div class="webinar-title">What independent benchmarking does for the buyer.</div>
-          <div class="webinar-sub">On why Category Compass exists, how it's built, and what practitioners can do with it that vendor-authored research can't offer.</div>
-        </div>
-        <div class="webinar-action"><a href="#" target="_blank" rel="noopener noreferrer">Listen <span aria-hidden="true">→</span></a></div>
-      </div>
+    <div id="appearances-root">
+      <div style="color:var(--slate);font-size:.9rem;">Loading…</div>
     </div>
   </div>
 </section>
+<script>
+(function(){
+  function actionLabel(type) {
+    if (!type) return 'Watch';
+    var t = type.toLowerCase();
+    if (t === 'podcast') return 'Listen';
+    return 'Watch';
+  }
+
+  function cardHtml(a) {
+    var dateBlock = a.month
+      ? '<div class="webinar-date-col"><div class="month">' + a.month + '</div><div class="day">' + a.day + '</div></div>'
+      : '<div class="webinar-date-col" style="display:flex;align-items:center;justify-content:center;"><div style="font-size:1.5rem;color:var(--slate);">—</div></div>';
+
+    var action = a.url
+      ? '<div class="webinar-action"><a href="' + a.url + '" target="_blank" rel="noopener noreferrer">' + actionLabel(a.type) + ' <span aria-hidden="true">→</span></a></div>'
+      : '';
+
+    var venue = a.venue ? ' · ' + a.venue : '';
+
+    return '<div class="webinar-card' + (a.status === 'upcoming' ? ' upcoming' : '') + '">'
+      + dateBlock
+      + '<div class="webinar-meta">'
+      + '<div class="webinar-tag">' + (a.type || '') + venue + '</div>'
+      + '<div class="webinar-title">' + a.title + '</div>'
+      + '<div class="webinar-sub">' + a.description + '</div>'
+      + '</div>'
+      + action
+      + '</div>';
+  }
+
+  fetch('/data/appearances.json')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var upcoming = data.filter(function(a){ return a.status === 'upcoming'; });
+      var past = data.filter(function(a){ return a.status === 'past'; });
+      var html = '';
+
+      html += '<div class="webinar-group-label">Upcoming</div><div class="webinar-list">';
+      if (upcoming.length) {
+        upcoming.forEach(function(a){ html += cardHtml(a); });
+      } else {
+        html += '<div class="webinar-card upcoming"><div class="webinar-meta"><div class="webinar-title">No upcoming sessions scheduled</div><div class="webinar-sub">Check back soon.</div></div></div>';
+      }
+      html += '</div>';
+
+      if (past.length) {
+        html += '<div class="webinar-group-label">Past</div><div class="webinar-list">';
+        past.forEach(function(a){ html += cardHtml(a); });
+        html += '</div>';
+      }
+
+      document.getElementById('appearances-root').innerHTML = html;
+    })
+    .catch(function(){
+      document.getElementById('appearances-root').innerHTML = '<p style="color:var(--slate)">Could not load appearances.</p>';
+    });
+})();
+</script>
 
 <section class="advisory">
   <div class="advisory-inner">
