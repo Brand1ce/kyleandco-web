@@ -166,6 +166,9 @@ body[data-page="research"] { --accent: var(--sky); }
 .webinar-action a { display: inline-flex; align-items: center; gap: .3rem; font-size: .82rem; font-weight: 600; color: var(--navy); text-decoration: none; border-bottom: 1px solid rgba(39,55,82,.3); padding-bottom: 1px; white-space: nowrap; }
 .webinar-card.upcoming .webinar-date-col { background: rgba(39,55,82,.06); }
 .webinar-card.upcoming .webinar-action a { color: var(--lilac); border-bottom-color: rgba(157,146,173,.5); }
+.webinar-art { flex-shrink: 0; width: 80px; height: 80px; border-radius: 8px; overflow: hidden; }
+.webinar-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.webinar-card.has-art .webinar-date-col { display: none; }
 
 /* Featured elsewhere */
 .elsewhere { background: var(--white); padding: 5rem 2.5rem; }
@@ -436,7 +439,12 @@ body[data-page="research"] { --accent: var(--sky); }
 
     var venue = a.venue ? ' · ' + a.venue : '';
 
-    return '<div class="webinar-card' + (a.status === 'upcoming' ? ' upcoming' : '') + '">'
+    var artwork = a.image
+      ? '<div class="webinar-art"><img src="' + a.image + '" alt="' + a.venue + '"></div>'
+      : '';
+
+    return '<div class="webinar-card' + (a.status === 'upcoming' ? ' upcoming' : '') + (a.image ? ' has-art' : '') + '">'
+      + artwork
       + dateBlock
       + '<div class="webinar-meta">'
       + '<div class="webinar-tag">' + (a.type || '') + venue + '</div>'
