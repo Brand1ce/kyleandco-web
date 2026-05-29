@@ -392,44 +392,46 @@ body[data-page="research"] { --accent: var(--sky); }
       </div>
       <a href="#" class="btn-ghost on-dark">View all episodes <span aria-hidden="true">→</span></a>
     </div>
-    <!-- TO ADD A NEW EPISODE: copy one pod-card block, update episode number, title, description, and listen href -->
-    <div class="podcast-grid">
-      <article class="pod-card">
-        <div class="pod-art">
-          <div class="hostpp"><span>K</span></div>
-          <div class="ep"><small>Episode 14</small>Latest episode</div>
-        </div>
-        <div class="pod-body">
-          <h3>The build vs buy debate, revisited.</h3>
-          <p>With a TA director on how the AI build/buy framing actually breaks down in practice.</p>
-          <a href="#" class="listen">Listen <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-      <article class="pod-card">
-        <div class="pod-art" style="background: linear-gradient(135deg, rgba(253,236,205,.6), rgba(157,146,173,.5));">
-          <div class="hostpp"><span>K</span></div>
-          <div class="ep"><small>Episode 13</small>Council session</div>
-        </div>
-        <div class="pod-body">
-          <h3>What HR governance of AI actually looks like.</h3>
-          <p>A council working session, captured. Not theory — the actual frameworks they're shipping.</p>
-          <a href="#" class="listen">Listen <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-      <article class="pod-card">
-        <div class="pod-art" style="background: linear-gradient(135deg, rgba(157,146,173,.6), rgba(39,55,82,.7));">
-          <div class="hostpp"><span>K</span></div>
-          <div class="ep"><small>Episode 12</small>Field notes</div>
-        </div>
-        <div class="pod-body">
-          <h3>Adoption is the gap. Here's why.</h3>
-          <p>Why the AI adoption curve in HR stalls, and what the practitioners getting through it have in common.</p>
-          <a href="#" class="listen">Listen <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
+    <div id="tr-root" class="podcast-grid">
+      <div style="color:rgba(247,241,234,.5);font-size:.9rem;">Loading…</div>
     </div>
   </div>
 </section>
+<script>
+(function(){
+  var gradients = [
+    'linear-gradient(135deg, rgba(154,184,220,.6), rgba(157,146,173,.5), rgba(39,55,82,.65))',
+    'linear-gradient(135deg, rgba(253,236,205,.6), rgba(157,146,173,.5))',
+    'linear-gradient(135deg, rgba(157,146,173,.6), rgba(39,55,82,.7))'
+  ];
+  fetch('/data/appearances.json')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var episodes = data.filter(function(a){ return a.status === 'tr'; });
+      if (!episodes.length) { document.getElementById('tr-root').innerHTML = '<p style="color:rgba(247,241,234,.5)">No episodes yet.</p>'; return; }
+      var html = episodes.map(function(a, i){
+        var artBg = a.image ? '' : 'background:' + gradients[i % gradients.length] + ';';
+        var artImg = a.image ? '<img src="' + a.image + '" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">' : '';
+        var label = a.episode || ('Episode ' + (episodes.length - i));
+        var link = a.url
+          ? '<a href="' + a.url + '" class="listen" target="_blank" rel="noopener noreferrer">Listen <span aria-hidden="true">→</span></a>'
+          : '<span style="font-size:.78rem;color:rgba(154,184,220,.5);">Link coming soon</span>';
+        return '<article class="pod-card">'
+          + '<div class="pod-art" style="' + artBg + 'position:relative;">'
+          + artImg
+          + '<div class="hostpp" style="position:relative;z-index:1;"><span>K</span></div>'
+          + '<div class="ep" style="position:relative;z-index:1;"><small>' + label + '</small>' + a.title + '</div>'
+          + '</div>'
+          + '<div class="pod-body">'
+          + '<h3>' + a.title + '</h3>'
+          + '<p>' + a.description + '</p>'
+          + link
+          + '</div></article>';
+      }).join('');
+      document.getElementById('tr-root').innerHTML = html;
+    });
+})();
+</script>
 
 <!-- ═══ HOSTED WEBINARS ═══ -->
 <section class="hosted" id="hosted">

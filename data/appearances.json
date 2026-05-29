@@ -11,6 +11,17 @@
     "url": "",
     "image": "/assets/img/appearances/AI Town Hall_webinar.png"
   },
+
+  {
+    "status": "tr",
+    "episode": "Latest",
+    "type": "Episode",
+    "title": "Episode with Jason Desentez",
+    "description": "TODO: add description",
+    "url": "",
+    "image": "/assets/img/appearances/TR_Jason Desentez _podcast.png"
+  },
+
   {
     "status": "upcoming",
     "date": "",
@@ -23,6 +34,7 @@
     "url": "",
     "image": ""
   },
+
   {
     "status": "past",
     "date": "2025-02-03",
@@ -46,18 +58,6 @@
     "description": "A panel on how skills-based solutions are shaping workforce strategy — state of HR tech, practical applications, and what \"skills-based\" actually requires to work.",
     "url": "https://beamery.com/resources/webinars/transformation-realness-live-skills-based-everything",
     "image": ""
-  },
-  {
-    "status": "past",
-    "date": "",
-    "month": "",
-    "day": "",
-    "type": "Podcast",
-    "venue": "Transformation Realness",
-    "title": "Episode with Jason Desentez",
-    "description": "TODO: add description and URL",
-    "url": "",
-    "image": "/assets/img/appearances/TR_Jason Desentez _podcast.png"
   },
   {
     "status": "past",
