@@ -1,5 +1,17 @@
 [
   {
+    "status": "hosted",
+    "date": "",
+    "month": "",
+    "day": "",
+    "type": "Webinar",
+    "venue": "Kyle & Co × HCAIC",
+    "title": "AI Town Hall",
+    "description": "A live session with HR practitioners on the front lines of AI adoption. Council members, real questions, no vendor spin.",
+    "url": "",
+    "image": "/assets/img/appearances/AI Town Hall_webinar.png"
+  },
+  {
     "status": "upcoming",
     "date": "",
     "month": "TBD",
@@ -21,7 +33,7 @@
     "title": "AI in HR: Navigating the real opportunities and hype",
     "description": "Kyle on navigating market hype cycles, enhancing HR's strategic credibility, and selecting AI solutions thoughtfully rather than chasing trends.",
     "url": "https://open.spotify.com/episode/6ZsEXvqnm06HdVTIwucOAv",
-    "image": ""
+    "image": "/assets/img/appearances/AI in HR_webinar.png"
   },
   {
     "status": "past",
@@ -37,7 +49,55 @@
   },
   {
     "status": "past",
-    "date": "2024-01-01",
+    "date": "",
+    "month": "",
+    "day": "",
+    "type": "Podcast",
+    "venue": "Transformation Realness",
+    "title": "Episode with Jason Desentez",
+    "description": "TODO: add description and URL",
+    "url": "",
+    "image": "/assets/img/appearances/TR_Jason Desentez _podcast.png"
+  },
+  {
+    "status": "past",
+    "date": "",
+    "month": "",
+    "day": "",
+    "type": "Podcast",
+    "venue": "Adam Posner",
+    "title": "TODO: add episode title",
+    "description": "TODO: add description",
+    "url": "",
+    "image": "/assets/img/appearances/Adam Posner_podcast.jpg"
+  },
+  {
+    "status": "past",
+    "date": "",
+    "month": "",
+    "day": "",
+    "type": "Podcast",
+    "venue": "Mike Peditto",
+    "title": "TODO: add episode title",
+    "description": "TODO: add description",
+    "url": "",
+    "image": "/assets/img/appearances/Mike Peditto_podcast.jpg"
+  },
+  {
+    "status": "past",
+    "date": "",
+    "month": "",
+    "day": "",
+    "type": "Podcast",
+    "venue": "Workday",
+    "title": "AI Literacy: The Work Operating System",
+    "description": "TODO: add description",
+    "url": "",
+    "image": "/assets/img/appearances/workday_ai literacy work operating system_podcast.png"
+  },
+  {
+    "status": "past",
+    "date": "",
     "month": "",
     "day": "",
     "type": "Webinar",
@@ -49,7 +109,7 @@
   },
   {
     "status": "past",
-    "date": "2024-01-01",
+    "date": "",
     "month": "",
     "day": "",
     "type": "Webinar",
@@ -57,6 +117,6 @@
     "title": "Mobley vs. Workday: What the Case Means for HR Tech",
     "description": "A discussion on the legal and governance implications of the landmark AI bias case — and what it means for HR teams evaluating algorithmic tools.",
     "url": "https://webinars.warden-ai.com/mobley-vs-workday/",
-    "image": ""
+    "image": "/assets/img/appearances/Mobely-Workday_podcast.png"
   }
 ]

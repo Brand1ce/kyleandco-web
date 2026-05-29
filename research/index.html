@@ -210,8 +210,32 @@ body[data-page="research"] { --accent: var(--sky); }
 .closer-research h2 em { font-style: italic; color: var(--lilac); }
 .closer-research p { font-size: 1.15rem; color: var(--navy); line-height: 1.6; margin: 0 auto 2.5rem; max-width: 54ch; font-weight: 300; }
 
+/* Hosted webinars grid */
+.hosted { background: var(--white); padding: 5rem 2.5rem; border-top: 1px solid rgba(39,55,82,.08); }
+.hosted-inner { max-width: 1200px; margin: 0 auto; }
+.hosted-head { margin-bottom: 3rem; }
+.hosted-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1.05; letter-spacing: -.02em; color: var(--navy); margin-bottom: 1rem; }
+.hosted-head h2 em { font-style: italic; color: var(--lilac); }
+.hosted-head p { font-size: 1.05rem; color: var(--slate); line-height: 1.7; max-width: 52ch; }
+.hosted-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.hosted-card {
+  background: var(--ivory); border-radius: var(--r-md); overflow: hidden;
+  border: 1px solid rgba(39,55,82,.06); display: flex; flex-direction: column;
+  text-decoration: none;
+  transition: transform .3s cubic-bezier(.22,1,.36,1), border-color .3s, box-shadow .3s;
+}
+.hosted-card:hover { transform: translateY(-3px); border-color: var(--lilac); box-shadow: var(--shadow-md); }
+.hosted-card-art { aspect-ratio: 16/9; overflow: hidden; position: relative; background: var(--navy); }
+.hosted-card-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hosted-card-body { padding: 1.25rem 1.5rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+.hosted-card-tag { font-family: var(--font-mono); font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--lilac); font-weight: 600; margin-bottom: .5rem; }
+.hosted-card-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; color: var(--navy); line-height: 1.25; margin-bottom: .5rem; letter-spacing: -.01em; }
+.hosted-card-sub { font-size: .85rem; color: var(--slate); line-height: 1.55; flex: 1; margin-bottom: 1rem; }
+.hosted-card-link { display: inline-flex; align-items: center; gap: .3rem; font-size: .82rem; font-weight: 600; color: var(--navy); text-decoration: none; border-bottom: 1px solid rgba(39,55,82,.3); padding-bottom: 1px; align-self: flex-start; }
+
 @media (max-width: 900px) {
-  .hero-research, .featured-research, .podcast, .webinars, .elsewhere, .advisory, .closer-research { padding: 3.5rem 1.5rem; }
+  .hero-research, .featured-research, .podcast, .hosted, .webinars, .elsewhere, .advisory, .closer-research { padding: 3.5rem 1.5rem; }
+  .hosted-grid { grid-template-columns: 1fr; }
   .hero-research-inner, .advisory-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .featured-grid, .podcast-grid, .app-grid { grid-template-columns: 1fr; }
   .subnav-inner { padding: 0 1.5rem; gap: 0; overflow-x: auto; }
@@ -243,7 +267,8 @@ body[data-page="research"] { --accent: var(--sky); }
   <div class="subnav-inner">
     <a href="#research" class="active">Research</a>
     <a href="#podcasts">Podcasts</a>
-    <a href="#webinars">Webinars</a>
+    <a href="#hosted">Webinars</a>
+    <a href="#appearances">Appearances</a>
   </div>
 </nav>
 
@@ -406,8 +431,50 @@ body[data-page="research"] { --accent: var(--sky); }
   </div>
 </section>
 
+<!-- ═══ HOSTED WEBINARS ═══ -->
+<section class="hosted" id="hosted">
+  <div class="hosted-inner">
+    <div class="hosted-head">
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">Kyle &amp; Co productions</div>
+      <h2>Webinars we <em>host.</em></h2>
+      <p>Sessions produced and hosted by Kyle &amp; Co — live town halls, council working sessions, and practitioner roundtables. Past recordings available on demand.</p>
+    </div>
+    <div id="hosted-root" class="hosted-grid">
+      <div style="color:var(--slate);font-size:.9rem;">Loading…</div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  fetch('/data/appearances.json')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var hosted = data.filter(function(a){ return a.status === 'hosted'; });
+      if (!hosted.length) { document.getElementById('hosted-root').innerHTML = ''; return; }
+      var html = hosted.map(function(a){
+        var art = a.image
+          ? '<div class="hosted-card-art"><img src="' + a.image + '" alt="' + a.title + '"></div>'
+          : '<div class="hosted-card-art" style="background:linear-gradient(135deg,rgba(39,55,82,.9),rgba(157,146,173,.6));height:160px;"></div>';
+        var link = a.url
+          ? '<a href="' + a.url + '" class="hosted-card-link" target="_blank" rel="noopener noreferrer">Watch recording <span aria-hidden="true">→</span></a>'
+          : '<span style="font-size:.82rem;color:var(--slate);">Recording coming soon</span>';
+        var venue = a.venue ? ' · ' + a.venue : '';
+        return '<div class="hosted-card">'
+          + art
+          + '<div class="hosted-card-body">'
+          + '<div class="hosted-card-tag">' + (a.type || 'Webinar') + venue + '</div>'
+          + '<div class="hosted-card-title">' + a.title + '</div>'
+          + '<div class="hosted-card-sub">' + a.description + '</div>'
+          + link
+          + '</div></div>';
+      }).join('');
+      document.getElementById('hosted-root').innerHTML = html;
+    });
+})();
+</script>
+
 <!-- ═══ WEBINARS / APPEARANCES ═══ -->
-<section class="webinars" id="webinars">
+<section class="webinars" id="appearances">
   <div class="webinars-inner">
     <div class="webinars-head">
       <div class="kc-eyebrow" style="margin-bottom:1rem;">Kyle &amp; Co in the conversation</div>
@@ -591,7 +658,7 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")document.que
 
 // Highlight active subnav link on scroll
 (function(){
-  var sections = ['research','podcasts','webinars'];
+  var sections = ['research','podcasts','hosted','appearances'];
   var links = document.querySelectorAll('.subnav a');
   function onScroll(){
     var scrollY = window.scrollY + 120;
