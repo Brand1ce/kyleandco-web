@@ -415,12 +415,14 @@ body[data-page="research"] { --accent: var(--sky); }
         var artImg = a.image
           ? '<img src="' + a.image + '" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">'
           : '';
+        var epLabel = a.episode ? '<small style="display:block;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:.35rem;">' + a.episode + '</small>' : '';
         var link = a.url
-          ? '<a href="' + a.url + '" class="listen" target="_blank" rel="noopener noreferrer">Listen <span aria-hidden="true">→</span></a>'
+          ? '<a href="' + a.url + '" class="listen" target="_blank" rel="noopener noreferrer">Listen on Spotify <span aria-hidden="true">→</span></a>'
           : '<span style="font-size:.78rem;color:rgba(154,184,220,.5);">Link coming soon</span>';
         return '<article class="pod-card">'
           + '<div class="pod-art" style="' + artStyle + '">' + artImg + '</div>'
           + '<div class="pod-body">'
+          + epLabel
           + '<h3>' + a.title + '</h3>'
           + '<p>' + a.description + '</p>'
           + link

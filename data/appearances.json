@@ -14,12 +14,57 @@
 
   {
     "status": "tr",
-    "episode": "Latest",
+    "episode": "Ep. 6",
     "type": "Episode",
-    "title": "Episode with Jason Desentez",
-    "description": "TODO: add description",
-    "url": "",
+    "title": "The New ROI: Cathy Peterman on Engineering Productivity in the AI Era",
+    "description": "How Wayfair integrates AI in the workplace — engineering productivity metrics, business impact measurement, and what real collaboration between HR and engineering teams looks like.",
+    "url": "https://open.spotify.com/show/5bpoJZzAFNUhPS9g65b41s",
+    "image": ""
+  },
+  {
+    "status": "tr",
+    "episode": "Ep. 5",
+    "type": "Episode",
+    "title": "The Culture of Learning: Jason Desentz on Leading HR at Toshiba",
+    "description": "Toshiba's CHRO on AI agents in HR, process-driven approaches, and developing new competency frameworks for organizational resilience.",
+    "url": "https://open.spotify.com/show/5bpoJZzAFNUhPS9g65b41s",
     "image": "/assets/img/appearances/TR_Jason Desentez _podcast.png"
+  },
+  {
+    "status": "tr",
+    "episode": "Ep. 4",
+    "type": "Episode",
+    "title": "The Indispensable Recruiter: Rocki Howard on Staying Human in an AI World",
+    "description": "Diversiology founder Rocki Howard on how AI enhances — not replaces — the human elements of recruiting: judgment, relationships, and the things that actually can't be automated.",
+    "url": "https://open.spotify.com/show/5bpoJZzAFNUhPS9g65b41s",
+    "image": ""
+  },
+  {
+    "status": "tr",
+    "episode": "Ep. 3",
+    "type": "Episode",
+    "title": "By the Numbers: GEM's Steve Bartel on the Real State of Recruiting",
+    "description": "CEO Steve Bartel on how efficiency pressures are reshaping hiring — AI adoption challenges, what the data actually shows, and how recruiting teams can stay ahead.",
+    "url": "https://open.spotify.com/show/5bpoJZzAFNUhPS9g65b41s",
+    "image": ""
+  },
+  {
+    "status": "tr",
+    "episode": "Ep. 2",
+    "type": "Episode",
+    "title": "Invisible Software, Real Impact: Paradox on Frictionless Hiring",
+    "description": "Paradox leadership on how AI-powered software removes hiring friction through intelligent scheduling and seamless backend automation — when tech gets out of the way, people move faster.",
+    "url": "https://open.spotify.com/show/5bpoJZzAFNUhPS9g65b41s",
+    "image": ""
+  },
+  {
+    "status": "tr",
+    "episode": "Ep. 1",
+    "type": "Episode",
+    "title": "Workday's Big Play: Redefining HR Tech with Bold Innovation and Trust",
+    "description": "Workday's General Manager on platform innovation through Extend and the Built on Workday marketplace — what customer-centricity actually looks like when you're building at scale.",
+    "url": "https://open.spotify.com/show/5bpoJZzAFNUhPS9g65b41s",
+    "image": "/assets/img/appearances/workday_ai literacy work operating system_podcast.png"
   },
 
   {
@@ -82,18 +127,6 @@
     "description": "TODO: add description",
     "url": "",
     "image": "/assets/img/appearances/Mike Peditto_podcast.jpg"
-  },
-  {
-    "status": "past",
-    "date": "",
-    "month": "",
-    "day": "",
-    "type": "Podcast",
-    "venue": "Workday",
-    "title": "AI Literacy: The Work Operating System",
-    "description": "TODO: add description",
-    "url": "",
-    "image": "/assets/img/appearances/workday_ai literacy work operating system_podcast.png"
   },
   {
     "status": "past",
