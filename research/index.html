@@ -410,18 +410,16 @@ body[data-page="research"] { --accent: var(--sky); }
       var episodes = data.filter(function(a){ return a.status === 'tr'; });
       if (!episodes.length) { document.getElementById('tr-root').innerHTML = '<p style="color:rgba(247,241,234,.5)">No episodes yet.</p>'; return; }
       var html = episodes.map(function(a, i){
-        var artBg = a.image ? '' : 'background:' + gradients[i % gradients.length] + ';';
-        var artImg = a.image ? '<img src="' + a.image + '" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">' : '';
-        var label = a.episode || ('Episode ' + (episodes.length - i));
+        var artStyle = 'aspect-ratio:1/1;overflow:hidden;position:relative;'
+          + (a.image ? '' : 'background:' + gradients[i % gradients.length] + ';');
+        var artImg = a.image
+          ? '<img src="' + a.image + '" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">'
+          : '';
         var link = a.url
           ? '<a href="' + a.url + '" class="listen" target="_blank" rel="noopener noreferrer">Listen <span aria-hidden="true">→</span></a>'
           : '<span style="font-size:.78rem;color:rgba(154,184,220,.5);">Link coming soon</span>';
         return '<article class="pod-card">'
-          + '<div class="pod-art" style="' + artBg + 'position:relative;">'
-          + artImg
-          + '<div class="hostpp" style="position:relative;z-index:1;"><span>K</span></div>'
-          + '<div class="ep" style="position:relative;z-index:1;"><small>' + label + '</small>' + a.title + '</div>'
-          + '</div>'
+          + '<div class="pod-art" style="' + artStyle + '">' + artImg + '</div>'
           + '<div class="pod-body">'
           + '<h3>' + a.title + '</h3>'
           + '<p>' + a.description + '</p>'
