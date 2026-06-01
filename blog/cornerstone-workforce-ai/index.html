@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H95H1WFLGC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H95H1WFLGC');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<title>Cornerstone Workforce AI: Intelligence and Action in the Same Box — Kyle & Co</title>
+<meta name="description" content="Cornerstone wants to close the loop between insight and action in workforce AI. Here's what that bet actually requires — and what customers need to understand to get the outcomes." />
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #273752;
+  --navy-dark: #172339;
+  --navy-mid: #2D5C94;
+  --lilac: #9D92AD;
+  --ivory: #F7F1EA;
+  --slate: #555961;
+  --cream: #FDECCD;
+  --lilac-light: #C1BACD;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--ivory);
+  color: var(--navy);
+  line-height: 1.6;
+}
+
+/* — NAV — */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--navy); padding: 0 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px; border-bottom: 1px solid rgba(247,241,234,0.1);
+}
+.topbar-brand { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac); font-weight: 500; text-decoration: none; flex-shrink: 0; }
+.topbar-nav { display: flex; gap: 1.75rem; align-items: center; }
+.topbar-nav a { font-size: 0.82rem; color: rgba(247,241,234,0.65); text-decoration: none; transition: color 0.15s; }
+.topbar-nav a:hover { color: var(--ivory); }
+
+/* — ARTICLE LAYOUT — */
+main.article-wrap { padding-top: 56px; }
+article.post {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 0;
+}
+
+/* — POST META + TITLE — */
+.post-meta {
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500;
+  display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.post-meta .tag {
+  background: var(--cream); color: var(--navy-dark);
+  padding: 0.3rem 0.7rem; border-radius: 100px;
+  letter-spacing: 0.12em; font-weight: 600;
+}
+.post-meta .dot { color: rgba(39,55,82,0.3); }
+
+h1.post-title {
+  font-weight: 300;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.05; letter-spacing: -0.025em;
+  margin-bottom: 1.5rem; color: var(--navy);
+  text-wrap: balance;
+}
+h1.post-title em { font-style: italic; color: var(--lilac); }
+
+.byline {
+  display: flex; gap: 0.6rem; align-items: center;
+  margin-bottom: 2.5rem;
+  color: var(--slate); font-size: 0.92rem;
+}
+.byline .author { color: var(--navy); font-weight: 500; }
+
+/* — HERO IMAGE — */
+.hero-image {
+  margin: 0 0 3rem;
+  border-radius: 8px; overflow: hidden;
+  aspect-ratio: 16/9;
+  background: var(--navy);
+}
+.hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; filter: none !important; opacity: 1 !important; }
+
+/* — BODY TEXT — */
+.post p {
+  font-size: 1.05rem; line-height: 1.75;
+  color: #3a4558; margin: 0 0 1.4rem;
+  text-wrap: pretty;
+}
+.post p.lede {
+  font-size: 1.25rem; line-height: 1.6; color: var(--navy);
+  margin-bottom: 1.75rem; font-weight: 400;
+}
+.post p.lede em { font-style: italic; color: var(--lilac); }
+
+/* — SECTION HEADERS — */
+.sec-kicker {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin: 0 0 1rem;
+}
+h2.sec {
+  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 400;
+  line-height: 1.15; letter-spacing: -0.02em;
+  margin: 0 0 1.5rem; color: var(--navy);
+  text-wrap: balance;
+}
+h2.sec em { font-style: italic; color: var(--lilac); }
+
+/* — PULL QUOTE — */
+.pullquote {
+  border-left: 3px solid var(--cream);
+  padding: 1.5rem 2rem; margin: 2.5rem 0;
+  background: rgba(253,236,205,0.25);
+  border-radius: 0 6px 6px 0;
+}
+.pullquote p {
+  font-size: 1.2rem; font-style: italic; font-weight: 400;
+  color: var(--navy); margin: 0; line-height: 1.5;
+  text-wrap: balance;
+}
+
+/* — CALLOUT BOX — */
+.callout {
+  background: var(--navy); border-radius: 8px;
+  padding: 2rem 2.5rem; margin: 2.5rem 0;
+  color: var(--ivory);
+}
+.callout p {
+  color: rgba(247,241,234,0.85); font-size: 0.95rem; margin: 0;
+}
+.callout p + p { margin-top: 0.75rem; }
+.callout strong { color: var(--cream); }
+
+/* — DISCLOSURE BOX — */
+.disclosure {
+  border: 1px solid rgba(39,55,82,0.15);
+  border-radius: 8px; padding: 1.25rem 1.5rem;
+  margin: 2.5rem 0; background: rgba(39,55,82,0.03);
+}
+.disclosure p {
+  font-size: 0.82rem; color: var(--lilac); margin: 0; line-height: 1.6;
+}
+.disclosure strong { color: var(--slate); }
+
+/* — DIVIDER — */
+.rule { border: none; border-top: 1px solid rgba(39,55,82,0.12); margin: 3.5rem 0; }
+
+/* — CTA BLOCK — */
+.cta-block {
+  background: var(--navy); color: var(--ivory);
+  border-radius: 12px; padding: 3rem;
+  margin: 4rem 0 0;
+}
+.cta-block h3 {
+  font-size: 1.5rem; font-weight: 400;
+  margin: 0 0 0.5rem; letter-spacing: -0.01em;
+  color: var(--ivory);
+}
+.cta-block h3 em { font-style: italic; color: var(--cream); }
+.cta-block > p {
+  color: rgba(247,241,234,0.75); margin: 0 0 1.75rem;
+  font-size: 0.95rem; max-width: 52ch;
+}
+.cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.cta-row a {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.85rem 1.5rem; border-radius: 100px;
+  font-size: 0.85rem; font-weight: 600; text-decoration: none;
+}
+.cta-row a.primary { background: var(--cream); color: var(--navy-dark); }
+.cta-row a.primary:hover { background: #f5e0b5; }
+.cta-row a.secondary {
+  background: transparent; color: var(--ivory);
+  border: 1px solid rgba(247,241,234,0.4);
+}
+.cta-row a.secondary:hover { background: rgba(247,241,234,0.08); }
+
+/* — SUBSCRIBE FOOTER — */
+.subscribe-footer {
+  background: var(--navy); margin-top: 5rem;
+  padding: 5rem 2.5rem;
+}
+.subscribe-inner {
+  max-width: 560px; margin: 0 auto; text-align: center;
+}
+.subscribe-kicker {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1rem;
+}
+.subscribe-footer h3 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 300;
+  color: var(--ivory); letter-spacing: -0.02em;
+  line-height: 1.15; margin-bottom: 0.75rem;
+}
+.subscribe-footer h3 em { font-style: italic; color: var(--cream); }
+.subscribe-footer p {
+  font-size: 0.92rem; color: rgba(247,241,234,0.6);
+  margin-bottom: 2rem; line-height: 1.6;
+}
+.subscribe-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.5rem; max-width: 540px; margin: 0 auto 1rem;
+}
+.subscribe-form input[type="hidden"] { display: none; }
+.subscribe-form input[type="email"] {
+  flex: 1; padding: 0.85rem 1.25rem;
+  background: rgba(247,241,234,0.08);
+  border: 1px solid rgba(247,241,234,0.2);
+  border-radius: 100px; color: var(--ivory);
+  font-size: 0.88rem; font-family: inherit;
+  outline: none; transition: border-color 0.15s;
+}
+.subscribe-form input[type="email"]::placeholder { color: rgba(247,241,234,0.35); }
+.subscribe-form input[type="email"]:focus { border-color: rgba(247,241,234,0.5); }
+.subscribe-form button {
+  background: var(--cream); color: var(--navy-dark);
+  border: none; border-radius: 100px;
+  padding: 0.85rem 1.5rem; font-size: 0.85rem;
+  font-weight: 600; font-family: inherit;
+  cursor: pointer; white-space: nowrap; transition: background 0.15s;
+}
+.subscribe-form button:hover { background: #f5e0b5; }
+.subscribe-note {
+  font-size: 0.7rem; color: rgba(247,241,234,0.35);
+  letter-spacing: 0.04em;
+}
+.subscribe-divider {
+  border: none; border-top: 1px solid rgba(247,241,234,0.1);
+  margin: 3rem auto 2rem; max-width: 560px;
+}
+.page-footer-bar {
+  max-width: 760px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.72rem; color: rgba(247,241,234,0.35);
+  flex-wrap: wrap; gap: 0.75rem; padding: 0 2.5rem 3rem;
+}
+.page-footer-bar a { color: rgba(247,241,234,0.5); text-decoration: none; }
+.page-footer-bar a:hover { color: var(--ivory); }
+
+/* — FADE IN — */
+.fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* — RESPONSIVE — */
+@media (max-width: 700px) {
+  .topbar { padding: 0 1.25rem; }
+  .topbar-nav { display: none; }
+  .subscribe-form { grid-template-columns: 1fr; }
+  .subscribe-form input[type="text"],
+  .subscribe-form input[type="email"],
+  .subscribe-form button { border-radius: 8px; }
+  article.post { padding: 2.5rem 1.25rem 0; }
+  .cta-block { padding: 2rem 1.5rem; }
+  .pullquote { padding: 1.25rem 1.5rem; margin: 2rem 0; }
+  .callout { padding: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topbar">
+  <a href="https://kyleandco.com" class="topbar-brand">Kyle &amp; Co</a>
+  <div class="topbar-nav">
+    <a href="https://kyleandco.com">Home</a>
+    <a href="../../blog-index.html">Insights</a>
+    <a href="https://kyleandco.com/aicouncil">AI Council</a>
+  </div>
+</nav>
+
+<main class="article-wrap">
+  <article class="post">
+
+    <!-- META + TITLE -->
+    <div class="post-meta">
+      <span class="tag">Tech Analysis</span>
+      <span>May 28, 2026</span>
+      <span class="dot">·</span>
+      <span>7 min read</span>
+    </div>
+
+    <h1 class="post-title">Cornerstone Workforce AI:<br /><em>Intelligence and Action in the Same Box</em></h1>
+
+    <div class="byline">
+      <span class="author">Kyle Lagunas</span>
+      <span>·</span>
+      <span>Kyle &amp; Co</span>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero-image"></div>
+
+    <!-- DISCLOSURE -->
+    <div class="disclosure">
+      <p><strong>YSK:</strong> Kyle &amp; Co has an active advisory relationship with Cornerstone OnDemand. This piece was produced under Kyle's independent byline as part of that engagement. Independence is the asset we bring to every client relationship.</p>
+    </div>
+
+    <!-- OPENING -->
+    <p class="lede">Cornerstone has a big bet it wants to make. It isn't subtle about it.</p>
+
+    <p>The pitch is this: most workforce AI tools give you intelligence — dashboards, recommendations, signals about what's happening across your workforce. Cornerstone wants to close the loop. They want to be the place where intelligence triggers action, where the insight and the work happen in the same system. Intelligence and action in the same box.</p>
+
+    <p>That's a meaningful distinction. It's also a hard one to deliver. And before any customer can evaluate whether Cornerstone pulls it off, two questions need honest answers.</p>
+
+    <hr class="rule" />
+
+    <!-- SECTION 1 -->
+    <section class="fade-in">
+      <p class="sec-kicker">Question One</p>
+      <h2 class="sec">What Problem Is Workforce AI<br /><em>Actually Solving?</em></h2>
+
+      <p>The workforce development problem Cornerstone is positioning to solve is real — and it's been underserved for a long time.</p>
+
+      <p>Most L&amp;D infrastructure was built for desk workers. The learning management systems, the development programs, the skills frameworks — they were designed around people who have time to sit through a course, who work in systems that can track their progress, who have managers with bandwidth to coach them. That is not most of the workforce.</p>
+
+      <p>Frontline workers — the people who make, move, serve, and care — represent the majority of global employment. And they've largely been left out of the development equation. Not because organizations don't want to invest in them, but because the tools don't scale in their direction. The frontline development experience (FDE) problem is real: how do you build and maintain capability across a population that is distributed, high-turnover, time-constrained, and often disconnected from the systems where everyone else's development lives?</p>
+
+      <div class="pullquote fade-in">
+        <p>The question isn't whether AI can surface a learning recommendation. The question is whether that recommendation reaches the right person, at the right moment, and actually changes what they do next.</p>
+      </div>
+
+      <p>This is the gap Cornerstone is betting it can close. Their People Graph architecture — the underlying data model that maps relationships between skills, roles, content, people, and work — is designed to connect the dots in a way that most LMS platforms can't. It's not just a content library. It's a model of your workforce that gets more useful the more you put into it.</p>
+
+      <p>The intelligence-plus-action thesis depends on this foundation being solid. If the People Graph is accurate, up-to-date, and actually reflective of how work happens in your organization, the downstream AI has something meaningful to work with. If it's not — if skills data is stale, if role definitions are generic, if no one owns the graph — then the intelligence layer is reasoning from fiction.</p>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- SECTION 2 -->
+    <section class="fade-in">
+      <p class="sec-kicker">Question Two</p>
+      <h2 class="sec">What Do Customers Need To Understand<br /><em>To Actually Get The Outcomes?</em></h2>
+
+      <p>In my experience, the gap between what a platform can do and what a customer actually gets is rarely a technology gap. It's almost always a readiness gap. With Cornerstone, I see two specific gaps that will determine whether customers get the outcomes the platform promises.</p>
+
+      <p><strong>The first is Capability Literacy.</strong> Most customers — even longtime Cornerstone customers — don't fully understand what the platform can do. The People Graph is genuinely powerful, but it requires intentional configuration. The AI features that sit on top of it require clean, structured data flowing in. The new outcome-based pricing tiers (Learn+, Elevate+, Intelligence+, Accelerate+) are designed to move customers up the value chain — but that progression requires understanding what you're building toward at each stage.</p>
+
+      <div class="callout fade-in">
+        <p><strong>Learn+</strong> — Core learning delivery and content management at scale, with AI-assisted search and personalization.</p>
+        <p><strong>Elevate+</strong> — Skills-based development tied to roles and growth paths, powered by the People Graph.</p>
+        <p><strong>Intelligence+</strong> — AI-driven workforce insights: skills gaps, talent risk, mobility signals, and proactive recommendations.</p>
+        <p><strong>Accelerate+</strong> — Closed-loop intelligence and action — where AI doesn't just surface a recommendation but triggers a response within the workflow.</p>
+      </div>
+
+      <p>Each tier is additive. But the jump from Elevate+ to Intelligence+ to Accelerate+ isn't just a product unlock. It's an organizational capability unlock. You need the data infrastructure, the governance model, and the change management muscle to actually operate at that level. Customers who buy Accelerate+ without the organizational readiness to support it will get the invoice and not the outcomes.</p>
+
+      <p><strong>The second gap is Governance Literacy.</strong> As AI takes on more of the decision-making — who gets surfaced for which opportunities, what learning paths get recommended, how skills gaps are assessed and acted on — someone has to own the governance of those decisions. Who audits the recommendations? What happens when the AI surfaces something that doesn't feel right? How do you maintain human accountability in a system designed to scale beyond human review?</p>
+
+      <p>Most HR teams haven't built that muscle yet. And it's not a criticism — the tools that would require this governance didn't exist until recently. But "the AI will handle it" is not a governance model. And Cornerstone, to their credit, isn't pretending it is. The question is whether customers are investing in that capability alongside the platform investment.</p>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- SECTION 3 -->
+    <section class="fade-in">
+      <h2 class="sec">Why the Unanswered Questions<br /><em>Matter</em></h2>
+
+      <p>The intelligence-and-action-in-the-same-box thesis is compelling because it addresses a real organizational dysfunction: the insight-to-action gap. HR teams have never lacked for data. What they've lacked is the ability to move from data to decisions to outcomes without losing 80% of the signal in translation.</p>
+
+      <p>If Cornerstone can actually close that loop — if the system can identify that a frontline worker in a specific role is missing a skill that's blocking their performance, surface the right content at the right moment in their workflow, and then track whether the skill gap actually closed — that's not just a product feature. That's a fundamentally different relationship between technology and workforce development.</p>
+
+      <p>But the conditions for that to work are demanding. The People Graph has to be accurate. The AI models have to be well-calibrated for your workforce context. The humans in the loop have to understand what they're governing. And the organization has to be willing to act on what the system surfaces — which requires a level of trust in AI-driven recommendations that most organizations haven't earned yet on either side of that equation.</p>
+
+      <div class="pullquote fade-in">
+        <p>Intelligence in the same box as action is only valuable when the action is right. And getting the action right is a shared responsibility between the platform and the organization using it.</p>
+      </div>
+
+      <p>The risk isn't that Cornerstone can't deliver. The risk is that customers underinvest in the organizational foundations that the technology depends on — and then blame the platform when the outcomes don't materialize. That's a story I've seen play out in this industry more times than I can count. And it's a story that doesn't serve anyone: not customers, not Cornerstone, and not the workers whose development is supposed to be the whole point.</p>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- SECTION 4 -->
+    <section class="fade-in">
+      <h2 class="sec">What We'll<br /><em>Be Watching</em></h2>
+
+      <p>Cornerstone's bet is real, their architecture is serious, and the problem they're addressing is one that the industry has underserved for too long. That earns them a genuine look — and genuine scrutiny.</p>
+
+      <p>A few things I'll be tracking as the platform and the market evolve:</p>
+
+      <p><strong>Whether outcome-based pricing actually shifts incentives.</strong> The tiered pricing model is designed to align Cornerstone's revenue with customers' progress up the capability curve. That's a better model than selling seats and walking away. But it only works if Cornerstone invests in the customer success infrastructure to help customers actually advance — and if customers hold them accountable for doing so.</p>
+
+      <p><strong>Whether the People Graph can scale to frontline reality.</strong> Building an accurate skills graph for knowledge workers is hard. Building one for frontline workers — with high turnover, variable roles, and limited digital touchpoints — is a different order of magnitude. The FDE scaling problem is real, and the data model that powers the intelligence layer has to reflect how frontline work actually happens, not just how it looks on an org chart.</p>
+
+      <p><strong>Whether customers build the governance muscle to match the AI capability.</strong> This is the one I'm most curious about — and most concerned about. The intelligence-plus-action loop is powerful. It's also consequential. When AI is making workforce decisions at scale, the governance around those decisions has to be proactive, not reactive. I'll be watching whether Cornerstone builds that enablement into the customer journey — and whether HR teams rise to meet it.</p>
+
+      <p>The workforce AI space is crowded with vendors making bold claims. Cornerstone's claim is specific enough to evaluate — and that specificity is worth something. The question of whether intelligence and action can live in the same box, at scale, across the full workforce, is the right question. Now comes the hard part: proving it.</p>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-block fade-in">
+      <h3>Navigating workforce AI<br /><em>requires more than a vendor briefing.</em></h3>
+      <p>The Human-Centric AI Council brings together senior HR leaders to work through exactly these questions — together, without the vendor spin.</p>
+      <div class="cta-row">
+        <a href="https://kyleandco.com/aicouncil?utm_source=blog&utm_medium=cta_button&utm_campaign=cornerstone_workforce_ai" class="primary">Explore the Council →</a>
+        <a href="https://kyleandco.com/aicouncil?utm_source=blog&utm_medium=cta_button&utm_campaign=cornerstone_workforce_ai#apply" class="secondary">Apply to Join</a>
+      </div>
+    </div>
+
+  </article>
+</main>
+
+<!-- SUBSCRIBE FOOTER -->
+<footer class="subscribe-footer">
+  <div class="subscribe-inner">
+    <p class="subscribe-kicker">Kyle &amp; Co · Insights</p>
+    <h3>Don't miss what's<br /><em>next.</em></h3>
+    <p>New analysis, takes, and practitioner perspectives — straight to your inbox. No noise, no vendor pitches. Just the work.</p>
+    <form class="subscribe-form" action="https://assets.mailerlite.com/jsonp/1555935/forms/155676694376613273/subscribe" method="post" target="ml-submit-frame">
+      <input type="text" name="fields[name]" placeholder="First name" required />
+      <input type="email" name="fields[email]" placeholder="Work email" required />
+      <input type="hidden" name="ml-submit" value="1" />
+      <input type="hidden" name="anticsrf" value="true" />
+      <button type="submit">Subscribe →</button>
+    </form>
+    <iframe name="ml-submit-frame" style="display:none;"></iframe>
+    <p class="subscribe-note">No spam. Unsubscribe anytime.</p>
+  </div>
+  <hr class="subscribe-divider" />
+  <div class="page-footer-bar">
+    <span>© 2026 Kyle &amp; Co</span>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="../../blog-index.html">← All Insights</a>
+      <a href="https://kyleandco.com/aicouncil">AI Council</a>
+      <a href="https://kyleandco.com">kyleandco.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
