@@ -6,7 +6,17 @@
     <description>Research, analysis, and insight for HR and TA leaders navigating AI and the future of work.</description>
     <language>en-us</language>
     <atom:link href="https://kyleandco.com/feed/" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Thu, 15 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2026 00:00:00 +0000</lastBuildDate>
+
+    <item>
+      <title>Cornerstone Workforce AI: Intelligence and Action in the Same Box</title>
+      <link>https://kyleandco.com/blog/cornerstone-workforce-ai</link>
+      <guid isPermaLink="true">https://kyleandco.com/blog/cornerstone-workforce-ai</guid>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+      <description>Workforce AI is the most competitive answer Cornerstone has built in years. But the launch narrative didn't fully answer two major questions customers need answered to truly grasp the value it's promising.</description>
+      <dc:creator>Kyle Lagunas</dc:creator>
+      <category>Tech Analysis</category>
+    </item>
 
     <item>
       <title>Navigating The Next Chapter in AI: A New Generation of Leaders Emerge</title>
