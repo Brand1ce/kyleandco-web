@@ -1,0 +1,347 @@
+{
+  "version": "0.4",
+  "title": "Kyle & Co — Single Post",
+  "type": "page",
+  "content": [
+    {
+      "id": "f3a9b2c",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_align_items": "center",
+        "background_background": "classic",
+        "background_color": "#F7F1EA",
+        "padding": { "unit": "px", "top": "0", "right": "24", "bottom": "80", "left": "24", "isLinked": false }
+      },
+      "elements": [
+        {
+          "id": "d7e4f1g",
+          "elType": "container",
+          "isInner": true,
+          "settings": {
+            "content_width": "full",
+            "flex_direction": "column",
+            "width": { "unit": "px", "size": 760, "sizes": [] },
+            "padding": { "unit": "px", "top": "64", "right": "0", "bottom": "0", "left": "0", "isLinked": false }
+          },
+          "elements": [
+            {
+              "id": "a8b3c5e",
+              "elType": "widget",
+              "widgetType": "post-info",
+              "settings": {
+                "icon_list": [
+                  {
+                    "_id": "cat01",
+                    "type": "terms",
+                    "taxonomy": "category",
+                    "show_icon": "no",
+                    "text_prefix": ""
+                  },
+                  {
+                    "_id": "dot01",
+                    "type": "custom",
+                    "custom_text": "·",
+                    "show_icon": "no"
+                  },
+                  {
+                    "_id": "date01",
+                    "type": "date",
+                    "date_format": "F j, Y",
+                    "show_icon": "no"
+                  }
+                ],
+                "separator_between": "",
+                "text_color": "#9D92AD",
+                "typography_typography": "custom",
+                "typography_font_family": "Helvetica Neue",
+                "typography_font_size": { "unit": "rem", "size": 0.72, "sizes": [] },
+                "typography_font_weight": "500",
+                "typography_letter_spacing": { "unit": "px", "size": 2.5 },
+                "typography_text_transform": "uppercase",
+                "margin": { "unit": "rem", "top": "0", "right": "0", "bottom": "1.5", "left": "0", "isLinked": false }
+              }
+            },
+            {
+              "id": "g2h7i4j",
+              "elType": "widget",
+              "widgetType": "theme-post-title",
+              "settings": {
+                "header_size": "h1",
+                "typography_typography": "custom",
+                "typography_font_family": "Helvetica Neue",
+                "typography_font_size": { "unit": "rem", "size": 3.4, "sizes": [] },
+                "typography_font_size_tablet": { "unit": "rem", "size": 2.6, "sizes": [] },
+                "typography_font_size_mobile": { "unit": "rem", "size": 2.2, "sizes": [] },
+                "typography_font_weight": "300",
+                "typography_line_height": { "unit": "em", "size": 1.05 },
+                "typography_letter_spacing": { "unit": "px", "size": -0.85 },
+                "title_color": "#273752",
+                "align": "left",
+                "margin": { "unit": "rem", "top": "0", "right": "0", "bottom": "1.5", "left": "0", "isLinked": false }
+              }
+            },
+            {
+              "id": "k5l2m9n",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div style=\"display:flex;gap:0.6rem;align-items:center;margin-bottom:2.5rem;color:#555961;font-size:0.92rem;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;\"><span style=\"color:#273752;font-weight:500;\">Kyle Lagunas</span><span>·</span><span>Kyle &amp; Co</span></div>"
+              }
+            },
+            {
+              "id": "o3p8q1r",
+              "elType": "widget",
+              "widgetType": "theme-post-featured-image",
+              "settings": {
+                "image_size": "full",
+                "aspect_ratio": "16:9",
+                "border_radius": { "unit": "px", "top": "8", "right": "8", "bottom": "8", "left": "8", "isLinked": true },
+                "margin": { "unit": "rem", "top": "0", "right": "0", "bottom": "3", "left": "0", "isLinked": false }
+              }
+            },
+            {
+              "id": "s6t4u7v",
+              "elType": "widget",
+              "widgetType": "theme-post-content",
+              "settings": {
+                "_css_classes": "kc-post-body"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w2x9y5z",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_align_items": "center",
+        "background_background": "classic",
+        "background_color": "#273752",
+        "padding": { "unit": "px", "top": "0", "right": "40", "bottom": "0", "left": "40", "isLinked": false },
+        "margin": { "unit": "rem", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": false }
+      },
+      "elements": [
+        {
+          "id": "a3b7c2d",
+          "elType": "container",
+          "isInner": true,
+          "settings": {
+            "content_width": "full",
+            "flex_direction": "column",
+            "width": { "unit": "px", "size": 760, "sizes": [] },
+            "padding": { "unit": "px", "top": "48", "right": "48", "bottom": "48", "left": "48", "isLinked": true },
+            "border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12", "isLinked": true },
+            "background_background": "classic",
+            "background_color": "#273752"
+          },
+          "elements": [
+            {
+              "id": "e5f1g8h",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "This is the work of the <em>Human-Centric AI Council.</em>",
+                "header_size": "h3",
+                "typography_typography": "custom",
+                "typography_font_family": "Helvetica Neue",
+                "typography_font_size": { "unit": "rem", "size": 1.5, "sizes": [] },
+                "typography_font_weight": "400",
+                "typography_line_height": { "unit": "em", "size": 1.2 },
+                "typography_letter_spacing": { "unit": "px", "size": -0.15 },
+                "title_color": "#F7F1EA",
+                "align": "left",
+                "margin": { "unit": "rem", "top": "0", "right": "0", "bottom": "0.5", "left": "0", "isLinked": false }
+              }
+            },
+            {
+              "id": "i4j6k3l",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"color:rgba(247,241,234,0.75);font-size:0.95rem;max-width:52ch;line-height:1.6;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;margin:0 0 1.75rem;\">A practitioner-powered think tank of senior HR leaders navigating AI transformation together. Year Two starts now.</p>",
+                "margin": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": false }
+              }
+            },
+            {
+              "id": "m7n2o9p",
+              "elType": "container",
+              "isInner": true,
+              "settings": {
+                "content_width": "full",
+                "flex_direction": "row",
+                "flex_wrap": "wrap",
+                "gap": { "unit": "px", "row": "12", "column": "12" }
+              },
+              "elements": [
+                {
+                  "id": "q4r8s3t",
+                  "elType": "widget",
+                  "widgetType": "button",
+                  "settings": {
+                    "text": "Explore the Council →",
+                    "link": { "url": "https://kyleandco.com/aicouncil", "is_external": false, "nofollow": false },
+                    "align": "left",
+                    "typography_typography": "custom",
+                    "typography_font_family": "Helvetica Neue",
+                    "typography_font_size": { "unit": "rem", "size": 0.85, "sizes": [] },
+                    "typography_font_weight": "600",
+                    "background_color": "#FDECCD",
+                    "button_text_color": "#172339",
+                    "border_radius": { "unit": "px", "top": "100", "right": "100", "bottom": "100", "left": "100", "isLinked": true },
+                    "text_padding": { "unit": "rem", "top": "0.85", "right": "1.5", "bottom": "0.85", "left": "1.5", "isLinked": false }
+                  }
+                },
+                {
+                  "id": "u6v1w5x",
+                  "elType": "widget",
+                  "widgetType": "button",
+                  "settings": {
+                    "text": "Apply to Join",
+                    "link": { "url": "https://kyleandco.com/aicouncil#apply", "is_external": false, "nofollow": false },
+                    "align": "left",
+                    "typography_typography": "custom",
+                    "typography_font_family": "Helvetica Neue",
+                    "typography_font_size": { "unit": "rem", "size": 0.85, "sizes": [] },
+                    "typography_font_weight": "600",
+                    "background_color": "rgba(0,0,0,0)",
+                    "button_text_color": "#F7F1EA",
+                    "border_border": "solid",
+                    "border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1", "isLinked": true },
+                    "border_color": "rgba(247,241,234,0.4)",
+                    "border_radius": { "unit": "px", "top": "100", "right": "100", "bottom": "100", "left": "100", "isLinked": true },
+                    "text_padding": { "unit": "rem", "top": "0.85", "right": "1.5", "bottom": "0.85", "left": "1.5", "isLinked": false }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "y3z8a4b",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_align_items": "center",
+        "background_background": "classic",
+        "background_color": "#273752",
+        "padding": { "unit": "px", "top": "80", "right": "40", "bottom": "0", "left": "40", "isLinked": false }
+      },
+      "elements": [
+        {
+          "id": "c2d7e5f",
+          "elType": "container",
+          "isInner": true,
+          "settings": {
+            "content_width": "full",
+            "flex_direction": "column",
+            "flex_align_items": "center",
+            "width": { "unit": "px", "size": 560, "sizes": [] }
+          },
+          "elements": [
+            {
+              "id": "g9h4i3j",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<p style=\"font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:#9D92AD;font-weight:500;margin-bottom:1rem;text-align:center;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;\">Kyle &amp; Co · Insights</p>"
+              }
+            },
+            {
+              "id": "k8l5m2n",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Don’t miss what’s <em>next.</em>",
+                "header_size": "h3",
+                "typography_typography": "custom",
+                "typography_font_family": "Helvetica Neue",
+                "typography_font_size": { "unit": "rem", "size": 2.2, "sizes": [] },
+                "typography_font_weight": "300",
+                "typography_line_height": { "unit": "em", "size": 1.15 },
+                "typography_letter_spacing": { "unit": "px", "size": -0.44 },
+                "title_color": "#F7F1EA",
+                "align": "center",
+                "margin": { "unit": "rem", "top": "0", "right": "0", "bottom": "0.75", "left": "0", "isLinked": false }
+              }
+            },
+            {
+              "id": "o7p3q6r",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"font-size:0.92rem;color:rgba(247,241,234,0.6);margin-bottom:2rem;line-height:1.6;text-align:center;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;\">New analysis, takes, and practitioner perspectives — straight to your inbox. No noise, no vendor pitches. Just the work.</p>"
+              }
+            },
+            {
+              "id": "s4t9u2v",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<form action=\"https://assets.mailerlite.com/jsonp/1555935/forms/155676694376613273/subscribe\" method=\"post\" target=\"ml-submit-frame\" style=\"display:flex;flex-direction:column;gap:0.5rem;max-width:480px;margin:0 auto 1rem;\"><input type=\"text\" name=\"fields[name]\" placeholder=\"First name\" required style=\"padding:0.85rem 1.25rem;background:rgba(247,241,234,0.08);border:1px solid rgba(247,241,234,0.2);border-radius:8px;color:#F7F1EA;font-size:0.88rem;font-family:inherit;outline:none;\" /><input type=\"email\" name=\"fields[email]\" placeholder=\"Work email\" required style=\"padding:0.85rem 1.25rem;background:rgba(247,241,234,0.08);border:1px solid rgba(247,241,234,0.2);border-radius:8px;color:#F7F1EA;font-size:0.88rem;font-family:inherit;outline:none;\" /><input type=\"hidden\" name=\"ml-submit\" value=\"1\" /><input type=\"hidden\" name=\"anticsrf\" value=\"true\" /><button type=\"submit\" style=\"background:#FDECCD;color:#172339;border:none;border-radius:8px;padding:0.95rem 1.5rem;font-size:0.9rem;font-weight:600;font-family:inherit;cursor:pointer;\">Subscribe →</button></form><iframe name=\"ml-submit-frame\" style=\"display:none;\"></iframe>"
+              }
+            },
+            {
+              "id": "w5x1y7z",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<p style=\"font-size:0.7rem;color:rgba(247,241,234,0.35);letter-spacing:0.04em;text-align:center;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;\">No spam. Unsubscribe anytime.</p>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "a6b4c8d",
+          "elType": "container",
+          "isInner": true,
+          "settings": {
+            "content_width": "full",
+            "flex_direction": "row",
+            "flex_justify_content": "space-between",
+            "flex_align_items": "center",
+            "flex_wrap": "wrap",
+            "width": { "unit": "px", "size": 760, "sizes": [] },
+            "padding": { "unit": "px", "top": "32", "right": "0", "bottom": "48", "left": "0", "isLinked": false },
+            "margin": { "unit": "px", "top": "48", "right": "0", "bottom": "0", "left": "0", "isLinked": false },
+            "border_top_width": { "unit": "px", "top": "1", "right": "0", "bottom": "0", "left": "0", "isLinked": false },
+            "border_color": "rgba(247,241,234,0.1)"
+          },
+          "elements": [
+            {
+              "id": "e2f7g3h",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<span style=\"font-size:0.72rem;color:rgba(247,241,234,0.35);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;\">© 2026 Kyle &amp; Co</span>"
+              }
+            },
+            {
+              "id": "i9j5k1l",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div style=\"display:flex;gap:1.5rem;\"><a href=\"https://kyleandco.com/blog/\" style=\"font-size:0.72rem;color:rgba(247,241,234,0.5);text-decoration:none;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;\">← All Insights</a><a href=\"https://kyleandco.com/aicouncil\" style=\"font-size:0.72rem;color:rgba(247,241,234,0.5);text-decoration:none;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;\">AI Council</a><a href=\"https://kyleandco.com\" style=\"font-size:0.72rem;color:rgba(247,241,234,0.5);text-decoration:none;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;\">kyleandco.com</a></div>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "page_settings": {
+    "background_background": "classic",
+    "background_color": "#F7F1EA",
+    "custom_css": ".kc-post-body p{font-size:1.05rem!important;line-height:1.75!important;color:#3a4558!important;margin:0 0 1.4rem!important;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif!important}.kc-post-body h2{font-size:clamp(1.5rem,3vw,2rem)!important;font-weight:400!important;line-height:1.15!important;letter-spacing:-0.02em!important;color:#273752!important;margin:3.5rem 0 1.25rem!important;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif!important}.kc-post-body h3{font-size:1.25rem!important;font-weight:500!important;color:#273752!important;margin:2.5rem 0 1rem!important;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif!important}.kc-post-body ul,.kc-post-body ol{margin:0 0 1.4rem 1.5rem!important;padding:0!important}.kc-post-body li{font-size:1.05rem!important;line-height:1.75!important;color:#3a4558!important;margin-bottom:0.5rem!important;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif!important}.kc-post-body a{color:#273752!important;text-underline-offset:3px;text-decoration-color:rgba(39,55,82,0.35)!important}.kc-post-body a:hover{text-decoration-color:#273752!important}.kc-post-body em{font-style:italic!important}.kc-post-body strong{font-weight:600!important;color:#273752!important}.kc-post-body hr{border:none!important;border-top:1px solid rgba(39,55,82,0.12)!important;margin:3.5rem 0!important}.kc-post-body blockquote{border-left:3px solid #FDECCD!important;padding:1.5rem 2rem!important;margin:2.5rem 0!important;background:rgba(253,236,205,0.25)!important;border-radius:0 6px 6px 0!important}.kc-post-body blockquote p{font-size:1.2rem!important;font-style:italic!important;color:#273752!important;margin:0!important;line-height:1.5!important}"
+  }
+}
