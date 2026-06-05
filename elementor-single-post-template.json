@@ -65,6 +65,22 @@
               }
             },
             {
+              "id": "auth01",
+              "elType": "widget",
+              "widgetType": "author-box",
+              "settings": {
+                "show_avatar": "no",
+                "show_bio": "no",
+                "show_posts_count": "no",
+                "author_name_color": "#273752",
+                "typography_typography": "custom",
+                "typography_font_family": "Helvetica Neue",
+                "typography_font_size": { "unit": "rem", "size": 0.92, "sizes": [] },
+                "typography_font_weight": "400",
+                "margin": { "unit": "rem", "top": "0", "right": "0", "bottom": "0.5", "left": "0", "isLinked": false }
+              }
+            },
+            {
               "id": "g2h7i4j",
               "elType": "widget",
               "widgetType": "theme-post-title",
@@ -80,26 +96,7 @@
                 "typography_letter_spacing": { "unit": "px", "size": -0.85 },
                 "title_color": "#273752",
                 "align": "left",
-                "margin": { "unit": "rem", "top": "0", "right": "0", "bottom": "1.5", "left": "0", "isLinked": false }
-              }
-            },
-            {
-              "id": "k5l2m9n",
-              "elType": "widget",
-              "widgetType": "html",
-              "settings": {
-                "html": "<div style=\"display:flex;gap:0.6rem;align-items:center;margin-bottom:2.5rem;color:#555961;font-size:0.92rem;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;\"><span style=\"color:#273752;font-weight:500;\">Kyle Lagunas</span><span>·</span><span>Kyle &amp; Co</span></div>"
-              }
-            },
-            {
-              "id": "o3p8q1r",
-              "elType": "widget",
-              "widgetType": "theme-post-featured-image",
-              "settings": {
-                "image_size": "full",
-                "aspect_ratio": "16:9",
-                "border_radius": { "unit": "px", "top": "8", "right": "8", "bottom": "8", "left": "8", "isLinked": true },
-                "margin": { "unit": "rem", "top": "0", "right": "0", "bottom": "3", "left": "0", "isLinked": false }
+                "margin": { "unit": "rem", "top": "0.5", "right": "0", "bottom": "1.5", "left": "0", "isLinked": false }
               }
             },
             {
