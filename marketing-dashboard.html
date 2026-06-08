@@ -202,6 +202,26 @@ body {
 // ─────────────────────────────────────────────────────────────────────
 var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz-ywH86NDdtYCiKVuuyrZDsYrC7ijy9_GnYkd3VgJsj2kQ139VrJHXVgn82Pw6hNToCw/exec';
 
+// ── Resource clicks from existing dashboard (JSONBin) ─────────────────
+var JSONBIN_URL = 'https://api.jsonbin.io/v3/b/69f340c4aaba88219756240d/latest';
+var JSONBIN_KEY = '$2a$10$prZqMqXbtmzSXZyh1nHLcOt1RcJbDCcAgppQ/6J2Brax5qLkY8Ggm';
+
+function fetchResourceClicks() {
+  return fetch(JSONBIN_URL, { headers: { 'X-ACCESS-KEY': JSONBIN_KEY } })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var rec = data.record || {};
+      return {
+        total:    (rec.course || 0) + (rec.ebook || 0) + (rec.framework || 0) + (rec.workbook || 0),
+        course:   rec.course   || 0,
+        ebook:    rec.ebook    || 0,
+        framework:rec.framework|| 0,
+        workbook: rec.workbook || 0,
+      };
+    })
+    .catch(function() { return null; });
+}
+
 // ── Q2 2026 targets ───────────────────────────────────────────────────
 var T = {
   netNewSubs80:       150,
@@ -480,15 +500,25 @@ function render(data) {
     progressHtml: progressBar(w.liReferrals, t80li, T.liReferrals, fmt(t80li), fmt(T.liReferrals)),
   });
 
-  // Report downloads
+  // Report downloads (from JSONBin resource clicks)
   var dlStatus = getStatus(w.reportDownloads, T.reportDownloads80, T.reportDownloads100);
+  var dlBreakdown = '';
+  if (w.resourceClicks) {
+    var rc = w.resourceClicks;
+    dlBreakdown = '<div style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid rgba(39,55,82,0.07);display:grid;grid-template-columns:1fr 1fr;gap:0.3rem 0.75rem;">' +
+      '<div style="font-size:0.68rem;color:#9D92AD;">AI Literacy</div><div style="font-size:0.68rem;font-weight:600;color:#273752;text-align:right;">' + rc.course + '</div>' +
+      '<div style="font-size:0.68rem;color:#9D92AD;">Change Mgmt eBook</div><div style="font-size:0.68rem;font-weight:600;color:#273752;text-align:right;">' + rc.ebook + '</div>' +
+      '<div style="font-size:0.68rem;color:#9D92AD;">Solution Framework</div><div style="font-size:0.68rem;font-weight:600;color:#273752;text-align:right;">' + rc.framework + '</div>' +
+      '<div style="font-size:0.68rem;color:#9D92AD;">Responsible AI</div><div style="font-size:0.68rem;font-weight:600;color:#273752;text-align:right;">' + rc.workbook + '</div>' +
+      '</div>';
+  }
   html += card({
     accent: 'web',
-    name: 'Report downloads · Q2',
+    name: 'Resource clicks · all time',
     value: fmt(w.reportDownloads),
-    target: 'Target: ' + T.reportDownloads80 + ' / ' + T.reportDownloads100,
+    target: 'Target: ' + T.reportDownloads80 + ' / ' + T.reportDownloads100 + ' Q2 downloads',
     chipHtml: chip(dlStatus),
-    progressHtml: progressBar(w.reportDownloads, T.reportDownloads80, T.reportDownloads100),
+    progressHtml: progressBar(w.reportDownloads, T.reportDownloads80, T.reportDownloads100) + dlBreakdown,
   });
 
   html += '</div></div>';
@@ -572,12 +602,18 @@ function loadData() {
     return;
   }
 
-  fetch(SCRIPT_URL + '?t=' + Date.now())
-    .then(function(r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    })
-    .then(function(data) {
+  Promise.all([
+    fetch(SCRIPT_URL + '?t=' + Date.now())
+      .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+    fetchResourceClicks(),
+  ])
+    .then(function(results) {
+      var data   = results[0];
+      var clicks = results[1];
+      if (clicks && data.web) {
+        data.web.reportDownloads = clicks.total;
+        data.web.resourceClicks  = clicks;
+      }
       document.getElementById('demo-banner').style.display = data.isDemo ? 'block' : 'none';
       if (data.sheetUrl) {
         var el = document.getElementById('edit-link');
