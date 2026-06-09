@@ -265,8 +265,6 @@ var T = {
   netNewSubs100:      1355,               // 17,000 total = 100% payout
   qoqGrowth80:        6.9,               // 80% of 8.66% target
   qoqGrowth100:       8.7,               // (17,000 − 15,645) / 15,645
-  openRate80:         38,
-  openRate100:        40,
   ctorBroadcast80:     8,
   ctorBroadcast100:   10,
   lpConversion:       15,
@@ -391,23 +389,19 @@ function render(data) {
   // ── Summary bar ──────────────────────────────────────────────────
   var totalSubs = e.totalSubscribers;
   var netNew    = e.netNewQ2;
-  var openRate  = e.avgOpenRate;
 
   var html = '';
   html += '<div class="summary-bar">';
   html += '<div class="summary-item"><div class="summary-value">' + fmt(totalSubs) + '</div><div class="summary-label">Total subscribers</div></div>';
   html += '<div class="summary-item"><div class="summary-value">' + (netNew != null ? (netNew >= 0 ? '+' : '') + fmt(netNew) : '—') + '</div><div class="summary-label">Net new · Q2</div></div>';
-  html += '<div class="summary-item"><div class="summary-value">' + fmtPct(openRate, 1) + '</div><div class="summary-label">Avg open rate</div></div>';
+  html += '<div class="summary-item"><div class="summary-value">' + fmtPct(e.broadcastCTOR, 1) + '</div><div class="summary-label">Email CTOR</div></div>';
   html += '</div>';
 
   // ── Context strip ──────────────────────────────────────────────────
   var ctxLines = [];
   ctxLines.push('Q2 is <strong>' + Q2_PCT + '% complete</strong> — ' + Q2_DAYS_LEFT + ' days remaining. The blue marker on each progress bar shows today\'s pace target.');
-  if (openRate != null && openRate >= 30) {
-    ctxLines.push('Email open rate of <strong>' + fmtPct(openRate, 1) + '</strong> is well above the B2B industry average of 21–25% — this is a genuine strength.');
-  }
   if (e.broadcastCTOR != null && e.broadcastCTOR >= 5) {
-    ctxLines.push('Broadcast CTOR of <strong>' + fmtPct(e.broadcastCTOR, 1) + '</strong> exceeds the industry average of 3–5%, indicating strong list quality.');
+    ctxLines.push('Email CTOR of <strong>' + fmtPct(e.broadcastCTOR, 1) + '</strong> exceeds the B2B average of 3–5%, indicating strong list quality. (Open rate is excluded — inflated by Apple Mail Privacy Protection.)');
   }
   if (netNew != null) {
     var paceNeeded = Math.round(T.netNewSubs100 * Q2_PCT / 100);
@@ -509,28 +503,17 @@ function render(data) {
   html += '<div class="section-header"><div class="section-title">Visibility & Engagement</div><div class="section-source">MailerLite · GA4 · manual</div></div>';
   html += '<div class="cards">';
 
-  // Open rate
-  var openStatus = getStatus(e.avgOpenRate, T.openRate80, T.openRate100);
-  html += card({
-    accent: 'email',
-    name: 'Avg open rate',
-    value: fmtPct(e.avgOpenRate, 1),
-    valueClass: 'sm',
-    sublabel: 'Industry avg: 21–25%',
-    chipHtml: chip(openStatus),
-    progressHtml: progressBar(e.avgOpenRate, T.openRate80, T.openRate100, T.openRate80+'%', T.openRate100+'%'),
-  });
-
-  // Broadcast CTOR
+  // CTOR (open rate removed — inflated by Apple Mail Privacy Protection)
   var ctorStatus = e.broadcastCTOR != null
     ? (e.broadcastCTOR >= T.ctorBroadcast80 ? 'on-track' : e.broadcastCTOR >= 5 ? 'at-risk' : 'behind')
     : 'tbd';
   html += card({
     accent: 'email',
-    name: 'Broadcast CTOR',
+    name: 'Email CTOR',
     value: fmtPct(e.broadcastCTOR, 1),
     valueClass: 'sm',
-    sublabel: 'Industry avg: 3–5%',
+    sublabel: 'Clicks ÷ opens · industry avg: 3–5%',
+    target: 'Target: ≥' + T.ctorBroadcast80 + '% / ≥' + T.ctorBroadcast100 + '%',
     chipHtml: chip(ctorStatus),
     progressHtml: e.broadcastCTOR != null ? progressBar(e.broadcastCTOR, T.ctorBroadcast80, T.ctorBroadcast100, T.ctorBroadcast80+'%', T.ctorBroadcast100+'%') : '',
   });
