@@ -442,14 +442,16 @@ function render(data) {
     progressHtml: e.practitionerPct != null ? progressBar(e.practitionerPct, T.practitionerPct, T.practitionerPct + '%') : '',
   });
 
-  // Organic growth %
+  // Organic / core audience count
+  var organicStatus = e.organicCount != null ? getStatus(e.organicCount, T.organicGrowth) : 'manual';
   html += card({
     accent: 'email',
-    name: 'Organic / core growth %',
-    value: fmtPct(e.organicGrowthPct, 0),
-    valueClass: 'sm',
-    sublabel: 'Q1 baseline: 6% · Target: 7% (1,200 organic new subs)',
-    chipHtml: e.organicGrowthPct != null ? '' : chip('manual', '✎ Update in sheet'),
+    name: 'Organic core audience',
+    value: fmt(e.organicCount),
+    sublabel: 'Q1 baseline: 1,151 · Q2 target: 1,200',
+    target: 'Goal: ' + fmt(T.organicGrowth) + ' organic subscribers',
+    chipHtml: e.organicCount != null ? chip(organicStatus) : chip('manual', '✎ Update in sheet'),
+    progressHtml: e.organicCount != null ? progressBar(e.organicCount, T.organicGrowth, fmt(T.organicGrowth)) : '',
   });
 
   html += '</div>';
