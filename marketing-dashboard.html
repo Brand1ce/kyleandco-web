@@ -533,14 +533,6 @@ function render(data) {
     progressHtml: dlBreakdown,
   });
 
-  // Content shipped
-  html += card({
-    accent: 'content',
-    name: 'Content shipped · Q2',
-    value: fmt(c.contentShipped),
-    sublabel: 'pieces this quarter',
-    chipHtml: c.contentShipped == null ? chip('manual', '✎ Update in sheet') : '',
-  });
 
   html += '</div></div>';
 
