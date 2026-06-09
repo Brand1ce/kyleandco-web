@@ -410,14 +410,12 @@ function render(data) {
   if (e.broadcastCTOR != null && e.broadcastCTOR >= 5) {
     ctxLines.push('Broadcast CTOR of <strong>' + fmtPct(e.broadcastCTOR, 1) + '</strong> exceeds the industry average of 3–5%, indicating strong list quality.');
   }
-  if (netNew != null && netNew < 0) {
-    ctxLines.push('⚠ Net new Q2 is negative — more subscribers left than joined since April 1. List churn is outpacing new additions.');
-  } else if (netNew != null) {
+  if (netNew != null) {
     var paceNeeded = Math.round(T.netNewSubs100 * Q2_PCT / 100);
     if (netNew < paceNeeded) {
-      ctxLines.push('Subscriber growth is <strong>' + fmt(paceNeeded - netNew) + ' behind today\'s pace</strong> toward the +' + fmt(T.netNewSubs100) + ' Q2 goal (17,000 total).');
+      ctxLines.push('New subscriber growth is <strong>' + fmt(paceNeeded - netNew) + ' behind today\'s pace</strong> toward the +' + fmt(T.netNewSubs100) + ' Q2 goal (17,000 total).');
     } else {
-      ctxLines.push('Subscriber growth is <strong>on pace</strong> toward the +' + fmt(T.netNewSubs100) + ' Q2 goal (17,000 total).');
+      ctxLines.push('New subscriber growth is <strong>on pace</strong> toward the +' + fmt(T.netNewSubs100) + ' Q2 goal (17,000 total).');
     }
   }
   if (ctxLines.length > 0) {
@@ -436,8 +434,8 @@ function render(data) {
   var totalTarget  = e.totalSubscribers != null ? fmt(e.totalSubscribers) + ' → ' + fmt(T.subsTarget) + ' goal' : '';
   html += card({
     accent: 'email', isKpi: true,
-    name: 'Net new subscribers · Q2',
-    value: e.netNewQ2 != null ? (e.netNewQ2 >= 0 ? '+' : '') + fmt(e.netNewQ2) : '—',
+    name: 'New subscribers · Q2',
+    value: e.netNewQ2 != null ? '+' + fmt(e.netNewQ2) : '—',
     sublabel: totalTarget,
     target: 'Target: +' + fmt(T.netNewSubs80) + ' (80%) / +' + fmt(T.netNewSubs100) + ' (100%)',
     chipHtml: chip(netNewStatus),
