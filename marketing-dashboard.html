@@ -276,7 +276,6 @@ var T = {
   liReferrals:       693,
   reportDownloads80: 150,
   reportDownloads100:200,
-  contentShipped:     14,
   liPostsPerWeek:      3,
   practitionerPct:    68,                // Q2 target: 68%+ (11,500+ practitioners)
   organicGrowth:    1200,                // Q2 target: 1,200 organic new subs (7%)
@@ -604,15 +603,12 @@ function render(data) {
   });
 
   // Content shipped
-  var t80content = Math.round(T.contentShipped * 0.8);
-  var contentStatus = c.contentShipped != null ? getStatus(c.contentShipped, t80content, T.contentShipped) : 'manual';
   html += card({
     accent: 'content',
     name: 'Content shipped · Q2',
     value: fmt(c.contentShipped),
-    target: 'Target: ' + T.contentShipped + ' pieces / quarter',
-    chipHtml: c.contentShipped != null ? chip(contentStatus) : chip('manual', '✎ Update in sheet'),
-    progressHtml: c.contentShipped != null ? progressBar(c.contentShipped, t80content, T.contentShipped, t80content, T.contentShipped) : '',
+    sublabel: 'pieces this quarter',
+    chipHtml: c.contentShipped == null ? chip('manual', '✎ Update in sheet') : '',
   });
 
   // LinkedIn cadence
