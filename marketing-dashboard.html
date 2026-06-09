@@ -254,7 +254,6 @@ var T = {
   netNewSubs:      1355,    // Q2 goal: 17,000 total
   qoqGrowth:       4.3,    // (1,200 − 1,151) / 1,151 — organic core audience
   ctorBroadcast:   10,
-  blogViewsYTD:    10500,
   liReferrals:     693,
   practitionerPct: 68,
   organicGrowth:   1200,
@@ -501,9 +500,7 @@ function render(data) {
     accent: 'web',
     name: 'Blog views · YTD',
     value: fmt(w.blogViewsYTD),
-    target: 'Target: ' + fmt(T.blogViewsYTD),
-    chipHtml: chip(getStatus(w.blogViewsYTD, T.blogViewsYTD)),
-    progressHtml: progressBar(w.blogViewsYTD, T.blogViewsYTD, fmt(T.blogViewsYTD)),
+    sublabel: 'year to date',
   });
 
   // LinkedIn referrals
