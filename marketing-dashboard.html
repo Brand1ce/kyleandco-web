@@ -131,6 +131,25 @@ body {
   width: 2px; background: rgba(39,55,82,0.3);
   border-radius: 1px;
 }
+/* Q2 pace marker — where we "should" be today if pacing linearly */
+.pace-marker {
+  position: absolute;
+  top: -4px; bottom: -4px; width: 2px;
+  background: #2D5C94; border-radius: 1px; opacity: 0.5;
+}
+.pace-label {
+  font-size: 0.6rem; color: #2D5C94; margin-top: 0.3rem; opacity: 0.8;
+}
+/* Context strip */
+.context-strip {
+  background: #fff; border-radius: 10px;
+  padding: 1rem 1.4rem; margin-bottom: 2rem;
+  font-size: 0.8rem; color: #555961; line-height: 1.7;
+  border-left: 3px solid #2D5C94;
+}
+.context-strip strong { color: #273752; }
+.context-strip .ctx-row { margin-bottom: 0.2rem; }
+.context-strip .ctx-row:last-child { margin-bottom: 0; }
 
 /* ── Milestone rows ── */
 .milestone {
@@ -221,6 +240,13 @@ function fetchResourceClicks() {
     })
     .catch(function() { return null; });
 }
+
+// ── Q2 pacing (how far through the quarter are we today?) ────────────
+var Q2_TOTAL_DAYS  = 91; // Apr 30 + May 31 + Jun 30
+var Q2_START_DATE  = new Date('2026-04-01');
+var q2Elapsed      = Math.min(Q2_TOTAL_DAYS, Math.max(0, Math.floor((new Date() - Q2_START_DATE) / 86400000)));
+var Q2_PCT         = Math.round((q2Elapsed / Q2_TOTAL_DAYS) * 100); // e.g. 77
+var Q2_DAYS_LEFT   = Q2_TOTAL_DAYS - q2Elapsed;
 
 // ── Q2 2026 targets ───────────────────────────────────────────────────
 var T = {
@@ -317,9 +343,16 @@ function progressBar(val, t80, t100, label80, label100) {
   var cls = pct >= 80 ? 'green' : pct >= 50 ? 'yellow' : 'red';
   var l80  = label80  !== undefined ? label80  : t80;
   var l100 = label100 !== undefined ? label100 : t100;
+  var paceNote = pct < Q2_PCT
+    ? '<div class="pace-label">↑ Today\'s pace target: ' + Math.round((Q2_PCT / 100) * t100) + ' (' + Q2_PCT + '% of quarter elapsed)</div>'
+    : '';
   return '<div class="progress-wrap">' +
     '<div class="progress-labels"><span>0</span><span>' + l80 + ' <span style="opacity:0.6">(80%)</span></span><span>' + l100 + '</span></div>' +
-    '<div class="progress-track"><div class="progress-fill ' + cls + '" style="width:' + pct + '%"></div></div>' +
+    '<div class="progress-track">' +
+      '<div class="progress-fill ' + cls + '" style="width:' + pct + '%"></div>' +
+      '<div class="pace-marker" style="left:' + Q2_PCT + '%"></div>' +
+    '</div>' +
+    paceNote +
     '</div>';
 }
 
@@ -351,9 +384,27 @@ function render(data) {
   var html = '';
   html += '<div class="summary-bar">';
   html += '<div class="summary-item"><div class="summary-value">' + fmt(totalSubs) + '</div><div class="summary-label">Total subscribers</div></div>';
-  html += '<div class="summary-item"><div class="summary-value">' + (netNew != null ? '+' + fmt(netNew) : '—') + '</div><div class="summary-label">Net new · Q2</div></div>';
+  html += '<div class="summary-item"><div class="summary-value">' + (netNew != null ? (netNew >= 0 ? '+' : '') + fmt(netNew) : '—') + '</div><div class="summary-label">Net new · Q2</div></div>';
   html += '<div class="summary-item"><div class="summary-value">' + fmtPct(openRate, 1) + '</div><div class="summary-label">Avg open rate</div></div>';
   html += '</div>';
+
+  // ── Context strip ──────────────────────────────────────────────────
+  var ctxLines = [];
+  ctxLines.push('Q2 is <strong>' + Q2_PCT + '% complete</strong> — ' + Q2_DAYS_LEFT + ' days remaining. The blue marker on each progress bar shows today\'s pace target.');
+  if (openRate != null && openRate >= 30) {
+    ctxLines.push('Email open rate of <strong>' + fmtPct(openRate, 1) + '</strong> is well above the B2B industry average of 21–25% — this is a genuine strength.');
+  }
+  if (e.broadcastCTOR != null && e.broadcastCTOR >= 5) {
+    ctxLines.push('Broadcast CTOR of <strong>' + fmtPct(e.broadcastCTOR, 1) + '</strong> exceeds the industry average of 3–5%, indicating strong list quality.');
+  }
+  if (netNew != null && netNew < 0) {
+    ctxLines.push('⚠ Net new Q2 shows as negative — this usually means the Q1_END_SUBS baseline in Script Properties is set higher than the actual March 31 count. Verify and correct it.');
+  }
+  if (ctxLines.length > 0) {
+    html += '<div class="context-strip">';
+    ctxLines.forEach(function(l) { html += '<div class="ctx-row">' + l + '</div>'; });
+    html += '</div>';
+  }
 
   // ── Email List Health ─────────────────────────────────────────────
   html += '<div class="section">';
@@ -422,7 +473,7 @@ function render(data) {
     name: 'Avg open rate',
     value: fmtPct(e.avgOpenRate, 1),
     valueClass: 'sm',
-    target: 'Target: ≥' + T.openRate80 + '% / ≥' + T.openRate100 + '%',
+    sublabel: 'Industry avg: 21–25% · Our target: ≥' + T.openRate80 + '%',
     chipHtml: chip(openStatus),
     progressHtml: progressBar(e.avgOpenRate, T.openRate80, T.openRate100, T.openRate80+'%', T.openRate100+'%'),
   });
@@ -436,7 +487,7 @@ function render(data) {
     name: 'Broadcast CTOR',
     value: fmtPct(e.broadcastCTOR, 1),
     valueClass: 'sm',
-    target: 'Target: ' + T.ctorBroadcast80 + '–' + T.ctorBroadcast100 + '% · RSS ~78%',
+    sublabel: 'Industry avg: 3–5% · Our target: ' + T.ctorBroadcast80 + '–' + T.ctorBroadcast100 + '%',
     chipHtml: chip(ctorStatus),
     progressHtml: e.broadcastCTOR != null ? progressBar(e.broadcastCTOR, T.ctorBroadcast80, T.ctorBroadcast100, T.ctorBroadcast80+'%', T.ctorBroadcast100+'%') : '',
   });
