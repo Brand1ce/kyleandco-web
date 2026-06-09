@@ -129,14 +129,6 @@ body {
 .progress-fill.green  { background: #16a34a; }
 .progress-fill.yellow { background: #ca8a04; }
 .progress-fill.red    { background: #b91c1c; }
-/* 80% payout line */
-.progress-track::after {
-  content: '';
-  position: absolute;
-  left: 80%; top: -2px; bottom: -2px;
-  width: 2px; background: rgba(39,55,82,0.3);
-  border-radius: 1px;
-}
 /* Q2 pace marker — where we "should" be today if pacing linearly */
 .pace-marker {
   position: absolute;
@@ -259,24 +251,13 @@ var Q2_DAYS_LEFT   = Q2_TOTAL_DAYS - q2Elapsed;
 // Payout: 100% = $6K · 90% = $4.5K · 80% = $3K
 var Q1_BASELINE = 15645;
 var T = {
-  subsTarget:         17000,               // Q2 total subscriber goal
-  netNewSubs90:       Math.round(1355 * 0.9),  // 1,220 — 90% payout
-  netNewSubs80:       Math.round(1355 * 0.8),  // 1,084 — 80% payout
-  netNewSubs100:      1355,               // 17,000 total = 100% payout
-  qoqGrowth80:        6.9,               // 80% of 8.66% target
-  qoqGrowth100:       8.7,               // (17,000 − 15,645) / 15,645
-  ctorBroadcast80:     8,
-  ctorBroadcast100:   10,
-  lpConversion:       15,
-  blogConversion80:   1.4,
-  blogConversion100:  1.7,
+  netNewSubs:      1355,    // Q2 goal: 17,000 total
+  qoqGrowth:       8.7,    // (17,000 − 15,645) / 15,645
+  ctorBroadcast:   10,
   blogViewsYTD:    10500,
-  liReferrals:       693,
-  reportDownloads80: 150,
-  reportDownloads100:200,
-  liPostsPerWeek:      3,
-  practitionerPct:    68,                // Q2 target: 68%+ (11,500+ practitioners)
-  organicGrowth:    1200,                // Q2 target: 1,200 organic new subs (7%)
+  liReferrals:     693,
+  practitionerPct: 68,
+  organicGrowth:   1200,
 };
 
 // ── Demo data (shown when SCRIPT_URL is not set) ─────────────────────
@@ -323,9 +304,9 @@ function fmtPct(n, dec) {
   return (typeof dec === 'number' ? (+n).toFixed(dec) : (+n).toFixed(1)) + '%';
 }
 
-function getStatus(val, t80, t100) {
+function getStatus(val, target) {
   if (val == null) return 'tbd';
-  var pct = val / t100;
+  var pct = val / target;
   if (pct >= 0.8) return 'on-track';
   if (pct >= 0.5) return 'at-risk';
   return 'behind';
@@ -346,17 +327,16 @@ function chip(status, labelOverride) {
   return '<span class="chip ' + status + '">' + lbl + '</span>';
 }
 
-function progressBar(val, t80, t100, label80, label100) {
+function progressBar(val, target, label) {
   if (val == null) return '';
-  var pct = Math.min(100, (val / t100) * 100);
+  var pct = Math.min(100, (val / target) * 100);
   var cls = pct >= 80 ? 'green' : pct >= 50 ? 'yellow' : 'red';
-  var l80  = label80  !== undefined ? label80  : t80;
-  var l100 = label100 !== undefined ? label100 : t100;
+  var lbl = label !== undefined ? label : target;
   var paceNote = pct < Q2_PCT
-    ? '<div class="pace-label">↑ Today\'s pace target: ' + Math.round((Q2_PCT / 100) * t100) + ' (' + Q2_PCT + '% of quarter elapsed)</div>'
+    ? '<div class="pace-label">↑ Pace target today: ' + Math.round((Q2_PCT / 100) * target) + ' (' + Q2_PCT + '% of quarter elapsed)</div>'
     : '';
   return '<div class="progress-wrap">' +
-    '<div class="progress-labels"><span>0</span><span>' + l80 + ' <span style="opacity:0.6">(80%)</span></span><span>' + l100 + '</span></div>' +
+    '<div class="progress-labels"><span>0</span><span>' + lbl + '</span></div>' +
     '<div class="progress-track">' +
       '<div class="progress-fill ' + cls + '" style="width:' + pct + '%"></div>' +
       '<div class="pace-marker" style="left:' + Q2_PCT + '%"></div>' +
@@ -404,11 +384,11 @@ function render(data) {
     ctxLines.push('Email CTOR of <strong>' + fmtPct(e.broadcastCTOR, 1) + '</strong> exceeds the B2B average of 3–5%, indicating strong list quality. (Open rate is excluded — inflated by Apple Mail Privacy Protection.)');
   }
   if (netNew != null) {
-    var paceNeeded = Math.round(T.netNewSubs100 * Q2_PCT / 100);
+    var paceNeeded = Math.round(T.netNewSubs * Q2_PCT / 100);
     if (netNew < paceNeeded) {
-      ctxLines.push('New subscriber growth is <strong>' + fmt(paceNeeded - netNew) + ' behind today\'s pace</strong> toward the +' + fmt(T.netNewSubs100) + ' Q2 goal (17,000 total).');
+      ctxLines.push('New subscriber growth is <strong>' + fmt(paceNeeded - netNew) + ' behind today\'s pace</strong> toward the +' + fmt(T.netNewSubs) + ' Q2 goal (17,000 total).');
     } else {
-      ctxLines.push('New subscriber growth is <strong>on pace</strong> toward the +' + fmt(T.netNewSubs100) + ' Q2 goal (17,000 total).');
+      ctxLines.push('New subscriber growth is <strong>on pace</strong> toward the +' + fmt(T.netNewSubs) + ' Q2 goal (17,000 total).');
     }
   }
   if (ctxLines.length > 0) {
@@ -421,39 +401,37 @@ function render(data) {
   // SECTION 1 — Q2 Aligned KPIs (from marketing strategy deck)
   // ══════════════════════════════════════════════════════════════════
   html += '<div class="section">';
-  html += '<div class="section-header"><div class="section-title">Q2 Aligned KPIs</div><div class="section-source">From marketing strategy deck · payout evaluated against these</div></div>';
+  html += '<div class="section-header"><div class="section-title">Q2 Aligned KPIs</div><div class="section-source">From marketing strategy deck</div></div>';
   html += '<div class="cards">';
 
   // New subscribers Q2
-  var netNewStatus = getStatus(e.netNewQ2, T.netNewSubs80, T.netNewSubs100);
-  var totalTarget  = e.totalSubscribers != null ? fmt(e.totalSubscribers) + ' today → ' + fmt(T.subsTarget) + ' goal' : '';
+  var netNewStatus = getStatus(e.netNewQ2, T.netNewSubs);
+  var totalTarget  = e.totalSubscribers != null ? fmt(e.totalSubscribers) + ' today → 17,000 goal' : '';
   html += card({
     accent: 'email',
     name: 'New subscribers · Q2',
     value: e.netNewQ2 != null ? '+' + fmt(e.netNewQ2) : '—',
     sublabel: totalTarget,
-    target: 'Target: +' + fmt(T.netNewSubs80) + ' (80% payout) / +' + fmt(T.netNewSubs100) + ' (100%)',
+    target: 'Q2 goal: +' + fmt(T.netNewSubs),
     chipHtml: chip(netNewStatus),
-    progressHtml: progressBar(e.netNewQ2, T.netNewSubs80, T.netNewSubs100, '+'+fmt(T.netNewSubs80), '+'+fmt(T.netNewSubs100)),
+    progressHtml: progressBar(e.netNewQ2, T.netNewSubs, '+' + fmt(T.netNewSubs)),
   });
 
   // QoQ growth
-  var qoqStatus = getStatus(e.qoqGrowth, T.qoqGrowth80, T.qoqGrowth100);
+  var qoqStatus = getStatus(e.qoqGrowth, T.qoqGrowth);
   html += card({
     accent: 'email',
     name: 'QoQ subscriber growth',
     value: fmtPct(e.qoqGrowth, 1),
     valueClass: 'sm',
     sublabel: 'Q1 baseline: 15,645 · Q2 goal: 17,000',
-    target: 'Target: ~' + T.qoqGrowth80 + '% / ~' + T.qoqGrowth100 + '%',
+    target: 'Target: ~' + T.qoqGrowth + '%',
     chipHtml: chip(qoqStatus),
-    progressHtml: progressBar(e.qoqGrowth, T.qoqGrowth80, T.qoqGrowth100, T.qoqGrowth80+'%', T.qoqGrowth100+'%'),
+    progressHtml: progressBar(e.qoqGrowth, T.qoqGrowth, T.qoqGrowth + '%'),
   });
 
   // Practitioner %
-  var practStatus = e.practitionerPct != null
-    ? (e.practitionerPct >= T.practitionerPct ? 'on-track' : e.practitionerPct >= 65 ? 'at-risk' : 'behind')
-    : 'manual';
+  var practStatus = e.practitionerPct != null ? getStatus(e.practitionerPct, T.practitionerPct) : 'manual';
   html += card({
     accent: 'email',
     name: 'Practitioner % tagged',
@@ -461,7 +439,7 @@ function render(data) {
     valueClass: 'sm',
     sublabel: 'Q1 baseline: 66.7% · Target: 68%+ (11,500+ practitioners)',
     chipHtml: e.practitionerPct != null ? chip(practStatus) : chip('manual', '✎ Update in sheet'),
-    progressHtml: e.practitionerPct != null ? progressBar(e.practitionerPct, 66, T.practitionerPct, '66%', T.practitionerPct+'%') : '',
+    progressHtml: e.practitionerPct != null ? progressBar(e.practitionerPct, T.practitionerPct, T.practitionerPct + '%') : '',
   });
 
   // Organic growth %
@@ -503,67 +481,37 @@ function render(data) {
   html += '<div class="section-header"><div class="section-title">Visibility & Engagement</div><div class="section-source">MailerLite · GA4 · manual</div></div>';
   html += '<div class="cards">';
 
-  // CTOR (open rate removed — inflated by Apple Mail Privacy Protection)
-  var ctorStatus = e.broadcastCTOR != null
-    ? (e.broadcastCTOR >= T.ctorBroadcast80 ? 'on-track' : e.broadcastCTOR >= 5 ? 'at-risk' : 'behind')
-    : 'tbd';
+  // CTOR
+  var ctorStatus = e.broadcastCTOR != null ? getStatus(e.broadcastCTOR, T.ctorBroadcast) : 'tbd';
   html += card({
     accent: 'email',
     name: 'Email CTOR',
     value: fmtPct(e.broadcastCTOR, 1),
     valueClass: 'sm',
     sublabel: 'Clicks ÷ opens · industry avg: 3–5%',
-    target: 'Target: ≥' + T.ctorBroadcast80 + '% / ≥' + T.ctorBroadcast100 + '%',
+    target: 'Target: ≥' + T.ctorBroadcast + '%',
     chipHtml: chip(ctorStatus),
-    progressHtml: e.broadcastCTOR != null ? progressBar(e.broadcastCTOR, T.ctorBroadcast80, T.ctorBroadcast100, T.ctorBroadcast80+'%', T.ctorBroadcast100+'%') : '',
-  });
-
-  // LP conversion
-  var lpStatus = e.lpConversion != null
-    ? (e.lpConversion >= T.lpConversion ? 'on-track' : e.lpConversion >= 10 ? 'at-risk' : 'behind')
-    : 'manual';
-  html += card({
-    accent: 'email',
-    name: 'Landing page conversion',
-    value: fmtPct(e.lpConversion, 1),
-    valueClass: 'sm',
-    target: 'Target: &gt;' + T.lpConversion + '%',
-    chipHtml: e.lpConversion != null ? chip(lpStatus) : chip('manual', '✎ Update in sheet'),
-    progressHtml: e.lpConversion != null ? progressBar(e.lpConversion, 10, T.lpConversion, '10%', T.lpConversion+'%') : '',
-  });
-
-  // Blog → sub conversion
-  var blogSubStatus = getStatus(e.blogToSubConversion, T.blogConversion80, T.blogConversion100);
-  html += card({
-    accent: 'email',
-    name: 'Blog → subscriber conv.',
-    value: fmtPct(e.blogToSubConversion, 2),
-    valueClass: 'sm',
-    target: 'Target: ≥' + T.blogConversion80 + '% / ≥' + T.blogConversion100 + '%',
-    chipHtml: e.blogToSubConversion != null ? chip(blogSubStatus) : chip('manual', '✎ Update in sheet'),
-    progressHtml: e.blogToSubConversion != null ? progressBar(e.blogToSubConversion, T.blogConversion80, T.blogConversion100, T.blogConversion80+'%', T.blogConversion100+'%') : '',
+    progressHtml: e.broadcastCTOR != null ? progressBar(e.broadcastCTOR, T.ctorBroadcast, T.ctorBroadcast + '%') : '',
   });
 
   // Blog views YTD
-  var t80blog = Math.round(T.blogViewsYTD * 0.8);
   html += card({
     accent: 'web',
     name: 'Blog views · YTD',
     value: fmt(w.blogViewsYTD),
     target: 'Target: ' + fmt(T.blogViewsYTD),
-    chipHtml: chip(getStatus(w.blogViewsYTD, t80blog, T.blogViewsYTD)),
-    progressHtml: progressBar(w.blogViewsYTD, t80blog, T.blogViewsYTD, fmt(t80blog), fmt(T.blogViewsYTD)),
+    chipHtml: chip(getStatus(w.blogViewsYTD, T.blogViewsYTD)),
+    progressHtml: progressBar(w.blogViewsYTD, T.blogViewsYTD, fmt(T.blogViewsYTD)),
   });
 
   // LinkedIn referrals
-  var t80li = Math.round(T.liReferrals * 0.8);
   html += card({
     accent: 'web',
     name: 'LinkedIn referrals · Q2',
     value: fmt(w.liReferrals),
     target: 'Target: ' + fmt(T.liReferrals) + ' sessions',
-    chipHtml: chip(getStatus(w.liReferrals, t80li, T.liReferrals)),
-    progressHtml: progressBar(w.liReferrals, t80li, T.liReferrals, fmt(t80li), fmt(T.liReferrals)),
+    chipHtml: chip(getStatus(w.liReferrals, T.liReferrals)),
+    progressHtml: progressBar(w.liReferrals, T.liReferrals, fmt(T.liReferrals)),
   });
 
   // Resource clicks
@@ -592,21 +540,6 @@ function render(data) {
     value: fmt(c.contentShipped),
     sublabel: 'pieces this quarter',
     chipHtml: c.contentShipped == null ? chip('manual', '✎ Update in sheet') : '',
-  });
-
-  // LinkedIn cadence
-  var liCadStatus = c.liPostsPerWeek != null
-    ? (c.liPostsPerWeek >= T.liPostsPerWeek ? 'on-track' : c.liPostsPerWeek >= 2 ? 'at-risk' : 'behind')
-    : 'manual';
-  html += card({
-    accent: 'content',
-    name: 'LinkedIn cadence',
-    value: c.liPostsPerWeek != null
-      ? '<span style="font-size:inherit">' + (+c.liPostsPerWeek).toFixed(1) + '</span><span style="font-size:1rem;font-weight:400;"> /wk</span>'
-      : '—',
-    valueClass: 'sm',
-    target: 'Target: ' + T.liPostsPerWeek + ' posts / week',
-    chipHtml: c.liPostsPerWeek != null ? chip(liCadStatus) : chip('manual', '✎ Update in sheet'),
   });
 
   html += '</div></div>';
