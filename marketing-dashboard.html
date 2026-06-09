@@ -248,12 +248,17 @@ var q2Elapsed      = Math.min(Q2_TOTAL_DAYS, Math.max(0, Math.floor((new Date() 
 var Q2_PCT         = Math.round((q2Elapsed / Q2_TOTAL_DAYS) * 100); // e.g. 77
 var Q2_DAYS_LEFT   = Q2_TOTAL_DAYS - q2Elapsed;
 
-// ── Q2 2026 targets ───────────────────────────────────────────────────
+// ── Q2 2026 targets — from Marketing Strategy deck ───────────────────
+// Q1 baseline: 15,645 · Q2 target: 17,000 · Net new needed: 1,355
+// Payout: 100% = $6K · 90% = $4.5K · 80% = $3K
+var Q1_BASELINE = 15645;
 var T = {
-  netNewSubs80:       150,
-  netNewSubs100:      200,
-  qoqGrowth80:        13,
-  qoqGrowth100:       18,
+  subsTarget:         17000,               // Q2 total subscriber goal
+  netNewSubs90:       Math.round(1355 * 0.9),  // 1,220 — 90% payout
+  netNewSubs80:       Math.round(1355 * 0.8),  // 1,084 — 80% payout
+  netNewSubs100:      1355,               // 17,000 total = 100% payout
+  qoqGrowth80:        6.9,               // 80% of 8.66% target
+  qoqGrowth100:       8.7,               // (17,000 − 15,645) / 15,645
   openRate80:         38,
   openRate100:        40,
   ctorBroadcast80:     8,
@@ -267,7 +272,8 @@ var T = {
   reportDownloads100:200,
   contentShipped:     14,
   liPostsPerWeek:      3,
-  practitionerPct:    90,
+  practitionerPct:    68,                // Q2 target: 68%+ (11,500+ practitioners)
+  organicGrowth:    1200,                // Q2 target: 1,200 organic new subs (7%)
 };
 
 // ── Demo data (shown when SCRIPT_URL is not set) ─────────────────────
@@ -398,7 +404,14 @@ function render(data) {
     ctxLines.push('Broadcast CTOR of <strong>' + fmtPct(e.broadcastCTOR, 1) + '</strong> exceeds the industry average of 3–5%, indicating strong list quality.');
   }
   if (netNew != null && netNew < 0) {
-    ctxLines.push('⚠ Net new Q2 shows as negative — this usually means the Q1_END_SUBS baseline in Script Properties is set higher than the actual March 31 count. Verify and correct it.');
+    ctxLines.push('⚠ Net new Q2 is negative — more subscribers left than joined since April 1. List churn is outpacing new additions.');
+  } else if (netNew != null) {
+    var paceNeeded = Math.round(T.netNewSubs100 * Q2_PCT / 100);
+    if (netNew < paceNeeded) {
+      ctxLines.push('Subscriber growth is <strong>' + fmt(paceNeeded - netNew) + ' behind today\'s pace</strong> toward the +' + fmt(T.netNewSubs100) + ' Q2 goal (17,000 total).');
+    } else {
+      ctxLines.push('Subscriber growth is <strong>on pace</strong> toward the +' + fmt(T.netNewSubs100) + ' Q2 goal (17,000 total).');
+    }
   }
   if (ctxLines.length > 0) {
     html += '<div class="context-strip">';
@@ -411,15 +424,17 @@ function render(data) {
   html += '<div class="section-header"><div class="section-title">Email List Health</div><div class="section-source">MailerLite · auto</div></div>';
   html += '<div class="cards">';
 
-  // Net new Q2
+  // Net new Q2 — goal is 17,000 total (Q1 baseline: 15,645, net new needed: 1,355)
   var netNewStatus = getStatus(e.netNewQ2, T.netNewSubs80, T.netNewSubs100);
+  var totalTarget  = e.totalSubscribers != null ? fmt(e.totalSubscribers) + ' → ' + fmt(T.subsTarget) + ' goal' : '';
   html += card({
     accent: 'email',
     name: 'Net new subscribers · Q2',
-    value: e.netNewQ2 != null ? '+' + fmt(e.netNewQ2) : '—',
-    target: 'Target: +' + T.netNewSubs80 + ' / +' + T.netNewSubs100,
+    value: e.netNewQ2 != null ? (e.netNewQ2 >= 0 ? '+' : '') + fmt(e.netNewQ2) : '—',
+    sublabel: totalTarget,
+    target: 'Target: +' + fmt(T.netNewSubs80) + ' (80%) / +' + fmt(T.netNewSubs100) + ' (100%)',
     chipHtml: chip(netNewStatus),
-    progressHtml: progressBar(e.netNewQ2, T.netNewSubs80, T.netNewSubs100, '+'+T.netNewSubs80, '+'+T.netNewSubs100),
+    progressHtml: progressBar(e.netNewQ2, T.netNewSubs80, T.netNewSubs100, '+'+fmt(T.netNewSubs80), '+'+fmt(T.netNewSubs100)),
   });
 
   // QoQ growth
@@ -434,18 +449,18 @@ function render(data) {
     progressHtml: progressBar(e.qoqGrowth, T.qoqGrowth80, T.qoqGrowth100, T.qoqGrowth80+'%', T.qoqGrowth100+'%'),
   });
 
-  // Practitioner %
+  // Practitioner % — Q2 target: 68%+ (11,500+ practitioners), Q1 baseline was 66.7%
   var practStatus = e.practitionerPct != null
-    ? (e.practitionerPct >= 90 ? 'on-track' : e.practitionerPct >= 70 ? 'at-risk' : 'behind')
+    ? (e.practitionerPct >= T.practitionerPct ? 'on-track' : e.practitionerPct >= 65 ? 'at-risk' : 'behind')
     : 'manual';
   html += card({
     accent: 'email',
     name: 'Practitioner % tagged',
     value: fmtPct(e.practitionerPct, 0),
     valueClass: 'sm',
-    target: 'Target: 90% tagged · list quality',
+    sublabel: 'Q1 baseline: 66.7% · Target: 68%+ (11,500+ practitioners)',
     chipHtml: e.practitionerPct != null ? chip(practStatus) : chip('manual', '✎ Update in sheet'),
-    progressHtml: e.practitionerPct != null ? progressBar(e.practitionerPct, 80, 90, '80%', '90%') : '',
+    progressHtml: e.practitionerPct != null ? progressBar(e.practitionerPct, 66, T.practitionerPct, '66%', T.practitionerPct+'%') : '',
   });
 
   // Organic growth %
@@ -617,10 +632,10 @@ function render(data) {
   html += '<div class="section-header"><div class="section-title">Milestone Commitments</div><div class="section-source">Status · update in sheet</div></div>';
 
   var milestones = [
-    { label: 'Vendor Impact Briefs',        note: 'Milestone commitments',         key: m.vendorImpactBriefs },
-    { label: 'Advisory inquiries',          note: 'Pipeline status',               key: m.advisoryInquiries  },
-    { label: 'Speaking engagements',        note: 'Milestone commitments',         key: m.speaking           },
-    { label: 'Podcast — Transformation Realness', note: 'Targets TBD with Purple Acorn', key: m.podcast || 'tbd' },
+    { label: 'Vendor Proof Delivered',       note: 'Q2: Toolkit Impact Brief (30 days post-launch)',   key: m.vendorImpactBriefs },
+    { label: 'Advisory Inquiry path live',   note: 'Q2 target: May 15 · form → Kyle → close',         key: m.advisoryInquiries  },
+    { label: 'Speaking page live',           note: 'Q2: Speaking page · Q3: Mainstage pitches',        key: m.speaking           },
+    { label: 'Podcast — Transformation Realness', note: 'Targets TBD with Purple Acorn',              key: m.podcast || 'tbd'   },
   ];
 
   var msLabels = {
