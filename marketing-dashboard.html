@@ -424,20 +424,22 @@ function render(data) {
     html += '</div>';
   }
 
-  // ── Email List Health ─────────────────────────────────────────────
+  // ══════════════════════════════════════════════════════════════════
+  // SECTION 1 — Q2 Aligned KPIs (from marketing strategy deck)
+  // ══════════════════════════════════════════════════════════════════
   html += '<div class="section">';
-  html += '<div class="section-header"><div class="section-title">Email List Health</div><div class="section-source">MailerLite · auto</div></div>';
+  html += '<div class="section-header"><div class="section-title">Q2 Aligned KPIs</div><div class="section-source">From marketing strategy deck · payout evaluated against these</div></div>';
   html += '<div class="cards">';
 
-  // Net new Q2 — goal is 17,000 total (Q1 baseline: 15,645, net new needed: 1,355)
+  // New subscribers Q2
   var netNewStatus = getStatus(e.netNewQ2, T.netNewSubs80, T.netNewSubs100);
-  var totalTarget  = e.totalSubscribers != null ? fmt(e.totalSubscribers) + ' → ' + fmt(T.subsTarget) + ' goal' : '';
+  var totalTarget  = e.totalSubscribers != null ? fmt(e.totalSubscribers) + ' today → ' + fmt(T.subsTarget) + ' goal' : '';
   html += card({
-    accent: 'email', isKpi: true,
+    accent: 'email',
     name: 'New subscribers · Q2',
     value: e.netNewQ2 != null ? '+' + fmt(e.netNewQ2) : '—',
     sublabel: totalTarget,
-    target: 'Target: +' + fmt(T.netNewSubs80) + ' (80%) / +' + fmt(T.netNewSubs100) + ' (100%)',
+    target: 'Target: +' + fmt(T.netNewSubs80) + ' (80% payout) / +' + fmt(T.netNewSubs100) + ' (100%)',
     chipHtml: chip(netNewStatus),
     progressHtml: progressBar(e.netNewQ2, T.netNewSubs80, T.netNewSubs100, '+'+fmt(T.netNewSubs80), '+'+fmt(T.netNewSubs100)),
   });
@@ -449,17 +451,18 @@ function render(data) {
     name: 'QoQ subscriber growth',
     value: fmtPct(e.qoqGrowth, 1),
     valueClass: 'sm',
+    sublabel: 'Q1 baseline: 15,645 · Q2 goal: 17,000',
     target: 'Target: ~' + T.qoqGrowth80 + '% / ~' + T.qoqGrowth100 + '%',
     chipHtml: chip(qoqStatus),
     progressHtml: progressBar(e.qoqGrowth, T.qoqGrowth80, T.qoqGrowth100, T.qoqGrowth80+'%', T.qoqGrowth100+'%'),
   });
 
-  // Practitioner % — Q2 target: 68%+ (11,500+ practitioners), Q1 baseline was 66.7%
+  // Practitioner %
   var practStatus = e.practitionerPct != null
     ? (e.practitionerPct >= T.practitionerPct ? 'on-track' : e.practitionerPct >= 65 ? 'at-risk' : 'behind')
     : 'manual';
   html += card({
-    accent: 'email', isKpi: true,
+    accent: 'email',
     name: 'Practitioner % tagged',
     value: fmtPct(e.practitionerPct, 0),
     valueClass: 'sm',
@@ -468,32 +471,53 @@ function render(data) {
     progressHtml: e.practitionerPct != null ? progressBar(e.practitionerPct, 66, T.practitionerPct, '66%', T.practitionerPct+'%') : '',
   });
 
-  // Organic growth % — Q2 target: 1,200 organic new subs (7% of list)
+  // Organic growth %
   html += card({
-    accent: 'email', isKpi: true,
+    accent: 'email',
     name: 'Organic / core growth %',
     value: fmtPct(e.organicGrowthPct, 0),
     valueClass: 'sm',
-    sublabel: e.organicGrowthPct != null ? 'Of new subs via organic channels' : '',
-    target: 'Tracked separately · ML + GA4',
+    sublabel: 'Q1 baseline: 6% · Target: 7% (1,200 organic new subs)',
     chipHtml: e.organicGrowthPct != null ? '' : chip('manual', '✎ Update in sheet'),
   });
 
+  html += '</div>';
+
+  // Milestone commitments (part of aligned KPIs)
+  html += '<div style="margin-top:1rem;">';
+  var msLabels = {
+    'on-track': '✓ On track', 'in-progress': '→ In progress',
+    'behind': '↓ Behind', 'done': '✓ Done', 'tbd': 'TBD', 'not-started': 'Not started',
+  };
+  [
+    { label: 'Vendor Proof Delivered',            note: 'Q2: Toolkit Impact Brief (30 days post-launch)',  key: m.vendorImpactBriefs },
+    { label: 'Advisory Inquiry path live',        note: 'Q2: Path live by May 15 · form → Kyle → close',  key: m.advisoryInquiries  },
+    { label: 'Speaking page live',                note: 'Q2: Speaking page · Q3: Mainstage pitches',       key: m.speaking           },
+    { label: 'Podcast — Transformation Realness', note: 'Targets TBD with Purple Acorn',                  key: m.podcast || 'tbd'   },
+  ].forEach(function(ms) {
+    var s = ms.key || 'tbd';
+    html += '<div class="milestone">' +
+      '<div><div class="milestone-name">' + ms.label + '</div><div class="milestone-note">' + ms.note + '</div></div>' +
+      chip(s, msLabels[s] || s) +
+      '</div>';
+  });
   html += '</div></div>';
 
-  // ── Email Engagement ──────────────────────────────────────────────
+  // ══════════════════════════════════════════════════════════════════
+  // SECTION 2 — Visibility & Engagement (informational, not payout-tied)
+  // ══════════════════════════════════════════════════════════════════
   html += '<div class="section">';
-  html += '<div class="section-header"><div class="section-title">Email Engagement</div><div class="section-source">MailerLite · auto</div></div>';
+  html += '<div class="section-header"><div class="section-title">Visibility & Engagement</div><div class="section-source">Informational · not tied to payout</div></div>';
   html += '<div class="cards">';
 
-  // Avg open rate
+  // Open rate
   var openStatus = getStatus(e.avgOpenRate, T.openRate80, T.openRate100);
   html += card({
     accent: 'email',
     name: 'Avg open rate',
     value: fmtPct(e.avgOpenRate, 1),
     valueClass: 'sm',
-    sublabel: 'Industry avg: 21–25% · Our target: ≥' + T.openRate80 + '%',
+    sublabel: 'Industry avg: 21–25%',
     chipHtml: chip(openStatus),
     progressHtml: progressBar(e.avgOpenRate, T.openRate80, T.openRate100, T.openRate80+'%', T.openRate100+'%'),
   });
@@ -507,7 +531,7 @@ function render(data) {
     name: 'Broadcast CTOR',
     value: fmtPct(e.broadcastCTOR, 1),
     valueClass: 'sm',
-    sublabel: 'Industry avg: 3–5% · Our target: ' + T.ctorBroadcast80 + '–' + T.ctorBroadcast100 + '%',
+    sublabel: 'Industry avg: 3–5%',
     chipHtml: chip(ctorStatus),
     progressHtml: e.broadcastCTOR != null ? progressBar(e.broadcastCTOR, T.ctorBroadcast80, T.ctorBroadcast100, T.ctorBroadcast80+'%', T.ctorBroadcast100+'%') : '',
   });
@@ -521,12 +545,12 @@ function render(data) {
     name: 'Landing page conversion',
     value: fmtPct(e.lpConversion, 1),
     valueClass: 'sm',
-    target: 'Target: &gt;' + T.lpConversion + '% · all LPs',
+    target: 'Target: &gt;' + T.lpConversion + '%',
     chipHtml: e.lpConversion != null ? chip(lpStatus) : chip('manual', '✎ Update in sheet'),
     progressHtml: e.lpConversion != null ? progressBar(e.lpConversion, 10, T.lpConversion, '10%', T.lpConversion+'%') : '',
   });
 
-  // Blog → subscriber conversion
+  // Blog → sub conversion
   var blogSubStatus = getStatus(e.blogToSubConversion, T.blogConversion80, T.blogConversion100);
   html += card({
     accent: 'email',
@@ -535,44 +559,32 @@ function render(data) {
     valueClass: 'sm',
     target: 'Target: ≥' + T.blogConversion80 + '% / ≥' + T.blogConversion100 + '%',
     chipHtml: e.blogToSubConversion != null ? chip(blogSubStatus) : chip('manual', '✎ Update in sheet'),
-    progressHtml: e.blogToSubConversion != null
-      ? progressBar(e.blogToSubConversion, T.blogConversion80, T.blogConversion100, T.blogConversion80+'%', T.blogConversion100+'%')
-      : '',
+    progressHtml: e.blogToSubConversion != null ? progressBar(e.blogToSubConversion, T.blogConversion80, T.blogConversion100, T.blogConversion80+'%', T.blogConversion100+'%') : '',
   });
-
-  html += '</div></div>';
-
-  // ── Web Performance ────────────────────────────────────────────────
-  html += '<div class="section">';
-  html += '<div class="section-header"><div class="section-title">Web Performance</div><div class="section-source">GA4 · auto</div></div>';
-  html += '<div class="cards">';
 
   // Blog views YTD
   var t80blog = Math.round(T.blogViewsYTD * 0.8);
-  var blogStatus = getStatus(w.blogViewsYTD, t80blog, T.blogViewsYTD);
   html += card({
     accent: 'web',
     name: 'Blog views · YTD',
     value: fmt(w.blogViewsYTD),
-    target: 'Target: ' + fmt(T.blogViewsYTD) + ' · LinkedIn-led',
-    chipHtml: chip(blogStatus),
+    target: 'Target: ' + fmt(T.blogViewsYTD),
+    chipHtml: chip(getStatus(w.blogViewsYTD, t80blog, T.blogViewsYTD)),
     progressHtml: progressBar(w.blogViewsYTD, t80blog, T.blogViewsYTD, fmt(t80blog), fmt(T.blogViewsYTD)),
   });
 
   // LinkedIn referrals
   var t80li = Math.round(T.liReferrals * 0.8);
-  var liStatus = getStatus(w.liReferrals, t80li, T.liReferrals);
   html += card({
     accent: 'web',
     name: 'LinkedIn referrals · Q2',
     value: fmt(w.liReferrals),
     target: 'Target: ' + fmt(T.liReferrals) + ' sessions',
-    chipHtml: chip(liStatus),
+    chipHtml: chip(getStatus(w.liReferrals, t80li, T.liReferrals)),
     progressHtml: progressBar(w.liReferrals, t80li, T.liReferrals, fmt(t80li), fmt(T.liReferrals)),
   });
 
-  // Report downloads (from JSONBin resource clicks)
-  var dlStatus = getStatus(w.reportDownloads, T.reportDownloads80, T.reportDownloads100);
+  // Resource clicks
   var dlBreakdown = '';
   if (w.resourceClicks) {
     var rc = w.resourceClicks;
@@ -587,32 +599,20 @@ function render(data) {
     accent: 'web',
     name: 'Resource clicks · all time',
     value: fmt(w.reportDownloads),
-    target: 'Target: ' + T.reportDownloads80 + ' / ' + T.reportDownloads100 + ' Q2 downloads',
-    chipHtml: chip(dlStatus),
-    progressHtml: progressBar(w.reportDownloads, T.reportDownloads80, T.reportDownloads100) + dlBreakdown,
+    chipHtml: chip('manual', '↗ All time'),
+    progressHtml: dlBreakdown,
   });
-
-  html += '</div></div>';
-
-  // ── Content Output ────────────────────────────────────────────────
-  html += '<div class="section">';
-  html += '<div class="section-header"><div class="section-title">Content Output</div><div class="section-source">Manual · update in sheet</div></div>';
-  html += '<div class="cards">';
 
   // Content shipped
   var t80content = Math.round(T.contentShipped * 0.8);
-  var contentStatus = c.contentShipped != null
-    ? getStatus(c.contentShipped, t80content, T.contentShipped)
-    : 'manual';
+  var contentStatus = c.contentShipped != null ? getStatus(c.contentShipped, t80content, T.contentShipped) : 'manual';
   html += card({
     accent: 'content',
     name: 'Content shipped · Q2',
     value: fmt(c.contentShipped),
     target: 'Target: ' + T.contentShipped + ' pieces / quarter',
     chipHtml: c.contentShipped != null ? chip(contentStatus) : chip('manual', '✎ Update in sheet'),
-    progressHtml: c.contentShipped != null
-      ? progressBar(c.contentShipped, t80content, T.contentShipped, t80content, T.contentShipped)
-      : '',
+    progressHtml: c.contentShipped != null ? progressBar(c.contentShipped, t80content, T.contentShipped, t80content, T.contentShipped) : '',
   });
 
   // LinkedIn cadence
@@ -631,32 +631,6 @@ function render(data) {
   });
 
   html += '</div></div>';
-
-  // ── Milestone Commitments ─────────────────────────────────────────
-  html += '<div class="section">';
-  html += '<div class="section-header"><div class="section-title">Milestone Commitments <span class="kpi-badge" style="vertical-align:middle;margin-left:0.5rem;">Q2 Bonus KPI</span></div><div class="section-source">Status · update in sheet</div></div>';
-
-  var milestones = [
-    { label: 'Vendor Proof Delivered',       note: 'Q2: Toolkit Impact Brief (30 days post-launch)',   key: m.vendorImpactBriefs },
-    { label: 'Advisory Inquiry path live',   note: 'Q2 target: May 15 · form → Kyle → close',         key: m.advisoryInquiries  },
-    { label: 'Speaking page live',           note: 'Q2: Speaking page · Q3: Mainstage pitches',        key: m.speaking           },
-    { label: 'Podcast — Transformation Realness', note: 'Targets TBD with Purple Acorn',              key: m.podcast || 'tbd'   },
-  ];
-
-  var msLabels = {
-    'on-track': '✓ On track', 'in-progress': '→ In progress',
-    'behind': '↓ Behind', 'done': '✓ Done', 'tbd': 'TBD', 'not-started': 'Not started',
-  };
-
-  milestones.forEach(function(ms) {
-    var s = ms.key || 'tbd';
-    html += '<div class="milestone">' +
-      '<div><div class="milestone-name">' + ms.label + '</div><div class="milestone-note">' + ms.note + '</div></div>' +
-      chip(s === 'in-progress' ? 'in-progress' : s, msLabels[s] || s) +
-      '</div>';
-  });
-
-  html += '</div>';
 
   document.getElementById('main-content').innerHTML = html;
 }
