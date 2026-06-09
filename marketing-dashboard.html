@@ -252,7 +252,7 @@ var Q2_DAYS_LEFT   = Q2_TOTAL_DAYS - q2Elapsed;
 var Q1_BASELINE = 15645;
 var T = {
   netNewSubs:      1355,    // Q2 goal: 17,000 total
-  qoqGrowth:       8.7,    // (17,000 − 15,645) / 15,645
+  qoqGrowth:       4.3,    // (1,200 − 1,151) / 1,151 — organic core audience
   ctorBroadcast:   10,
   blogViewsYTD:    10500,
   liReferrals:     693,
@@ -417,14 +417,14 @@ function render(data) {
     progressHtml: progressBar(e.netNewQ2, T.netNewSubs, '+' + fmt(T.netNewSubs)),
   });
 
-  // QoQ growth
+  // QoQ growth — organic core audience
   var qoqStatus = getStatus(e.qoqGrowth, T.qoqGrowth);
   html += card({
     accent: 'email',
-    name: 'QoQ subscriber growth',
+    name: 'QoQ organic core growth',
     value: fmtPct(e.qoqGrowth, 1),
     valueClass: 'sm',
-    sublabel: 'Q1 baseline: 15,645 · Q2 goal: 17,000',
+    sublabel: 'Q1 organic baseline: 1,151 · Q2 goal: 1,200',
     target: 'Target: ~' + T.qoqGrowth + '%',
     chipHtml: chip(qoqStatus),
     progressHtml: progressBar(e.qoqGrowth, T.qoqGrowth, T.qoqGrowth + '%'),
