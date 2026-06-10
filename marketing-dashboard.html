@@ -252,7 +252,7 @@ var Q2_DAYS_LEFT   = Q2_TOTAL_DAYS - q2Elapsed;
 var Q1_BASELINE = 15645;
 var T = {
   netNewSubs:      1355,    // Q2 goal: 17,000 total
-  qoqGrowth:       4.3,    // (1,200 − 1,151) / 1,151 — organic core audience
+  qoqGrowth:       27.0,   // (1,200 − 945) / 945 — organic core audience
   ctorBroadcast:   10,
   liReferrals:     693,
   practitionerPct: 68,
@@ -423,7 +423,7 @@ function render(data) {
     name: 'QoQ organic core growth',
     value: fmtPct(e.qoqGrowth, 1),
     valueClass: 'sm',
-    sublabel: 'Q1 organic baseline: 1,151 · Q2 goal: 1,200',
+    sublabel: 'Q1 organic baseline: 945 · Q2 goal: 1,200',
     target: 'Target: ~' + T.qoqGrowth + '%',
     chipHtml: chip(qoqStatus),
     progressHtml: progressBar(e.qoqGrowth, T.qoqGrowth, T.qoqGrowth + '%'),
@@ -447,7 +447,7 @@ function render(data) {
     accent: 'email',
     name: 'Organic core audience',
     value: fmt(e.organicCount),
-    sublabel: 'Q1 baseline: 1,151 · Q2 target: 1,200',
+    sublabel: 'Q1 baseline: 945 · Q2 target: 1,200',
     target: 'Goal: ' + fmt(T.organicGrowth) + ' organic subscribers',
     chipHtml: e.organicCount != null ? chip(organicStatus) : chip('manual', '✎ Update in sheet'),
     progressHtml: e.organicCount != null ? progressBar(e.organicCount, T.organicGrowth, fmt(T.organicGrowth)) : '',
