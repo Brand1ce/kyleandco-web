@@ -78,6 +78,7 @@ body {
 .card.accent-web    { border-top-color: #2D5C94; }
 .card.accent-content{ border-top-color: #9D92AD; }
 .card.accent-milestone { border-top-color: #FDECCD; }
+.card.accent-podcast   { border-top-color: #B45309; }
 
 .card-name {
   font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
@@ -138,6 +139,22 @@ body {
 .pace-label {
   font-size: 0.6rem; color: #2D5C94; margin-top: 0.3rem; opacity: 0.8;
 }
+
+/* ── Podcast episode list ── */
+.ep-list { margin-top: 1rem; border-top: 1px solid rgba(39,55,82,0.08); padding-top: 0.5rem; }
+.ep-row {
+  display: grid;
+  grid-template-columns: 1fr 52px 140px 44px;
+  gap: 0.2rem 0.75rem;
+  align-items: center;
+  padding: 0.45rem 0;
+}
+.ep-row + .ep-row { border-top: 1px solid rgba(39,55,82,0.05); }
+.ep-title { font-size: 0.78rem; color: #273752; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ep-date  { font-size: 0.68rem; color: #9D92AD; white-space: nowrap; }
+.ep-bar-wrap { height: 4px; background: rgba(39,55,82,0.08); border-radius: 100px; }
+.ep-bar-fill { height: 100%; background: #B45309; border-radius: 100px; transition: width 0.6s ease; }
+.ep-count { font-size: 0.78rem; font-weight: 600; color: #273752; text-align: right; }
 /* Context strip */
 .context-strip {
   background: #fff; border-radius: 10px;
@@ -285,7 +302,19 @@ var DEMO = {
     vendorImpactBriefs: 'in-progress',
     advisoryInquiries:  'on-track',
     speaking:           'tbd',
-    podcast:            'tbd',
+  },
+  podcast: {
+    q2Episodes: 6,
+    q2Listens: 517,
+    avgPerEpisode: 86,
+    episodes: [
+      { title: 'Beyond the Algorithm: Joe Shaker on Creativity in Recruitment Marketing', published: '2026-04-29', total: 222 },
+      { title: 'The Indispensable Recruiter: Rocki Howard on Staying Human in an AI World', published: '2026-05-06', total: 121 },
+      { title: "By the Numbers: GEM’s Steve Bartel on the Real State of Recruiting", published: '2026-05-12', total: 67 },
+      { title: 'Bridging the Gap: Julia Levy on Supporting Graduates in a Post-Pandemic World', published: '2026-05-14', total: 56 },
+      { title: 'The Culture of Learning: Jason Desentz on Leading HR at Toshiba', published: '2026-05-21', total: 40 },
+      { title: 'The New ROI: Cathy Peterman (Wayfair) on Engineering Productivity in the AI Era', published: '2026-05-28', total: 11 },
+    ],
   },
   lastUpdated: null,
   isDemo: true,
@@ -301,6 +330,14 @@ function fmt(n, dec) {
 function fmtPct(n, dec) {
   if (n == null || isNaN(n)) return '—';
   return (typeof dec === 'number' ? (+n).toFixed(dec) : (+n).toFixed(1)) + '%';
+}
+
+function fmtDate(s) {
+  if (!s) return '';
+  try {
+    var d = new Date(s + 'T12:00:00');
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  } catch(e) { return s; }
 }
 
 function getStatus(val, target) {
@@ -364,6 +401,7 @@ function render(data) {
   var w = data.web     || {};
   var c = data.content || {};
   var m = data.milestones || {};
+  var p = data.podcast || null;
 
   // ── Summary bar ──────────────────────────────────────────────────
   var totalSubs = e.totalSubscribers;
@@ -465,7 +503,6 @@ function render(data) {
     { label: 'Vendor Proof Delivered',            note: 'Q2: Toolkit Impact Brief (30 days post-launch)',  key: m.vendorImpactBriefs },
     { label: 'Advisory Inquiry path live',        note: 'Q2: Path live by May 15 · form → Kyle → close',  key: m.advisoryInquiries  },
     { label: 'Speaking page live',                note: 'Q2: Speaking page · Q3: Mainstage pitches',       key: m.speaking           },
-    { label: 'Podcast — Transformation Realness', note: 'Targets TBD with Purple Acorn',                  key: m.podcast || 'tbd'   },
   ].forEach(function(ms) {
     var s = ms.key || 'tbd';
     html += '<div class="milestone">' +
@@ -534,6 +571,39 @@ function render(data) {
 
 
   html += '</div></div>';
+
+  // ══════════════════════════════════════════════════════════════════
+  // SECTION 3 — Podcast — Transformation Realness
+  // ══════════════════════════════════════════════════════════════════
+  if (p && p.q2Episodes) {
+    html += '<div class="section">';
+    html += '<div class="section-header"><div class="section-title">Podcast — Transformation Realness</div><div class="section-source">Megaphone · manual</div></div>';
+    html += '<div class="cards">';
+    html += '<div class="card accent-podcast" style="grid-column:1/-1;">';
+
+    html += '<div style="display:flex;gap:2.5rem;flex-wrap:wrap;">';
+    html += '<div><div class="card-value" style="font-size:2rem;">' + p.q2Episodes + '</div><div class="card-sublabel">episodes published</div></div>';
+    html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(p.q2Listens) + '</div><div class="card-sublabel">total listens · Q2</div></div>';
+    html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(p.avgPerEpisode) + '</div><div class="card-sublabel">avg listens / episode</div></div>';
+    html += '</div>';
+
+    if (p.episodes && p.episodes.length > 0) {
+      var maxListens = Math.max.apply(null, p.episodes.map(function(ep) { return ep.total; }));
+      html += '<div class="ep-list">';
+      p.episodes.forEach(function(ep) {
+        var barPct = maxListens > 0 ? Math.round((ep.total / maxListens) * 100) : 0;
+        html += '<div class="ep-row">' +
+          '<div class="ep-title" title="' + ep.title.replace(/"/g, '&quot;') + '">' + ep.title + '</div>' +
+          '<div class="ep-date">' + fmtDate(ep.published) + '</div>' +
+          '<div class="ep-bar-wrap"><div class="ep-bar-fill" style="width:' + barPct + '%"></div></div>' +
+          '<div class="ep-count">' + fmt(ep.total) + '</div>' +
+          '</div>';
+      });
+      html += '</div>';
+    }
+
+    html += '</div></div></div>';
+  }
 
   document.getElementById('main-content').innerHTML = html;
 }
