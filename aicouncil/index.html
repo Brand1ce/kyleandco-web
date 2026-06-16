@@ -38,7 +38,7 @@ window.onerror = function(msg, src, line, col, err) {
   document.getElementById('root').innerHTML = '<pre style="color:red;padding:20px;font-size:14px;">JS ERROR: ' + msg + '\nLine: ' + line + '\n' + (err && err.stack ? err.stack : '') + '</pre>';
 };
 </script>
-<script type="text/babel" data-presets="react" data-type="script">
+<script type="text/babel" data-presets="react">
 const { useState, useEffect } = React;
 
 // HCAIC — THE FINAL DIRECTION
