@@ -252,10 +252,24 @@ a{ color:inherit; }
   font-size:clamp(3.4rem,7vw,5.2rem); line-height:.9; color:var(--lavender); display:block;
 }
 .bignum figcaption{ margin-top:1rem; font-size:1.02rem; color:#cdd0e2; line-height:1.5; }
-.numbers__line{
+.numbers__callout{
+  margin:clamp(2.5rem,6vw,4rem) auto 0; max-width:720px; text-align:center;
+  padding:clamp(1.8rem,4vw,2.8rem) clamp(1.4rem,4vw,3rem);
+  border:1px solid var(--line-dark); border-top:3px solid var(--lavender);
+  border-radius:10px; background:rgba(255,255,255,.04);
+}
+.numbers__callout-eyebrow{
+  font-family:var(--sans); text-transform:uppercase; letter-spacing:.16em;
+  font-size:.72rem; font-weight:700; color:var(--lavender); margin:0 0 1.1rem;
+}
+.numbers__callout-quote{
   font-family:var(--serif-display); font-style:italic; font-weight:500;
-  font-size:clamp(1.5rem,3.2vw,2.2rem); color:#fff; text-align:center;
-  margin:clamp(2.5rem,6vw,4rem) auto 0; max-width:24ch;
+  font-size:clamp(1.5rem,3.2vw,2.2rem); color:#fff; line-height:1.18;
+  margin:0 auto; max-width:24ch;
+}
+.numbers__callout-note{
+  font-family:var(--sans); font-size:.92rem; color:#aeb2cb;
+  line-height:1.5; margin:1.1rem 0 0;
 }
 
 /* ---------- funnel ---------- */

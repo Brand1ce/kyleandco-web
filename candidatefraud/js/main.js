@@ -37,7 +37,7 @@
   /* ---- Scroll reveal ---- */
   var revealTargets = [
     '.section-head', '.two-col__body', '.two-col__aside',
-    '.finding-list li', '.bignum', '.numbers__line',
+    '.finding-list li', '.bignum', '.numbers__callout',
     '.lc', '.contents li', '.research__item', '.research__caveat',
     '.get__inner', '.webinar__inner', '.hero__stats div'
   ];
