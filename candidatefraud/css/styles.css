@@ -183,6 +183,37 @@ a{ color:inherit; }
   border-left:3px solid var(--gold); padding-left:1.2rem; margin-top:2rem;
 }
 
+/* inline highlight for the sharpest phrases */
+.u-mark{
+  background:linear-gradient(transparent 58%, rgba(157,146,173,.42) 0);
+  padding:0 .05em; font-weight:500;
+}
+
+/* evidence exhibits — the documented incidents, pulled out of prose */
+.evidence-lead{ margin-top:1.8rem; font-weight:700; color:var(--navy);
+  font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; }
+.evidence{
+  list-style:none; margin:.9rem 0 0; padding:0;
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden;
+}
+.evidence > li{
+  background:var(--paper); padding:1.35rem 1.25rem 1.45rem;
+  display:flex; flex-direction:column; gap:.55rem;
+  border-top:3px solid var(--gold);
+}
+.evidence__src{
+  font-family:var(--sans); font-size:.68rem; letter-spacing:.13em;
+  text-transform:uppercase; font-weight:700; color:var(--gold);
+}
+.evidence__hook{
+  margin:0; font-family:var(--serif-display); font-weight:600;
+  font-size:clamp(1.15rem,1.7vw,1.32rem); line-height:1.16; color:var(--navy);
+}
+.evidence__hook em{ font-style:italic; color:var(--gold); }
+.evidence__detail{ margin:0; font-size:.9rem; line-height:1.5; color:var(--ink); }
+@media (max-width:760px){ .evidence{ grid-template-columns:1fr; } }
+
 /* ---------- findings ---------- */
 .findings{ background:var(--cream); }
 .finding-list{ list-style:none; margin:0; padding:0; counter-reset:f;
