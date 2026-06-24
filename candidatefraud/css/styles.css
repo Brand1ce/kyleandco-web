@@ -290,7 +290,15 @@ a{ color:inherit; }
 .research__caveat strong{ color:var(--navy); }
 
 /* ---------- get / download band ---------- */
-.get{ background:var(--navy-deep); color:var(--cream); }
+.get{ background:var(--navy-deep); color:var(--cream); position:relative; overflow:hidden; }
+.get::before{
+  content:""; position:absolute; z-index:0; pointer-events:none;
+  top:50%; right:-5%; transform:translateY(-50%);
+  width:min(44vw,430px); aspect-ratio:760/877;
+  background:url(../assets/fingerprint-light.png) center/contain no-repeat;
+  opacity:.12;
+}
+.get .wrap{ position:relative; z-index:1; }
 .get__inner{ display:grid; grid-template-columns:1.3fr 1fr; gap:clamp(2rem,5vw,4rem); align-items:center; }
 .get__title{ color:#fff; }
 .get__sub{ margin:1rem 0 0; color:#cdd0e2; font-size:1.12em; max-width:42ch; }
