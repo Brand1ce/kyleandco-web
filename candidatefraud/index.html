@@ -78,7 +78,7 @@
     <p class="hero__sub">How an HR problem became a security problem&mdash;and what the market is building to meet it.</p>
     <div class="hero__cta">
       <a href="downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf" class="btn btn--gold" download data-track="hero-download">Download the report <span class="btn__meta">PDF &middot; free</span></a>
-      <a href="#webinar" class="btn btn--ghost">Join the July 28 webinar</a>
+      <a href="#reg" class="btn btn--ghost" data-register data-track="hero-webinar">Join the July 28 webinar</a>
     </div>
     <dl class="hero__stats" id="stats">
       <div><dt data-count="4" data-prefix="1 in ">1 in 4</dt><dd>candidate profiles could be fake by 2028 <span>(Gartner)</span></dd></div>
@@ -284,8 +284,7 @@
       <p class="eyebrow">Live webinar</p>
       <h2 class="h-display">Who owns the seam? A working session on candidate-fraud response</h2>
       <p>Join the Kyle &amp; Co. research team to walk through the findings, the funnel, and the ownership models&mdash;and leave with the questions to ask before your next incident.</p>
-      <!-- TODO(Claude Code): wire this href to the live registration URL (e.g. Zoom/HubSpot/Klaviyo landing page) -->
-      <a href="#" class="btn btn--dark" data-track="webinar-register">Register free</a>
+      <a href="#reg" class="btn btn--dark" data-register data-track="webinar-register">Register free</a>
     </div>
   </div>
 </section>
@@ -313,6 +312,51 @@
     <span>The State of Candidate Fraud Detection &amp; Prevention</span>
   </div>
 </footer>
+
+<!-- ============ REGISTRATION MODAL ============ -->
+<div class="reg" id="reg" aria-hidden="true">
+  <div class="reg__overlay" data-reg-close></div>
+  <div class="reg__dialog" role="dialog" aria-modal="true" aria-labelledby="regTitle">
+    <button class="reg__x" type="button" data-reg-close aria-label="Close registration">&times;</button>
+
+    <!-- FORM STATE -->
+    <div id="regFormState">
+      <p class="eyebrow">Live webinar &middot; July 28, 2026</p>
+      <h2 class="h-display reg__title" id="regTitle">Save your seat</h2>
+      <p class="reg__when" id="regWhen">Tuesday, July 28, 2026 &middot; 45 min working session + live Q&amp;A</p>
+      <form class="reg__form" id="regForm"
+            action="https://assets.mailerlite.com/jsonp/1555935/forms/191183634321900648/subscribe"
+            method="post" target="reg_sink">
+        <div class="reg__row">
+          <label>First name<input type="text" name="fields[name]" required autocomplete="given-name"></label>
+          <label>Last name<input type="text" name="fields[last_name]" autocomplete="family-name"></label>
+        </div>
+        <label>Work email<input type="email" name="fields[email]" required autocomplete="email"></label>
+        <label>Company<input type="text" name="fields[company]" autocomplete="organization"></label>
+        <input type="hidden" name="ml-submit" value="1">
+        <input type="hidden" name="anticsrf" value="true">
+        <button type="submit" class="btn btn--gold btn--lg reg__submit">Register free</button>
+        <p class="reg__fine">No charge. We&rsquo;ll email your join link plus reminders before the session. Unsubscribe anytime.</p>
+      </form>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div id="regSuccessState" hidden>
+      <div class="reg__check" aria-hidden="true">&#10003;</div>
+      <h2 class="h-display reg__title">You&rsquo;re registered.</h2>
+      <p class="reg__when" id="regWhenSuccess">Tuesday, July 28, 2026</p>
+      <p class="reg__lead">Most no-shows happen for one reason: the session never made it onto a calendar. Add it now&mdash;one click:</p>
+      <div class="reg__cal">
+        <a class="reg__cal-btn" id="calGoogle" target="_blank" rel="noopener">Google Calendar</a>
+        <a class="reg__cal-btn" id="calOutlook" target="_blank" rel="noopener">Outlook</a>
+        <a class="reg__cal-btn" id="calIcs" download="candidate-fraud-webinar.ics">Apple / Download .ics</a>
+      </div>
+      <p class="reg__fine">A confirmation with your join link is on its way to your inbox.</p>
+    </div>
+
+    <iframe name="reg_sink" class="reg__sink" tabindex="-1" aria-hidden="true" title="registration"></iframe>
+  </div>
+</div>
 
 <script src="js/main.js" defer></script>
 </body>

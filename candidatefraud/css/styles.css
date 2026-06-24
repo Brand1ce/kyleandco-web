@@ -355,3 +355,51 @@ a{ color:inherit; }
   .hero__stats{ grid-template-columns:1fr 1fr; }
   .webinar__inner{ grid-template-columns:1fr; }
 }
+
+/* ============ REGISTRATION MODAL ============ */
+.reg{ position:fixed; inset:0; z-index:200; display:none;
+  align-items:flex-start; justify-content:center; padding:clamp(1rem,6vh,4.5rem) 1rem; overflow-y:auto; }
+.reg.is-open{ display:flex; }
+.reg__overlay{ position:fixed; inset:0; background:rgba(23,35,57,.62);
+  backdrop-filter:blur(3px); animation:regFade var(--t-fast); }
+.reg__dialog{ position:relative; z-index:1; width:100%; max-width:480px;
+  background:var(--paper); border:1px solid var(--line); border-radius:10px;
+  box-shadow:0 30px 80px -20px rgba(23,35,57,.5);
+  padding:clamp(1.6rem,4vw,2.6rem); animation:regRise .3s cubic-bezier(.2,.7,.2,1); }
+@keyframes regFade{ from{ opacity:0; } to{ opacity:1; } }
+@keyframes regRise{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
+.reg__x{ position:absolute; top:.7rem; right:.85rem; width:36px; height:36px;
+  border:0; background:transparent; font-size:1.8rem; line-height:1; color:var(--ink-soft);
+  cursor:pointer; border-radius:4px; }
+.reg__x:hover{ background:var(--cream-2); color:var(--navy); }
+.reg__title{ margin:.2rem 0 .35rem; font-size:clamp(1.7rem,4vw,2.2rem); }
+.reg__when{ font-family:var(--sans); font-weight:600; font-size:.86rem;
+  color:var(--gold-deep); margin:0 0 1.3rem; letter-spacing:.01em; }
+.reg__form label{ display:block; font-family:var(--sans); font-weight:600;
+  font-size:.74rem; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft);
+  margin-bottom:.85rem; }
+.reg__form input{ display:block; width:100%; margin-top:.32rem;
+  font-family:var(--sans); font-size:1rem; color:var(--ink);
+  padding:.7em .85em; background:#fff; border:1px solid var(--line); border-radius:4px;
+  transition:border-color var(--t-fast), box-shadow var(--t-fast); text-transform:none; letter-spacing:normal; }
+.reg__form input:focus{ outline:0; border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(157,146,173,.25); }
+.reg__row{ display:grid; grid-template-columns:1fr 1fr; gap:.8rem; }
+.reg__submit{ width:100%; justify-content:center; margin-top:.4rem; }
+.reg__fine{ font-family:var(--sans); font-size:.76rem; color:var(--ink-soft);
+  line-height:1.5; margin:.9rem 0 0; }
+.reg__sink{ position:absolute; width:0; height:0; border:0; opacity:0; pointer-events:none; }
+
+/* success / calendar state */
+.reg__check{ width:54px; height:54px; border-radius:50%; background:var(--navy); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:1.7rem; margin-bottom:1rem; }
+.reg__lead{ font-size:1rem; line-height:1.55; color:var(--ink); margin:0 0 1.3rem; }
+.reg__cal{ display:grid; gap:.6rem; }
+.reg__cal-btn{ display:flex; align-items:center; justify-content:center;
+  font-family:var(--sans); font-weight:600; font-size:.95rem; text-decoration:none;
+  padding:.85em 1.2em; border-radius:4px; cursor:pointer;
+  background:var(--navy); color:#fff; border:1px solid var(--navy);
+  transition:transform var(--t-fast), background var(--t-fast); }
+.reg__cal-btn:hover{ transform:translateY(-2px); background:var(--navy-deep); }
+.reg__cal-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+@media (max-width:430px){ .reg__row{ grid-template-columns:1fr; } }
