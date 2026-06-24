@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The State of Candidate Fraud Detection &amp; Prevention — Kyle &amp; Co.</title>
+<meta name="description" content="New research from Kyle &amp; Co. on candidate fraud: how the hiring funnel became an attack surface, where defenses are thinnest, and who actually owns the problem. Download the free report.">
+<link rel="canonical" href="https://kyleandco.com/candidatefraud/">
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kyleandco.com/candidatefraud/">
+<meta property="og:title" content="The State of Candidate Fraud Detection &amp; Prevention">
+<meta property="og:description" content="How an HR problem became a security problem—and what the market is building to meet it. A research report by Kyle &amp; Co.">
+<meta property="og:image" content="https://kyleandco.com/candidatefraud/assets/og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The State of Candidate Fraud Detection &amp; Prevention">
+<meta name="twitter:description" content="How an HR problem became a security problem—and what the market is building to meet it. A research report by Kyle &amp; Co.">
+<meta name="twitter:image" content="https://kyleandco.com/candidatefraud/assets/og-image.svg">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Brand fonts: Fraunces (display) + Roboto (body/labels) -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="#top" aria-label="Kyle and Co home"><img class="brand__img" src="assets/logo-navy.png" alt="Kyle &amp; Co."></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#shift">The shift</a>
+      <a href="#findings">Findings</a>
+      <a href="#funnel">The funnel</a>
+      <a href="#inside">Inside</a>
+      <a href="#research">Method</a>
+    </nav>
+    <a href="#get" class="btn btn--small">Get the report</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <div class="nav__progress" id="navProgress"></div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <svg class="hero__faces" viewBox="-132 -120 264 252" aria-hidden="true">
+<path d="M-120,-90 L120,-90" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<path d="M-120,-76 L120,-76" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<path d="M-120,-62 L120,-62" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<path d="M-120,-48 L120,-48" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<path d="M-120,-34 L120,-34" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<path d="M-120,-20 L120,-20" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<path d="M-120,-6 L120,-6" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<path d="M-120,8 L120,8" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<path d="M-120,22 L120,22" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<path d="M-120,36 L120,36" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<path d="M-120,50 L120,50" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<path d="M-120,64 L120,64" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<path d="M-120,78 L120,78" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<path d="M-120,92 L120,92" stroke="#9AB8DC" stroke-width="0.8" stroke-dasharray="1.5 7" opacity="0.30"/>
+<g transform="translate(34,10)"><path d="M -34,-96 C 4,-104 40,-80 44,-44 C 45,-33 41,-28 47,-22 C 56,-14 56,-8 45,-5 C 41,2 45,9 34,13 C 40,22 30,30 16,30 C 16,40 14,52 18,64 C 12,84 -8,98 -34,100" fill="none" stroke="#9D92AD" stroke-width="2.4" stroke-dasharray="4 5" stroke-linecap="round" opacity="0.95"/><circle cx="22" cy="-34" r="3" fill="#9D92AD"/></g>
+<path d="M -34,-96 C 4,-104 40,-80 44,-44 C 45,-33 41,-28 47,-22 C 56,-14 56,-8 45,-5 C 41,2 45,9 34,13 C 40,22 30,30 16,30 C 16,40 14,52 18,64 C 12,84 -8,98 -34,100" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.92"/>
+<circle cx="-2" cy="-40" r="3" fill="#FFFFFF" opacity="0.92"/>
+<path d="M-12,-12 C-2,-8 -2,-2 -10,2" fill="none" stroke="#FFFFFF" stroke-width="1.6" opacity="0.6"/>
+<g stroke="#9AB8DC" stroke-width="2" fill="none" opacity="0.8"><path d="M-118,-104 h-0 M-118,-104 v18 M-118,-104 h18"/><path d="M118,108 v-18 M118,108 h-18"/></g>
+</svg>
+  <div class="wrap hero__inner">
+    <p class="eyebrow eyebrow--light">Independent market research &middot; June 2026</p>
+    <h1 class="hero__title">The State of<br>Candidate Fraud<br>Detection <em><span style="font-style:normal">&amp;</span> Prevention</em></h1>
+    <p class="hero__sub">How an HR problem became a security problem&mdash;and what the market is building to meet it.</p>
+    <div class="hero__cta">
+      <a href="downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf" class="btn btn--gold" download data-track="hero-download">Download the report <span class="btn__meta">PDF &middot; free</span></a>
+      <a href="#webinar" class="btn btn--ghost">Join the July 28 webinar</a>
+    </div>
+    <dl class="hero__stats" id="stats">
+      <div><dt data-count="4" data-prefix="1 in ">1 in 4</dt><dd>candidate profiles could be fake by 2028 <span>(Gartner)</span></dd></div>
+      <div><dt data-count="60" data-suffix="+">60+</dt><dd>vendors now claim a fraud or hiring-integrity capability</dd></div>
+      <div><dt data-count="9">9</dt><dd>stages of the hiring funnel, each with its own attack surface</dd></div>
+      <div><dt data-count="0">0</dt><dd>vendor-neutral response playbooks exist today</dd></div>
+    </dl>
+  </div>
+  <div class="hero__rule" aria-hidden="true"></div>
+</section>
+
+<!-- ============ THE SHIFT ============ -->
+<section class="section shift" id="shift">
+  <div class="wrap two-col">
+    <div class="two-col__aside">
+      <p class="eyebrow">The wake-up call</p>
+      <h2 class="h-display">The hiring funnel is now an attack surface.</h2>
+    </div>
+    <div class="two-col__body">
+      <p class="lead">For years, candidate fraud meant an inflated r&eacute;sum&eacute; or an unverifiable reference&mdash;a quality-control problem. That era is over.</p>
+      <p>AI now generates convincing r&eacute;sum&eacute;s, coaches candidates live through interviews, and assembles synthetic professional identities. Remote hiring stripped away the in-person signals teams once trusted. The result is a new threat class: identity manipulation, deepfake interviews, coordinated reference networks, and workforce-infiltration schemes aimed at systems, data, and IP.</p>
+      <p>The evidence is no longer anecdotal. In 2024, KnowBe4&mdash;a security-awareness company&mdash;hired a North Korean operative who cleared every hiring control before endpoint software caught him on day one. In 2025, fraud vendor Pindrop caught a candidate running a real-time deepfake face overlay mid-interview. Security firm Nisos traced one suspected operative to a 40-device laptop farm running multiple fake identities across U.S. companies at once.</p>
+      <p class="kicker-quote">Fraud in hiring is not new. The threat has operated for years. The defensive market is months old. That asymmetry is the condition this report explores.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINDINGS ============ -->
+<section class="section findings" id="findings">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The deeper findings</p>
+      <h2 class="h-display">Six things that change the conversation</h2>
+      <p class="section-head__sub">Organizing the obvious is the easy part. These are the findings that complicate the conventional reading of the market&mdash;the ones vendor pitches tend to obscure.</p>
+    </div>
+
+    <ol class="finding-list">
+      <li>
+        <span class="finding-list__n">01</span>
+        <div>
+          <h3>Recruiting metrics can&rsquo;t tell you if a fraud program is working</h3>
+          <p>A team seriously fighting fraud and a team simply getting worse produce the same dashboard: time-to-fill up, cost-per-hire up, conversion down. Until scorecards measure hiring integrity, the incentive structure quietly punishes the right behavior.</p>
+        </div>
+      </li>
+      <li>
+        <span class="finding-list__n">02</span>
+        <div>
+          <h3>The embedded paradox</h3>
+          <p>Fraud detection baked into your ATS works best for the organizations that least need it. Signals require a human to adjudicate them&mdash;and the small teams most likely to buy the embedded feature are the least equipped to act on a flag.</p>
+        </div>
+      </li>
+      <li>
+        <span class="finding-list__n">03</span>
+        <div>
+          <h3>Rival vendors quietly agree on the design</h3>
+          <p>Four competitors on entirely different architectures&mdash;Ashby, Socure, CodeSignal, Findem&mdash;independently landed on the same three commitments: surface signals not verdicts, explain every signal, and never auto-reject. Convergence this clean is a structural finding.</p>
+        </div>
+      </li>
+      <li>
+        <span class="finding-list__n">04</span>
+        <div>
+          <h3>The best signal is the one teams stopped using</h3>
+          <p>Forget biometric liveness for a moment. The most reliable, least gameable signal in the market is the IP address and device fingerprint of a candidate&rsquo;s references. Five &ldquo;references&rdquo; on one device isn&rsquo;t a probability&mdash;it&rsquo;s a signature.</p>
+        </div>
+      </li>
+      <li>
+        <span class="finding-list__n">05</span>
+        <div>
+          <h3>The fraud vendors are themselves being attacked</h3>
+          <p>Socure reports a quarter of its own applicants are fake. Pindrop caught a deepfake candidate in its own pipeline. When a vendor describes a fraud pattern from its own funnel, that&rsquo;s primary data&mdash;not marketing.</p>
+        </div>
+      </li>
+      <li>
+        <span class="finding-list__n">06</span>
+        <div>
+          <h3>The category crystallized in about 18 months</h3>
+          <p>At least fifteen of sixty-plus vendors launched or rebuilt their hiring-fraud product between mid-2025 and early 2026. The strongest are doing serious work; the weakest ride launch energy with thin substance. Telling them apart takes a lens.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ THREE NUMBERS ============ -->
+<section class="section numbers" id="numbers">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--light">What the research keeps converging on</p>
+    <div class="numbers__grid">
+      <figure class="bignum">
+        <span class="bignum__n">50%</span>
+        <figcaption>Roughly the rate at which humans correctly spot AI-generated content and real-time deepfakes. A recruiter judging authenticity by sight is, statistically, flipping a coin.</figcaption>
+      </figure>
+      <figure class="bignum">
+        <span class="bignum__n">4</span>
+        <figcaption>Video interviews a North Korean operative passed at KnowBe4&mdash;a company whose entire business is teaching people to spot deception. The threat has outpaced unaided human observation.</figcaption>
+      </figure>
+      <figure class="bignum">
+        <span class="bignum__n">0</span>
+        <figcaption>Vendor-neutral, broadly adopted candidate-fraud response playbooks in existence. The market has produced detection without producing response.</figcaption>
+      </figure>
+    </div>
+    <p class="numbers__line">Recruiters carry the floor. They cannot carry the ceiling.</p>
+  </div>
+</section>
+
+<!-- ============ THE FUNNEL ============ -->
+<section class="section funnel" id="funnel">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The hiring funnel under threat</p>
+      <h2 class="h-display">Defenses cluster where fraud is easy to catch&mdash;and thin out where it does the most damage</h2>
+    </div>
+    <ol class="lifecycle" aria-label="Nine stages of the hiring lifecycle">
+      <li class="lc lc--top"><span class="lc__n">1</span><span class="lc__name">Application Intake</span><span class="lc__risk">Automated &amp; synthetic applications</span></li>
+      <li class="lc lc--top"><span class="lc__n">2</span><span class="lc__name">Resume Screening</span><span class="lc__risk">AI-polished, fabricated histories</span></li>
+      <li class="lc lc--mid"><span class="lc__n">3</span><span class="lc__name">Identity Verification</span><span class="lc__risk">Stolen &amp; synthetic identities</span></li>
+      <li class="lc lc--mid"><span class="lc__n">4</span><span class="lc__name">Assessments</span><span class="lc__risk">Proxy test-takers, AI assistance</span><span class="lc__tag lc__tag--est">established</span></li>
+      <li class="lc lc--mid"><span class="lc__n">5</span><span class="lc__name">Interviews</span><span class="lc__risk">Deepfake overlays, proxies</span></li>
+      <li class="lc lc--mid"><span class="lc__n">6</span><span class="lc__name">References</span><span class="lc__risk">Coached &amp; coordinated networks</span></li>
+      <li class="lc lc--mid"><span class="lc__n">7</span><span class="lc__name">Background Checks</span><span class="lc__risk">Records valid, person may not be</span><span class="lc__tag lc__tag--est">established</span></li>
+      <li class="lc lc--post"><span class="lc__n">8</span><span class="lc__name">Onboarding</span><span class="lc__risk">The handoff</span></li>
+      <li class="lc lc--post"><span class="lc__n">9</span><span class="lc__name">Post-Hire</span><span class="lc__risk">Credential sharing, identity handoffs</span><span class="lc__tag lc__tag--thin">thinnest market</span></li>
+    </ol>
+    <p class="funnel__note">Top-of-funnel signals are cheap to gather and low-friction. Post-hire monitoring is operationally hard, organizationally ambiguous, and nobody&rsquo;s obvious job&mdash;which is exactly where the most damaging fraud succeeds.</p>
+  </div>
+</section>
+
+<!-- ============ INSIDE THE REPORT ============ -->
+<section class="section inside" id="inside">
+  <div class="wrap two-col two-col--reverse">
+    <div class="two-col__aside">
+      <p class="eyebrow">Inside the report</p>
+      <h2 class="h-display">A field guide, not a vendor ranking.</h2>
+      <p class="inside__who">Written for Talent Acquisition leaders, Security leaders, and HR executives responsible for protecting hiring integrity.</p>
+    </div>
+    <div class="two-col__body">
+      <ol class="contents">
+        <li><span class="contents__n">S1</span><div><h4>The State of Candidate Fraud</h4><p>How a hiring-quality issue became an organizational risk.</p></div></li>
+        <li><span class="contents__n">S2</span><div><h4>The Hiring Funnel Under Threat</h4><p>Where fraud appears across nine stages&mdash;and how teams respond.</p></div></li>
+        <li><span class="contents__n">S3</span><div><h4>What Real Incidents Reveal</h4><p>Documented cases: KnowBe4, Pindrop, and reference manipulation.</p></div></li>
+        <li><span class="contents__n">S4</span><div><h4>Governance &amp; Accountability</h4><p>The ownership gap&mdash;and four models emerging to close it.</p></div></li>
+        <li><span class="contents__n">S5</span><div><h4>The Market Landscape</h4><p>Three vendor buckets, coverage by stage, and the gaps between.</p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESEARCH / METHOD ============ -->
+<section class="section research" id="research">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How we did the research</p>
+      <h2 class="h-display">Built from primary sources, not press releases</h2>
+    </div>
+    <div class="research__grid">
+      <div class="research__item"><span class="research__n">60+</span><p>vendor solutions mapped across the hiring lifecycle</p></div>
+      <div class="research__item"><span class="research__n">Direct</span><p>interviews with practitioners and product leads across the market</p></div>
+      <div class="research__item"><span class="research__n">Documented</span><p>incidents drawn from public disclosures and security research</p></div>
+    </div>
+    <p class="research__caveat"><strong>A note on vendor claims.</strong> Most accuracy figures in this market are self-reported, against methodologies vendors designed, on populations they chose. Throughout, the report flags where claims are independently validated&mdash;and where they are not.</p>
+  </div>
+</section>
+
+<!-- ============ DOWNLOAD BAND ============ -->
+<section class="section get" id="get">
+  <div class="wrap get__inner">
+    <div class="get__text">
+      <p class="eyebrow eyebrow--light">The report, free</p>
+      <h2 class="h-display get__title">Read the full landscape.</h2>
+      <p class="get__sub">No form, no gate. Download the complete research report and share it with your TA and Security teams.</p>
+    </div>
+    <div class="get__action">
+      <a href="downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf" class="btn btn--gold btn--lg" download data-track="footer-download">Download the report <span class="btn__meta">PDF &middot; free</span></a>
+      <p class="get__meta">The State of Candidate Fraud Detection &amp; Prevention &middot; Kyle &amp; Co. &middot; June 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WEBINAR ============ -->
+<section class="section webinar" id="webinar">
+  <div class="wrap webinar__inner">
+    <div class="webinar__date" aria-hidden="true">
+      <span class="webinar__mon">JUL</span><span class="webinar__day">28</span><span class="webinar__yr">2026</span>
+    </div>
+    <div class="webinar__text">
+      <p class="eyebrow">Live webinar</p>
+      <h2 class="h-display">Who owns the seam? A working session on candidate-fraud response</h2>
+      <p>Join the Kyle &amp; Co. research team to walk through the findings, the funnel, and the ownership models&mdash;and leave with the questions to ask before your next incident.</p>
+      <!-- TODO(Claude Code): wire this href to the live registration URL (e.g. Zoom/HubSpot/Klaviyo landing page) -->
+      <a href="#" class="btn btn--dark" data-track="webinar-register">Register free</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__brand">
+      <img class="brand--footer-img" src="assets/logo-white.png" alt="Kyle &amp; Co.">
+      <p>Independent research on the systems shaping how organizations hire and stay secure.</p>
+    </div>
+    <nav class="footer__nav" aria-label="Footer">
+      <a href="#shift">The shift</a>
+      <a href="#findings">Findings</a>
+      <a href="#funnel">The funnel</a>
+      <a href="#inside">Inside the report</a>
+      <a href="#webinar">Webinar</a>
+      <a href="downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf" download>Download (PDF)</a>
+    </nav>
+  </div>
+  <div class="wrap footer__base">
+    <span>&copy; 2026 Kyle &amp; Co. All rights reserved.</span>
+    <span>The State of Candidate Fraud Detection &amp; Prevention</span>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
