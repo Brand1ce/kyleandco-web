@@ -134,7 +134,7 @@ a{ color:inherit; }
 .hero__grid{ position:absolute; inset:0; opacity:.07;
   background-image:radial-gradient(#fff 1px, transparent 1.4px);
   background-size:26px 26px; }
-.hero__faces{ position:absolute; right:-8%; top:6%; width:min(40vw,480px); opacity:.9; z-index:1; pointer-events:none; }
+.hero__faces{ position:absolute; right:4%; top:6%; width:min(50vw,600px); opacity:.9; z-index:1; pointer-events:none; }
 .brand__img{ height:30px; width:auto; display:block; }
 .brand--footer-img{ height:34px; width:auto; display:block; margin-bottom:.6rem; }
 .hero__inner{ position:relative; z-index:2; padding-bottom:clamp(2.5rem,6vw,4.5rem); }
