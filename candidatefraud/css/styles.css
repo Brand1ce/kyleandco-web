@@ -352,6 +352,7 @@ a{ color:inherit; }
   .nav__links a{ padding:.85rem 0; border-bottom:1px solid var(--line); font-size:1rem; }
   .nav__links a::after{ display:none; }
   .nav .btn--small{ display:none; }
+  .nav .btn--gold.btn--small{ display:inline-flex; }  /* keep the webinar CTA on mobile */
   .nav__toggle{ display:flex; }
   .lc{ grid-template-columns:40px 1fr; grid-auto-rows:auto; gap:.3rem 1rem; padding:1rem; }
   .lc__risk{ grid-column:2; }
