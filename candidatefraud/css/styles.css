@@ -422,6 +422,11 @@ a{ color:inherit; }
 .reg__fine{ font-family:var(--sans); font-size:.76rem; color:var(--ink-soft);
   line-height:1.5; margin:.9rem 0 0; }
 .reg__sink{ position:absolute; width:0; height:0; border:0; opacity:0; pointer-events:none; }
+.reg__optout{ display:block; width:100%; margin:.9rem 0 0; padding:.4rem;
+  background:none; border:0; cursor:pointer;
+  font-family:var(--sans); font-size:.82rem; color:var(--ink-soft);
+  text-decoration:underline; text-underline-offset:2px; }
+.reg__optout:hover{ color:var(--navy); }
 
 /* success / calendar state */
 .reg__check{ width:54px; height:54px; border-radius:50%; background:var(--navy); color:#fff;

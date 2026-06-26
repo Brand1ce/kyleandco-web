@@ -211,6 +211,10 @@
         .then(function () { gateDeliver(); })
         .catch(function () { gateDeliver(); });
     });
+
+    // Opt out: deliver the report without subscribing.
+    var gSkip = document.getElementById('gateSkip');
+    if (gSkip) gSkip.addEventListener('click', function () { gateDeliver(); });
   }
 
   document.querySelectorAll('[data-track]').forEach(function (el) {
