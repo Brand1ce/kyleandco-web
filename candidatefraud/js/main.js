@@ -127,18 +127,16 @@
   /* ============================================================
      Webinar registration modal + Add-to-Calendar
      ------------------------------------------------------------
-     ⚠️  SET THESE TWO THINGS BEFORE LAUNCH (everything else flows
-     from this one block):
-       1. start / end  — exact webinar time, in UTC.
-       2. joinUrl      — the shared join link (Zoom / Meet / Teams).
-     Times use UTC ('Z') so calendar files need no timezone tables.
-     Placeholder below = Tue Jul 28 2026, 1:00 PM ET (= 17:00 UTC).
+     Single source of truth for the event. Times are UTC ('Z') so
+     calendar files need no timezone tables. If the time changes,
+     update start/end/whenLabel here AND regenerate the hosted .ics
+     (candidatefraud/downloads/candidate-fraud-webinar.ics).
      ============================================================ */
   var WEBINAR = {
     title: 'Who owns the seam? A working session on candidate-fraud response',
-    start: '20260728T170000Z',           // ⚠️ CONFIRM real start (UTC). 17:00Z = 1:00 PM ET (EDT).
+    start: '20260728T170000Z',           // Tue Jul 28 2026, 1:00 PM ET (EDT = 17:00 UTC)
     end:   '20260728T180000Z',           // 60 min (45 min live + 15 min Q&A)
-    whenLabel: 'Tuesday, July 28, 2026 · 1:00 PM ET',  // ⚠️ keep in sync with start
+    whenLabel: 'Tuesday, July 28, 2026 · 1:00 PM ET',
     joinUrl: 'https://kyleandco.com/live',
     location: 'Online — link in your confirmation email',
     description: 'Kyle & Co. live working session on candidate-fraud response: the findings, the hiring funnel, and the ownership models — plus the questions to ask before your next incident. Join link: '
