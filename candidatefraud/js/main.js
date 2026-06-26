@@ -143,7 +143,7 @@
      People already in the MailerLite database download instantly; unknown
      visitors are asked for their details first, then added. Fails OPEN: any
      backend error still delivers the report, so nobody is ever blocked. */
-  var GATE_ENABLED = false;   // flip true after MAILERLITE_TOKEN is set in api/gate.php AND tested
+  var GATE_ENABLED = true;    // gate live. NOTE: real member-vs-new check needs MAILERLITE_TOKEN in api/gate.php
   var GATE_ENDPOINT = 'api/gate.php';
   var REPORT_PDF = 'downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf';
 
