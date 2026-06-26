@@ -251,6 +251,7 @@ function fetchResourceClicks() {
         ebook:    rec.ebook    || 0,
         framework:rec.framework|| 0,
         workbook: rec.workbook || 0,
+        candidatefraud: rec.candidatefraud || 0,
       };
     })
     .catch(function() { return null; });
@@ -567,6 +568,16 @@ function render(data) {
     value: fmt(w.reportDownloads),
     chipHtml: chip('manual', '↗ All time'),
     progressHtml: dlBreakdown,
+  });
+
+  // Candidate Fraud report — launch KPI (own counter, /candidatefraud)
+  var cfDownloads = (w.resourceClicks && w.resourceClicks.candidatefraud) || 0;
+  html += card({
+    accent: 'web',
+    name: 'Candidate Fraud report · downloads',
+    value: fmt(cfDownloads),
+    chipHtml: chip('manual', '↗ All time'),
+    progressHtml: '',
   });
 
 

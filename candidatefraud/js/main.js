@@ -116,11 +116,36 @@
   /* ---- Lightweight download/CTA tracking hook ----
      Replace the console.log with your analytics call
      (e.g. window.dataLayer.push or HubSpot/Klaviyo events). */
+  // Shared KPI counter (same JSONBin the marketing dashboard reads).
+  var CLICKS_URL = 'https://api.jsonbin.io/v3/b/69f340c4aaba88219756240d';
+  var CLICKS_KEY = '$2a$10$prZqMqXbtmzSXZyh1nHLcOt1RcJbDCcAgppQ/6J2Brax5qLkY8Ggm';
+  function bumpCounter(key) {
+    fetch(CLICKS_URL + '/latest', { headers: { 'X-ACCESS-KEY': CLICKS_KEY } })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var counts = data.record || {};
+        counts[key] = (counts[key] || 0) + 1;
+        return fetch(CLICKS_URL, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', 'X-ACCESS-KEY': CLICKS_KEY },
+          body: JSON.stringify(counts)
+        });
+      })
+      .catch(function () {});
+  }
+
   document.querySelectorAll('[data-track]').forEach(function (el) {
     el.addEventListener('click', function () {
       var name = el.getAttribute('data-track');
-      // TODO(Claude Code): forward to analytics
-      if (window.console) console.log('[track]', name);
+      if (window.gtag) window.gtag('event', 'select_content', { content_type: 'cta', item_id: name });
+      // Report PDF downloads -> GA4 file_download + shared KPI counter (key: candidatefraud)
+      if (name && name.indexOf('download') !== -1) {
+        if (window.gtag) window.gtag('event', 'file_download', {
+          file_name: 'Kyle-and-Co-Candidate-Fraud-Report.pdf',
+          link_text: name
+        });
+        bumpCounter('candidatefraud');
+      }
     });
   });
 
