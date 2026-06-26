@@ -134,17 +134,92 @@
       .catch(function () {});
   }
 
+  function countDownload() {
+    if (window.gtag) window.gtag('event', 'file_download', { file_name: 'Kyle-and-Co-Candidate-Fraud-Report.pdf' });
+    bumpCounter('candidatefraud');
+  }
+
+  /* ---- Download gate (OFF by default; backed by api/gate.php) ----
+     People already in the MailerLite database download instantly; unknown
+     visitors are asked for their details first, then added. Fails OPEN: any
+     backend error still delivers the report, so nobody is ever blocked. */
+  var GATE_ENABLED = false;   // flip true after MAILERLITE_TOKEN is set in api/gate.php AND tested
+  var GATE_ENDPOINT = 'api/gate.php';
+  var REPORT_PDF = 'downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf';
+
+  function deliverReport() {
+    countDownload();
+    var a = document.createElement('a');
+    a.href = REPORT_PDF; a.setAttribute('download', '');
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+
+  var openGate = null;  // assigned below only if the gate modal is in the DOM
+  var gate = document.getElementById('gate');
+  if (gate) {
+    var gEmailStep  = document.getElementById('gateEmailStep');
+    var gNewStep    = document.getElementById('gateNewStep');
+    var gDoneStep   = document.getElementById('gateDoneStep');
+    var gEmailForm  = document.getElementById('gateEmailForm');
+    var gNewForm    = document.getElementById('gateNewForm');
+    var gEmailInput = document.getElementById('gateEmail');
+    var gLastFocus  = null;
+
+    openGate = function () {
+      gLastFocus = document.activeElement;
+      gEmailStep.hidden = false; gNewStep.hidden = true; gDoneStep.hidden = true;
+      gate.classList.add('is-open'); gate.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (gEmailInput) gEmailInput.focus();
+    };
+    function closeGate() {
+      gate.classList.remove('is-open'); gate.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (gLastFocus) gLastFocus.focus();
+    }
+    gate.querySelectorAll('[data-gate-close]').forEach(function (el) { el.addEventListener('click', closeGate); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && gate.classList.contains('is-open')) closeGate();
+    });
+
+    function gateDeliver() {
+      gEmailStep.hidden = true; gNewStep.hidden = true; gDoneStep.hidden = false;
+      deliverReport();
+    }
+
+    gEmailForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = (gEmailInput.value || '').trim();
+      var btn = document.getElementById('gateEmailSubmit');
+      if (btn) { btn.disabled = true; btn.textContent = 'Checking…'; }
+      fetch(GATE_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email }) })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d && d.status === 'new') { gEmailStep.hidden = true; gNewStep.hidden = false; }
+          else { gateDeliver(); }   // member, or fail-open
+        })
+        .catch(function () { gateDeliver(); })
+        .then(function () { if (btn) { btn.disabled = false; btn.textContent = 'Get the report'; } });
+    });
+
+    gNewForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var val = function (n) { var el = gNewForm.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; };
+      var payload = { email: (gEmailInput.value || '').trim(), subscribe: true,
+        name: val('name'), last_name: val('last_name'), company: val('company') };
+      fetch(GATE_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+        .then(function () { gateDeliver(); })
+        .catch(function () { gateDeliver(); });
+    });
+  }
+
   document.querySelectorAll('[data-track]').forEach(function (el) {
-    el.addEventListener('click', function () {
+    el.addEventListener('click', function (e) {
       var name = el.getAttribute('data-track');
       if (window.gtag) window.gtag('event', 'select_content', { content_type: 'cta', item_id: name });
-      // Report PDF downloads -> GA4 file_download + shared KPI counter (key: candidatefraud)
       if (name && name.indexOf('download') !== -1) {
-        if (window.gtag) window.gtag('event', 'file_download', {
-          file_name: 'Kyle-and-Co-Candidate-Fraud-Report.pdf',
-          link_text: name
-        });
-        bumpCounter('candidatefraud');
+        if (GATE_ENABLED && openGate) { e.preventDefault(); openGate(); }
+        else { countDownload(); }   // native <a download> proceeds
       }
     });
   });

@@ -374,6 +374,48 @@
   </div>
 </div>
 
+<!-- ============ DOWNLOAD GATE MODAL (activates only when GATE_ENABLED) ============ -->
+<div class="reg" id="gate" aria-hidden="true">
+  <div class="reg__overlay" data-gate-close></div>
+  <div class="reg__dialog" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+    <button class="reg__x" type="button" data-gate-close aria-label="Close">&times;</button>
+
+    <!-- EMAIL STEP -->
+    <div id="gateEmailStep">
+      <p class="eyebrow">The report, free</p>
+      <h2 class="h-display reg__title" id="gateTitle">Where should we send it?</h2>
+      <p class="reg__desc">Pop in your email and the report is yours. If you&rsquo;re already on our list, it downloads right away.</p>
+      <form class="reg__form" id="gateEmailForm">
+        <label>Work email<input type="email" name="email" id="gateEmail" required autocomplete="email"></label>
+        <button type="submit" class="btn btn--gold btn--lg reg__submit" id="gateEmailSubmit">Get the report</button>
+      </form>
+    </div>
+
+    <!-- NEW CONTACT STEP -->
+    <div id="gateNewStep" hidden>
+      <p class="eyebrow">One quick thing</p>
+      <h2 class="h-display reg__title">Oh hey, new bestie</h2>
+      <p class="reg__desc">Looks like you&rsquo;re not on our mailing list yet. Drop your info below and you&rsquo;ll get insights delivered right to your inbox. No spam, just signal.</p>
+      <form class="reg__form" id="gateNewForm">
+        <div class="reg__row">
+          <label>First name<input type="text" name="name" required autocomplete="given-name"></label>
+          <label>Last name<input type="text" name="last_name" autocomplete="family-name"></label>
+        </div>
+        <label>Company<input type="text" name="company" autocomplete="organization"></label>
+        <button type="submit" class="btn btn--gold btn--lg reg__submit">Send it my way</button>
+        <p class="reg__fine">We&rsquo;ll add you to Kyle &amp; Co. insights. Unsubscribe anytime.</p>
+      </form>
+    </div>
+
+    <!-- SUCCESS STEP -->
+    <div id="gateDoneStep" hidden>
+      <div class="reg__check" aria-hidden="true">&#10003;</div>
+      <h2 class="h-display reg__title">Your download is starting</h2>
+      <p class="reg__lead">If it doesn&rsquo;t begin automatically, <a href="downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf" download id="gateManualDl">click here to grab the report</a>.</p>
+    </div>
+  </div>
+</div>
+
 <script src="js/main.js" defer></script>
 </body>
 </html>
