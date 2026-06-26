@@ -139,7 +139,7 @@
     start: '20260728T170000Z',           // ⚠️ CONFIRM real start (UTC). 17:00Z = 1:00 PM ET (EDT).
     end:   '20260728T180000Z',           // 60 min (45 min live + 15 min Q&A)
     whenLabel: 'Tuesday, July 28, 2026 · 1:00 PM ET',  // ⚠️ keep in sync with start
-    joinUrl: 'https://kyleandco.com/candidatefraud/',  // ⚠️ REPLACE with the live join link
+    joinUrl: 'https://kyleandco.com/live',
     location: 'Online — link in your confirmation email',
     description: 'Kyle & Co. live working session on candidate-fraud response: the findings, the hiring funnel, and the ownership models — plus the questions to ask before your next incident. Join link: '
   };
