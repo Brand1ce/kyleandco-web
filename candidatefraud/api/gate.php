@@ -20,11 +20,18 @@
 header('Content-Type: application/json');
 header('Cache-Control: no-store');
 
-$TOKEN = getenv('MAILERLITE_TOKEN') ?: 'PASTE_MAILERLITE_API_TOKEN_HERE';
+// Token is loaded from outside version control (this repo is public):
+//   1) env var MAILERLITE_TOKEN, or
+//   2) an untracked file api/gate-secret.php that does:  <?php return 'TOKEN';
+$TOKEN = getenv('MAILERLITE_TOKEN');
+if (!$TOKEN) {
+  $secret = __DIR__ . '/gate-secret.php';
+  if (is_readable($secret)) { $TOKEN = (string) include $secret; }
+}
 $GROUP_ID = '191362223659026255'; // "Candidate Fraud Report — Downloads"
 
 // Fail open if the token hasn't been configured yet.
-if ($TOKEN === 'PASTE_MAILERLITE_API_TOKEN_HERE' || $TOKEN === '') {
+if (!$TOKEN) {
   echo json_encode(['status' => 'open']);
   exit;
 }

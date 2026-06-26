@@ -1,0 +1,4 @@
+# Secrets — never commit (this repo is public)
+candidatefraud/api/gate-secret.php
+**/gate-secret.php
+.DS_Store
