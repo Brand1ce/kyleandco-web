@@ -132,12 +132,24 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;color:var(--navy);letter-spacin
 .funnel-grid{display:grid;grid-template-columns:380px 1fr;gap:60px;align-items:start;max-width:1180px;margin:0 auto;padding:0 40px;}
 .funnel-sticky{position:sticky;top:96px;align-self:start;}
 .funnel-diagram{display:flex;flex-direction:column;align-items:center;gap:5px;}
-.fseg{height:42px;border-radius:5px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--navy-light);background:var(--white);border:1px solid var(--cream-deep);font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;letter-spacing:.3px;transition:all .4s cubic-bezier(.2,.7,.2,1);position:relative;}
-.fseg .dens{position:absolute;right:9px;display:flex;gap:2px;}
-.fseg .dens i{width:4px;height:4px;border-radius:50%;background:var(--lavender-light);opacity:.5;}
-.fseg.active{background:var(--navy);color:var(--cream);border-color:var(--navy);transform:scale(1.03);box-shadow:0 8px 22px rgba(45,63,94,.18);}
-.fseg.active .dens i{background:var(--lavender-light);opacity:1;}
+.funnel-nav-label{display:flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--lavender-deep);margin-bottom:14px;}
+.funnel-nav-label .pulse{width:7px;height:7px;border-radius:50%;background:var(--lavender);box-shadow:0 0 0 0 rgba(155,141,181,.6);animation:navpulse 2.4s infinite;}
+@keyframes navpulse{0%{box-shadow:0 0 0 0 rgba(155,141,181,.5);}70%{box-shadow:0 0 0 8px rgba(155,141,181,0);}100%{box-shadow:0 0 0 0 rgba(155,141,181,0);}}
+.fseg{height:44px;border-radius:6px;display:flex;align-items:center;gap:9px;padding:0 12px;cursor:pointer;color:var(--navy-light);background:var(--white);border:1px solid var(--cream-deep);font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;letter-spacing:.3px;transition:transform .35s cubic-bezier(.2,.7,.2,1),background .3s,border-color .3s,box-shadow .3s,color .3s;position:relative;text-align:left;box-shadow:0 1px 0 rgba(45,63,94,.05);}
+.fseg .fnum{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.5px;color:var(--lavender-deep);opacity:.8;flex:none;}
+.fseg .fname{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fseg .fchev{flex:none;font-size:16px;line-height:1;color:var(--lavender);opacity:.5;transition:transform .3s,opacity .3s;}
+.fseg:hover{background:var(--lavender-pale);border-color:var(--lavender-light);transform:translateX(5px);box-shadow:0 8px 20px rgba(155,141,181,.22);}
+.fseg:hover .fchev{opacity:1;transform:translateX(3px);}
+.fseg:focus-visible{outline:2px solid var(--lavender-deep);outline-offset:2px;}
+.fseg.active{background:var(--navy);color:var(--cream);border-color:var(--navy);transform:translateX(5px) scale(1.02);box-shadow:0 10px 24px rgba(45,63,94,.22);}
+.fseg.active .fnum{color:var(--lavender-light);opacity:1;}
+.fseg.active .fchev{color:var(--lavender-light);opacity:1;}
 .fseg.passed{background:var(--lavender-pale);border-color:var(--lavender-light);color:var(--lavender-deep);}
+.fseg.passed .fnum{color:var(--lavender-deep);}
+@keyframes segHint{0%{box-shadow:0 1px 0 rgba(45,63,94,.05);}38%{box-shadow:0 6px 18px rgba(155,141,181,.4);border-color:var(--lavender);}100%{box-shadow:0 1px 0 rgba(45,63,94,.05);}}
+.funnel-diagram.hint .fseg{animation:segHint .7s ease both;}
+@media(prefers-reduced-motion:reduce){.funnel-diagram.hint .fseg{animation:none;}.funnel-nav-label .pulse{animation:none;}}
 .meters{margin-top:26px;border-top:1px solid var(--cream-deep);padding-top:22px;display:grid;gap:18px;}
 .meter-row{}
 .meter-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;}
@@ -509,6 +521,7 @@ footer .amp{color:var(--lavender);font-style:italic;}
   </div>
   <div class="funnel-grid" style="margin-top:46px">
     <div class="funnel-sticky">
+      <div class="funnel-nav-label"><span class="pulse"></span>Jump to any stage</div>
       <div class="funnel-diagram" id="funnelDiagram"></div>
       <div class="meters">
         <div class="meter-row">
@@ -723,14 +736,14 @@ const EVIDENCE=[
 
 const STAGES=[
  ["01","Application Intake","emerging","Emerging · mostly manual","The broadest point of entry. AI generates resumes at scale, bots automate applications, synthetic profiles flood in. One TA leader described ~1,500 applications overnight for a single engineering role — and stopping review past a threshold because separating real from fake became unsustainable.","The greatest risk is not that fraudulent candidates enter. Qualified candidates get overlooked when teams are overwhelmed by volume and noise.",4,95,18],
- ["02","Resume Screening","emerging","Emerging","Generative AI makes polished, tailored, fabricated resumes trivial. The question is rarely whether AI was used — it's whether the information accurately reflects the candidate's skills, accomplishments, and history. Most screening was built to assess qualifications, not validate authenticity.",null,4,86,28],
+ ["02","Resume Screening","emerging","Emerging","Generative AI makes polished, tailored, fabricated resumes trivial. The question is rarely whether AI was used — it's whether the information accurately reflects the candidate's skills, accomplishments, and history. Most screening was built to assess qualifications, not validate authenticity.","Screening for AI use is the wrong test — polished and fabricated resumes look identical. What matters is whether the claims are true, and most screening was never built to check that.",4,86,28],
  ["03","Identity Verification","emerging","Emerging · adapting from fintech","Determining whether the person is who they claim to be. Stolen and synthetic identities, forged documents, impersonation, deepfake overlays, proxy interviewees. Lower volume than the top — but far higher consequence.","Once identity is in question, every downstream hiring decision becomes less reliable.",5,62,55],
- ["04","Assessments","mature","Established controls","A relatively mature defense category — proctoring, browser monitoring, plagiarism detection, behavioral analysis predate the AI wave. CodeSignal reported 35% of proctored assessments flagged in 2025 (more than double the prior year), and non-proctored tests showed ~8% score inflation versus under 2% for proctored.",null,5,50,60],
- ["05","Interviews","emerging","Emerging","The threat shifts from assistance to impersonation: deepfake overlays, proxy interviewees, real-time AI coaching, and the handoff. Interview fraud happens live, in a medium most interview tools were built to facilitate rather than verify.",null,4,40,70],
- ["06","References","thin","Established process · thin tooling","Trust-based, and that trust is exploitable: coached or compensated references, coordinated networks, multiple \u201creferences\u201d tied to one device or IP. Reference fraud succeeds because the process looks legitimate — the conversation happens, questions are answered, information is confirmed.",null,2,30,72],
- ["07","Background Checks","mature","Established","Often seen as the strongest verification step — but background checks validate records, not the individual presenting them. KnowBe4's operative passed screening and references on a stolen identity. They confirm information associated with an identity; they don't confirm the person is authentic.",null,5,24,75],
+ ["04","Assessments","mature","Established controls","A relatively mature defense category — proctoring, browser monitoring, plagiarism detection, behavioral analysis predate the AI wave. CodeSignal reported 35% of proctored assessments flagged in 2025 (more than double the prior year), and non-proctored tests showed ~8% score inflation versus under 2% for proctored.","The rare stage where the tooling is ahead of the threat. But a flag is a reason to investigate, not a verdict — the value is in how the team acts on it, not the score itself.",5,50,60],
+ ["05","Interviews","emerging","Emerging","The threat shifts from assistance to impersonation: deepfake overlays, proxy interviewees, real-time AI coaching, and the handoff. Interview fraud happens live, in a medium most interview tools were built to facilitate rather than verify.","The interview is the one stage designed to be persuaded rather than to verify. A convincing performance is evidence of very little — treat \u201cthey seemed real\u201d as the start of verification, not the end.",4,40,70],
+ ["06","References","thin","Established process · thin tooling","Trust-based, and that trust is exploitable: coached or compensated references, coordinated networks, multiple \u201creferences\u201d tied to one device or IP. Reference fraud succeeds because the process looks legitimate — the conversation happens, questions are answered, information is confirmed.","A reference check confirms that a conversation happened — not that the person on the other end is independent or real. The cheapest signal that exposes this, a shared IP or device across \u201creferences,\u201d is the one most teams have stopped collecting.",2,30,72],
+ ["07","Background Checks","mature","Established","Often seen as the strongest verification step — but background checks validate records, not the individual presenting them. KnowBe4's operative passed screening and references on a stolen identity. They confirm information associated with an identity; they don't confirm the person is authentic.","A background check confirms a record is clean, not that the person presenting it owns it. A stolen but pristine identity passes easily — which is exactly what makes this stage feel safer than it is.",5,24,75],
  ["08","Onboarding","emerging","Moderate","For many organizations the end of hiring; for sophisticated actors, the beginning. Laptops shipped to mismatched addresses, requests to install remote-access software, and the handoff — where the person who interviewed isn't the person who receives access.","Onboarding is the transition from hiring risk to organizational risk. The closer to systems and data, the greater the consequences if fraud succeeds.",3,16,88],
- ["09","Post-Hire","thin","Emerging · the thinnest segment","Most controls ask: is this person who they claim to be? Post-hire asks a different question — is this still the same person? Credential sharing, delegation, account misuse, identity handoffs. The least-developed area of the market, despite some of the highest potential consequences.",null,2,10,96]
+ ["09","Post-Hire","thin","Emerging · the thinnest segment","Most controls ask: is this person who they claim to be? Post-hire asks a different question — is this still the same person? Credential sharing, delegation, account misuse, identity handoffs. The least-developed area of the market, despite some of the highest potential consequences.","Verification that ends at onboarding assumes the person never changes. The highest-consequence stage is the one almost no one is watching — and where documented infiltration cases actually pay off.",2,10,96]
 ];
 
 const CASES=[
@@ -846,8 +859,8 @@ STAGES.forEach((s,i)=>{
   const seg=el("button","fseg");
   seg.style.width=w+"%";
   seg.dataset.idx=i;
-  const dens=Math.round(s[6]);
-  seg.innerHTML=`<span>${s[1]}</span><span class="dens">${"<i></i>".repeat(dens)}</span>`;
+  seg.setAttribute("aria-label",`Jump to stage ${s[0]}: ${s[1]}`);
+  seg.innerHTML=`<span class="fnum">${s[0]}</span><span class="fname">${s[1]}</span><span class="fchev">&rsaquo;</span>`;
   seg.addEventListener("click",()=>{document.getElementById("fstage-"+i).scrollIntoView({behavior:"smooth",block:"center"});});
   fdEl.appendChild(seg);
 
@@ -897,6 +910,22 @@ const stageObs=new IntersectionObserver((es)=>{
 },{rootMargin:"-45% 0px -45% 0px"});
 document.querySelectorAll(".fstage").forEach(s=>stageObs.observe(s));
 setActive(0);
+
+// one-time "these are clickable" hint when the funnel first enters view
+const fdHintEl=$("#funnelDiagram");
+let hintFired=false;
+const hintObs=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(e.isIntersecting&&!hintFired){
+      hintFired=true;
+      document.querySelectorAll(".fseg").forEach((sg,j)=>sg.style.animationDelay=(j*55)+"ms");
+      fdHintEl.classList.add("hint");
+      setTimeout(()=>{fdHintEl.classList.remove("hint");document.querySelectorAll(".fseg").forEach(sg=>sg.style.animationDelay="");},1400);
+      hintObs.disconnect();
+    }
+  });
+},{threshold:.5});
+hintObs.observe(fdHintEl);
 
 // cases
 const casesEl=$("#cases");
