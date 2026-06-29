@@ -328,8 +328,8 @@ a{ color:inherit; }
 .get__closer{ margin:1.3rem 0 0; color:#fff; font-family:var(--serif-display); font-style:italic;
   font-size:1.16em; line-height:1.4; max-width:46ch; }
 .footer__signoff{ margin-top:.5rem; color:var(--lavender); font-style:italic; }
-.get__action{ text-align:left; }
-.get__meta{ font-family:var(--sans); font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; color:#8f95ad; margin:1rem 0 0; }
+.get__action{ display:flex; flex-direction:column; align-items:flex-start; gap:.9rem; }
+.get__meta{ font-family:var(--sans); font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; color:#8f95ad; margin:.3rem 0 0; }
 
 /* ---------- webinar ---------- */
 .webinar{ background:var(--cream); }
