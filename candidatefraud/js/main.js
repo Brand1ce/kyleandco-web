@@ -152,7 +152,7 @@
   // Copy shown in the gate's email step, by destination.
   var GATE_COPY = {
     pdf:         { title: 'Where should we send it?', desc: 'Pop in your email and the report is yours. If you’re already on our list, it downloads right away.' },
-    interactive: { title: 'One step to read it',      desc: 'Pop in your email to open the interactive report. If you’re already on our list, it opens right away.' }
+    interactive: { title: 'Apologies friend, but we have to ask.', desc: 'Pop in your email to open the interactive report. If you’re already on our list, it opens right away.' }
   };
 
   function deliverPdf() {
