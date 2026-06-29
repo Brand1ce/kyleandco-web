@@ -147,12 +147,21 @@
   var GATE_ENDPOINT = 'api/gate.php';
   var REPORT_PDF = 'downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf';
 
-  function deliverReport() {
+  var REPORT_URL = 'report/';
+
+  // Copy shown in the gate's email step, by destination.
+  var GATE_COPY = {
+    pdf:         { title: 'Where should we send it?', desc: 'Pop in your email and the report is yours. If you’re already on our list, it downloads right away.' },
+    interactive: { title: 'One step to read it',      desc: 'Pop in your email to open the interactive report. If you’re already on our list, it opens right away.' }
+  };
+
+  function deliverPdf() {
     countDownload();
     var a = document.createElement('a');
     a.href = REPORT_PDF; a.setAttribute('download', '');
     document.body.appendChild(a); a.click(); a.remove();
   }
+  function deliverInteractive() { window.location.href = REPORT_URL; }
 
   var openGate = null;  // assigned below only if the gate modal is in the DOM
   var gate = document.getElementById('gate');
@@ -163,9 +172,16 @@
     var gEmailForm  = document.getElementById('gateEmailForm');
     var gNewForm    = document.getElementById('gateNewForm');
     var gEmailInput = document.getElementById('gateEmail');
+    var gTitle      = document.getElementById('gateTitle');
+    var gDesc       = document.getElementById('gateDesc');
     var gLastFocus  = null;
+    var gIntent     = 'pdf';
 
-    openGate = function () {
+    openGate = function (intent) {
+      gIntent = (intent === 'interactive') ? 'interactive' : 'pdf';
+      var copy = GATE_COPY[gIntent];
+      if (gTitle) gTitle.textContent = copy.title;
+      if (gDesc)  gDesc.textContent  = copy.desc;
       gLastFocus = document.activeElement;
       gEmailStep.hidden = false; gNewStep.hidden = true; gDoneStep.hidden = true;
       gate.classList.add('is-open'); gate.setAttribute('aria-hidden', 'false');
@@ -183,8 +199,9 @@
     });
 
     function gateDeliver() {
+      if (gIntent === 'interactive') { deliverInteractive(); return; }
       gEmailStep.hidden = true; gNewStep.hidden = true; gDoneStep.hidden = false;
-      deliverReport();
+      deliverPdf();
     }
 
     gEmailForm.addEventListener('submit', function (e) {
@@ -212,7 +229,7 @@
         .catch(function () { gateDeliver(); });
     });
 
-    // Opt out: deliver the report without subscribing.
+    // Opt out: deliver without subscribing.
     var gSkip = document.getElementById('gateSkip');
     if (gSkip) gSkip.addEventListener('click', function () { gateDeliver(); });
   }
@@ -221,9 +238,12 @@
     el.addEventListener('click', function (e) {
       var name = el.getAttribute('data-track');
       if (window.gtag) window.gtag('event', 'select_content', { content_type: 'cta', item_id: name });
-      if (name && name.indexOf('download') !== -1) {
-        if (GATE_ENABLED && openGate) { e.preventDefault(); openGate(); }
-        else { countDownload(); }   // native <a download> proceeds
+      if (!name) return;
+      var isDownload = name.indexOf('download') !== -1;
+      var isInteractive = name.indexOf('interactive') !== -1;
+      if (isDownload || isInteractive) {
+        if (GATE_ENABLED && openGate) { e.preventDefault(); openGate(isInteractive ? 'interactive' : 'pdf'); }
+        else if (isDownload) { countDownload(); }   // native <a download>/link proceeds otherwise
       }
     });
   });

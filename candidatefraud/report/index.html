@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<!-- saved from url=(0012)about:srcdoc -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js" integrity="sha512-iZ2ORl595Wx6miw+GuadDet4WQbdSWS3JLMoNfY8cRGoEFy6oT3G9IbcrBeL6AfkgpA51ETt/faX6yLV+/gFJg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The State of Candidate Fraud Detection · Kyle &amp; Co</title>
 <!-- Google Analytics 4 (shared Kyle & Co property) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H95H1WFLGC"></script>
 <script>
@@ -10,13 +12,9 @@
   gtag('js', new Date());
   gtag('config', 'G-H95H1WFLGC');
 </script>
-  
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The State of Candidate Fraud Detection · Kyle &amp; Co</title>
-<link rel="preconnect" href="https://fonts.googleapis.com/">
-<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&amp;family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Source+Sans+3:wght@200;300;400;500;600;700&amp;family=JetBrains+Mono:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
@@ -164,6 +162,15 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;color:var(--navy);letter-spacin
 .know{border-left:3px solid var(--lavender);background:var(--white);border-radius:0 8px 8px 0;padding:16px 20px;max-width:600px;}
 .know .k-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--lavender-deep);margin-bottom:5px;}
 .know .k-txt{font-family:'Source Sans 3',sans-serif;font-size:15px;color:var(--navy);font-style:italic;line-height:1.55;}
+.st-mini{display:none;margin-top:18px;max-width:600px;border-top:1px solid var(--cream-dark);padding-top:16px;}
+.st-mini .stm-row{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:center;margin-bottom:9px;}
+.st-mini .stm-row span{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+.st-mini .stm-track{height:7px;background:var(--white);border:1px solid var(--cream-deep);border-radius:5px;overflow:hidden;}
+.st-mini .stm-track i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--navy-light),var(--lavender));}
+.st-mini .stm-track.con i{background:linear-gradient(90deg,var(--gold),var(--rust));}
+.st-mini .stm-dens{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--lavender-deep);margin-top:4px;display:flex;align-items:center;gap:6px;}
+.st-mini .stm-dens i{width:5px;height:5px;border-radius:50%;background:var(--lavender);display:inline-block;}
+.st-mini .stm-dens i.dim{background:var(--cream-deep);}
 .funnel-reveal{max-width:1180px;margin:60px auto 0;padding:46px 40px 0;border-top:1px solid var(--cream-dark);}
 .funnel-reveal .fr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:24px;}
 .fr-card{background:var(--white);border:1px solid var(--cream-dark);border-radius:9px;padding:22px;}
@@ -327,38 +334,80 @@ footer .amp{color:var(--lavender);font-style:italic;}
 /* responsive */
 @media(max-width:900px){
   body{font-size:16px;}
-  .block{padding:80px 0;}
-  .wrap,.wrap-wide,.hero,.asym,.gov-sec{padding-left:22px;padding-right:22px;}
-  .funnel-grid{grid-template-columns:1fr;gap:0;padding:0 22px;}
-  .funnel-sticky{position:static;margin-bottom:30px;display:none;}
-  .fstage{min-height:auto;padding:34px 0;}
-  .funnel-reveal{padding-left:22px;padding-right:22px;}
+  .block{padding:72px 0;}
+  .wrap,.wrap-wide{padding-left:20px;padding-right:20px;}
+  .hero{padding:84px 20px 60px;}
+  .hero-rose{width:440px;right:-130px;}
+  .asym{padding:80px 0;}
+  .gov-sec{padding:80px 0;}
+  .concl{padding-top:80px;}
+  .sources{padding:50px 0;}
+  .sec-sub{font-size:16px;}
+  .lead{font-size:17px;}
+  /* funnel — sticky diagram off, per-stage minis on */
+  .funnel-sec{padding-top:80px;}
+  .funnel-grid{grid-template-columns:1fr;gap:0;padding:0 20px;}
+  .funnel-sticky{display:none;}
+  .fstage{min-height:auto;padding:30px 0;}
+  .st-mini{display:block;}
+  .funnel-reveal{padding-left:20px;padding-right:20px;margin-top:40px;}
   .funnel-reveal .fr-grid{grid-template-columns:1fr;}
+  /* evidence stats */
+  #evidence{grid-template-columns:repeat(2,1fr)!important;}
+  /* exec summary */
+  .fact{grid-template-columns:40px 1fr;gap:14px;padding:18px 18px;}
+  .finding-head{grid-template-columns:42px 1fr 24px;gap:12px;padding:20px 18px;}
+  .finding-head .prov{font-size:18px;}
+  .finding-body-inner{padding:0 18px 24px 18px;}
+  /* governance */
   .models{grid-template-columns:1fr 1fr;}
+  .model-detail{padding:22px 20px;}
+  .seam{grid-template-columns:1fr;}
+  .seam-mid{padding:12px;border:none;border-top:1px dashed rgba(196,186,213,.4);border-bottom:1px dashed rgba(196,186,213,.4);}
+  .seam-mid .sm-label{writing-mode:horizontal-tb;transform:none;}
+  /* market */
   .buckets{grid-template-columns:1fr;}
   .patterns,.obs{grid-template-columns:1fr;}
-  .mx-row{grid-template-columns:1fr 1fr;gap:8px;}
+  .mx-row{grid-template-columns:auto auto;justify-content:start;gap:8px 12px;padding:16px 18px;}
+  .mx-row .mr-cat{grid-column:1/-1;}
   .mx-row .mr-stages{grid-column:1/-1;}
-  .numblock{grid-template-columns:1fr;gap:14px;min-height:auto;text-align:center;}
-  .numblock .nb-text{margin:0 auto;}
-  .dens-row{grid-template-columns:110px 1fr 44px;gap:8px;}
+  .mx-row .mx-gap{grid-column:1/-1;}
+  .density{padding:28px 20px;}
+  .dens-row{grid-template-columns:104px 1fr 50px;gap:8px;}
   .dens-row .dr-name{font-size:11px;}
-  .seam{grid-template-columns:1fr;}
-  .seam-mid{padding:14px;border:none;border-top:1px dashed rgba(196,186,213,.4);border-bottom:1px dashed rgba(196,186,213,.4);}
-  .seam-mid .sm-label{writing-mode:horizontal-tb;transform:none;}
-  .topnav{padding:11px 20px;}
+  /* conclusion */
+  .numblock{grid-template-columns:1fr;gap:14px;min-height:auto;text-align:center;padding:46px 0;}
+  .numblock .nb-text{margin:0 auto;}
+  .numbers{margin-top:10px;}
+  .concl-close{padding:80px 0 90px;}
+  /* nav */
+  .topnav{padding:11px 18px;}
   .nav-sec{display:none;}
-  .finding-body-inner{padding-left:26px;}
+  footer{padding:36px 20px;}
+}
+@media(max-width:600px){
+  .block{padding:60px 0;}
+  .hero h1{font-size:34px;letter-spacing:-1px;}
+  .hero-sub{font-size:16px;}
+  .hero-rose{width:360px;right:-110px;opacity:.05;}
+  .stamps{flex-direction:column;}
+  .stamp{width:100%;}
+  .asym h2{font-size:24px;margin-bottom:40px;}
+  .tl{grid-template-columns:1fr;gap:6px;}
+  .tl-label{text-align:left;}
+  .numblock .big{font-size:84px;}
+  .filt{font-size:12px;padding:6px 12px;}
+  .model-detail .md-name{font-size:20px;}
 }
 </style>
 </head>
-<body id="artifacts-component-root-html">
+<body>
 
-<div class="rail"><div class="rail-fill" id="railFill" style="width: 0%;"></div></div>
+<div class="rail"><div class="rail-fill" id="railFill"></div></div>
 <nav class="topnav" id="topnav">
   <div class="brand">Kyle <span class="amp">&amp;</span> Co</div>
   <div class="nav-right">
-    <span class="nav-sec" id="navSec">The Thesis</span>
+    <span class="nav-sec" id="navSec">Introduction</span>
     <span class="nav-count"><b id="navCur">00</b> / 08</span>
   </div>
 </nav>
@@ -366,10 +415,10 @@ footer .amp{color:var(--lavender);font-style:italic;}
 <!-- ───────── HERO ───────── -->
 <header class="hero" data-sec="The Thesis" data-idx="00">
   <svg class="hero-rose" viewBox="0 0 200 200" fill="none" stroke="#2D3F5E" stroke-width="0.5">
-    <circle cx="100" cy="100" r="92"></circle><circle cx="100" cy="100" r="64"></circle><circle cx="100" cy="100" r="36"></circle>
-    <path d="M100 8 L108 100 L100 192 L92 100 Z" fill="#9B8DB5" stroke="none" opacity=".7"></path>
-    <path d="M8 100 L100 92 L192 100 L100 108 Z" fill="#2D3F5E" stroke="none" opacity=".5"></path>
-    <path d="M35 35 L100 100 L35 165 M165 35 L100 100 L165 165" stroke-width="0.4"></path>
+    <circle cx="100" cy="100" r="92"/><circle cx="100" cy="100" r="64"/><circle cx="100" cy="100" r="36"/>
+    <path d="M100 8 L108 100 L100 192 L92 100 Z" fill="#9B8DB5" stroke="none" opacity=".7"/>
+    <path d="M8 100 L100 92 L192 100 L100 108 Z" fill="#2D3F5E" stroke="none" opacity=".5"/>
+    <path d="M35 35 L100 100 L35 165 M165 35 L100 100 L165 165" stroke-width="0.4"/>
   </svg>
   <div class="hero-inner">
     <div class="hero-kicker">A Research Report · June 2026</div>
@@ -400,64 +449,34 @@ footer .amp{color:var(--lavender);font-style:italic;}
 <!-- ───────── ASYMMETRY ───────── -->
 <section class="asym" data-sec="The Asymmetry" data-idx="00">
   <div class="wrap">
-    <h2 class="reveal in">The threat has been operating for years.<br>The defensive market is <em>months</em> old.</h2>
+    <h2 class="reveal">The threat has been operating for years.<br>The defensive market is <em>months</em> old.</h2>
     <div class="timelines">
-      <div class="tl tl-threat in" style="--w:100%">
+      <div class="tl tl-threat" style="--w:100%">
         <div class="tl-label">The Threat</div>
         <div><div class="tl-bar"><i></i></div><div class="tl-cap">Operating at scale for years — nation-state schemes documented since 2020</div></div>
       </div>
-      <div class="tl tl-def in" style="--w:22%">
+      <div class="tl tl-def" style="--w:22%">
         <div class="tl-label">The Defense</div>
         <div><div class="tl-bar"><i></i></div><div class="tl-cap">Crystallized in ~4 quarters — most fraud-specific tools launched 2024–2026</div></div>
       </div>
     </div>
-    <p class="asym-foot reveal in">Candidate fraud is the same attack security teams already know — moved one step earlier. If an attacker can impersonate an employee to gain access, they can impersonate a candidate to get hired, and arrive inside the perimeter with a laptop, credentials, and a W-2.</p>
+    <p class="asym-foot reveal">Candidate fraud is the same attack security teams already know — moved one step earlier. If an attacker can impersonate an employee to gain access, they can impersonate a candidate to get hired, and arrive inside the perimeter with a laptop, credentials, and a W-2.</p>
   </div>
 </section>
 
 <!-- ───────── EXEC SUMMARY ───────── -->
 <section class="block" id="sec-exec" data-sec="Executive Summary" data-idx="01">
   <div class="wrap">
-    <div class="sec-eyebrow reveal in"><span class="num">01</span><span class="line"></span><span class="kind">Executive Summary</span></div>
-    <h2 class="sec-title reveal in">The fastest facts</h2>
-    <p class="sec-sub reveal in">Five points to set the stage. Candidate fraud now affects hiring outcomes, operational risk, information security, compliance, and reputation — so organizations are treating it as a cross-functional business risk, not a recruiting issue.</p>
-    <div class="facts" id="facts"><div class="fact reveal in"><div class="fn">1</div><div><div class="ft">Candidate fraud is an organizational risk, not just a hiring risk.</div><div class="fb">AI-generated applications, identity fraud, deepfake interviews, assessment cheating, coordinated reference networks, and infiltration attempts now affect hiring outcomes, security, compliance, and reputation.</div></div></div><div class="fact reveal in"><div class="fn">2</div><div><div class="ft">Fraud occurs throughout the hiring lifecycle, and vulnerabilities differ by stage.</div><div class="fb">Application intake, assessments, interviews, references, onboarding, and post-hire each present unique risks. Evaluate fraud across the whole lifecycle, not a single checkpoint.</div></div></div><div class="fact reveal in"><div class="fn">3</div><div><div class="ft">The market is growing rapidly, but no single approach is the standard.</div><div class="fb">Vendors from recruiting, cybersecurity, identity verification, assessment, and workforce tech are all entering. Categories are still evolving and evaluation frameworks are immature.</div></div></div><div class="fact reveal in"><div class="fn">4</div><div><div class="ft">The greatest challenge is often ownership, not technology.</div><div class="fb">TA usually encounters fraud first, but prevention requires Security, Legal, Compliance, IT, and leadership. The organizations making progress have clear ownership and shared accountability.</div></div></div><div class="fact reveal in"><div class="fn">5</div><div><div class="ft">Technology supports the solution, but programs determine outcomes.</div><div class="fb">The strongest programs combine technology, process, governance, training, and collaboration — treating fraud as an operational capability, not a standalone purchase.</div></div></div></div>
+    <div class="sec-eyebrow reveal"><span class="num">01</span><span class="line"></span><span class="kind">Executive Summary</span></div>
+    <h2 class="sec-title reveal">The fastest facts</h2>
+    <p class="sec-sub reveal">Five points to set the stage. Candidate fraud now affects hiring outcomes, operational risk, information security, compliance, and reputation — so organizations are treating it as a cross-functional business risk, not a recruiting issue.</p>
+    <div class="facts" id="facts"></div>
 
     <div style="margin-top:90px">
-      <div class="sec-eyebrow reveal in"><span class="num">01·b</span><span class="line"></span><span class="kind">The Deeper Findings</span></div>
-      <h2 class="sec-title reveal in">Six things that complicate the obvious</h2>
-      <p class="findings-intro lead reveal in">The job of a research report is partly to organize the obvious. The more useful job is to surface what is <em>not</em> obvious — the findings that the vendor pitches obscure, or that emerge only when enough sources are stacked next to each other for the patterns to show through. Tap any finding to open it.</p>
-      <div class="findings" id="findings"><div class="finding reveal in"><button class="finding-head" aria-expanded="false">
-      <span class="idx">F1</span>
-      <span class="prov">The metrics that measure recruiting success cannot tell whether a fraud program is working</span>
-      <span class="chev">+</span></button>
-    <div class="finding-body"><div class="finding-body-inner"><p>Time-to-fill goes up. Cost-per-hire goes up. Pipeline conversion goes down. These are exactly the signals you would see from a team running a serious fraud program — and from a team that has simply gotten worse. They are mechanically identical.</p><p>It is a structural disincentive: a recruiter who voluntarily adds friction to catch fraud is, by every standard scorecard, hurting their own performance. The team catching the most fraud may have the worst time-to-fill — not despite their effort, but because of it.</p><p>Until TA scorecards include some measure of hiring integrity, the incentive structure quietly punishes the right behavior. None of the practitioners interviewed had a scorecard that accounted for fraud prevention at all.</p>
-      <button class="finding-share" data-share="Finding 1: The metrics that measure recruiting success cannot tell whether a fraud program is working">⟶ Copy this finding</button></div></div></div><div class="finding reveal in"><button class="finding-head" aria-expanded="false">
-      <span class="idx">F2</span>
-      <span class="prov">The embedded paradox: embedded fraud detection works best for the organizations that least need it</span>
-      <span class="chev">+</span></button>
-    <div class="finding-body"><div class="finding-body-inner"><p>The intuitive read of embedded fraud detection in your ATS is that it democratizes the capability. The research suggests closer to the opposite.</p><p>The embedded model produces signals. Signals require a human to adjudicate them — someone with the time, mandate, and training to make a defensible call. A large organization with a security team can absorb that workload. A two-person TA team running on time-to-fill cannot.</p><p>One product lead said it directly: the company has “no wonderful answer” for the small organization with no security partner to escalate to. The feature works. The organization around it does not. Embedded is fine; embedded without an adjudicator is a feature pretending to be a program.</p>
-      <button class="finding-share" data-share="Finding 2: The embedded paradox: embedded fraud detection works best for the organizations that least need it">⟶ Copy this finding</button></div></div></div><div class="finding reveal in"><button class="finding-head" aria-expanded="false">
-      <span class="idx">F3</span>
-      <span class="prov">Agreement across the architecture divide is the most reliable finding in the research</span>
-      <span class="chev">+</span></button>
-    <div class="finding-body"><div class="finding-body-inner"><p>Vendors usually disagree on root problems and ideal solutions. So when four competitors built on entirely different architectures independently arrive at the same design choices, that convergence is remarkable.</p><p>Ashby (an embedded ATS), Socure (a standalone identity platform), CodeSignal (assessment), and Findem (talent-data) all landed on the same three commitments:</p><ul class="conv-list"><li>Surface signals, not verdicts</li><li>Explain every signal so the recruiter can interrogate it</li><li>Refuse automated rejection — the human decides</li></ul><p>It is a structural finding about what the market has already learned — that black-box scores produce trust problems, automated employment decisions produce legal exposure, and the only design that survives contact with regulation, recruiters, and reality keeps a human in the loop. Be wary of vendors who haven't arrived here yet.</p>
-      <button class="finding-share" data-share="Finding 3: Agreement across the architecture divide is the most reliable finding in the research">⟶ Copy this finding</button></div></div></div><div class="finding reveal in"><button class="finding-head" aria-expanded="false">
-      <span class="idx">F4</span>
-      <span class="prov">The highest-value fraud signal in the market is the least-used</span>
-      <span class="chev">+</span></button>
-    <div class="finding-body"><div class="finding-body-inner"><p>Ask vendors about their most sophisticated capabilities and you hear about biometric liveness, behavioral telemetry, voice deepfake classifiers, identity-graph reasoning.</p><p>But the single most reliable, least gameable, lowest-friction signal is far less exciting: the IP address and device fingerprint of the references a candidate submits. If five “references” submit from the same IP or device, that is not a probability — it's the signature of one person filling out their own reference checks.</p><p>It requires no biometric data, raises no compliance issues, and is essentially impossible to fake at scale. Yet most organizations can't monitor it — usually because they have not automated reference checks at all. The most effective check in the funnel is the one most teams have stopped doing.</p>
-      <button class="finding-share" data-share="Finding 4: The highest-value fraud signal in the market is the least-used">⟶ Copy this finding</button></div></div></div><div class="finding reveal in"><button class="finding-head" aria-expanded="false">
-      <span class="idx">F5</span>
-      <span class="prov">Several of the fraud vendors are themselves being attacked</span>
-      <span class="chev">+</span></button>
-    <div class="finding-body"><div class="finding-body-inner"><p>A pattern that rarely surfaces publicly: the vendors building fraud detection are also frequent targets of the fraud they detect.</p><p>Socure reports more than a quarter of its own applicants are fake, and caught a sophisticated DPRK candidate it nicknamed “Anthony.” Pindrop caught a real-time deepfake candidate during its own hiring — the “Ivan X” case. In several cases the operatives are interviewed by the vendors' research teams after detection.</p><p>Two reads: first, the universality of the problem — even firms with the best tools see it constantly. Second, a credibility check — when a vendor describes a pattern from their own pipeline, they speak from primary data, not marketing.</p>
-      <button class="finding-share" data-share="Finding 5: Several of the fraud vendors are themselves being attacked">⟶ Copy this finding</button></div></div></div><div class="finding reveal in"><button class="finding-head" aria-expanded="false">
-      <span class="idx">F6</span>
-      <span class="prov">The category materialized in roughly eighteen months — and that timing is itself the news</span>
-      <span class="chev">+</span></button>
-    <div class="finding-body"><div class="finding-body-inner"><p>Of the sixty-plus vendors profiled, at least fifteen launched or substantially rebuilt their hiring-fraud product between mid-2025 and early 2026. Many cited the same Gartner projection, the same KnowBe4 incident, the same threat reporting.</p><p>The category did not grow — it crystallized in roughly four quarters, from scattered point solutions into a coherent if fragmented market.</p><p>The products on the table today are, in most cases, less than two years old as fraud-specific tools — built fast, in a crisis, often by companies extending into an adjacent problem. The strongest are doing serious work; the weakest are riding launch energy with thin substance underneath.</p>
-      <button class="finding-share" data-share="Finding 6: The category materialized in roughly eighteen months — and that timing is itself the news">⟶ Copy this finding</button></div></div></div></div>
+      <div class="sec-eyebrow reveal"><span class="num">01·b</span><span class="line"></span><span class="kind">The Deeper Findings</span></div>
+      <h2 class="sec-title reveal">Six things that complicate the obvious</h2>
+      <p class="findings-intro lead reveal">The job of a research report is partly to organize the obvious. The more useful job is to surface what is <em>not</em> obvious — the findings that the vendor pitches obscure, or that emerge only when enough sources are stacked next to each other for the patterns to show through. Tap any finding to open it.</p>
+      <div class="findings" id="findings"></div>
     </div>
   </div>
 </section>
@@ -465,28 +484,18 @@ footer .amp{color:var(--lavender);font-style:italic;}
 <!-- ───────── SECTION 1 — STATE OF THREAT ───────── -->
 <section class="block" id="sec-1" data-sec="State of the Threat" data-idx="02" style="background:var(--cream-mid);border-top:1px solid var(--cream-dark);">
   <div class="wrap">
-    <div class="sec-eyebrow reveal in"><span class="num">02</span><span class="line"></span><span class="kind">Section One</span></div>
-    <h2 class="sec-title reveal in">A fast-evolving threat</h2>
-    <p class="sec-sub reveal in">How candidate fraud changed from a hiring-quality issue into an organizational risk.</p>
-    <div class="body-col reveal in" style="margin-top:34px">
+    <div class="sec-eyebrow reveal"><span class="num">02</span><span class="line"></span><span class="kind">Section One</span></div>
+    <h2 class="sec-title reveal">A fast-evolving threat</h2>
+    <p class="sec-sub reveal">How candidate fraud changed from a hiring-quality issue into an organizational risk.</p>
+    <div class="body-col reveal" style="margin-top:34px">
       <p>Hiring teams have long managed misrepresentation, and for years the consequences were contained — a poor hire, extra recruiting cost, a role reopened sooner than planned. It was largely a quality-control problem. Today's candidate fraud is far more serious.</p>
       <p>In July 2024, KnowBe4 — a firm whose entire business is teaching people to spot deception — hired a North Korean operative who passed every hiring control in place before being caught by endpoint security after his first day. In early 2025, Pindrop, itself a fraud-detection vendor, caught a candidate running a real-time deepfake face overlay during a remote interview; the same identity resurfaced eight days later through a different recruiter, the IP tracing near the North Korean border. And in 2025–2026, security firm Nisos ran the experiment in reverse — deliberately advancing a suspected operative and uncovering a 40-device laptop farm in Florida running coordinated infrastructure for multiple fake identities at once.</p>
       <p>The security industry has seen this model before. A 2023 breach at MGM started with a ten-minute phone call to an IT help desk and ended in roughly $100 million in damage. The lesson security teams took from it: the human identity layer is the soft target.</p>
     </div>
-    <div class="evidence reveal in" style="margin-top:30px">
+    <div class="evidence reveal" style="margin-top:30px">
       <div class="eyebrow" style="margin-bottom:18px">The Evidence · measured across different populations</div>
-      <div id="evidence" style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px"><div class="reveal in" style="background: var(--white); border: 1px solid var(--cream-dark); border-radius: 9px; padding: 18px 16px;"><div style="font-family:&#39;Playfair Display&#39;,serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1">1 in 4</div>
-    <div style="font-family:&#39;Source Sans 3&#39;,sans-serif;font-size:12.5px;font-weight:300;color:var(--text);margin-top:8px;line-height:1.4">candidate profiles could be fake by 2028</div>
-    <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--lavender-deep);margin-top:10px">Gartner</div></div><div class="reveal in" style="background: var(--white); border: 1px solid var(--cream-dark); border-radius: 9px; padding: 18px 16px;"><div style="font-family:&#39;Playfair Display&#39;,serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1">12%</div>
-    <div style="font-family:&#39;Source Sans 3&#39;,sans-serif;font-size:12.5px;font-weight:300;color:var(--text);margin-top:8px;line-height:1.4">of applicants flagged with fraud indicators in 2025</div>
-    <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--lavender-deep);margin-top:10px">Crosschq<span class="fn" data-fn="0">1</span></div></div><div class="reveal in" style="background: var(--white); border: 1px solid var(--cream-dark); border-radius: 9px; padding: 18px 16px;"><div style="font-family:&#39;Playfair Display&#39;,serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1">1 in 6</div>
-    <div style="font-family:&#39;Source Sans 3&#39;,sans-serif;font-size:12.5px;font-weight:300;color:var(--text);margin-top:8px;line-height:1.4">applicants to its own roles showed fraud signs</div>
-    <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--lavender-deep);margin-top:10px">Pindrop<span class="fn" data-fn="1">2</span></div></div><div class="reveal in" style="background: var(--white); border: 1px solid var(--cream-dark); border-radius: 9px; padding: 18px 16px;"><div style="font-family:&#39;Playfair Display&#39;,serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1">1 in 10</div>
-    <div style="font-family:&#39;Source Sans 3&#39;,sans-serif;font-size:12.5px;font-weight:300;color:var(--text);margin-top:8px;line-height:1.4">applicants carried multiple fraud signals</div>
-    <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--lavender-deep);margin-top:10px">Ashby</div></div><div class="reveal in" style="background: var(--white); border: 1px solid var(--cream-dark); border-radius: 9px; padding: 18px 16px;"><div style="font-family:&#39;Playfair Display&#39;,serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1">20–30%</div>
-    <div style="font-family:&#39;Source Sans 3&#39;,sans-serif;font-size:12.5px;font-weight:300;color:var(--text);margin-top:8px;line-height:1.4">of apps for some remote engineering roles</div>
-    <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--lavender-deep);margin-top:10px">Tofu</div></div></div>
-      <p style="font-family:&#39;Source Sans 3&#39;,sans-serif;font-size:13px;font-weight:300;color:var(--muted);margin-top:16px;max-width:680px;line-height:1.5">These figures vary because each organization measures different populations and defines fraud differently. Despite that, they point in the same direction — and the techniques are more sophisticated than even a few years ago.</p>
+      <div id="evidence" style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px"></div>
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:var(--muted);margin-top:16px;max-width:680px;line-height:1.5">These figures vary because each organization measures different populations and defines fraud differently. Despite that, they point in the same direction — and the techniques are more sophisticated than even a few years ago.</p>
     </div>
   </div>
 </section>
@@ -494,55 +503,28 @@ footer .amp{color:var(--lavender);font-style:italic;}
 <!-- ───────── SECTION 2 — FUNNEL ───────── -->
 <section class="funnel-sec" id="sec-2" data-sec="The Hiring Funnel" data-idx="03">
   <div class="wrap-wide">
-    <div class="sec-eyebrow reveal in"><span class="num">03</span><span class="line"></span><span class="kind">Section Two</span></div>
-    <h2 class="sec-title reveal in">The hiring funnel under threat</h2>
-    <p class="sec-sub reveal in">Fraud does not occur at a single point. Different threats emerge at different stages — and as you descend, volume falls while consequence climbs. Scroll to walk the lifecycle.</p>
+    <div class="sec-eyebrow reveal"><span class="num">03</span><span class="line"></span><span class="kind">Section Two</span></div>
+    <h2 class="sec-title reveal">The hiring funnel under threat</h2>
+    <p class="sec-sub reveal">Fraud does not occur at a single point. Different threats emerge at different stages — and as you descend, volume falls while consequence climbs. Scroll to walk the lifecycle.</p>
   </div>
   <div class="funnel-grid" style="margin-top:46px">
     <div class="funnel-sticky">
-      <div class="funnel-diagram" id="funnelDiagram"><button class="fseg active" data-idx="0" style="width: 100%;"><span>Application Intake</span><span class="dens"><i></i><i></i><i></i><i></i></span></button><button class="fseg" data-idx="1" style="width: 93.25%;"><span>Resume Screening</span><span class="dens"><i></i><i></i><i></i><i></i></span></button><button class="fseg" data-idx="2" style="width: 86.5%;"><span>Identity Verification</span><span class="dens"><i></i><i></i><i></i><i></i><i></i></span></button><button class="fseg" data-idx="3" style="width: 79.75%;"><span>Assessments</span><span class="dens"><i></i><i></i><i></i><i></i><i></i></span></button><button class="fseg" data-idx="4" style="width: 73%;"><span>Interviews</span><span class="dens"><i></i><i></i><i></i><i></i></span></button><button class="fseg" data-idx="5" style="width: 66.25%;"><span>References</span><span class="dens"><i></i><i></i></span></button><button class="fseg" data-idx="6" style="width: 59.5%;"><span>Background Checks</span><span class="dens"><i></i><i></i><i></i><i></i><i></i></span></button><button class="fseg" data-idx="7" style="width: 52.75%;"><span>Onboarding</span><span class="dens"><i></i><i></i><i></i></span></button><button class="fseg" data-idx="8" style="width: 46%;"><span>Post-Hire</span><span class="dens"><i></i><i></i></span></button></div>
+      <div class="funnel-diagram" id="funnelDiagram"></div>
       <div class="meters">
         <div class="meter-row">
           <div class="meter-top"><span class="m-name">Volume</span><span class="m-val" id="volVal">High</span></div>
-          <div class="meter-track m-vol"><i id="volBar" style="width: 95%;"></i></div>
+          <div class="meter-track m-vol"><i id="volBar" style="width:95%"></i></div>
         </div>
         <div class="meter-row">
           <div class="meter-top"><span class="m-name">Consequence</span><span class="m-val" id="conVal">Low</span></div>
-          <div class="meter-track m-con"><i id="conBar" style="width: 18%;"></i></div>
+          <div class="meter-track m-con"><i id="conBar" style="width:18%"></i></div>
         </div>
         <div class="meter-hint" id="meterHint">Top of funnel: high volume, low stakes. The risk is drowning qualified candidates in noise.</div>
       </div>
     </div>
-    <div class="funnel-stages" id="funnelStages"><div class="fstage" id="fstage-0" data-idx="0"><div class="st-no">Stage 01 · vendor density 4/5</div>
-    <h3>Application Intake</h3>
-    <div class="st-matur mat-emerging">Emerging · mostly manual</div>
-    <p class="st-threat">The broadest point of entry. AI generates resumes at scale, bots automate applications, synthetic profiles flood in. One TA leader described ~1,500 applications overnight for a single engineering role — and stopping review past a threshold because separating real from fake became unsustainable.</p><div class="know"><div class="k-tag">What to know</div><div class="k-txt">The greatest risk is not that fraudulent candidates enter. Qualified candidates get overlooked when teams are overwhelmed by volume and noise.</div></div></div><div class="fstage" id="fstage-1" data-idx="1"><div class="st-no">Stage 02 · vendor density 4/5</div>
-    <h3>Resume Screening</h3>
-    <div class="st-matur mat-emerging">Emerging</div>
-    <p class="st-threat">Generative AI makes polished, tailored, fabricated resumes trivial. The question is rarely whether AI was used — it's whether the information accurately reflects the candidate's skills, accomplishments, and history. Most screening was built to assess qualifications, not validate authenticity.</p></div><div class="fstage" id="fstage-2" data-idx="2"><div class="st-no">Stage 03 · vendor density 5/5</div>
-    <h3>Identity Verification</h3>
-    <div class="st-matur mat-emerging">Emerging · adapting from fintech</div>
-    <p class="st-threat">Determining whether the person is who they claim to be. Stolen and synthetic identities, forged documents, impersonation, deepfake overlays, proxy interviewees. Lower volume than the top — but far higher consequence.</p><div class="know"><div class="k-tag">What to know</div><div class="k-txt">Once identity is in question, every downstream hiring decision becomes less reliable.</div></div></div><div class="fstage" id="fstage-3" data-idx="3"><div class="st-no">Stage 04 · vendor density 5/5</div>
-    <h3>Assessments</h3>
-    <div class="st-matur mat-mature">Established controls</div>
-    <p class="st-threat">A relatively mature defense category — proctoring, browser monitoring, plagiarism detection, behavioral analysis predate the AI wave. CodeSignal reported 35% of proctored assessments flagged in 2025 (more than double the prior year), and non-proctored tests showed ~8% score inflation versus under 2% for proctored.</p></div><div class="fstage" id="fstage-4" data-idx="4"><div class="st-no">Stage 05 · vendor density 4/5</div>
-    <h3>Interviews</h3>
-    <div class="st-matur mat-emerging">Emerging</div>
-    <p class="st-threat">The threat shifts from assistance to impersonation: deepfake overlays, proxy interviewees, real-time AI coaching, and the handoff. Interview fraud happens live, in a medium most interview tools were built to facilitate rather than verify.</p></div><div class="fstage" id="fstage-5" data-idx="5"><div class="st-no">Stage 06 · vendor density 2/5</div>
-    <h3>References</h3>
-    <div class="st-matur mat-thin">Established process · thin tooling</div>
-    <p class="st-threat">Trust-based, and that trust is exploitable: coached or compensated references, coordinated networks, multiple “references” tied to one device or IP. Reference fraud succeeds because the process looks legitimate — the conversation happens, questions are answered, information is confirmed.</p></div><div class="fstage" id="fstage-6" data-idx="6"><div class="st-no">Stage 07 · vendor density 5/5</div>
-    <h3>Background Checks</h3>
-    <div class="st-matur mat-mature">Established</div>
-    <p class="st-threat">Often seen as the strongest verification step — but background checks validate records, not the individual presenting them. KnowBe4's operative passed screening and references on a stolen identity. They confirm information associated with an identity; they don't confirm the person is authentic.</p></div><div class="fstage" id="fstage-7" data-idx="7"><div class="st-no">Stage 08 · vendor density 3/5</div>
-    <h3>Onboarding</h3>
-    <div class="st-matur mat-emerging">Moderate</div>
-    <p class="st-threat">For many organizations the end of hiring; for sophisticated actors, the beginning. Laptops shipped to mismatched addresses, requests to install remote-access software, and the handoff — where the person who interviewed isn't the person who receives access.</p><div class="know"><div class="k-tag">What to know</div><div class="k-txt">Onboarding is the transition from hiring risk to organizational risk. The closer to systems and data, the greater the consequences if fraud succeeds.</div></div></div><div class="fstage" id="fstage-8" data-idx="8"><div class="st-no">Stage 09 · vendor density 2/5</div>
-    <h3>Post-Hire</h3>
-    <div class="st-matur mat-thin">Emerging · the thinnest segment</div>
-    <p class="st-threat">Most controls ask: is this person who they claim to be? Post-hire asks a different question — is this still the same person? Credential sharing, delegation, account misuse, identity handoffs. The least-developed area of the market, despite some of the highest potential consequences.</p></div></div>
+    <div class="funnel-stages" id="funnelStages"></div>
   </div>
-  <div class="funnel-reveal reveal in">
+  <div class="funnel-reveal reveal">
     <div class="eyebrow" style="margin-bottom:8px">What the lifecycle reveals</div>
     <h3 style="font-size:26px">Three realities, one framework</h3>
     <div class="fr-grid">
@@ -556,42 +538,21 @@ footer .amp{color:var(--lavender);font-style:italic;}
 <!-- ───────── SECTION 3 — INCIDENTS ───────── -->
 <section class="block" id="sec-3" data-sec="Real Incidents" data-idx="04" style="background:var(--cream-mid);border-top:1px solid var(--cream-dark);">
   <div class="wrap">
-    <div class="sec-eyebrow reveal in"><span class="num">04</span><span class="line"></span><span class="kind">Section Three</span></div>
-    <h2 class="sec-title reveal in">What real incidents reveal</h2>
-    <p class="sec-sub reveal in">Candidate fraud rarely succeeds because a single control fails. It succeeds when gaps emerge between controls, processes, and organizational responsibilities. Open each case file.</p>
-    <div class="cases" id="cases"><div class="case reveal in" id="case-knowbe4"><button class="case-head" aria-expanded="false">
-      <span><span class="c-meta">July 2024 · Workforce infiltration · Detected day one</span><span class="c-title">KnowBe4 and Workforce Infiltration</span></span>
-      <span class="c-toggle">Open case file <span class="pl">+</span></span></button>
-    <div class="case-body"><div class="case-body-inner">
-      <p>Security awareness company KnowBe4 disclosed it had inadvertently hired a North Korean operative posing as a U.S.-based software engineer. The individual used a stolen American identity and an AI-enhanced photo, and completed multiple interviews, a background check, and reference verification before being hired.</p><p>The incident was discovered only after the employee received a company workstation and attempted to install malware shortly after activation. Endpoint security detected the activity before any known damage occurred.</p>
-      <div class="lessons-tag">Lessons for organizations</div>
-      <ul class="lessons"><li>Traditional hiring controls can validate records without validating identity continuity.</li><li>Fraud can succeed between checkpoints, even when individual controls work as designed.</li><li>Security monitoring may detect threats recruiting processes never identify.</li></ul>
-    </div></div></div><div class="case reveal in" id="case-pindrop"><button class="case-head" aria-expanded="false">
-      <span><span class="c-meta">Early 2025 · Real-time deepfake · Interview stage</span><span class="c-title">Pindrop and Deepfake Interview Fraud</span></span>
-      <span class="c-toggle">Open case file <span class="pl">+</span></span></button>
-    <div class="case-body"><div class="case-body-inner">
-      <p>Pindrop documented a candidate using a real-time deepfake face overlay during a remote interview. Investigators identified subtle inconsistencies in facial movement and audio synchronization before confirming face-swap technology. The candidate was rejected — but the same identity resurfaced through another recruiting channel days later.</p><p>The incident highlighted how quickly fraudulent identities move across organizations, and how difficult sophisticated interview fraud is for humans to catch by observation alone.</p>
-      <div class="lessons-tag">Lessons for organizations</div>
-      <ul class="lessons"><li>Visual presence is no longer sufficient proof of authenticity.</li><li>Interviewers need clear escalation paths when something feels wrong but can't be explained.</li><li>Interview integrity requires a combination of awareness, process, and technology.</li></ul>
-    </div></div></div><div class="case reveal in" id="case-reference"><button class="case-head" aria-expanded="false">
-      <span><span class="c-meta">Ongoing · Trust-based verification · Reference stage</span><span class="c-title">Reference Manipulation and Trust-Based Verification</span></span>
-      <span class="c-toggle">Open case file <span class="pl">+</span></span></button>
-    <div class="case-body"><div class="case-body-inner">
-      <p>Reference fraud remains one of the most common forms of deception. Recruiters and screening providers report fabricated references, coordinated networks, and individuals posing as former managers or colleagues.</p><p>Because reference checks rely on trust and candidate-provided contact information, the process can appear legitimate even when the source is neither independent nor authentic.</p>
-      <div class="lessons-tag">Lessons for organizations</div>
-      <ul class="lessons"><li>Reference checks validate information, but not always the source.</li><li>Independent verification strengthens the value of reference conversations.</li><li>References should complement other verification methods, not serve as definitive proof.</li></ul>
-    </div></div></div></div>
+    <div class="sec-eyebrow reveal"><span class="num">04</span><span class="line"></span><span class="kind">Section Three</span></div>
+    <h2 class="sec-title reveal">What real incidents reveal</h2>
+    <p class="sec-sub reveal">Candidate fraud rarely succeeds because a single control fails. It succeeds when gaps emerge between controls, processes, and organizational responsibilities. Open each case file.</p>
+    <div class="cases" id="cases"></div>
   </div>
 </section>
 
 <!-- ───────── SECTION 4 — GOVERNANCE ───────── -->
 <section class="gov-sec" id="sec-4" data-sec="Governance" data-idx="05">
   <div class="wrap">
-    <div class="sec-eyebrow reveal in"><span class="num">05</span><span class="line"></span><span class="kind">Section Four</span></div>
-    <h2 class="sec-title reveal in">The ownership gap</h2>
-    <p class="lead reveal in">Candidate fraud enters through hiring but rarely stays a recruiting issue. It touches security, compliance, legal, IT, and business operations — yet in most organizations, no single function owns it end to end.</p>
+    <div class="sec-eyebrow reveal"><span class="num">05</span><span class="line"></span><span class="kind">Section Four</span></div>
+    <h2 class="sec-title reveal">The ownership gap</h2>
+    <p class="lead reveal">Candidate fraud enters through hiring but rarely stays a recruiting issue. It touches security, compliance, legal, IT, and business operations — yet in most organizations, no single function owns it end to end.</p>
 
-    <div class="seam reveal in">
+    <div class="seam reveal">
       <div class="seam-org">
         <div class="so-scale">Team of two</div>
         <div class="so-name">A mid-sized security company</div>
@@ -604,17 +565,16 @@ footer .amp{color:var(--lavender);font-style:italic;}
         <div class="so-desc">Security was aware. Leadership understood the risk. Resources existed. Yet responsibility stayed distributed across functions, and no single team owned it from detection through response.</div>
       </div>
     </div>
-    <p class="seam-cap reveal in">Two different organizations, one structural failure. The common challenge was not budget, size, or sophistication. It was accountability — and the structure of the problem did not change with scale.</p>
+    <p class="seam-cap reveal">Two different organizations, one structural failure. The common challenge was not budget, size, or sophistication. It was accountability — and the structure of the problem did not change with scale.</p>
 
     <div style="margin-top:70px">
-      <div class="eyebrow reveal in" style="color:var(--lavender-light);margin-bottom:14px">Governance models emerging today</div>
-      <h3 class="reveal in" style="font-size:28px;margin-bottom:6px">No standard has emerged — but four patterns recur</h3>
-      <div class="models" id="modelTabs"><button class="model-tab active"><div class="mt-n">Model 01</div><div class="mt-name">Talent Acquisition-Led</div></button><button class="model-tab"><div class="mt-n">Model 02</div><div class="mt-name">Joint TA + Security</div></button><button class="model-tab"><div class="mt-n">Model 03</div><div class="mt-name">Fraud Committee</div></button><button class="model-tab"><div class="mt-n">Model 04</div><div class="mt-name">Executive-Sponsored</div></button></div>
-      <div class="model-detail" id="modelDetail"><div class="md-name">Talent Acquisition-Led</div><div class="md-desc">Talent Acquisition remains the primary owner — common at smaller employers and those early in the journey. Recruiters evaluate tools, identify suspicious activity, document concerns, and coordinate responses, with Security involved only for specific incidents or high-risk roles.</div>
-    <div class="md-trade"><b>Tradeoff —</b><span>Simple and fast — but places heavy responsibility on teams that may lack the resources, expertise, or authority for sophisticated threats.</span></div></div>
+      <div class="eyebrow reveal" style="color:var(--lavender-light);margin-bottom:14px">Governance models emerging today</div>
+      <h3 class="reveal" style="font-size:28px;margin-bottom:6px">No standard has emerged — but four patterns recur</h3>
+      <div class="models" id="modelTabs"></div>
+      <div class="model-detail" id="modelDetail"></div>
     </div>
 
-    <div class="gov-prompt reveal in">
+    <div class="gov-prompt reveal">
       <div class="eyebrow" style="color:var(--lavender-light);margin-bottom:16px">The governance lesson</div>
       <p class="gp-q">"What would our ownership model look like the day after a candidate fraud incident — and what can we implement today?"</p>
     </div>
@@ -624,27 +584,21 @@ footer .amp{color:var(--lavender);font-style:italic;}
 <!-- ───────── SECTION 5 — MARKET ───────── -->
 <section class="block" id="sec-5" data-sec="The Market" data-idx="06">
   <div class="wrap-wide">
-    <div class="sec-eyebrow reveal in"><span class="num">06</span><span class="line"></span><span class="kind">Section Five</span></div>
-    <h2 class="sec-title reveal in">The market landscape</h2>
-    <p class="sec-sub reveal in">The market looks crowded. It isn't — not in the ways that matter. More than sixty vendors claim fraud detection, but what's missing isn't vendors. It's coverage.</p>
+    <div class="sec-eyebrow reveal"><span class="num">06</span><span class="line"></span><span class="kind">Section Five</span></div>
+    <h2 class="sec-title reveal">The market landscape</h2>
+    <p class="sec-sub reveal">The market looks crowded. It isn't — not in the ways that matter. More than sixty vendors claim fraud detection, but what's missing isn't vendors. It's coverage.</p>
 
     <div style="margin-top:50px">
-      <div class="eyebrow reveal in" style="margin-bottom:8px">Three vendor buckets</div>
-      <h3 class="reveal in" style="font-size:24px;margin-bottom:6px">How to read any vendor before you sign</h3>
-      <div class="buckets" id="buckets"><div class="bucket reveal in"><div class="bk-n">Bucket 1</div><div class="bk-name">Standalone fraud products</div>
-    <div class="bk-desc">A dedicated, separately-purchasable fraud product — a discrete SKU a buyer can sign a contract for on its own.</div><div class="bk-ex-tag">Examples</div>
-    <div class="chips"><span class="chip">Tofu</span><span class="chip">Clarity</span><span class="chip">Endorsed</span><span class="chip">Strider</span><span class="chip">Socure</span><span class="chip">Pindrop</span><span class="chip">Checkr</span><span class="chip">Crosschq ApplicantX</span></div></div><div class="bucket reveal in"><div class="bk-n">Bucket 2</div><div class="bk-name">Specialty talent systems with fraud built in</div>
-    <div class="bk-desc">Fraud capability bundled inside a broader product, not purchasable standalone. Genuine, but bounded by the host product's scope and roadmap.</div><div class="bk-ex-tag">Examples</div>
-    <div class="chips"><span class="chip">Findem</span><span class="chip">CodeSignal</span><span class="chip">HackerRank</span><span class="chip">Glider AI</span><span class="chip">Phenom</span></div></div><div class="bucket reveal in"><div class="bk-n">Bucket 3</div><div class="bk-name">ATS with native fraud detection</div>
-    <div class="bk-desc">Recruiting platforms adding fraud as a native feature in the system of record — concentrated at the top of the funnel by design. Only two have shipped meaningful native detection.</div><div class="bk-ex-tag">Examples</div>
-    <div class="chips"><span class="chip">Ashby</span><span class="chip">Greenhouse</span></div></div></div>
+      <div class="eyebrow reveal" style="margin-bottom:8px">Three vendor buckets</div>
+      <h3 class="reveal" style="font-size:24px;margin-bottom:6px">How to read any vendor before you sign</h3>
+      <div class="buckets" id="buckets"></div>
     </div>
 
     <div class="matrix-sec">
-      <div class="eyebrow reveal in" style="margin-bottom:8px">Solutions by stage · a lens, not a ranking</div>
-      <h3 class="reveal in" style="font-size:24px;margin-bottom:4px">The category matrix</h3>
-      <p class="reveal in" style="font-family:&#39;Source Sans 3&#39;,sans-serif;font-size:14px;font-weight:300;color:var(--text);max-width:640px">Filter by structure or maturity. Tap any row to see where that category tends to fall short.</p>
-      <div class="mx-controls reveal in" id="mxControls">
+      <div class="eyebrow reveal" style="margin-bottom:8px">Solutions by stage · a lens, not a ranking</div>
+      <h3 class="reveal" style="font-size:24px;margin-bottom:4px">The category matrix</h3>
+      <p class="reveal" style="font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:var(--text);max-width:640px">Filter by structure or maturity. Tap any row to see where that category tends to fall short.</p>
+      <div class="mx-controls reveal" id="mxControls">
         <span class="mx-lab">Structure</span>
         <button class="filt" data-type="struct" data-val="Standalone">Standalone</button>
         <button class="filt" data-type="struct" data-val="Embedded">Embedded</button>
@@ -654,57 +608,13 @@ footer .amp{color:var(--lavender);font-style:italic;}
         <button class="filt" data-type="mat" data-val="Emerging">Emerging</button>
         <button class="filt" data-type="reset" data-val="all" style="margin-left:14px">Reset</button>
       </div>
-      <div class="mx-table" id="mxTable"><div class="mx-row" data-struct="Standalone" data-mat="Emerging"><div class="mr-cat">Purpose-Built Fraud Platforms</div>
-    <div class="mr-stages">Application Intake → Onboarding</div>
-    <div><span class="pill pill-emerging">Emerging</span></div>
-    <div><span class="pill pill-standalone">Standalone</span></div>
-    <div class="mx-gap"><b>Potential gap</b>Broad coverage claims, but few vendors are equally strong across every stage. Response workflows and compliance controls remain inconsistent.</div></div><div class="mx-row" data-struct="Embedded" data-mat="Emerging"><div class="mr-cat">ATS-Native Fraud Detection</div>
-    <div class="mr-stages">Application Intake, Resume Screening</div>
-    <div><span class="pill pill-emerging">Emerging</span></div>
-    <div><span class="pill pill-embedded">Embedded</span></div>
-    <div class="mx-gap"><b>Potential gap</b>Limited market adoption. Most ATS platforms have not yet introduced comparable fraud detection.</div></div><div class="mx-row" data-struct="Mixed" data-mat="Emerging"><div class="mr-cat">Resume &amp; AI Content Detection</div>
-    <div class="mr-stages">Application Intake, Resume Screening</div>
-    <div><span class="pill pill-emerging">Emerging</span></div>
-    <div><span class="pill pill-mixed">Mixed</span></div>
-    <div class="mx-gap"><b>Potential gap</b>AI-generated content remains hard to identify reliably. False positives and candidate-experience concerns persist.</div></div><div class="mx-row" data-struct="Mixed" data-mat="Emerging"><div class="mr-cat">Identity Verification (Hiring)</div>
-    <div class="mr-stages">Identity Verification, Interview, Onboarding</div>
-    <div><span class="pill pill-emerging">Emerging</span></div>
-    <div><span class="pill pill-mixed">Mixed</span></div>
-    <div class="mx-gap"><b>Potential gap</b>Biometric privacy regulations and varying state requirements create implementation complexity.</div></div><div class="mx-row" data-struct="Embedded" data-mat="Established"><div class="mr-cat">Assessment Anti-Cheating</div>
-    <div class="mr-stages">Assessment</div>
-    <div><span class="pill pill-established">Established</span></div>
-    <div><span class="pill pill-embedded">Embedded</span></div>
-    <div class="mx-gap"><b>Potential gap</b>AI-assisted coding, interview-coaching tools, and behavioral manipulation evolve faster than detection.</div></div><div class="mx-row" data-struct="Mixed" data-mat="Emerging"><div class="mr-cat">AI Interview Fraud Detection</div>
-    <div class="mr-stages">Interview Screening, Live Interview</div>
-    <div><span class="pill pill-emerging">Emerging</span></div>
-    <div><span class="pill pill-mixed">Mixed</span></div>
-    <div class="mx-gap"><b>Potential gap</b>Limited independent validation of accuracy. False positives remain a concern across diverse communication styles.</div></div><div class="mx-row" data-struct="Embedded" data-mat="Established"><div class="mr-cat">Video Interview Platforms</div>
-    <div class="mr-stages">Interview Screening, Live Interview</div>
-    <div><span class="pill pill-established">Established</span></div>
-    <div><span class="pill pill-embedded">Embedded</span></div>
-    <div class="mx-gap"><b>Potential gap</b>Most provide passive evidence trails rather than active real-time detection.</div></div><div class="mx-row" data-struct="Standalone" data-mat="Emerging"><div class="mr-cat">Deepfake Detection</div>
-    <div class="mr-stages">Live Interview, Identity Verification</div>
-    <div><span class="pill pill-emerging">Emerging</span></div>
-    <div><span class="pill pill-standalone">Standalone</span></div>
-    <div class="mx-gap"><b>Potential gap</b>Real-time video detection is technically hard. Accuracy varies with media quality and attack sophistication.</div></div><div class="mx-row" data-struct="Mixed" data-mat="Established"><div class="mr-cat">Reference Verification</div>
-    <div class="mr-stages">Reference Check</div>
-    <div><span class="pill pill-established">Established</span></div>
-    <div><span class="pill pill-mixed">Mixed</span></div>
-    <div class="mx-gap"><b>Potential gap</b>Traditional processes remain vulnerable to fabricated references, proxies, and coordinated networks.</div></div><div class="mx-row" data-struct="Embedded" data-mat="Established"><div class="mr-cat">Background &amp; Onboarding Verification</div>
-    <div class="mr-stages">Background Check, Onboarding</div>
-    <div><span class="pill pill-established">Established</span></div>
-    <div><span class="pill pill-embedded">Embedded</span></div>
-    <div class="mx-gap"><b>Potential gap</b>Focused on historical verification; limited visibility into interview fraud, identity continuity, or post-hire handoffs.</div></div><div class="mx-row" data-struct="Mixed" data-mat="Emerging"><div class="mr-cat">Post-Hire Identity Continuity</div>
-    <div class="mr-stages">Onboarding, Post-Hire</div>
-    <div><span class="pill pill-emerging">Emerging</span></div>
-    <div><span class="pill pill-mixed">Mixed</span></div>
-    <div class="mx-gap"><b>Potential gap</b>One of the least-developed areas, despite being a common failure point in documented infiltration incidents.</div></div></div>
+      <div class="mx-table" id="mxTable"></div>
     </div>
 
-    <div class="density reveal in">
+    <div class="density reveal">
       <div class="eyebrow" style="margin-bottom:8px">The solution density gradient</div>
       <h3>Defenses cluster where fraud is easy to catch</h3>
-      <div class="dens-rows" id="densRows"><div class="dens-row reveal-dens in" style="--w: 92%;"><div class="dr-name">Application &amp; identity</div><div class="dens-track"><i></i></div><div class="dr-count">15+</div></div><div class="dens-row reveal-dens in" style="--w: 70%;"><div class="dr-name">Assessment</div><div class="dens-track"><i></i></div><div class="dr-count">mature</div></div><div class="dens-row reveal-dens in" style="--w: 48%;"><div class="dr-name">Interview deepfake</div><div class="dens-track"><i></i></div><div class="dr-count">cluster</div></div><div class="dens-row reveal-dens in" style="--w: 20%;"><div class="dr-name">Reference checking</div><div class="dens-track"><i></i></div><div class="dr-count">~2</div></div><div class="dens-row reveal-dens in" style="--w: 10%;"><div class="dr-name">Post-hire continuity</div><div class="dens-track"><i></i></div><div class="dr-count">thinnest</div></div></div>
+      <div class="dens-rows" id="densRows"></div>
       <p class="dens-take">The funnel's central finding: <b>defenses cluster where fraud is easiest to detect and cheapest to act on, and thin out exactly where the most damaging fraud actually succeeds.</b> The top is crowded because top-of-funnel signals are cheap and low-friction. Post-hire is empty because it's operationally hard, organizationally ambiguous, and nobody's obvious job.</p>
       <div class="patterns">
         <div class="pattern">
@@ -720,7 +630,7 @@ footer .amp{color:var(--lavender);font-style:italic;}
       </div>
     </div>
 
-    <div class="obs reveal in" style="margin-top:34px">
+    <div class="obs reveal" style="margin-top:34px">
       <div class="obs-card">
         <h4>Buy-side innovators</h4>
         <p>Some TA organizations are building rather than buying. One leader, dissatisfied with available products, began developing a detection workflow using Claude Code, Zapier, and commercial AI tools. A temporary bridge, not a permanent strategy — but a clear signal of the gap between organizational needs and vendor capabilities.</p>
@@ -736,19 +646,16 @@ footer .amp{color:var(--lavender);font-style:italic;}
 <!-- ───────── CONCLUSION ───────── -->
 <section class="concl" id="sec-concl" data-sec="Conclusion" data-idx="07">
   <div class="wrap">
-    <div class="sec-eyebrow reveal in"><span class="num">07</span><span class="line"></span><span class="kind">Conclusion</span></div>
-    <h2 class="sec-title reveal in">The unsolved problem is organizational, not technical</h2>
-    <p class="concl-lead reveal in">The technology is being built quickly enough. The threat is being studied carefully enough. The market has more capability than the average organization is using. What's missing is the scaffolding that lets capability do its work — the owner, the protocol, the cross-functional structure, the recruiter who is enabled rather than blamed. Three numbers describe the shape of the problem better than any chart.</p>
-    <div class="numbers" id="numbers"><div class="numblock" data-target="50" data-dur="1200" data-suffix="%"><div class="big" data-num="0">50%</div>
-    <div class="nb-body"><div class="nb-kicker">Detection by sight is a coin flip</div><div class="nb-text">Roughly the rate at which humans correctly identify AI-generated content and real-time deepfakes, per multiple academic studies. A recruiter trying to spot a sophisticated fraudulent candidate by sight is, statistically, <b>flipping a coin.</b> Training recruiters to be the detection mechanism is no longer viable — it was already weak, and it is becoming non-functional.</div></div></div><div class="numblock" data-target="4" data-dur="900" data-suffix=""><div class="big" data-num="1">4</div>
-    <div class="nb-body"><div class="nb-kicker">Interviews the operative passed</div><div class="nb-text">The number of video interviews a North Korean operative passed at KnowBe4 — a company whose entire business is teaching people to spot deception. The implication isn't that KnowBe4 failed. It's that <b>the threat exceeded what unaided human observation can do,</b> even when the observers are professionals at exactly this kind of observation.</div></div></div><div class="numblock" data-target="0" data-dur="700" data-suffix=""><div class="big" data-num="2">0</div>
-    <div class="nb-body"><div class="nb-kicker">Adopted response playbooks</div><div class="nb-text">The number of vendor-neutral, publicly available, broadly adopted candidate-fraud response playbooks. There is vendor-specific guidance and a few case studies — but no widely accepted protocol a TA leader can pick up tomorrow and run. <b>The market has produced detection without producing response.</b></div></div></div></div>
+    <div class="sec-eyebrow reveal"><span class="num">07</span><span class="line"></span><span class="kind">Conclusion</span></div>
+    <h2 class="sec-title reveal">The unsolved problem is organizational, not technical</h2>
+    <p class="concl-lead reveal">The technology is being built quickly enough. The threat is being studied carefully enough. The market has more capability than the average organization is using. What's missing is the scaffolding that lets capability do its work — the owner, the protocol, the cross-functional structure, the recruiter who is enabled rather than blamed. Three numbers describe the shape of the problem better than any chart.</p>
+    <div class="numbers" id="numbers"></div>
   </div>
   <div class="concl-close">
     <div class="wrap">
-      <div class="cc-floor reveal in">Recruiters carry the floor.<br>They cannot carry <span>the ceiling.</span></div>
-      <p class="cc-final reveal in">The single most consequential decision a hiring organization will make about candidate fraud in the next two years is not which vendor to buy. It is who, on the org chart, is responsible when the next one gets through. That question has an answer in every organization. The answer is almost never written down.</p>
-      <div class="amp-sign reveal in">&amp;</div>
+      <div class="cc-floor reveal">Recruiters carry the floor.<br>They cannot carry <span>the ceiling.</span></div>
+      <p class="cc-final reveal">The single most consequential decision a hiring organization will make about candidate fraud in the next two years is not which vendor to buy. It is who, on the org chart, is responsible when the next one gets through. That question has an answer in every organization. The answer is almost never written down.</p>
+      <div class="amp-sign reveal">&amp;</div>
     </div>
   </div>
 </section>
@@ -757,7 +664,7 @@ footer .amp{color:var(--lavender);font-style:italic;}
 <section class="sources">
   <div class="wrap">
     <h4>Selected sources &amp; notes</h4>
-    <ul class="src-list" id="srcList"><li><span class="sn">[1]</span><span>Crosschq — AI fraud detection platform (ApplicantX). <a href="https://www.crosschq.com/press/ai-fraud-detection-platform-applicantx" target="_blank" rel="noopener">https://www.crosschq.com/press/ai-fraud-detection-platform-applicantx</a></span></li><li><span class="sn">[2]</span><span>Pindrop — Deepfake detection revealed a coordinated hiring scheme. <a href="https://www.pindrop.com/article/deepfake-detection-revealed-coordinated-hiring-scheme/" target="_blank" rel="noopener">https://www.pindrop.com/article/deepfake-detection-revealed-coordinated-hiring-scheme/</a></span></li><li><span class="sn">[3]</span><span>CodeSignal — Prevent and detect cheating in recruiting. <a href="https://codesignal.com/blog/prevent-and-detect-cheating-in-recruiting/" target="_blank" rel="noopener">https://codesignal.com/blog/prevent-and-detect-cheating-in-recruiting/</a></span></li><li><span class="sn">[4]</span><span>Stu Sjouwerman — How a North Korean Fake IT Worker Tried to Infiltrate Us. KnowBe4 blog, July 2024. <a href="https://blog.knowbe4.com/how-a-north-korean-fake-it-worker-tried-to-infiltrate-us" target="_blank" rel="noopener">https://blog.knowbe4.com/how-a-north-korean-fake-it-worker-tried-to-infiltrate-us</a></span></li><li><span class="sn">[5]</span><span>Pindrop — Why Your Hiring Process is Now a Cybersecurity Vulnerability, Sept 2025. <a href="https://www.pindrop.com/article/why-your-hiring-process-now-cybersecurity-vulnerability/" target="_blank" rel="noopener">https://www.pindrop.com/article/why-your-hiring-process-now-cybersecurity-vulnerability/</a></span></li><li><span class="sn">[6]</span><span>The Guardian — UK recruiters on CV falsification, Mar 2025. <a href="https://www.theguardian.com/law/2025/mar/01/uk-recruiters-job-applications-cv-falsification-lies" target="_blank" rel="noopener">https://www.theguardian.com/law/2025/mar/01/uk-recruiters-job-applications-cv-falsification-lies</a></span></li></ul>
+    <ul class="src-list" id="srcList"></ul>
     <p class="disclaimer">A note on vendor claims: most accuracy figures, detection rates, and fraud-blocked statistics in this market are self-reported by vendors against methodologies they designed, on populations they selected. Independent validation exists for a small subset — primarily in identity verification and deepfake detection. Buyers should weight structural questions and third-party certifications more heavily than accuracy percentages. This report is not a vendor ranking, procurement scorecard, or product benchmark.</p>
   </div>
 </section>
@@ -948,10 +855,16 @@ STAGES.forEach((s,i)=>{
   const st=el("div","fstage");
   st.id="fstage-"+i; st.dataset.idx=i;
   const know=s[5]?`<div class="know"><div class="k-tag">What to know</div><div class="k-txt">${s[5]}</div></div>`:"";
+  const densDots=`${'<i></i>'.repeat(s[6])}${'<i class="dim"></i>'.repeat(5-s[6])}`;
   st.innerHTML=`<div class="st-no">Stage ${s[0]} · vendor density ${s[6]}/5</div>
     <h3>${s[1]}</h3>
     <div class="st-matur ${matClass}">${s[3]}</div>
-    <p class="st-threat">${s[4]}</p>${know}`;
+    <p class="st-threat">${s[4]}</p>${know}
+    <div class="st-mini">
+      <div class="stm-row"><span>Volume</span><div class="stm-track"><i style="width:${s[7]}%"></i></div></div>
+      <div class="stm-row"><span>Consequence</span><div class="stm-track con"><i style="width:${s[8]}%"></i></div></div>
+      <div class="stm-dens">Vendor density ${densDots}</div>
+    </div>`;
   fsEl.appendChild(st);
 });
 
@@ -1162,6 +1075,5 @@ document.addEventListener("click",e=>{
   toast.classList.add("show"); setTimeout(()=>toast.classList.remove("show"),1800);
 });
 </script>
-
-
-</body></html>
+</body>
+</html>
