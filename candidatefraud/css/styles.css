@@ -295,6 +295,7 @@ a{ color:inherit; }
 /* ---------- inside ---------- */
 .inside{ background:var(--cream); }
 .inside__who{ color:var(--ink-soft); margin-top:1rem; font-size:1.05em; }
+.inside__note{ color:var(--ink-soft); margin-top:.8rem; font-size:.98em; }
 .contents{ list-style:none; margin:0; padding:0; }
 .contents li{ display:flex; gap:1.3rem; padding:1.4rem 0; border-top:1px solid var(--line); align-items:baseline; }
 .contents li:last-child{ border-bottom:1px solid var(--line); }
