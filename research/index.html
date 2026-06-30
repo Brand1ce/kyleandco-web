@@ -395,48 +395,45 @@ body[data-page="research"] { --accent: var(--sky); }
         <h2>Transformation <em>Realness.</em></h2>
         <p>Conversations with the practitioners doing the work. Subscribe wherever you listen.</p>
       </div>
-      <a href="https://www.purpleacornnetwork.com/podcasts/transformation-realness" target="_blank" rel="noopener noreferrer" class="btn-ghost on-dark">View all episodes <span aria-hidden="true">→</span></a>
+      <a href="https://open.spotify.com/show/5bpoJZzAFNUhPS9g65b41s" target="_blank" rel="noopener noreferrer" class="btn-ghost on-dark">View all episodes <span aria-hidden="true">→</span></a>
     </div>
-    <div id="tr-root" class="podcast-grid">
-      <div style="color:rgba(247,241,234,.5);font-size:.9rem;">Loading…</div>
+    <div class="podcast-grid">
+
+      <article class="pod-card">
+        <div class="pod-art" style="aspect-ratio:1/1;overflow:hidden;position:relative;background:linear-gradient(135deg, rgba(154,184,220,.6), rgba(157,146,173,.5), rgba(39,55,82,.65));"></div>
+        <div class="pod-body">
+          <small style="display:block;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:.35rem;">Ep. 6</small>
+          <h3>The New ROI: Cathy Peterman on Engineering Productivity in the AI Era</h3>
+          <p>How Wayfair integrates AI in the workplace — engineering productivity metrics, business impact measurement, and what real collaboration between HR and engineering teams looks like.</p>
+          <a href="https://open.spotify.com/show/5bpoJZzAFNUhPS9g65b41s" class="listen" target="_blank" rel="noopener noreferrer">Listen on Spotify <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="pod-card">
+        <div class="pod-art" style="aspect-ratio:1/1;overflow:hidden;position:relative;background:linear-gradient(135deg, rgba(253,236,205,.6), rgba(157,146,173,.5));">
+          <img src="/assets/img/appearances/TR_Jason Desentez _podcast.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="pod-body">
+          <small style="display:block;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:.35rem;">Ep. 5</small>
+          <h3>The Culture of Learning: Jason Desentz on Leading HR at Toshiba</h3>
+          <p>Toshiba's CHRO on AI agents in HR, process-driven approaches, and developing new competency frameworks for organizational resilience.</p>
+          <a href="https://open.spotify.com/show/5bpoJZzAFNUhPS9g65b41s" class="listen" target="_blank" rel="noopener noreferrer">Listen on Spotify <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="pod-card">
+        <div class="pod-art" style="aspect-ratio:1/1;overflow:hidden;position:relative;background:linear-gradient(135deg, rgba(157,146,173,.6), rgba(39,55,82,.7));"></div>
+        <div class="pod-body">
+          <small style="display:block;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:.35rem;">Ep. 4</small>
+          <h3>The Indispensable Recruiter: Rocki Howard on Staying Human in an AI World</h3>
+          <p>Diversiology founder Rocki Howard on how AI enhances — not replaces — the human elements of recruiting: judgment, relationships, and the things that actually can't be automated.</p>
+          <a href="https://open.spotify.com/show/5bpoJZzAFNUhPS9g65b41s" class="listen" target="_blank" rel="noopener noreferrer">Listen on Spotify <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
-<script>
-(function(){
-  var gradients = [
-    'linear-gradient(135deg, rgba(154,184,220,.6), rgba(157,146,173,.5), rgba(39,55,82,.65))',
-    'linear-gradient(135deg, rgba(253,236,205,.6), rgba(157,146,173,.5))',
-    'linear-gradient(135deg, rgba(157,146,173,.6), rgba(39,55,82,.7))'
-  ];
-  fetch('/data/appearances.json')
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      var episodes = data.filter(function(a){ return a.status === 'tr'; });
-      if (!episodes.length) { document.getElementById('tr-root').innerHTML = '<p style="color:rgba(247,241,234,.5)">No episodes yet.</p>'; return; }
-      var html = episodes.map(function(a, i){
-        var artStyle = 'aspect-ratio:1/1;overflow:hidden;position:relative;'
-          + (a.image ? '' : 'background:' + gradients[i % gradients.length] + ';');
-        var artImg = a.image
-          ? '<img src="' + a.image + '" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">'
-          : '';
-        var epLabel = a.episode ? '<small style="display:block;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:.35rem;">' + a.episode + '</small>' : '';
-        var link = a.url
-          ? '<a href="' + a.url + '" class="listen" target="_blank" rel="noopener noreferrer">Listen on Spotify <span aria-hidden="true">→</span></a>'
-          : '<span style="font-size:.78rem;color:rgba(154,184,220,.5);">Link coming soon</span>';
-        return '<article class="pod-card">'
-          + '<div class="pod-art" style="' + artStyle + '">' + artImg + '</div>'
-          + '<div class="pod-body">'
-          + epLabel
-          + '<h3>' + a.title + '</h3>'
-          + '<p>' + a.description + '</p>'
-          + link
-          + '</div></article>';
-      }).join('');
-      document.getElementById('tr-root').innerHTML = html;
-    });
-})();
-</script>
 
 <!-- ═══ HOSTED WEBINARS ═══ -->
 <section class="hosted" id="hosted">
