@@ -130,18 +130,6 @@
   },
   {
     "status": "past",
-    "date": "2026-03-10",
-    "month": "Mar",
-    "day": "10",
-    "type": "Podcast",
-    "venue": "Is This Still A Good Time?",
-    "title": "Kyle Lagunas: Navigating HR Innovation and AI",
-    "description": "How AI is reshaping the function beyond efficiency — operating model changes, 2026 trends, and making human-centered hiring work.",
-    "url": "https://podcasts.apple.com/us/podcast/kyle-lagunas-navigating-hr-innovation-and-ai/id1841552118?i=1000754414730",
-    "image": ""
-  },
-  {
-    "status": "past",
     "date": "2026-02-03",
     "month": "Feb",
     "day": "3",
@@ -182,10 +170,10 @@
     "month": "",
     "day": "",
     "type": "Podcast",
-    "venue": "Mike Peditto",
-    "title": "TODO: add episode title",
-    "description": "TODO: add description",
-    "url": "",
+    "venue": "Is This Still A Good Time?",
+    "title": "Kyle Lagunas: Navigating HR Innovation and AI",
+    "description": "How AI is reshaping the function beyond efficiency — operating model changes, 2026 trends, and making human-centered hiring work.",
+    "url": "https://podcasts.apple.com/us/podcast/kyle-lagunas-navigating-hr-innovation-and-ai/id1841552118?i=1000754414730",
     "image": "/assets/img/appearances/Mike Peditto_podcast.jpg"
   },
   {
