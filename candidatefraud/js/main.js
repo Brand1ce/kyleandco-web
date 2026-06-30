@@ -155,6 +155,11 @@
     interactive: { title: 'Apologies friend, but we have to ask.', desc: 'Pop in your email to open the interactive report. If you’re already on our list, it opens right away.' }
   };
 
+  // Remember once someone has cleared the gate, so we don't ask again.
+  var ACCESS_KEY = 'cf_report_access';
+  function hasReportAccess() { try { return localStorage.getItem(ACCESS_KEY) === '1'; } catch (e) { return false; } }
+  function grantReportAccess() { try { localStorage.setItem(ACCESS_KEY, '1'); } catch (e) {} }
+
   function deliverPdf() {
     countDownload();
     var a = document.createElement('a');
@@ -199,6 +204,7 @@
     });
 
     function gateDeliver() {
+      grantReportAccess();
       if (gIntent === 'interactive') { deliverInteractive(); return; }
       gEmailStep.hidden = true; gNewStep.hidden = true; gDoneStep.hidden = false;
       deliverPdf();
@@ -242,8 +248,8 @@
       var isDownload = name.indexOf('download') !== -1;
       var isInteractive = name.indexOf('interactive') !== -1;
       if (isDownload || isInteractive) {
-        if (GATE_ENABLED && openGate) { e.preventDefault(); openGate(isInteractive ? 'interactive' : 'pdf'); }
-        else if (isDownload) { countDownload(); }   // native <a download>/link proceeds otherwise
+        if (GATE_ENABLED && openGate && !hasReportAccess()) { e.preventDefault(); openGate(isInteractive ? 'interactive' : 'pdf'); }
+        else if (isDownload) { countDownload(); }   // gate off, or already cleared: native <a download>/link proceeds
       }
     });
   });
