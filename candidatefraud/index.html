@@ -325,7 +325,7 @@
           <label>First name<input type="text" name="fields[name]" required autocomplete="given-name"></label>
           <label>Last name<input type="text" name="fields[last_name]" autocomplete="family-name"></label>
         </div>
-        <label>Work email<input type="email" name="fields[email]" required autocomplete="email"></label>
+        <label>Email<input type="email" name="fields[email]" required autocomplete="email"></label>
         <label>Company<input type="text" name="fields[company]" autocomplete="organization"></label>
         <input type="hidden" name="ml-submit" value="1">
         <input type="hidden" name="anticsrf" value="true">
@@ -364,7 +364,7 @@
       <h2 class="h-display reg__title" id="gateTitle">Where should we send it?</h2>
       <p class="reg__desc" id="gateDesc">Pop in your email and the report is yours. If you&rsquo;re already on our list, it downloads right away.</p>
       <form class="reg__form" id="gateEmailForm">
-        <label>Work email<input type="email" name="email" id="gateEmail" required autocomplete="email"></label>
+        <label>Email<input type="email" name="email" id="gateEmail" required autocomplete="email"></label>
         <button type="submit" class="btn btn--gold btn--lg reg__submit" id="gateEmailSubmit">Get the report</button>
       </form>
     </div>
@@ -406,11 +406,13 @@
       <h2 class="h-display reg__title" id="earlyTitle">Be first to read it</h2>
       <p class="reg__desc">The full report drops soon. Add your email and we&rsquo;ll send it straight to your inbox the moment it&rsquo;s live.</p>
       <form class="reg__form" id="earlyForm">
+        <label>Email<input type="email" name="email" id="earlyEmail" required autocomplete="email"></label>
         <div class="reg__row">
-          <label>First name<input type="text" name="name" autocomplete="given-name"></label>
-          <label>Last name<input type="text" name="last_name" autocomplete="family-name"></label>
+          <label>First name <span class="reg__opt">optional</span><input type="text" name="name" autocomplete="given-name"></label>
+          <label>Last name <span class="reg__opt">optional</span><input type="text" name="last_name" autocomplete="family-name"></label>
         </div>
-        <label>Work email<input type="email" name="email" id="earlyEmail" required autocomplete="email"></label>
+        <label>Company <span class="reg__opt">optional</span><input type="text" name="company" autocomplete="organization"></label>
+        <label>Title <span class="reg__opt">optional</span><input type="text" name="title" autocomplete="organization-title"></label>
         <button type="submit" class="btn btn--gold btn--lg reg__submit" id="earlySubmit">Email me the report</button>
         <p class="reg__fine">We&rsquo;ll only use this to send you the report and Kyle &amp; Co. insights. Unsubscribe anytime.</p>
       </form>

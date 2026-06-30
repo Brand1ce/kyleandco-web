@@ -422,6 +422,7 @@ a{ color:inherit; }
 .reg__form input:focus{ outline:0; border-color:var(--gold);
   box-shadow:0 0 0 3px rgba(157,146,173,.25); }
 .reg__row{ display:grid; grid-template-columns:1fr 1fr; gap:.8rem; }
+.reg__opt{ text-transform:none; letter-spacing:0; font-weight:400; opacity:.65; }
 .reg__submit{ width:100%; justify-content:center; margin-top:.4rem; }
 .reg__fine{ font-family:var(--sans); font-size:.76rem; color:var(--ink-soft);
   line-height:1.5; margin:.9rem 0 0; }

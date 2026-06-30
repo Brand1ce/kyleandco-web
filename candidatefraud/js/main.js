@@ -292,7 +292,7 @@
         if (window.gtag) window.gtag('event', 'sign_up', { method: 'early_access' });
       }
       var payload = { subscribe: true, list: 'early', email: (eEmail.value || '').trim(),
-        name: val('name'), last_name: val('last_name') };
+        name: val('name'), last_name: val('last_name'), company: val('company'), title: val('title') };
       fetch(GATE_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
         .then(function () { done(); })
         .catch(function () { done(); })   // report is sent manually at launch; never block the signup

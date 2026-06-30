@@ -85,6 +85,7 @@ if (!empty($body['subscribe'])) {
       'name'      => isset($body['name']) ? trim($body['name']) : '',
       'last_name' => isset($body['last_name']) ? trim($body['last_name']) : '',
       'company'   => isset($body['company']) ? trim($body['company']) : '',
+      'job_title' => isset($body['title']) ? trim($body['title']) : '',
     ],
   ];
   list($code, $res, $err) = ml('POST', 'https://connect.mailerlite.com/api/subscribers', $TOKEN, $payload);
