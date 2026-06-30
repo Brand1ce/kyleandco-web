@@ -275,7 +275,7 @@ body[data-page="research"] { --accent: var(--sky); }
 <section class="hero-research">
   <img class="corner-mark" src="/assets/img/icon-ampersand.svg" alt="" aria-hidden="true">
   <div class="hero-research-inner">
-    <div class="eyebrow"><span class="dot"></span> Research · Cohort Two · 2026</div>
+    <div class="eyebrow"><span class="dot"></span> Resources that give HR leaders signal, not noise</div>
     <h1>Research HR uses to defend the calls <em>that have to hold up.</em></h1>
     <p class="sub">Built on surveys with thousands of senior HR and TA leaders. Authored alongside the practitioners shaping the work. Yours to carry into vendor evaluations and strategy decisions.</p>
   </div>
@@ -338,7 +338,7 @@ body[data-page="research"] { --accent: var(--sky); }
         <div class="feat-body">
           <div class="ptag">Report · PDF</div>
           <h3>Quality of Hire Imperative</h3>
-          <p>What quality of hire actually means, how to measure it, and how to defend it to the business.</p>
+          <p>What quality of hire means, how to measure it, and how to defend it to the business.</p>
           <span class="link">Download <span aria-hidden="true">→</span></span>
         </div>
       </a>
@@ -434,41 +434,37 @@ body[data-page="research"] { --accent: var(--sky); }
     <div class="hosted-head">
       <div class="kc-eyebrow" style="margin-bottom:1rem;">Kyle &amp; Co productions</div>
       <h2>Webinars we <em>host.</em></h2>
-      <p>Sessions produced and hosted by Kyle &amp; Co — live town halls, council working sessions, and practitioner roundtables. Past recordings available on demand.</p>
+      <p>Sessions produced and hosted by Kyle &amp; Co: live town halls, council working sessions, and practitioner roundtables. Past recordings available on demand.</p>
     </div>
-    <div id="hosted-root" class="hosted-grid">
-      <div style="color:var(--slate);font-size:.9rem;">Loading…</div>
+    <div class="hosted-grid">
+
+      <a href="https://www.youtube.com/watch?v=DKC3Rq8IxkM" class="hosted-card" target="_blank" rel="noopener noreferrer">
+        <div class="hosted-card-art">
+          <img src="https://i.ytimg.com/vi/DKC3Rq8IxkM/hqdefault.jpg" alt="Navigating AI Interviewers">
+        </div>
+        <div class="hosted-card-body">
+          <div class="hosted-card-tag">Webinar · Kyle &amp; Co</div>
+          <div class="hosted-card-title">Navigating AI Interviewers</div>
+          <div class="hosted-card-sub">An independent look at the AI Interviewer category: what the tools actually do, how they compare, and how to make a defensible buying decision.</div>
+          <span class="hosted-card-link">Watch the replay <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=oTmSIZc7GIc" class="hosted-card" target="_blank" rel="noopener noreferrer">
+        <div class="hosted-card-art">
+          <img src="https://i.ytimg.com/vi/oTmSIZc7GIc/hqdefault.jpg" alt="Human-Centric AI in HR: The Four Frameworks Toolkit">
+        </div>
+        <div class="hosted-card-body">
+          <div class="hosted-card-tag">Webinar · Kyle &amp; Co × HCAIC</div>
+          <div class="hosted-card-title">Human-Centric AI in HR: The Four Frameworks Toolkit</div>
+          <div class="hosted-card-sub">Council members walk through the four practitioner-built frameworks on AI literacy, governance, adoption, and the future of HR.</div>
+          <span class="hosted-card-link">Watch the replay <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
-<script>
-(function(){
-  fetch('/data/appearances.json')
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      var hosted = data.filter(function(a){ return a.status === 'hosted'; });
-      if (!hosted.length) { document.getElementById('hosted-root').innerHTML = ''; return; }
-      var html = hosted.map(function(a){
-        var art = a.image
-          ? '<div class="hosted-card-art"><img src="' + a.image + '" alt="' + a.title + '"></div>'
-          : '<div class="hosted-card-art" style="background:linear-gradient(135deg,rgba(39,55,82,.9),rgba(157,146,173,.6));height:160px;"></div>';
-        var link = a.url
-          ? '<a href="' + a.url + '" class="hosted-card-link" target="_blank" rel="noopener noreferrer">Watch recording <span aria-hidden="true">→</span></a>'
-          : '<span style="font-size:.82rem;color:var(--slate);">Recording coming soon</span>';
-        var venue = a.venue ? ' · ' + a.venue : '';
-        return '<div class="hosted-card">'
-          + art
-          + '<div class="hosted-card-body">'
-          + '<div class="hosted-card-tag">' + (a.type || 'Webinar') + venue + '</div>'
-          + '<div class="hosted-card-title">' + a.title + '</div>'
-          + '<div class="hosted-card-sub">' + a.description + '</div>'
-          + link
-          + '</div></div>';
-      }).join('');
-      document.getElementById('hosted-root').innerHTML = html;
-    });
-})();
-</script>
 
 <!-- ═══ WEBINARS / APPEARANCES ═══ -->
 <section class="webinars" id="appearances">
@@ -567,7 +563,7 @@ body[data-page="research"] { --accent: var(--sky); }
 <section class="closer-research">
   <img class="corner-mark" src="/assets/img/icon-ampersand.svg" alt="" aria-hidden="true">
   <div class="closer-research-inner">
-    <div class="eyebrow"><span class="dot"></span> Stay sharp</div>
+    <div class="eyebrow"><span class="dot"></span> The newsletter</div>
     <h2>Stay <em>sharp.</em></h2>
     <p>Subscribe and you'll get the work as it ships. No spam. Just signal.</p>
     <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="btn-primary">Subscribe <span aria-hidden="true">→</span></a>
@@ -615,7 +611,6 @@ body[data-page="research"] { --accent: var(--sky); }
         <input type="hidden" name="ml-submit" value="1">
         <input type="hidden" name="anticsrf" value="true">
         <button type="submit" class="kc-modal-btn">Send message <span aria-hidden="true">→</span></button>
-        <p class="kc-modal-note">Kyle &amp; Co typically responds within two business days.</p>
       </form>
     </div>
     <div id="kco-success" style="display:none;padding:2rem 0;text-align:center;">
