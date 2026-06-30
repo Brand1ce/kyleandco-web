@@ -28,7 +28,11 @@ if (!$TOKEN) {
   $secret = __DIR__ . '/gate-secret.php';
   if (is_readable($secret)) { $TOKEN = (string) include $secret; }
 }
-$GROUP_ID = '191362223659026255'; // "Candidate Fraud Report — Downloads"
+// Subscriber lists (mapped server-side so the client can't inject arbitrary IDs).
+$GROUPS = [
+  'downloads' => '191362223659026255', // "Candidate Fraud Report — Downloads"
+  'early'     => '191659199008081788', // "Candidate Fraud Report — Early Access"
+];
 
 // Fail open if the token hasn't been configured yet.
 if (!$TOKEN) {
@@ -71,11 +75,12 @@ function ml($method, $url, $token, $payload = null) {
   return [$code, $res, $err];
 }
 
-// --- Step 2: new contact submitting their details -> create + add to group ---
+// --- Step 2: new contact submitting their details -> create + add to a group ---
 if (!empty($body['subscribe'])) {
+  $listKey  = (isset($body['list']) && isset($GROUPS[$body['list']])) ? $body['list'] : 'downloads';
   $payload = [
     'email'  => $email,
-    'groups' => [$GROUP_ID],
+    'groups' => [$GROUPS[$listKey]],
     'fields' => [
       'name'      => isset($body['name']) ? trim($body['name']) : '',
       'last_name' => isset($body['last_name']) ? trim($body['last_name']) : '',

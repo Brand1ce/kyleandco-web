@@ -254,6 +254,52 @@
     });
   });
 
+  /* ---- Early-access signup (pre-launch teaser) ---- */
+  var early = document.getElementById('early');
+  if (early) {
+    var eForm      = document.getElementById('earlyForm');
+    var eFormState = document.getElementById('earlyFormState');
+    var eDoneState = document.getElementById('earlyDoneState');
+    var eEmail     = document.getElementById('earlyEmail');
+    var eLastFocus = null;
+
+    function openEarly(e) {
+      if (e) e.preventDefault();
+      eLastFocus = document.activeElement;
+      eFormState.hidden = false; eDoneState.hidden = true;
+      early.classList.add('is-open'); early.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (eEmail) eEmail.focus();
+    }
+    function closeEarly() {
+      early.classList.remove('is-open'); early.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (eLastFocus) eLastFocus.focus();
+    }
+    document.querySelectorAll('[data-earlyaccess]').forEach(function (b) { b.addEventListener('click', openEarly); });
+    early.querySelectorAll('[data-early-close]').forEach(function (el) { el.addEventListener('click', closeEarly); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && early.classList.contains('is-open')) closeEarly();
+    });
+
+    eForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var val = function (n) { var el = eForm.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; };
+      var btn = document.getElementById('earlySubmit');
+      if (btn) { btn.disabled = true; btn.textContent = 'Adding you…'; }
+      function done() {
+        eFormState.hidden = true; eDoneState.hidden = false;
+        if (window.gtag) window.gtag('event', 'sign_up', { method: 'early_access' });
+      }
+      var payload = { subscribe: true, list: 'early', email: (eEmail.value || '').trim(),
+        name: val('name'), last_name: val('last_name') };
+      fetch(GATE_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+        .then(function () { done(); })
+        .catch(function () { done(); })   // report is sent manually at launch; never block the signup
+        .then(function () { if (btn) { btn.disabled = false; btn.textContent = 'Email me the report'; } });
+    });
+  }
+
   /* ============================================================
      Webinar registration modal + Add-to-Calendar
      ------------------------------------------------------------

@@ -49,7 +49,7 @@
       <a href="#inside">Inside</a>
       <a href="#research">Method</a>
     </nav>
-    <a href="#get" class="btn btn--small">Get the report</a>
+    <a href="#early" class="btn btn--small" data-earlyaccess data-track="nav-early">Get early access</a>
     <a href="#reg" class="btn btn--gold btn--small" data-register data-track="nav-webinar">Join the Webinar</a>
     <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
@@ -87,9 +87,8 @@
     <h1 class="hero__title">The State of<br>Candidate Fraud<br>Detection <em><span style="font-style:normal">&amp;</span> Prevention</em></h1>
     <p class="hero__sub">Candidate fraud is no longer a hiring-quality problem. It is a security problem, and the defense is months behind the threat.</p>
     <div class="hero__cta">
-      <a href="report/" class="btn btn--gold" data-track="hero-interactive">Read the interactive report</a>
-      <a href="downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf" class="btn btn--ghost" download data-track="hero-download">Download the PDF</a>
-      <a href="#reg" class="btn btn--ghost" data-register data-track="hero-webinar">Join the July 28 webinar</a>
+      <a href="#reg" class="btn btn--gold" data-register data-track="hero-webinar">Register for the webinar</a>
+      <a href="#early" class="btn btn--ghost" data-earlyaccess data-track="hero-early">Get early access to the report</a>
     </div>
     <dl class="hero__stats" id="stats">
       <div><dt data-count="4" data-prefix="1 in ">1 in 4</dt><dd>candidate profiles could be fake by 2028 <span>(Gartner)</span></dd></div>
@@ -257,14 +256,13 @@
 <section class="section get" id="get">
   <div class="wrap get__inner">
     <div class="get__text">
-      <p class="eyebrow eyebrow--light">The report</p>
-      <h2 class="h-display get__title">Read the full landscape.</h2>
-      <p class="get__sub">No hard gate. Drop your email if you want it in your inbox, or skip the list and grab it now. Then share it with your TA and Security teams.</p>
+      <p class="eyebrow eyebrow--light">Releasing soon</p>
+      <h2 class="h-display get__title">Be first to read it.</h2>
+      <p class="get__sub">The full report drops soon. Add your email and we&rsquo;ll send it the moment it&rsquo;s live, before it&rsquo;s anywhere else.</p>
       <p class="get__closer">The decision that matters is not which vendor to buy. It is who, on the org chart, is responsible when the next one gets through.</p>
     </div>
     <div class="get__action">
-      <a href="report/" class="btn btn--gold btn--lg" data-track="footer-interactive">Read the interactive report</a>
-      <a href="downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf" class="btn btn--ghost btn--lg" download data-track="footer-download">Download the PDF</a>
+      <a href="#early" class="btn btn--gold btn--lg" data-earlyaccess data-track="footer-early">Get early access</a>
       <p class="get__meta">The State of Candidate Fraud Detection &amp; Prevention &middot; Kyle &amp; Co. &middot; June 2026</p>
     </div>
   </div>
@@ -299,7 +297,7 @@
       <a href="#findings">Findings</a>
       <a href="#inside">Inside the report</a>
       <a href="#webinar">Webinar</a>
-      <a href="downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf" download>Download (PDF)</a>
+      <a href="#early" data-earlyaccess>Get early access</a>
     </nav>
   </div>
   <div class="wrap footer__base">
@@ -393,6 +391,35 @@
       <div class="reg__check" aria-hidden="true">&#10003;</div>
       <h2 class="h-display reg__title">Your download is starting</h2>
       <p class="reg__lead">If it doesn&rsquo;t begin automatically, <a href="downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf" download id="gateManualDl">click here to grab the report</a>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ EARLY-ACCESS MODAL (pre-launch teaser) ============ -->
+<div class="reg" id="early" aria-hidden="true">
+  <div class="reg__overlay" data-early-close></div>
+  <div class="reg__dialog" role="dialog" aria-modal="true" aria-labelledby="earlyTitle">
+    <button class="reg__x" type="button" data-early-close aria-label="Close">&times;</button>
+
+    <div id="earlyFormState">
+      <p class="eyebrow">Early access</p>
+      <h2 class="h-display reg__title" id="earlyTitle">Be first to read it</h2>
+      <p class="reg__desc">The full report drops soon. Add your email and we&rsquo;ll send it straight to your inbox the moment it&rsquo;s live.</p>
+      <form class="reg__form" id="earlyForm">
+        <div class="reg__row">
+          <label>First name<input type="text" name="name" autocomplete="given-name"></label>
+          <label>Last name<input type="text" name="last_name" autocomplete="family-name"></label>
+        </div>
+        <label>Work email<input type="email" name="email" id="earlyEmail" required autocomplete="email"></label>
+        <button type="submit" class="btn btn--gold btn--lg reg__submit" id="earlySubmit">Email me the report</button>
+        <p class="reg__fine">We&rsquo;ll only use this to send you the report and Kyle &amp; Co. insights. Unsubscribe anytime.</p>
+      </form>
+    </div>
+
+    <div id="earlyDoneState" hidden>
+      <div class="reg__check" aria-hidden="true">&#10003;</div>
+      <h2 class="h-display reg__title">You&rsquo;re on the list.</h2>
+      <p class="reg__lead">We&rsquo;ll send the report to your inbox the moment it goes live. Talk soon.</p>
     </div>
   </div>
 </div>
