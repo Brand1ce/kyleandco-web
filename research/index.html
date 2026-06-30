@@ -529,7 +529,7 @@ body[data-page="research"] { --accent: var(--sky); }
 
     return '<div class="webinar-card' + (a.status === 'upcoming' ? ' upcoming' : '') + (a.image ? ' has-art' : '') + '">'
       + artwork
-      + dateBlock
+      + (a.image ? '' : dateBlock)
       + '<div class="webinar-meta">'
       + '<div class="webinar-tag">' + (a.type || '') + venue + '</div>'
       + '<div class="webinar-title">' + a.title + '</div>'
