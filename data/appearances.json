@@ -86,19 +86,9 @@
     "episode": "Ep. 2",
     "type": "Episode",
     "title": "Invisible Software, Real Impact: Paradox on Frictionless Hiring",
-
-    "description": "Paradox leadership on how AI-powered software removes hiring friction through intelligent scheduling and seamless backend automation — when tech gets out of the way, people move faster.",
+    "description": "Paradox leadership on how AI-powered software removes hiring friction through intelligent scheduling and backend automation — when tech gets out of the way, people move faster.",
     "url": "https://open.spotify.com/show/5bpoJZzAFNUhPS9g65b41s",
     "image": ""
-  },
-  {
-    "status": "past",
-    "episode": "Ep. 1",
-    "type": "Episode",
-    "title": "Workday's Big Play: Redefining HR Tech with Bold Innovation and Trust",
-    "description": "Workday's General Manager on platform innovation through Extend and the Built on Workday marketplace — what customer-centricity actually looks like when you're building at scale.",
-    "url": "https://open.spotify.com/show/5bpoJZzAFNUhPS9g65b41s",
-    "image": "/assets/img/appearances/workday_ai literacy work operating system_podcast.png"
   },
 
   {
@@ -116,7 +106,43 @@
 
   {
     "status": "past",
-    "date": "2025-02-03",
+    "date": "2026-05-18",
+    "month": "May",
+    "day": "18",
+    "type": "Podcast",
+    "venue": "The POZCAST",
+    "title": "We Went From Doing More to Doing Better",
+    "description": "Recorded live at Transform 2026. Kyle on vendor consolidation, build-vs-buy decisions, recruiting fraud as a national security issue, and the candidate trust gap in AI hiring.",
+    "url": "https://www.thepozcast.com/we-went-from-doing-more-to-doing-better/",
+    "image": "/assets/img/appearances/Adam Posner_podcast.jpg"
+  },
+  {
+    "status": "past",
+    "date": "2026-04-15",
+    "month": "Apr",
+    "day": "15",
+    "type": "Webinar",
+    "venue": "Symphony Talent",
+    "title": "Proving Talent Acquisition's Business Value",
+    "description": "Fireside chat on how TA teams demonstrate concrete business outcomes, not activity metrics.",
+    "url": "https://www.symphonytalent.com/resources/webinars/proving-talent-acquisitions-business-value/",
+    "image": ""
+  },
+  {
+    "status": "past",
+    "date": "2026-03-10",
+    "month": "Mar",
+    "day": "10",
+    "type": "Podcast",
+    "venue": "Is This Still A Good Time?",
+    "title": "Kyle Lagunas: Navigating HR Innovation and AI",
+    "description": "How AI is reshaping the function beyond efficiency — operating model changes, 2026 trends, and making human-centered hiring work.",
+    "url": "https://podcasts.apple.com/us/podcast/kyle-lagunas-navigating-hr-innovation-and-ai/id1841552118?i=1000754414730",
+    "image": ""
+  },
+  {
+    "status": "past",
+    "date": "2026-02-03",
     "month": "Feb",
     "day": "3",
     "type": "Podcast",
@@ -128,14 +154,14 @@
   },
   {
     "status": "past",
-    "date": "2025-01-27",
-    "month": "Jan",
-    "day": "27",
+    "date": "",
+    "month": "",
+    "day": "",
     "type": "Webinar",
-    "venue": "Beamery",
-    "title": "Transformation Realness Live: Skills-Based Everything",
-    "description": "A panel on how skills-based solutions are shaping workforce strategy — state of HR tech, practical applications, and what \"skills-based\" actually requires to work.",
-    "url": "https://beamery.com/resources/webinars/transformation-realness-live-skills-based-everything",
+    "venue": "ChartHop",
+    "title": "The Truth About AI and HR in 2026",
+    "description": "A conversation on cutting through AI hype to find what's actually changing in HR — and how to make decisions that hold up.",
+    "url": "https://www.charthop.com/resources/the-truth-about-ai-and-hr-in-2026-reg",
     "image": ""
   },
   {
@@ -143,12 +169,12 @@
     "date": "",
     "month": "",
     "day": "",
-    "type": "Podcast",
-    "venue": "Adam Posner",
-    "title": "TODO: add episode title",
-    "description": "TODO: add description",
-    "url": "",
-    "image": "/assets/img/appearances/Adam Posner_podcast.jpg"
+    "type": "Video",
+    "venue": "YouTube · HCAIC",
+    "title": "AI Council Video Series",
+    "description": "Practitioner-built content on AI in HR from the Human-Centric AI Council.",
+    "url": "https://www.youtube.com/watch?v=FGveJBiHbC4&list=PL6UzjTQyGOKMwyg1q-ZwKwvPN1tpSLCJw&index=8",
+    "image": ""
   },
   {
     "status": "past",
@@ -185,5 +211,17 @@
     "description": "A discussion on the legal and governance implications of the landmark AI bias case — and what it means for HR teams evaluating algorithmic tools.",
     "url": "https://webinars.warden-ai.com/mobley-vs-workday/",
     "image": "/assets/img/appearances/Mobely-Workday_podcast.png"
+  },
+  {
+    "status": "past",
+    "date": "",
+    "month": "",
+    "day": "",
+    "type": "Podcast",
+    "venue": "Workday",
+    "title": "AI Literacy & the Work Operating System",
+    "description": "Kyle on building AI literacy within HR — what it means to work alongside AI, and how teams can develop the fluency the moment requires.",
+    "url": "https://www.workday.com/en-us/perspectives/hr/ai-literacy-work-operating-system.html?utm_source=newsletter&utm_medium=email&utm_term=2026-06-30&utm_campaign=Read+the+latest+from+Kyle+Co+",
+    "image": "/assets/img/appearances/workday_ai literacy work operating system_podcast.png"
   }
 ]
