@@ -309,13 +309,13 @@
      (candidatefraud/downloads/candidate-fraud-webinar.ics).
      ============================================================ */
   var WEBINAR = {
-    title: 'Who owns the seam? A live session on candidate-fraud response',
+    title: 'Kyle & Co: Candidate Fraud Webinar',
     start: '20260729T180000Z',           // Wed Jul 29 2026, 2:00 PM ET (EDT = 18:00 UTC)
     end:   '20260729T190000Z',           // 60 min (45 min live + 15 min Q&A)
     whenLabel: 'Wednesday, July 29, 2026 · 2:00 PM ET',
     joinUrl: 'https://kyleandco.com/live',
     location: 'Online — link in your confirmation email',
-    description: 'Kyle & Co. live session on candidate-fraud response: the findings, the hiring funnel, and the ownership models, plus live Q&A. Join link: '
+    description: 'Who owns the seam? A live session on candidate-fraud response. The findings, the hiring funnel, and the ownership models, plus live Q&A. Join here: '
   };
 
   var modal = document.getElementById('reg');
