@@ -151,17 +151,6 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
 .engage-head { max-width: 56ch; margin-bottom: 3rem; }
 .engage-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.1; letter-spacing: -.02em; color: var(--navy); margin-bottom: 1rem; }
 .engage-head h2 em { font-style: italic; color: var(--lilac); }
-.engage-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-.engage-card {
-  background: var(--ivory); border-radius: var(--r-md); padding: 2rem 1.75rem;
-  border: 1px solid rgba(39,55,82,.06); display: flex; flex-direction: column;
-  transition: transform .3s cubic-bezier(.22,1,.36,1), border-color .3s;
-}
-.engage-card:hover { transform: translateY(-3px); border-color: var(--lilac); }
-.engage-num { font-family: var(--font-display); font-style: italic; font-size: 1.5rem; color: var(--lilac); line-height: 1; margin-bottom: 1.5rem; }
-.engage-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; line-height: 1.2; color: var(--navy); margin-bottom: .75rem; letter-spacing: -.01em; }
-.engage-body { font-size: .88rem; color: var(--slate); line-height: 1.65; flex: 1; }
-.engage-tag { margin-top: 1.5rem; font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 600; color: var(--lilac); }
 .engage-note { margin-top: 2.5rem; text-align: center; font-size: 1rem; color: var(--slate); }
 .engage-note a { color: var(--navy); font-weight: 600; border-bottom: 1px solid rgba(39,55,82,.3); text-decoration: none; }
 
@@ -397,40 +386,46 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
   </div>
 </section>
 
+<style>
+.route-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.route-card { background: var(--ivory); border-radius: var(--r-md); padding: 2.5rem 2.25rem; border: 1px solid rgba(39,55,82,.06); display: flex; flex-direction: column; transition: transform .3s cubic-bezier(.22,1,.36,1), border-color .3s, box-shadow .3s; }
+.route-card:hover { transform: translateY(-3px); border-color: var(--lilac); box-shadow: var(--shadow-md); }
+.route-card .kc-eyebrow { margin-bottom: 1rem; }
+.route-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; line-height: 1.15; color: var(--navy); margin-bottom: .85rem; letter-spacing: -.01em; }
+.route-title em { font-style: italic; color: var(--lilac); }
+.route-body { font-size: .95rem; color: var(--slate); line-height: 1.7; flex: 1; margin-bottom: 1.5rem; }
+.route-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+.route-links a { font-size: .9rem; font-weight: 600; color: var(--navy); text-decoration: none; border-bottom: 1px solid rgba(39,55,82,.3); padding-bottom: 2px; transition: border-color .15s; }
+.route-links a:hover { border-color: var(--navy); }
+@media (max-width: 900px) { .route-grid { grid-template-columns: 1fr; } }
+</style>
 <section class="engage">
   <div class="engage-inner">
     <div class="engage-head">
       <div class="kc-eyebrow" style="margin-bottom:1rem;">Working together</div>
-      <h2>Four ways to <em>work with us.</em></h2>
-      <p style="font-size:1rem;color:var(--slate);line-height:1.7;margin-top:.75rem;">HR-tech vendors and HR and TA teams both hire us. The four engagements below work for either side.</p>
+      <h2>Who we <em>work with.</em></h2>
+      <p style="font-size:1rem;color:var(--slate);line-height:1.7;margin-top:.75rem;">HR-tech vendors and HR and TA leaders come to Kyle &amp; Co for different reasons. Here's where each starts.</p>
     </div>
-    <div class="engage-grid">
-      <div class="engage-card">
-        <div class="engage-num">01</div>
-        <div class="engage-title">Underwrite the work.</div>
-        <p class="engage-body">A multi-quarter partnership built around the AI Council. Your brand stands alongside the practitioner-led work HR leaders trust, and your team earns the access and relationships that come from being in the room over time.</p>
-        <div class="engage-tag">Long-term partnership</div>
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="kc-eyebrow">For HR-tech vendors</div>
+        <div class="route-title">Earn your standing with <em>the function.</em></div>
+        <p class="route-body">Practitioners don't extend trust to vendors by default, and for good reason. We help you earn it through underwriting, research, advisory, and activations that put your work in front of them.</p>
+        <div class="route-links">
+          <a href="/vendors/">See how we work with vendors <span aria-hidden="true">&rarr;</span></a>
+        </div>
       </div>
-      <div class="engage-card">
-        <div class="engage-num">02</div>
-        <div class="engage-title">Drive a moment.</div>
-        <p class="engage-body">Sometimes the partnership you need is built around a single moment: a product launch, a market entry, a conference, a strategy rollout. We design bounded engagements scoped to that moment, with deliverables and a timeline matched to what it requires.</p>
-        <div class="engage-tag">Launch &amp; activation</div>
-      </div>
-      <div class="engage-card">
-        <div class="engage-num">03</div>
-        <div class="engage-title">Build the research.</div>
-        <p class="engage-body">When you need original research to validate a market claim, map a category, sharpen positioning, or back an internal initiative with data your team can defend, we build it with you. It takes the shape of a custom study, a Category Compass collaboration, a messaging audit, or a focus group, depending on the question.</p>
-        <div class="engage-tag">Research &amp; data</div>
-      </div>
-      <div class="engage-card">
-        <div class="engage-num">04</div>
-        <div class="engage-title">Get a thinking partner.</div>
-        <p class="engage-body">Some decisions are better made out loud. Strategic advisory hours, product advisory, and executive workshops give you analyst access for the moments when you're sizing a bet, refining positioning, or working through a hard call you'd rather not make alone.</p>
-        <div class="engage-tag">Advisory</div>
+      <div class="route-card">
+        <div class="kc-eyebrow">For HR and TA leaders</div>
+        <div class="route-title">The research is <em>yours to use.</em></div>
+        <p class="route-body">Independent studies, frameworks, and analysis, free and open. Plus the Human-Centric AI Council, built by practitioners for the rest of the function.</p>
+        <div class="route-links">
+          <a href="/research/">Explore the research <span aria-hidden="true">&rarr;</span></a>
+          <a href="/aicouncil">Meet the Council <span aria-hidden="true">&rarr;</span></a>
+        </div>
       </div>
     </div>
-    <p class="engage-note">Every engagement starts with a discovery call where we map the right fit. <a href="#" onclick="event.preventDefault();document.getElementById('kco-modal').classList.add('open')">Start there.</a></p>
+    <p class="engage-note">Not sure where you fit? <a href="#" onclick="event.preventDefault();document.getElementById('kco-modal').classList.add('open')">Book a discovery call</a> and we'll point you to the right work.</p>
   </div>
 </section>
 
