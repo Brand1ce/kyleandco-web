@@ -378,6 +378,23 @@ body[data-page="research"] { --accent: var(--sky); }
   </div>
 </section>
 
+<!-- ═══ GO DEEPER / ADVISORY ═══ -->
+<section class="advisory">
+  <div class="advisory-inner">
+    <div>
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">Go deeper</div>
+      <h2>Want this research <em>applied</em> to your work?</h2>
+      <p>If your team is using a Kyle &amp; Co report to evaluate a tool, defend strategy, or set positioning, Kyle &amp; Co can scope a deeper engagement. Workshops, advisory hours, and bespoke research projects fit alongside the published work.</p>
+      <button class="btn-primary" onclick="document.getElementById('kco-modal').classList.add('open')">Start a conversation <span aria-hidden="true">→</span></button>
+    </div>
+    <div class="advisory-services">
+      <div class="mini-card" role="button" tabindex="0" onclick="openInfo('workshop')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openInfo('workshop');}">Workshop: evaluating vendor claims</div>
+      <div class="mini-card" role="button" tabindex="0" onclick="openInfo('advisory')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openInfo('advisory');}">Advisory: strategy and positioning</div>
+      <div class="mini-card" role="button" tabindex="0" onclick="openInfo('research')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openInfo('research');}">Bespoke research project</div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ PODCASTS ═══ -->
 <section class="podcast" id="podcasts">
   <img class="corner-mark" src="/assets/img/icon-ampersand.svg" alt="" aria-hidden="true">
@@ -448,7 +465,7 @@ body[data-page="research"] { --accent: var(--sky); }
         <div class="upcoming-content">
           <div class="upcoming-type">Live Webinar</div>
           <div class="upcoming-title">Who owns the seam?</div>
-          <div class="upcoming-sub">State of Candidate Fraud research — live on July 29, 2:00 PM EDT. Kyle walks the data, you ask the questions.</div>
+          <div class="upcoming-sub">State of Candidate Fraud research, live July 29, 2:00 PM EDT. Kyle walks the data, you ask the questions.</div>
         </div>
         <a href="https://kyleandco.com/candidatefraud" class="btn-primary" target="_blank" rel="noopener noreferrer">Register <span aria-hidden="true">→</span></a>
       </div>
@@ -562,22 +579,6 @@ body[data-page="research"] { --accent: var(--sky); }
 })();
 </script>
 
-<section class="advisory">
-  <div class="advisory-inner">
-    <div>
-      <div class="kc-eyebrow" style="margin-bottom:1rem;">Go deeper</div>
-      <h2>Want this research <em>applied</em> to your work?</h2>
-      <p>If your team is using a Kyle &amp; Co report to evaluate a tool, defend strategy, or set positioning, Kyle &amp; Co can scope a deeper engagement. Workshops, advisory hours, and bespoke research projects fit alongside the published work.</p>
-      <button class="btn-primary" onclick="document.getElementById('kco-modal').classList.add('open')">Start a conversation <span aria-hidden="true">→</span></button>
-    </div>
-    <div class="advisory-services">
-      <div class="mini-card">Workshop: evaluating vendor claims</div>
-      <div class="mini-card">Advisory: strategy and positioning</div>
-      <div class="mini-card">Bespoke research project</div>
-    </div>
-  </div>
-</section>
-
 <section class="closer-research">
   <img class="corner-mark" src="/assets/img/icon-ampersand.svg" alt="" aria-hidden="true">
   <div class="closer-research-inner">
@@ -681,6 +682,64 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")document.que
     });
   }
   window.addEventListener('scroll', onScroll, {passive:true});
+})();
+</script>
+
+<!-- INFO MODAL — Go deeper services -->
+<div id="info-modal" class="kc-modal-overlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="kc-modal-box">
+    <button class="kc-modal-close" onclick="document.getElementById('info-modal').classList.remove('open')" aria-label="Close">&#x2715;</button>
+    <div class="kc-modal-eyebrow" id="info-eyebrow">Kyle &amp; Co</div>
+    <h3 class="kc-modal-title" id="info-title"></h3>
+    <div class="kc-modal-body" id="info-body"></div>
+    <button class="kc-modal-btn" onclick="document.getElementById('info-modal').classList.remove('open');document.getElementById('kco-modal').classList.add('open');">Book a discovery call <span aria-hidden="true">&rarr;</span></button>
+  </div>
+</div>
+<style>
+.mini-card{cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s cubic-bezier(.22,1,.36,1);}
+.mini-card:hover{border-color:var(--lilac);box-shadow:var(--shadow-sm);transform:translateY(-2px);}
+.mini-card:focus-visible{outline:2px solid var(--lilac);outline-offset:2px;}
+#info-modal .kc-modal-body{font-size:.95rem;color:var(--slate);line-height:1.7;margin-bottom:1.75rem;}
+#info-modal .kc-modal-body p{margin-bottom:1rem;}
+#info-modal .kc-modal-body strong{color:var(--navy);font-weight:600;}
+#info-modal .kc-modal-body ul{margin:.25rem 0 1rem;padding-left:1.1rem;}
+#info-modal .kc-modal-body li{margin-bottom:.45rem;}
+#info-modal .kc-modal-body .muted{font-size:.82rem;color:var(--lilac);margin-bottom:0;}
+</style>
+<script>
+(function(){
+  var INFO = {
+    workshop: {
+      eyebrow: 'Workshop',
+      title: 'Evaluating vendor claims',
+      body: '<p>A facilitated working session for HR and TA teams weighing an AI or HR-tech purchase. You bring the shortlist and the questions. We bring the evaluation frameworks and the outside read.</p>'
+        + '<p>Together we pressure-test what each vendor is claiming, separate what is proven from what is promised, and turn the pitch into criteria you can defend to the business.</p>'
+        + '<p><strong>You leave with:</strong></p>'
+        + '<ul><li>A scored comparison of the tools on your shortlist.</li><li>The claims worth verifying, and the questions to put to each vendor.</li><li>Evaluation criteria your team can reuse on the next purchase.</li></ul>'
+        + '<p class="muted">Format and scope are set in a discovery call.</p>'
+    },
+    advisory: {
+      eyebrow: 'Advisory',
+      title: 'Strategy and positioning',
+      body: '<p>Ongoing analyst access for the calls you would rather not make alone. Bring a market shift, a reorg, an AI roadmap, or positioning that is not landing, and work it through with someone who has done the research and has nothing to sell you.</p>'
+        + '<p><strong>Good for:</strong> leaders sizing a bet, defending a direction, or getting an honest outside read before they commit.</p>'
+        + '<p class="muted">Runs as advisory hours or a standing retainer. Scoped in a discovery call.</p>'
+    },
+    research: {
+      eyebrow: 'Research',
+      title: 'Bespoke research project',
+      body: '<p>Original research built with your team when the published work does not answer your question. A custom study, a category deep-dive, a messaging audit, or a focus group, scoped to what you need to prove.</p>'
+        + '<p><strong>You leave with:</strong> primary data your team can cite and defend, on the question that matters to you.</p>'
+        + '<p class="muted">Scoped in a discovery call.</p>'
+    }
+  };
+  window.openInfo = function(key){
+    var d = INFO[key]; if(!d) return;
+    document.getElementById('info-eyebrow').textContent = d.eyebrow;
+    document.getElementById('info-title').textContent = d.title;
+    document.getElementById('info-body').innerHTML = d.body;
+    document.getElementById('info-modal').classList.add('open');
+  };
 })();
 </script>
 
