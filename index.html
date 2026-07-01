@@ -116,7 +116,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
 .the-work-head { margin-bottom: 3rem; }
 .the-work-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1.08; letter-spacing: -.02em; color: var(--navy); }
 .the-work-head h2 em { font-style: italic; color: var(--lilac); }
-.the-work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+.the-work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
 .work-card {
   background: var(--white); border-radius: var(--r-md); overflow: hidden;
   border: 1px solid rgba(39,55,82,.07);
@@ -266,8 +266,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
 <section class="hero-home">
   <img class="corner-mark" src="/assets/img/icon-ampersand.svg" alt="" aria-hidden="true">
   <div class="hero-home-inner">
-    <div class="eyebrow"><span class="dot"></span> Independent research and advisory to bridge the gap between innovation and adoption</div>
-    <h1>The research firm built with <em>HR practitioners.</em></h1>
+    <h1>Kyle &amp; Co is the research firm built with <em>HR practitioners.</em></h1>
     <p class="sub">We help HR leaders close the gap between AI innovation and adoption. It's built on surveys with thousands of senior HR and TA leaders and written with the practitioners shaping the work. That's how the function moves with intention instead of reacting to the noise.</p>
     <div class="hero-home-actions">
       <button class="btn-primary" onclick="document.getElementById('kco-modal').classList.add('open')">Book a discovery call <span aria-hidden="true">→</span></button>
@@ -328,12 +327,12 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
       <p>Four things we do that most firms don't. You'll see each one in the work itself.</p>
     </div>
     <div class="diff-grid">
-      <div class="diff-card">
+      <div class="diff-card" style="background:#f6f5f8;">
         <div class="diff-num">01</div>
         <div class="diff-title">Built <em>with</em> HR practitioners.</div>
         <p class="diff-body">Our team has run the function we research. Surveys reach thousands of senior HR and TA leaders. The Human-Centric AI Council adds practitioner-led work on AI specifically.</p>
       </div>
-      <div class="diff-card">
+      <div class="diff-card" style="background:#f4f7fb;">
         <div class="diff-num">02</div>
         <div class="diff-title">Evidence over consensus.</div>
         <p class="diff-body">When the AI Interviewer category was too new to rank, we benchmarked the tools instead of ranking them, and said so on the record. We publish what the evidence shows, even when it's the call no one else wants to make. Safe takes don't move the function forward.</p>
@@ -343,7 +342,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
         <div class="diff-title">Generous <em>by design.</em></div>
         <p class="diff-body">Substantive HR research usually sits behind a paywall or a sales call. We keep ours within reach of any leader who could use it. No noise, just signal.</p>
       </div>
-      <div class="diff-card">
+      <div class="diff-card" style="background:#faf7f2;">
         <div class="diff-num">04</div>
         <div class="diff-title">We stay <em>in the room.</em></div>
         <p class="diff-body">Most firms publish and walk. We stay close with briefings, workshops, and evaluation frameworks. We help practitioners read the market, pressure-test vendor claims, and make calls they can defend.</p>
@@ -352,16 +351,11 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
   </div>
 </section>
 
-<div class="motif">
-  <div class="label">The work</div>
-  <p>Where Research <em>Meets Reality.</em></p>
-</div>
-
 <section class="the-work">
   <div class="the-work-inner">
     <div class="the-work-head">
-      <div class="kc-eyebrow" style="margin-bottom:1rem;">Flagship research</div>
-      <h2>What we <em>publish.</em></h2>
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">The work</div>
+      <h2>Where research <em>meets reality.</em></h2>
     </div>
     <div class="the-work-grid">
       <a href="/research/ai-momentum-model/" class="work-card" target="_blank" rel="noopener noreferrer">
@@ -391,11 +385,15 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
           <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
         </div>
       </a>
-    </div>
-    <div class="work-stat-strip">
-      <span>Thousands of senior HR and TA leaders surveyed annually.</span>
-      <span class="work-stat-dot">·</span>
-      <span>The AI Council shapes what we publish on AI.</span>
+      <a href="/candidatefraud/" class="work-card" target="_blank" rel="noopener noreferrer">
+        <img class="work-card-img" src="/candidatefraud/assets/og-image.svg" alt="The Candidate Fraud Report cover">
+        <div class="work-card-body">
+          <div class="work-card-tag">Report</div>
+          <div class="work-card-title">The Candidate Fraud Report</div>
+          <p class="work-card-sub">Organized identity fraud is infiltrating hiring. What HR and TA teams need to know.</p>
+          <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -447,7 +445,7 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
       </div>
       <div class="council-text">
         <div class="eyebrow">The Human-Centric AI Council</div>
-        <h2>The HCAIC, by the <em>practitioners doing the work.</em></h2>
+        <h2>The council led by the HR leaders <em>successfully implementing AI.</em></h2>
         <p>The HCAIC is a working group of HR and TA practitioners building peer-led resources for the rest of the function on AI. Members write, review, and ship their own contributions.</p>
         <p>Underwriters get structured access to members for product feedback and practitioner analysis. That access is built for sharpening products and learning from the function. The Council stays a working group, never a buyer panel.</p>
         <a href="/aicouncil" class="link" target="_blank" rel="noopener noreferrer">Learn more about the Council <span aria-hidden="true">→</span></a>
