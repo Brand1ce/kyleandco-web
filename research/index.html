@@ -293,9 +293,7 @@ body[data-page="research"] { --accent: var(--sky); }
 <section class="featured-research" id="research">
   <div class="featured-inner">
     <div class="featured-head">
-      <div class="kc-eyebrow" style="margin-bottom:1rem;">Flagship work</div>
       <h2>Featured <em>research.</em></h2>
-      <p>Anchor research projects, published openly. Updated as new work ships.</p>
     </div>
     <div class="featured-grid">
 
@@ -381,7 +379,6 @@ body[data-page="research"] { --accent: var(--sky); }
 <section class="advisory">
   <div class="advisory-inner">
     <div>
-      <div class="kc-eyebrow" style="margin-bottom:1rem;">Go deeper</div>
       <h2>Want this research <em>applied</em> to your work?</h2>
       <p>If your team is using a Kyle &amp; Co report to evaluate a tool, defend strategy, or set positioning, Kyle &amp; Co can scope a deeper engagement. Workshops, advisory hours, and bespoke research projects fit alongside the published work.</p>
       <button class="btn-primary" onclick="document.getElementById('kco-modal').classList.add('open')">Start a conversation <span aria-hidden="true">→</span></button>
@@ -400,9 +397,9 @@ body[data-page="research"] { --accent: var(--sky); }
   <div class="podcast-inner">
     <div class="podcast-head">
       <div>
-        <div class="kc-eyebrow" style="margin-bottom:.75rem; color: var(--sky);">Transformation Realness</div>
+        <div class="kc-eyebrow" style="margin-bottom:.75rem; color: var(--sky);">Hosted by Kyle Lagunas</div>
         <h2>Transformation <em>Realness.</em></h2>
-        <p>Conversations with the practitioners doing the work. Subscribe wherever you listen.</p>
+        <p>Conversations focused on highlighting solutions for the world of work. Alongside some of the brightest minds in HR, we talk about the good, the bad, and most of all, the real.</p>
       </div>
       <a href="https://open.spotify.com/show/5bpoJZzAFNUhPS9g65b41s" target="_blank" rel="noopener noreferrer" class="btn-ghost on-dark">View all episodes <span aria-hidden="true">→</span></a>
     </div>
@@ -452,7 +449,6 @@ body[data-page="research"] { --accent: var(--sky); }
 <section class="hosted" id="hosted">
   <div class="hosted-inner">
     <div class="hosted-head">
-      <div class="kc-eyebrow" style="margin-bottom:1rem;">Kyle &amp; Co productions</div>
       <h2>Webinars we <em>host.</em></h2>
       <p>Sessions produced and hosted by Kyle &amp; Co: live town halls, council working sessions, and practitioner roundtables. Past recordings available on demand.</p>
     </div>
@@ -584,7 +580,15 @@ body[data-page="research"] { --accent: var(--sky); }
     <div class="eyebrow"><span class="dot"></span> The newsletter</div>
     <h2>Stay <em>sharp.</em></h2>
     <p>Subscribe and you'll get the work as it ships. No spam. Just signal.</p>
-    <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" class="btn-primary">Subscribe <span aria-hidden="true">→</span></a>
+    <iframe name="ml-res-frame" style="display:none;"></iframe>
+    <form id="res-subscribe-form" action="https://assets.mailerlite.com/jsonp/1555935/forms/155676694376613273/subscribe" method="post" target="ml-res-frame" onsubmit="setTimeout(function(){document.getElementById('res-subscribe-form').style.display='none';document.getElementById('res-subscribe-success').style.display='block';},800);" style="max-width:420px;margin:0 auto;">
+      <input type="hidden" name="ml-submit" value="1">
+      <div style="display:flex;gap:.6rem;">
+        <input required type="email" name="fields[email]" placeholder="Your email" style="flex:1;padding:.8rem 1.1rem;border-radius:8px;border:1px solid rgba(39,55,82,.2);font-family:inherit;font-size:.95rem;outline:none;">
+        <button type="submit" class="btn-primary">Subscribe <span aria-hidden="true">→</span></button>
+      </div>
+    </form>
+    <p id="res-subscribe-success" style="display:none;font-size:1rem;color:var(--navy);margin-top:1rem;">You're in. No spam. Just signal.</p>
   </div>
 </section>
 
