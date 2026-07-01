@@ -28,20 +28,18 @@ body[data-page="vendors"] { --accent: var(--lilac); }
   background-size: 56px 56px;
 }
 .hero-vendors > img.corner-mark { position: absolute; right: -4%; bottom: -12%; width: 48%; max-width: 560px; opacity: .06; pointer-events: none; }
-.hero-vendors-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-.hero-vendors-text { max-width: 520px; }
-.hero-vendors-right { display: flex; flex-direction: column; gap: 1.5rem; }
-.vl-label { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--slate); font-weight: 500; opacity: .65; margin-bottom: .25rem; }
-.vl-row { overflow: hidden; }
-.vl-track { display: flex; width: max-content; align-items: center; gap: 3rem; animation: vendorMarquee 38s linear infinite; }
-.vl-track.rev { animation-direction: reverse; }
-.vl-track:hover { animation-play-state: paused; }
-@keyframes vendorMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.vl-track img { height: 22px; width: 110px; object-fit: contain; opacity: .45; filter: grayscale(50%); flex-shrink: 0; transition: opacity .2s, filter .2s; }
-.vl-track:hover img { opacity: .75; filter: grayscale(20%); }
+.hero-vendors-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-vendors-text { max-width: 640px; }
+.logo-band { background: var(--navy); padding: 2rem 0; border-bottom: 1px solid rgba(247,241,234,.08); overflow: hidden; }
+.logo-band-label { font-family: var(--font-mono); font-size: .72rem; font-style: normal; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--lilac); text-align: center; margin-bottom: 1.5rem; padding: 0 2.5rem; }
+.logo-marquee-track { display: flex; width: max-content; animation: kcMarquee 70s linear infinite; align-items: center; }
+.logo-marquee-track:hover { animation-play-state: paused; }
+@keyframes kcMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.logo-marquee-track img { height: 28px !important; width: 120px !important; object-fit: contain !important; margin: 0 2.75rem; filter: brightness(0) invert(1) !important; opacity: .7; flex-shrink: 0; }
+.logo-marquee-track img.logo-lg { height: 40px !important; width: 150px !important; }
 .hero-vendors .eyebrow { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--slate); font-weight: 400; display: inline-flex; align-items: center; gap: .7rem; margin-bottom: 2rem; }
 .hero-vendors .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lilac); box-shadow: 0 0 0 3px rgba(157,146,173,.25); animation: kcPulseDot 2.2s ease-in-out infinite; }
-.hero-vendors h1 { font-family: var(--font-display); font-weight: 400; font-variation-settings: "SOFT" 50, "WONK" 0; font-size: clamp(2.25rem, 3.5vw, 3.25rem); line-height: 1.05; letter-spacing: -.022em; color: var(--navy); margin-bottom: 2.25rem; }
+.hero-vendors h1 { font-family: var(--font-display); font-weight: 400; font-variation-settings: "SOFT" 50, "WONK" 0; font-size: clamp(2.75rem, 5.5vw, 5rem); line-height: .98; letter-spacing: -.022em; color: var(--navy); margin-bottom: 2.25rem; max-width: 18ch; }
 .hero-vendors h1 em { font-style: italic; color: var(--lilac); font-weight: 400; }
 .hero-vendors p.sub { font-family: var(--font-body); font-size: 1.15rem; line-height: 1.55; color: var(--navy); max-width: 56ch; margin-bottom: 2.5rem; font-weight: 300; }
 
@@ -111,8 +109,6 @@ body[data-page="vendors"] { --accent: var(--lilac); }
 
 @media (max-width: 900px) {
   .hero-vendors, .shift, .engage-v, .proof, .closer-v { padding: 4rem 1.5rem; }
-  .hero-vendors-inner { grid-template-columns: 1fr; }
-  .hero-vendors-right { display: none; }
   .shift-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .engage-v-grid { grid-template-columns: 1fr; }
   .proof-grid { grid-template-columns: 1fr; height: auto; }
@@ -131,7 +127,7 @@ body[data-page="vendors"] { --accent: var(--lilac); }
     <a href="/index.html">Home</a>
     <a href="/research/">Resources</a>
     <a href="/vendors/" class="active">For Vendors</a>
-    <a href="/aicouncil">HCAIC</a>
+    <a href="/aicouncil">AI Council</a>
     <a href="/blog">Blog</a>
     
   </div>
@@ -140,60 +136,58 @@ body[data-page="vendors"] { --accent: var(--lilac); }
 <div class="persona-band vendors"></div>
 
 <section class="hero-vendors">
+  <img class="corner-mark" src="/assets/img/icon-ampersand.svg" alt="" aria-hidden="true">
   <div class="hero-vendors-inner">
     <div class="hero-vendors-text">
       <div class="eyebrow"><span class="dot"></span> For Vendors</div>
       <h1>Where HR-tech vendors earn the trust <em>they can't buy.</em></h1>
-      <p class="sub">Kyle &amp; Co works with vendors who want to be trusted in the function, the kind of standing you earn rather than buy. Research, underwriting, advisory, and events put your work in front of practitioners on their terms.</p>
+      <p class="sub">Kyle &amp; Co works with HR tech vendors who want to be trusted in the function. We partner with you to earn the kind of standing you cannot buy. Research, underwriting, advisory, and events put your work in front of practitioners and their teams.</p>
       <button class="btn-primary" onclick="document.getElementById('kco-modal').classList.add('open')">Book a discovery call <span aria-hidden="true">→</span></button>
-    </div>
-    <div class="hero-vendors-right">
-      <div class="vl-label">Vendors in the work</div>
-      <div class="vl-row">
-        <div class="vl-track">
-          <img src="/assets/img/logos/findem.svg" alt="Findem">
-          <img src="/assets/img/logos/codesignal.svg" alt="CodeSignal">
-          <img src="/assets/img/logos/humanly.png" alt="Humanly">
-          <img src="/assets/img/logos/warden.svg" alt="Warden AI">
-          <img src="/assets/img/logos/goodtime.png" alt="GoodTime">
-          <img src="/assets/img/logos/gem.webp" alt="Gem">
-          <img src="/assets/img/logos/hibob.png" alt="HiBob">
-          <img src="/assets/img/logos/rival.png" alt="Rival">
-          <img src="/assets/img/logos/glider.webp" alt="Glider">
-          <img src="/assets/img/logos/findem.svg" alt="">
-          <img src="/assets/img/logos/codesignal.svg" alt="">
-          <img src="/assets/img/logos/humanly.png" alt="">
-          <img src="/assets/img/logos/warden.svg" alt="">
-          <img src="/assets/img/logos/goodtime.png" alt="">
-          <img src="/assets/img/logos/gem.webp" alt="">
-          <img src="/assets/img/logos/hibob.png" alt="">
-          <img src="/assets/img/logos/rival.png" alt="">
-          <img src="/assets/img/logos/glider.webp" alt="">
-        </div>
-      </div>
-      <div class="vl-row">
-        <div class="vl-track rev">
-          <img src="/assets/img/logos/isolved.png" alt="iSolved">
-          <img src="/assets/img/logos/adp.svg" alt="ADP">
-          <img src="/assets/img/logos/charthop.svg" alt="ChartHop">
-          <img src="/assets/img/logos/workday.png" alt="Workday">
-          <img src="/assets/img/logos/indeed.webp" alt="Indeed">
-          <img src="/assets/img/logos/sap.png" alt="SAP">
-          <img src="/assets/img/logos/symphony.svg" alt="Symphony Talent">
-          <img src="/assets/img/logos/reelist.png" alt="Reelist">
-          <img src="/assets/img/logos/isolved.png" alt="">
-          <img src="/assets/img/logos/adp.svg" alt="">
-          <img src="/assets/img/logos/charthop.svg" alt="">
-          <img src="/assets/img/logos/workday.png" alt="">
-          <img src="/assets/img/logos/indeed.webp" alt="">
-          <img src="/assets/img/logos/sap.png" alt="">
-          <img src="/assets/img/logos/symphony.svg" alt="">
-          <img src="/assets/img/logos/reelist.png" alt="">
-        </div>
-      </div>
     </div>
   </div>
 </section>
+
+<div class="logo-band">
+  <div class="logo-band-label">We love our clients</div>
+  <div style="overflow:hidden;">
+    <div class="logo-marquee-track">
+      <img src="/assets/img/logos/findem.svg" alt="Findem">
+      <img src="/assets/img/logos/codesignal.svg" alt="CodeSignal">
+      <img src="/assets/img/logos/humanly.png" alt="Humanly">
+      <img src="/assets/img/logos/warden.svg" alt="Warden AI">
+      <img src="/assets/img/logos/goodtime.png" alt="GoodTime">
+      <img src="/assets/img/logos/gem.webp" alt="Gem" class="logo-lg">
+      <img src="/assets/img/logos/hibob.png" alt="HiBob" class="logo-lg">
+      <img src="/assets/img/logos/rival.png" alt="Rival HR">
+      <img src="/assets/img/logos/glider.webp" alt="Glider">
+      <img src="/assets/img/logos/isolved.png" alt="iSolved">
+      <img src="/assets/img/logos/adp.svg" alt="ADP">
+      <img src="/assets/img/logos/charthop.svg" alt="ChartHop">
+      <img src="/assets/img/logos/workday.png" alt="Workday" class="logo-lg">
+      <img src="/assets/img/logos/indeed.webp" alt="Indeed">
+      <img src="/assets/img/logos/sap.png" alt="SAP">
+      <img src="/assets/img/logos/symphony.svg" alt="Symphony Talent">
+      <img src="/assets/img/logos/reelist.png" alt="Reelist">
+      <img src="/assets/img/logos/findem.svg" alt="">
+      <img src="/assets/img/logos/codesignal.svg" alt="">
+      <img src="/assets/img/logos/humanly.png" alt="">
+      <img src="/assets/img/logos/warden.svg" alt="">
+      <img src="/assets/img/logos/goodtime.png" alt="">
+      <img src="/assets/img/logos/gem.webp" alt="" class="logo-lg">
+      <img src="/assets/img/logos/hibob.png" alt="" class="logo-lg">
+      <img src="/assets/img/logos/rival.png" alt="">
+      <img src="/assets/img/logos/glider.webp" alt="">
+      <img src="/assets/img/logos/isolved.png" alt="">
+      <img src="/assets/img/logos/adp.svg" alt="">
+      <img src="/assets/img/logos/charthop.svg" alt="">
+      <img src="/assets/img/logos/workday.png" alt="" class="logo-lg">
+      <img src="/assets/img/logos/indeed.webp" alt="">
+      <img src="/assets/img/logos/sap.png" alt="">
+      <img src="/assets/img/logos/symphony.svg" alt="">
+      <img src="/assets/img/logos/reelist.png" alt="">
+    </div>
+  </div>
+</div>
 
 <section class="shift">
   <div class="shift-inner">
@@ -388,7 +382,7 @@ document.addEventListener('keydown', function(e) {
     <nav class="footer-links">
       <a href="/research/">Resources</a>
       <a href="/vendors/">For Vendors</a>
-      <a href="/aicouncil">HCAIC</a>
+      <a href="/aicouncil">AI Council</a>
       <a href="/blog">Blog</a>
       
     </nav>
