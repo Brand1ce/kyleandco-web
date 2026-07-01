@@ -76,11 +76,18 @@ body[data-page="research"] { --accent: var(--sky); }
 /* Featured Research */
 .featured-research { background: var(--white); padding: 5rem 2.5rem; }
 .featured-inner { max-width: 1200px; margin: 0 auto; }
-.featured-head { margin-bottom: 3rem; max-width: 50ch; }
+.featured-head { margin-bottom: 3rem; display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; }
+.featured-head-text { max-width: 50ch; }
 .featured-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1.05; letter-spacing: -.02em; color: var(--navy); margin-bottom: 1rem; }
 .featured-head h2 em { font-style: italic; color: var(--lilac); }
 .featured-head p { font-size: 1.05rem; color: var(--slate); line-height: 1.7; }
-.featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.carousel-controls { display: flex; gap: .75rem; flex-shrink: 0; }
+.carousel-arrow { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(39,55,82,.2); background: var(--white); color: var(--navy); font-size: 1.05rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s, border-color .2s, opacity .2s; }
+.carousel-arrow:hover:not(:disabled) { background: var(--ivory); border-color: var(--lilac); }
+.carousel-arrow:disabled { opacity: .3; cursor: default; }
+.featured-grid { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 3rem) / 3); gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: .5rem; scrollbar-width: none; -ms-overflow-style: none; }
+.featured-grid::-webkit-scrollbar { display: none; }
+.feat-card { scroll-snap-align: start; }
 .feat-card { background: var(--white); border-radius: var(--r-md); overflow: hidden; border: 1px solid rgba(39,55,82,.06); display: flex; flex-direction: column; text-decoration: none; transition: transform .3s cubic-bezier(.22,1,.36,1), border-color .3s, box-shadow .3s; }
 .feat-card:hover { transform: translateY(-4px); border-color: var(--lilac); box-shadow: var(--shadow-md); }
 .feat-cover { aspect-ratio: 4/3; position: relative; overflow: hidden; }
@@ -247,7 +254,9 @@ body[data-page="research"] { --accent: var(--sky); }
   .hero-research, .featured-research, .podcast, .hosted, .webinars, .elsewhere, .advisory, .closer-research { padding: 3.5rem 1.5rem; }
   .hosted-grid { grid-template-columns: 1fr; }
   .hero-research-inner, .advisory-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .featured-grid, .podcast-grid, .app-grid { grid-template-columns: 1fr; }
+  .podcast-grid, .app-grid { grid-template-columns: 1fr; }
+  .featured-grid { grid-auto-columns: 82%; }
+  .featured-head { flex-direction: column; align-items: flex-start; }
   .subnav-inner { padding: 0 1.5rem; gap: 0; overflow-x: auto; }
   .webinar-card { flex-wrap: wrap; }
   .webinar-action { width: 100%; margin-top: .5rem; }
@@ -293,10 +302,16 @@ body[data-page="research"] { --accent: var(--sky); }
 <section class="featured-research" id="research">
   <div class="featured-inner">
     <div class="featured-head">
-      <h2>Featured <em>research.</em></h2>
-      <p>Analysis that stays close to the work, built around the challenges HR is facing.</p>
+      <div class="featured-head-text">
+        <h2>Featured <em>research.</em></h2>
+        <p>Analysis that stays close to the work, built around the challenges HR is facing.</p>
+      </div>
+      <div class="carousel-controls">
+        <button type="button" class="carousel-arrow" id="feat-prev" aria-label="Previous research">&larr;</button>
+        <button type="button" class="carousel-arrow" id="feat-next" aria-label="More research">&rarr;</button>
+      </div>
     </div>
-    <div class="featured-grid">
+    <div class="featured-grid" id="feat-track">
 
       <a href="/candidatefraud/" class="feat-card" target="_blank" rel="noopener noreferrer">
         <div class="feat-cover">
@@ -757,6 +772,26 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")document.que
     document.getElementById('info-modal').classList.add('open');
   };
 })();
+</script>
+
+<script>
+  (function(){
+    var track = document.getElementById('feat-track');
+    var prev = document.getElementById('feat-prev');
+    var next = document.getElementById('feat-next');
+    if(!track || !prev || !next) return;
+    function page(){ return Math.max(track.clientWidth * 0.9, 1); }
+    function update(){
+      var max = track.scrollWidth - track.clientWidth - 1;
+      prev.disabled = track.scrollLeft <= 1;
+      next.disabled = track.scrollLeft >= max;
+    }
+    prev.addEventListener('click', function(){ track.scrollBy({ left: -page(), behavior: 'smooth' }); });
+    next.addEventListener('click', function(){ track.scrollBy({ left: page(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
 </script>
 
 </body>
