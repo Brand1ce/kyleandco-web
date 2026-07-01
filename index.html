@@ -116,7 +116,14 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
 .the-work-head { margin-bottom: 3rem; }
 .the-work-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.1; letter-spacing: -.02em; color: var(--navy); }
 .the-work-head h2 em { font-style: italic; color: var(--lilac); }
-.the-work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+.work-feature { display: grid; grid-template-columns: 300px 1fr; background: var(--white); border-radius: var(--r-md); overflow: hidden; border: 1px solid rgba(39,55,82,.07); text-decoration: none; margin-bottom: 2.5rem; transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s; }
+.work-feature:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--lilac); }
+.work-feature-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.work-feature-body { padding: 2.5rem 2.75rem; display: flex; flex-direction: column; justify-content: center; }
+.work-feature-title { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; color: var(--navy); margin: .85rem 0 .75rem; line-height: 1.15; letter-spacing: -.01em; }
+.work-feature-sub { font-size: 1rem; color: var(--slate); line-height: 1.65; margin-bottom: 1.5rem; max-width: 48ch; }
+.the-work-actions { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
+@media (max-width: 720px) { .work-feature { grid-template-columns: 1fr; } .work-feature-img { aspect-ratio: 16/9; } }
 .work-card {
   background: var(--white); border-radius: var(--r-md); overflow: hidden;
   border: 1px solid rgba(39,55,82,.07);
@@ -345,43 +352,18 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
       <div class="kc-eyebrow" style="margin-bottom:1rem;">The work</div>
       <h2>Where research <em>meets reality.</em></h2>
     </div>
-    <div class="the-work-grid">
-      <a href="/research/ai-momentum-model/" class="work-card" target="_blank" rel="noopener noreferrer">
-        <img class="work-card-img" src="/assets/img/research-01-momentum.png" alt="AI Momentum Model report cover">
-        <div class="work-card-body">
-          <div class="work-card-tag">Annual benchmark</div>
-          <div class="work-card-title">AI Momentum Model</div>
-          <p class="work-card-sub">Where your organization sits on AI momentum, and what's driving the result.</p>
-          <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
-        </div>
-      </a>
-      <a href="/research/category-compass/" class="work-card" target="_blank" rel="noopener noreferrer">
-        <img class="work-card-img" src="/assets/img/research-02-compass.png" alt="Category Compass: AI Interviewers report cover">
-        <div class="work-card-body">
-          <div class="work-card-tag">Category Compass</div>
-          <div class="work-card-title">Category Compass: AI Interviewers</div>
-          <p class="work-card-sub">A research framework for HR tech categories that are too new to rank. The latest edition covers AI Interviewers.</p>
-          <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
-        </div>
-      </a>
-      <a href="/aicouncil?utm_source=kyleandco_website&utm_medium=research_card&utm_campaign=ai_council_toolkit" class="work-card" target="_blank" rel="noopener noreferrer">
-        <img class="work-card-img" src="/assets/img/research-03-toolkit.png" alt="AI Council Toolkit cover">
-        <div class="work-card-body">
-          <div class="work-card-tag">Practitioner toolkit</div>
-          <div class="work-card-title">AI Council Toolkit</div>
-          <p class="work-card-sub">Practitioner-led frameworks for AI literacy, governance, evaluation, and change management.</p>
-          <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
-        </div>
-      </a>
-      <a href="/candidatefraud/" class="work-card" target="_blank" rel="noopener noreferrer">
-        <img class="work-card-img" src="/assets/img/research-04-candidate-fraud.png" alt="The Candidate Fraud Report cover">
-        <div class="work-card-body">
-          <div class="work-card-tag">Report</div>
-          <div class="work-card-title">The Candidate Fraud Report</div>
-          <p class="work-card-sub">Organized identity fraud is infiltrating hiring. What HR and TA teams need to know.</p>
-          <span class="work-card-cta">Read <span aria-hidden="true">→</span></span>
-        </div>
-      </a>
+    <a href="/candidatefraud/" class="work-feature" target="_blank" rel="noopener noreferrer">
+      <img class="work-feature-img" src="/assets/img/research-04-candidate-fraud.png" alt="The Candidate Fraud Report cover">
+      <div class="work-feature-body">
+        <div class="work-card-tag">Latest report</div>
+        <div class="work-feature-title">The Candidate Fraud Report</div>
+        <p class="work-feature-sub">Organized identity fraud is infiltrating hiring. What HR and TA teams need to know.</p>
+        <span class="work-card-cta">Read the report <span aria-hidden="true">→</span></span>
+      </div>
+    </a>
+    <div class="the-work-actions">
+      <a href="/research/" class="btn-primary" target="_blank" rel="noopener noreferrer">See all research <span aria-hidden="true">→</span></a>
+      <a href="/blog" class="btn-ghost">Read the blog</a>
     </div>
   </div>
 </section>
