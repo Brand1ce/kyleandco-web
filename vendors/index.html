@@ -28,8 +28,17 @@ body[data-page="vendors"] { --accent: var(--lilac); }
   background-size: 56px 56px;
 }
 .hero-vendors > img.corner-mark { position: absolute; right: -4%; bottom: -12%; width: 48%; max-width: 560px; opacity: .06; pointer-events: none; }
-.hero-vendors-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-vendors-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
 .hero-vendors-text { max-width: 520px; }
+.hero-vendors-right { display: flex; flex-direction: column; gap: 1.5rem; }
+.vl-label { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--slate); font-weight: 500; opacity: .65; margin-bottom: .25rem; }
+.vl-row { overflow: hidden; }
+.vl-track { display: flex; width: max-content; align-items: center; gap: 3rem; animation: vendorMarquee 38s linear infinite; }
+.vl-track.rev { animation-direction: reverse; }
+.vl-track:hover { animation-play-state: paused; }
+@keyframes vendorMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.vl-track img { height: 22px; width: 110px; object-fit: contain; opacity: .45; filter: grayscale(50%); flex-shrink: 0; transition: opacity .2s, filter .2s; }
+.vl-track:hover img { opacity: .75; filter: grayscale(20%); }
 .hero-vendors .eyebrow { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--slate); font-weight: 400; display: inline-flex; align-items: center; gap: .7rem; margin-bottom: 2rem; }
 .hero-vendors .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lilac); box-shadow: 0 0 0 3px rgba(157,146,173,.25); animation: kcPulseDot 2.2s ease-in-out infinite; }
 .hero-vendors h1 { font-family: var(--font-display); font-weight: 400; font-variation-settings: "SOFT" 50, "WONK" 0; font-size: clamp(2.75rem, 6.5vw, 5.5rem); line-height: .98; letter-spacing: -.022em; color: var(--navy); margin-bottom: 2.25rem; max-width: 14ch; }
@@ -84,8 +93,8 @@ body[data-page="vendors"] { --accent: var(--lilac); }
 .proof-tile .tag { position: absolute; top: 1rem; left: 1rem; font-family: var(--font-body); font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; color: var(--ivory); padding: .3rem .65rem; background: rgba(26,36,56,.55); backdrop-filter: blur(4px); border-radius: 100px; }
 .proof-tile .vendor { font-family: var(--font-display); font-size: 1.05rem; font-style: italic; color: var(--cream); margin-bottom: .25rem; }
 .proof-tile .caption { font-size: .8rem; color: rgba(247,241,234,.85); line-height: 1.35; max-width: 28ch; }
-.proof-tile.p1 { grid-row: span 2; background: linear-gradient(160deg, rgba(157,146,173,.6), rgba(39,55,82,.85)); }
-.proof-tile.p2 { background: linear-gradient(135deg, rgba(253,236,205,.4), rgba(157,146,173,.5), rgba(39,55,82,.7)); }
+.proof-tile.p1 { grid-row: span 2; background: linear-gradient(to top, rgba(39,55,82,.88) 0%, rgba(39,55,82,.3) 55%, transparent 100%), url('/assets/img/vendor-photos/hcaic-council-kickoff.jpg') center/cover no-repeat; }
+.proof-tile.p2 { background: linear-gradient(to top, rgba(39,55,82,.85) 0%, rgba(39,55,82,.3) 55%, transparent 100%), url('/assets/img/vendor-photos/codesignal-beyond.jpg') center/cover no-repeat; }
 .proof-tile.p3 { background: linear-gradient(135deg, rgba(154,184,220,.5), rgba(39,55,82,.7)); }
 .proof-tile.p4 { background: linear-gradient(160deg, rgba(157,146,173,.55), rgba(26,36,56,.85)); }
 .proof-tile.p5 { background: linear-gradient(135deg, rgba(253,236,205,.45), rgba(39,55,82,.8)); }
@@ -102,10 +111,10 @@ body[data-page="vendors"] { --accent: var(--lilac); }
 
 @media (max-width: 900px) {
   .hero-vendors, .shift, .engage-v, .proof, .closer-v { padding: 4rem 1.5rem; }
+  .hero-vendors-inner { grid-template-columns: 1fr; }
+  .hero-vendors-right { display: none; }
   .shift-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .engage-v-grid { grid-template-columns: 1fr; }
-  .vendor-logos-inner { grid-template-columns: 1fr; gap: 1.5rem; }
-  .vendor-logos-grid { grid-template-columns: repeat(2, 1fr); border-left: 0; border-top: 1px solid rgba(157,146,173,.3); }
   .proof-grid { grid-template-columns: 1fr; height: auto; }
   .proof-tile { aspect-ratio: 4/3; }
   .proof-tile.p1 { grid-row: auto; }
@@ -131,7 +140,6 @@ body[data-page="vendors"] { --accent: var(--lilac); }
 <div class="persona-band vendors"></div>
 
 <section class="hero-vendors">
-  <img class="corner-mark" src="/assets/img/icon-ampersand.svg" alt="" aria-hidden="true">
   <div class="hero-vendors-inner">
     <div class="hero-vendors-text">
       <div class="eyebrow"><span class="dot"></span> For Vendors</div>
@@ -139,26 +147,53 @@ body[data-page="vendors"] { --accent: var(--lilac); }
       <p class="sub">Kyle &amp; Co works with vendors who want to be trusted in the function, the kind of standing you earn rather than buy. Research, underwriting, advisory, and events put your work in front of practitioners on their terms.</p>
       <button class="btn-primary" onclick="document.getElementById('kco-modal').classList.add('open')">Book a discovery call <span aria-hidden="true">→</span></button>
     </div>
-  </div>
-</section>
-
-<div class="vendor-logos">
-  <div class="vendor-logos-inner">
-    <div class="vendor-logos-label">Vendors <em>in the work</em></div>
-    <div class="vendor-logos-grid">
-      <div><img src="/assets/img/logos/findem.svg" alt="Findem"></div>
-      <div><img src="/assets/img/logos/codesignal.svg" alt="CodeSignal"></div>
-      <div><img src="/assets/img/logos/humanly.png" alt="Humanly"></div>
-      <div><img src="/assets/img/logos/warden.svg" alt="Warden AI"></div>
-      <div><img src="/assets/img/logos/goodtime.png" alt="GoodTime"></div>
-      <div><img src="/assets/img/logos/gem.webp" alt="Gem"></div>
-      <div><img src="/assets/img/logos/hibob.png" alt="HiBob"></div>
-      <div><img src="/assets/img/logos/rival.png" alt="Rival"></div>
-      <div><img src="/assets/img/logos/sap.png" alt="SAP"></div>
-      <div><img src="/assets/img/logos/indeed.webp" alt="Indeed"></div>
+    <div class="hero-vendors-right">
+      <div class="vl-label">Vendors in the work</div>
+      <div class="vl-row">
+        <div class="vl-track">
+          <img src="/assets/img/logos/findem.svg" alt="Findem">
+          <img src="/assets/img/logos/codesignal.svg" alt="CodeSignal">
+          <img src="/assets/img/logos/humanly.png" alt="Humanly">
+          <img src="/assets/img/logos/warden.svg" alt="Warden AI">
+          <img src="/assets/img/logos/goodtime.png" alt="GoodTime">
+          <img src="/assets/img/logos/gem.webp" alt="Gem">
+          <img src="/assets/img/logos/hibob.png" alt="HiBob">
+          <img src="/assets/img/logos/rival.png" alt="Rival">
+          <img src="/assets/img/logos/glider.webp" alt="Glider">
+          <img src="/assets/img/logos/findem.svg" alt="">
+          <img src="/assets/img/logos/codesignal.svg" alt="">
+          <img src="/assets/img/logos/humanly.png" alt="">
+          <img src="/assets/img/logos/warden.svg" alt="">
+          <img src="/assets/img/logos/goodtime.png" alt="">
+          <img src="/assets/img/logos/gem.webp" alt="">
+          <img src="/assets/img/logos/hibob.png" alt="">
+          <img src="/assets/img/logos/rival.png" alt="">
+          <img src="/assets/img/logos/glider.webp" alt="">
+        </div>
+      </div>
+      <div class="vl-row">
+        <div class="vl-track rev">
+          <img src="/assets/img/logos/isolved.png" alt="iSolved">
+          <img src="/assets/img/logos/adp.svg" alt="ADP">
+          <img src="/assets/img/logos/charthop.svg" alt="ChartHop">
+          <img src="/assets/img/logos/workday.png" alt="Workday">
+          <img src="/assets/img/logos/indeed.webp" alt="Indeed">
+          <img src="/assets/img/logos/sap.png" alt="SAP">
+          <img src="/assets/img/logos/symphony.svg" alt="Symphony Talent">
+          <img src="/assets/img/logos/reelist.png" alt="Reelist">
+          <img src="/assets/img/logos/isolved.png" alt="">
+          <img src="/assets/img/logos/adp.svg" alt="">
+          <img src="/assets/img/logos/charthop.svg" alt="">
+          <img src="/assets/img/logos/workday.png" alt="">
+          <img src="/assets/img/logos/indeed.webp" alt="">
+          <img src="/assets/img/logos/sap.png" alt="">
+          <img src="/assets/img/logos/symphony.svg" alt="">
+          <img src="/assets/img/logos/reelist.png" alt="">
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <section class="shift">
   <div class="shift-inner">
