@@ -14,14 +14,26 @@
     btn.innerHTML = '<span></span><span></span><span></span>';
     bar.appendChild(btn);
 
-    // Surface the primary CTA inside the open menu on mobile
+    // Surface the primary CTA inside the open menu on mobile only.
+    // Inject the clone at mobile widths so it can never appear
+    // as a second nav item on desktop, even if CSS is cache-stale.
     var cta = bar.querySelector('.topbar-cta');
-    if (cta) {
-      var mCta = cta.cloneNode(true);
-      mCta.classList.add('mobile-cta');
-      mCta.classList.remove('topbar-cta');
-      nav.appendChild(mCta);
+    var mCta = null;
+    var mq = window.matchMedia('(max-width: 900px)');
+    function syncCta() {
+      if (!cta) return;
+      if (mq.matches && !mCta) {
+        mCta = cta.cloneNode(true);
+        mCta.classList.add('mobile-cta');
+        mCta.classList.remove('topbar-cta');
+        nav.appendChild(mCta);
+      } else if (!mq.matches && mCta) {
+        mCta.remove();
+        mCta = null;
+      }
     }
+    syncCta();
+    mq.addEventListener('change', syncCta);
 
     function close() {
       bar.classList.remove('nav-open');
