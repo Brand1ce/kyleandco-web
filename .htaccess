@@ -1,8 +1,15 @@
+# Serve the static homepage at the site root, ahead of WordPress
+<IfModule mod_dir.c>
+DirectoryIndex index.html index.php
+</IfModule>
+
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
 
+# Redirect removed Practitioners page -> HCAIC
+RewriteRule ^practitioners/?$ /aicouncil [R=301,L]
 
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
