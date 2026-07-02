@@ -8,8 +8,8 @@ DirectoryIndex index.html index.php
 RewriteEngine On
 RewriteBase /
 
-# Redirect removed Practitioners page -> HCAIC
-RewriteRule ^practitioners/?$ /aicouncil [R=301,L]
+# Redirect removed Practitioners page (and any sub-path) -> AI Council
+RewriteRule ^practitioners(/.*)?$ /aicouncil/ [R=301,L]
 
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
