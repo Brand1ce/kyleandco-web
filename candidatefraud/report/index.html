@@ -1105,9 +1105,23 @@ document.addEventListener("click",e=>{
 });
 </script>
 <!-- Direct PDF download (no gate) for readers who arrive on the report page -->
-<a href="../downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf" download aria-label="Download the report as a PDF"
+<a id="dlPdf" href="../downloads/Kyle-and-Co-Candidate-Fraud-Report.pdf" download aria-label="Download the report as a PDF"
    style="position:fixed;right:20px;bottom:20px;z-index:9999;display:inline-flex;align-items:center;gap:8px;background:#2D3F5E;color:#F7F0E8;font-family:'Source Sans 3',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:600;font-size:14px;letter-spacing:.01em;padding:11px 19px;border-radius:100px;text-decoration:none;box-shadow:0 6px 20px rgba(31,46,74,.35);border:1px solid rgba(247,240,232,.16);">
    <span aria-hidden="true" style="font-size:15px;line-height:1;">&#8595;</span> Download PDF
 </a>
+<script>
+/* Track report-page PDF downloads: GA4 event + shared KPI counter (same as the landing page) */
+(function(){
+  var b=document.getElementById('dlPdf'); if(!b) return;
+  b.addEventListener('click',function(){
+    if(window.gtag) gtag('event','file_download',{file_name:'Kyle-and-Co-Candidate-Fraud-Report.pdf',link_text:'report-page'});
+    try{
+      var U='https://api.jsonbin.io/v3/b/69f340c4aaba88219756240d',
+          K='$2a$10$prZqMqXbtmzSXZyh1nHLcOt1RcJbDCcAgppQ/6J2Brax5qLkY8Ggm';
+      fetch(U+'/latest',{headers:{'X-ACCESS-KEY':K}}).then(function(r){return r.json();}).then(function(d){var c=d.record||{}; c.candidatefraud=(c.candidatefraud||0)+1; return fetch(U,{method:'PUT',headers:{'Content-Type':'application/json','X-ACCESS-KEY':K},body:JSON.stringify(c)});}).catch(function(){});
+    }catch(e){}
+  });
+})();
+</script>
 </body>
 </html>
