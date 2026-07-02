@@ -446,3 +446,9 @@ a{ color:inherit; }
 .reg__cal-btn:hover{ transform:translateY(-2px); background:var(--navy-deep); }
 .reg__cal-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
 @media (max-width:430px){ .reg__row{ grid-template-columns:1fr; } }
+
+/* ============ Date-gated launch flip (teaser <-> report CTAs) ============ */
+.teaser-only{ display:contents; }
+.launch-only{ display:none; }
+html.launched .teaser-only{ display:none; }
+html.launched .launch-only{ display:contents; }
