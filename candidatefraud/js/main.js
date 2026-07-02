@@ -281,6 +281,8 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && early.classList.contains('is-open')) closeEarly();
     });
+    // Deep-link from emails: /candidatefraud/#early opens the signup directly.
+    if (/^#(early|earlyaccess|early-access)$/i.test(location.hash)) openEarly();
 
     eForm.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -357,6 +359,8 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
     });
+    // Deep-link from emails: /candidatefraud/#register opens registration directly.
+    if (/^#(reg|register)$/i.test(location.hash)) openModal();
 
     /* ---- Calendar link builders ---- */
     function enc(s) { return encodeURIComponent(s); }
