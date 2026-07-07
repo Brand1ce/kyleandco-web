@@ -636,7 +636,10 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
 .kc-check-opt input[type="checkbox"]{accent-color:var(--navy);width:15px;height:15px;flex-shrink:0;cursor:pointer;}
 @media(max-width:600px){.kc-form-row{grid-template-columns:1fr;}.kc-modal-box{padding:2rem 1.5rem;}}
 </style>
-<script>document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll(".kc-modal-overlay.open").forEach(function(m){m.classList.remove("open");});});</script>
+<script>
+document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll(".kc-modal-overlay.open").forEach(function(m){m.classList.remove("open");});});
+if(window.location.hash==='#contact'){document.addEventListener('DOMContentLoaded',function(){document.getElementById('kco-modal').classList.add('open');});}
+</script>
 
 </body>
 </html>
