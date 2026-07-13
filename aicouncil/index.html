@@ -1882,21 +1882,21 @@ function HCAIC_Final() {
                     <input required type="text" name="fields[company]" placeholder="Company" style={gateInput(C)} />
                   </div>
                   <input required type="url" name="fields[linkedin_profile]" placeholder="LinkedIn profile URL" style={gateInput(C)} />
-                  <select required name="fields[council_interest]" style={{ ...gateInput(C), appearance: 'none', WebkitAppearance: 'none' }}>
+                  <select required name="fields[council_name]" style={{ ...gateInput(C), appearance: 'none', WebkitAppearance: 'none' }}>
                     <option value="">Which council are you interested in?</option>
                     <option value="The Human Centric AI Council">The Human Centric AI Council</option>
                     <option value="The Future of Work Council">The Future of Work Council</option>
                   </select>
                   <textarea
                     required
-                    name="fields[contribution]"
+                    name="fields[what_would_you_hope_to_contribute_or_explore_in_this_council]"
                     placeholder="What would you hope to contribute or explore in this Council?"
                     rows={3}
                     style={{ ...gateInput(C), resize: 'vertical', lineHeight: 1.5 }}
                   />
                   <textarea
                     required
-                    name="fields[anything_else]"
+                    name="fields[anything_else_we_should_know]"
                     placeholder="Anything else we should know?"
                     rows={2}
                     style={{ ...gateInput(C), resize: 'vertical', lineHeight: 1.5 }}
@@ -2011,7 +2011,7 @@ function HCAIC_Final() {
                     ))}
                   </div>
                   <textarea
-                    name="fields[anything_else]"
+                    name="fields[anything_else_we_should_know]"
                     placeholder="Anything else we should know? (optional)"
                     rows={3}
                     style={{ ...gateInput(C), resize: 'vertical', lineHeight: 1.5 }}
@@ -2155,19 +2155,19 @@ function HCAIC_Final() {
                       <input required type="text" name="fields[job_title]" placeholder="Job title" style={gateInput(C)} />
                       <input required type="text" name="fields[company]" placeholder="Company" style={gateInput(C)} />
                     </div>
-                    <select required name="fields[initiative_interest]" style={{ ...gateInput(C), appearance: 'none', WebkitAppearance: 'none' }}>
+                    <select required name="fields[which_initiatives_are_you_interested_in_supporting]" style={{ ...gateInput(C), appearance: 'none', WebkitAppearance: 'none' }}>
                       <option value="">Which initiatives are you interested in supporting?</option>
                       <option value="The Human Centric AI Council">The Human Centric AI Council</option>
                       <option value="General research underwriting">General research underwriting</option>
                     </select>
-                    <select required name="fields[underwriting_objective]" style={{ ...gateInput(C), appearance: 'none', WebkitAppearance: 'none' }}>
+                    <select required name="fields[whats_your_main_objective_for_underwriting]" style={{ ...gateInput(C), appearance: 'none', WebkitAppearance: 'none' }}>
                       <option value="">What's your main objective for underwriting?</option>
                       <option value="Brand visibility">Brand visibility</option>
                       <option value="Demand Generation">Demand Generation</option>
                       <option value="AI Messaging and/or product validation">AI Messaging and/or product validation</option>
                     </select>
                     <textarea
-                      name="fields[anything_else]"
+                      name="fields[anything_else_we_should_know]"
                       placeholder="Anything else we should know? (optional)"
                       rows={3}
                       style={{ ...gateInput(C), resize: 'vertical', lineHeight: 1.5 }}
