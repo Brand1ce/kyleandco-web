@@ -452,3 +452,12 @@ a{ color:inherit; }
 .launch-only{ display:none; }
 html.launched .teaser-only{ display:none; }
 html.launched .launch-only{ display:contents; }
+
+/* webinar speakers */
+.webinar__speakers{ margin:0 0 1.5rem; }
+.webinar__speakers-label{ font-family:var(--sans); text-transform:uppercase; letter-spacing:.16em;
+  font-size:.7rem; font-weight:700; color:var(--gold-deep); margin:0 0 .7rem; }
+.webinar__speaker-list{ display:flex; flex-wrap:wrap; gap:1.1rem 2.6rem; }
+.speaker{ display:flex; flex-direction:column; }
+.speaker__name{ font-family:var(--serif-display); font-weight:600; font-size:1.08rem; color:var(--navy); line-height:1.2; }
+.speaker__title{ font-family:var(--sans); font-size:.85rem; color:var(--ink-soft); margin-top:.15rem; }
