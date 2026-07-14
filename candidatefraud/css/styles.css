@@ -458,6 +458,13 @@ html.launched .launch-only{ display:contents; }
 .webinar__speakers-label{ font-family:var(--sans); text-transform:uppercase; letter-spacing:.16em;
   font-size:.7rem; font-weight:700; color:var(--gold-deep); margin:0 0 .7rem; }
 .webinar__speaker-list{ display:flex; flex-wrap:wrap; gap:1.1rem 2.6rem; }
-.speaker{ display:flex; flex-direction:column; }
+.speaker{ display:flex; align-items:center; gap:.75rem; }
+.speaker__avatar{ width:54px; height:54px; border-radius:50%; object-fit:cover; flex:none; display:block; }
+.speaker__meta{ display:flex; flex-direction:column; }
 .speaker__name{ font-family:var(--serif-display); font-weight:600; font-size:1.08rem; color:var(--navy); line-height:1.2; }
 .speaker__title{ font-family:var(--sans); font-size:.85rem; color:var(--ink-soft); margin-top:.15rem; }
+/* speakers inside the registration modal (more compact) */
+.reg__speakers{ display:flex; flex-wrap:wrap; gap:.9rem 1.5rem; margin:0 0 1.3rem; }
+.reg__speakers .speaker__avatar{ width:44px; height:44px; }
+.reg__speakers .speaker__name{ font-size:.98rem; }
+.reg__speakers .speaker__title{ font-size:.8rem; }
