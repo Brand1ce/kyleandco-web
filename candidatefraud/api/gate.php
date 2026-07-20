@@ -30,7 +30,8 @@ if (!$TOKEN) {
 }
 // Subscriber lists (mapped server-side so the client can't inject arbitrary IDs).
 $GROUPS = [
-  'downloads' => '191362223659026255', // "Candidate Fraud Report — Downloads"
+  'downloads' => '191362223659026255', // "Candidate Fraud Report — Downloads" (EVERYONE who takes the report)
+  'new_leads' => '193553287134316198', // "Candidate Fraud Report — New Leads" (was not on the list before)
   'early'     => '191659199008081788', // "Candidate Fraud Report — Early Access"
 ];
 
@@ -78,15 +79,21 @@ function ml($method, $url, $token, $payload = null) {
 // --- Step 2: new contact submitting their details -> create + add to a group ---
 if (!empty($body['subscribe'])) {
   $listKey  = (isset($body['list']) && isset($GROUPS[$body['list']])) ? $body['list'] : 'downloads';
+  // Report downloads: tag as a download AND as a brand-new lead (they failed the membership check).
+  $groups = ($listKey === 'downloads')
+    ? [$GROUPS['downloads'], $GROUPS['new_leads']]
+    : [$GROUPS[$listKey]];
+  $fields = [
+    'name'      => isset($body['name']) ? trim($body['name']) : '',
+    'last_name' => isset($body['last_name']) ? trim($body['last_name']) : '',
+    'company'   => isset($body['company']) ? trim($body['company']) : '',
+    'job_title' => isset($body['title']) ? trim($body['title']) : '',
+  ];
+  if ($listKey === 'downloads') { $fields['report_downloaded'] = date('Y-m-d'); }
   $payload = [
     'email'  => $email,
-    'groups' => [$GROUPS[$listKey]],
-    'fields' => [
-      'name'      => isset($body['name']) ? trim($body['name']) : '',
-      'last_name' => isset($body['last_name']) ? trim($body['last_name']) : '',
-      'company'   => isset($body['company']) ? trim($body['company']) : '',
-      'job_title' => isset($body['title']) ? trim($body['title']) : '',
-    ],
+    'groups' => $groups,
+    'fields' => $fields,
   ];
   list($code, $res, $err) = ml('POST', 'https://connect.mailerlite.com/api/subscribers', $TOKEN, $payload);
   if ($err || $code >= 500) { echo json_encode(['status' => 'open']); exit; }
@@ -98,6 +105,18 @@ if (!empty($body['subscribe'])) {
 list($code, $res, $err) = ml('GET', 'https://connect.mailerlite.com/api/subscribers/' . rawurlencode($email), $TOKEN);
 
 if ($err) { echo json_encode(['status' => 'open']); exit; }          // network error -> fail open
-if ($code === 200) { echo json_encode(['status' => 'member']); exit; } // already in DB
+
+if ($code === 200) {
+  // Already on the list. Still record the download so the Downloads group counts
+  // EVERYONE, not just new contacts. They are deliberately NOT added to New Leads.
+  // Best-effort: a failure here must never block the download.
+  ml('POST', 'https://connect.mailerlite.com/api/subscribers', $TOKEN, [
+    'email'  => $email,
+    'groups' => [$GROUPS['downloads']],
+    'fields' => ['report_downloaded' => date('Y-m-d')],
+  ]);
+  echo json_encode(['status' => 'member']);
+  exit;
+}
 if ($code === 404) { echo json_encode(['status' => 'new']); exit; }    // not found -> ask for details
 echo json_encode(['status' => 'open']);                                // anything else -> fail open
