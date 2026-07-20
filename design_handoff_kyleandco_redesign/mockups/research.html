@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Research — Redesign mockup · Kyle &amp; Co</title>
+<link rel="stylesheet" href="assets/site.css" />
+<link rel="stylesheet" href="assets/audit.css" />
+<style>
+body[data-page="research"] { --accent: var(--sky); }
+
+/* — Hero — ivory canvas, grid, single ampersand corner — */
+.hero-research {
+  background: var(--ivory);
+  padding: 8rem 2.5rem 6rem;
+  position: relative; overflow: hidden;
+  background-image:
+    linear-gradient(rgba(39,55,82,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(39,55,82,.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.hero-research > img.corner-mark {
+  position: absolute;
+  right: -4%; bottom: -12%;
+  width: 48%; max-width: 560px;
+  opacity: .06; pointer-events: none;
+}
+.hero-research-inner {
+  max-width: 1280px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.hero-research .eyebrow {
+  font-family: var(--font-mono);
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--slate); font-weight: 400;
+  display: inline-flex; align-items: center; gap: .7rem;
+  margin-bottom: 2rem;
+}
+.hero-research .eyebrow .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--sky);
+  box-shadow: 0 0 0 3px rgba(154,184,220,.25);
+  animation: kcPulseDot 2.2s ease-in-out infinite;
+}
+.hero-research h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-variation-settings: "SOFT" 50, "WONK" 0;
+  font-size: clamp(2.75rem, 6.5vw, 5.5rem);
+  line-height: .98;
+  letter-spacing: -.022em;
+  color: var(--navy);
+  margin-bottom: 2.25rem;
+  max-width: 18ch;
+}
+.hero-research h1 em {
+  font-style: italic;
+  color: var(--lilac);
+}
+.hero-research p.sub {
+  font-family: var(--font-body);
+  font-size: 1.15rem; line-height: 1.55;
+  color: var(--navy);
+  max-width: 56ch;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+.hero-research-stats {
+  display: flex; gap: 3rem; flex-wrap: wrap;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(39,55,82,.1);
+  max-width: 700px;
+}
+.hero-research-stats div {
+  font-family: var(--font-body);
+  font-size: .85rem; color: var(--slate);
+}
+.hero-research-stats strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.85rem; font-weight: 400; font-style: italic;
+  color: var(--navy);
+  margin-bottom: .25rem;
+  letter-spacing: -.01em;
+}
+
+/* — Methodology — */
+.research-method {
+  background: var(--white);
+  padding: 6rem 2.5rem;
+}
+.research-method-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  align-items: start;
+}
+.research-method h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 3vw, 2.6rem);
+  line-height: 1.1; letter-spacing: -.02em;
+  color: var(--navy);
+  max-width: 14ch;
+}
+.research-method h2 em { font-style: italic; color: var(--lilac); }
+.research-method .body {
+  font-size: 1rem; color: var(--slate); line-height: 1.8;
+}
+.research-method .body p { margin-bottom: 1rem; }
+.research-method .pullout {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--ivory);
+  border-left: 3px solid var(--sky);
+  border-radius: var(--r-sm);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--navy);
+  line-height: 1.4;
+}
+
+/* — Featured research (blog-card style covers) — */
+.featured-research {
+  background: var(--white);
+  padding: 7rem 2.5rem;
+  position: relative; overflow: hidden;
+}
+.featured-inner { max-width: 1200px; margin: 0 auto; position: relative; }
+.featured-head { margin-bottom: 3rem; max-width: 50ch; }
+.featured-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  line-height: 1.05; letter-spacing: -.02em;
+  color: var(--navy); margin-bottom: 1rem;
+}
+.featured-head h2 em { font-style: italic; color: var(--lilac); }
+.featured-head p { font-size: 1.05rem; color: var(--slate); line-height: 1.7; }
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.feat-card {
+  background: var(--white);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  border: 1px solid rgba(39,55,82,.06);
+  display: flex; flex-direction: column;
+  transition: transform .3s cubic-bezier(.22,1,.36,1), border-color .3s, box-shadow .3s;
+}
+.feat-card:hover { transform: translateY(-4px); border-color: var(--lilac); box-shadow: var(--shadow-md); }
+.feat-cover {
+  aspect-ratio: 4/3;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  padding: 1rem;
+  gap: .35rem;
+}
+.feat-cover .block {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.05;
+  letter-spacing: -.01em;
+  padding: .55rem .85rem;
+  display: flex; align-items: center;
+}
+.feat-cover .block em { font-style: italic; }
+.cover-a { background: var(--cream); grid-template-rows: 1fr 1fr 1fr; }
+.cover-a .b1 { background: var(--navy); color: var(--ivory); }
+.cover-a .b2 { background: var(--sky); color: var(--navy-dark); }
+.cover-a .b3 { background: var(--lilac); color: var(--ivory); }
+.cover-b { background: var(--ivory-warm); grid-template-rows: 1fr 1fr 1fr; }
+.cover-b .b1 { background: var(--navy); color: var(--cream); }
+.cover-b .b2 { background: var(--cream); color: var(--navy); }
+.cover-b .b3 { background: var(--lilac); color: var(--ivory); }
+.cover-c { background: var(--sky); grid-template-rows: 1fr 1fr 1fr; }
+.cover-c .b1 { background: var(--ivory); color: var(--navy); }
+.cover-c .b2 { background: var(--navy); color: var(--cream); }
+.cover-c .b3 { background: var(--lilac); color: var(--ivory); }
+.cover-d { background: var(--ivory); grid-template-rows: 1fr 1fr 1fr; }
+.cover-d .b1 { background: var(--lilac); color: var(--ivory); }
+.cover-d .b2 { background: var(--cream); color: var(--navy); }
+.cover-d .b3 { background: var(--navy); color: var(--cream); }
+.cover-e { background: var(--cream); grid-template-rows: 1fr 1fr 1fr; }
+.cover-e .b1 { background: var(--lilac); color: var(--ivory); }
+.cover-e .b2 { background: var(--sky); color: var(--navy); }
+.cover-e .b3 { background: var(--navy); color: var(--cream); }
+.cover-soon { background: var(--ivory-warm); grid-template-rows: 1fr 1fr; align-items: center; padding: 1.5rem; }
+.cover-soon .stamp {
+  font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
+  font-weight: 700; color: var(--lilac);
+}
+.cover-soon .title {
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 400; font-style: italic;
+  color: var(--navy); line-height: 1.1;
+}
+
+.feat-body { padding: 1.5rem 1.75rem 1.75rem; flex: 1; display: flex; flex-direction: column; }
+.feat-card .ptag {
+  font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+  font-weight: 600; color: var(--lilac);
+  margin-bottom: .65rem;
+}
+.feat-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem; font-weight: 400; line-height: 1.2;
+  color: var(--navy); margin-bottom: .65rem; letter-spacing: -.01em;
+}
+.feat-card p { font-size: .88rem; color: var(--slate); line-height: 1.65; flex: 1; }
+.feat-card .link {
+  display: inline-flex; align-items: center; gap: .3rem;
+  font-size: .85rem; font-weight: 600; color: var(--navy);
+  text-decoration: none; margin-top: 1.25rem;
+  border-bottom: 1px solid rgba(39,55,82,.3);
+  padding-bottom: 1px;
+  align-self: flex-start;
+}
+
+/* — Podcast — */
+.podcast {
+  background: var(--navy);
+  padding: 7rem 2.5rem;
+  position: relative; overflow: hidden;
+  color: var(--ivory);
+}
+.podcast > img.corner-mark {
+  position: absolute;
+  left: -4%; bottom: -14%;
+  width: 44%; max-width: 520px;
+  opacity: .08; filter: invert(1);
+  pointer-events: none;
+  transform: scaleX(-1);
+}
+.podcast-inner { max-width: 1200px; margin: 0 auto; position: relative; }
+.podcast-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+.podcast-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  line-height: 1.05; letter-spacing: -.02em;
+  color: var(--ivory); margin-bottom: .75rem;
+}
+.podcast-head h2 em { font-style: italic; color: var(--sky); }
+.podcast-head p { font-size: .98rem; color: rgba(247,241,234,.62); line-height: 1.65; max-width: 44ch; }
+.podcast-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+}
+.pod-card {
+  background: rgba(247,241,234,.04);
+  border: 1px solid rgba(247,241,234,.1);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: background .3s, border-color .3s;
+}
+.pod-card:hover { background: rgba(247,241,234,.06); border-color: rgba(154,184,220,.4); }
+.pod-art {
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, rgba(154,184,220,.6), rgba(157,146,173,.5), rgba(39,55,82,.65));
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: flex-end;
+  padding: 1.25rem;
+}
+.pod-art::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url('assets/img/pattern.png');
+  background-size: 240px; opacity: .18; mix-blend-mode: overlay;
+}
+.pod-art .ep {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-style: italic;
+  color: var(--ivory);
+}
+.pod-art .ep small { display: block; font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; font-style: normal; color: var(--sky); margin-bottom: .2rem; font-weight: 600; }
+.pod-art .hostpp {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 2px solid var(--ivory);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--cream);
+}
+.pod-body { padding: 1.25rem 1.5rem 1.5rem; }
+.pod-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem; font-weight: 500;
+  color: var(--ivory); margin-bottom: .5rem;
+  letter-spacing: -.005em;
+  line-height: 1.2;
+}
+.pod-body p { font-size: .8rem; color: rgba(247,241,234,.55); line-height: 1.55; }
+.pod-body .listen {
+  display: inline-flex; gap: .35rem; align-items: center;
+  margin-top: 1rem;
+  font-size: .78rem; font-weight: 600; color: var(--sky);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(154,184,220,.4);
+  padding-bottom: 1px;
+}
+
+/* — Featured elsewhere — */
+.elsewhere { background: var(--white); padding: 6rem 2.5rem; }
+.elsewhere-inner { max-width: 1200px; margin: 0 auto; }
+.elsewhere-head { margin-bottom: 3rem; max-width: 52ch; }
+.elsewhere-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  line-height: 1.08; letter-spacing: -.02em;
+  color: var(--navy); margin-bottom: 1rem;
+}
+.elsewhere-head h2 em { font-style: italic; color: var(--lilac); }
+.elsewhere-head p { font-size: 1rem; color: var(--slate); line-height: 1.7; }
+.app-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+}
+.app-card {
+  background: var(--ivory);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  border: 1px solid rgba(39,55,82,.06);
+  display: flex; flex-direction: column;
+}
+.app-art {
+  aspect-ratio: 3/2;
+  background: linear-gradient(160deg, rgba(154,184,220,.6), rgba(39,55,82,.7));
+  position: relative;
+}
+.app-art::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url('assets/img/pattern.png');
+  background-size: 200px; opacity: .12; mix-blend-mode: overlay;
+}
+.app-art .kc-pp {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--ivory);
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+}
+.app-art .kc-pp span {
+  font-family: var(--font-display); font-style: italic;
+  color: var(--cream); font-size: 1.1rem;
+}
+.app-art .tag {
+  position: absolute; bottom: 1rem; left: 1rem;
+  font-family: var(--font-body);
+  font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+  font-weight: 600; color: var(--ivory);
+  padding: .3rem .65rem;
+  background: rgba(26,36,56,.55);
+  backdrop-filter: blur(4px);
+  border-radius: 100px;
+}
+.app-body { padding: 1.25rem 1.5rem 1.5rem; }
+.app-body .venue {
+  font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+  font-weight: 600; color: var(--lilac);
+  margin-bottom: .35rem;
+}
+.app-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 400; line-height: 1.25;
+  color: var(--navy); margin-bottom: .35rem; letter-spacing: -.005em;
+}
+.app-body .date { font-size: .78rem; color: var(--slate); }
+.app-body .watch {
+  display: inline-flex; align-items: center; gap: .3rem;
+  margin-top: .85rem;
+  font-size: .8rem; font-weight: 600; color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(39,55,82,.3);
+  padding-bottom: 1px;
+}
+
+/* — By topic — */
+.topics {
+  background: var(--ivory);
+  padding: 5rem 2.5rem;
+}
+.topics-inner { max-width: 1200px; margin: 0 auto; }
+.topics-head { margin-bottom: 1.5rem; }
+.topics-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: var(--navy); margin-bottom: .5rem;
+}
+.topics-head h2 em { font-style: italic; color: var(--lilac); }
+.topics-head p { font-size: .92rem; color: var(--slate); }
+.chip-row { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 2rem; }
+.chip {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .6rem 1.1rem;
+  border-radius: var(--r-pill);
+  background: var(--white);
+  border: 1px solid rgba(39,55,82,.1);
+  font-size: .82rem; color: var(--navy);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.chip:hover { background: var(--cream); border-color: var(--cream-deep); }
+.chip .count {
+  font-size: .65rem;
+  color: var(--lilac);
+  background: rgba(157,146,173,.12);
+  padding: .12rem .4rem;
+  border-radius: 100px;
+  font-weight: 600;
+}
+
+/* — Advisory rail (existing) — */
+.advisory {
+  background: var(--white);
+  padding: 6rem 2.5rem;
+}
+.advisory-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+}
+.advisory h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  line-height: 1.08; letter-spacing: -.02em;
+  color: var(--navy);
+  margin-bottom: 1.25rem;
+  max-width: 18ch;
+}
+.advisory h2 em { font-style: italic; color: var(--lilac); }
+.advisory p {
+  font-size: 1rem; color: var(--slate); line-height: 1.75;
+  margin-bottom: 2rem; max-width: 48ch;
+}
+.advisory-services { display: flex; flex-direction: column; gap: .75rem; }
+.mini-card {
+  background: var(--ivory);
+  border: 1px solid rgba(39,55,82,.08);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem; font-weight: 400;
+  color: var(--navy);
+  letter-spacing: -.005em;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.mini-card::after {
+  content: '→';
+  font-size: 1.1rem;
+  color: var(--lilac);
+}
+
+/* — Closer (research: ivory + sky-blue accent) — */
+.closer-research {
+  background: var(--ivory);
+  padding: 7rem 2.5rem;
+  position: relative; overflow: hidden;
+  text-align: center;
+  border-top: 1px solid rgba(39,55,82,.08);
+}
+.closer-research > img.corner-mark {
+  position: absolute;
+  right: -4%; bottom: -14%;
+  width: 44%; max-width: 520px;
+  opacity: .06; pointer-events: none;
+}
+.closer-research-inner {
+  position: relative; z-index: 1;
+  max-width: 720px; margin: 0 auto;
+}
+.closer-research .eyebrow {
+  font-family: var(--font-mono);
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--slate); font-weight: 400;
+  display: inline-flex; align-items: center; gap: .65rem;
+  margin-bottom: 1.5rem;
+}
+.closer-research .eyebrow .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--sky);
+  box-shadow: 0 0 0 3px rgba(154,184,220,.25);
+  animation: kcPulseDot 2.2s ease-in-out infinite;
+}
+.closer-research h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1; letter-spacing: -.025em;
+  color: var(--navy); margin-bottom: 1.5rem;
+}
+.closer-research h2 em { font-style: italic; color: var(--lilac); }
+.closer-research p {
+  font-size: 1.15rem; color: var(--navy);
+  line-height: 1.6;
+  margin: 0 auto 2.5rem;
+  max-width: 54ch;
+  font-weight: 300;
+}
+
+@media (max-width: 900px) {
+  .hero-research, .research-method, .featured-research, .podcast,
+  .elsewhere, .topics, .advisory, .closer-research { padding: 4rem 1.5rem; }
+  .hero-research-inner, .research-method-inner, .advisory-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .featured-grid, .podcast-grid, .app-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body data-page="research" class="has-audit-shell">
+
+<!-- AUDIT SHELL -->
+<div class="audit-shell">
+  <div class="audit-shell-left">
+    <a href="Design Audit.html" class="back"><span aria-hidden="true">←</span> Audit</a>
+    <span class="crumb">Research <span class="sep">/</span> redesign mockup</span>
+  </div>
+  <div class="pageswap">
+    <a href="home.html">Home</a>
+    <a href="research.html" class="is-on">Research</a>
+    <a href="practitioners.html">Practitioners</a>
+    <a href="vendors.html">Vendors</a>
+  </div>
+  <button class="audit-toggle"><span class="sw"></span> Annotations</button>
+</div>
+
+<!-- SITE NAV -->
+<nav class="topbar">
+  <a href="home.html" class="topbar-brand">
+    <img src="assets/img/icon-ampersand.svg" alt="" />
+    <span class="wm">Kyle &amp; Co</span>
+  </a>
+  <div class="topbar-nav">
+    <a href="home.html">Home</a>
+    <a href="research.html" class="active">Research</a>
+    <a href="practitioners.html">For Practitioners</a>
+    <a href="vendors.html">For Vendors</a>
+    <a href="#">HCAIC</a>
+    <a href="#">Blog</a>
+  </div>
+  <a href="#" class="topbar-cta">Book a discovery call</a>
+</nav>
+<div class="persona-band research"></div>
+
+<!-- HERO -->
+<section class="hero-research annot-zone">
+  <img class="corner-mark" src="assets/img/icon-ampersand.svg" alt="" aria-hidden="true" />
+  <div class="hero-research-inner">
+    <div class="eyebrow"><span class="dot"></span> Research · Cohort Two · 2026</div>
+    <h1>Research HR uses to defend the calls <em>that have to hold up.</em></h1>
+    <p class="sub">Built on surveys with thousands of senior HR and TA leaders. Authored alongside the practitioners shaping the work. Yours to carry into vendor evaluations and strategy decisions.</p>
+    <div class="hero-research-stats">
+      <div><strong>1,000s</strong>HR &amp; TA leaders surveyed</div>
+      <div><strong>Quarterly</strong>Compass reports</div>
+      <div><strong>Free</strong>Every report, every time</div>
+    </div>
+  </div>
+  <span class="pin" data-callout="hero" style="top: 7rem; left: 50%;">1</span>
+  <span class="pin" data-callout="grid" style="top: 12rem; left: 6%;">2</span>
+  <span class="pin" data-callout="corner" style="bottom: 4rem; right: 14%;">3</span>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="research-method annot-zone">
+  <div class="research-method-inner">
+    <div>
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">The work</div>
+      <h2>How we <em>research.</em></h2>
+    </div>
+    <div class="body">
+      <p>Each year, we publish an annual market study, quarterly Category Compass reports, and bespoke client research. The work is built on surveys with thousands of senior HR and TA leaders.</p>
+      <p>The Human-Centric AI Council adds practitioner-led work on AI. Our edge is pairing primary research with rigorous secondary analysis, because neither catches the full signal alone.</p>
+      <blockquote class="pullout">
+        "Authorship is the moat. Cohort-built &gt; consultant-authored &gt; vendor-authored, every time."
+      </blockquote>
+    </div>
+  </div>
+  <span class="pin" data-callout="pullout" style="bottom: 6rem; right: 16%;">4</span>
+</section>
+
+<!-- FEATURED RESEARCH -->
+<section class="featured-research annot-zone">
+  <div class="featured-inner">
+    <div class="featured-head">
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">Flagship work</div>
+      <h2>Featured <em>research.</em></h2>
+      <p>Anchor research projects, published openly. Updated as new work ships.</p>
+    </div>
+    <div class="featured-grid">
+
+      <article class="feat-card">
+        <div class="feat-cover cover-a">
+          <div class="block b1">The <em>AI Momentum</em></div>
+          <div class="block b2">Model: where</div>
+          <div class="block b3">your org sits.</div>
+        </div>
+        <div class="feat-body">
+          <div class="ptag">Report · 2025</div>
+          <h3>AI Momentum Model</h3>
+          <p>Nine archetypes and a model for where your org sits. With an archetype assessment.</p>
+          <a href="#" class="link">Access <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="feat-card">
+        <div class="feat-cover cover-b">
+          <div class="block b1">Category Compass:</div>
+          <div class="block b2">AI Interviewers,</div>
+          <div class="block b3">benchmarked.</div>
+        </div>
+        <div class="feat-body">
+          <div class="ptag">Compass · 2025</div>
+          <h3>Category Compass: AI Interviewers</h3>
+          <p>An independent benchmark of AI interviewer solutions. What we found, and what it means for buyers.</p>
+          <a href="#" class="link">Access <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="feat-card">
+        <div class="feat-cover cover-c">
+          <div class="block b1">Four toolkits</div>
+          <div class="block b2"><em>built by</em></div>
+          <div class="block b3">practitioners.</div>
+        </div>
+        <div class="feat-body">
+          <div class="ptag">Toolkit</div>
+          <h3>HCAIC Toolkit</h3>
+          <p>Four practitioner-built frameworks on AI literacy, governance, adoption, and the future of HR.</p>
+          <a href="#" class="link">Access <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="feat-card">
+        <div class="feat-cover cover-d">
+          <div class="block b1">Quality of Hire,</div>
+          <div class="block b2">measured and</div>
+          <div class="block b3">defended.</div>
+        </div>
+        <div class="feat-body">
+          <div class="ptag">Report</div>
+          <h3>Quality of Hire Imperative</h3>
+          <p>What quality of hire actually means, how to measure it, and how to defend it to the business.</p>
+          <a href="#" class="link">Access <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="feat-card">
+        <div class="feat-cover cover-e">
+          <div class="block b1">Intelligent,</div>
+          <div class="block b2"><em>intentional</em></div>
+          <div class="block b3">transformation.</div>
+        </div>
+        <div class="feat-body">
+          <div class="ptag">Report</div>
+          <h3>Intelligent, Intentional Transformation</h3>
+          <p>The strategy framework for HR teams moving from AI exploration to execution.</p>
+          <a href="#" class="link">Access <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="feat-card">
+        <div class="feat-cover cover-soon">
+          <span class="stamp">Coming soon</span>
+          <span class="title">Candidate <em>Fraud</em> Research</span>
+        </div>
+        <div class="feat-body">
+          <div class="ptag">Forthcoming</div>
+          <h3>Candidate Fraud Research</h3>
+          <p>Forthcoming research on AI-enabled candidate fraud: scope, patterns, and what HR teams can do.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+  <span class="pin" data-callout="report-cards" style="top: 12rem; left: 4%;">5</span>
+  <span class="pin" data-callout="report-coming" style="bottom: 7rem; right: 6%;">6</span>
+</section>
+
+<!-- PODCAST -->
+<section class="podcast annot-zone">
+  <img class="corner-mark" src="assets/img/icon-ampersand.svg" alt="" aria-hidden="true" />
+  <div class="podcast-inner">
+    <div class="podcast-head">
+      <div>
+        <div class="kc-eyebrow" style="margin-bottom:.75rem; color: var(--sky);">Transformation Realness</div>
+        <h2>Transformation <em>Realness.</em></h2>
+        <p>Conversations with the practitioners doing the work. Subscribe wherever you listen.</p>
+      </div>
+      <a href="#" class="btn-ghost">View all episodes <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="podcast-grid">
+      <article class="pod-card">
+        <div class="pod-art">
+          <div class="hostpp"><span>K</span></div>
+          <div class="ep"><small>Episode 14</small>Latest episode</div>
+        </div>
+        <div class="pod-body">
+          <h3>The build vs buy debate, revisited.</h3>
+          <p>With a TA director on how the AI build/buy framing actually breaks down in practice.</p>
+          <a href="#" class="listen">Listen <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="pod-card">
+        <div class="pod-art" style="background: linear-gradient(135deg, rgba(253,236,205,.6), rgba(157,146,173,.5));">
+          <div class="hostpp"><span>K</span></div>
+          <div class="ep"><small>Episode 13</small>Council session</div>
+        </div>
+        <div class="pod-body">
+          <h3>What HR governance of AI actually looks like.</h3>
+          <p>A council working session, captured. Not theory — the actual frameworks they're shipping.</p>
+          <a href="#" class="listen">Listen <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="pod-card">
+        <div class="pod-art" style="background: linear-gradient(135deg, rgba(157,146,173,.6), rgba(39,55,82,.7));">
+          <div class="hostpp"><span>K</span></div>
+          <div class="ep"><small>Episode 12</small>Field notes</div>
+        </div>
+        <div class="pod-body">
+          <h3>Adoption is the gap. Here's why.</h3>
+          <p>Why the AI adoption curve in HR stalls, and what the practitioners getting through it have in common.</p>
+          <a href="#" class="listen">Listen <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+  <span class="pin" data-callout="podcast" style="top: 16rem; left: 6%;">7</span>
+</section>
+
+<!-- FEATURED ELSEWHERE -->
+<section class="elsewhere annot-zone">
+  <div class="elsewhere-inner">
+    <div class="elsewhere-head">
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">In the conversation</div>
+      <h2>Featured <em>elsewhere.</em></h2>
+      <p>Podcasts, panels, and webinars where Kyle has been a guest or speaker. Updated as new appearances ship.</p>
+    </div>
+    <div class="app-grid">
+      <article class="app-card">
+        <div class="app-art">
+          <div class="kc-pp"><span>K</span></div>
+          <span class="tag">Workday Summit</span>
+        </div>
+        <div class="app-body">
+          <div class="venue">Workday · 2025</div>
+          <h3>The AI Layoff Wave is a Trap.</h3>
+          <p class="date">Keynote · October 2025</p>
+          <a href="#" class="watch">Watch <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="app-card">
+        <div class="app-art" style="background: linear-gradient(160deg, rgba(253,236,205,.5), rgba(39,55,82,.7));">
+          <div class="kc-pp"><span>K</span></div>
+          <span class="tag">Transform Conf.</span>
+        </div>
+        <div class="app-body">
+          <div class="venue">Transform · 2025</div>
+          <h3>Why HR can't outsource AI governance.</h3>
+          <p class="date">Panel · September 2025</p>
+          <a href="#" class="watch">Watch <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="app-card">
+        <div class="app-art" style="background: linear-gradient(160deg, rgba(157,146,173,.55), rgba(39,55,82,.7));">
+          <div class="kc-pp"><span>K</span></div>
+          <span class="tag">Recruiting Future</span>
+        </div>
+        <div class="app-body">
+          <div class="venue">Recruiting Future · 2025</div>
+          <h3>What independent benchmarking does for the buyer.</h3>
+          <p class="date">Podcast · August 2025</p>
+          <a href="#" class="watch">Watch <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+  <span class="pin" data-callout="appearances" style="top: 14rem; right: 6%;">8</span>
+</section>
+
+<!-- TOPICS -->
+<section class="topics annot-zone">
+  <div class="topics-inner">
+    <div class="topics-head">
+      <div class="kc-eyebrow" style="margin-bottom:.75rem;">Browse</div>
+      <h2>By <em>topic.</em></h2>
+      <p>Counts auto-populate as new research ships.</p>
+    </div>
+    <div class="chip-row">
+      <span class="chip">AI in HR <span class="count">24</span></span>
+      <span class="chip">Talent acquisition <span class="count">18</span></span>
+      <span class="chip">HR technology <span class="count">22</span></span>
+      <span class="chip">Workforce strategy <span class="count">9</span></span>
+      <span class="chip">Innovation cycles <span class="count">7</span></span>
+      <span class="chip">Adoption and change <span class="count">14</span></span>
+      <span class="chip">Quality of hire <span class="count">5</span></span>
+      <span class="chip">Governance &amp; trust <span class="count">11</span></span>
+    </div>
+  </div>
+  <span class="pin" data-callout="chips" style="bottom: 3rem; left: 14%;">9</span>
+</section>
+
+<!-- ADVISORY RAIL -->
+<section class="advisory">
+  <div class="advisory-inner">
+    <div>
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">Go deeper</div>
+      <h2>Want this research <em>applied</em> to your work?</h2>
+      <p>If your team is using a Kyle &amp; Co report to evaluate a tool, defend strategy, or set positioning, Kyle &amp; Co can scope a deeper engagement. Workshops, advisory hours, and bespoke research projects fit alongside the published work.</p>
+      <a href="#" class="btn-primary">Start a conversation <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="advisory-services">
+      <div class="mini-card">Workshop: evaluating vendor claims</div>
+      <div class="mini-card">Advisory: strategy and positioning</div>
+      <div class="mini-card">Bespoke research project</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSER -->
+<section class="closer-research annot-zone">
+  <img class="corner-mark" src="assets/img/icon-ampersand.svg" alt="" aria-hidden="true" />
+  <div class="closer-research-inner">
+    <div class="eyebrow"><span class="dot"></span> Stay sharp</div>
+    <h2>Stay <em>sharp.</em></h2>
+    <p>Subscribe and you'll get the work as it ships. No spam. Just signal.</p>
+    <a href="#" class="btn-primary">Subscribe <span aria-hidden="true">→</span></a>
+  </div>
+  <span class="pin" data-callout="closer" style="top: 3rem; left: 14%;">10</span>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="#" class="footer-brand">Kyle &amp; Co</a>
+    <nav class="footer-links">
+      <a href="#">Research</a>
+      <a href="#">For Practitioners</a>
+      <a href="#">For Vendors</a>
+      <a href="#">HCAIC</a>
+      <a href="#">Blog</a>
+    </nav>
+    <div class="footer-copy">&copy; 2026 Kyle &amp; Co. No spam. Just signal.</div>
+  </div>
+</footer>
+
+<!-- DRAWER -->
+<aside class="callout-drawer">
+  <div class="callout-drawer-head">
+    <div class="callout-drawer-pin">1</div>
+    <div class="callout-drawer-title">Click a pin to start.</div>
+    <button class="callout-drawer-close" aria-label="Close">✕</button>
+  </div>
+  <div class="callout-drawer-body">
+    <p style="color: var(--slate); font-size: .9rem;">Toggle annotations on, then tap any numbered pin.</p>
+  </div>
+</aside>
+
+<script>
+window.KC_CALLOUTS = {
+  hero: {
+    title: 'Hero — <em>copy-first, sky accent</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-layout">Layout</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Same restrained register as Home — ivory canvas, 56×56 grid overlay, massive serif H1 with italic-lilac phrase, JetBrains Mono eyebrow. Persona accent shows up in <strong>one detail</strong>: the live dot on the eyebrow is sky-blue (not cream).</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>The four pages should feel like one site. Differentiation lives in tiny touches — the dot color, the stats row Home doesn't have. The hero structure itself stays identical across pages.</p></div>
+    `
+  },
+  grid: {
+    title: 'Stats row — <em>methodology receipts</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-type">Type</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Three italic Fraunces counts (<strong>1,000s</strong>, <strong>Quarterly</strong>, <strong>Free</strong>) under a hairline rule. Each paired with a small Roboto label.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>Research is the page where counts earn their place. Three is the right number — enough to read as methodology, not a stats slide.</p></div>
+    `
+  },
+  corner: {
+    title: 'Ampersand corner — <em>same on every page</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>One ampersand icon, 48% width, 6% opacity, bottom-right corner of the hero. Identical treatment across all four pages.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>Brand fingerprint by repetition, not by volume. Same glyph in the same spot on every page — that's what makes it land.</p></div>
+    `
+  },
+  pullout: {
+    title: 'Methodology pull-quote — <em>new</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span><span class="callout-tag tag-type">Type</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>A Fraunces-italic pull-quote sits beneath the methodology copy, set off by a sky-blue left rule. The quote is your own — "Authorship is the moat. Cohort-built &gt; consultant-authored &gt; vendor-authored, every time."</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>The methodology section is the most ignored block on the page because it reads as a footnote. A pulled quote turns it into a stance.</p></div>
+    `
+  },
+  'report-cards': {
+    title: 'Report cards — <em>editorial blog covers</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-layout">Layout</span><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Each featured report gets a <strong>stacked-color-block cover</strong> in the Build-vs-Buy editorial style — three or four horizontal bands of navy / cream / sky / lilac, each carrying part of the title. The cover is the whole top half of the card.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>This is the brand's signature editorial visual. It's currently used on blog featured images but nowhere on the site. Featured reports is the right place to bring it in — every report becomes a piece of designed content.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Reference</div><p>CSS class: <code>.feat-cover .block.navy/.sky/.cream/.lilac</code>. Italic emphasis on one word per cover. Five color combinations cycle so the grid has visual rhythm.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Dynamic content</div><p>New report → pick a color combo, drop in the title broken across blocks. No image needed.</p></div>
+    `
+  },
+  'report-coming': {
+    title: 'Coming-soon card — <em>different layout</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Instead of an empty placeholder, "Coming soon" cards get a softer ivory-warm cover with the title set in Fraunces italic, large, and a small "Coming soon" stamp. The whole card reads as a forthcoming book cover.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>The current "Coming soon" card looked like an empty slot. This treatment makes upcoming work feel anticipated, not unfinished.</p></div>
+    `
+  },
+  podcast: {
+    title: 'Podcast section — <em>episode tiles</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-photo">Image needed</span><span class="callout-tag tag-layout">Layout</span></div>
+      <div class="callout-section"><div class="callout-section-label">The need</div><div class="image-need"><strong>3+ × Episode art</strong><div class="specs">Optional — gradients work as fallbacks</div></div></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Episode cards become tiles with cover art on top (gradient placeholder OK as default), Kyle's headshot as a circular avatar overlay in the top-left, episode number small above the title, body copy with a "Listen" link below. Each tile has real copy, not "Latest episode."</p></div>
+      <div class="callout-section"><div class="callout-section-label">Dynamic content</div><p>New episode → new tile. Cover art is optional — the gradient pattern always works.</p></div>
+    `
+  },
+  appearances: {
+    title: 'Featured elsewhere — <em>venue cards</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-photo">Image needed</span></div>
+      <div class="callout-section"><div class="callout-section-label">The need</div><div class="image-need"><strong>3+ × Venue/stage photos</strong><div class="specs">1200×800 (3:2) — Workday Summit, Transform, etc.</div></div></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Appearance cards get a real venue photo, Kyle as a circular avatar overlay top-left, venue name as a backdrop-blur tag bottom-left. Card body lists the venue/date/title with a Watch link.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>"Venue / host / Appearance / Date" was four lines of unstyled type. Real venues, real photos turn the section into proof.</p></div>
+    `
+  },
+  chips: {
+    title: 'Topic chips — <em>with counts</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-layout">Layout</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Topic chips show an article count next to each label (e.g. "AI in HR 24"). Hover state moves to cream + cream-deep border instead of just a color shift.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>Counts turn chips into a useful index. Without them they're just labels, and users can't tell which topics have depth.</p></div>
+    `
+  },
+  closer: {
+    title: 'Closer — <em>ivory, sky dot</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Ivory canvas with a hairline rule above, single ampersand corner at 6%, mono eyebrow with a sky-blue live dot.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>Hero and closer use the same chrome. The only persona signal is the dot color: cream on Home/Practitioners, sky-blue on Research, lilac on Vendors.</p></div>
+    `
+  }
+};
+</script>
+
+<script src="assets/audit.js"></script>
+</body>
+</html>

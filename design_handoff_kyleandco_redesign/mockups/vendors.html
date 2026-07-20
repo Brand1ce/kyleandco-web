@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Vendors — Redesign mockup · Kyle &amp; Co</title>
+<link rel="stylesheet" href="assets/site.css" />
+<link rel="stylesheet" href="assets/audit.css" />
+<style>
+body[data-page="vendors"] { --accent: var(--lilac); }
+
+/* — Hero: ivory, copy-first, single ampersand corner (lilac dot) — */
+.hero-vendors {
+  background: var(--ivory);
+  padding: 8rem 2.5rem 6rem;
+  position: relative; overflow: hidden;
+  background-image:
+    linear-gradient(rgba(39,55,82,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(39,55,82,.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.hero-vendors > img.corner-mark {
+  position: absolute;
+  right: -4%; bottom: -12%;
+  width: 48%; max-width: 560px;
+  opacity: .06; pointer-events: none;
+}
+.hero-vendors-inner {
+  max-width: 1280px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.hero-vendors-text { max-width: 28ch; }
+.hero-vendors .eyebrow {
+  font-family: var(--font-mono);
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--slate); font-weight: 400;
+  display: inline-flex; align-items: center; gap: .7rem;
+  margin-bottom: 2rem;
+}
+.hero-vendors .eyebrow .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--lilac);
+  box-shadow: 0 0 0 3px rgba(157,146,173,.25);
+  animation: kcPulseDot 2.2s ease-in-out infinite;
+}
+.hero-vendors h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-variation-settings: "SOFT" 50, "WONK" 0;
+  font-size: clamp(2.75rem, 6.5vw, 5.5rem);
+  line-height: .98;
+  letter-spacing: -.022em;
+  color: var(--navy);
+  margin-bottom: 2.25rem;
+}
+.hero-vendors h1 em {
+  font-style: italic;
+  color: var(--lilac);
+  font-weight: 400;
+}
+.hero-vendors p.sub {
+  font-family: var(--font-body);
+  font-size: 1.15rem; line-height: 1.55;
+  color: var(--navy);
+  max-width: 56ch;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+/* — Vendor logos rail (structured) — */
+.vendor-logos {
+  background: var(--ivory);
+  padding: 3rem 2.5rem;
+  border-bottom: 1px solid rgba(39,55,82,.08);
+  border-top: 1px solid rgba(39,55,82,.06);
+}
+.vendor-logos-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.vendor-logos-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--navy);
+  max-width: 14ch;
+  line-height: 1.2;
+}
+.vendor-logos-label em { color: var(--lilac); font-style: normal; }
+.vendor-logos-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  align-items: center;
+  border-left: 1px solid rgba(157,146,173,.3);
+}
+.vendor-logos-grid > div {
+  height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  border-right: 1px solid rgba(157,146,173,.3);
+  padding: 0 1rem;
+}
+.vendor-logos-grid img {
+  max-height: 24px; max-width: 100%;
+  opacity: .65; filter: grayscale(40%);
+  transition: opacity .2s, filter .2s;
+}
+.vendor-logos-grid > div:hover img { opacity: 1; filter: grayscale(0); }
+
+/* — The shift section — */
+.shift {
+  background: var(--white);
+  padding: 7rem 2.5rem;
+  position: relative;
+}
+.shift-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  align-items: start;
+}
+.shift h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  line-height: 1.05; letter-spacing: -.02em;
+  color: var(--navy);
+  max-width: 14ch;
+}
+.shift h2 em { font-style: italic; color: var(--lilac); }
+.shift-body {
+  font-size: 1.02rem; color: var(--slate); line-height: 1.8;
+}
+.shift-body p { margin-bottom: 1.25rem; }
+.shift-body strong { color: var(--navy); font-weight: 600; }
+
+/* Cream panel — "Why this works", quiet, no decorative mark */
+.shift-cream {
+  margin-top: 2.5rem;
+  background: var(--cream);
+  border-radius: var(--r-lg);
+  padding: 2.5rem 2.75rem;
+  position: relative; overflow: hidden;
+}
+.shift-cream .label {
+  font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
+  font-weight: 600; color: var(--navy); opacity: .55;
+  margin-bottom: .75rem;
+}
+.shift-cream blockquote {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  line-height: 1.25;
+  color: var(--navy-dark);
+  letter-spacing: -.01em;
+  max-width: 28ch;
+  position: relative; z-index: 1;
+}
+.shift-cream blockquote em { font-style: normal; color: var(--lilac); font-weight: 500; }
+
+/* — Engagement: 4-up with lilac left-border + numbered — */
+.engage-v {
+  background: var(--ivory);
+  padding: 7rem 2.5rem;
+}
+.engage-v-inner { max-width: 1200px; margin: 0 auto; }
+.engage-v-head { margin-bottom: 3rem; max-width: 56ch; }
+.engage-v-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  line-height: 1.05; letter-spacing: -.02em;
+  color: var(--navy); margin-bottom: 1rem;
+}
+.engage-v-head h2 em { font-style: italic; color: var(--lilac); }
+.engage-v-head p { font-size: 1.05rem; color: var(--slate); line-height: 1.7; max-width: 52ch; }
+.engage-v-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
+}
+.engage-v-card {
+  background: var(--white);
+  border: 1px solid rgba(39,55,82,.07);
+  border-left: 3px solid var(--lilac);
+  border-radius: var(--r-md);
+  padding: 2rem 2.25rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  transition: border-color .3s, box-shadow .3s, transform .3s cubic-bezier(.22,1,.36,1);
+}
+.engage-v-card:hover {
+  border-left-color: var(--navy);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.engage-v-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 2.75rem;
+  font-weight: 400;
+  color: var(--lilac);
+  line-height: 1;
+  align-self: start;
+  padding-top: .25rem;
+}
+.engage-v-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 400; line-height: 1.2;
+  color: var(--navy); margin-bottom: .65rem; letter-spacing: -.01em;
+}
+.engage-v-card h3 em { font-style: italic; color: var(--lilac); }
+.engage-v-card p {
+  font-size: .93rem; color: var(--slate); line-height: 1.7;
+}
+.engage-v-card .tag {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+  font-weight: 600; color: var(--lilac);
+}
+
+/* — Sponsor event imagery (Vendors-in-the-work) — */
+.proof {
+  background: var(--navy);
+  padding: 7rem 2.5rem;
+  position: relative; overflow: hidden;
+}
+.proof > img.corner-mark {
+  position: absolute;
+  left: -4%; bottom: -14%;
+  width: 44%; max-width: 520px;
+  opacity: .08; filter: invert(1);
+  pointer-events: none;
+  transform: scaleX(-1);
+}
+.proof-inner { max-width: 1200px; margin: 0 auto; position: relative; }
+.proof-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.proof-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  line-height: 1.08; letter-spacing: -.02em;
+  color: var(--ivory);
+  max-width: 18ch;
+}
+.proof-head h2 em { font-style: italic; color: var(--lilac); }
+.proof-head p {
+  font-size: .98rem; color: rgba(247,241,234,.62);
+  max-width: 44ch; line-height: 1.65;
+}
+.proof-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 1rem;
+  height: 460px;
+}
+.proof-tile {
+  border-radius: var(--r-md);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 1.5rem;
+  color: var(--ivory);
+}
+.proof-tile .tag {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  font-family: var(--font-body);
+  font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+  font-weight: 600; color: var(--ivory);
+  padding: .3rem .65rem;
+  background: rgba(26,36,56,.55);
+  backdrop-filter: blur(4px);
+  border-radius: 100px;
+}
+.proof-tile .vendor {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--cream);
+  margin-bottom: .25rem;
+}
+.proof-tile .caption {
+  font-size: .8rem;
+  color: rgba(247,241,234,.85);
+  line-height: 1.35;
+  max-width: 28ch;
+}
+.proof-tile.p1 { grid-row: span 2; background: linear-gradient(160deg, rgba(157,146,173,.6), rgba(39,55,82,.85)); }
+.proof-tile.p2 { background: linear-gradient(135deg, rgba(253,236,205,.4), rgba(157,146,173,.5), rgba(39,55,82,.7)); }
+.proof-tile.p3 { background: linear-gradient(135deg, rgba(154,184,220,.5), rgba(39,55,82,.7)); }
+.proof-tile.p4 { background: linear-gradient(160deg, rgba(157,146,173,.55), rgba(26,36,56,.85)); }
+.proof-tile.p5 { background: linear-gradient(135deg, rgba(253,236,205,.45), rgba(39,55,82,.8)); }
+.proof-tile::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url('assets/img/pattern.png');
+  background-size: 200px; opacity: .1; mix-blend-mode: overlay;
+}
+
+/* — Closer (vendors: ivory, lilac dot) — */
+.closer-v {
+  background: var(--ivory);
+  padding: 7rem 2.5rem;
+  position: relative; overflow: hidden;
+  text-align: center;
+  border-top: 1px solid rgba(39,55,82,.08);
+}
+.closer-v > img.corner-mark {
+  position: absolute;
+  right: -4%; bottom: -14%;
+  width: 44%; max-width: 520px;
+  opacity: .06; pointer-events: none;
+}
+.closer-v-inner {
+  max-width: 720px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.closer-v .eyebrow {
+  font-family: var(--font-mono);
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--slate); font-weight: 400;
+  display: inline-flex; align-items: center; gap: .65rem;
+  margin-bottom: 1.5rem;
+}
+.closer-v .eyebrow .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--lilac);
+  box-shadow: 0 0 0 3px rgba(157,146,173,.25);
+  animation: kcPulseDot 2.2s ease-in-out infinite;
+}
+.closer-v h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1; letter-spacing: -.025em;
+  color: var(--navy); margin-bottom: 1.5rem;
+}
+.closer-v h2 em { font-style: italic; color: var(--lilac); }
+.closer-v p {
+  font-size: 1.15rem; color: var(--navy);
+  line-height: 1.6;
+  margin: 0 auto 2.5rem;
+  max-width: 54ch;
+  font-weight: 300;
+}
+
+@media (max-width: 900px) {
+  .hero-vendors, .shift, .engage-v, .proof, .closer-v { padding: 4rem 1.5rem; }
+  .hero-vendors > img.mark-bleed { opacity: .25; }
+  .shift-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .engage-v-grid { grid-template-columns: 1fr; }
+  .vendor-logos-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .vendor-logos-grid { grid-template-columns: repeat(2, 1fr); border-left: 0; border-top: 1px solid rgba(157,146,173,.3); }
+  .proof-grid { grid-template-columns: 1fr; height: auto; }
+  .proof-tile { aspect-ratio: 4/3; }
+  .proof-tile.p1 { grid-row: auto; }
+}
+</style>
+</head>
+<body data-page="vendors" class="has-audit-shell">
+
+<div class="audit-shell">
+  <div class="audit-shell-left">
+    <a href="Design Audit.html" class="back"><span aria-hidden="true">←</span> Audit</a>
+    <span class="crumb">Vendors <span class="sep">/</span> redesign mockup</span>
+  </div>
+  <div class="pageswap">
+    <a href="home.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="practitioners.html">Practitioners</a>
+    <a href="vendors.html" class="is-on">Vendors</a>
+  </div>
+  <button class="audit-toggle"><span class="sw"></span> Annotations</button>
+</div>
+
+<nav class="topbar">
+  <a href="home.html" class="topbar-brand">
+    <img src="assets/img/icon-ampersand.svg" alt="" />
+    <span class="wm">Kyle &amp; Co</span>
+  </a>
+  <div class="topbar-nav">
+    <a href="home.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="practitioners.html">For Practitioners</a>
+    <a href="vendors.html" class="active">For Vendors</a>
+    <a href="#">HCAIC</a>
+    <a href="#">Blog</a>
+  </div>
+  <a href="#" class="topbar-cta">Book a discovery call</a>
+</nav>
+<div class="persona-band vendors"></div>
+
+<!-- HERO -->
+<section class="hero-vendors annot-zone">
+  <img class="corner-mark" src="assets/img/icon-ampersand.svg" alt="" aria-hidden="true" />
+  <div class="hero-vendors-inner">
+    <div class="hero-vendors-text">
+      <div class="eyebrow"><span class="dot"></span> For Vendors</div>
+      <h1>Where HR-tech vendors earn the trust <em>they can't buy.</em></h1>
+      <p class="sub">Kyle &amp; Co works with vendors who want to be trusted in the function, not just sold to it. Research, underwriting, advisory, and events that put your work in front of practitioners on the practitioners' terms.</p>
+      <a href="#" class="btn-primary">Book a discovery call <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <span class="pin" data-callout="hero" style="top: 7rem; left: 50%;">1</span>
+  <span class="pin" data-callout="corner" style="bottom: 4rem; right: 14%;">2</span>
+</section>
+
+<!-- VENDOR LOGOS -->
+<div class="vendor-logos annot-zone">
+  <div class="vendor-logos-inner">
+    <div class="vendor-logos-label">Vendors <em>in the work</em></div>
+    <div class="vendor-logos-grid">
+      <div><img src="vendor-logos-line1.png" alt="Findem" style="object-position: 0 0; object-fit: none; width:100px; height:30px;" /></div>
+      <div><img src="vendor-logos-line1.png" alt="CodeSignal" style="object-position: -120px 0; object-fit: none; width:100px; height:30px;" /></div>
+      <div><img src="vendor-logos-line1.png" alt="Humanly" style="object-position: -240px 0; object-fit: none; width:100px; height:30px;" /></div>
+      <div><img src="vendor-logos-line1.png" alt="Warden AI" style="object-position: -360px 0; object-fit: none; width:100px; height:30px;" /></div>
+      <div><img src="vendor-logos-line1.png" alt="GoodTime" style="object-position: -480px 0; object-fit: none; width:100px; height:30px;" /></div>
+      <div><img src="vendor-logos-line2.png" alt="Gem" style="object-position: 0 0; object-fit: none; width:100px; height:30px;" /></div>
+      <div><img src="vendor-logos-line2.png" alt="HiBob" style="object-position: -120px 0; object-fit: none; width:100px; height:30px;" /></div>
+      <div><img src="vendor-logos-line2.png" alt="Rival" style="object-position: -240px 0; object-fit: none; width:100px; height:30px;" /></div>
+      <div><img src="vendor-logos-line2.png" alt="SAP" style="object-position: -360px 0; object-fit: none; width:100px; height:30px;" /></div>
+      <div><img src="vendor-logos-line2.png" alt="Indeed" style="object-position: -480px 0; object-fit: none; width:100px; height:30px;" /></div>
+    </div>
+  </div>
+  <span class="pin" data-callout="vendor-grid" style="top: .5rem; right: 14%;">3</span>
+</div>
+
+<!-- THE SHIFT -->
+<section class="shift annot-zone">
+  <div class="shift-inner">
+    <div>
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">The shift</div>
+      <h2>The market is <em>changing fast.</em></h2>
+    </div>
+    <div class="shift-body">
+      <p>HR is making more big bets, more often, on technology they can't afford to get wrong. Vendor marketing is louder than ever and trusted less than ever. <strong>The buyer wants someone in the room who doesn't have anything to sell.</strong></p>
+      <p>That's the work Kyle &amp; Co does for practitioners. For vendors, it means the practitioner room is where credibility is built. Kyle &amp; Co is how vendors get into that room — without faking it.</p>
+
+      <div class="shift-cream">
+        <div class="label">Why this works</div>
+        <blockquote>"Practitioner-built beats <em>practitioner-targeted</em>. Credibility is built before the moment it's needed."</blockquote>
+      </div>
+    </div>
+  </div>
+  <span class="pin" data-callout="cream" style="bottom: 12rem; right: 10%;">4</span>
+</section>
+
+<!-- ENGAGEMENT -->
+<section class="engage-v annot-zone">
+  <div class="engage-v-inner">
+    <div class="engage-v-head">
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">Engagement</div>
+      <h2>Four ways to strategically <em>work with us.</em></h2>
+      <p>Each is scoped in a discovery call. We pick the fit based on what you're solving, not what we're selling.</p>
+    </div>
+    <div class="engage-v-grid">
+
+      <div class="engage-v-card">
+        <div class="engage-v-num">01</div>
+        <div>
+          <h3>Underwrite <em>the work.</em></h3>
+          <p>Multi-quarter partnership built around the Human-Centric AI Council. Brand alignment with practitioner-led work on AI in HR. Ongoing visibility, advisory access, and the relationships that come with sustained presence.</p>
+          <div class="tag">Long-term partnership</div>
+        </div>
+      </div>
+
+      <div class="engage-v-card">
+        <div class="engage-v-num">02</div>
+        <div>
+          <h3>Drive a <em>moment.</em></h3>
+          <p>Bounded engagements around a product launch, market entry, or conference. Event activations, executive briefings, content sprints. Specific outcome, specific timeline.</p>
+          <div class="tag">Launch &amp; activation</div>
+        </div>
+      </div>
+
+      <div class="engage-v-card">
+        <div class="engage-v-num">03</div>
+        <div>
+          <h3>Build the <em>research.</em></h3>
+          <p>Custom studies, Category Compass collaborations, messaging audits, focus groups. For vendors who need data they can cite or positioning they can defend.</p>
+          <div class="tag">Research &amp; data</div>
+        </div>
+      </div>
+
+      <div class="engage-v-card">
+        <div class="engage-v-num">04</div>
+        <div>
+          <h3>Get a <em>thinking partner.</em></h3>
+          <p>Strategic advisory hours, product advisory, executive workshops. For vendors building GTM motions, refining positioning, or evaluating new bets.</p>
+          <div class="tag">Advisory</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <span class="pin" data-callout="engage-card" style="top: 14rem; left: 6%;">5</span>
+</section>
+
+<!-- VENDORS IN THE WORK (proof) -->
+<section class="proof annot-zone">
+  <img class="corner-mark" src="assets/img/icon-ampersand.svg" alt="" aria-hidden="true" />
+  <div class="proof-inner">
+    <div class="proof-head">
+      <div>
+        <div class="kc-eyebrow" style="margin-bottom:.75rem;">In the room</div>
+        <h2>Vendors <em>already in the work.</em></h2>
+      </div>
+      <p>Photos from sponsor sessions, council underwriting, and event activations. Real moments, not stock.</p>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-tile p1">
+        <span class="tag">Council session · 2025</span>
+        <div class="vendor">Goodtime</div>
+        <div class="caption">Underwriting the HCAIC working sessions. Quarterly readouts to leadership.</div>
+      </div>
+      <div class="proof-tile p2">
+        <span class="tag">Sponsor stage</span>
+        <div class="vendor">CodeSignal</div>
+        <div class="caption">Compass: AI Interviewers benchmark study.</div>
+      </div>
+      <div class="proof-tile p3">
+        <span class="tag">Transform · 2025</span>
+        <div class="vendor">Humanly</div>
+        <div class="caption">Conference activation + practitioner roundtable.</div>
+      </div>
+      <div class="proof-tile p4">
+        <span class="tag">Workshop</span>
+        <div class="vendor">Findem</div>
+        <div class="caption">Executive briefings + GTM advisory.</div>
+      </div>
+      <div class="proof-tile p5">
+        <span class="tag">Town hall</span>
+        <div class="vendor">Warden AI</div>
+        <div class="caption">Practitioner-led webinar series.</div>
+      </div>
+    </div>
+  </div>
+  <span class="pin" data-callout="proof" style="top: 9rem; left: 6%;">6</span>
+</section>
+
+<!-- CLOSER -->
+<section class="closer-v annot-zone">
+  <img class="corner-mark" src="assets/img/icon-ampersand.svg" alt="" aria-hidden="true" />
+  <div class="closer-v-inner">
+    <div class="eyebrow"><span class="dot"></span> Let's talk</div>
+    <h2>Bring us your <em>hard question.</em></h2>
+    <p>You came here with a question. A market shift, a launch, a category move, positioning that isn't sticking. Bring it to a 30-minute discovery call and we'll scope what fits.</p>
+    <a href="#" class="btn-primary">Book a discovery call <span aria-hidden="true">→</span></a>
+  </div>
+  <span class="pin" data-callout="closer" style="top: 3rem; left: 14%;">7</span>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="#" class="footer-brand">Kyle &amp; Co</a>
+    <nav class="footer-links">
+      <a href="#">Research</a>
+      <a href="#">For Practitioners</a>
+      <a href="#">For Vendors</a>
+      <a href="#">HCAIC</a>
+      <a href="#">Blog</a>
+    </nav>
+    <div class="footer-copy">&copy; 2026 Kyle &amp; Co. No spam. Just signal.</div>
+  </div>
+</footer>
+
+<aside class="callout-drawer">
+  <div class="callout-drawer-head">
+    <div class="callout-drawer-pin">1</div>
+    <div class="callout-drawer-title">Click a pin to start.</div>
+    <button class="callout-drawer-close" aria-label="Close">✕</button>
+  </div>
+  <div class="callout-drawer-body">
+    <p style="color: var(--slate); font-size: .9rem;">Toggle annotations on, then tap any numbered pin.</p>
+  </div>
+</aside>
+
+<script>
+window.KC_CALLOUTS = {
+  hero: {
+    title: 'Hero — <em>ivory, lilac dot</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-layout">Layout</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>The hero loses its navy-dark block and the deconstructed brand-mark bleed. New register: <strong>ivory canvas</strong>, 56×56 grid overlay, big serif H1 with italic-lilac phrase, JetBrains Mono eyebrow with <strong>lilac live dot</strong>. The dot color is the only persona signal in the chrome.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>Vendor hero was the loudest of the four pages — navy-dark plus oversized mark plus dotted texture plus rotated second mark. That signaled "sharp business surface" but at the cost of feeling on-brand. Same restraint as the other pages, with lilac as the persona signal.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Where vendor-ness still shows</div><p>The 2×2 engagement cards still get their <strong>lilac left-border accent</strong> and italic Fraunces numerals. The vendor logos still get a structured grid. The cream pull-quote panel is still there. Vendor differentiation lives in the cards and grids, not the hero.</p></div>
+    `
+  },
+  corner: {
+    title: 'Ampersand corner — <em>same on every page</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>One ampersand icon, bottom-right of the hero, 6% opacity. Identical to Home, Research, Practitioners.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>Same brand fingerprint on every page — that's what builds the cohesion. The persona differentiator is the lilac dot, not a heavier mark.</p></div>
+    `
+  },
+  'vendor-grid': {
+    title: 'Vendor logos — <em>structured grid</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-layout">Layout</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Two stacked rows of logos become a 5-column structured grid with thin lilac dividers between cells. Italic "Vendors <em>in the work</em>" label sits on the left.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>For vendors, the logo rail is part of the proof. A real grid (with rules) signals selection rather than serendipity. Lilac dividers are the only soft note on what is otherwise a sharper page.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Dynamic content</div><p>New vendor → add a cell. Grid expands. If the count exceeds 10, wrap to two rows with the same grid system.</p></div>
+    `
+  },
+  cream: {
+    title: 'Cream panel — <em>POV pulled out, no mark</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>A cream panel inside the body copy carries your one-line marketing POV ("Practitioner-built beats <em>practitioner-targeted</em>. Credibility is built before the moment it's needed.") as a Fraunces-italic pull-quote. No decorative brand-mark on the panel — cream alone is enough.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>This is the page where a vendor decides whether to take a meeting. The cream-panel + italic-quote treatment is the design system's strongest "key idea" pattern. Adding a brand-mark on top was overcooked.</p></div>
+    `
+  },
+  'engage-card': {
+    title: 'Engagement cards — <em>lilac left-border, italic numerals</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-layout">Layout</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Cards switch to a 2×2 grid (instead of 1×4) with a 3px <strong>lilac left-border accent</strong>. Each card lays out as numeral-on-left, copy-on-right. Numerals are oversized Fraunces italic in lilac.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>Vendors prefer 2×2 — it reads as four discrete bets rather than a hierarchy. The lilac left-border is a graphic device the design system already specifies but isn't using anywhere. It gives the cards a sharper, structured feel without adding decoration.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Hover</div><p>On hover the left-border shifts from lilac to navy. The card lifts 3px.</p></div>
+    `
+  },
+  proof: {
+    title: '"Vendors in the work" — <em>proof grid</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-photo">Image needed</span><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">The need</div><div class="image-need"><strong>5 × Sponsor / event photos</strong><div class="specs">Mixed crops — 1 large landscape, 4 squarish · 1200×800ish</div></div></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>The current "Vendors already in the work" section is a single H2 with no proof. This becomes a real <strong>5-tile asymmetric grid</strong> on a navy section with one ampersand corner. Each tile tags the venue and the vendor.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>For vendors, "real moments, not stock" is the entire pitch. Photos do the work copy can't. The navy ground here is the one dark moment on the page — it reads as a punctuation, not a default.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Dynamic content</div><p>As new sponsor activations happen, drop the photo into the grid. Old tiles rotate out.</p></div>
+    `
+  },
+  closer: {
+    title: 'Closer — <em>ivory, lilac dot</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Page closes on ivory with a hairline rule above, single ampersand corner at 6%, mono eyebrow with lilac live dot. Same chrome as the hero — the page opens and closes in the same room.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>The previous draft closed on heavy navy-dark with twin brand marks. Too loud, especially after a navy proof section. Ivory keeps the temperature consistent.</p></div>
+    `
+  }
+};
+</script>
+
+<script src="assets/audit.js"></script>
+</body>
+</html>

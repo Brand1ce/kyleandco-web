@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Practitioners — Redesign mockup · Kyle &amp; Co</title>
+<link rel="stylesheet" href="assets/site.css" />
+<link rel="stylesheet" href="assets/audit.css" />
+<style>
+body[data-page="practitioners"] { --accent: var(--cream); }
+
+/* — Hero: ivory, copy-first, single corner ampersand — */
+.hero-prac {
+  background: var(--ivory);
+  padding: 8rem 2.5rem 6rem;
+  position: relative; overflow: hidden;
+  background-image:
+    linear-gradient(rgba(39,55,82,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(39,55,82,.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.hero-prac > img.corner-mark {
+  position: absolute;
+  right: -4%; bottom: -12%;
+  width: 48%; max-width: 560px;
+  opacity: .06; pointer-events: none;
+}
+.hero-prac-inner {
+  max-width: 1280px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.hero-prac .eyebrow {
+  font-family: var(--font-mono);
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--slate); font-weight: 400;
+  display: inline-flex; align-items: center; gap: .7rem;
+  margin-bottom: 2rem;
+}
+.hero-prac .eyebrow .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--cream);
+  box-shadow: 0 0 0 3px rgba(253,236,205,.25);
+  animation: kcPulseDot 2.2s ease-in-out infinite;
+}
+.hero-prac h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-variation-settings: "SOFT" 50, "WONK" 0;
+  font-size: clamp(2.75rem, 6.5vw, 5.5rem);
+  line-height: .98;
+  letter-spacing: -.022em;
+  color: var(--navy);
+  margin-bottom: 2.25rem;
+  max-width: 20ch;
+}
+.hero-prac h1 em {
+  font-style: italic;
+  color: var(--lilac);
+}
+.hero-prac p.sub {
+  font-family: var(--font-body);
+  font-size: 1.15rem; line-height: 1.55;
+  color: var(--navy);
+  max-width: 58ch;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+.hero-prac .signal {
+  display: inline-flex; align-items: center; gap: .65rem;
+  font-family: var(--font-mono);
+  padding: .55rem 1.1rem;
+  background: var(--cream);
+  border-radius: 100px;
+  font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--navy-dark);
+  font-weight: 500;
+}
+.hero-prac .signal::before {
+  content: '';
+  width: 7px; height: 7px;
+  background: var(--navy);
+  border-radius: 50%;
+  animation: kcPulseDot 2.2s ease-in-out infinite;
+}
+
+/* — Open-access research grid — */
+.open-access {
+  background: var(--white);
+  padding: 7rem 2.5rem;
+  position: relative;
+}
+.open-inner { max-width: 1200px; margin: 0 auto; position: relative; }
+.open-head { margin-bottom: 3rem; max-width: 52ch; }
+.open-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  line-height: 1.05; letter-spacing: -.02em;
+  color: var(--navy); margin-bottom: 1rem;
+}
+.open-head h2 em { font-style: italic; color: var(--lilac); }
+.open-head p { font-size: 1.05rem; color: var(--slate); line-height: 1.7; }
+.open-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.open-card {
+  background: var(--white);
+  border-radius: var(--r-md);
+  border: 1px solid rgba(39,55,82,.06);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  transition: transform .3s cubic-bezier(.22,1,.36,1), border-color .3s, box-shadow .3s;
+}
+.open-card:hover { transform: translateY(-3px); border-color: var(--lilac); box-shadow: var(--shadow-md); }
+.open-cover {
+  position: relative;
+  display: grid; grid-template-rows: 1fr 1fr 1fr;
+  padding: .75rem;
+  gap: .3rem;
+}
+.open-cover .b {
+  font-family: var(--font-display);
+  font-size: .92rem; line-height: 1.05;
+  padding: .5rem .7rem;
+  display: flex; align-items: center;
+  letter-spacing: -.005em;
+}
+.open-cover .b em { font-style: italic; }
+.cv-1 { background: var(--cream); }
+.cv-1 .b1 { background: var(--navy); color: var(--ivory); }
+.cv-1 .b2 { background: var(--sky); color: var(--navy); }
+.cv-1 .b3 { background: var(--lilac); color: var(--ivory); }
+.cv-2 { background: var(--ivory-warm); }
+.cv-2 .b1 { background: var(--navy); color: var(--cream); }
+.cv-2 .b2 { background: var(--cream); color: var(--navy); }
+.cv-2 .b3 { background: var(--lilac); color: var(--ivory); }
+.cv-3 { background: var(--sky); }
+.cv-3 .b1 { background: var(--ivory); color: var(--navy); }
+.cv-3 .b2 { background: var(--navy); color: var(--cream); }
+.cv-3 .b3 { background: var(--lilac); color: var(--ivory); }
+.cv-4 { background: var(--ivory); }
+.cv-4 .b1 { background: var(--lilac); color: var(--ivory); }
+.cv-4 .b2 { background: var(--cream); color: var(--navy); }
+.cv-4 .b3 { background: var(--navy); color: var(--cream); }
+
+.open-body {
+  padding: 2rem 2rem 1.75rem;
+  display: flex; flex-direction: column;
+}
+.open-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem; font-weight: 400; line-height: 1.2;
+  color: var(--navy); margin-bottom: .65rem; letter-spacing: -.005em;
+}
+.open-body p { font-size: .88rem; color: var(--slate); line-height: 1.65; flex: 1; }
+.open-body .link {
+  display: inline-flex; align-items: center; gap: .3rem;
+  margin-top: 1.25rem; align-self: flex-start;
+  font-size: .85rem; font-weight: 600; color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(39,55,82,.3);
+  padding-bottom: 1px;
+}
+
+/* — Methodology — */
+.prac-method {
+  background: var(--white);
+  padding: 6rem 2.5rem;
+}
+.prac-method-inner {
+  max-width: 900px; margin: 0 auto;
+  text-align: center;
+}
+.prac-method h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  line-height: 1.05; letter-spacing: -.02em;
+  color: var(--navy); margin-bottom: 1.25rem;
+  max-width: 18ch; margin-left: auto; margin-right: auto;
+}
+.prac-method h2 em { font-style: italic; color: var(--lilac); }
+.prac-method p {
+  font-size: 1.05rem; color: var(--slate); line-height: 1.8;
+  max-width: 60ch; margin: 0 auto;
+}
+
+/* — Three Ways In: with featured cream card — */
+.ways {
+  background: var(--ivory);
+  padding: 7rem 2.5rem;
+  position: relative;
+}
+.ways-inner { max-width: 1200px; margin: 0 auto; }
+.ways-head { margin-bottom: 3rem; max-width: 50ch; }
+.ways-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  line-height: 1.05; letter-spacing: -.02em;
+  color: var(--navy); margin-bottom: 1rem;
+}
+.ways-head h2 em { font-style: italic; color: var(--lilac); }
+.ways-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.way {
+  background: var(--white);
+  border-radius: var(--r-md);
+  padding: 2.5rem 2rem 2rem;
+  border: 1px solid rgba(39,55,82,.06);
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s cubic-bezier(.22,1,.36,1), border-color .3s;
+}
+.way:hover { transform: translateY(-3px); border-color: var(--lilac); }
+.way.featured {
+  background: var(--cream);
+  border-color: transparent;
+}
+.way-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.7rem;
+  color: var(--lilac); line-height: 1;
+  margin-bottom: 1.25rem;
+}
+.way.featured .way-num { color: var(--navy); opacity: .6; }
+.way h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 400; line-height: 1.1;
+  color: var(--navy); margin-bottom: .85rem; letter-spacing: -.01em;
+}
+.way h3 em { font-style: italic; color: var(--lilac); }
+.way.featured h3 em { color: var(--navy-dark); font-weight: 500; }
+.way p {
+  font-size: .92rem; color: var(--slate); line-height: 1.7;
+}
+.way.featured p { color: var(--navy-dark); }
+
+/* — Faces of the Council — */
+.faces {
+  background: var(--navy);
+  padding: 7rem 2.5rem;
+  position: relative; overflow: hidden;
+}
+.faces > img.corner-mark {
+  position: absolute;
+  left: -4%; bottom: -14%;
+  width: 44%; max-width: 520px;
+  opacity: .08; filter: invert(1);
+  pointer-events: none;
+  transform: scaleX(-1);
+}
+.faces-inner { max-width: 1200px; margin: 0 auto; position: relative; }
+.faces-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+.faces-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  line-height: 1.05; letter-spacing: -.02em;
+  color: var(--ivory);
+  margin-bottom: .5rem;
+  max-width: 18ch;
+}
+.faces-head h2 em { font-style: italic; color: var(--cream); }
+.faces-head p { font-size: .98rem; color: rgba(247,241,234,.65); line-height: 1.65; max-width: 50ch; }
+.faces-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem;
+}
+.face-mem {
+  display: flex; flex-direction: column;
+}
+.face-mem .kc-pp {
+  margin-bottom: .85rem;
+  aspect-ratio: 4/5;
+  border-radius: var(--r-md);
+}
+.face-mem .name {
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 500;
+  color: var(--ivory);
+  line-height: 1.2;
+  letter-spacing: -.005em;
+  margin-bottom: .25rem;
+}
+.face-mem .role {
+  font-size: .72rem;
+  color: rgba(247,241,234,.55);
+  line-height: 1.35;
+}
+
+/* — Council teaser — */
+.council-teaser {
+  background: var(--ivory-warm);
+  padding: 7rem 2.5rem;
+  position: relative; overflow: hidden;
+}
+.council-teaser > img.corner-mark {
+  position: absolute;
+  left: -4%; top: -12%;
+  width: 36%; max-width: 460px;
+  opacity: .07; pointer-events: none;
+  transform: scaleX(-1);
+}
+.council-teaser-inner {
+  max-width: 800px; margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+.council-teaser .eyebrow {
+  font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 600; margin-bottom: 1.25rem;
+}
+.council-teaser h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  line-height: 1.05; letter-spacing: -.025em;
+  color: var(--navy); margin-bottom: 1.5rem;
+}
+.council-teaser h2 em { font-style: italic; color: var(--lilac); }
+.council-teaser p {
+  font-size: 1.05rem; color: var(--navy-dark);
+  line-height: 1.7;
+  margin: 0 auto 2.5rem;
+  max-width: 50ch;
+  opacity: .82;
+}
+
+/* — Org rail — */
+.org-rail {
+  background: var(--white);
+  padding: 6rem 2.5rem;
+}
+.org-rail-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+.org-rail h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  line-height: 1.08; letter-spacing: -.02em;
+  color: var(--navy);
+  margin-bottom: 1.25rem; max-width: 18ch;
+}
+.org-rail h2 em { font-style: italic; color: var(--lilac); }
+.org-rail p {
+  font-size: 1rem; color: var(--slate); line-height: 1.75;
+  margin-bottom: 2rem; max-width: 48ch;
+}
+.org-services { display: flex; flex-direction: column; gap: .75rem; }
+.mini-card {
+  background: var(--ivory);
+  border: 1px solid rgba(39,55,82,.08);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem; font-weight: 400;
+  color: var(--navy);
+  letter-spacing: -.005em;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.mini-card::after {
+  content: '→';
+  font-size: 1.1rem;
+  color: var(--lilac);
+}
+
+/* — Closer (practitioners: ivory, cream-dot) — */
+.closer-prac {
+  background: var(--ivory);
+  padding: 7rem 2.5rem;
+  position: relative; overflow: hidden;
+  text-align: center;
+  border-top: 1px solid rgba(39,55,82,.08);
+}
+.closer-prac > img.corner-mark {
+  position: absolute;
+  right: -4%; bottom: -14%;
+  width: 44%; max-width: 520px;
+  opacity: .06; pointer-events: none;
+}
+.closer-prac-inner {
+  max-width: 720px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.closer-prac .eyebrow {
+  font-family: var(--font-mono);
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--slate); font-weight: 400;
+  display: inline-flex; align-items: center; gap: .65rem;
+  margin-bottom: 1.5rem;
+}
+.closer-prac .eyebrow .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--cream);
+  box-shadow: 0 0 0 3px rgba(253,236,205,.25);
+  animation: kcPulseDot 2.2s ease-in-out infinite;
+}
+.closer-prac h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1; letter-spacing: -.025em;
+  color: var(--navy); margin-bottom: 1.5rem;
+}
+.closer-prac h2 em { font-style: italic; color: var(--lilac); }
+.closer-prac p {
+  font-size: 1.15rem; color: var(--navy);
+  line-height: 1.6;
+  margin: 0 auto 2.5rem;
+  max-width: 54ch;
+  font-weight: 300;
+}
+
+@media (max-width: 1100px) {
+  .faces-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .hero-prac, .open-access, .prac-method, .ways, .faces,
+  .council-teaser, .org-rail, .closer-prac { padding: 4rem 1.5rem; }
+  .hero-prac-inner, .org-rail-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .ways-grid, .open-grid { grid-template-columns: 1fr; }
+  .open-card { grid-template-columns: 1fr; }
+  .faces-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body data-page="practitioners" class="has-audit-shell">
+
+<div class="audit-shell">
+  <div class="audit-shell-left">
+    <a href="Design Audit.html" class="back"><span aria-hidden="true">←</span> Audit</a>
+    <span class="crumb">Practitioners <span class="sep">/</span> redesign mockup</span>
+  </div>
+  <div class="pageswap">
+    <a href="home.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="practitioners.html" class="is-on">Practitioners</a>
+    <a href="vendors.html">Vendors</a>
+  </div>
+  <button class="audit-toggle"><span class="sw"></span> Annotations</button>
+</div>
+
+<nav class="topbar">
+  <a href="home.html" class="topbar-brand">
+    <img src="assets/img/icon-ampersand.svg" alt="" />
+    <span class="wm">Kyle &amp; Co</span>
+  </a>
+  <div class="topbar-nav">
+    <a href="home.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="practitioners.html" class="active">For Practitioners</a>
+    <a href="vendors.html">For Vendors</a>
+    <a href="#">HCAIC</a>
+    <a href="#">Blog</a>
+  </div>
+  <a href="#" class="topbar-cta">Book a discovery call</a>
+</nav>
+<div class="persona-band practitioners"></div>
+
+<!-- HERO -->
+<section class="hero-prac annot-zone">
+  <img class="corner-mark" src="assets/img/icon-ampersand.svg" alt="" aria-hidden="true" />
+  <div class="hero-prac-inner">
+    <div class="eyebrow"><span class="dot"></span> For Practitioners · Cohort Two open</div>
+    <h1>The independent research HR uses to set, defend, and <em>execute strategy.</em></h1>
+    <p class="sub">Kyle &amp; Co works alongside HR and TA leaders on the calls that have to hold up. The research, frameworks, and analysis are yours to use. Reach out when you're weighing a tech call. You'll hear back from someone who's done the work.</p>
+    <div class="signal">Council applications open</div>
+  </div>
+  <span class="pin" data-callout="hero" style="top: 7rem; left: 50%;">1</span>
+  <span class="pin" data-callout="signal" style="bottom: 12rem; left: 8%;">2</span>
+  <span class="pin" data-callout="corner" style="bottom: 4rem; right: 14%;">3</span>
+</section>
+
+<!-- OPEN ACCESS -->
+<section class="open-access annot-zone">
+  <div class="open-inner">
+    <div class="open-head">
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">Open access</div>
+      <h2>Research yours <em>to use.</em></h2>
+      <p>No paywall. No form gate. Carry these into vendor evaluations, leadership presentations, and the calls you have to defend.</p>
+    </div>
+    <div class="open-grid">
+
+      <article class="open-card">
+        <div class="open-cover cv-1">
+          <div class="b b1">AI <em>Momentum</em></div>
+          <div class="b b2">Model: nine</div>
+          <div class="b b3">archetypes</div>
+        </div>
+        <div class="open-body">
+          <h3>AI Momentum Model</h3>
+          <p>Nine archetypes, one model. Benchmark where your org sits and what moves it forward.</p>
+          <a href="#" class="link">Access <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="open-card">
+        <div class="open-cover cv-2">
+          <div class="b b1">Category Compass</div>
+          <div class="b b2">AI <em>Interviewers</em></div>
+          <div class="b b3">benchmarked</div>
+        </div>
+        <div class="open-body">
+          <h3>Category Compass: AI Interviewers</h3>
+          <p>An independent benchmark of AI interviewer solutions. We said the market wasn't ready. Here's what we found.</p>
+          <a href="#" class="link">Access <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="open-card">
+        <div class="open-cover cv-3">
+          <div class="b b1">HCAIC <em>Toolkit</em></div>
+          <div class="b b2">Four frameworks,</div>
+          <div class="b b3">built by HR.</div>
+        </div>
+        <div class="open-body">
+          <h3>HCAIC Toolkit</h3>
+          <p>Four practitioner-built frameworks on AI literacy, governance, adoption, and the future of HR. Free to use.</p>
+          <a href="#" class="link">Access <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="open-card">
+        <div class="open-cover cv-4">
+          <div class="b b1">Recent reports</div>
+          <div class="b b2">as they <em>ship.</em></div>
+          <div class="b b3">In your inbox.</div>
+        </div>
+        <div class="open-body">
+          <h3>Recent reports</h3>
+          <p>The latest research as it ships. Subscribe to get it in your inbox.</p>
+          <a href="#" class="link">Subscribe <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+  <span class="pin" data-callout="open-cards" style="top: 14rem; left: 4%;">4</span>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="prac-method">
+  <div class="prac-method-inner">
+    <div class="kc-eyebrow" style="margin-bottom:1rem;">The work</div>
+    <h2>Where the research <em>comes from.</em></h2>
+    <p>Each year, we publish an annual market study, quarterly Category Compass reports, and bespoke client research. The work is built on surveys with thousands of senior HR and TA leaders. The Human-Centric AI Council adds practitioner-led work on AI. Our edge is pairing primary research with rigorous secondary analysis, because neither catches the full signal alone.</p>
+  </div>
+</section>
+
+<!-- THREE WAYS IN -->
+<section class="ways annot-zone">
+  <div class="ways-inner">
+    <div class="ways-head">
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">Get involved</div>
+      <h2>Three ways <em>in.</em></h2>
+    </div>
+    <div class="ways-grid">
+      <div class="way">
+        <div class="way-num">01</div>
+        <h3>Read.</h3>
+        <p>Subscribe to the newsletter. New research and event access land in your inbox. We send when there's something to say. No noise. Just signal.</p>
+      </div>
+      <div class="way featured">
+        <div class="way-num">02</div>
+        <h3>Show <em>up.</em></h3>
+        <p>Town halls, webinars, and working sessions are open to the list. Bring a question, get one back. Replies go to the team, not a bot. The conversation is the point.</p>
+      </div>
+      <div class="way">
+        <div class="way-num">03</div>
+        <h3>Contribute.</h3>
+        <p>Submit a topic you'd want researched. Apply to the Council if you're shaping AI in your org. Get featured in the practitioner spotlight when you've got a story worth sharing.</p>
+      </div>
+    </div>
+  </div>
+  <span class="pin" data-callout="ways-featured" style="top: 14rem; left: 47%;">5</span>
+</section>
+
+<!-- FACES OF THE COUNCIL -->
+<section class="faces annot-zone">
+  <img class="corner-mark" src="assets/img/icon-ampersand.svg" alt="" aria-hidden="true" />
+  <div class="faces-inner">
+    <div class="faces-head">
+      <div>
+        <div class="kc-eyebrow" style="margin-bottom:.75rem; color: var(--cream);">The Council</div>
+        <h2>Faces of <em>the work.</em></h2>
+      </div>
+      <p>A working group of HR and TA practitioners building peer-led resources for the function. Not a panel of names on a slide.</p>
+    </div>
+    <div class="faces-grid">
+      <div class="face-mem">
+        <div class="kc-pp bg-cream"><div class="kc-pp-initial">M</div></div>
+        <div class="name">Member name</div>
+        <div class="role">Head of People · Company</div>
+      </div>
+      <div class="face-mem">
+        <div class="kc-pp bg-navy"><div class="kc-pp-initial">M</div></div>
+        <div class="name">Member name</div>
+        <div class="role">VP Talent · Company</div>
+      </div>
+      <div class="face-mem">
+        <div class="kc-pp bg-lilac"><div class="kc-pp-initial">M</div></div>
+        <div class="name">Member name</div>
+        <div class="role">Director HR · Company</div>
+      </div>
+      <div class="face-mem">
+        <div class="kc-pp bg-cream"><div class="kc-pp-initial">M</div></div>
+        <div class="name">Member name</div>
+        <div class="role">Head of TA · Company</div>
+      </div>
+      <div class="face-mem">
+        <div class="kc-pp bg-navy"><div class="kc-pp-initial">M</div></div>
+        <div class="name">Member name</div>
+        <div class="role">People Ops · Company</div>
+      </div>
+      <div class="face-mem">
+        <div class="kc-pp bg-lilac"><div class="kc-pp-initial">M</div></div>
+        <div class="name">Member name</div>
+        <div class="role">Talent Strategy · Co.</div>
+      </div>
+    </div>
+  </div>
+  <span class="pin" data-callout="faces" style="top: 8rem; left: 6%;">6</span>
+</section>
+
+<!-- COUNCIL TEASER -->
+<section class="council-teaser annot-zone">
+  <img class="corner-mark" src="assets/img/icon-ampersand.svg" alt="" aria-hidden="true" />
+  <div class="council-teaser-inner">
+    <div class="eyebrow">The Council</div>
+    <h2>The Human-Centric <em>AI Council.</em></h2>
+    <p>The HCAIC is a working group of HR and TA practitioners building peer-led resources for the rest of the function on AI. If you're shaping AI literacy, governance, or adoption in your org, the application is open.</p>
+    <a href="#" class="btn-primary">Apply to the Council <span aria-hidden="true">→</span></a>
+  </div>
+  <span class="pin" data-callout="council-teaser" style="top: 3rem; left: 14%;">7</span>
+</section>
+
+<!-- ORG RAIL -->
+<section class="org-rail">
+  <div class="org-rail-inner">
+    <div>
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">For organizations</div>
+      <h2>Want this <em>applied</em> to your team?</h2>
+      <p>If your function is wrestling with a tech stack decision, a positioning question, or an AI adoption plan, Kyle &amp; Co also works with organizations directly to scope the work.</p>
+      <a href="#" class="btn-primary">Start a conversation <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="org-services">
+      <div class="mini-card">Tech stack evaluation</div>
+      <div class="mini-card">AI adoption planning</div>
+      <div class="mini-card">Positioning and strategy</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSER -->
+<section class="closer-prac annot-zone">
+  <img class="corner-mark" src="assets/img/icon-ampersand.svg" alt="" aria-hidden="true" />
+  <div class="closer-prac-inner">
+    <div class="eyebrow"><span class="dot"></span> Stay sharp</div>
+    <h2>Stay <em>sharp.</em></h2>
+    <p>Subscribe and you'll get the work as it ships. No spam. Just signal.</p>
+    <a href="#" class="btn-primary">Subscribe <span aria-hidden="true">→</span></a>
+  </div>
+  <span class="pin" data-callout="closer" style="top: 3rem; left: 14%;">8</span>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="#" class="footer-brand">Kyle &amp; Co</a>
+    <nav class="footer-links">
+      <a href="#">Research</a>
+      <a href="#">For Practitioners</a>
+      <a href="#">For Vendors</a>
+      <a href="#">HCAIC</a>
+      <a href="#">Blog</a>
+    </nav>
+    <div class="footer-copy">&copy; 2026 Kyle &amp; Co. No spam. Just signal.</div>
+  </div>
+</footer>
+
+<aside class="callout-drawer">
+  <div class="callout-drawer-head">
+    <div class="callout-drawer-pin">1</div>
+    <div class="callout-drawer-title">Click a pin to start.</div>
+    <button class="callout-drawer-close" aria-label="Close">✕</button>
+  </div>
+  <div class="callout-drawer-body">
+    <p style="color: var(--slate); font-size: .9rem;">Toggle annotations on, then tap any numbered pin.</p>
+  </div>
+</aside>
+
+<script>
+window.KC_CALLOUTS = {
+  hero: {
+    title: 'Hero — <em>copy-first, no portrait grid</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-layout">Layout</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Same hero chrome as Home and Research: ivory canvas, grid overlay, huge serif H1, italic-lilac phrase, mono eyebrow with cream live dot. No portrait grid in the hero — council faces show up later, in a dedicated section where they read as people, not decoration.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>Putting four faces in the hero made the page feel populated but turned the people into pattern. Faces of the Council, lower on the page, is where they earn the space.</p></div>
+    `
+  },
+  signal: {
+    title: 'Cream pill — <em>live signal</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>A small cream pill below the lede reads "Council applications open" with a navy live-dot. Mono-tracked label, all-caps. Same pulse animation as the eyebrow dot.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>This is the page's live signal slot. Surface the next thing happening — application window, town hall date, working session sign-up — without redesigning the hero.</p></div>
+    `
+  },
+  corner: {
+    title: 'Ampersand corner — <em>same on every page</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>One ampersand icon, 48% width, 6% opacity, bottom-right of the hero. Identical placement on Home, Research, Practitioners, and Vendors.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>Brand fingerprint by repetition. The mark in the same spot on every page is what makes the system feel composed.</p></div>
+    `
+  },
+  'open-cards': {
+    title: 'Research cards — <em>editorial covers + side body</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-layout">Layout</span><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Open-access research cards adopt the blog-card stacked-block treatment <strong>on the left</strong>, with body copy on the right. Two-column card layout instead of all-stacked.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>This is the most useful section on the page for practitioners. Giving each card its own visual hierarchy makes the reports feel like distinct deliverables. The cover treatment matches what shows on the Research page — internal cohesion between pages.</p></div>
+    `
+  },
+  'ways-featured': {
+    title: 'Three Ways In — <em>cream highlight, no mark</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>The middle card ("Show up.") switches from white to <strong>cream</strong>. The italic-lilac phrase "<em>up</em>" is highlighted in the heading. No decorative brand-mark inside the card.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>One cream card per section makes the punctum legible. Showing up is the act that converts a reader into a member, so it gets the lift. Cream alone is enough — no extra ornament.</p></div>
+    `
+  },
+  faces: {
+    title: 'Faces of the Council — <em>new section</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span><span class="callout-tag tag-photo">Image needed</span></div>
+      <div class="callout-section"><div class="callout-section-label">The need</div><div class="image-need"><strong>6–8 × Council member portraits</strong><div class="specs">400×500 each (4:5) · top-anchored portrait crop</div></div></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Six (or eight) council member portraits in a row, each on a rotating brand-color square. Name + role beneath. Navy section with a single ampersand corner in the bottom-left at 8% opacity, inverted.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>You said the council page should make the council feel like real people. This section is where the work earns the application.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Dynamic content</div><p>Council membership rotates. Build the section to read from a list.</p></div>
+    `
+  },
+  'council-teaser': {
+    title: 'Council teaser — <em>ivory-warm, single ampersand</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-layout">Layout</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Background is ivory-warm (a half-step warmer than ivory). One ampersand corner in the top-left at 7% opacity.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>Practitioners is the warmest of the four pages. The ivory-warm here gives the section a slightly warmer tone without breaking the persona's palette.</p></div>
+    `
+  },
+  closer: {
+    title: 'Closer — <em>ivory, cream dot</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Ivory canvas, hairline rule above, single ampersand corner at 6%. Mono eyebrow with cream live dot.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>Same closer chrome on every page. Persona signal is the dot color — cream here matches the Home register.</p></div>
+    `
+  }
+};
+</script>
+
+<script src="assets/audit.js"></script>
+</body>
+</html>

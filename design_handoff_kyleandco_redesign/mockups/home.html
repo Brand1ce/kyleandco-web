@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Home — Redesign mockup · Kyle &amp; Co</title>
+<link rel="stylesheet" href="assets/site.css" />
+<link rel="stylesheet" href="assets/audit.css" />
+<style>
+/* ============================================================
+   HOME PAGE — redesigned in place.
+   Persona accent: cream. Photography: Kyle keynote + team + council.
+   ============================================================ */
+body[data-page="home"] {
+  --accent: var(--cream);
+  --accent-deep: var(--cream-deep);
+}
+
+/* — Hero: HCAIC register — ivory canvas, copy-first, single ampersand corner — */
+.hero-home {
+  background: var(--ivory);
+  padding: 8rem 2.5rem 6rem;
+  position: relative;
+  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(39,55,82,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(39,55,82,.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.hero-home > img.corner-mark {
+  position: absolute;
+  right: -4%; bottom: -12%;
+  width: 48%;
+  max-width: 560px;
+  opacity: .06;
+  pointer-events: none;
+}
+.hero-home-inner {
+  max-width: 1280px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.hero-home .eyebrow {
+  font-family: var(--font-mono);
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--slate); font-weight: 400;
+  display: inline-flex; align-items: center; gap: .7rem;
+  margin-bottom: 2rem;
+}
+.hero-home .eyebrow .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--cream);
+  box-shadow: 0 0 0 3px rgba(253,236,205,.25);
+  animation: kcPulseDot 2.2s ease-in-out infinite;
+}
+.hero-home h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-variation-settings: "SOFT" 50, "WONK" 0;
+  font-size: clamp(2.75rem, 6.5vw, 5.5rem);
+  line-height: .98;
+  letter-spacing: -.022em;
+  color: var(--navy);
+  margin-bottom: 2.25rem;
+  max-width: 18ch;
+}
+.hero-home h1 em {
+  font-style: italic;
+  color: var(--lilac);
+  font-weight: 400;
+}
+.hero-home p.sub {
+  font-family: var(--font-body);
+  font-size: 1.15rem; line-height: 1.55;
+  color: var(--navy);
+  max-width: 56ch;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+.hero-home-actions { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+
+/* — Logo band (refined) — */
+.logo-band {
+  background: var(--white);
+  padding: 2.5rem 2.5rem;
+  border-bottom: 1px solid rgba(39,55,82,.08);
+  position: relative;
+}
+.logo-band-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.logo-band-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--navy);
+  max-width: 14ch;
+  line-height: 1.2;
+}
+.logo-band-label em { color: var(--lilac); font-style: normal; }
+.logo-band-imgs {
+  display: flex; align-items: center; gap: 2rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  opacity: .65;
+  filter: grayscale(40%);
+}
+.logo-band-imgs img { max-width: 100%; height: 28px; width: auto; }
+
+/* — Differentiators — */
+.diffs {
+  padding: 7rem 2.5rem;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.diffs-inner { max-width: 1200px; margin: 0 auto; position: relative; }
+.diffs-head { max-width: 56ch; margin-bottom: 3.5rem; }
+.diffs-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 3.8vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  color: var(--navy);
+  margin-bottom: 1rem;
+}
+.diffs-head h2 em { font-style: italic; color: var(--lilac); }
+.diffs-head p {
+  font-size: 1.05rem; line-height: 1.7; color: var(--slate);
+  max-width: 52ch;
+}
+.diff-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.diff-card {
+  background: var(--white);
+  border-radius: var(--r-md);
+  padding: 2.25rem 2.5rem;
+  border: 1px solid rgba(39,55,82,.07);
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s;
+}
+.diff-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--lilac);
+}
+/* The featured card — uses cream panel treatment, no decorative mark */
+.diff-card.featured {
+  background: var(--cream);
+  border-color: transparent;
+}
+.diff-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem; font-weight: 300; font-style: italic;
+  color: var(--lilac);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.diff-card.featured .diff-num { color: var(--navy); opacity: .5; }
+.diff-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 400; line-height: 1.2;
+  color: var(--navy); margin-bottom: .85rem; letter-spacing: -.01em;
+}
+.diff-title em { font-style: italic; color: var(--lilac); }
+.diff-card.featured .diff-title em { color: var(--navy-dark); font-weight: 500; }
+.diff-body {
+  font-size: .95rem; color: var(--slate); line-height: 1.7;
+  position: relative; z-index: 1;
+}
+.diff-card.featured .diff-body { color: var(--navy-dark); }
+
+/* — Brand motif (tagline strip) — quiet, just a divider line + tag — */
+.motif {
+  background: var(--ivory);
+  padding: 5rem 2.5rem;
+  text-align: center;
+  border-top: 1px solid rgba(39,55,82,.08);
+  border-bottom: 1px solid rgba(39,55,82,.08);
+}
+.motif p {
+  font-family: var(--font-display);
+  font-weight: 400; font-style: italic;
+  font-size: clamp(1.85rem, 3.4vw, 2.85rem);
+  color: var(--navy);
+  letter-spacing: -.02em;
+  line-height: 1.05;
+  max-width: 24ch;
+  margin: 0 auto;
+}
+.motif p em {
+  color: var(--lilac);
+  font-style: normal;
+  font-weight: 400;
+}
+.motif .label {
+  font-family: var(--font-mono);
+  font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 1.25rem;
+}
+
+/* — Methodology — */
+.methodology {
+  background: var(--ivory);
+  padding: 7rem 2.5rem;
+}
+.methodology-layout {
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.methodology-text h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  color: var(--navy);
+  margin-bottom: 1.25rem;
+  max-width: 16ch;
+}
+.methodology-text h2 em { font-style: italic; color: var(--lilac); }
+.methodology-text p {
+  font-size: 1rem; color: var(--slate); line-height: 1.75;
+  max-width: 52ch;
+}
+.methodology-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.stat-item {
+  background: var(--white);
+  border-radius: var(--r-md);
+  padding: 1.75rem 1.5rem;
+  border-top: 3px solid var(--lilac);
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem; font-weight: 400; font-style: italic;
+  color: var(--navy); line-height: 1;
+  margin-bottom: .35rem;
+}
+.stat-label {
+  font-size: .82rem; color: var(--slate); line-height: 1.5;
+}
+
+/* — Engagement — */
+.engage {
+  background: var(--white);
+  padding: 7rem 2.5rem;
+}
+.engage-inner { max-width: 1200px; margin: 0 auto; }
+.engage-head { max-width: 56ch; margin-bottom: 3rem; }
+.engage-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  line-height: 1.08; letter-spacing: -.02em;
+  color: var(--navy); margin-bottom: 1rem;
+}
+.engage-head h2 em { font-style: italic; color: var(--lilac); }
+.engage-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.engage-card {
+  background: var(--ivory);
+  border-radius: var(--r-md);
+  padding: 2rem 1.75rem;
+  border: 1px solid rgba(39,55,82,.06);
+  display: flex; flex-direction: column;
+  transition: transform .3s cubic-bezier(.22,1,.36,1), border-color .3s;
+}
+.engage-card:hover { transform: translateY(-3px); border-color: var(--lilac); }
+.engage-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--lilac);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.engage-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem; font-weight: 400; line-height: 1.2;
+  color: var(--navy); margin-bottom: .75rem; letter-spacing: -.01em;
+}
+.engage-body {
+  font-size: .88rem; color: var(--slate); line-height: 1.65; flex: 1;
+}
+.engage-tag {
+  margin-top: 1.5rem;
+  font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+  font-weight: 600; color: var(--lilac);
+}
+.engage-note {
+  margin-top: 2.5rem;
+  text-align: center;
+  font-size: 1rem; color: var(--slate);
+}
+.engage-note a { color: var(--navy); font-weight: 600; border-bottom: 1px solid rgba(39,55,82,.3); text-decoration: none; }
+
+/* — Council — navy still, but no pattern wash, just one subtle ampersand corner — */
+.council {
+  background: var(--navy);
+  padding: 7rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.council > img.corner-mark {
+  position: absolute;
+  right: -6%; bottom: -14%;
+  width: 42%;
+  max-width: 480px;
+  opacity: .08;
+  filter: invert(1);
+  pointer-events: none;
+}
+.council-inner {
+  max-width: 1200px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.council-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+.council-photo {
+  aspect-ratio: 4/3;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(39,55,82,0) 40%, rgba(39,55,82,.85) 100%),
+    url('assets/img/events/council-kickoff.jpg') center/cover no-repeat,
+    var(--navy);
+}
+.council-photo .tag {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  font-family: var(--font-body);
+  font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+  font-weight: 600; color: var(--ivory);
+  padding: .35rem .7rem;
+  background: rgba(26,36,56,.6);
+  backdrop-filter: blur(4px);
+  border-radius: 100px;
+}
+.council-photo .caption {
+  position: absolute;
+  bottom: 1rem; left: 1rem; right: 1rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ivory);
+  text-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+.council-text .eyebrow {
+  font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--cream); font-weight: 500; margin-bottom: 1.25rem;
+}
+.council-text h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  line-height: 1.08; letter-spacing: -.02em;
+  color: var(--ivory);
+  margin-bottom: 1.5rem;
+  max-width: 18ch;
+}
+.council-text h2 em { font-style: italic; color: var(--cream); }
+.council-text p {
+  font-size: 1rem; color: rgba(247,241,234,.72); line-height: 1.75;
+  margin-bottom: 1.25rem; max-width: 50ch;
+}
+.council-text .link {
+  display: inline-flex; align-items: center; gap: .4rem;
+  color: var(--cream); font-size: .9rem; font-weight: 500;
+  text-decoration: none; border-bottom: 1px solid rgba(253,236,205,.4);
+  padding-bottom: 2px; transition: border-color .15s;
+}
+.council-text .link:hover { border-color: var(--cream); }
+.council-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.pillar {
+  background: rgba(247,241,234,.05);
+  border: 1px solid rgba(247,241,234,.1);
+  border-radius: var(--r-md);
+  padding: 1.5rem 1.5rem;
+  transition: background .3s, border-color .3s;
+}
+.pillar:hover { background: rgba(247,241,234,.08); border-color: rgba(253,236,205,.3); }
+.pillar-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem; font-weight: 500;
+  color: var(--ivory);
+  margin-bottom: .5rem;
+  letter-spacing: -.005em;
+}
+.pillar-body { font-size: .82rem; color: rgba(247,241,234,.55); line-height: 1.55; }
+
+/* — Testimonials — */
+.tests {
+  background: var(--ivory);
+  padding: 7rem 2.5rem;
+}
+.tests-inner { max-width: 1200px; margin: 0 auto; }
+.tests-head { margin-bottom: 3rem; max-width: 50ch; }
+.tests-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  line-height: 1.08; letter-spacing: -.02em;
+  color: var(--navy);
+}
+.tests-head h2 em { font-style: italic; color: var(--lilac); }
+.tests-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.test-card {
+  background: var(--white);
+  border-radius: var(--r-md);
+  padding: 2rem 2rem 1.75rem;
+  display: flex; flex-direction: column;
+  border: 1px solid rgba(39,55,82,.07);
+}
+.test-quote::before {
+  content: '\201C';
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-style: italic;
+  color: var(--lilac);
+  line-height: 0;
+  display: block;
+  margin-bottom: 1rem;
+}
+.test-quote {
+  font-family: var(--font-display);
+  font-size: 1.05rem; line-height: 1.5;
+  color: var(--navy);
+  font-weight: 400;
+  flex: 1; margin-bottom: 1.75rem;
+}
+.test-author {
+  display: flex; align-items: center; gap: .9rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(39,55,82,.08);
+}
+.test-author .kc-pp { width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%; }
+.test-name {
+  font-size: .9rem; font-weight: 600; color: var(--navy); line-height: 1.25;
+}
+.test-role { font-size: .78rem; color: var(--lilac); margin-top: .1rem; }
+
+/* — Team — */
+.team {
+  background: var(--white);
+  padding: 7rem 2.5rem;
+}
+.team-inner { max-width: 1200px; margin: 0 auto; }
+.team-head { margin-bottom: 3rem; max-width: 50ch; }
+.team-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  line-height: 1.08; letter-spacing: -.02em;
+  color: var(--navy);
+}
+.team-head h2 em { font-style: italic; color: var(--lilac); }
+.team-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.team-card {
+  display: flex; flex-direction: column;
+}
+.team-card .kc-pp { margin-bottom: 1rem; }
+.team-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem; font-weight: 500;
+  color: var(--navy); margin-bottom: .15rem;
+  letter-spacing: -.005em;
+}
+.team-title {
+  font-size: .82rem; color: var(--slate); line-height: 1.4;
+}
+
+/* — Closer CTA — quiet ivory with one ampersand corner — */
+.closer {
+  background: var(--ivory);
+  padding: 7rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(39,55,82,.08);
+}
+.closer > img.corner-mark {
+  position: absolute;
+  right: -4%; bottom: -14%;
+  width: 44%;
+  max-width: 520px;
+  opacity: .06;
+  pointer-events: none;
+}
+.closer-inner {
+  max-width: 760px; margin: 0 auto;
+  text-align: center;
+  position: relative; z-index: 1;
+}
+.closer .eyebrow {
+  font-family: var(--font-mono);
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--slate); font-weight: 400;
+  margin-bottom: 1.5rem;
+  display: inline-flex; align-items: center; gap: .65rem;
+}
+.closer .eyebrow .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--cream);
+  box-shadow: 0 0 0 3px rgba(253,236,205,.25);
+  animation: kcPulseDot 2.2s ease-in-out infinite;
+}
+.closer h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1; letter-spacing: -.025em;
+  color: var(--navy);
+  margin-bottom: 1.5rem;
+}
+.closer h2 em { font-style: italic; color: var(--lilac); }
+.closer p {
+  font-size: 1.15rem; color: var(--navy);
+  line-height: 1.6;
+  max-width: 56ch; margin: 0 auto 2.5rem;
+  font-weight: 300;
+}
+
+@media (max-width: 900px) {
+  .hero-home, .diffs, .methodology, .engage, .council, .tests, .team, .closer { padding: 4rem 1.5rem; }
+  .hero-home-inner, .methodology-layout, .council-feature, .logo-band-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .diff-grid { grid-template-columns: 1fr; }
+  .engage-grid { grid-template-columns: 1fr 1fr; }
+  .council-pillars { grid-template-columns: 1fr 1fr; }
+  .tests-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body data-page="home" class="has-audit-shell">
+
+<!-- AUDIT SHELL -->
+<div class="audit-shell">
+  <div class="audit-shell-left">
+    <a href="Design Audit.html" class="back"><span aria-hidden="true">←</span> Audit</a>
+    <span class="crumb">Home <span class="sep">/</span> redesign mockup</span>
+  </div>
+  <div class="pageswap">
+    <a href="home.html" class="is-on">Home</a>
+    <a href="research.html">Research</a>
+    <a href="practitioners.html">Practitioners</a>
+    <a href="vendors.html">Vendors</a>
+  </div>
+  <button class="audit-toggle"><span class="sw"></span> Annotations</button>
+</div>
+
+<!-- SITE NAV -->
+<nav class="topbar">
+  <a href="home.html" class="topbar-brand">
+    <img src="assets/img/icon-ampersand.svg" alt="" />
+    <span class="wm">Kyle &amp; Co</span>
+  </a>
+  <div class="topbar-nav">
+    <a href="home.html" class="active">Home</a>
+    <a href="research.html">Research</a>
+    <a href="practitioners.html">For Practitioners</a>
+    <a href="vendors.html">For Vendors</a>
+    <a href="#">HCAIC</a>
+    <a href="#">Blog</a>
+  </div>
+  <a href="#" class="topbar-cta">Book a discovery call</a>
+</nav>
+<div class="persona-band home"></div>
+
+<!-- HERO -->
+<section class="hero-home annot-zone">
+  <img class="corner-mark" src="assets/img/icon-ampersand.svg" alt="" aria-hidden="true" />
+  <div class="hero-home-inner">
+    <div class="eyebrow"><span class="dot"></span> Kyle &amp; Co · est. 2024</div>
+    <h1>The research firm built with <em>HR practitioners.</em></h1>
+    <p class="sub">We help leaders close the gap between innovation and adoption. Built on surveys with thousands of senior HR and TA leaders, written alongside the practitioners shaping the work. Research is always free.</p>
+    <div class="hero-home-actions">
+      <a href="#" class="btn-primary">Book a discovery call <span aria-hidden="true">→</span></a>
+      <a href="#" class="btn-ghost">Read the research</a>
+    </div>
+  </div>
+  <span class="pin" data-callout="hero" style="top: 7rem; left: 50%;">1</span>
+  <span class="pin" data-callout="hero-mark" style="bottom: 4rem; right: 14%;">2</span>
+</section>
+
+<!-- LOGO BAND -->
+<div class="logo-band annot-zone">
+  <div class="logo-band-inner">
+    <div class="logo-band-label">Partners <em>in the work</em></div>
+    <div class="logo-band-imgs">
+      <img src="vendor-logos-line1.png" alt="Findem, CodeSignal, Humanly, Warden AI, GoodTime" />
+    </div>
+  </div>
+  <span class="pin" data-callout="logos" style="top: 1.5rem; right: 6rem;">3</span>
+</div>
+
+<!-- DIFFERENTIATORS -->
+<section class="diffs annot-zone">
+  <div class="diffs-inner">
+    <div class="diffs-head">
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">What sets us apart</div>
+      <h2>What makes us <em>different.</em></h2>
+      <p>Four things we do that most firms don't. Each one shows up in the work, not just the pitch.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-num">01</div>
+        <div class="diff-title">Built <em>with</em> HR practitioners.</div>
+        <p class="diff-body">Our team has run the function we research. Surveys reach thousands of senior HR and TA leaders. The Human-Centric AI Council adds practitioner-led work on AI specifically.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-num">02</div>
+        <div class="diff-title">Contrarian when the consensus is wrong.</div>
+        <p class="diff-body">When the AI Interviewer category was new, we benchmarked solutions instead of ranking them. We said the market wasn't ready, on the record. Safe takes don't move the function forward.</p>
+      </div>
+      <div class="diff-card featured">
+        <div class="diff-num">03</div>
+        <div class="diff-title">Research is <em>always free.</em></div>
+        <p class="diff-body">We don't paywall research. Vendor underwriting and advisory engagements fund the work, so practitioners read every report without hitting a gate. Free is a model, not a giveaway.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-num">04</div>
+        <div class="diff-title">We stay <em>in the room.</em></div>
+        <p class="diff-body">Most firms publish and walk. Kyle &amp; Co stays close with briefings, workshops, and evaluation frameworks. We help practitioners read the market, evaluate tools, and make calls they can defend.</p>
+      </div>
+    </div>
+  </div>
+  <span class="pin" data-callout="diff-typo" style="top: 4rem; left: 14%;">4</span>
+  <span class="pin" data-callout="diff-cream" style="top: 24rem; left: 50%;">5</span>
+</section>
+
+<!-- MOTIF -->
+<div class="motif annot-zone">
+  <div class="label">The work</div>
+  <p>Where Research <em>Meets Reality.</em></p>
+  <span class="pin" data-callout="motif" style="top: 2rem; right: 14%;">6</span>
+</div>
+
+<!-- METHODOLOGY -->
+<section class="methodology">
+  <div class="methodology-layout">
+    <div class="methodology-text">
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">The work</div>
+      <h2>Where the research <em>comes from.</em></h2>
+      <p>Each year, we publish an annual market study, quarterly Category Compass reports, and bespoke client research. Built on surveys with thousands of senior HR and TA leaders. The Human-Centric AI Council adds practitioner-led work on AI. Our edge is pairing primary research with rigorous secondary analysis, because neither catches the full signal alone.</p>
+    </div>
+    <div class="methodology-stats">
+      <div class="stat-item">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Annual market study published each year</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Quarterly</div>
+        <div class="stat-label">Category Compass reports</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1,000s</div>
+        <div class="stat-label">Senior HR and TA leaders surveyed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Free</div>
+        <div class="stat-label">Every report, every time. No gate.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENT -->
+<section class="engage annot-zone">
+  <div class="engage-inner">
+    <div class="engage-head">
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">Working together</div>
+      <h2>Four ways to <em>work with us.</em></h2>
+    </div>
+    <div class="engage-grid">
+      <div class="engage-card">
+        <div class="engage-num">01</div>
+        <div class="engage-title">Underwrite the work.</div>
+        <p class="engage-body">Multi-quarter partnership built around the Human-Centric AI Council. Brand alignment with practitioner-led work on AI in HR.</p>
+        <div class="engage-tag">Long-term partnership</div>
+      </div>
+      <div class="engage-card">
+        <div class="engage-num">02</div>
+        <div class="engage-title">Drive a moment.</div>
+        <p class="engage-body">Bounded engagements around a product launch, market entry, or conference. Specific outcome, specific timeline.</p>
+        <div class="engage-tag">Launch &amp; activation</div>
+      </div>
+      <div class="engage-card">
+        <div class="engage-num">03</div>
+        <div class="engage-title">Build the research.</div>
+        <p class="engage-body">Custom studies, Category Compass collaborations, messaging audits, focus groups. Data you can cite or positioning you can defend.</p>
+        <div class="engage-tag">Research &amp; data</div>
+      </div>
+      <div class="engage-card">
+        <div class="engage-num">04</div>
+        <div class="engage-title">Get a thinking partner.</div>
+        <p class="engage-body">Strategic advisory hours, product advisory, executive workshops. For vendors building GTM motions or refining positioning.</p>
+        <div class="engage-tag">Advisory</div>
+      </div>
+    </div>
+    <p class="engage-note">Each is scoped in a discovery call. <a href="#">Start there.</a></p>
+  </div>
+  <span class="pin" data-callout="engage-num" style="top: 16rem; left: 9%;">7</span>
+</section>
+
+<!-- COUNCIL -->
+<section class="council annot-zone">
+  <img class="corner-mark" src="assets/img/icon-ampersand.svg" alt="" aria-hidden="true" />
+  <div class="council-inner">
+    <div class="council-feature">
+      <div class="council-photo">
+        <span class="tag">Working session · 2025</span>
+        <span class="caption">"The room where it actually happens."</span>
+      </div>
+      <div class="council-text">
+        <div class="eyebrow">The Human-Centric AI Council</div>
+        <h2>The HCAIC, by the <em>practitioners doing the work.</em></h2>
+        <p>The HCAIC is a working group of HR and TA practitioners building peer-led resources for the rest of the function on AI. Members write, review, and ship their own contributions.</p>
+        <p>Underwriters get visibility around the Council. Not access to its members. The Council does not exist to be a buyer panel.</p>
+        <a href="#" class="link">Learn more about the Council <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="council-pillars">
+      <div class="pillar">
+        <div class="pillar-title">AI Literacy &amp; Education</div>
+        <div class="pillar-body">Structured learning and resources to build HR confidence and clarity around AI.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">Responsible AI Governance</div>
+        <div class="pillar-body">Frameworks, policies, and oversight that don't stall the work.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">AI Adoption &amp; Change</div>
+        <div class="pillar-body">Practitioner-tested approaches for rolling AI into the function.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">Future of HR</div>
+        <div class="pillar-body">How AI is changing HR itself: roles, structures, and operating models.</div>
+      </div>
+    </div>
+  </div>
+  <span class="pin" data-callout="council-photo" style="top: 8rem; left: 10%;">8</span>
+  <span class="pin" data-callout="council-mark" style="top: 4rem; right: 4rem;">9</span>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="tests annot-zone">
+  <div class="tests-inner">
+    <div class="tests-head">
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">From the people in the work</div>
+      <h2>What people <em>are saying.</em></h2>
+    </div>
+    <div class="tests-grid">
+      <div class="test-card">
+        <p class="test-quote">Every time we meet with Kyle and his team, we walk away smarter. Their thoughtful questions help reveal what really matters to practitioners.</p>
+        <div class="test-author">
+          <div class="kc-pp bg-lilac">
+            <div class="kc-pp-img" style="background-image:url('assets/img/people/birch.jpg');"></div>
+          </div>
+          <div>
+            <div class="test-name">Birch Faber</div>
+            <div class="test-role">Director of Marketing, Humanly</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">The team at Kyle &amp; Co is on the pulse of the market. Through this initiative they've been hungry for insight, sharp with their questions, and operated through a practitioner's lens.</p>
+        <div class="test-author">
+          <div class="kc-pp bg-navy">
+            <div class="kc-pp-img" style="background-image:url('assets/img/people/katie.jpg');"></div>
+          </div>
+          <div>
+            <div class="test-name">Katie Fairbank</div>
+            <div class="test-role">Director of Product Marketing, CodeSignal</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">Kyle &amp; Co brings rigor and practitioner credibility to the work. The research shapes how we think, and the relationships that come with it are genuinely valuable.</p>
+        <div class="test-author">
+          <div class="kc-pp bg-cream">
+            <div class="kc-pp-initial">A</div>
+          </div>
+          <div>
+            <div class="test-name">Annamarie Andrews</div>
+            <div class="test-role">Cielo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="pin" data-callout="test-quote" style="top: 8rem; left: 10%;">10</span>
+  <span class="pin" data-callout="test-avatar" style="bottom: 6rem; right: 18%;">11</span>
+</section>
+
+<!-- TEAM -->
+<section class="team annot-zone">
+  <div class="team-inner">
+    <div class="team-head">
+      <div class="kc-eyebrow" style="margin-bottom:1rem;">The firm</div>
+      <h2>The people <em>behind the work.</em></h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="kc-pp bg-navy"><div class="kc-pp-img" style="background-image:url('assets/img/people/kyle.png');"></div></div>
+        <div class="team-name">Kyle Lagunas</div>
+        <div class="team-title">Founder &amp; Principal Analyst</div>
+      </div>
+      <div class="team-card">
+        <div class="kc-pp bg-cream"><div class="kc-pp-img" style="background-image:url('assets/img/people/brandice.jpg');"></div></div>
+        <div class="team-name">Brandice</div>
+        <div class="team-title">Strategic Marketing</div>
+      </div>
+      <div class="team-card">
+        <div class="kc-pp bg-lilac"><div class="kc-pp-img" style="background-image:url('assets/img/people/matt.jpg');"></div></div>
+        <div class="team-name">Matt Charney</div>
+        <div class="team-title">Research &amp; Analysis</div>
+      </div>
+      <div class="team-card">
+        <div class="kc-pp bg-navy"><div class="kc-pp-img" style="background-image:url('assets/img/people/jake.jpg');"></div></div>
+        <div class="team-name">Jake</div>
+        <div class="team-title">Content &amp; Editorial</div>
+      </div>
+    </div>
+  </div>
+  <span class="pin" data-callout="team-pp" style="top: 12rem; left: 12%;">12</span>
+</section>
+
+<!-- CLOSER -->
+<section class="closer annot-zone">
+  <img class="corner-mark" src="assets/img/icon-ampersand.svg" alt="" aria-hidden="true" />
+  <div class="closer-inner">
+    <div class="eyebrow"><span class="dot"></span> Let's talk</div>
+    <h2>Start with <em>a question.</em></h2>
+    <p>You came here with a question. A market shift, a launch, a category move, positioning that isn't sticking. Bring it to a 30-minute discovery call and we'll scope what fits.</p>
+    <a href="#" class="btn-primary">Book a discovery call <span aria-hidden="true">→</span></a>
+  </div>
+  <span class="pin" data-callout="closer" style="top: 4rem; left: 14%;">13</span>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="#" class="footer-brand">Kyle &amp; Co</a>
+    <nav class="footer-links">
+      <a href="#">Research</a>
+      <a href="#">For Practitioners</a>
+      <a href="#">For Vendors</a>
+      <a href="#">HCAIC</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="footer-copy">&copy; 2026 Kyle &amp; Co. No spam. Just signal.</div>
+  </div>
+</footer>
+
+<!-- CALLOUT DRAWER -->
+<aside class="callout-drawer">
+  <div class="callout-drawer-head">
+    <div class="callout-drawer-pin">1</div>
+    <div class="callout-drawer-title">Click a pin to start.</div>
+    <button class="callout-drawer-close" aria-label="Close">✕</button>
+  </div>
+  <div class="callout-drawer-body">
+    <p style="color: var(--slate); font-size: .9rem;">Toggle annotations on, then tap any numbered pin to see what changed, why, and what to copy into the codebase.</p>
+  </div>
+</aside>
+
+<!-- CALLOUT DATA -->
+<script>
+window.KC_CALLOUTS = {
+  hero: {
+    title: 'Hero — <em>copy-first, ivory</em>',
+    body: `
+      <div class="callout-section">
+        <span class="callout-tag tag-layout">Layout</span>
+        <span class="callout-tag tag-new">New</span>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">What changes</div>
+        <p>The hero loses its navy block and the portrait pane. New register: <strong>ivory canvas</strong>, a faint 56×56px navy grid overlay at 3.5%, one big serif headline at <code>clamp(2.75rem, 6.5vw, 5.5rem)</code> with line-height 0.98, italic-lilac phrase on the second line. JetBrains Mono eyebrow with a live cream dot.</p>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">Why</div>
+        <p>This is the HCAIC site's exact register. Copy is the star — nothing else competes. Buttons go quieter too: navy-filled primary, ghost is just text with a hairline underline.</p>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">Reference</div>
+        <p>Class: <code>.hero-home</code>. Live-dot keyframe is <code>@keyframes kcPulseDot</code> in <code>site.css</code>.</p>
+      </div>
+    `
+  },
+  'hero-mark': {
+    title: 'Ampersand corner — <em>one mark, 6% opacity</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>A single <strong>ampersand icon</strong> (the brand's signature glyph, from <code>assets/img/icon-ampersand.svg</code>) sits in the bottom-right of the hero, bleeding off the corner. 48% of viewport width, max 560px, <strong>6% opacity</strong>. Nothing else.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>You called it: small ampersand highlights, not pattern washes. One quiet watermark per major section.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Reference</div><p><code>&lt;img class="corner-mark" src="assets/img/icon-ampersand.svg"&gt;</code> positioned absolute bottom-right inside the section.</p></div>
+    `
+  },
+  logos: {
+    title: 'Logo band — <em>refined label</em>',
+    body: `
+      <div class="callout-section">
+        <span class="callout-tag tag-type">Type</span>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">What changes</div>
+        <p>The eyebrow label "PARTNERS IN THE WORK" becomes a Fraunces-italic phrase on the left ("Partners <em>in the work</em>"), and the logos move to a single horizontal row. Two rows of logos felt overcrowded.</p>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">Why</div>
+        <p>The italic-lilac phrase treatment is the brand's signature move. Using it at every label location, not just the H1, makes the whole site sound like Kyle & Co.</p>
+      </div>
+    `
+  },
+  'diff-typo': {
+    title: 'Differentiator — <em>numerals in Fraunces italic</em>',
+    body: `
+      <div class="callout-section">
+        <span class="callout-tag tag-type">Type</span>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">What changes</div>
+        <p>The "01 / 02 / 03 / 04" numerals upgrade from tiny ALLCAPS Inter to large Fraunces italic in lilac. Same numerals, completely different register.</p>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">Why</div>
+        <p>Currently the numerals are barely visible. Treating them as editorial pulled-letter ornaments — like a magazine drop-cap — makes each card feel composed, not a slot in a grid.</p>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">Reference</div>
+        <p>Class: <code>.diff-num</code>. <code>font-family: var(--font-display); font-style: italic; font-size: 2.5rem; color: var(--lilac);</code></p>
+      </div>
+    `
+  },
+  'diff-cream': {
+    title: 'Featured differentiator — <em>cream alone</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>The "Research is always free" card switches from white to <strong>cream</strong>. That's the whole treatment.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>Cream lifts the key argument out of the four-card grid. No decorative brand-mark inside the card — the cream is enough.</p></div>
+    `
+  },
+  motif: {
+    title: 'Tagline strip — <em>quiet chapter break</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-layout">Layout</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>An <strong>ivory band between two hairline rules</strong>, with a small mono label ("The work") above and the italic phrase below. No pattern wash, no navy block.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>The tagline is a pause in the reading flow, not a billboard.</p></div>
+    `
+  },
+  'engage-num': {
+    title: 'Engagement card — <em>numbered, four-up grid</em>',
+    body: `
+      <div class="callout-section">
+        <span class="callout-tag tag-layout">Layout</span>
+        <span class="callout-tag tag-type">Type</span>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">What changes</div>
+        <p>The 2×2 grid of "ways to work with us" becomes a 4-up row. Numerals upgrade to Fraunces italic, sized large in lilac. The trailing tag (Long-term partnership / Launch &amp; activation / etc.) becomes a small lilac eyebrow instead of a bordered footer.</p>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">Why</div>
+        <p>Four-up reads as "four discrete options" instead of "two pairs." The lilac eyebrow at the bottom replaces the heavy hairline border and keeps the card lighter.</p>
+      </div>
+    `
+  },
+  'council-photo': {
+    title: 'Council section — <em>working-session photo</em>',
+    body: `
+      <div class="callout-section">
+        <span class="callout-tag tag-photo">Image needed</span>
+        <span class="callout-tag tag-new">New</span>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">The need</div>
+        <div class="image-need">
+          <strong>1 × Council working session</strong>
+          <div class="specs">1400 × 1050 (4:3) · candid wide shot</div>
+        </div>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">Brief</div>
+        <p>A real working session, town hall, or workshop. Wide framing, multiple people visible, not staged. The photo carries an italic caption overlay ("The room where it actually happens") — that becomes the visual proof of "practitioners building peer-led resources."</p>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">Why</div>
+        <p>The council section is currently all type. The whole point of the council is the room. Show the room.</p>
+      </div>
+    `
+  },
+  'council-mark': {
+    title: 'Council corner ampersand',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-new">New</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>The navy council section gets one ampersand corner watermark in the bottom-right at 8% opacity, inverted so it reads ivory on navy. Same icon used everywhere else.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>One ampersand highlight per major section, always the full glyph at 6–8% opacity. No pattern wash anywhere.</p></div>
+    `
+  },
+  'test-quote': {
+    title: 'Testimonial quote — <em>Fraunces, not Inter</em>',
+    body: `
+      <div class="callout-section">
+        <span class="callout-tag tag-type">Type</span>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">What changes</div>
+        <p>Quote body switches from Roboto body to <strong>Fraunces 17px / 1.5 line-height</strong> in navy. The opening curly-quote becomes a large lilac Fraunces-italic glyph as an editorial ornament.</p>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">Why</div>
+        <p>Pull-quotes are the moment to use Fraunces. The brand voice is set in italic-Fraunces phrases everywhere; testimonials should sing in that voice.</p>
+      </div>
+    `
+  },
+  'test-avatar': {
+    title: 'Testimonial avatar — <em>photo on lilac square</em>',
+    body: `
+      <div class="callout-section">
+        <span class="callout-tag tag-photo">Image needed</span>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">The need</div>
+        <div class="image-need">
+          <strong>3 × Testimonial portraits</strong>
+          <div class="specs">400 × 400 (1:1) · Birch · Katie · Annamarie</div>
+        </div>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">Treatment</div>
+        <p>Avatars use the brand's profile-picture pattern: a photograph sat over a solid brand-color square (lilac, navy, cream — rotating). The current letter-initial fallback you see here uses Fraunces italic in the matching contrast color. Keep the fallback for any testimonial without a photo yet — it stays on-brand.</p>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">Reference</div>
+        <p>Component: <code>.kc-pp</code> with <code>.bg-navy</code> / <code>.bg-cream</code> / <code>.bg-lilac</code>. Drop in a <code>&lt;div class="kc-pp-img"&gt;</code> with the photo url; the initial fallback uses <code>.kc-pp-initial</code>.</p>
+      </div>
+    `
+  },
+  'team-pp': {
+    title: 'Team — <em>real headshots, brand cards</em>',
+    body: `
+      <div class="callout-section">
+        <span class="callout-tag tag-photo">Image needed</span>
+        <span class="callout-tag tag-layout">Layout</span>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">The need</div>
+        <div class="image-need">
+          <strong>4 × Team headshots — <em>you have these</em></strong>
+          <div class="specs">800 × 800 (1:1) · Kyle · Brandice · Matt · Jake</div>
+        </div>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">What changes</div>
+        <p>Letter-initial circles become brand profile-pictures (square with rounded corners, photo over solid brand-color background). Background colors rotate: navy → cream → lilac → navy. Names stack to the left (not centered) for a more editorial feel.</p>
+      </div>
+      <div class="callout-section">
+        <div class="callout-section-label">Why</div>
+        <p>The team page is where "the people behind the work" actually shows up. The brand profile-picture treatment is the closest you have to a signature personal-brand language; it's wasted on the audit page.</p>
+      </div>
+    `
+  },
+  closer: {
+    title: 'Closer CTA — <em>ivory, single ampersand</em>',
+    body: `
+      <div class="callout-section"><span class="callout-tag tag-layout">Layout</span></div>
+      <div class="callout-section"><div class="callout-section-label">What changes</div><p>Goes from flat navy to <strong>ivory</strong>, with a single ampersand watermark bleeding off the bottom-right at 6% opacity. Hairline rule above. Massive serif H2 with italic-lilac phrase. Mono eyebrow with live cream dot.</p></div>
+      <div class="callout-section"><div class="callout-section-label">Why</div><p>Page begins and ends in the same room. Ivory + one quiet glyph keeps the temperature consistent. No layered marks, no cream block.</p></div>
+    `
+  }
+};
+</script>
+
+<script src="assets/audit.js"></script>
+</body>
+</html>
