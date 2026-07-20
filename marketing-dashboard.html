@@ -304,6 +304,7 @@ var DEMO = {
     advisoryInquiries:  'on-track',
     speaking:           'tbd',
   },
+  candidateFraud: { earlyAccess: 34, webinar: 87 },
   podcast: {
     q2Episodes: 6,
     q2Listens: 517,
@@ -403,6 +404,7 @@ function render(data) {
   var c = data.content || {};
   var m = data.milestones || {};
   var p = data.podcast || null;
+  var cf = data.candidateFraud || {};
 
   // ── Summary bar ──────────────────────────────────────────────────
   var totalSubs = e.totalSubscribers;
@@ -570,15 +572,19 @@ function render(data) {
     progressHtml: dlBreakdown,
   });
 
-  // Candidate Fraud report — launch KPI (own counter, /candidatefraud)
-  var cfDownloads = (w.resourceClicks && w.resourceClicks.candidatefraud) || 0;
-  html += card({
-    accent: 'web',
-    name: 'Candidate Fraud report · downloads',
-    value: fmt(cfDownloads),
-    chipHtml: chip('manual', '↗ All time'),
-    progressHtml: '',
-  });
+  // Candidate Fraud report — overall engagement
+  var cfDownloads    = (w.resourceClicks && w.resourceClicks.candidatefraud) || 0;
+  var cfEarlyAccess  = cf.earlyAccess || 0;
+  var cfWebinar      = cf.webinar     || 0;
+  html += '<div class="card accent-web" style="grid-column:1/-1;">';
+  html += '<div class="card-name">Candidate Fraud · Report Engagement</div>';
+  html += '<div style="display:flex;gap:3rem;flex-wrap:wrap;margin-top:.75rem;align-items:flex-end;">';
+  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cfEarlyAccess) + '</div><div class="card-sublabel">early access signups</div></div>';
+  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cfWebinar) + '</div><div class="card-sublabel">webinar registrants</div></div>';
+  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cfDownloads) + '</div><div class="card-sublabel">PDF downloads</div></div>';
+  html += '</div>';
+  html += '<div style="margin-top:.5rem;font-size:.72rem;color:var(--muted);">Early access + webinar via MailerLite · Downloads all-time via click counter</div>';
+  html += '</div>';
 
 
   html += '</div></div>';
