@@ -1,0 +1,267 @@
+<style>
+.kco-post {
+  --navy: #273752;
+  --navy-dark: #172339;
+  --lilac: #9D92AD;
+  --ivory: #F7F1EA;
+  --slate: #555961;
+  --cream: #FDECCD;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--navy);
+  line-height: 1.6;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* META */
+.kco-post .post-meta {
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500;
+  display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.kco-post .post-meta .tag {
+  background: var(--cream); color: var(--navy-dark);
+  padding: 0.3rem 0.7rem; border-radius: 100px;
+  letter-spacing: 0.12em; font-weight: 600;
+}
+.kco-post .post-meta .dot { color: rgba(39,55,82,0.3); }
+
+/* TITLE */
+.kco-post h1.post-title {
+  font-weight: 300;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.05; letter-spacing: -0.025em;
+  margin: 0 0 1.5rem; color: var(--navy);
+}
+.kco-post h1.post-title em { font-style: italic; color: var(--lilac); }
+
+.kco-post .byline {
+  display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  color: var(--slate); font-size: 0.92rem;
+}
+.kco-post .byline .author { color: var(--navy); font-weight: 500; }
+
+/* HERO */
+.kco-post .hero-image {
+  margin: 0 0 3rem;
+  border-radius: 8px; overflow: hidden;
+  aspect-ratio: 1200/630;
+}
+.kco-post .hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* BODY TEXT */
+.kco-post p {
+  font-size: 1.05rem; line-height: 1.75;
+  color: #3a4558; margin: 0 0 1.4rem;
+}
+.kco-post p.lede {
+  font-size: 1.25rem; line-height: 1.6;
+  color: var(--navy); margin-bottom: 1.75rem; font-weight: 400;
+}
+.kco-post p.lede em { font-style: italic; color: var(--lilac); }
+.kco-post p strong { color: var(--navy); font-weight: 600; }
+
+/* SECTION HEADERS */
+.kco-post h2.sec {
+  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 400;
+  line-height: 1.15; letter-spacing: -0.02em;
+  margin: 0 0 1.25rem; color: var(--navy);
+}
+.kco-post h2.sec em { font-style: italic; color: var(--lilac); }
+
+/* PULL QUOTE */
+.kco-post .pullquote {
+  border-left: 3px solid var(--cream);
+  padding: 1.5rem 2rem; margin: 2.5rem 0;
+  background: rgba(253,236,205,0.25);
+  border-radius: 0 6px 6px 0;
+}
+.kco-post .pullquote p {
+  font-size: 1.2rem; font-style: italic; font-weight: 400;
+  color: var(--navy); margin: 0; line-height: 1.45;
+}
+
+/* DIVIDER */
+.kco-post .rule { border: none; border-top: 1px solid rgba(39,55,82,0.12); margin: 3.5rem 0; }
+
+/* CTA BLOCK */
+.kco-post .cta-block {
+  background: var(--navy); color: var(--ivory);
+  border-radius: 12px; padding: 3rem; margin: 4rem 0 0;
+}
+.kco-post .cta-block h3 {
+  font-size: 1.6rem; font-weight: 400; margin: 0 0 0.5rem; letter-spacing: -0.01em;
+  color: var(--ivory);
+}
+.kco-post .cta-block h3 em { font-style: italic; color: var(--cream); }
+.kco-post .cta-block > p {
+  color: rgba(247,241,234,0.8); margin: 0 0 1.75rem; font-size: 0.95rem;
+}
+.kco-post .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.kco-post .cta-row a {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.85rem 1.5rem; border-radius: 100px;
+  font-size: 0.85rem; font-weight: 600; text-decoration: none;
+}
+.kco-post .cta-row a.primary { background: var(--cream); color: var(--navy-dark); }
+.kco-post .cta-row a.secondary {
+  background: transparent; color: var(--ivory);
+  border: 1px solid rgba(247,241,234,0.4);
+}
+
+@media (max-width: 700px) {
+  .kco-post .cta-block { padding: 2rem 1.5rem; }
+  .kco-post .pullquote { padding: 1.25rem 1.5rem; margin: 2rem 0; }
+}
+</style>
+
+<div class="kco-post">
+
+  <!-- META + TITLE -->
+  <div class="post-meta">
+    <span class="tag">Candidate Fraud Research</span>
+    <span>July 2026</span>
+    <span class="dot">·</span>
+    <span>7 min read</span>
+  </div>
+
+  <h1 class="post-title">Candidate Fraud Is a Security Problem.<br /><em>So Where Is the CISO?</em></h1>
+
+  <div class="byline">
+    <span class="author">Jake Paul</span>
+    <span>·</span>
+    <span>Head of Product Innovation, Kyle &amp; Co.</span>
+  </div>
+
+  <!-- HERO IMAGE — swap src for your own WordPress media if you prefer -->
+  <figure class="hero-image">
+    <img src="https://kyleandco.com/candidatefraud/assets/og-image.png" alt="The State of Candidate Fraud Detection &amp; Prevention, a research report by Kyle &amp; Co." />
+  </figure>
+
+  <!-- OPENING -->
+  <p class="lede">I just wrapped up a long stretch of research on the candidate fraud landscape. Sixty-plus vendors, nine product categories, interviews with practitioners at companies of every size and product leaders from the vendors trying to solve this. The full report drops soon.</p>
+
+  <p>Going in, I expected the most interesting findings to be about the products. Whose detection actually works, which architecture wins, where the false positive rates land. That stuff is in the report.</p>
+
+  <p>But the biggest finding came up in almost every conversation, at every company size: the same chair is empty in the same room. The CISO isn't there. And nearly every other problem in this market (slow buying cycles, half-deployed tools, budgets that don't add up, response protocols that don't exist) flows from that one fact.</p>
+
+  <div class="pullquote">
+    <p>Candidate fraud is a security problem that nobody formally owns. And the place that gets resolved is the CISO's office.</p>
+  </div>
+
+  <hr class="rule" />
+
+  <!-- SECTION -->
+  <h2 class="sec">This stopped being an HR problem <em>in 2024</em></h2>
+
+  <p>For most of its history, candidate fraud was a quality-of-hire problem. Padded resumes, inflated titles, a friend posing as a reference. Annoying, sometimes costly, but bounded by the damage a bad hire could do in a few months. It lived in HR because the worst case scenario lived in HR.</p>
+
+  <p>That problem still exists. It's just not the one that matters now.</p>
+
+  <p>In July 2024, KnowBe4, a security awareness training company whose entire business is teaching people to spot deception, hired a Principal Software Engineer who turned out to be a North Korean operative using a stolen American identity. He passed four video interviews, a background check, and reference verification. He only got caught because the company's own endpoint software flagged his workstation loading malware within minutes of his start date. The CEO's post-mortem included a line most companies would never publish: "Do we have egg on our face? Yes."</p>
+
+  <p>The North Korean IT worker scheme goes back to 2018. The first major US government warning landed in 2022. CrowdStrike documented a 220% year-over-year jump in identified incidents over the last twelve months.</p>
+
+  <p>Think about the MGM breach. It started with a ten-minute phone call to an IT help desk and ended in roughly $100 million in damages. Candidate fraud is that same threat moved one step earlier. If an attacker can impersonate an employee to get access, they can impersonate a candidate to get hired, and walk in with a laptop, credentials, and access.</p>
+
+  <p>If that's not a security problem, then I genuinely don't know what is.</p>
+
+  <hr class="rule" />
+
+  <!-- SECTION -->
+  <h2 class="sec">So why isn't the CISO <em>all over this?</em></h2>
+
+  <p>I kept asking, and I kept hearing three answers. Hiring sits outside the traditional security perimeter. There's no playbook. And the legal exposure around employment decisions makes security teams nervous.</p>
+
+  <p>All three are real. None of them hold up.</p>
+
+  <p>The <strong>perimeter argument</strong> was true in 2018. Not anymore. The KnowBe4 operative was inside the network within 25 minutes of his start date. A Nisos investigation uncovered a 40-device laptop farm in Florida running coordinated identities at multiple US companies at once. The whole point of the DPRK model is that the attack starts once the offer letter is signed. The hiring funnel is now the first step of the network attack. Any CISO still drawing the perimeter at the firewall is defending something that stopped existing two years ago.</p>
+
+  <p>The <strong>playbook argument</strong> is more honest, but it's self-fulfilling. There's no playbook because CISOs haven't written one. Many of these vendors are months old, or at least the products they're bringing to market are. The institutional knowledge for investigating and escalating a flagged candidate lives in a handful of people's personal notes. If you're waiting for the playbook before you engage, you're waiting for someone with less authority than you to write it for you.</p>
+
+  <p>The <strong>legal argument</strong> is the strongest of the three. Automated decision-making in employment is a live regulatory area, and getting it wrong on the discrimination axis costs more than getting it wrong on the fraud axis. Fair.</p>
+
+  <p>But the exposure exists whether or not the CISO is in the room. The choice isn't "engage and take on risk" versus "stay out and stay clean." It's "engage and shape the policy" versus "stay out and inherit a policy someone else writes in a panic after the incident." The second one is worse.</p>
+
+  <hr class="rule" />
+
+  <!-- SECTION -->
+  <h2 class="sec">The gap looks the same <em>at every company size</em></h2>
+
+  <p>My starting assumption was that this was a small-company problem. No security team to spare, so the work falls on the TA leader by default. But surely large enterprises are on the offensive.</p>
+
+  <p>The research didn't support that at all.</p>
+
+  <p>On one end, I talked to a TA leader at a mid-sized security company, a few hundred people. A recruiting team of two, reporting into a CFO. He'd personally demoed Greenhouse's fraud product. He'd researched building his own detection workflow with Claude Code and Zapier, modeled on another head of talent who'd done exactly that. His take: the business could treat this as its problem, but it doesn't, so he does. Out of conscientiousness, not mandate.</p>
+
+  <p>On the other end, I talked to a TA leader at one of the largest, best-resourced tech companies in the world. Their security org is one of the most sophisticated anywhere. They've known about candidate fraud for well over a year. But the gap is still there. They chose to handle it mainly through recruiter enablement rather than tooling, partly because detection error rates were too high to act on confidently. HR and IT rarely collaborate on it, and there's no urgent push to buy.</p>
+
+  <p>That second example is the most surprising and concerning. If this were a resourcing problem, the most security-mature enterprises would have solved it already, getting ahead of the inevitable. They haven't. The gap isn't budget or headcount. It's structural. Candidate fraud has no natural home on the org chart, and more org chart doesn't create the home that is so clearly needed.</p>
+
+  <hr class="rule" />
+
+  <!-- SECTION -->
+  <h2 class="sec">The single best <em>diagnostic question</em></h2>
+
+  <p>If I could give a CHRO or CEO one question to assess their candidate fraud posture, it's this, and it came up unprompted from both vendors and practitioners:</p>
+
+  <div class="pullquote">
+    <p>Is your CISO actually involved?</p>
+  </div>
+
+  <p>That singular question tells you three things. Whether the org has classified this as a security problem instead of an HR inconvenience. Whether there's real budget, sized for a security threat instead of scraped off the margins of a recruiting P&amp;L. And whether anyone has the mandate to set policy and escalate, which a TA team alone doesn't.</p>
+
+  <p>The practitioner with the two-person team got there on his own. If he ever found a tool that truly solved his problem, he told me, the only way to fund it would be to capture budget from the executive who owns security risk. He'd found the unlock. He just wasn't the one who could pull it.</p>
+
+  <p>Vendors said the same thing from the other side of the table. The strongest signal that a deal is real, with likelihood to close, is whether security is in the room.</p>
+
+  <p>The problematic corollary: where the CISO isn't involved, what you actually have is a motivated TA leader doing their best inside a bubble, for the good of the company. That describes most of the TA leaders I spoke with.</p>
+
+  <hr class="rule" />
+
+  <!-- SECTION -->
+  <h2 class="sec">What working ownership <em>actually looks like</em></h2>
+
+  <p>The companies doing this well didn't find the perfect tool. They found an ownership structure. Four models surfaced throughout my research.</p>
+
+  <p><strong>A published framework.</strong> A written protocol for what happens when a candidate gets flagged. Who reviews, who decides, who escalates. Quora's is the most-cited example. The content matters less than the fact that it's written down and agreed on.</p>
+
+  <p><strong>A post-incident rebuild.</strong> KnowBe4 is the canonical case. An actual incident forces the org to resolve ownership. Reactive, but durable.</p>
+
+  <p><strong>A cross-functional committee, pointed the right direction.</strong> The most interesting pattern in the whole research. One large enterprise has a dedicated security manager sitting inside the HR org, formally coordinating across as many as eight functions. Instead of TA reaching outward for a security partner who may never engage, the company assigned security inward, into HR. That one structural decision did most of the work.</p>
+
+  <p><strong>A single named owner.</strong> Fragile, because it depends on one person. Still vastly better than nobody.</p>
+
+  <p>The common thread: TA is involved in every working model, but TA never carries it alone.</p>
+
+  <hr class="rule" />
+
+  <!-- SECTION -->
+  <h2 class="sec">Where <em>this goes</em></h2>
+
+  <p>Two paths from here. In one, candidate fraud gets absorbed into the security org and becomes another threat category the CISO owns, with TA as input. That's the cleanest outcome and probably the most likely one, because it requires no new invention. Just the CISO claiming ground they should already be on.</p>
+
+  <p>In the other, a new function emerges at the intersection, the way Trust &amp; Safety emerged a decade ago once platforms realized content moderation belonged neither fully to engineering nor fully to policy. I heard "TA security analyst" floated in more than one conversation. It doesn't exist yet. It probably should.</p>
+
+  <p>Either way, here's where most companies are today: the honest answer to "who owns this?" is a motivated TA leader, not a structure. The technology is moving faster than the org chart. And the technology doesn't help you when a flag fires and nobody in the building has the mandate or know-how to act on it.</p>
+
+  <div class="pullquote">
+    <p>The most consequential candidate fraud decision your company makes in the next two years isn't which vendor to buy. It's whether the CISO walks into the room.</p>
+  </div>
+
+  <p>Right now, that chair is still largely empty.</p>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Read the full <em>research report.</em></h3>
+    <p>The State of Candidate Fraud Detection &amp; Prevention: sixty-plus vendors, nine product categories, and where the defenses actually hold. Free to read.</p>
+    <div class="cta-row">
+      <a class="primary" href="https://kyleandco.com/candidatefraud/report/">Read the report</a>
+      <a class="secondary" href="https://kyleandco.com/candidatefraud/#register">Join the live webinar</a>
+    </div>
+  </div>
+
+</div>
