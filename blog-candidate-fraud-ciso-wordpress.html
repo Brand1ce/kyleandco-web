@@ -84,6 +84,44 @@
   color: var(--navy); margin: 0; line-height: 1.45;
 }
 
+/* STAT STRIP (from the report) */
+.kco-post .stat-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: rgba(39,55,82,0.1);
+  border: 1px solid rgba(39,55,82,0.1); border-radius: 10px; overflow: hidden;
+  margin: 2.5rem 0;
+}
+.kco-post .stat { background: #fff; padding: 1.6rem 1.1rem; text-align: center; }
+.kco-post .stat .num {
+  font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 300;
+  color: var(--navy); line-height: 1; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+}
+.kco-post .stat .num em { font-style: normal; color: var(--lilac); }
+.kco-post .stat .lbl {
+  font-size: 0.76rem; line-height: 1.35; color: var(--slate);
+}
+.kco-post .strip-src {
+  text-align: center; font-size: 0.72rem; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--lilac); margin: -1.25rem 0 0;
+}
+
+/* MODEL GRID (from the report) */
+.kco-post .model-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; margin: 2.5rem 0;
+}
+.kco-post .model {
+  background: var(--ivory); border: 1px solid rgba(39,55,82,0.08);
+  border-radius: 10px; padding: 1.5rem;
+}
+.kco-post .model .model-k {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 600; margin: 0 0 0.6rem;
+}
+.kco-post .model .model-t {
+  font-size: 1.08rem; font-weight: 500; color: var(--navy); margin: 0 0 0.5rem; line-height: 1.25;
+}
+.kco-post .model .model-d { font-size: 0.9rem; line-height: 1.55; color: var(--slate); margin: 0; }
+
 /* DIVIDER */
 .kco-post .rule { border: none; border-top: 1px solid rgba(39,55,82,0.12); margin: 3.5rem 0; }
 
@@ -169,6 +207,14 @@
 
   <p>If that's not a security problem, then I genuinely don't know what is.</p>
 
+  <div class="stat-strip">
+    <div class="stat"><div class="num"><em>220%</em></div><div class="lbl">Year-over-year rise in identified incidents</div></div>
+    <div class="stat"><div class="num">$100<em>M</em></div><div class="lbl">Damages from the MGM breach</div></div>
+    <div class="stat"><div class="num">25<em> min</em></div><div class="lbl">From start date to inside the network</div></div>
+    <div class="stat"><div class="num">4</div><div class="lbl">Video interviews the operative passed</div></div>
+  </div>
+  <p class="strip-src">Sources: CrowdStrike, public breach reporting, KnowBe4</p>
+
   <hr class="rule" />
 
   <!-- SECTION -->
@@ -227,13 +273,28 @@
 
   <p>The companies doing this well didn't find the perfect tool. They found an ownership structure. Four models surfaced throughout my research.</p>
 
-  <p><strong>A published framework.</strong> A written protocol for what happens when a candidate gets flagged. Who reviews, who decides, who escalates. Quora's is the most-cited example. The content matters less than the fact that it's written down and agreed on.</p>
-
-  <p><strong>A post-incident rebuild.</strong> KnowBe4 is the canonical case. An actual incident forces the org to resolve ownership. Reactive, but durable.</p>
-
-  <p><strong>A cross-functional committee, pointed the right direction.</strong> The most interesting pattern in the whole research. One large enterprise has a dedicated security manager sitting inside the HR org, formally coordinating across as many as eight functions. Instead of TA reaching outward for a security partner who may never engage, the company assigned security inward, into HR. That one structural decision did most of the work.</p>
-
-  <p><strong>A single named owner.</strong> Fragile, because it depends on one person. Still vastly better than nobody.</p>
+  <div class="model-grid">
+    <div class="model">
+      <p class="model-k">Model 01</p>
+      <p class="model-t">A published framework</p>
+      <p class="model-d">A written protocol for what happens when a candidate gets flagged. Who reviews, who decides, who escalates. Quora's is the most-cited example. The content matters less than the fact that it's written down and agreed on.</p>
+    </div>
+    <div class="model">
+      <p class="model-k">Model 02</p>
+      <p class="model-t">A post-incident rebuild</p>
+      <p class="model-d">KnowBe4 is the canonical case. An actual incident forces the org to resolve ownership. Reactive, but durable.</p>
+    </div>
+    <div class="model">
+      <p class="model-k">Model 03</p>
+      <p class="model-t">A cross-functional committee, pointed the right direction</p>
+      <p class="model-d">The most interesting pattern in the research. One large enterprise put a dedicated security manager inside the HR org, coordinating across as many as eight functions. It assigned security inward, into HR, rather than making TA reach outward. That one decision did most of the work.</p>
+    </div>
+    <div class="model">
+      <p class="model-k">Model 04</p>
+      <p class="model-t">A single named owner</p>
+      <p class="model-d">Fragile, because it depends on one person. Still vastly better than nobody.</p>
+    </div>
+  </div>
 
   <p>The common thread: TA is involved in every working model, but TA never carries it alone.</p>
 
