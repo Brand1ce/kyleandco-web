@@ -105,6 +105,25 @@
   text-transform: uppercase; color: var(--lilac); margin: -1.25rem 0 0;
 }
 
+/* BAR CHART (from the report) */
+.kco-post .barchart { margin: 2.5rem 0; }
+.kco-post .barchart .bc-title {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 600; margin: 0 0 1.4rem;
+}
+.kco-post .bc-row { display: flex; align-items: center; gap: 0.85rem; margin: 0 0 0.85rem; }
+.kco-post .bc-lbl {
+  flex: 0 0 128px; font-size: 0.82rem; color: var(--navy); font-weight: 500; text-align: right;
+}
+.kco-post .bc-track { flex: 1; background: rgba(39,55,82,0.06); border-radius: 100px; height: 22px; overflow: hidden; }
+.kco-post .bc-fill { height: 100%; border-radius: 100px; background: var(--lilac); }
+.kco-post .bc-fill.hi { background: var(--navy); }
+.kco-post .bc-tag { flex: 0 0 58px; font-size: 0.74rem; color: var(--slate); }
+.kco-post .bc-cap { font-size: 0.82rem; color: var(--slate); font-style: italic; margin: 1.1rem 0 0; }
+@media (max-width: 560px) {
+  .kco-post .bc-lbl { flex-basis: 92px; font-size: 0.74rem; }
+}
+
 /* MODEL GRID (from the report) */
 .kco-post .model-grid {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; margin: 2.5rem 0;
@@ -214,6 +233,18 @@
     <div class="stat"><div class="num">4</div><div class="lbl">Video interviews the operative passed</div></div>
   </div>
   <p class="strip-src">Sources: CrowdStrike, public breach reporting, KnowBe4</p>
+
+  <p>And the defenses thin out exactly where the stakes rise. Across the hiring funnel, coverage clusters at the top, where fraud is cheap to catch, and all but disappears at the bottom, where a fraudulent hire is already inside.</p>
+
+  <div class="barchart">
+    <p class="bc-title">Defenses cluster where fraud is easy to catch</p>
+    <div class="bc-row"><div class="bc-lbl">Application &amp; identity</div><div class="bc-track"><div class="bc-fill" style="width:92%"></div></div><div class="bc-tag">15+ tools</div></div>
+    <div class="bc-row"><div class="bc-lbl">Assessment</div><div class="bc-track"><div class="bc-fill" style="width:70%"></div></div><div class="bc-tag">mature</div></div>
+    <div class="bc-row"><div class="bc-lbl">Interview deepfake</div><div class="bc-track"><div class="bc-fill" style="width:48%"></div></div><div class="bc-tag">cluster</div></div>
+    <div class="bc-row"><div class="bc-lbl">Reference checking</div><div class="bc-track"><div class="bc-fill" style="width:20%"></div></div><div class="bc-tag">~2 tools</div></div>
+    <div class="bc-row"><div class="bc-lbl">Post-hire continuity</div><div class="bc-track"><div class="bc-fill hi" style="width:10%"></div></div><div class="bc-tag">thinnest</div></div>
+    <p class="bc-cap">Relative vendor coverage by funnel stage. The highest-consequence stage, post-hire, is the least defended.</p>
+  </div>
 
   <hr class="rule" />
 
