@@ -124,54 +124,70 @@
   .kco-post .bc-lbl { flex-basis: 92px; font-size: 0.74rem; }
 }
 
-/* MODEL GRID (from the report) */
+/* MODEL GRID (from the report) — distinct colored cards */
 .kco-post .model-grid {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; margin: 2.5rem 0;
 }
 .kco-post .model {
-  background: var(--ivory); border: 1px solid rgba(39,55,82,0.08);
-  border-radius: 10px; padding: 1.5rem;
+  border-radius: 10px; padding: 1.5rem; border: 1px solid transparent;
 }
 .kco-post .model .model-k {
   font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--lilac); font-weight: 600; margin: 0 0 0.6rem;
+  font-weight: 700; margin: 0 0 0.6rem;
 }
 .kco-post .model .model-t {
-  font-size: 1.08rem; font-weight: 500; color: var(--navy); margin: 0 0 0.5rem; line-height: 1.25;
+  font-size: 1.08rem; font-weight: 600; margin: 0 0 0.5rem; line-height: 1.25;
 }
-.kco-post .model .model-d { font-size: 0.9rem; line-height: 1.55; color: var(--slate); margin: 0; }
+.kco-post .model .model-d { font-size: 0.9rem; line-height: 1.55; margin: 0; }
+/* 01 — sand */
+.kco-post .model.m1 { background: #F5EAD6; border-color: #E4D3AE; }
+.kco-post .model.m1 .model-k { color: #A8802E; }
+.kco-post .model.m1 .model-t { color: var(--navy); }
+.kco-post .model.m1 .model-d { color: #6b5f45; }
+/* 02 — lilac */
+.kco-post .model.m2 { background: #ECE7F1; border-color: #D3C8DE; }
+.kco-post .model.m2 .model-k { color: #6D6079; }
+.kco-post .model.m2 .model-t { color: var(--navy); }
+.kco-post .model.m2 .model-d { color: #5f5768; }
+/* 03 — blue */
+.kco-post .model.m3 { background: #E4ECF6; border-color: #C3D3E8; }
+.kco-post .model.m3 .model-k { color: #3D6DA3; }
+.kco-post .model.m3 .model-t { color: var(--navy); }
+.kco-post .model.m3 .model-d { color: #4a5b70; }
+/* 04 — navy (strongest) */
+.kco-post .model.m4 { background: var(--navy); border-color: var(--navy); }
+.kco-post .model.m4 .model-k { color: var(--cream); }
+.kco-post .model.m4 .model-t { color: #ffffff; }
+.kco-post .model.m4 .model-d { color: rgba(247,241,234,0.85); }
 
 /* DIVIDER */
 .kco-post .rule { border: none; border-top: 1px solid rgba(39,55,82,0.12); margin: 3.5rem 0; }
 
-/* CTA BLOCK */
-.kco-post .cta-block {
-  background: var(--navy); color: var(--ivory);
-  border-radius: 12px; padding: 3rem; margin: 4rem 0 0;
+/* CTA BAR — compact horizontal, used at top and bottom */
+.kco-post .cta-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem 1.25rem; flex-wrap: wrap;
+  background: var(--navy); border-radius: 10px;
+  padding: 1.1rem 1.4rem; margin: 0 0 2.75rem;
 }
-.kco-post .cta-block h3 {
-  font-size: 1.6rem; font-weight: 400; margin: 0 0 0.5rem; letter-spacing: -0.01em;
-  color: var(--ivory);
+.kco-post .cta-bar.bottom { margin: 3.5rem 0 0; }
+.kco-post .cta-bar .cta-bar-label {
+  margin: 0; color: var(--ivory); font-size: 0.95rem; font-weight: 500; line-height: 1.3;
 }
-.kco-post .cta-block h3 em { font-style: italic; color: var(--cream); }
-.kco-post .cta-block > p {
-  color: rgba(247,241,234,0.8); margin: 0 0 1.75rem; font-size: 0.95rem;
+.kco-post .cta-bar .cta-bar-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.kco-post .cta-bar a {
+  display: inline-flex; align-items: center; padding: 0.6rem 1.15rem;
+  border-radius: 100px; font-size: 0.8rem; font-weight: 600;
+  text-decoration: none; white-space: nowrap;
 }
-.kco-post .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-.kco-post .cta-row a {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  padding: 0.85rem 1.5rem; border-radius: 100px;
-  font-size: 0.85rem; font-weight: 600; text-decoration: none;
-}
-.kco-post .cta-row a.primary { background: var(--cream); color: var(--navy-dark); }
-.kco-post .cta-row a.secondary {
-  background: transparent; color: var(--ivory);
-  border: 1px solid rgba(247,241,234,0.4);
-}
+.kco-post .cta-bar a.primary { background: var(--cream); color: var(--navy-dark); }
+.kco-post .cta-bar a.secondary { background: transparent; color: var(--ivory); border: 1px solid rgba(247,241,234,0.45); }
 
 @media (max-width: 700px) {
-  .kco-post .cta-block { padding: 2rem 1.5rem; }
   .kco-post .pullquote { padding: 1.25rem 1.5rem; margin: 2rem 0; }
+  .kco-post .cta-bar { padding: 1.1rem 1.25rem; }
+  .kco-post .cta-bar .cta-bar-actions, .kco-post .cta-bar a { width: 100%; }
+  .kco-post .cta-bar a { justify-content: center; }
 }
 </style>
 
@@ -197,6 +213,15 @@
   <figure class="hero-image">
     <img src="https://kyleandco.com/candidatefraud/assets/og-image.png" alt="The State of Candidate Fraud Detection &amp; Prevention, a research report by Kyle &amp; Co." />
   </figure>
+
+  <!-- TOP CTA BAR -->
+  <div class="cta-bar">
+    <p class="cta-bar-label">The full research report is live.</p>
+    <div class="cta-bar-actions">
+      <a class="primary" href="https://kyleandco.com/candidatefraud/report/">Read the report</a>
+      <a class="secondary" href="https://kyleandco.com/candidatefraud/#register">Register for the webinar</a>
+    </div>
+  </div>
 
   <!-- OPENING -->
   <p class="lede">I just wrapped up a long stretch of research on the candidate fraud landscape. Sixty-plus vendors, nine product categories, interviews with practitioners at companies of every size and product leaders from the vendors trying to solve this.</p>
@@ -305,22 +330,22 @@
   <p>The companies doing this well didn't find the perfect tool. They found an ownership structure. Four models surfaced throughout my research.</p>
 
   <div class="model-grid">
-    <div class="model">
+    <div class="model m1">
       <p class="model-k">Model 01</p>
       <p class="model-t">A published framework</p>
       <p class="model-d">A written protocol for what happens when a candidate gets flagged. Who reviews, who decides, who escalates. Quora's is the most-cited example. The content matters less than the fact that it's written down and agreed on.</p>
     </div>
-    <div class="model">
+    <div class="model m2">
       <p class="model-k">Model 02</p>
       <p class="model-t">A post-incident rebuild</p>
       <p class="model-d">KnowBe4 is the canonical case. An actual incident forces the org to resolve ownership. Reactive, but durable.</p>
     </div>
-    <div class="model">
+    <div class="model m3">
       <p class="model-k">Model 03</p>
       <p class="model-t">A cross-functional committee, pointed the right direction</p>
       <p class="model-d">The most interesting pattern in the whole research. One large enterprise has a dedicated security manager sitting inside the HR org, formally coordinating across as many as eight functions. Instead of TA reaching outward for a security partner who may never engage, the company assigned security inward, into HR. That one structural decision did most of the work.</p>
     </div>
-    <div class="model">
+    <div class="model m4">
       <p class="model-k">Model 04</p>
       <p class="model-t">A single named owner</p>
       <p class="model-d">Fragile, because it depends on one person. Still vastly better than nobody.</p>
@@ -346,13 +371,12 @@
 
   <p>Right now, that chair is still largely empty.</p>
 
-  <!-- CTA -->
-  <div class="cta-block">
-    <h3>Read the full <em>research report.</em></h3>
-    <p>The State of Candidate Fraud Detection &amp; Prevention: sixty-plus vendors, nine product categories, and where the defenses actually hold. Free to read.</p>
-    <div class="cta-row">
+  <!-- BOTTOM CTA BAR -->
+  <div class="cta-bar bottom">
+    <p class="cta-bar-label">Read the full research, or bring your questions live.</p>
+    <div class="cta-bar-actions">
       <a class="primary" href="https://kyleandco.com/candidatefraud/report/">Read the report</a>
-      <a class="secondary" href="https://kyleandco.com/candidatefraud/#register">Join the live webinar</a>
+      <a class="secondary" href="https://kyleandco.com/candidatefraud/#register">Register for the webinar</a>
     </div>
   </div>
 
