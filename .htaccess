@@ -9,9 +9,10 @@ RewriteEngine On
 RewriteBase /
 
 # Let WordPress handle its own root query requests (Elementor/post previews, ?p=, ?page_id=)
-# instead of the static index.html. A bare "/" still serves the static homepage.
+# instead of the static index.html. A bare "/" with no such query still serves the static homepage.
+# Matches both the empty root and the index.html DirectoryIndex mapping (LiteSpeed resolves it early).
 RewriteCond %{QUERY_STRING} (^|&)(p|page_id|preview|preview_id|elementor-preview)= [NC]
-RewriteRule ^$ /index.php [L]
+RewriteRule ^(index\.html)?$ /index.php [L]
 
 # Redirect removed Practitioners page (and any sub-path) -> AI Council
 RewriteRule ^practitioners(/.*)?$ /aicouncil/ [R=301,L]
