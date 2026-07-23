@@ -398,6 +398,25 @@ function card(opts) {
 }
 
 // ── Render ────────────────────────────────────────────────────────────
+// Podcast — Transformation Realness (Megaphone export; send me a new one to refresh)
+var PODCAST = {
+  q2Episodes:    36,
+  q2Listens:     1738,
+  avgPerEpisode: 48,
+  episodes: [
+    { title: 'From Shiny Objects to Real Solutions: Rebecca Carr on TA Tech', published: '2024-12-17', total: 262 },
+    { title: 'Beyond the Algorithm: Joe Shaker on Creativity in Recruitment Marketing', published: '2026-04-29', total: 225 },
+    { title: 'Invisible Software, Real Impact: Paradox on Frictionless Hiring', published: '2025-02-25', total: 155 },
+    { title: "Workday's Big Play: Redefining HR Tech", published: '2025-02-12', total: 133 },
+    { title: 'From Buzzword to Business Impact: Lightcast on Skills-Based Transformation', published: '2025-02-18', total: 132 },
+    { title: 'Taming the Wild West of TA: GoodTime on Interview Chaos', published: '2025-02-04', total: 125 },
+    { title: 'The Indispensable Recruiter: Rocki Howard on Staying Human in an AI World', published: '2026-05-06', total: 125 },
+    { title: 'How HiredScore Is Making Waves With Smarter, Sharper, Iconic Outcomes', published: '2025-01-28', total: 101 },
+    { title: "By the Numbers: GEM's Steve Bartel on the State of Recruiting", published: '2026-05-12', total: 72 },
+    { title: 'Bridging the Gap: Julia Levy on Supporting Graduates', published: '2026-05-14', total: 62 },
+  ],
+};
+
 function render(data) {
   var e = data.email   || {};
   var w = data.web     || {};
@@ -581,9 +600,9 @@ function render(data) {
   html += '<div style="display:flex;gap:3rem;flex-wrap:wrap;margin-top:.75rem;align-items:flex-end;">';
   html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cfEarlyAccess) + '</div><div class="card-sublabel">early access signups</div></div>';
   html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cfWebinar) + '</div><div class="card-sublabel">webinar registrants</div></div>';
-  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cfDownloads) + '</div><div class="card-sublabel">PDF downloads</div></div>';
+  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cfDownloads) + '</div><div class="card-sublabel">direct downloads</div></div>';
   html += '</div>';
-  html += '<div style="margin-top:.5rem;font-size:.72rem;color:var(--muted);">Early access + webinar via MailerLite · Downloads all-time via click counter</div>';
+  html += '<div style="margin-top:.5rem;font-size:.72rem;color:var(--muted);">Early access + webinar via MailerLite · Direct downloads via site counter (real grabs). The report page itself is ungated, so email-driven reads show up in GA4, not here.</div>';
   html += '</div>';
 
 
@@ -594,13 +613,13 @@ function render(data) {
   // ══════════════════════════════════════════════════════════════════
   if (p && p.q2Episodes) {
     html += '<div class="section">';
-    html += '<div class="section-header"><div class="section-title">Podcast — Transformation Realness</div><div class="section-source">Megaphone · manual</div></div>';
+    html += '<div class="section-header"><div class="section-title">Podcast — Transformation Realness</div><div class="section-source">Megaphone · Apr 1 to Jul 23, 2026</div></div>';
     html += '<div class="cards">';
     html += '<div class="card accent-podcast" style="grid-column:1/-1;">';
 
     html += '<div style="display:flex;gap:2.5rem;flex-wrap:wrap;">';
-    html += '<div><div class="card-value" style="font-size:2rem;">' + p.q2Episodes + '</div><div class="card-sublabel">episodes published</div></div>';
-    html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(p.q2Listens) + '</div><div class="card-sublabel">total listens · Q2</div></div>';
+    html += '<div><div class="card-value" style="font-size:2rem;">' + p.q2Episodes + '</div><div class="card-sublabel">episodes with plays</div></div>';
+    html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(p.q2Listens) + '</div><div class="card-sublabel">total downloads</div></div>';
     html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(p.avgPerEpisode) + '</div><div class="card-sublabel">avg listens / episode</div></div>';
     html += '</div>';
 
@@ -649,6 +668,8 @@ function loadData() {
         data.web.reportDownloads = clicks.total;
         data.web.resourceClicks  = clicks;
       }
+      // Show the full Megaphone export (aggregate + top 10), not the partial Sheet pull.
+      data.podcast = PODCAST;
       document.getElementById('demo-banner').style.display = data.isDemo ? 'block' : 'none';
       if (data.sheetUrl) {
         var el = document.getElementById('edit-link');
