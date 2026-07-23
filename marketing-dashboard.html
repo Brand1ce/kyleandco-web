@@ -398,12 +398,13 @@ function card(opts) {
 }
 
 // ── Render ────────────────────────────────────────────────────────────
-// Podcast — Transformation Realness (Megaphone export; send me a new one to refresh)
+// Podcast — Transformation Realness (Megaphone exports; send me new ones to refresh)
 var PODCAST = {
-  q2Episodes:    36,
-  q2Listens:     1738,
-  avgPerEpisode: 48,
-  episodes: [
+  ranges: {
+    allTime: { label: 'All time',     downloads: 1738, episodes: 36,   avg: 48 },
+    last90:  { label: 'Last 90 days', downloads: null, episodes: null, avg: null },
+  },
+  topEpisodes: [
     { title: 'From Shiny Objects to Real Solutions: Rebecca Carr on TA Tech', published: '2024-12-17', total: 262 },
     { title: 'Beyond the Algorithm: Joe Shaker on Creativity in Recruitment Marketing', published: '2026-04-29', total: 225 },
     { title: 'Invisible Software, Real Impact: Paradox on Frictionless Hiring', published: '2025-02-25', total: 155 },
@@ -416,6 +417,16 @@ var PODCAST = {
     { title: 'Bridging the Gap: Julia Levy on Supporting Graduates', published: '2026-05-14', total: 62 },
   ],
 };
+
+function podcastRangeBox(r) {
+  return '<div class="card accent-podcast">'
+    + '<div class="card-name">' + r.label + '</div>'
+    + '<div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:.6rem;">'
+    + '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(r.downloads) + '</div><div class="card-sublabel">downloads</div></div>'
+    + '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(r.episodes) + '</div><div class="card-sublabel">episodes</div></div>'
+    + '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(r.avg) + '</div><div class="card-sublabel">avg / ep</div></div>'
+    + '</div></div>';
+}
 
 function render(data) {
   var e = data.email   || {};
@@ -611,22 +622,24 @@ function render(data) {
   // ══════════════════════════════════════════════════════════════════
   // SECTION 3 — Podcast — Transformation Realness
   // ══════════════════════════════════════════════════════════════════
-  if (p && p.q2Episodes) {
+  if (p && p.ranges) {
     html += '<div class="section">';
-    html += '<div class="section-header"><div class="section-title">Podcast — Transformation Realness</div><div class="section-source">Megaphone · Apr 1 to Jul 23, 2026</div></div>';
+    html += '<div class="section-header"><div class="section-title">Podcast — Transformation Realness</div><div class="section-source">Megaphone</div></div>';
     html += '<div class="cards">';
-    html += '<div class="card accent-podcast" style="grid-column:1/-1;">';
 
-    html += '<div style="display:flex;gap:2.5rem;flex-wrap:wrap;">';
-    html += '<div><div class="card-value" style="font-size:2rem;">' + p.q2Episodes + '</div><div class="card-sublabel">episodes with plays</div></div>';
-    html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(p.q2Listens) + '</div><div class="card-sublabel">total downloads</div></div>';
-    html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(p.avgPerEpisode) + '</div><div class="card-sublabel">avg listens / episode</div></div>';
+    // Side-by-side: All time vs Last 90 days
+    html += '<div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;">';
+    html += podcastRangeBox(p.ranges.allTime);
+    html += podcastRangeBox(p.ranges.last90);
     html += '</div>';
 
-    if (p.episodes && p.episodes.length > 0) {
-      var maxListens = Math.max.apply(null, p.episodes.map(function(ep) { return ep.total; }));
+    // Top 10 episodes (all time)
+    if (p.topEpisodes && p.topEpisodes.length > 0) {
+      html += '<div class="card accent-podcast" style="grid-column:1/-1;">';
+      html += '<div class="card-name">Top 10 episodes · all time</div>';
+      var maxListens = Math.max.apply(null, p.topEpisodes.map(function(ep) { return ep.total; }));
       html += '<div class="ep-list">';
-      p.episodes.forEach(function(ep) {
+      p.topEpisodes.forEach(function(ep) {
         var barPct = maxListens > 0 ? Math.round((ep.total / maxListens) * 100) : 0;
         html += '<div class="ep-row">' +
           '<div class="ep-title" title="' + ep.title.replace(/"/g, '&quot;') + '">' + ep.title + '</div>' +
@@ -635,10 +648,10 @@ function render(data) {
           '<div class="ep-count">' + fmt(ep.total) + '</div>' +
           '</div>';
       });
-      html += '</div>';
+      html += '</div></div>';
     }
 
-    html += '</div></div></div>';
+    html += '</div></div>';
   }
 
   document.getElementById('main-content').innerHTML = html;
