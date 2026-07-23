@@ -401,8 +401,7 @@ function card(opts) {
 // Podcast — Transformation Realness (Megaphone exports; send me new ones to refresh)
 var PODCAST = {
   ranges: {
-    allTime: { label: 'Top performing', downloads: 1738, episodes: 36, avg: 48 },
-    last90:  { label: 'Last quarter',   downloads: 1738, episodes: 36, avg: 48 },
+    lastQuarter: { label: 'Last quarter', downloads: 1738, episodes: 36, avg: 48 },
   },
   topEpisodes: [
     { title: 'From Shiny Objects to Real Solutions: Rebecca Carr on TA Tech', published: '2024-12-17', total: 262 },
@@ -426,6 +425,18 @@ function podcastRangeBox(r) {
     + '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(r.episodes) + '</div><div class="card-sublabel">episodes</div></div>'
     + '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(r.avg) + '</div><div class="card-sublabel">avg / ep</div></div>'
     + '</div></div>';
+}
+
+function podcastTopBox(eps, quarterTotal) {
+  var top    = eps[0] || {};
+  var topSum = eps.reduce(function(s, e) { return s + (e.total || 0); }, 0);
+  var pct    = quarterTotal ? Math.round(topSum / quarterTotal * 100) : 0;
+  return '<div class="card accent-podcast">'
+    + '<div class="card-name">Top performing</div>'
+    + '<div style="margin-top:.6rem;"><div class="card-value" style="font-size:1.8rem;">' + fmt(top.total) + '</div>'
+    + '<div class="card-sublabel">' + (top.title || '') + '</div></div>'
+    + '<div style="margin-top:.6rem;font-size:.72rem;color:var(--muted);">Top 10 drove ' + fmt(topSum) + ' downloads · ' + pct + '% of the quarter</div>'
+    + '</div>';
 }
 
 function render(data) {
@@ -629,8 +640,8 @@ function render(data) {
 
     // Side-by-side: All time vs Last 90 days
     html += '<div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;">';
-    html += podcastRangeBox(p.ranges.allTime);
-    html += podcastRangeBox(p.ranges.last90);
+    html += podcastTopBox(p.topEpisodes, p.ranges.lastQuarter.downloads);
+    html += podcastRangeBox(p.ranges.lastQuarter);
     html += '</div>';
 
     // Top 10 episodes (all time)
