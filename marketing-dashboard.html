@@ -635,33 +635,28 @@ function render(data) {
   // ══════════════════════════════════════════════════════════════════
   html += '<div class="section">';
   html += '<div class="section-header"><div class="section-title">Audience</div><div class="section-source">MailerLite · audience growth</div></div>';
-  html += '<div class="cards">';
+  html += '<div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">';
 
   // New subscribers this quarter
   html += card({
     accent: 'email',
     name: 'New subscribers · this quarter',
     value: e.netNewQ2 != null ? '+' + fmt(e.netNewQ2) : '—',
-    sublabel: fmt(e.totalSubscribers) + ' total',
+    sublabel: fmt(e.totalSubscribers) + ' total on the list',
     progressHtml: qoqLine(e.qoqGrowth),
   });
 
-  // QoQ growth — organic core audience
+  // Core organic audience — MailerLite "Core Organic Audience" segment
+  var ORG_BASELINE = 745;  // Aug 2025
+  var orgGrowth = e.organicCount != null ? Math.round((e.organicCount - ORG_BASELINE) / ORG_BASELINE * 100) : null;
   html += card({
     accent: 'email',
-    name: 'Organic growth · QoQ',
-    value: (e.qoqGrowth != null ? (e.qoqGrowth >= 0 ? '+' : '') + fmtPct(e.qoqGrowth, 1) : '—'),
-    valueClass: 'sm',
-    sublabel: 'organic core, quarter over quarter',
-  });
-
-  // Organic / core audience count
-  html += card({
-    accent: 'email',
-    name: 'Organic core audience',
+    name: 'Core organic audience',
     value: fmt(e.organicCount),
-    sublabel: 'was 945 last quarter',
-    chipHtml: e.organicCount == null ? chip('manual', '✎ Update in sheet') : '',
+    sublabel: 'from ' + ORG_BASELINE + ' in Aug 2025',
+    progressHtml: (orgGrowth != null
+      ? '<div class="delta-label ' + (orgGrowth >= 0 ? 'up' : 'down') + '">' + (orgGrowth >= 0 ? '▲ +' : '▼ ') + Math.abs(orgGrowth) + '% since Aug 2025</div>'
+      : ''),
   });
 
   // Practitioner %
@@ -670,7 +665,7 @@ function render(data) {
     name: 'Practitioner % of list',
     value: fmtPct(e.practitionerPct, 0),
     valueClass: 'sm',
-    sublabel: 'was 66.7% last quarter',
+    sublabel: 'share of subscribers who are practitioners',
     chipHtml: e.practitionerPct == null ? chip('manual', '✎ Update in sheet') : '',
   });
 
