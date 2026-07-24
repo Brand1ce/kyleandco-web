@@ -681,12 +681,16 @@ function render(data) {
 
   // CTOR
   var ctorStatus = e.broadcastCTOR != null ? getStatus(e.broadcastCTOR, T.ctorBroadcast) : 'tbd';
+  var ctorContext = e.broadcastSends
+    ? 'avg across ' + fmt(e.broadcastSends) + ' send' + (e.broadcastSends === 1 ? '' : 's') + (e.broadcastFrom ? ' since ' + fmtDate(e.broadcastFrom) : '')
+    : '';
   html += card({
     accent: 'email',
     name: 'Email CTOR',
     value: fmtPct(e.broadcastCTOR, 1),
     valueClass: 'sm',
     sublabel: 'clicks ÷ opens · industry avg 3–5%',
+    target: ctorContext,
     chipHtml: chip(ctorStatus),
   });
 
