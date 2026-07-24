@@ -166,6 +166,12 @@ body {
 .context-strip strong { color: #273752; }
 .context-strip .ctx-row { margin-bottom: 0.2rem; }
 .context-strip .ctx-row:last-child { margin-bottom: 0; }
+/* Quarter progress meter */
+.qmeter { margin-bottom: 0.85rem; padding-bottom: 0.85rem; border-bottom: 1px solid rgba(39,55,82,0.08); }
+.qmeter-top { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.72rem; color: #9D92AD; margin-bottom: 0.4rem; }
+.qmeter-top span:first-child { font-weight: 600; color: #273752; letter-spacing: 0.04em; }
+.qmeter-track { height: 8px; background: rgba(39,55,82,0.08); border-radius: 100px; overflow: hidden; }
+.qmeter-fill { height: 100%; background: #2D5C94; border-radius: 100px; transition: width 0.6s ease; }
 
 /* ── Milestone rows ── */
 .milestone {
@@ -385,6 +391,18 @@ function prettySource(s) {
 }
 function shorten(str, n) { str = String(str || ''); return str.length > n ? str.slice(0, n - 1) + '…' : str; }
 
+// How far through the current calendar quarter are we today?
+function quarterProgress() {
+  var now = new Date();
+  var y = now.getFullYear();
+  var qi = Math.floor(now.getMonth() / 3);            // 0..3
+  var qStart = new Date(y, qi * 3, 1);
+  var qEnd   = new Date(y, qi * 3 + 3, 1);            // start of next quarter
+  var pct = Math.round((now - qStart) / (qEnd - qStart) * 100);
+  var daysLeft = Math.max(0, Math.ceil((qEnd - now) / 86400000));
+  return { label: 'Q' + (qi + 1) + ' ' + y, pct: pct, daysLeft: daysLeft };
+}
+
 function fmtDate(s) {
   if (!s) return '';
   try {
@@ -594,31 +612,17 @@ function render(data) {
   }
   html += '</div>';
 
-  html += '<div class="summary-bar">';
-  html += '<div class="summary-item"><div class="summary-value">' + fmt(totalSubs) + '</div><div class="summary-label">Total subscribers</div></div>';
-  html += '<div class="summary-item"><div class="summary-value">' + (netNew != null ? (netNew >= 0 ? '+' : '') + fmt(netNew) : '—') + '</div><div class="summary-label">Net new · Q2</div></div>';
-  html += '<div class="summary-item"><div class="summary-value">' + fmtPct(e.broadcastCTOR, 1) + '</div><div class="summary-label">Email CTOR</div></div>';
-  html += '</div>';
-
   // ── Context strip ──────────────────────────────────────────────────
+  var qp = quarterProgress();
   var ctxLines = [];
-  ctxLines.push('Q2 is <strong>' + Q2_PCT + '% complete</strong> — ' + Q2_DAYS_LEFT + ' days remaining. The blue marker on each progress bar shows today\'s pace target.');
   if (e.broadcastCTOR != null && e.broadcastCTOR >= 5) {
     ctxLines.push('Email CTOR of <strong>' + fmtPct(e.broadcastCTOR, 1) + '</strong> exceeds the B2B average of 3–5%, indicating strong list quality. (Open rate is excluded — inflated by Apple Mail Privacy Protection.)');
   }
-  if (netNew != null) {
-    var paceNeeded = Math.round(T.netNewSubs * Q2_PCT / 100);
-    if (netNew < paceNeeded) {
-      ctxLines.push('New subscriber growth is <strong>' + fmt(paceNeeded - netNew) + ' behind today\'s pace</strong> toward the +' + fmt(T.netNewSubs) + ' Q2 goal (17,000 total).');
-    } else {
-      ctxLines.push('New subscriber growth is <strong>on pace</strong> toward the +' + fmt(T.netNewSubs) + ' Q2 goal (17,000 total).');
-    }
-  }
-  if (ctxLines.length > 0) {
-    html += '<div class="context-strip">';
-    ctxLines.forEach(function(l) { html += '<div class="ctx-row">' + l + '</div>'; });
-    html += '</div>';
-  }
+  ctxLines.push('Toward the <strong>17,000-subscriber goal</strong> — currently at ' + fmt(totalSubs) + '.');
+  html += '<div class="context-strip">';
+  html += '<div class="qmeter"><div class="qmeter-top"><span>' + qp.label + '</span><span>' + qp.pct + '% through the quarter · ' + qp.daysLeft + ' days left</span></div><div class="qmeter-track"><div class="qmeter-fill" style="width:' + qp.pct + '%"></div></div></div>';
+  ctxLines.forEach(function(l) { html += '<div class="ctx-row">' + l + '</div>'; });
+  html += '</div>';
 
   // ══════════════════════════════════════════════════════════════════
   // SECTION 1 — Q2 Aligned KPIs (from marketing strategy deck)
