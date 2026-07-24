@@ -512,6 +512,7 @@ function podcastRangeBox(r) {
 // All-time traffic from Jetpack (WordPress) — manual export; send me a new one to refresh.
 var JETPACK = {
   updated: 'Jul 24, 2026',
+  lifetimeBlogViews: 9272,   // sum of all published blog posts (Jetpack, all time)
   topPages: [
     { title: 'Blog', path: '/blog/', views: 2592 },
     { title: 'Home', path: '/', views: 2322 },
@@ -742,7 +743,8 @@ function render(data) {
   html += '<div class="cards">';
 
   // Headline web numbers
-  html += card({ accent: 'web', name: 'Blog views · lifetime', value: fmt(w.blogViewsYTD), sublabel: 'all /blog pages' });
+  html += card({ accent: 'web', name: 'Blog views · lifetime', value: fmt(JETPACK.lifetimeBlogViews), sublabel: 'Jetpack · all posts' });
+  html += card({ accent: 'web', name: 'Blog views · last 30 days', value: fmt(w.blogViews30d), sublabel: 'GA4' });
   html += card({
     accent: 'web', name: 'LinkedIn referrals', value: fmt(w.liReferrals),
     target: 'target: ' + fmt(T.liReferrals), chipHtml: chip(getStatus(w.liReferrals, T.liReferrals)),
