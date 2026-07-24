@@ -682,7 +682,7 @@ function render(data) {
   // CTOR
   var ctorStatus = e.broadcastCTOR != null ? getStatus(e.broadcastCTOR, T.ctorBroadcast) : 'tbd';
   var ctorContext = e.broadcastSends
-    ? 'avg across ' + fmt(e.broadcastSends) + ' send' + (e.broadcastSends === 1 ? '' : 's') + (e.broadcastFrom ? ' since ' + fmtDate(e.broadcastFrom) : '')
+    ? 'avg across ' + fmt(e.broadcastSends) + ' send' + (e.broadcastSends === 1 ? '' : 's') + ' · last 90 days'
     : '';
   html += card({
     accent: 'email',
