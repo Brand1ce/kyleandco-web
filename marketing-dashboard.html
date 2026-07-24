@@ -294,6 +294,20 @@ var DEMO = {
     blogViewsYTD:       7320,
     liReferrals:         412,
     reportDownloads:      91,
+    topPages: [
+      { title: 'Home', path: '/', views: 3120 },
+      { title: 'Candidate Fraud Report', path: '/candidatefraud/report/', views: 980 },
+      { title: 'AI Council', path: '/aicouncil', views: 640 },
+    ],
+    topReferrers: [
+      { source: 'linkedin.com', sessions: 708 },
+      { source: 'google', sessions: 512 },
+      { source: '(direct)', sessions: 430 },
+    ],
+    topBlogs: [
+      { title: 'How to Vet AI Vendors', path: '/how-to-vet-ai-vendors/', views: 410 },
+      { title: 'HR AI Archetypes', path: '/hr-ai-archetypes/', views: 300 },
+    ],
   },
   content: {
     contentShipped:        8,
@@ -437,6 +451,24 @@ function podcastRangeBox(r) {
     + '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(r.episodes) + '</div><div class="card-sublabel">episodes</div></div>'
     + '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(r.avg) + '</div><div class="card-sublabel">avg / ep</div></div>'
     + '</div></div>';
+}
+
+function listCard(title, subtitle, items) {
+  var rows = '';
+  (items || []).forEach(function(it, i) {
+    rows += '<div style="display:grid;grid-template-columns:16px 1fr auto;gap:.6rem;align-items:center;padding:.45rem 0;' + (i > 0 ? 'border-top:1px solid rgba(39,55,82,0.05);' : '') + '">'
+      + '<span style="font-size:.72rem;color:#9D92AD;font-weight:700;">' + (i + 1) + '</span>'
+      + '<span style="min-width:0;">'
+        + '<span style="display:block;font-size:.78rem;color:#273752;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="' + String(it.label).replace(/"/g, '&quot;') + '">' + it.label + '</span>'
+        + (it.sublabel ? '<span style="display:block;font-size:.66rem;color:#9D92AD;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + it.sublabel + '</span>' : '')
+      + '</span>'
+      + '<span style="font-size:.82rem;font-weight:700;color:#273752;">' + fmt(it.value) + '</span>'
+      + '</div>';
+  });
+  if (!rows) rows = '<div style="font-size:.72rem;color:#9D92AD;padding:.5rem 0;">No data yet</div>';
+  return '<div class="card accent-web"><div class="card-name">' + title + '</div>'
+    + (subtitle ? '<div style="font-size:.68rem;color:#9D92AD;margin-bottom:.35rem;">' + subtitle + '</div>' : '')
+    + rows + '</div>';
 }
 
 function podcastEpList(title, subtitle, eps) {
@@ -663,6 +695,22 @@ function render(data) {
   // ══════════════════════════════════════════════════════════════════
   // SECTION 3 — Podcast — Transformation Realness
   // ══════════════════════════════════════════════════════════════════
+  // ══════════════════════════════════════════════════════════════════
+  // Traffic — Top pages, referrers, blogs (GA4)
+  // ══════════════════════════════════════════════════════════════════
+  var topPagesItems = (w.topPages || []).map(function(x) { return { label: x.title || x.path, sublabel: x.path, value: x.views }; });
+  var topBlogItems  = (w.topBlogs || []).map(function(x) { return { label: x.title || x.path, sublabel: x.path, value: x.views }; });
+  var topRefItems   = (w.topReferrers || []).map(function(x) { return { label: x.source, value: x.sessions }; });
+  html += '<div class="section">';
+  html += '<div class="section-header"><div class="section-title">Traffic — Top pages, referrers &amp; blogs</div><div class="section-source">GA4 · this quarter</div></div>';
+  html += '<div class="cards">';
+  html += '<div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;">';
+  html += listCard('Top pages', 'by views', topPagesItems);
+  html += listCard('Top referrers', 'by sessions', topRefItems);
+  html += listCard('Top blog posts', 'by views', topBlogItems);
+  html += '</div>';
+  html += '</div></div>';
+
   if (p && p.ranges) {
     html += '<div class="section">';
     html += '<div class="section-header"><div class="section-title">Podcast — Transformation Realness</div><div class="section-source">Megaphone</div></div>';
