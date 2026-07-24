@@ -626,21 +626,27 @@ function render(data) {
   html += '</div>';
 
   // ══════════════════════════════════════════════════════════════════
-  // SECTION 1 — Q2 Aligned KPIs (from marketing strategy deck)
+  // SECTION 1 — Audience (MailerLite · audience growth)
   // ══════════════════════════════════════════════════════════════════
   html += '<div class="section">';
-  html += '<div class="section-header"><div class="section-title">Q2 Aligned KPIs</div><div class="section-source">From marketing strategy deck</div></div>';
+  html += '<div class="section-header"><div class="section-title">Audience</div><div class="section-source">MailerLite · audience growth</div></div>';
   html += '<div class="cards">';
 
-  // New subscribers Q2
-  var netNewStatus = getStatus(e.netNewQ2, T.netNewSubs);
-  var totalTarget  = e.totalSubscribers != null ? fmt(e.totalSubscribers) + ' today → 17,000 goal' : '';
+  // Total subscribers (headline audience number)
   html += card({
     accent: 'email',
-    name: 'New subscribers · Q2',
+    name: 'Total subscribers',
+    value: fmt(e.totalSubscribers),
+    sublabel: 'goal: 17,000',
+  });
+
+  // New subscribers this quarter
+  var netNewStatus = getStatus(e.netNewQ2, T.netNewSubs);
+  html += card({
+    accent: 'email',
+    name: 'New subscribers · this quarter',
     value: e.netNewQ2 != null ? '+' + fmt(e.netNewQ2) : '—',
-    sublabel: totalTarget,
-    target: 'Q2 goal: +' + fmt(T.netNewSubs),
+    target: 'goal: +' + fmt(T.netNewSubs),
     chipHtml: chip(netNewStatus),
     progressHtml: progressBar(e.netNewQ2, T.netNewSubs, '+' + fmt(T.netNewSubs)),
   });
@@ -682,32 +688,13 @@ function render(data) {
     progressHtml: e.organicCount != null ? progressBar(e.organicCount, T.organicGrowth, fmt(T.organicGrowth)) : '',
   });
 
-  html += '</div>';
-
-  // Milestone commitments (part of aligned KPIs)
-  html += '<div style="margin-top:1rem;">';
-  var msLabels = {
-    'on-track': '✓ On track', 'in-progress': '→ In progress',
-    'behind': '↓ Behind', 'done': '✓ Done', 'tbd': 'TBD', 'not-started': 'Not started',
-  };
-  [
-    { label: 'Vendor Proof Delivered',            note: 'Q2: Toolkit Impact Brief (30 days post-launch)',  key: m.vendorImpactBriefs },
-    { label: 'Advisory Inquiry path live',        note: 'Q2: Path live by May 15 · form → Kyle → close',  key: m.advisoryInquiries  },
-    { label: 'Speaking page live',                note: 'Q2: Speaking page · Q3: Mainstage pitches',       key: m.speaking           },
-  ].forEach(function(ms) {
-    var s = ms.key || 'tbd';
-    html += '<div class="milestone">' +
-      '<div><div class="milestone-name">' + ms.label + '</div><div class="milestone-note">' + ms.note + '</div></div>' +
-      chip(s, msLabels[s] || s) +
-      '</div>';
-  });
   html += '</div></div>';
 
   // ══════════════════════════════════════════════════════════════════
-  // SECTION 2 — Visibility & Engagement (informational, not payout-tied)
+  // SECTION 2 — Email (MailerLite)
   // ══════════════════════════════════════════════════════════════════
   html += '<div class="section">';
-  html += '<div class="section-header"><div class="section-title">Visibility & Engagement</div><div class="section-source">MailerLite · GA4 · manual</div></div>';
+  html += '<div class="section-header"><div class="section-title">Email</div><div class="section-source">MailerLite</div></div>';
   html += '<div class="cards">';
 
   // CTOR
@@ -717,63 +704,23 @@ function render(data) {
     name: 'Email CTOR',
     value: fmtPct(e.broadcastCTOR, 1),
     valueClass: 'sm',
-    sublabel: 'Clicks ÷ opens · industry avg: 3–5%',
-    target: 'Target: ≥' + T.ctorBroadcast + '%',
+    sublabel: 'clicks ÷ opens · industry avg 3–5%',
+    target: 'target: ≥' + T.ctorBroadcast + '%',
     chipHtml: chip(ctorStatus),
     progressHtml: e.broadcastCTOR != null ? progressBar(e.broadcastCTOR, T.ctorBroadcast, T.ctorBroadcast + '%') : '',
   });
 
-  // Blog views YTD
-  html += card({
-    accent: 'web',
-    name: 'Blog views · YTD',
-    value: fmt(w.blogViewsYTD),
-    sublabel: 'year to date',
-  });
-
-  // LinkedIn referrals
-  html += card({
-    accent: 'web',
-    name: 'LinkedIn referrals · Q2',
-    value: fmt(w.liReferrals),
-    target: 'Target: ' + fmt(T.liReferrals) + ' sessions',
-    chipHtml: chip(getStatus(w.liReferrals, T.liReferrals)),
-    progressHtml: progressBar(w.liReferrals, T.liReferrals, fmt(T.liReferrals)),
-  });
-
-  // Resource clicks
-  var dlBreakdown = '';
-  if (w.resourceClicks) {
-    var rc = w.resourceClicks;
-    dlBreakdown = '<div style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid rgba(39,55,82,0.07);display:grid;grid-template-columns:1fr 1fr;gap:0.3rem 0.75rem;">' +
-      '<div style="font-size:0.68rem;color:#9D92AD;">AI Literacy</div><div style="font-size:0.68rem;font-weight:600;color:#273752;text-align:right;">' + rc.course + '</div>' +
-      '<div style="font-size:0.68rem;color:#9D92AD;">Change Mgmt eBook</div><div style="font-size:0.68rem;font-weight:600;color:#273752;text-align:right;">' + rc.ebook + '</div>' +
-      '<div style="font-size:0.68rem;color:#9D92AD;">Solution Framework</div><div style="font-size:0.68rem;font-weight:600;color:#273752;text-align:right;">' + rc.framework + '</div>' +
-      '<div style="font-size:0.68rem;color:#9D92AD;">Responsible AI</div><div style="font-size:0.68rem;font-weight:600;color:#273752;text-align:right;">' + rc.workbook + '</div>' +
-      '</div>';
-  }
-  html += card({
-    accent: 'web',
-    name: 'Resource clicks · all time',
-    value: fmt(w.reportDownloads),
-    chipHtml: chip('manual', '↗ All time'),
-    progressHtml: dlBreakdown,
-  });
-
-  // Candidate Fraud report — overall engagement
-  var cfDownloads    = (w.resourceClicks && w.resourceClicks.candidatefraud) || 0;
-  var cfEarlyAccess  = cf.earlyAccess || 0;
-  var cfWebinar      = cf.webinar     || 0;
-  html += '<div class="card accent-web" style="grid-column:1/-1;">';
-  html += '<div class="card-name">Candidate Fraud · Report Engagement</div>';
+  // Candidate Fraud campaign (email-driven funnel)
+  var cfDownloads = (w.resourceClicks && w.resourceClicks.candidatefraud) || 0;
+  html += '<div class="card accent-email" style="grid-column:1/-1;">';
+  html += '<div class="card-name">Candidate Fraud campaign</div>';
   html += '<div style="display:flex;gap:3rem;flex-wrap:wrap;margin-top:.75rem;align-items:flex-end;">';
-  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cfEarlyAccess) + '</div><div class="card-sublabel">early access signups</div></div>';
-  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cfWebinar) + '</div><div class="card-sublabel">webinar registrants</div></div>';
-  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cfDownloads) + '</div><div class="card-sublabel">direct downloads</div></div>';
+  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cf.earlyAccess || 0) + '</div><div class="card-sublabel">early access signups</div></div>';
+  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cf.webinar || 0) + '</div><div class="card-sublabel">webinar registrants</div></div>';
+  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cfDownloads) + '</div><div class="card-sublabel">report downloads</div></div>';
   html += '</div>';
-  html += '<div style="margin-top:.5rem;font-size:.72rem;color:var(--muted);">Early access + webinar via MailerLite · Direct downloads via site counter (real grabs). The report page itself is ungated, so email-driven reads show up in GA4, not here.</div>';
+  html += '<div style="margin-top:.5rem;font-size:.72rem;color:var(--muted);">Early access + webinar via MailerLite · downloads via site counter. The report page is ungated, so email-driven reads show up in GA4.</div>';
   html += '</div>';
-
 
   html += '</div></div>';
 
@@ -791,8 +738,27 @@ function render(data) {
   var gaRefs  = (w.topReferrers || []).map(function(x) { return { label: x.source, value: x.sessions }; });
 
   html += '<div class="section">';
-  html += '<div class="section-header"><div class="section-title">Traffic — pages, blogs &amp; referrers</div><div class="section-source">Jetpack (all time) + GA4 (last 90 days)</div></div>';
+  html += '<div class="section-header"><div class="section-title">Web traffic</div><div class="section-source">GA4 · Jetpack</div></div>';
   html += '<div class="cards">';
+
+  // Headline web numbers
+  html += card({ accent: 'web', name: 'Blog views · lifetime', value: fmt(w.blogViewsYTD), sublabel: 'all /blog pages' });
+  html += card({
+    accent: 'web', name: 'LinkedIn referrals', value: fmt(w.liReferrals),
+    target: 'target: ' + fmt(T.liReferrals), chipHtml: chip(getStatus(w.liReferrals, T.liReferrals)),
+    progressHtml: progressBar(w.liReferrals, T.liReferrals, fmt(T.liReferrals)),
+  });
+  var dlBreakdown = '';
+  if (w.resourceClicks) {
+    var rc = w.resourceClicks;
+    dlBreakdown = '<div style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid rgba(39,55,82,0.07);display:grid;grid-template-columns:1fr 1fr;gap:0.3rem 0.75rem;">' +
+      '<div style="font-size:0.68rem;color:#9D92AD;">AI Literacy</div><div style="font-size:0.68rem;font-weight:600;color:#273752;text-align:right;">' + rc.course + '</div>' +
+      '<div style="font-size:0.68rem;color:#9D92AD;">Change Mgmt eBook</div><div style="font-size:0.68rem;font-weight:600;color:#273752;text-align:right;">' + rc.ebook + '</div>' +
+      '<div style="font-size:0.68rem;color:#9D92AD;">Solution Framework</div><div style="font-size:0.68rem;font-weight:600;color:#273752;text-align:right;">' + rc.framework + '</div>' +
+      '<div style="font-size:0.68rem;color:#9D92AD;">Responsible AI</div><div style="font-size:0.68rem;font-weight:600;color:#273752;text-align:right;">' + rc.workbook + '</div>' +
+      '</div>';
+  }
+  html += card({ accent: 'web', name: 'Resource clicks · all time', value: fmt(w.reportDownloads), chipHtml: chip('manual', '↗ All time'), progressHtml: dlBreakdown });
 
   // Top blog posts — all time vs last 90 days
   html += '<div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;">';
@@ -837,6 +803,28 @@ function render(data) {
 
     html += '</div></div>';
   }
+
+  // ══════════════════════════════════════════════════════════════════
+  // Commitments (strategic milestones)
+  // ══════════════════════════════════════════════════════════════════
+  html += '<div class="section">';
+  html += '<div class="section-header"><div class="section-title">Commitments</div><div class="section-source">strategic milestones</div></div>';
+  var msLabels = {
+    'on-track': '✓ On track', 'in-progress': '→ In progress',
+    'behind': '↓ Behind', 'done': '✓ Done', 'tbd': 'TBD', 'not-started': 'Not started',
+  };
+  [
+    { label: 'Vendor Proof Delivered',     note: 'Toolkit Impact Brief (30 days post-launch)', key: m.vendorImpactBriefs },
+    { label: 'Advisory Inquiry path live', note: 'Form → Kyle → close',                         key: m.advisoryInquiries  },
+    { label: 'Speaking page live',         note: 'Speaking page · mainstage pitches',           key: m.speaking           },
+  ].forEach(function(ms) {
+    var s = ms.key || 'tbd';
+    html += '<div class="milestone">' +
+      '<div><div class="milestone-name">' + ms.label + '</div><div class="milestone-note">' + ms.note + '</div></div>' +
+      chip(s, msLabels[s] || s) +
+      '</div>';
+  });
+  html += '</div>';
 
   document.getElementById('main-content').innerHTML = html;
 }
