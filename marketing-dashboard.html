@@ -442,15 +442,19 @@ function progressBar(val, target, label) {
   var pct = Math.min(100, (val / target) * 100);
   var cls = pct >= 80 ? 'green' : pct >= 50 ? 'yellow' : 'red';
   var lbl = label !== undefined ? label : target;
-  var diff = Math.round((val / target) * 100 - 100);   // +/- vs the Q2 goal
-  var diffTxt = (diff >= 0 ? '+' : '') + diff + '% vs goal';
   return '<div class="progress-wrap">' +
     '<div class="progress-labels"><span>0</span><span>' + lbl + '</span></div>' +
     '<div class="progress-track">' +
       '<div class="progress-fill ' + cls + '" style="width:' + pct + '%"></div>' +
     '</div>' +
-    '<div class="delta-label ' + (diff >= 0 ? 'up' : 'down') + '">' + diffTxt + '</div>' +
     '</div>';
+}
+
+// Small quarter-over-quarter comparison line (green up / amber down)
+function qoqLine(pct) {
+  if (pct == null || isNaN(pct)) return '';
+  var up = pct >= 0;
+  return '<div class="delta-label ' + (up ? 'up' : 'down') + '">' + (up ? '▲ +' : '▼ ') + fmtPct(Math.abs(pct), 0) + ' vs last quarter</div>';
 }
 
 // ── Card builder ──────────────────────────────────────────────────────
@@ -633,60 +637,41 @@ function render(data) {
   html += '<div class="section-header"><div class="section-title">Audience</div><div class="section-source">MailerLite · audience growth</div></div>';
   html += '<div class="cards">';
 
-  // Total subscribers (headline audience number)
-  html += card({
-    accent: 'email',
-    name: 'Total subscribers',
-    value: fmt(e.totalSubscribers),
-    sublabel: 'goal: 17,000',
-  });
-
   // New subscribers this quarter
-  var netNewStatus = getStatus(e.netNewQ2, T.netNewSubs);
   html += card({
     accent: 'email',
     name: 'New subscribers · this quarter',
     value: e.netNewQ2 != null ? '+' + fmt(e.netNewQ2) : '—',
-    target: 'goal: +' + fmt(T.netNewSubs),
-    chipHtml: chip(netNewStatus),
-    progressHtml: progressBar(e.netNewQ2, T.netNewSubs, '+' + fmt(T.netNewSubs)),
+    sublabel: fmt(e.totalSubscribers) + ' total',
+    progressHtml: qoqLine(e.qoqGrowth),
   });
 
   // QoQ growth — organic core audience
-  var qoqStatus = getStatus(e.qoqGrowth, T.qoqGrowth);
   html += card({
     accent: 'email',
-    name: 'QoQ organic core growth',
-    value: fmtPct(e.qoqGrowth, 1),
+    name: 'Organic growth · QoQ',
+    value: (e.qoqGrowth != null ? (e.qoqGrowth >= 0 ? '+' : '') + fmtPct(e.qoqGrowth, 1) : '—'),
     valueClass: 'sm',
-    sublabel: 'organic baseline 945 · goal 1,200',
-    target: 'Target: ~' + T.qoqGrowth + '%',
-    chipHtml: chip(qoqStatus),
-    progressHtml: progressBar(e.qoqGrowth, T.qoqGrowth, T.qoqGrowth + '%'),
-  });
-
-  // Practitioner %
-  var practStatus = e.practitionerPct != null ? getStatus(e.practitionerPct, T.practitionerPct) : 'manual';
-  html += card({
-    accent: 'email',
-    name: 'Practitioner % tagged',
-    value: fmtPct(e.practitionerPct, 0),
-    valueClass: 'sm',
-    sublabel: 'Q1 baseline: 66.7% · Target: 68%+ (11,500+ practitioners)',
-    chipHtml: e.practitionerPct != null ? chip(practStatus) : chip('manual', '✎ Update in sheet'),
-    progressHtml: e.practitionerPct != null ? progressBar(e.practitionerPct, T.practitionerPct, T.practitionerPct + '%') : '',
+    sublabel: 'organic core, quarter over quarter',
   });
 
   // Organic / core audience count
-  var organicStatus = e.organicCount != null ? getStatus(e.organicCount, T.organicGrowth) : 'manual';
   html += card({
     accent: 'email',
     name: 'Organic core audience',
     value: fmt(e.organicCount),
-    sublabel: 'baseline 945 · target 1,200',
-    target: 'Goal: ' + fmt(T.organicGrowth) + ' organic subscribers',
-    chipHtml: e.organicCount != null ? chip(organicStatus) : chip('manual', '✎ Update in sheet'),
-    progressHtml: e.organicCount != null ? progressBar(e.organicCount, T.organicGrowth, fmt(T.organicGrowth)) : '',
+    sublabel: 'was 945 last quarter',
+    chipHtml: e.organicCount == null ? chip('manual', '✎ Update in sheet') : '',
+  });
+
+  // Practitioner %
+  html += card({
+    accent: 'email',
+    name: 'Practitioner % of list',
+    value: fmtPct(e.practitionerPct, 0),
+    valueClass: 'sm',
+    sublabel: 'was 66.7% last quarter',
+    chipHtml: e.practitionerPct == null ? chip('manual', '✎ Update in sheet') : '',
   });
 
   html += '</div></div>';
@@ -697,6 +682,7 @@ function render(data) {
   html += '<div class="section">';
   html += '<div class="section-header"><div class="section-title">Email</div><div class="section-source">MailerLite</div></div>';
   html += '<div class="cards">';
+  html += '<div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;align-items:stretch;">';
 
   // CTOR
   var ctorStatus = e.broadcastCTOR != null ? getStatus(e.broadcastCTOR, T.ctorBroadcast) : 'tbd';
@@ -706,23 +692,22 @@ function render(data) {
     value: fmtPct(e.broadcastCTOR, 1),
     valueClass: 'sm',
     sublabel: 'clicks ÷ opens · industry avg 3–5%',
-    target: 'target: ≥' + T.ctorBroadcast + '%',
     chipHtml: chip(ctorStatus),
-    progressHtml: e.broadcastCTOR != null ? progressBar(e.broadcastCTOR, T.ctorBroadcast, T.ctorBroadcast + '%') : '',
   });
 
   // Candidate Fraud campaign (email-driven funnel)
   var cfDownloads = (w.resourceClicks && w.resourceClicks.candidatefraud) || 0;
-  html += '<div class="card accent-email" style="grid-column:1/-1;">';
+  html += '<div class="card accent-email">';
   html += '<div class="card-name">Candidate Fraud campaign</div>';
-  html += '<div style="display:flex;gap:3rem;flex-wrap:wrap;margin-top:.75rem;align-items:flex-end;">';
-  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cf.earlyAccess || 0) + '</div><div class="card-sublabel">early access signups</div></div>';
-  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cf.webinar || 0) + '</div><div class="card-sublabel">webinar registrants</div></div>';
-  html += '<div><div class="card-value" style="font-size:2rem;">' + fmt(cfDownloads) + '</div><div class="card-sublabel">report downloads</div></div>';
+  html += '<div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:.75rem;align-items:flex-end;">';
+  html += '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(cf.earlyAccess || 0) + '</div><div class="card-sublabel">early access</div></div>';
+  html += '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(cf.webinar || 0) + '</div><div class="card-sublabel">webinar regs</div></div>';
+  html += '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(cfDownloads) + '</div><div class="card-sublabel">downloads</div></div>';
   html += '</div>';
-  html += '<div style="margin-top:.5rem;font-size:.72rem;color:var(--muted);">Early access + webinar via MailerLite · downloads via site counter. The report page is ungated, so email-driven reads show up in GA4.</div>';
+  html += '<div style="margin-top:.6rem;font-size:.7rem;color:#9D92AD;">Early access + webinar via MailerLite · downloads via site counter.</div>';
   html += '</div>';
 
+  html += '</div>';
   html += '</div></div>';
 
   // ══════════════════════════════════════════════════════════════════
