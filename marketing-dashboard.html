@@ -140,6 +140,9 @@ body {
 .pace-label {
   font-size: 0.6rem; color: #2D5C94; margin-top: 0.3rem; opacity: 0.8;
 }
+.delta-label { font-size: 0.62rem; margin-top: 0.35rem; font-weight: 600; }
+.delta-label.up   { color: #16a34a; }
+.delta-label.down { color: #b45309; }
 
 /* ── Podcast episode list ── */
 .ep-list { margin-top: 1rem; border-top: 1px solid rgba(39,55,82,0.08); padding-top: 0.5rem; }
@@ -439,16 +442,14 @@ function progressBar(val, target, label) {
   var pct = Math.min(100, (val / target) * 100);
   var cls = pct >= 80 ? 'green' : pct >= 50 ? 'yellow' : 'red';
   var lbl = label !== undefined ? label : target;
-  var paceNote = pct < Q2_PCT
-    ? '<div class="pace-label">↑ Pace target today: ' + Math.round((Q2_PCT / 100) * target) + ' (' + Q2_PCT + '% of quarter elapsed)</div>'
-    : '';
+  var diff = Math.round((val / target) * 100 - 100);   // +/- vs the Q2 goal
+  var diffTxt = (diff >= 0 ? '+' : '') + diff + '% vs Q2 goal';
   return '<div class="progress-wrap">' +
     '<div class="progress-labels"><span>0</span><span>' + lbl + '</span></div>' +
     '<div class="progress-track">' +
       '<div class="progress-fill ' + cls + '" style="width:' + pct + '%"></div>' +
-      '<div class="pace-marker" style="left:' + Q2_PCT + '%"></div>' +
     '</div>' +
-    paceNote +
+    '<div class="delta-label ' + (diff >= 0 ? 'up' : 'down') + '">' + diffTxt + '</div>' +
     '</div>';
 }
 
