@@ -443,7 +443,7 @@ function progressBar(val, target, label) {
   var cls = pct >= 80 ? 'green' : pct >= 50 ? 'yellow' : 'red';
   var lbl = label !== undefined ? label : target;
   var diff = Math.round((val / target) * 100 - 100);   // +/- vs the Q2 goal
-  var diffTxt = (diff >= 0 ? '+' : '') + diff + '% vs Q2 goal';
+  var diffTxt = (diff >= 0 ? '+' : '') + diff + '% vs goal';
   return '<div class="progress-wrap">' +
     '<div class="progress-labels"><span>0</span><span>' + lbl + '</span></div>' +
     '<div class="progress-track">' +
@@ -457,7 +457,7 @@ function progressBar(val, target, label) {
 function card(opts) {
   /* opts: accent, name, value, valueClass, sublabel, target, chipHtml, progressHtml, isKpi */
   return '<div class="card accent-' + (opts.accent||'email') + '">' +
-    (opts.isKpi ? '<div class="kpi-badge">Q2 Bonus KPI</div>' : '') +
+    (opts.isKpi ? '<div class="kpi-badge">Aligned KPI</div>' : '') +
     '<div class="card-name">' + opts.name + '</div>' +
     '<div class="card-value' + (opts.valueClass ? ' '+opts.valueClass : '') + '">' + (opts.value||'—') + '</div>' +
     (opts.sublabel ? '<div class="card-sublabel">' + opts.sublabel + '</div>' : '') +
@@ -658,7 +658,7 @@ function render(data) {
     name: 'QoQ organic core growth',
     value: fmtPct(e.qoqGrowth, 1),
     valueClass: 'sm',
-    sublabel: 'Q1 organic baseline: 945 · Q2 goal: 1,200',
+    sublabel: 'organic baseline 945 · goal 1,200',
     target: 'Target: ~' + T.qoqGrowth + '%',
     chipHtml: chip(qoqStatus),
     progressHtml: progressBar(e.qoqGrowth, T.qoqGrowth, T.qoqGrowth + '%'),
@@ -682,7 +682,7 @@ function render(data) {
     accent: 'email',
     name: 'Organic core audience',
     value: fmt(e.organicCount),
-    sublabel: 'Q1 baseline: 945 · Q2 target: 1,200',
+    sublabel: 'baseline 945 · target 1,200',
     target: 'Goal: ' + fmt(T.organicGrowth) + ' organic subscribers',
     chipHtml: e.organicCount != null ? chip(organicStatus) : chip('manual', '✎ Update in sheet'),
     progressHtml: e.organicCount != null ? progressBar(e.organicCount, T.organicGrowth, fmt(T.organicGrowth)) : '',
