@@ -613,9 +613,18 @@ function render(data) {
   }
 
   // Candidate fraud: microsite, report page, PDF
-  html += bigTile(fmt(w.cfLandingViews30d), 'fraud microsite visits', '', 'last 30 days');
-  html += bigTile(fmt(w.cfReportViews30d), 'report page reads', '', 'last 30 days');
-  html += bigTile(fmt(pdfClicks), 'report PDF downloads', '', 'all time');
+  var cfLanding = w.cfLandingViews30d, cfReport = w.cfReportViews30d, cfWindow = 'last 30 days';
+  if (cfLanding == null && cfReport == null) {   // Apps Script not redeployed yet — fall back to 90-day top pages
+    var fp = w.topPages || [];
+    var land = fp.filter(function(x) { return x.path === '/candidatefraud/'; })[0];
+    var rep  = fp.filter(function(x) { return x.path && x.path.indexOf('/candidatefraud/report') === 0; })[0];
+    cfLanding = land ? land.views : null;
+    cfReport  = rep  ? rep.views  : null;
+    cfWindow  = 'last 90 days';
+  }
+  html += bigTile(fmt(cfLanding), 'fraud microsite visits', '', cfWindow);
+  html += bigTile(fmt(cfReport), 'report page reads', '', cfWindow);
+  html += bigTile(fmt(pdfClicks), 'fraud report PDF downloads', '', '');
 
   html += '</div>';
   html += '</div>';
