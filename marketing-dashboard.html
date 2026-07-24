@@ -489,6 +489,26 @@ function podcastRangeBox(r) {
     + '</div></div>';
 }
 
+// All-time traffic from Jetpack (WordPress) — manual export; send me a new one to refresh.
+var JETPACK = {
+  updated: 'Jul 24, 2026',
+  topPages: [
+    { title: 'Blog', path: '/blog/', views: 2592 },
+    { title: 'Home', path: '/', views: 2322 },
+    { title: 'AI Interviewers: Under the Hood', path: '/ai-interviewers-a-look-under-the-hood/', views: 1174 },
+    { title: 'Why Do Trade Shows Still Exist?', path: '/hr-tech-trade-show-roi/', views: 760 },
+    { title: 'The AI Layoff Wave is a Trap', path: '/the-ai-layoff-wave-is-a-trap-hrs-hero-moment/', views: 679 },
+    { title: 'The Build vs. Buy Debate in HR', path: '/hr-build-vs-buy-ai-internal-tools/', views: 658 },
+  ],
+  topBlogs: [
+    { title: 'AI Interviewers: Under the Hood', path: '/ai-interviewers-a-look-under-the-hood/', views: 1174 },
+    { title: 'Why Do Trade Shows Still Exist?', path: '/hr-tech-trade-show-roi/', views: 760 },
+    { title: 'The AI Layoff Wave is a Trap', path: '/the-ai-layoff-wave-is-a-trap-hrs-hero-moment/', views: 679 },
+    { title: 'The Build vs. Buy Debate in HR', path: '/hr-build-vs-buy-ai-internal-tools/', views: 658 },
+    { title: 'The AI Conversation in HR Is Growing Up', path: '/ai-conversation-hr-growing-up-unleash-transform-2026/', views: 651 },
+  ],
+};
+
 function listCard(title, subtitle, items) {
   var rows = '';
   (items || []).forEach(function(it, i) {
@@ -757,17 +777,36 @@ function render(data) {
   // ══════════════════════════════════════════════════════════════════
   // Traffic — Top pages, referrers, blogs (GA4)
   // ══════════════════════════════════════════════════════════════════
-  var topPagesItems = (w.topPages || []).map(function(x) { return { label: x.title || x.path, sublabel: x.path, value: x.views }; });
-  var topBlogItems  = (w.topBlogs || []).map(function(x) { return { label: x.title || x.path, sublabel: x.path, value: x.views }; });
-  var topRefItems   = (w.topReferrers || []).map(function(x) { return { label: x.source, value: x.sessions }; });
+  var pageMap = function(x) { return { label: x.title || x.path, sublabel: x.path, value: x.views }; };
+  var jpPages = (JETPACK.topPages || []).map(pageMap);
+  var jpBlogs = (JETPACK.topBlogs || []).map(pageMap);
+  var gaPages = (w.topPages || []).map(pageMap);
+  var gaBlogs = (w.topBlogs || []).map(pageMap);
+  var gaRefs  = (w.topReferrers || []).map(function(x) { return { label: x.source, value: x.sessions }; });
+
   html += '<div class="section">';
-  html += '<div class="section-header"><div class="section-title">Traffic — Top pages, referrers &amp; blogs</div><div class="section-source">GA4 · this quarter</div></div>';
+  html += '<div class="section-header"><div class="section-title">Traffic — pages, blogs &amp; referrers</div><div class="section-source">Jetpack (all time) + GA4 (last 90 days)</div></div>';
   html += '<div class="cards">';
+
+  // Top blog posts — all time vs last 90 days
   html += '<div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;">';
-  html += listCard('Top pages', 'by views', topPagesItems);
-  html += listCard('Top referrers', 'by sessions', topRefItems);
-  html += listCard('Top blog posts', 'by views', topBlogItems);
+  html += listCard('Top blog posts · all time', 'Jetpack · since launch', jpBlogs);
+  html += listCard('Top blog posts · last 90 days', 'GA4', gaBlogs);
   html += '</div>';
+
+  // Top pages — all time vs last 90 days
+  html += '<div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1rem;">';
+  html += listCard('Top pages · all time', 'Jetpack · since launch', jpPages);
+  html += listCard('Top pages · last 90 days', 'GA4', gaPages);
+  html += '</div>';
+
+  // Referrers — GA4 only (Jetpack export has no referrer data)
+  html += '<div style="grid-column:1/-1;margin-top:1rem;">';
+  html += listCard('Top referrers · last 90 days', 'GA4 · by sessions', gaRefs);
+  html += '</div>';
+
+  html += '<div style="grid-column:1/-1;margin-top:.75rem;font-size:.68rem;color:#9D92AD;">Jetpack and GA4 count differently, so all-time and 90-day totals are not directly comparable — read each column on its own.</div>';
+
   html += '</div></div>';
 
   if (p && p.ranges) {
