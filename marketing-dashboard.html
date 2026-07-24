@@ -596,26 +596,28 @@ function render(data) {
 
   var html = '';
 
-  // ── The big picture — plain-English view for a non-marketer ─────────
-  var podDl   = (p && p.ranges && p.ranges.lastQuarter) ? p.ranges.lastQuarter.downloads : null;
-  var topBlog = (w.topBlogs && w.topBlogs[0]) ? w.topBlogs[0] : null;
-  var growth  = e.qoqGrowth;
+  // ── The big picture — the numbers the team cares about ──────────────
+  var topBlog = w.topBlog30d || (w.topBlogs && w.topBlogs[0]) || null;
+  var pdfClicks = (w.resourceClicks && w.resourceClicks.candidatefraud) || 0;
   html += '<div class="bigpic">';
-  html += '<div class="bigpic-title">Marketing KPIs</div>';
+  html += '<div class="bigpic-title">The big picture · last 30 days</div>';
   html += '<div class="bigpic-grid">';
-  html += bigTile(fmt(totalSubs), 'people on our email list',
-                  (netNew != null ? '▲ +' + fmt(netNew) + ' this quarter' : ''),
-                  (growth != null ? 'up ' + fmtPct(growth, 0) + ' vs last quarter' : ''));
-  html += bigTile(fmt(podDl), 'podcast downloads last quarter', '', '');
-  html += bigTile(fmt(cf.webinar), 'signed up for the fraud webinar', '', 'live session · Jul 29');
+
+  // Audience growth
+  html += bigTile(fmt(totalSubs), 'on our email list',
+                  (netNew != null ? '▲ +' + fmt(netNew) + ' this quarter' : ''), '');
+
+  // Top performing blog post
   if (topBlog) {
-    html += bigTile(fmt(topBlog.views), 'reads on our top blog', '', '“' + shorten(topBlog.title, 38) + '”');
+    html += bigTile(fmt(topBlog.views), 'reads · top blog post', '', '“' + shorten(topBlog.title, 30) + '” · 30d');
   }
+
+  // Candidate fraud: microsite, report page, PDF
+  html += bigTile(fmt(w.cfLandingViews30d), 'fraud microsite visits', '', 'last 30 days');
+  html += bigTile(fmt(w.cfReportViews30d), 'report page reads', '', 'last 30 days');
+  html += bigTile(fmt(pdfClicks), 'report PDF downloads', '', 'all time');
+
   html += '</div>';
-  var refTop = (w.topReferrers || []).slice(0, 2).map(function(r) { return prettySource(r.source); }).filter(Boolean);
-  if (refTop.length === 2) {
-    html += '<div class="bigpic-note">Most people find us through <strong>' + refTop[0] + '</strong> and <strong>' + refTop[1] + '</strong>.</div>';
-  }
   html += '</div>';
 
   // ── Context strip ──────────────────────────────────────────────────
