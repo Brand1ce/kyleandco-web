@@ -73,6 +73,8 @@ function HCAIC_Final() {
   const [momentumDownloadOpen, setMomentumDownloadOpen] = useState(false);
   const [momentumDownloadSubmitted, setMomentumDownloadSubmitted] = useState(false);
   const [pillarOpen, setPillarOpen] = useState(null);
+  const [outputsOpen, setOutputsOpen] = useState(null);
+  const [toolkitOpen, setToolkitOpen] = useState(false);
 
   // AI Momentum Model content (from Kyle & Co research report)
   const momentumDrivers = [
@@ -120,13 +122,13 @@ function HCAIC_Final() {
   }, []);
 
   useEffect(() => {
-    if (selectedResource || momentumOpen || gateOpen || applyOpen || kcoOpen || townhallOpen || underwriterOpen || momentumDownloadOpen || selectedMember || pillarOpen) {
+    if (selectedResource || gateOpen || applyOpen || kcoOpen || townhallOpen || underwriterOpen || selectedMember || pillarOpen || outputsOpen || toolkitOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
     return () => { document.body.style.overflow = ''; };
-  }, [selectedResource, momentumOpen, gateOpen, applyOpen, kcoOpen, townhallOpen, underwriterOpen, momentumDownloadOpen, selectedMember, pillarOpen]);
+  }, [selectedResource, gateOpen, applyOpen, kcoOpen, townhallOpen, underwriterOpen, selectedMember, pillarOpen, outputsOpen, toolkitOpen]);
 
   useEffect(() => {
     if (localStorage.getItem('hcaic_access') === '1') setAccessGranted(true);
@@ -325,41 +327,78 @@ function HCAIC_Final() {
 
   const filtered = activeFilter === 'all' ? resources : resources.filter(r => r.kind === activeFilter);
 
-  const focusAreas = [
+  // Single source of truth: pillar + champion + its Year Two agenda item + accent color.
+  // Pillars, agenda cards, and the pillar member modal all read from this, in this order.
+  const PILLARS = [
     {
       n: '01',
-      t: "Map AI's Impact on HR",
-      leader: 'Kirandeep Virdi',
-      d: "Track how AI is actively reshaping HR work, identifying what's being automated, augmented, and left to human judgment across the function.",
-      outputs: ['AI impact heatmap across HR functions', 'Human vs. AI work map (task-level)', "Role-by-role analysis of shifting skills"],
+      name: 'AI Literacy & Education',
+      accent: '#9D92AD',
+      champion: { name: 'Kate Gilkey', photo: 'member-headshots/kate-gilkey.jpg' },
+      blurb: 'Structured learning and resources to build HR confidence and clarity around AI.',
+      full: 'Provide structured learning, experience-derived resources, and foundational knowledge to help HR professionals build confidence and clarity around AI within the functions and within the purview of HR. This work aims to demystify AI, break through market noise, and empower teams with the knowledge and understanding needed to engage meaningfully in AI conversations and initiatives.',
+      agenda: {
+        title: 'Scale AI Literacy into Practical Capability',
+        leader: { name: 'Jelena Marjanovic', photo: 'member-headshots/jelena-marjanovic.jpg' },
+        d: "Build on Year One's AI Literacy Toolkit and CodeSignal course, moving from awareness into role-specific, outcomes-anchored, Monday-morning-actionable capability.",
+        outputs: ['Practitioner playbook by role and business outcome', '“Force multiplier” framework', 'Use case library mapped to productivity, analytics, and cross-functional ROI', 'Expanded CodeSignal course content'],
+      },
     },
     {
       n: '02',
-      t: 'Define the Human-Centered HR Operating Model',
-      leader: 'Clayton Rodgers',
-      d: 'Clarify how HR must be restructured as AI becomes embedded in work, building a practical model around human strengths and AI-enabled capabilities.',
-      outputs: ['Role redesign guidance (TA, HRBPs, L&D, HR Ops)', 'HR operating model archetypes', "Before/after “day in the life” workflow comparisons"],
+      name: 'AI Trust & Safety',
+      accent: '#6E8CA0',
+      champion: { name: 'Bruce Nichols', photo: 'member-headshots/bruce-nichols.png' },
+      blurb: 'Practical tools to evaluate AI through fairness, transparency, and accountability.',
+      full: 'Equip HR leaders with practical tools and guidance to evaluate AI solutions through a lens of fairness, transparency, and accountability. This includes resources on bias mitigation, ethical AI adoption, and curated updates on global regulations, positioning HR as a responsible steward of AI use across the employee lifecycle.',
+      agenda: {
+        title: 'Build a Practical HR AI Governance & Risk Framework',
+        leader: { name: 'Susan Jackson', photo: 'member-headshots/susan-jackson.jpg' },
+        d: "Help HR leaders govern AI responsibly in high-stakes processes, clarifying decision rights, human accountability, and how to move from “could we?” to “should we?”",
+        outputs: ['HR AI governance operating model', 'Risk typology for hiring, performance, pay, terminations', 'AI risk index by vendor and HR process', 'Governance maturity assessment and regulatory briefings'],
+      },
     },
     {
       n: '03',
-      t: 'Build a Practical HR AI Governance & Risk Framework',
-      leader: 'Susan Jackson',
-      d: "Help HR leaders govern AI responsibly in high-stakes processes, clarifying decision rights, human accountability, and how to move from “could we?” to “should we?”",
-      outputs: ['HR AI governance operating model', 'Risk typology for hiring, performance, pay, terminations', 'AI risk index by vendor and HR process'],
+      name: 'AI Value Realization',
+      accent: '#B8894E',
+      champion: { name: 'Kate Warman', photo: 'member-headshots/kate-warman.jpg' },
+      blurb: 'Frameworks for defining business problems, building cases, and demonstrating AI ROI.',
+      full: 'Support HR in making the case for AI by defining real business problems, articulating ROI, and highlighting AI\'s impact on outcomes like efficiency, experience, and business alignment. This pillar includes frameworks for vendor evaluation, business case development, and a living repository of AI use cases and success stories.',
+      agenda: {
+        title: 'Launch the Human-Centric AI Impact Analysis Program',
+        leader: { name: 'Rob Devlin', photo: 'member-headshots/rob-devlin.jpg' },
+        d: "Capture how organizations are actually implementing AI in HR, going deep on what worked, what didn't, and what the human and business impact really looked like.",
+        outputs: ['Dual-dimension impact framework (business ROI + human impact)', '4–6 published impact analyses across functions and industries', 'Anonymous-first publishing with opt-in recognition', 'Lessons-learned synthesis'],
+      },
     },
     {
       n: '04',
-      t: 'Scale AI Literacy into Practical Capability',
-      leader: 'Jelena Marjanovic',
-      d: "Build on Year One's AI Literacy Toolkit and CodeSignal course, moving from awareness into role-specific, outcomes-anchored, Monday-morning-actionable capability.",
-      outputs: ['Practitioner playbook by role and business outcome', "“Force multiplier” framework", 'Expanded CodeSignal course content'],
+      name: 'AI Adoption & Change Management',
+      accent: '#B07C8F',
+      champion: { name: 'Bill Musman', photo: 'member-headshots/bill-musman.png' },
+      blurb: 'Practical roadmaps to pilot, scale, and manage workforce impact of AI adoption.',
+      full: 'Guide HR through the responsible implementation of AI, from piloting new tools to scaling their use across functions. Emphasis is placed on practical adoption roadmaps, stakeholder alignment, and managing the workforce impact, including talent acquisition, reskilling, and job transformation.',
+      agenda: {
+        title: 'Define the Human-Centered HR Operating Model',
+        leader: { name: 'Clayton Rodgers', photo: 'member-headshots/clayton-rodgers.jpg' },
+        d: 'Clarify how HR must be restructured as AI becomes embedded in work, building a practical model around human strengths and AI-enabled capabilities.',
+        outputs: ['Role redesign guidance (TA, HRBPs, L&D, HR Ops)', 'HR operating model archetypes', '“Day in the life” before/after workflow comparisons', 'Executive translation guide'],
+      },
     },
     {
       n: '05',
-      t: 'Launch the Human-Centric AI Impact Analysis Program',
-      leader: 'Rob Devlin',
-      d: "Capture how organizations are actually implementing AI in HR, going deep on what worked, what didn't, and what the human and business impact really looked like.",
-      outputs: ['Dual-dimension impact framework (business ROI + human impact)', '4–6 published impact analyses across functions and industries', 'Anonymous-first publishing with opt-in recognition'],
+      name: 'Forward-Thinking & Future-Ready AI',
+      accent: '#7C9473',
+      champion: { name: 'Adam Treitler', photo: 'member-headshots/adam-treitler.jpg' },
+      blurb: "Curated insights on emerging trends to help HR anticipate and lead what's next.",
+      full: 'Explore and interpret emerging technology trends to help HR leaders anticipate what\'s next. Through curated insights and conversations with technologists and scientific experts, this pillar ensures HR stays ahead of market shifts, and shapes the future of work and workforce strategy with confidence.',
+      agenda: {
+        title: "Map AI's Impact on HR",
+        leader: { name: 'Kirandeep Virdi', photo: 'member-headshots/kirandeep-virdi.jpg' },
+        d: "Track how AI is actively reshaping HR work, identifying what's being automated, augmented, and left to human judgment across the function.",
+        outputs: ['AI impact heatmap across HR functions', 'Human vs. AI work map (task-level)', 'Role-by-role analysis of shifting skills and scope', '“What’s changing now” briefs'],
+      },
     },
   ];
 
@@ -936,127 +975,97 @@ function HCAIC_Final() {
       </section>
       </div>
 
-      {/* ABOUT THE COUNCIL */}
-      <section style={{ background: C.navy, padding: isMobile ? '4rem 1.25rem 0' : '7rem 2.5rem 0', overflow: 'hidden' }}>
+      {/* ABOUT THE COUNCIL — pillars */}
+      <section style={{ background: C.ivory, padding: isMobile ? '4rem 1.25rem 3rem' : '7rem 2.5rem 4rem' }}>
         <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
-          {/* Top: mission + CTAs */}
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '5rem', alignItems: 'end', marginBottom: isMobile ? '3rem' : '5rem' }}>
-            <div>
-              <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1.5rem' }}>
-                The Human-Centric AI Council
-              </div>
-              <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-0.02em', color: C.ivory, marginBottom: '1.5rem' }}>
-                Practitioner-led.<br /><span className="serif-italic" style={{ color: C.cream }}>Five pillars. One goal.</span>
-              </h2>
-              <p style={{ fontSize: '0.98rem', lineHeight: 1.7, color: 'rgba(247,241,234,0.75)', maxWidth: '48ch', marginBottom: '2.25rem' }}>
-                The Council brings together senior HR and talent leaders to build the frameworks and fluency that advance responsible, people-first AI adoption, through honest dialogue, shared learning, and co-creation grounded in real-world transformation needs.
-              </p>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <a href="#join" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: 'transparent', color: C.ivory, padding: '0.95rem 1.75rem', borderRadius: '100px', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500, border: '1px solid rgba(247,241,234,0.25)' }}>
-                  Get involved →
-                </a>
-              </div>
+          {/* Header, stacked above the pillars */}
+          <div style={{ maxWidth: '46ch', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
+            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1.25rem' }}>
+              The Human-Centric AI Council
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {[
-                { n: '01', name: 'AI Literacy & Education', champion: 'Kate Gilkey', blurb: 'Structured learning and resources to build HR confidence and clarity around AI.', full: 'Provide structured learning, experience-derived resources, and foundational knowledge to help HR professionals build confidence and clarity around AI within the functions and within the purview of HR. This work aims to demystify AI, break through market noise, and empower teams with the knowledge and understanding needed to engage meaningfully in AI conversations and initiatives.' },
-                { n: '02', name: 'AI Trust & Safety', champion: 'Bruce Nichols', blurb: 'Practical tools to evaluate AI through fairness, transparency, and accountability.', full: 'Equip HR leaders with practical tools and guidance to evaluate AI solutions through a lens of fairness, transparency, and accountability. This includes resources on bias mitigation, ethical AI adoption, and curated updates on global regulations, positioning HR as a responsible steward of AI use across the employee lifecycle.' },
-                { n: '03', name: 'AI Value Realization', champion: 'Kate Warman', blurb: 'Frameworks for defining business problems, building cases, and demonstrating AI ROI.', full: 'Support HR in making the case for AI by defining real business problems, articulating ROI, and highlighting AI\'s impact on outcomes like efficiency, experience, and business alignment. This pillar includes frameworks for vendor evaluation, business case development, and a living repository of AI use cases and success stories.' },
-                { n: '04', name: 'AI Adoption & Change Management', champion: 'Bill Musman', blurb: 'Practical roadmaps to pilot, scale, and manage workforce impact of AI adoption.', full: 'Guide HR through the responsible implementation of AI, from piloting new tools to scaling their use across functions. Emphasis is placed on practical adoption roadmaps, stakeholder alignment, and managing the workforce impact, including talent acquisition, reskilling, and job transformation.' },
-                { n: '05', name: 'Forward-Thinking & Future-Ready AI', champion: 'Adam Treitler', blurb: 'Curated insights on emerging trends to help HR anticipate and lead what\'s next.', full: 'Explore and interpret emerging technology trends to help HR leaders anticipate what\'s next. Through curated insights and conversations with technologists and scientific experts, this pillar ensures HR stays ahead of market shifts, and shapes the future of work and workforce strategy with confidence.' },
-              ].map((p) => (
-                <div key={p.n} style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start', padding: '1rem 1.25rem', borderRadius: '6px', background: 'rgba(247,241,234,0.06)', borderLeft: `2px solid ${C.lilac}` }}>
-                  <span className="mono" style={{ fontSize: '0.6rem', color: C.lilac, fontWeight: 500, flexShrink: 0, paddingTop: '0.2rem' }}>{p.n}</span>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '0.2rem' }}>
-                      <div style={{ fontSize: '0.88rem', fontWeight: 500, color: C.ivory }}>{p.name}</div>
-                      <div className="mono" style={{ fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: C.lilac, whiteSpace: 'nowrap' }}>Champion · {p.champion}</div>
-                    </div>
-                    <div style={{ fontSize: '0.78rem', color: 'rgba(247,241,234,0.6)', lineHeight: 1.5 }}>{p.blurb}</div>
-                    <button onClick={() => { track('pillar_open', { pillar_name: p.name }); setPillarOpen(p); }} style={{ marginTop: '0.5rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.72rem', color: C.lilac, fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.25rem', opacity: 0.85 }}>Read more →</button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 2026 WORK */}
-      <section id="work" style={{ background: C.navy, color: C.ivory, padding: isMobile ? '4rem 1.25rem' : '7rem 2.5rem' }}>
-        <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.4fr', gap: isMobile ? '1.5rem' : '4rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
-            <div>
-              <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.65, marginBottom: '1.25rem' }}>
-                Year Two · 2026 · The Agenda
-              </div>
-              <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 4rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em' }}>
-                This year, one question: <span className="serif-italic" style={{ color: C.cream }}>what is human?</span>
-              </h2>
-            </div>
-            <p style={{ fontSize: '1.05rem', lineHeight: 1.6, opacity: 0.85, maxWidth: '52ch' }}>
-              Year One built the foundations. This year, the work gets harder. AI is pushing HR to reconsider operating models, redesign processes, and overhaul decision-making. What stays human. What doesn't. Who decides. Five priorities, each led by a practitioner.
+            <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-0.02em', color: C.navy, marginBottom: '1.25rem' }}>
+              Practitioner-led.<br /><span className="serif-italic" style={{ color: C.lilac }}>Five pillars. One goal.</span>
+            </h2>
+            <p style={{ fontSize: '1rem', lineHeight: 1.7, color: C.slate, marginBottom: 0 }}>
+              The Council brings together senior HR and talent leaders to build the frameworks and fluency that advance responsible, people-first AI adoption. Each pillar is led by a champion, with a group of contributing members behind it.
             </p>
           </div>
 
-          <div id="year-two-priorities" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1px', background: 'rgba(247, 241, 234, 0.12)', border: `1px solid rgba(247, 241, 234, 0.12)` }}>
-            {focusAreas.map((f, i) => (
-              <div key={i} className="work-card" style={{ background: C.navy, padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '380px', borderBottom: '2px solid transparent' }}>
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1.5rem' }}>
-                    <span className="mono" style={{ fontSize: '0.75rem', color: C.cream, fontWeight: 500 }}>{f.n}</span>
-                    <span className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55 }}>Led by {f.leader}</span>
-                  </div>
-                  <h3 className="display" style={{ fontSize: '1.4rem', fontWeight: 500, marginBottom: '1rem', letterSpacing: '-0.01em', lineHeight: 1.1 }}>{f.t}</h3>
-                  <p style={{ fontSize: '0.88rem', lineHeight: 1.55, opacity: 0.78 }}>{f.d}</p>
+          {/* Pillar cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(270px, 1fr))', gap: '1.25rem' }}>
+            {PILLARS.map((p) => (
+              <div key={p.n} style={{ display: 'flex', flexDirection: 'column', background: C.white, borderRadius: '10px', borderTop: `3px solid ${p.accent}`, boxShadow: '0 1px 3px rgba(39,55,82,0.06)', padding: '1.75rem 1.6rem', overflow: 'hidden' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '1rem' }}>
+                  <span className="mono" style={{ fontSize: '0.72rem', fontWeight: 600, color: p.accent }}>{p.n}</span>
+                  <div style={{ fontSize: '0.98rem', fontWeight: 600, color: C.navy, lineHeight: 1.2 }}>{p.name}</div>
                 </div>
-                <div style={{ marginTop: '2rem', paddingTop: '1.25rem', borderTop: `1px dashed rgba(247, 241, 234, 0.2)` }}>
-                  <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '0.6rem' }}>
-                    Flagship outputs
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '1rem' }}>
+                  <img src={p.champion.photo} alt={p.champion.name} style={{ width: '44px', height: '44px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${p.accent}` }} />
+                  <div>
+                    <div className="mono" style={{ fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: p.accent, fontWeight: 600, marginBottom: '0.1rem' }}>Champion</div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 500, color: C.navy }}>{p.champion.name}</div>
                   </div>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                    {f.outputs.map((o, j) => (
-                      <li key={j} className="serif-italic" style={{ fontSize: '0.85rem', color: C.cream, lineHeight: 1.35, paddingLeft: '0.85rem', position: 'relative' }}>
-                        <span style={{ position: 'absolute', left: 0, color: C.lilac }}>·</span>{o}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
+                <p style={{ fontSize: '0.86rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.25rem', flex: 1 }}>{p.blurb}</p>
+                <button onClick={() => { track('pillar_open', { pillar_name: p.name }); setPillarOpen(p); }} style={{ alignSelf: 'flex-start', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600, color: C.navy, fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }} className="link-arrow">
+                  Meet the members <span>→</span>
+                </button>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* COHORT 2 APPLY CTA */}
-          <div style={{ marginTop: '3.5rem', padding: '2.5rem 2.75rem', background: 'rgba(247, 241, 234, 0.04)', border: `1px solid rgba(247, 241, 234, 0.15)`, borderRadius: '6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
-            <div style={{ maxWidth: '56ch' }}>
-              <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.cream, marginBottom: '0.5rem' }}>
-                Year Two · Practitioner seats
-              </div>
-              <div className="display" style={{ fontSize: '1.45rem', fontWeight: 500, letterSpacing: '-0.01em', lineHeight: 1.2 }}>
-                If you lead HR and have moved AI work forward, <span className="serif-italic" style={{ color: C.cream }}>we want you in the room.</span>
-              </div>
+      {/* JOIN THE COUNCIL — band between pillars and agenda */}
+      <section style={{ background: C.cream, padding: isMobile ? '2.5rem 1.25rem' : '3rem 2.5rem' }}>
+        <div style={{ maxWidth: '1500px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
+          <div style={{ maxWidth: '56ch' }}>
+            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.navy, opacity: 0.55, marginBottom: '0.5rem' }}>
+              Year Two · Practitioner seats
             </div>
-            <button
-              onClick={() => setApplyOpen(true)}
-              style={{
-                background: C.cream,
-                color: C.navy,
-                padding: '1rem 1.9rem',
-                borderRadius: '100px',
-                border: 'none',
-                cursor: 'pointer',
-                fontSize: '0.9rem',
-                fontWeight: 500,
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                flexShrink: 0,
-              }}
-              className="link-arrow"
-            >
-              Apply to join the Council <span>→</span>
-            </button>
+            <div className="display" style={{ fontSize: isMobile ? '1.35rem' : '1.65rem', fontWeight: 500, letterSpacing: '-0.01em', lineHeight: 1.2, color: C.navy }}>
+              If you lead HR and have moved AI work forward, <span className="serif-italic">we want you in the room.</span>
+            </div>
+          </div>
+          <button onClick={() => setApplyOpen(true)} className="link-arrow" style={{ background: C.navy, color: C.ivory, padding: '1rem 1.9rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '0.9rem', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+            Join the Council <span>→</span>
+          </button>
+        </div>
+      </section>
+
+      {/* YEAR TWO AGENDA */}
+      <section id="work" style={{ background: C.ivory, padding: isMobile ? '4rem 1.25rem' : '7rem 2.5rem' }}>
+        <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
+          <div style={{ marginBottom: isMobile ? '2.5rem' : '4rem', maxWidth: '52ch' }}>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1.25rem' }}>
+              Year Two · 2026 · The Agenda
+            </div>
+            <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 4rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em', color: C.navy, marginBottom: '1.25rem' }}>
+              This year, one question: <span className="serif-italic" style={{ color: C.lilac }}>what is human?</span>
+            </h2>
+            <p style={{ fontSize: '1.02rem', lineHeight: 1.6, color: C.slate }}>
+              Year One built the foundations. This year, the work gets harder. Five priorities, one for each pillar, each led by a practitioner.
+            </p>
+          </div>
+
+          <div id="year-two-priorities" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
+            {PILLARS.map((p) => (
+              <div key={p.n} style={{ display: 'flex', flexDirection: 'column', background: p.accent + '14', borderRadius: '10px', borderTop: `3px solid ${p.accent}`, padding: '1.9rem 1.7rem', minHeight: isMobile ? 'auto' : '340px' }}>
+                <div className="mono" style={{ fontSize: '0.6rem', letterSpacing: '0.13em', textTransform: 'uppercase', color: p.accent, fontWeight: 700, marginBottom: '0.9rem' }}>{p.n} · {p.name}</div>
+                <h3 className="display" style={{ fontSize: '1.3rem', fontWeight: 500, marginBottom: '0.85rem', letterSpacing: '-0.01em', lineHeight: 1.15, color: C.navy }}>{p.agenda.title}</h3>
+                <p style={{ fontSize: '0.88rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.25rem', flex: 1 }}>{p.agenda.d}</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.1rem' }}>
+                  <img src={p.agenda.leader.photo} alt={p.agenda.leader.name} style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${p.accent}` }} />
+                  <div>
+                    <div className="mono" style={{ fontSize: '0.54rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: C.slate, opacity: 0.7 }}>Led by</div>
+                    <div style={{ fontSize: '0.83rem', fontWeight: 500, color: C.navy }}>{p.agenda.leader.name}</div>
+                  </div>
+                </div>
+                <button onClick={() => { track('workstream_open', { pillar: p.name }); setOutputsOpen(p); }} style={{ alignSelf: 'flex-start', background: C.white, color: C.navy, border: `1px solid ${p.accent}`, borderRadius: '100px', padding: '0.55rem 1.15rem', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 600, fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }} className="link-arrow">
+                  Flagship outputs <span>→</span>
+                </button>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -2559,16 +2568,60 @@ The Year One Toolkit · proof of what the Council ships
         </div>
       )}
 
-      {pillarOpen && (
-        <div className="modal-overlay" onClick={() => setPillarOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.6)', zIndex: 220, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', animation: 'fadeUp 0.3s ease-out' }}>
-          <div onClick={(e) => e.stopPropagation()} style={{ background: C.navy, borderRadius: '12px', padding: '2.5rem', maxWidth: '560px', width: '100%', position: 'relative' }}>
-            <button onClick={() => setPillarOpen(null)} style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'none', border: 'none', color: C.lilac, cursor: 'pointer', fontSize: '1.25rem', lineHeight: 1 }}>×</button>
-            <div className="mono" style={{ fontSize: '0.6rem', color: C.lilac, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>{pillarOpen.n} · Pillar</div>
-            <h3 style={{ fontSize: '1.3rem', fontWeight: 500, color: C.ivory, letterSpacing: '-0.01em', marginBottom: '0.5rem', lineHeight: 1.2 }}>{pillarOpen.name}</h3>
-            {pillarOpen.champion && (
-              <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: C.cream, marginBottom: '1.25rem' }}>Champion · {pillarOpen.champion}</div>
-            )}
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, color: 'rgba(247,241,234,0.8)' }}>{pillarOpen.full}</p>
+      {pillarOpen && (() => {
+        const roster = members.filter(m => m.pillar === pillarOpen.name);
+        const champ = roster.find(m => m.champion) || { name: pillarOpen.champion.name, photo: pillarOpen.champion.photo };
+        const others = roster.filter(m => !m.champion);
+        return (
+          <div className="modal-overlay" onClick={() => setPillarOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.6)', zIndex: 220, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '4rem 2rem 3rem', overflowY: 'auto', animation: 'fadeUp 0.3s ease-out' }}>
+            <div onClick={(e) => e.stopPropagation()} style={{ background: C.ivory, borderRadius: '12px', padding: isMobile ? '2rem 1.5rem' : '2.5rem', maxWidth: '640px', width: '100%', position: 'relative', borderTop: `4px solid ${pillarOpen.accent}` }}>
+              <button onClick={() => setPillarOpen(null)} style={{ position: 'absolute', top: '1.1rem', right: '1.2rem', background: 'none', border: 'none', color: C.slate, cursor: 'pointer', fontSize: '1.4rem', lineHeight: 1 }} aria-label="Close">×</button>
+              <div className="mono" style={{ fontSize: '0.6rem', color: pillarOpen.accent, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '0.6rem' }}>{pillarOpen.n} · {pillarOpen.name}</div>
+              <h3 className="display" style={{ fontSize: '1.5rem', fontWeight: 500, color: C.navy, letterSpacing: '-0.01em', marginBottom: '0.85rem', lineHeight: 1.15 }}>Meet the Contributing Members</h3>
+              <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: C.slate, marginBottom: '1.75rem' }}>{pillarOpen.full}</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', padding: '1rem', background: pillarOpen.accent + '14', borderRadius: '8px', marginBottom: '1.5rem' }}>
+                <img src={champ.photo} alt={champ.name} style={{ width: '56px', height: '56px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${pillarOpen.accent}` }} />
+                <div>
+                  <div className="mono" style={{ fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: pillarOpen.accent, fontWeight: 700, marginBottom: '0.15rem' }}>Champion</div>
+                  <div style={{ fontSize: '0.98rem', fontWeight: 600, color: C.navy }}>{champ.name}</div>
+                  {champ.role && <div style={{ fontSize: '0.8rem', color: C.slate, lineHeight: 1.3 }}>{champ.role}</div>}
+                </div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '0.9rem 1.25rem' }}>
+                {others.map((m, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
+                    <img src={m.photo} alt={m.name} style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+                    <div>
+                      <div style={{ fontSize: '0.85rem', fontWeight: 500, color: C.navy, lineHeight: 1.2 }}>{m.name}</div>
+                      <div style={{ fontSize: '0.72rem', color: C.slate, lineHeight: 1.3 }}>{m.role}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
+      {outputsOpen && (
+        <div className="modal-overlay" onClick={() => setOutputsOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.6)', zIndex: 220, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '4rem 2rem 3rem', overflowY: 'auto', animation: 'fadeUp 0.3s ease-out' }}>
+          <div onClick={(e) => e.stopPropagation()} style={{ background: C.ivory, borderRadius: '12px', padding: isMobile ? '2rem 1.5rem' : '2.5rem', maxWidth: '560px', width: '100%', position: 'relative', borderTop: `4px solid ${outputsOpen.accent}` }}>
+            <button onClick={() => setOutputsOpen(null)} style={{ position: 'absolute', top: '1.1rem', right: '1.2rem', background: 'none', border: 'none', color: C.slate, cursor: 'pointer', fontSize: '1.4rem', lineHeight: 1 }} aria-label="Close">×</button>
+            <div className="mono" style={{ fontSize: '0.6rem', color: outputsOpen.accent, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '0.6rem' }}>{outputsOpen.n} · {outputsOpen.name}</div>
+            <h3 className="display" style={{ fontSize: '1.45rem', fontWeight: 500, color: C.navy, letterSpacing: '-0.01em', marginBottom: '0.5rem', lineHeight: 1.15 }}>{outputsOpen.agenda.title}</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.75rem' }}>
+              <img src={outputsOpen.agenda.leader.photo} alt={outputsOpen.agenda.leader.name} style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover' }} />
+              <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: C.slate }}>Led by {outputsOpen.agenda.leader.name}</div>
+            </div>
+            <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: outputsOpen.accent, fontWeight: 700, marginBottom: '1rem' }}>Flagship outputs</div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+              {outputsOpen.agenda.outputs.map((o, i) => (
+                <li key={i} style={{ display: 'flex', gap: '0.75rem', fontSize: '0.92rem', lineHeight: 1.5, color: C.navy }}>
+                  <span className="mono" style={{ color: outputsOpen.accent, fontWeight: 700, flexShrink: 0 }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span>{o}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       )}
