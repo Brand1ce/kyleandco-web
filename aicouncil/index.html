@@ -1182,67 +1182,43 @@ function HCAIC_Final() {
           </p>
         </div>
 
-        {PILLAR_ORDER.map((pillar, pi) => {
-          const bgColors = [C.lilac, C.navyMid, C.cream, C.lilacLight];
-          const group = members.filter(m => m.pillar === pillar);
-          return (
-            <div key={pillar} style={{ marginBottom: pi === PILLAR_ORDER.length - 1 ? 0 : (isMobile ? '3rem' : '4.5rem') }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.9rem', paddingBottom: '1.1rem', marginBottom: isMobile ? '1.75rem' : '2.5rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)` }}>
-                <span className="mono" style={{ fontSize: '0.7rem', color: C.lilac, fontWeight: 600 }}>{String(pi + 1).padStart(2, '0')}</span>
-                <h3 className="display" style={{ fontSize: isMobile ? '1.15rem' : '1.5rem', fontWeight: 500, letterSpacing: '-0.01em', color: C.navy, margin: 0 }}>{pillar}</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(120px, 1fr))', gap: isMobile ? '1.5rem 0.75rem' : '2rem 1.25rem' }}>
+          {members.map((m, i) => {
+            const initials = m.name.split(' ').map(n => n[0]).join('').slice(0, 2);
+            return (
+              <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ textAlign: 'center', cursor: 'pointer' }}>
+                <div
+                  className="avatar"
+                  style={{
+                    width: isMobile ? '64px' : '90px',
+                    height: isMobile ? '64px' : '90px',
+                    borderRadius: '50%',
+                    margin: '0 auto 0.7rem',
+                    background: `linear-gradient(135deg, ${C.navyMid}, ${C.navyMid}99)`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: 'Fraunces, serif',
+                    fontSize: isMobile ? '1.1rem' : '1.5rem',
+                    fontWeight: 400,
+                    color: C.ivory,
+                    transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+                    position: 'relative',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {m.photo ? (
+                    <img src={m.photo} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }} />
+                  ) : (
+                    <span style={{ position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>{initials}</span>
+                  )}
+                </div>
+                <div className="display" style={{ fontSize: '0.85rem', fontWeight: 500, marginBottom: '0.2rem', color: C.navy, lineHeight: 1.2 }}>{m.name}</div>
+                <div style={{ fontSize: '0.7rem', color: C.slate, lineHeight: 1.35, maxWidth: '20ch', margin: '0 auto' }}>{m.role}</div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(175px, 1fr))', gap: isMobile ? '1.25rem 0.75rem' : '2rem 1.5rem' }}>
-                {group.map((m, i) => {
-                  const bg = bgColors[(pi + i) % bgColors.length];
-                  const initials = m.name.split(' ').map(n => n[0]).join('').slice(0, 2);
-                  return (
-                    <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ textAlign: 'center', cursor: 'pointer' }}>
-                      <div
-                        className="avatar"
-                        style={{
-                          width: isMobile ? '80px' : '140px',
-                          height: isMobile ? '80px' : '140px',
-                          borderRadius: '50%',
-                          margin: '0 auto 1.1rem',
-                          background: `linear-gradient(135deg, ${bg}, ${bg}99)`,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          fontFamily: 'Fraunces, serif',
-                          fontSize: isMobile ? '1.4rem' : '2.3rem',
-                          fontWeight: 400,
-                          color: bg === C.cream ? C.navy : C.ivory,
-                          transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
-                          position: 'relative',
-                          overflow: 'hidden',
-                          border: m.champion ? `2px solid ${C.lilac}` : 'none',
-                        }}
-                      >
-                        {m.photo ? (
-                          <img
-                            src={m.photo}
-                            alt={m.name}
-                            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }}
-                          />
-                        ) : (
-                          <>
-                            <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(circle at 32% 30%, ${bg === C.cream ? 'rgba(255,255,255,0.4)' : 'rgba(247, 241, 234, 0.35)'}, transparent 60%)` }} />
-                            <span style={{ position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>{initials}</span>
-                          </>
-                        )}
-                      </div>
-                      {m.champion && (
-                        <div className="mono" style={{ fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: C.lilac, fontWeight: 600, marginBottom: '0.35rem' }}>Champion</div>
-                      )}
-                      <div className="display" style={{ fontSize: '1rem', fontWeight: 500, marginBottom: '0.3rem', color: C.navy }}>{m.name}</div>
-                      <div style={{ fontSize: '0.78rem', color: C.slate, lineHeight: 1.45, maxWidth: '22ch', margin: '0 auto' }}>{m.role}</div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </section>
 
       {/* UPCOMING & REPLAYS */}
@@ -1349,51 +1325,6 @@ function HCAIC_Final() {
           })}
         </div>
 
-      </section>
-
-      {/* AI MOMENTUM REPORT, Kyle & Co research */}
-      <section style={{ background: C.navy, color: C.ivory, padding: isMobile ? '4rem 1.25rem' : '6rem 2.5rem' }}>
-        <div style={{ maxWidth: '1500px', margin: '0 auto', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '5rem', alignItems: 'center' }}>
-          <div>
-            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <span>One more resource · From Kyle &amp; Co</span>
-            </div>
-            <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: '1.25rem', color: C.ivory }}>
-              AI is not about maturity.<br /><span className="serif-italic" style={{ color: C.cream }}>It's about momentum.</span>
-            </h2>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.65, color: 'rgba(247,241,234,0.8)', marginBottom: '2rem', maxWidth: '50ch' }}>
-              A companion resource. Not Council work, but it pairs with it. The HCAIC frameworks tell you what to do. The AI Momentum Report, from Kyle &amp; Co, tells you where you actually are: nine archetypes, three drivers, and a diagnostic for what's holding your AI work back.
-            </p>
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <button onClick={() => setMomentumDownloadOpen(true)} style={{ background: C.cream, color: C.navyDark, padding: '0.95rem 1.75rem', borderRadius: '100px', border: 'none', fontSize: '0.9rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                Download the report →
-              </button>
-              <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" style={{ color: C.ivory, fontSize: '0.88rem', fontWeight: 500, textDecoration: 'none', borderBottom: '1px solid rgba(247,241,234,0.4)', paddingBottom: '2px' }}>
-                Take the assessment →
-              </a>
-            </div>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {[
-              { n: '01', label: 'Capability', q: 'Are we equipped with the foundations to apply AI in HR?' },
-              { n: '02', label: 'Posture', q: 'Are we committed and aligned on how to move?' },
-              { n: '03', label: 'Investment', q: 'Are we committing meaningful resources?' },
-            ].map((d) => (
-              <div key={d.n} style={{ padding: '1.25rem 1.5rem', background: 'rgba(247,241,234,0.07)', borderRadius: '6px', borderLeft: `3px solid ${C.lilac}` }}>
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'baseline' }}>
-                  <span className="mono" style={{ fontSize: '0.65rem', color: C.lilac, fontWeight: 500, flexShrink: 0 }}>{d.n}</span>
-                  <div>
-                    <div style={{ fontSize: '0.92rem', fontWeight: 500, color: C.ivory, marginBottom: '0.25rem' }}>{d.label}</div>
-                    <div style={{ fontSize: '0.8rem', color: 'rgba(247,241,234,0.65)', lineHeight: 1.5 }}>{d.q}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-            <button onClick={() => setMomentumOpen(true)} style={{ background: 'none', border: 'none', color: 'rgba(247,241,234,0.7)', fontSize: '0.82rem', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer', textAlign: 'left', padding: '0.25rem 0', borderBottom: '1px solid rgba(247,241,234,0.25)', paddingBottom: '2px', alignSelf: 'flex-start' }}>
-              See all drivers &amp; archetypes →
-            </button>
-          </div>
-        </div>
       </section>
 
       {/* K&CO CONSULTING PULL */}
@@ -2442,49 +2373,7 @@ The Year One Toolkit · proof of what the Council ships
         </div>
       )}
 
-      {/* MOMENTUM REPORT DOWNLOAD MODAL */}
-      {momentumDownloadOpen && (
-        <div className="modal-overlay" onClick={() => { setMomentumDownloadOpen(false); setMomentumDownloadSubmitted(false); }}
-          style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.6)', zIndex: 250, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '5rem 2rem 3rem', overflowY: 'auto', animation: 'fadeUp 0.3s ease-out' }}>
-          <div onClick={(e) => e.stopPropagation()}
-            style={{ background: C.ivory, maxWidth: '520px', width: '100%', borderRadius: '8px', padding: '2.75rem 2.75rem 2.25rem', position: 'relative', boxShadow: '0 30px 80px rgba(23,35,57,0.3)' }}>
-            <button onClick={() => { setMomentumDownloadOpen(false); setMomentumDownloadSubmitted(false); }}
-              style={{ position: 'absolute', top: '1.1rem', right: '1.2rem', background: 'transparent', border: 'none', fontSize: '1.4rem', color: C.slate, cursor: 'pointer', padding: '0.4rem 0.7rem' }} aria-label="Close">×</button>
-            {momentumDownloadSubmitted ? (
-              <div style={{ padding: '2rem 0' }}>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1rem' }}>Report unlocked</div>
-                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '1rem' }}>Check your inbox.</h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate }}>The AI Momentum Report is on its way. You'll also receive a link to take the full assessment and find your archetype.</p>
-              </div>
-            ) : (
-              <>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>Research Report · Kyle &amp; Co</div>
-                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>The AI Momentum Report</h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>The model, the nine archetypes, and what it takes to build momentum. Research from Kyle &amp; Co, informed by work with senior HR leaders.</p>
-                <form action={ML_MOMENTUM_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'momentum_report'}); setTimeout(() => setMomentumDownloadSubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
-                    <input required type="text" name="fields[name]" placeholder="First name" style={gateInput(C)} />
-                    <input required type="text" name="fields[last_name]" placeholder="Last name" style={gateInput(C)} />
-                  </div>
-                  <input required type="email" name="fields[email]" placeholder="Work email" style={gateInput(C)} />
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
-                    <input required type="text" name="fields[job_title]" placeholder="Title" style={gateInput(C)} />
-                    <input required type="text" name="fields[company]" placeholder="Company" style={gateInput(C)} />
-                  </div>
-                  <input type="hidden" name="ml-submit" value="1" />
-                  <input type="hidden" name="anticsrf" value="true" />
-                  <button type="submit" style={{ marginTop: '0.5rem', background: C.navy, color: C.ivory, padding: '1rem 1.6rem', borderRadius: '100px', border: 'none', fontSize: '0.9rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                    Send me the report <span>→</span>
-                  </button>
-                  <div style={{ fontSize: '0.72rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>Kyle &amp; Co research. Free to download.</div>
-                </form>
-              </>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* AI MOMENTUM MODAL */}
+      {/* MEMBER DETAIL MODAL */}
       {selectedMember && (
         <div
           className="modal-overlay"
@@ -2622,125 +2511,6 @@ The Year One Toolkit · proof of what the Council ships
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-      )}
-
-      {momentumOpen && (
-        <div
-          className="modal-overlay"
-          onClick={() => setMomentumOpen(false)}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'rgba(23, 35, 57, 0.6)',
-            zIndex: 220,
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-            padding: '4rem 2rem',
-            overflowY: 'auto',
-            animation: 'fadeUp 0.3s ease-out',
-          }}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              background: C.ivory,
-              maxWidth: '880px',
-              width: '100%',
-              borderRadius: '8px',
-              padding: '3rem 3rem 2.5rem',
-              position: 'relative',
-              boxShadow: '0 30px 80px rgba(23, 35, 57, 0.3)',
-            }}
-          >
-            <button
-              onClick={() => setMomentumOpen(false)}
-              style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', background: 'transparent', border: 'none', fontSize: '1.5rem', color: C.slate, cursor: 'pointer', padding: '0.4rem 0.7rem' }}
-              aria-label="Close"
-            >
-              ×
-            </button>
-            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.8rem' }}>
-              The AI Momentum Model
-            </div>
-            <h3 className="display" style={{ fontSize: '2rem', fontWeight: 500, lineHeight: 1.08, letterSpacing: '-0.02em', color: C.navy, marginBottom: '0.9rem' }}>
-              Momentum has three dimensions. <span className="serif-italic" style={{ color: C.lilac }}>Nine drivers behind them.</span>
-            </h3>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: C.slate, marginBottom: '2.25rem', maxWidth: '68ch' }}>
-              The model reframes AI adoption in HR: not maturity as a finish line, but momentum as a force to be built. Each dimension answers a diagnostic question, with three drivers underneath.
-            </p>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem', marginBottom: '2.5rem' }}>
-              {momentumDrivers.map((d, i) => (
-                <div key={i} style={{ padding: '1.35rem 1.35rem 1.5rem', background: 'rgba(157, 146, 173, 0.1)', borderRadius: '6px', borderTop: `2px solid ${C.lilac}` }}>
-                  <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.4rem' }}>
-                    Dimension
-                  </div>
-                  <div className="display" style={{ fontSize: '1.15rem', fontWeight: 500, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.4rem' }}>
-                    {d.dimension}
-                  </div>
-                  <div className="serif-italic" style={{ fontSize: '0.82rem', color: C.slate, marginBottom: '1rem', lineHeight: 1.4 }}>
-                    {d.question}
-                  </div>
-                  <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                    {d.drivers.map((dr, j) => (
-                      <li key={j} style={{ fontSize: '0.82rem', lineHeight: 1.4 }}>
-                        <div style={{ fontWeight: 500, color: C.navy }}>{dr.name}</div>
-                        <div style={{ color: C.slate, fontSize: '0.78rem' }}>{dr.note}</div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-
-            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '1rem' }}>
-              Nine archetypes, three categories
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
-              {momentumArchetypes.map((a, i) => (
-                <div key={i} style={{ padding: '1.15rem 1.25rem', background: C.white, border: `1px solid rgba(39, 55, 82, 0.1)`, borderRadius: '6px' }}>
-                  <div className="display" style={{ fontSize: '1rem', fontWeight: 500, color: C.navy, marginBottom: '0.35rem' }}>
-                    {a.category}
-                  </div>
-                  <div style={{ fontSize: '0.8rem', color: C.slate, marginBottom: '0.8rem', lineHeight: 1.45 }}>
-                    {a.blurb}
-                  </div>
-                  <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-                    {a.items.map((it, j) => (
-                      <li key={j} className="mono" style={{ fontSize: '0.72rem', color: C.navy, letterSpacing: '0.01em' }}>
-                        · {it}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap', paddingTop: '1rem', borderTop: `1px solid rgba(39, 55, 82, 0.1)` }}>
-              <a
-                href="https://kyleandco.typeform.com/to/uQrXm9NS"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  background: C.navy,
-                  color: C.ivory,
-                  padding: '0.9rem 1.6rem',
-                  borderRadius: '100px',
-                  textDecoration: 'none',
-                  fontSize: '0.88rem',
-                  fontWeight: 500,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                }}
-              >
-                Take the assessment <span>→</span>
-              </a>
-              <span style={{ fontSize: '0.8rem', color: C.slate }}>Find your archetype in under 10 minutes.</span>
-            </div>
           </div>
         </div>
       )}
