@@ -2298,7 +2298,7 @@ The Year One Toolkit · proof of what the Council ships
             position: 'fixed',
             inset: 0,
             background: 'rgba(23, 35, 57, 0.6)',
-            zIndex: 220,
+            zIndex: 260,
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
@@ -2384,18 +2384,19 @@ The Year One Toolkit · proof of what the Council ships
               <div className="mono" style={{ fontSize: '0.6rem', color: pillarOpen.accent, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '0.6rem' }}>{pillarOpen.n} · {pillarOpen.name}</div>
               <h3 className="display" style={{ fontSize: '1.5rem', fontWeight: 500, color: C.navy, letterSpacing: '-0.01em', marginBottom: '0.85rem', lineHeight: 1.15 }}>Meet the Contributing Members</h3>
               <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: C.slate, marginBottom: '1.75rem' }}>{pillarOpen.full}</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', padding: '1rem', background: pillarOpen.accent + '14', borderRadius: '8px', marginBottom: '1.5rem' }}>
-                <img src={champ.photo} alt={champ.name} style={{ width: '56px', height: '56px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${pillarOpen.accent}` }} />
-                <div>
+              <div className="member-card" onClick={() => setSelectedMember(champ)} style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', padding: '1rem', background: pillarOpen.accent + '14', borderRadius: '8px', marginBottom: '1.5rem', cursor: 'pointer' }}>
+                <img src={champ.photo} alt={champ.name} className="avatar" style={{ width: '56px', height: '56px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${pillarOpen.accent}` }} />
+                <div style={{ flex: 1 }}>
                   <div className="mono" style={{ fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: pillarOpen.accent, fontWeight: 700, marginBottom: '0.15rem' }}>Champion</div>
                   <div style={{ fontSize: '0.98rem', fontWeight: 600, color: C.navy }}>{champ.name}</div>
                   {champ.role && <div style={{ fontSize: '0.8rem', color: C.slate, lineHeight: 1.3 }}>{champ.role}</div>}
                 </div>
+                <span className="mono" style={{ fontSize: '0.62rem', color: pillarOpen.accent, fontWeight: 600, whiteSpace: 'nowrap' }}>View bio →</span>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '0.9rem 1.25rem' }}>
                 {others.map((m, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
-                    <img src={m.photo} alt={m.name} style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+                  <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', cursor: 'pointer' }}>
+                    <img src={m.photo} alt={m.name} className="avatar" style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
                     <div>
                       <div style={{ fontSize: '0.85rem', fontWeight: 500, color: C.navy, lineHeight: 1.2 }}>{m.name}</div>
                       <div style={{ fontSize: '0.72rem', color: C.slate, lineHeight: 1.3 }}>{m.role}</div>
