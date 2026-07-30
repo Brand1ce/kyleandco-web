@@ -672,11 +672,11 @@ function HCAIC_Final() {
     {
       status: 'upcoming',
       type: 'Town Hall',
-      title: 'Cohort Zero Toolkit Launch',
-      date: 'May 28, 2026 · 1:00pm ET',
-      summary: 'The Council walks through all four frameworks, why they exist, and how HR teams are putting them to work.',
-      cta: 'Register',
-      onClick: () => setTownhallOpen(true),
+      title: 'Year Two Launch Town Hall',
+      date: 'September 2, 2026 · time TBA',
+      summary: 'The Council kicks off Year Two: the five priorities, who is leading each, and how HR teams and vendors can get involved. Underwriters welcome.',
+      cta: 'Registration opening soon',
+      comingSoon: true,
     },
   ];
 
@@ -1217,7 +1217,16 @@ function HCAIC_Final() {
                     {ev.summary}
                   </p>
                 </div>
-                {ev.onClick ? (
+                {ev.comingSoon ? (
+                  <span className="mono" style={{
+                    marginTop: 'auto', alignSelf: 'flex-start',
+                    fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase',
+                    color: C.slate, background: 'rgba(39, 55, 82, 0.06)',
+                    padding: '0.4rem 0.85rem', borderRadius: '100px', fontWeight: 500,
+                  }}>
+                    {ev.cta}
+                  </span>
+                ) : ev.onClick ? (
                   <button onClick={ev.onClick} style={{
                     background: 'none', border: 'none', padding: 0,
                     color: C.navy, fontSize: '0.85rem', fontWeight: 500,
