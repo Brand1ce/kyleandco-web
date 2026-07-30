@@ -327,32 +327,39 @@ function HCAIC_Final() {
 
   const focusAreas = [
     {
-      n: 'F1',
-      t: "AI's Impact on HR",
-      sub: 'Strategic Workstream',
-      d: "A strategic workstream focused on how AI is changing HR itself: roles, team structures, operating models, required capabilities, and cross-functional relationships.",
-      output: 'The HR Operating Model of 2027',
+      n: '01',
+      t: "Map AI's Impact on HR",
+      leader: 'Kirandeep Virdi',
+      d: "Track how AI is actively reshaping HR work — identifying what's being automated, augmented, and left to human judgment across the function.",
+      outputs: ['AI impact heatmap across HR functions', 'Human vs. AI work map (task-level)', "Role-by-role analysis of shifting skills"],
     },
     {
-      n: 'F2',
-      t: 'HR AI Governance & Risk',
-      sub: 'Practical Workstream',
-      d: "Continuing the work we started: A practical workstream focused on helping HR leaders govern AI responsibly without stalling innovation.",
-      output: 'Governance Operating Model + HR AI Risk Framework',
+      n: '02',
+      t: 'Define the Human-Centered HR Operating Model',
+      leader: 'Clayton Rodgers',
+      d: 'Clarify how HR must be restructured as AI becomes embedded in work — building a practical model around human strengths and AI-enabled capabilities.',
+      outputs: ['Role redesign guidance (TA, HRBPs, L&D, HR Ops)', 'HR operating model archetypes', "Before/after “day in the life” workflow comparisons"],
     },
     {
-      n: 'F3',
-      t: 'AI Literacy & Education',
-      sub: 'Always-On Enablement',
-      d: "Reframing as an always-on enablement workstream that translates HCAIC's body of work into learning experiences, tools, and practical development pathways.",
-      output: 'Role-Based AI Literacy Pathways',
+      n: '03',
+      t: 'Build a Practical HR AI Governance & Risk Framework',
+      leader: 'Susan Jackson',
+      d: "Help HR leaders govern AI responsibly in high-stakes processes — clarifying decision rights, human accountability, and how to move from “could we?” to “should we?”",
+      outputs: ['HR AI governance operating model', 'Risk typology for hiring, performance, pay, terminations', 'AI risk index by vendor and HR process'],
     },
     {
-      n: 'F4',
-      t: 'HCAI Case Studies',
-      sub: 'New for 2026',
-      d: 'A new program designed to showcase how organizations are actually putting these ideas into practice.',
-      output: 'Practitioner Case Study Series',
+      n: '04',
+      t: 'Scale AI Literacy into Practical Capability',
+      leader: 'Jelena Marjanovic',
+      d: "Build on Year One's AI Literacy Toolkit and CodeSignal course — moving from awareness into role-specific, outcomes-anchored, Monday-morning-actionable capability.",
+      outputs: ['Practitioner playbook by role and business outcome', "“Force multiplier” framework", 'Expanded CodeSignal course content'],
+    },
+    {
+      n: '05',
+      t: 'Launch the Human-Centric AI Impact Analysis Program',
+      leader: 'Rob Devlin',
+      d: "Capture how organizations are actually implementing AI in HR — going deep on what worked, what didn't, and what the human and business impact really looked like.",
+      outputs: ['Dual-dimension impact framework (business ROI + human impact)', '4–6 published impact analyses across functions and industries', 'Anonymous-first publishing with opt-in recognition'],
     },
   ];
 
@@ -1105,33 +1112,39 @@ function HCAIC_Final() {
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.4fr', gap: isMobile ? '1.5rem' : '4rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
             <div>
               <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.65, marginBottom: '1.25rem' }}>
-                Cohort 2 · 2026 · In Progress
+                Year Two · 2026 · The Agenda
               </div>
               <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 4rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em' }}>
                 This year, one question: <span className="serif-italic" style={{ color: C.cream }}>what is human?</span>
               </h2>
             </div>
             <p style={{ fontSize: '1.05rem', lineHeight: 1.6, opacity: 0.85, maxWidth: '52ch' }}>
-              Cohort Zero built the foundations. This year, the work gets harder. AI is pushing HR to reconsider operating models, redesign processes, and overhaul decision-making. What stays human. What doesn't. Who decides.
+              Year One built the foundations. This year, the work gets harder. AI is pushing HR to reconsider operating models, redesign processes, and overhaul decision-making. What stays human. What doesn't. Who decides. Five priorities, each led by a practitioner.
             </p>
           </div>
 
-          <div id="cohort2-apply-grid" style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: '1px', background: 'rgba(247, 241, 234, 0.12)', border: `1px solid rgba(247, 241, 234, 0.12)` }}>
+          <div id="cohort2-apply-grid" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1px', background: 'rgba(247, 241, 234, 0.12)', border: `1px solid rgba(247, 241, 234, 0.12)` }}>
             {focusAreas.map((f, i) => (
-              <div key={i} className="work-card" style={{ background: C.navy, padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '360px', borderBottom: '2px solid transparent' }}>
+              <div key={i} className="work-card" style={{ background: C.navy, padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '380px', borderBottom: '2px solid transparent' }}>
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1.5rem' }}>
                     <span className="mono" style={{ fontSize: '0.75rem', color: C.cream, fontWeight: 500 }}>{f.n}</span>
-                    <span className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55 }}>{f.sub}</span>
+                    <span className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55 }}>Led by {f.leader}</span>
                   </div>
-                  <h3 className="display" style={{ fontSize: '1.7rem', fontWeight: 500, marginBottom: '1rem', letterSpacing: '-0.01em', lineHeight: 1.05 }}>{f.t}</h3>
+                  <h3 className="display" style={{ fontSize: '1.4rem', fontWeight: 500, marginBottom: '1rem', letterSpacing: '-0.01em', lineHeight: 1.1 }}>{f.t}</h3>
                   <p style={{ fontSize: '0.88rem', lineHeight: 1.55, opacity: 0.78 }}>{f.d}</p>
                 </div>
                 <div style={{ marginTop: '2rem', paddingTop: '1.25rem', borderTop: `1px dashed rgba(247, 241, 234, 0.2)` }}>
-                  <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '0.4rem' }}>
-                    Planned output
+                  <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '0.6rem' }}>
+                    Flagship outputs
                   </div>
-                  <div className="serif-italic" style={{ fontSize: '0.95rem', color: C.cream }}>{f.output}</div>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    {f.outputs.map((o, j) => (
+                      <li key={j} className="serif-italic" style={{ fontSize: '0.85rem', color: C.cream, lineHeight: 1.35, paddingLeft: '0.85rem', position: 'relative' }}>
+                        <span style={{ position: 'absolute', left: 0, color: C.lilac }}>·</span>{o}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             ))}
