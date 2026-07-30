@@ -872,6 +872,7 @@ function HCAIC_Final() {
             <a href="https://kyleandco.com" style={{ color: C.navy, textDecoration: 'none', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><span aria-hidden="true">&larr;</span> Kyle &amp; Co</a>
             <button onClick={() => document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>The Agenda</button>
             <button onClick={() => document.querySelector('#members')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>Members</button>
+            <button onClick={() => document.querySelector('#underwriters')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>Underwriters</button>
             <button onClick={() => document.querySelector('#library')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>The Toolkit</button>
             <button onClick={() => document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>How to Participate</button>
             <button
@@ -891,6 +892,7 @@ function HCAIC_Final() {
           {[
             { label: 'The Agenda', id: '#work' },
             { label: 'Members', id: '#members' },
+            { label: 'Underwriters', id: '#underwriters' },
             { label: 'The Toolkit', id: '#library' },
             { label: 'How to Participate', id: '#join' },
           ].map(item => (
@@ -1071,7 +1073,7 @@ function HCAIC_Final() {
       </section>
 
       {/* HOW THIS IS FUNDED, honest vendor section */}
-      <section style={{ padding: isMobile ? '4rem 1.25rem' : '6rem 2.5rem', maxWidth: '1500px', margin: '0 auto' }}>
+      <section id="underwriters" style={{ padding: isMobile ? '4rem 1.25rem' : '6rem 2.5rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
         <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
           The partners funding this work
         </div>
@@ -1156,10 +1158,10 @@ function HCAIC_Final() {
           </div>
           <div style={{ overflow: 'hidden' }}>
             <div className="marquee" style={{ alignItems: 'center', gap: '3rem' }}>
-              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
-              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
-              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
-              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
+              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
+              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
+              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
+              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
             </div>
           </div>
         </div>
@@ -1504,128 +1506,18 @@ The Year One Toolkit · proof of what the Council ships
           </div>
         </div>
 
-        {/* Access all CTA */}
-        <div style={{ marginBottom: '2.5rem' }}>
+        {/* Browse CTA — opens the full toolkit in a modal */}
+        <div>
           <button
-            onClick={() => { track('toolkit_cta_click', {}); document.querySelector('#library')?.scrollIntoView({ behavior: 'smooth' }); }}
-            style={{ padding: '0.95rem 2rem', background: accessGranted ? C.lilac : C.navy, color: C.ivory, border: 'none', borderRadius: '100px', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', letterSpacing: '0.01em' }}
+            onClick={() => { track('toolkit_cta_click', {}); setToolkitOpen(true); }}
+            className="link-arrow"
+            style={{ padding: '0.95rem 2rem', background: C.navy, color: C.ivory, border: 'none', borderRadius: '100px', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', letterSpacing: '0.01em', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
           >
-            {accessGranted ? 'Browse the Toolkit ↓' : 'Access the Full Toolkit →'}
+            Browse the Toolkit <span>→</span>
           </button>
           <p style={{ marginTop: '0.65rem', fontSize: '0.8rem', color: C.slate, opacity: 0.75 }}>
-            {accessGranted ? 'You already have access. Click any resource below to open it.' : 'Everything the Council publishes is free to use, thanks to our Underwriters.'}
+            {resources.length} frameworks and tools, free to use, thanks to our Underwriters.
           </p>
-        </div>
-
-        {/* Filter bar */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.25rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)`, marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
-          <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: C.slate }}>
-            {filtered.length} of {resources.length} resources
-          </div>
-          <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
-            {[
-              { id: 'all', label: 'All' },
-              { id: 'interactive', label: 'Interactive' },
-              { id: 'download', label: 'Downloads' },
-            ].map((f) => (
-              <button
-                key={f.id}
-                onClick={() => setActiveFilter(f.id)}
-                className="filter-pill"
-                style={{
-                  padding: '0.5rem 1.1rem',
-                  background: activeFilter === f.id ? C.navy : 'transparent',
-                  color: activeFilter === f.id ? C.ivory : C.navy,
-                  border: `1px solid ${activeFilter === f.id ? C.navy : 'rgba(39, 55, 82, 0.2)'}`,
-                  borderRadius: '100px',
-                  fontSize: '0.75rem',
-                  letterSpacing: '0.05em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Library rows */}
-        <div>
-          {filtered.map((r, i) => (
-            <div
-              key={r.id}
-              className="resource-row"
-              onClick={() => {
-                track('resource_open', { resource_name: r.title, resource_type: r.tag });
-                const openKey = RESOURCE_KEY_MAP[r.id] ? RESOURCE_KEY_MAP[r.id] + '_opens' : null;
-                if (openKey) {
-                  fetch(CLICKS_URL + '/latest', { headers: { 'X-ACCESS-KEY': CLICKS_KEY } })
-                    .then(res => res.json())
-                    .then(data => {
-                      const counts = data.record;
-                      counts[openKey] = (counts[openKey] || 0) + 1;
-                      fetch(CLICKS_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'X-ACCESS-KEY': CLICKS_KEY }, body: JSON.stringify(counts) });
-                    }).catch(() => {});
-                }
-                setSelectedResource(r);
-              }}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: isMobile ? '1fr' : '60px 160px 1fr 150px 60px',
-                gap: isMobile ? '0.5rem' : '2rem',
-                padding: isMobile ? '1.25rem 0.75rem' : '2rem 1rem',
-                borderBottom: `1px solid rgba(39, 55, 82, 0.1)`,
-                alignItems: 'center',
-              }}
-            >
-              <div className="mono" style={{ fontSize: '1.1rem', fontWeight: 700, color: C.navy, opacity: 0.25, letterSpacing: '-0.01em' }}>
-                {String(i + 1).padStart(2, '0')}
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', alignItems: 'flex-start' }}>
-                <span className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: C.slate }}>
-                  {r.tag}
-                </span>
-                {r.kind === 'interactive' && (
-                  <span className="mono" style={{
-                    fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase',
-                    background: C.cream, color: C.navyDark,
-                    padding: '0.18rem 0.55rem', borderRadius: '2px', fontWeight: 500,
-                  }}>
-                    Live
-                  </span>
-                )}
-                {r.evolving && (
-                  <span className="mono" style={{
-                    fontSize: '0.58rem', letterSpacing: '0.08em', textTransform: 'uppercase',
-                    color: C.lilac, fontWeight: 500,
-                  }}>
-                    Interactive in dev
-                  </span>
-                )}
-              </div>
-              <div>
-                <h3 className="display row-title" style={{ fontSize: '1.7rem', fontWeight: 500, letterSpacing: '-0.01em', marginBottom: '0.5rem', lineHeight: 1.1, transition: 'color 0.3s', color: C.navy }}>
-                  {r.title}
-                </h3>
-                <p style={{ fontSize: '0.92rem', lineHeight: 1.55, color: C.slate, maxWidth: '64ch' }}>
-                  {r.short}
-                </p>
-                {r.subtitle ? (
-                  <div className="mono" style={{ fontSize: '0.7rem', color: C.slate, opacity: 0.65, marginTop: '0.6rem', letterSpacing: '0.05em' }}>
-                    {r.subtitle}
-                  </div>
-                ) : null}
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <span className="mono" style={{ fontSize: '0.78rem', color: r.kind === 'interactive' ? C.navyMid : C.navy, fontWeight: 600, letterSpacing: '0.04em', borderBottom: `1px solid ${r.kind === 'interactive' ? C.navyMid : C.navy}`, paddingBottom: '1px' }}>
-                  {r.ctaLabel}
-                </span>
-              </div>
-              <div className="row-arrow" style={{ fontSize: '1.5rem', color: C.navy, opacity: 0.7, transition: 'all 0.3s ease', textAlign: 'right', fontWeight: 300 }}>
-                →
-              </div>
-            </div>
-          ))}
         </div>
 
       </section>
@@ -2511,6 +2403,125 @@ The Year One Toolkit · proof of what the Council ships
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      )}
+
+      {toolkitOpen && (
+        <div className="modal-overlay" onClick={() => setToolkitOpen(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.55)', zIndex: 200, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: isMobile ? '3rem 0.6rem' : '4rem 2rem', overflowY: 'auto', animation: 'fadeUp 0.3s ease-out' }}>
+          <div onClick={(e) => e.stopPropagation()} style={{ background: C.ivory, borderRadius: '12px', padding: isMobile ? '2rem 1.1rem' : '2.75rem 3rem', maxWidth: '1080px', width: '100%', position: 'relative' }}>
+            <button onClick={() => setToolkitOpen(false)} style={{ position: 'absolute', top: '1.1rem', right: '1.3rem', background: 'none', border: 'none', color: C.slate, cursor: 'pointer', fontSize: '1.5rem', lineHeight: 1, zIndex: 2 }} aria-label="Close">×</button>
+            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>The Year One Toolkit</div>
+            <h3 className="display" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.4rem)', fontWeight: 400, letterSpacing: '-0.02em', color: C.navy, marginBottom: '2rem', lineHeight: 1.05 }}>Four frameworks. <span className="serif-italic" style={{ color: C.lilac }}>Free. Built to be used.</span></h3>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.25rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)`, marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
+          <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: C.slate }}>
+            {filtered.length} of {resources.length} resources
+          </div>
+          <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+            {[
+              { id: 'all', label: 'All' },
+              { id: 'interactive', label: 'Interactive' },
+              { id: 'download', label: 'Downloads' },
+            ].map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setActiveFilter(f.id)}
+                className="filter-pill"
+                style={{
+                  padding: '0.5rem 1.1rem',
+                  background: activeFilter === f.id ? C.navy : 'transparent',
+                  color: activeFilter === f.id ? C.ivory : C.navy,
+                  border: `1px solid ${activeFilter === f.id ? C.navy : 'rgba(39, 55, 82, 0.2)'}`,
+                  borderRadius: '100px',
+                  fontSize: '0.75rem',
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Library rows */}
+        <div>
+          {filtered.map((r, i) => (
+            <div
+              key={r.id}
+              className="resource-row"
+              onClick={() => {
+                track('resource_open', { resource_name: r.title, resource_type: r.tag });
+                const openKey = RESOURCE_KEY_MAP[r.id] ? RESOURCE_KEY_MAP[r.id] + '_opens' : null;
+                if (openKey) {
+                  fetch(CLICKS_URL + '/latest', { headers: { 'X-ACCESS-KEY': CLICKS_KEY } })
+                    .then(res => res.json())
+                    .then(data => {
+                      const counts = data.record;
+                      counts[openKey] = (counts[openKey] || 0) + 1;
+                      fetch(CLICKS_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'X-ACCESS-KEY': CLICKS_KEY }, body: JSON.stringify(counts) });
+                    }).catch(() => {});
+                }
+                setSelectedResource(r);
+              }}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: isMobile ? '1fr' : '60px 160px 1fr 150px 60px',
+                gap: isMobile ? '0.5rem' : '2rem',
+                padding: isMobile ? '1.25rem 0.75rem' : '2rem 1rem',
+                borderBottom: `1px solid rgba(39, 55, 82, 0.1)`,
+                alignItems: 'center',
+              }}
+            >
+              <div className="mono" style={{ fontSize: '1.1rem', fontWeight: 700, color: C.navy, opacity: 0.25, letterSpacing: '-0.01em' }}>
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', alignItems: 'flex-start' }}>
+                <span className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: C.slate }}>
+                  {r.tag}
+                </span>
+                {r.kind === 'interactive' && (
+                  <span className="mono" style={{
+                    fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase',
+                    background: C.cream, color: C.navyDark,
+                    padding: '0.18rem 0.55rem', borderRadius: '2px', fontWeight: 500,
+                  }}>
+                    Live
+                  </span>
+                )}
+                {r.evolving && (
+                  <span className="mono" style={{
+                    fontSize: '0.58rem', letterSpacing: '0.08em', textTransform: 'uppercase',
+                    color: C.lilac, fontWeight: 500,
+                  }}>
+                    Interactive in dev
+                  </span>
+                )}
+              </div>
+              <div>
+                <h3 className="display row-title" style={{ fontSize: '1.7rem', fontWeight: 500, letterSpacing: '-0.01em', marginBottom: '0.5rem', lineHeight: 1.1, transition: 'color 0.3s', color: C.navy }}>
+                  {r.title}
+                </h3>
+                <p style={{ fontSize: '0.92rem', lineHeight: 1.55, color: C.slate, maxWidth: '64ch' }}>
+                  {r.short}
+                </p>
+                {r.subtitle ? (
+                  <div className="mono" style={{ fontSize: '0.7rem', color: C.slate, opacity: 0.65, marginTop: '0.6rem', letterSpacing: '0.05em' }}>
+                    {r.subtitle}
+                  </div>
+                ) : null}
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <span className="mono" style={{ fontSize: '0.78rem', color: r.kind === 'interactive' ? C.navyMid : C.navy, fontWeight: 600, letterSpacing: '0.04em', borderBottom: `1px solid ${r.kind === 'interactive' ? C.navyMid : C.navy}`, paddingBottom: '1px' }}>
+                  {r.ctaLabel}
+                </span>
+              </div>
+              <div className="row-arrow" style={{ fontSize: '1.5rem', color: C.navy, opacity: 0.7, transition: 'all 0.3s ease', textAlign: 'right', fontWeight: 300 }}>
+                →
+              </div>
+            </div>
+          ))}
+        </div>
           </div>
         </div>
       )}
