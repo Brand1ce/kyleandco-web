@@ -75,6 +75,7 @@ function HCAIC_Final() {
   const [pillarOpen, setPillarOpen] = useState(null);
   const [outputsOpen, setOutputsOpen] = useState(null);
   const [toolkitOpen, setToolkitOpen] = useState(false);
+  const [followSubmitted, setFollowSubmitted] = useState(false);
 
   // AI Momentum Model content (from Kyle & Co research report)
   const momentumDrivers = [
@@ -214,6 +215,7 @@ function HCAIC_Final() {
   const ML_RESOURCE_GATE_URL = 'https://assets.mailerlite.com/jsonp/1555935/forms/185316851276842065/subscribe';
   const ML_APPLY_URL         = 'https://assets.mailerlite.com/jsonp/1555935/forms/159825956656120991/subscribe';
   const ML_KCO_URL           = 'https://assets.mailerlite.com/jsonp/1555935/forms/185371122148050837/subscribe';
+  const ML_FOLLOW_URL        = 'https://assets.mailerlite.com/jsonp/1555935/forms/194449693277685436/subscribe'; // AI Council Website – Followers group
   const ML_TOWNHALL_URL      = 'https://assets.mailerlite.com/jsonp/1555935/forms/185370079945295046/subscribe';
   const ML_UNDERWRITER_URL   = 'https://assets.mailerlite.com/jsonp/1555935/forms/159836007953335925/subscribe';
   const ML_MOMENTUM_URL      = 'https://assets.mailerlite.com/jsonp/1555935/forms/185372908239979993/subscribe';
@@ -1138,11 +1140,8 @@ function HCAIC_Final() {
               </div>
             </div>
             <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-              <button onClick={() => setKcoOpen(true)} className="underline-grow" style={{ color: 'rgba(247,241,234,0.75)', fontSize: '0.82rem', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-                Follow the work →
-              </button>
               <button onClick={() => { track('underwriter_cta_click', { location: 'logo_wall' }); setUnderwriterOpen(true); }} style={{ background: C.cream, color: C.navy, fontSize: '0.85rem', fontWeight: 600, border: 'none', borderRadius: '100px', padding: '0.7rem 1.4rem', cursor: 'pointer' }}>
-                Become an underwriter →
+                Why vendors support the Council →
               </button>
             </div>
           </div>
@@ -1464,6 +1463,29 @@ function HCAIC_Final() {
               )}
             </div>
           ))}
+        </div>
+
+        {/* Low-commitment follow: subscribe to Kyle & Co, tagged AI Council origin */}
+        <div style={{ marginTop: '1.5rem', padding: isMobile ? '1.75rem 1.5rem' : '2rem 2.5rem', background: 'rgba(157, 146, 173, 0.12)', borderRadius: '6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
+          {followSubmitted ? (
+            <div>
+              <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '0.5rem' }}>You're on the list</div>
+              <div style={{ fontSize: '0.95rem', color: C.navy, lineHeight: 1.5 }}>Check your inbox to confirm your subscription. That's it, you'll get the Council's work as it ships.</div>
+            </div>
+          ) : (
+            <>
+              <div style={{ maxWidth: '46ch' }}>
+                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.5rem' }}>Not joining or underwriting?</div>
+                <div style={{ fontSize: isMobile ? '1.1rem' : '1.25rem', fontWeight: 500, color: C.navy, lineHeight: 1.3 }}>Follow the Council's work. No commitment, just the frameworks and updates as they land.</div>
+              </div>
+              <form action={ML_FOLLOW_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('follow_subscribe', { source: 'ai_council_page' }); setTimeout(() => setFollowSubmitted(true), 1000); }} style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', flexShrink: 0 }}>
+                <input required type="email" name="fields[email]" placeholder="Work email" style={{ ...gateInput(C), minWidth: isMobile ? '100%' : '240px' }} />
+                <input type="hidden" name="ml-submit" value="1" />
+                <input type="hidden" name="anticsrf" value="true" />
+                <button type="submit" style={{ background: C.navy, color: C.ivory, padding: '0.85rem 1.6rem', borderRadius: '100px', border: 'none', fontSize: '0.9rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>Subscribe</button>
+              </form>
+            </>
+          )}
         </div>
       </section>
 
