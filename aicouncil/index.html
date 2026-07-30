@@ -831,9 +831,9 @@ function HCAIC_Final() {
         ) : (
           <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', fontSize: '0.85rem' }}>
             <a href="https://kyleandco.com" style={{ color: C.navy, textDecoration: 'none', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><span aria-hidden="true">&larr;</span> Kyle &amp; Co</a>
-            <button onClick={() => document.querySelector('#library')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>The AI Transformation Toolkit</button>
-            <button onClick={() => document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>2026 Work</button>
+            <button onClick={() => document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>The Agenda</button>
             <button onClick={() => document.querySelector('#members')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>Members</button>
+            <button onClick={() => document.querySelector('#library')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>The Toolkit</button>
             <button onClick={() => document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>How to Participate</button>
             <button
               onClick={() => document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' })}
@@ -850,9 +850,9 @@ function HCAIC_Final() {
         <div className="mobile-menu-overlay">
           <a href="https://kyleandco.com" style={{ fontSize: '1rem', color: C.slate, textDecoration: 'none', fontWeight: 400 }}><span aria-hidden="true">&larr;</span> Kyle &amp; Co</a>
           {[
-            { label: 'The AI Transformation Toolkit', id: '#library' },
-            { label: '2026 Work', id: '#work' },
+            { label: 'The Agenda', id: '#work' },
             { label: 'Members', id: '#members' },
+            { label: 'The Toolkit', id: '#library' },
             { label: 'How to Participate', id: '#join' },
           ].map(item => (
             <button key={item.id} onClick={() => { document.querySelector(item.id)?.scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false); }}>
@@ -887,7 +887,7 @@ function HCAIC_Final() {
           }}
         />
         <div className="reveal reveal-1 mono" style={{ fontSize: '0.72rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '2rem', color: C.slate, display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
-          <span className="live-dot" /> Cohort Two · 2026 · The Year of the Human
+          <span className="live-dot" /> Year Two · 2026 · The Year of the Human
         </div>
 
         <h1
@@ -914,7 +914,7 @@ function HCAIC_Final() {
 
         <div className="reveal reveal-4" style={{ display: 'flex', gap: '1.25rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <a
-            href="#library"
+            href="#work"
             style={{
               background: C.navy,
               color: C.ivory,
@@ -926,11 +926,11 @@ function HCAIC_Final() {
             }}
             className="link-arrow"
           >
-            Explore the Toolkit <span>→</span>
+            See the Year Two agenda <span>→</span>
           </a>
-          <a href="#work" className="underline-grow" style={{ color: C.navy, textDecoration: 'none', fontSize: '0.95rem', fontWeight: 500 }}>
-            What the Council is building in 2026
-          </a>
+          <button onClick={() => { track('underwriter_cta_click', { location: 'hero' }); setUnderwriterOpen(true); }} className="underline-grow" style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', color: C.navy, fontSize: '0.95rem', fontWeight: 500, padding: 0 }}>
+            Partner as an underwriter →
+          </button>
         </div>
 
       </section>
@@ -983,171 +983,257 @@ function HCAIC_Final() {
         </div>
       </section>
 
-      {/* FEATURED POST */}
-      <section style={{ background: C.navy, padding: isMobile ? '0 1.25rem 4rem' : '0 2.5rem 7rem' }}>
-        <a
-          href="https://kyleandco.com/ai-toolkit-for-hr-leaders/"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => track('featured_post_click', { post: 'ai-toolkit-for-hr-leaders' })}
-          style={{ display: 'block', maxWidth: '1500px', margin: '0 auto', textDecoration: 'none' }}
-        >
-          <div style={{ background: C.cream, borderRadius: '14px', padding: isMobile ? '1.75rem' : '2.25rem 3rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'auto 1fr auto', gap: isMobile ? '1rem' : '2.5rem', alignItems: 'center' }}>
-            <span className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, fontWeight: 700, whiteSpace: 'nowrap' }}>Featured post</span>
-            <h3 className="display" style={{ fontSize: isMobile ? '1.3rem' : '1.7rem', fontWeight: 400, lineHeight: 1.2, letterSpacing: '-0.01em', color: C.navy, margin: 0 }}>
-              Finally: A Practical AI Transformation Toolkit Built for <span className="serif-italic" style={{ color: C.lilac }}>HR Leaders</span>
-            </h3>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap', color: C.navy, fontWeight: 600, fontSize: '0.9rem' }}>Read Kyle's take →</span>
+      {/* 2026 WORK */}
+      <section id="work" style={{ background: C.navy, color: C.ivory, padding: isMobile ? '4rem 1.25rem' : '7rem 2.5rem' }}>
+        <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.4fr', gap: isMobile ? '1.5rem' : '4rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
+            <div>
+              <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.65, marginBottom: '1.25rem' }}>
+                Year Two · 2026 · The Agenda
+              </div>
+              <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 4rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em' }}>
+                This year, one question: <span className="serif-italic" style={{ color: C.cream }}>what is human?</span>
+              </h2>
+            </div>
+            <p style={{ fontSize: '1.05rem', lineHeight: 1.6, opacity: 0.85, maxWidth: '52ch' }}>
+              Year One built the foundations. This year, the work gets harder. AI is pushing HR to reconsider operating models, redesign processes, and overhaul decision-making. What stays human. What doesn't. Who decides. Five priorities, each led by a practitioner.
+            </p>
           </div>
-        </a>
+
+          <div id="cohort2-apply-grid" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1px', background: 'rgba(247, 241, 234, 0.12)', border: `1px solid rgba(247, 241, 234, 0.12)` }}>
+            {focusAreas.map((f, i) => (
+              <div key={i} className="work-card" style={{ background: C.navy, padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '380px', borderBottom: '2px solid transparent' }}>
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1.5rem' }}>
+                    <span className="mono" style={{ fontSize: '0.75rem', color: C.cream, fontWeight: 500 }}>{f.n}</span>
+                    <span className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55 }}>Led by {f.leader}</span>
+                  </div>
+                  <h3 className="display" style={{ fontSize: '1.4rem', fontWeight: 500, marginBottom: '1rem', letterSpacing: '-0.01em', lineHeight: 1.1 }}>{f.t}</h3>
+                  <p style={{ fontSize: '0.88rem', lineHeight: 1.55, opacity: 0.78 }}>{f.d}</p>
+                </div>
+                <div style={{ marginTop: '2rem', paddingTop: '1.25rem', borderTop: `1px dashed rgba(247, 241, 234, 0.2)` }}>
+                  <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '0.6rem' }}>
+                    Flagship outputs
+                  </div>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    {f.outputs.map((o, j) => (
+                      <li key={j} className="serif-italic" style={{ fontSize: '0.85rem', color: C.cream, lineHeight: 1.35, paddingLeft: '0.85rem', position: 'relative' }}>
+                        <span style={{ position: 'absolute', left: 0, color: C.lilac }}>·</span>{o}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* COHORT 2 APPLY CTA */}
+          <div style={{ marginTop: '3.5rem', padding: '2.5rem 2.75rem', background: 'rgba(247, 241, 234, 0.04)', border: `1px solid rgba(247, 241, 234, 0.15)`, borderRadius: '6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
+            <div style={{ maxWidth: '56ch' }}>
+              <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.cream, marginBottom: '0.5rem' }}>
+                Year Two · Practitioner seats
+              </div>
+              <div className="display" style={{ fontSize: '1.45rem', fontWeight: 500, letterSpacing: '-0.01em', lineHeight: 1.2 }}>
+                If you lead HR and have moved AI work forward, <span className="serif-italic" style={{ color: C.cream }}>we want you in the room.</span>
+              </div>
+            </div>
+            <button
+              onClick={() => setApplyOpen(true)}
+              style={{
+                background: C.cream,
+                color: C.navy,
+                padding: '1rem 1.9rem',
+                borderRadius: '100px',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '0.9rem',
+                fontWeight: 500,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                flexShrink: 0,
+              }}
+              className="link-arrow"
+            >
+              Apply to join the Council <span>→</span>
+            </button>
+          </div>
+        </div>
       </section>
 
-      {/* THE LIBRARY — the star */}
-      <section id="library" style={{ padding: isMobile ? '4rem 1.25rem 3rem' : '7rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.5fr 1fr', gap: isMobile ? '2rem' : '5rem', marginBottom: '3rem', alignItems: 'end' }}>
-          <div>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
-              The Full Cohort Zero Toolkit
+      {/* HOW THIS IS FUNDED — honest vendor section */}
+      <section style={{ padding: isMobile ? '4rem 1.25rem' : '6rem 2.5rem', maxWidth: '1500px', margin: '0 auto' }}>
+        <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
+          The partners funding this work
+        </div>
+        <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '2rem', maxWidth: '26ch', lineHeight: 1.05 }}>
+          The partners <span className="serif-italic" style={{ color: C.lilac }}>behind</span> the Council.
+        </h2>
+
+        <p style={{ fontSize: '1.05rem', lineHeight: 1.65, color: C.slate, marginBottom: '3.5rem', maxWidth: '62ch' }}>
+          Underwriters fund this work, join practitioner dialogue, and help us keep everything the Council publishes free and open to every HR team. Here's how the model works — what they do, and what they don't.
+        </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '3rem', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
+          <div style={{ borderTop: `2px solid ${C.navy}`, paddingTop: '2rem' }}>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.navy, fontWeight: 500 }}>
+              What the community does
             </div>
-            <h2 className="display" style={{ fontSize: 'clamp(3rem, 5.5vw, 4.5rem)', fontWeight: 400, lineHeight: 1.0, letterSpacing: '-0.03em', maxWidth: '18ch' }}>
-              Four frameworks.<br />
-              Free. <span className="serif-italic" style={{ color: C.lilac }}>Built to be used.</span>
-            </h2>
+            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+              {[
+                'Bring real AI transformation experience from inside HR organizations.',
+                'Lead workstreams and author the frameworks under their own names.',
+                'Meet monthly to pressure-test ideas and share what is working in practice.',
+                'Set the agenda for what the Council produces next.',
+              ].map((x, i) => (
+                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
+                  <span className="mono" style={{ color: C.lilac, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span style={{ color: C.navy }}>{x}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div style={{ borderTop: `2px solid ${C.lilac}`, paddingTop: '1.5rem' }}>
-            <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: C.slate, marginBottom: '1.75rem' }}>
-              Each framework is authored by a practitioner who has put it to work inside their own organization. Free to access — made possible by the Council's Underwriters.
-            </p>
-            <span style={{ display: 'inline-block', background: C.navy, color: C.ivory, fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.35rem 0.85rem', borderRadius: '100px' }}>
-              Updated April 2026
-            </span>
+          <div style={{ borderTop: `2px solid ${C.lilac}`, paddingTop: '2rem' }}>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.lilac, fontWeight: 500 }}>
+              What underwriters do
+            </div>
+            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+              {[
+                'Fund the work so it stays free and open to every HR team.',
+                'Join market-level dialogue with the practitioners they sell to.',
+                'Distribute Council outputs through their channels.',
+                "Underwriters don't set the Council's agenda or approve its output.",
+              ].map((x, i) => (
+                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
+                  <span className="mono" style={{ color: C.navy, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span style={{ color: C.navy }}>{x}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        {/* Access all CTA */}
-        <div style={{ marginBottom: '2.5rem' }}>
-          <button
-            onClick={() => { track('toolkit_cta_click', {}); document.querySelector('#library')?.scrollIntoView({ behavior: 'smooth' }); }}
-            style={{ padding: '0.95rem 2rem', background: accessGranted ? C.lilac : C.navy, color: C.ivory, border: 'none', borderRadius: '100px', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', letterSpacing: '0.01em' }}
-          >
-            {accessGranted ? 'Browse the Toolkit ↓' : 'Access the Full Toolkit →'}
-          </button>
-          <p style={{ marginTop: '0.65rem', fontSize: '0.8rem', color: C.slate, opacity: 0.75 }}>
-            {accessGranted ? 'You already have access — click any resource below to open it.' : 'Everything the Council publishes is free to use — thanks to our Underwriters.'}
-          </p>
-        </div>
-
-        {/* Filter bar */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.25rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)`, marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
-          <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: C.slate }}>
-            {filtered.length} of {resources.length} resources
-          </div>
-          <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
-            {[
-              { id: 'all', label: 'All' },
-              { id: 'interactive', label: 'Interactive' },
-              { id: 'download', label: 'Downloads' },
-            ].map((f) => (
-              <button
-                key={f.id}
-                onClick={() => setActiveFilter(f.id)}
-                className="filter-pill"
-                style={{
-                  padding: '0.5rem 1.1rem',
-                  background: activeFilter === f.id ? C.navy : 'transparent',
-                  color: activeFilter === f.id ? C.ivory : C.navy,
-                  border: `1px solid ${activeFilter === f.id ? C.navy : 'rgba(39, 55, 82, 0.2)'}`,
-                  borderRadius: '100px',
-                  fontSize: '0.75rem',
-                  letterSpacing: '0.05em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                {f.label}
+        {/* Underwriters — Year Two (primary) */}
+        <div style={{ padding: isMobile ? '2rem 1.5rem' : '2.75rem 3rem', background: C.navy, color: C.ivory, borderRadius: '6px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
+            <div>
+              <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.cream, fontWeight: 500, marginBottom: '0.4rem' }}>
+                Year Two Underwriters
+              </div>
+              <div style={{ fontSize: '0.9rem', opacity: 0.7, maxWidth: '44ch', lineHeight: 1.5 }}>
+                The partners funding the Council's Year Two work. Room for a few more.
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <button onClick={() => setKcoOpen(true)} className="underline-grow" style={{ color: 'rgba(247,241,234,0.75)', fontSize: '0.82rem', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+                Follow the work →
               </button>
+              <button onClick={() => { track('underwriter_cta_click', { location: 'logo_wall' }); setUnderwriterOpen(true); }} style={{ background: C.cream, color: C.navy, fontSize: '0.85rem', fontWeight: 600, border: 'none', borderRadius: '100px', padding: '0.7rem 1.4rem', cursor: 'pointer' }}>
+                Become an underwriter →
+              </button>
+            </div>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '1.25rem 1.75rem' : '1.75rem 3rem', alignItems: 'center', paddingTop: '0.5rem' }}>
+            {underwritersYearTwo.map((u) => (
+              <span key={u} className="display" style={{ fontSize: isMobile ? '1.35rem' : '1.9rem', fontWeight: 500, color: C.ivory, letterSpacing: '-0.01em', opacity: 0.92 }}>{u}</span>
             ))}
           </div>
         </div>
 
-        {/* Library rows */}
-        <div>
-          {filtered.map((r, i) => (
-            <div
-              key={r.id}
-              className="resource-row"
-              onClick={() => {
-                track('resource_open', { resource_name: r.title, resource_type: r.tag });
-                const openKey = RESOURCE_KEY_MAP[r.id] ? RESOURCE_KEY_MAP[r.id] + '_opens' : null;
-                if (openKey) {
-                  fetch(CLICKS_URL + '/latest', { headers: { 'X-ACCESS-KEY': CLICKS_KEY } })
-                    .then(res => res.json())
-                    .then(data => {
-                      const counts = data.record;
-                      counts[openKey] = (counts[openKey] || 0) + 1;
-                      fetch(CLICKS_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'X-ACCESS-KEY': CLICKS_KEY }, body: JSON.stringify(counts) });
-                    }).catch(() => {});
-                }
-                setSelectedResource(r);
-              }}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: isMobile ? '1fr' : '60px 160px 1fr 150px 60px',
-                gap: isMobile ? '0.5rem' : '2rem',
-                padding: isMobile ? '1.25rem 0.75rem' : '2rem 1rem',
-                borderBottom: `1px solid rgba(39, 55, 82, 0.1)`,
-                alignItems: 'center',
-              }}
-            >
-              <div className="mono" style={{ fontSize: '1.1rem', fontWeight: 700, color: C.navy, opacity: 0.25, letterSpacing: '-0.01em' }}>
-                {String(i + 1).padStart(2, '0')}
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', alignItems: 'flex-start' }}>
-                <span className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: C.slate }}>
-                  {r.tag}
-                </span>
-                {r.kind === 'interactive' && (
-                  <span className="mono" style={{
-                    fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase',
-                    background: C.cream, color: C.navyDark,
-                    padding: '0.18rem 0.55rem', borderRadius: '2px', fontWeight: 500,
-                  }}>
-                    Live
-                  </span>
-                )}
-                {r.evolving && (
-                  <span className="mono" style={{
-                    fontSize: '0.58rem', letterSpacing: '0.08em', textTransform: 'uppercase',
-                    color: C.lilac, fontWeight: 500,
-                  }}>
-                    Interactive in dev
-                  </span>
-                )}
-              </div>
-              <div>
-                <h3 className="display row-title" style={{ fontSize: '1.7rem', fontWeight: 500, letterSpacing: '-0.01em', marginBottom: '0.5rem', lineHeight: 1.1, transition: 'color 0.3s', color: C.navy }}>
-                  {r.title}
-                </h3>
-                <p style={{ fontSize: '0.92rem', lineHeight: 1.55, color: C.slate, maxWidth: '64ch' }}>
-                  {r.short}
-                </p>
-                {r.subtitle ? (
-                  <div className="mono" style={{ fontSize: '0.7rem', color: C.slate, opacity: 0.65, marginTop: '0.6rem', letterSpacing: '0.05em' }}>
-                    {r.subtitle}
-                  </div>
-                ) : null}
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <span className="mono" style={{ fontSize: '0.78rem', color: r.kind === 'interactive' ? C.navyMid : C.navy, fontWeight: 600, letterSpacing: '0.04em', borderBottom: `1px solid ${r.kind === 'interactive' ? C.navyMid : C.navy}`, paddingBottom: '1px' }}>
-                  {r.ctaLabel}
-                </span>
-              </div>
-              <div className="row-arrow" style={{ fontSize: '1.5rem', color: C.navy, opacity: 0.7, transition: 'all 0.3s ease', textAlign: 'right', fontWeight: 300 }}>
-                →
-              </div>
+        {/* Underwriters — Year One (legacy, smaller) */}
+        <div style={{ marginTop: '1.5rem', padding: isMobile ? '1.5rem' : '1.75rem 3rem', background: 'rgba(157, 146, 173, 0.08)', borderRadius: '6px', border: `1px solid rgba(39, 55, 82, 0.08)` }}>
+          <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.1rem' }}>
+            Year One Underwriters · the partners who launched the Council
+          </div>
+          <div style={{ overflow: 'hidden' }}>
+            <div className="marquee" style={{ alignItems: 'center', gap: '3rem' }}>
+              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
+              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
+              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
+              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
             </div>
-          ))}
+          </div>
+        </div>
+      </section>
+
+      {/* THE PRACTITIONERS */}
+      <section id="members" style={{ padding: isMobile ? '4rem 1.25rem' : '7rem 2.5rem', maxWidth: '1500px', margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.3fr', gap: isMobile ? '1.5rem' : '5rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
+          <div>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.25rem' }}>
+              The Community
+            </div>
+            <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em' }}>
+              The people<br />
+              who've <span className="serif-italic" style={{ color: C.lilac }}>made it work.</span>
+            </h2>
+          </div>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: C.slate, maxWidth: '52ch', paddingBottom: '0.5rem' }}>
+              {members.length} senior HR leaders across five pillars, each finding traction with AI inside their own organizations. Every framework on this site carries their fingerprints. When we say practitioner-led, these are the practitioners.
+          </p>
         </div>
 
+        {PILLAR_ORDER.map((pillar, pi) => {
+          const bgColors = [C.lilac, C.navyMid, C.cream, C.lilacLight];
+          const group = members.filter(m => m.pillar === pillar);
+          return (
+            <div key={pillar} style={{ marginBottom: pi === PILLAR_ORDER.length - 1 ? 0 : (isMobile ? '3rem' : '4.5rem') }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.9rem', paddingBottom: '1.1rem', marginBottom: isMobile ? '1.75rem' : '2.5rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)` }}>
+                <span className="mono" style={{ fontSize: '0.7rem', color: C.lilac, fontWeight: 600 }}>{String(pi + 1).padStart(2, '0')}</span>
+                <h3 className="display" style={{ fontSize: isMobile ? '1.15rem' : '1.5rem', fontWeight: 500, letterSpacing: '-0.01em', color: C.navy, margin: 0 }}>{pillar}</h3>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(175px, 1fr))', gap: isMobile ? '1.25rem 0.75rem' : '2rem 1.5rem' }}>
+                {group.map((m, i) => {
+                  const bg = bgColors[(pi + i) % bgColors.length];
+                  const initials = m.name.split(' ').map(n => n[0]).join('').slice(0, 2);
+                  return (
+                    <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ textAlign: 'center', cursor: 'pointer' }}>
+                      <div
+                        className="avatar"
+                        style={{
+                          width: isMobile ? '80px' : '140px',
+                          height: isMobile ? '80px' : '140px',
+                          borderRadius: '50%',
+                          margin: '0 auto 1.1rem',
+                          background: `linear-gradient(135deg, ${bg}, ${bg}99)`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontFamily: 'Fraunces, serif',
+                          fontSize: isMobile ? '1.4rem' : '2.3rem',
+                          fontWeight: 400,
+                          color: bg === C.cream ? C.navy : C.ivory,
+                          transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+                          position: 'relative',
+                          overflow: 'hidden',
+                          border: m.champion ? `2px solid ${C.lilac}` : 'none',
+                        }}
+                      >
+                        {m.photo ? (
+                          <img
+                            src={m.photo}
+                            alt={m.name}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }}
+                          />
+                        ) : (
+                          <>
+                            <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(circle at 32% 30%, ${bg === C.cream ? 'rgba(255,255,255,0.4)' : 'rgba(247, 241, 234, 0.35)'}, transparent 60%)` }} />
+                            <span style={{ position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>{initials}</span>
+                          </>
+                        )}
+                      </div>
+                      {m.champion && (
+                        <div className="mono" style={{ fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: C.lilac, fontWeight: 600, marginBottom: '0.35rem' }}>Champion</div>
+                      )}
+                      <div className="display" style={{ fontSize: '1rem', fontWeight: 500, marginBottom: '0.3rem', color: C.navy }}>{m.name}</div>
+                      <div style={{ fontSize: '0.78rem', color: C.slate, lineHeight: 1.45, maxWidth: '22ch', margin: '0 auto' }}>{m.role}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
       </section>
 
       {/* UPCOMING & REPLAYS */}
@@ -1254,306 +1340,6 @@ function HCAIC_Final() {
           })}
         </div>
 
-      </section>
-
-      {/* 2026 WORK */}
-      <section id="work" style={{ background: C.navy, color: C.ivory, padding: isMobile ? '4rem 1.25rem' : '7rem 2.5rem' }}>
-        <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.4fr', gap: isMobile ? '1.5rem' : '4rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
-            <div>
-              <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.65, marginBottom: '1.25rem' }}>
-                Year Two · 2026 · The Agenda
-              </div>
-              <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 4rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em' }}>
-                This year, one question: <span className="serif-italic" style={{ color: C.cream }}>what is human?</span>
-              </h2>
-            </div>
-            <p style={{ fontSize: '1.05rem', lineHeight: 1.6, opacity: 0.85, maxWidth: '52ch' }}>
-              Year One built the foundations. This year, the work gets harder. AI is pushing HR to reconsider operating models, redesign processes, and overhaul decision-making. What stays human. What doesn't. Who decides. Five priorities, each led by a practitioner.
-            </p>
-          </div>
-
-          <div id="cohort2-apply-grid" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1px', background: 'rgba(247, 241, 234, 0.12)', border: `1px solid rgba(247, 241, 234, 0.12)` }}>
-            {focusAreas.map((f, i) => (
-              <div key={i} className="work-card" style={{ background: C.navy, padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '380px', borderBottom: '2px solid transparent' }}>
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1.5rem' }}>
-                    <span className="mono" style={{ fontSize: '0.75rem', color: C.cream, fontWeight: 500 }}>{f.n}</span>
-                    <span className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55 }}>Led by {f.leader}</span>
-                  </div>
-                  <h3 className="display" style={{ fontSize: '1.4rem', fontWeight: 500, marginBottom: '1rem', letterSpacing: '-0.01em', lineHeight: 1.1 }}>{f.t}</h3>
-                  <p style={{ fontSize: '0.88rem', lineHeight: 1.55, opacity: 0.78 }}>{f.d}</p>
-                </div>
-                <div style={{ marginTop: '2rem', paddingTop: '1.25rem', borderTop: `1px dashed rgba(247, 241, 234, 0.2)` }}>
-                  <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '0.6rem' }}>
-                    Flagship outputs
-                  </div>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                    {f.outputs.map((o, j) => (
-                      <li key={j} className="serif-italic" style={{ fontSize: '0.85rem', color: C.cream, lineHeight: 1.35, paddingLeft: '0.85rem', position: 'relative' }}>
-                        <span style={{ position: 'absolute', left: 0, color: C.lilac }}>·</span>{o}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* COHORT 2 APPLY CTA */}
-          <div style={{ marginTop: '3.5rem', padding: '2.5rem 2.75rem', background: 'rgba(247, 241, 234, 0.04)', border: `1px solid rgba(247, 241, 234, 0.15)`, borderRadius: '6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
-            <div style={{ maxWidth: '56ch' }}>
-              <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.cream, marginBottom: '0.5rem' }}>
-                Year Two · Practitioner seats
-              </div>
-              <div className="display" style={{ fontSize: '1.45rem', fontWeight: 500, letterSpacing: '-0.01em', lineHeight: 1.2 }}>
-                If you lead HR and have moved AI work forward, <span className="serif-italic" style={{ color: C.cream }}>we want you in the room.</span>
-              </div>
-            </div>
-            <button
-              onClick={() => setApplyOpen(true)}
-              style={{
-                background: C.cream,
-                color: C.navy,
-                padding: '1rem 1.9rem',
-                borderRadius: '100px',
-                border: 'none',
-                cursor: 'pointer',
-                fontSize: '0.9rem',
-                fontWeight: 500,
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                flexShrink: 0,
-              }}
-              className="link-arrow"
-            >
-              Apply to join the Council <span>→</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* THE PRACTITIONERS */}
-      <section id="members" style={{ padding: isMobile ? '4rem 1.25rem' : '7rem 2.5rem', maxWidth: '1500px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.3fr', gap: isMobile ? '1.5rem' : '5rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
-          <div>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.25rem' }}>
-              The Community
-            </div>
-            <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em' }}>
-              The people<br />
-              who've <span className="serif-italic" style={{ color: C.lilac }}>made it work.</span>
-            </h2>
-          </div>
-          <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: C.slate, maxWidth: '52ch', paddingBottom: '0.5rem' }}>
-              {members.length} senior HR leaders across five pillars, each finding traction with AI inside their own organizations. Every framework on this site carries their fingerprints. When we say practitioner-led, these are the practitioners.
-          </p>
-        </div>
-
-        {PILLAR_ORDER.map((pillar, pi) => {
-          const bgColors = [C.lilac, C.navyMid, C.cream, C.lilacLight];
-          const group = members.filter(m => m.pillar === pillar);
-          return (
-            <div key={pillar} style={{ marginBottom: pi === PILLAR_ORDER.length - 1 ? 0 : (isMobile ? '3rem' : '4.5rem') }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.9rem', paddingBottom: '1.1rem', marginBottom: isMobile ? '1.75rem' : '2.5rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)` }}>
-                <span className="mono" style={{ fontSize: '0.7rem', color: C.lilac, fontWeight: 600 }}>{String(pi + 1).padStart(2, '0')}</span>
-                <h3 className="display" style={{ fontSize: isMobile ? '1.15rem' : '1.5rem', fontWeight: 500, letterSpacing: '-0.01em', color: C.navy, margin: 0 }}>{pillar}</h3>
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(175px, 1fr))', gap: isMobile ? '1.25rem 0.75rem' : '2rem 1.5rem' }}>
-                {group.map((m, i) => {
-                  const bg = bgColors[(pi + i) % bgColors.length];
-                  const initials = m.name.split(' ').map(n => n[0]).join('').slice(0, 2);
-                  return (
-                    <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ textAlign: 'center', cursor: 'pointer' }}>
-                      <div
-                        className="avatar"
-                        style={{
-                          width: isMobile ? '80px' : '140px',
-                          height: isMobile ? '80px' : '140px',
-                          borderRadius: '50%',
-                          margin: '0 auto 1.1rem',
-                          background: `linear-gradient(135deg, ${bg}, ${bg}99)`,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          fontFamily: 'Fraunces, serif',
-                          fontSize: isMobile ? '1.4rem' : '2.3rem',
-                          fontWeight: 400,
-                          color: bg === C.cream ? C.navy : C.ivory,
-                          transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
-                          position: 'relative',
-                          overflow: 'hidden',
-                          border: m.champion ? `2px solid ${C.lilac}` : 'none',
-                        }}
-                      >
-                        {m.photo ? (
-                          <img
-                            src={m.photo}
-                            alt={m.name}
-                            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }}
-                          />
-                        ) : (
-                          <>
-                            <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(circle at 32% 30%, ${bg === C.cream ? 'rgba(255,255,255,0.4)' : 'rgba(247, 241, 234, 0.35)'}, transparent 60%)` }} />
-                            <span style={{ position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>{initials}</span>
-                          </>
-                        )}
-                      </div>
-                      {m.champion && (
-                        <div className="mono" style={{ fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: C.lilac, fontWeight: 600, marginBottom: '0.35rem' }}>Champion</div>
-                      )}
-                      <div className="display" style={{ fontSize: '1rem', fontWeight: 500, marginBottom: '0.3rem', color: C.navy }}>{m.name}</div>
-                      <div style={{ fontSize: '0.78rem', color: C.slate, lineHeight: 1.45, maxWidth: '22ch', margin: '0 auto' }}>{m.role}</div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
-      </section>
-
-      {/* FORMER CONTRIBUTING MEMBERS — kept, not deleted (moves to bottom w/ toolkit in reorder) */}
-      <section id="former-members" style={{ padding: isMobile ? '3rem 1.25rem' : '4rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.9rem', paddingBottom: '1.1rem', marginBottom: isMobile ? '1.75rem' : '2.5rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)` }}>
-          <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate }}>
-            Former Contributing Members
-          </div>
-          <span style={{ fontSize: '0.82rem', color: C.slate, opacity: 0.7 }}>Year One practitioners whose work built the foundations.</span>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(130px, 1fr))', gap: isMobile ? '1rem 0.6rem' : '1.5rem 1.25rem' }}>
-          {formerMembers.map((m, i) => {
-            const initials = m.name.split(' ').map(n => n[0]).join('').slice(0, 2);
-            return (
-              <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ textAlign: 'center', cursor: 'pointer', opacity: 0.9 }}>
-                <div
-                  className="avatar"
-                  style={{
-                    width: isMobile ? '64px' : '96px',
-                    height: isMobile ? '64px' : '96px',
-                    borderRadius: '50%',
-                    margin: '0 auto 0.75rem',
-                    background: `linear-gradient(135deg, ${C.navyMid}, ${C.navyMid}99)`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: 'Fraunces, serif',
-                    fontSize: isMobile ? '1.1rem' : '1.6rem',
-                    fontWeight: 400,
-                    color: C.ivory,
-                    position: 'relative',
-                    overflow: 'hidden',
-                    filter: 'grayscale(0.35)',
-                  }}
-                >
-                  {m.photo ? (
-                    <img src={m.photo} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }} />
-                  ) : (
-                    <span style={{ position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>{initials}</span>
-                  )}
-                </div>
-                <div className="display" style={{ fontSize: '0.85rem', fontWeight: 500, marginBottom: '0.2rem', color: C.navy }}>{m.name}</div>
-                <div style={{ fontSize: '0.68rem', color: C.slate, lineHeight: 1.4, maxWidth: '20ch', margin: '0 auto' }}>{m.role}</div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* HOW THIS IS FUNDED — honest vendor section */}
-      <section style={{ padding: isMobile ? '4rem 1.25rem' : '6rem 2.5rem', maxWidth: '1500px', margin: '0 auto' }}>
-        <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
-          The partners funding this work
-        </div>
-        <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '2rem', maxWidth: '26ch', lineHeight: 1.05 }}>
-          The partners <span className="serif-italic" style={{ color: C.lilac }}>behind</span> the Council.
-        </h2>
-
-        <p style={{ fontSize: '1.05rem', lineHeight: 1.65, color: C.slate, marginBottom: '3.5rem', maxWidth: '62ch' }}>
-          Underwriters fund this work, join practitioner dialogue, and help us keep everything the Council publishes free and open to every HR team. Here's how the model works — what they do, and what they don't.
-        </p>
-
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '3rem', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
-          <div style={{ borderTop: `2px solid ${C.navy}`, paddingTop: '2rem' }}>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.navy, fontWeight: 500 }}>
-              What the community does
-            </div>
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
-              {[
-                'Bring real AI transformation experience from inside HR organizations.',
-                'Lead workstreams and author the frameworks under their own names.',
-                'Meet monthly to pressure-test ideas and share what is working in practice.',
-                'Set the agenda for what the Council produces next.',
-              ].map((x, i) => (
-                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
-                  <span className="mono" style={{ color: C.lilac, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
-                  <span style={{ color: C.navy }}>{x}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div style={{ borderTop: `2px solid ${C.lilac}`, paddingTop: '2rem' }}>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.lilac, fontWeight: 500 }}>
-              What underwriters do
-            </div>
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
-              {[
-                'Fund the work so it stays free and open to every HR team.',
-                'Join market-level dialogue with the practitioners they sell to.',
-                'Distribute Council outputs through their channels.',
-                "Underwriters don't set the Council's agenda or approve its output.",
-              ].map((x, i) => (
-                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
-                  <span className="mono" style={{ color: C.navy, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
-                  <span style={{ color: C.navy }}>{x}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Underwriters — Year Two (primary) */}
-        <div style={{ padding: isMobile ? '2rem 1.5rem' : '2.75rem 3rem', background: C.navy, color: C.ivory, borderRadius: '6px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
-            <div>
-              <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.cream, fontWeight: 500, marginBottom: '0.4rem' }}>
-                Year Two Underwriters
-              </div>
-              <div style={{ fontSize: '0.9rem', opacity: 0.7, maxWidth: '44ch', lineHeight: 1.5 }}>
-                The partners funding the Council's Year Two work. Room for a few more.
-              </div>
-            </div>
-            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-              <button onClick={() => setKcoOpen(true)} className="underline-grow" style={{ color: 'rgba(247,241,234,0.75)', fontSize: '0.82rem', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-                Follow the work →
-              </button>
-              <button onClick={() => { track('underwriter_cta_click', { location: 'logo_wall' }); setUnderwriterOpen(true); }} style={{ background: C.cream, color: C.navy, fontSize: '0.85rem', fontWeight: 600, border: 'none', borderRadius: '100px', padding: '0.7rem 1.4rem', cursor: 'pointer' }}>
-                Become an underwriter →
-              </button>
-            </div>
-          </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '1.25rem 1.75rem' : '1.75rem 3rem', alignItems: 'center', paddingTop: '0.5rem' }}>
-            {underwritersYearTwo.map((u) => (
-              <span key={u} className="display" style={{ fontSize: isMobile ? '1.35rem' : '1.9rem', fontWeight: 500, color: C.ivory, letterSpacing: '-0.01em', opacity: 0.92 }}>{u}</span>
-            ))}
-          </div>
-        </div>
-
-        {/* Underwriters — Year One (legacy, smaller) */}
-        <div style={{ marginTop: '1.5rem', padding: isMobile ? '1.5rem' : '1.75rem 3rem', background: 'rgba(157, 146, 173, 0.08)', borderRadius: '6px', border: `1px solid rgba(39, 55, 82, 0.08)` }}>
-          <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.1rem' }}>
-            Year One Underwriters · the partners who launched the Council
-          </div>
-          <div style={{ overflow: 'hidden' }}>
-            <div className="marquee" style={{ alignItems: 'center', gap: '3rem' }}>
-              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
-              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
-              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
-              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* AI MOMENTUM REPORT — Kyle & Co research */}
@@ -1737,6 +1523,220 @@ function HCAIC_Final() {
         </div>
       </section>
 
+      {/* FEATURED POST */}
+      <section style={{ background: C.navy, padding: isMobile ? '0 1.25rem 4rem' : '0 2.5rem 7rem' }}>
+        <a
+          href="https://kyleandco.com/ai-toolkit-for-hr-leaders/"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track('featured_post_click', { post: 'ai-toolkit-for-hr-leaders' })}
+          style={{ display: 'block', maxWidth: '1500px', margin: '0 auto', textDecoration: 'none' }}
+        >
+          <div style={{ background: C.cream, borderRadius: '14px', padding: isMobile ? '1.75rem' : '2.25rem 3rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'auto 1fr auto', gap: isMobile ? '1rem' : '2.5rem', alignItems: 'center' }}>
+            <span className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, fontWeight: 700, whiteSpace: 'nowrap' }}>Featured post</span>
+            <h3 className="display" style={{ fontSize: isMobile ? '1.3rem' : '1.7rem', fontWeight: 400, lineHeight: 1.2, letterSpacing: '-0.01em', color: C.navy, margin: 0 }}>
+              Finally: A Practical AI Transformation Toolkit Built for <span className="serif-italic" style={{ color: C.lilac }}>HR Leaders</span>
+            </h3>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap', color: C.navy, fontWeight: 600, fontSize: '0.9rem' }}>Read Kyle's take →</span>
+          </div>
+        </a>
+      </section>
+
+      {/* THE LIBRARY — the star */}
+      <section id="library" style={{ padding: isMobile ? '4rem 1.25rem 3rem' : '7rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.5fr 1fr', gap: isMobile ? '2rem' : '5rem', marginBottom: '3rem', alignItems: 'end' }}>
+          <div>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
+              The Full Cohort Zero Toolkit
+            </div>
+            <h2 className="display" style={{ fontSize: 'clamp(3rem, 5.5vw, 4.5rem)', fontWeight: 400, lineHeight: 1.0, letterSpacing: '-0.03em', maxWidth: '18ch' }}>
+              Four frameworks.<br />
+              Free. <span className="serif-italic" style={{ color: C.lilac }}>Built to be used.</span>
+            </h2>
+          </div>
+          <div style={{ borderTop: `2px solid ${C.lilac}`, paddingTop: '1.5rem' }}>
+            <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: C.slate, marginBottom: '1.75rem' }}>
+              Each framework is authored by a practitioner who has put it to work inside their own organization. Free to access — made possible by the Council's Underwriters.
+            </p>
+            <span style={{ display: 'inline-block', background: C.navy, color: C.ivory, fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.35rem 0.85rem', borderRadius: '100px' }}>
+              Updated April 2026
+            </span>
+          </div>
+        </div>
+
+        {/* Access all CTA */}
+        <div style={{ marginBottom: '2.5rem' }}>
+          <button
+            onClick={() => { track('toolkit_cta_click', {}); document.querySelector('#library')?.scrollIntoView({ behavior: 'smooth' }); }}
+            style={{ padding: '0.95rem 2rem', background: accessGranted ? C.lilac : C.navy, color: C.ivory, border: 'none', borderRadius: '100px', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', letterSpacing: '0.01em' }}
+          >
+            {accessGranted ? 'Browse the Toolkit ↓' : 'Access the Full Toolkit →'}
+          </button>
+          <p style={{ marginTop: '0.65rem', fontSize: '0.8rem', color: C.slate, opacity: 0.75 }}>
+            {accessGranted ? 'You already have access — click any resource below to open it.' : 'Everything the Council publishes is free to use — thanks to our Underwriters.'}
+          </p>
+        </div>
+
+        {/* Filter bar */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.25rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)`, marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
+          <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: C.slate }}>
+            {filtered.length} of {resources.length} resources
+          </div>
+          <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+            {[
+              { id: 'all', label: 'All' },
+              { id: 'interactive', label: 'Interactive' },
+              { id: 'download', label: 'Downloads' },
+            ].map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setActiveFilter(f.id)}
+                className="filter-pill"
+                style={{
+                  padding: '0.5rem 1.1rem',
+                  background: activeFilter === f.id ? C.navy : 'transparent',
+                  color: activeFilter === f.id ? C.ivory : C.navy,
+                  border: `1px solid ${activeFilter === f.id ? C.navy : 'rgba(39, 55, 82, 0.2)'}`,
+                  borderRadius: '100px',
+                  fontSize: '0.75rem',
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Library rows */}
+        <div>
+          {filtered.map((r, i) => (
+            <div
+              key={r.id}
+              className="resource-row"
+              onClick={() => {
+                track('resource_open', { resource_name: r.title, resource_type: r.tag });
+                const openKey = RESOURCE_KEY_MAP[r.id] ? RESOURCE_KEY_MAP[r.id] + '_opens' : null;
+                if (openKey) {
+                  fetch(CLICKS_URL + '/latest', { headers: { 'X-ACCESS-KEY': CLICKS_KEY } })
+                    .then(res => res.json())
+                    .then(data => {
+                      const counts = data.record;
+                      counts[openKey] = (counts[openKey] || 0) + 1;
+                      fetch(CLICKS_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'X-ACCESS-KEY': CLICKS_KEY }, body: JSON.stringify(counts) });
+                    }).catch(() => {});
+                }
+                setSelectedResource(r);
+              }}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: isMobile ? '1fr' : '60px 160px 1fr 150px 60px',
+                gap: isMobile ? '0.5rem' : '2rem',
+                padding: isMobile ? '1.25rem 0.75rem' : '2rem 1rem',
+                borderBottom: `1px solid rgba(39, 55, 82, 0.1)`,
+                alignItems: 'center',
+              }}
+            >
+              <div className="mono" style={{ fontSize: '1.1rem', fontWeight: 700, color: C.navy, opacity: 0.25, letterSpacing: '-0.01em' }}>
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', alignItems: 'flex-start' }}>
+                <span className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: C.slate }}>
+                  {r.tag}
+                </span>
+                {r.kind === 'interactive' && (
+                  <span className="mono" style={{
+                    fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase',
+                    background: C.cream, color: C.navyDark,
+                    padding: '0.18rem 0.55rem', borderRadius: '2px', fontWeight: 500,
+                  }}>
+                    Live
+                  </span>
+                )}
+                {r.evolving && (
+                  <span className="mono" style={{
+                    fontSize: '0.58rem', letterSpacing: '0.08em', textTransform: 'uppercase',
+                    color: C.lilac, fontWeight: 500,
+                  }}>
+                    Interactive in dev
+                  </span>
+                )}
+              </div>
+              <div>
+                <h3 className="display row-title" style={{ fontSize: '1.7rem', fontWeight: 500, letterSpacing: '-0.01em', marginBottom: '0.5rem', lineHeight: 1.1, transition: 'color 0.3s', color: C.navy }}>
+                  {r.title}
+                </h3>
+                <p style={{ fontSize: '0.92rem', lineHeight: 1.55, color: C.slate, maxWidth: '64ch' }}>
+                  {r.short}
+                </p>
+                {r.subtitle ? (
+                  <div className="mono" style={{ fontSize: '0.7rem', color: C.slate, opacity: 0.65, marginTop: '0.6rem', letterSpacing: '0.05em' }}>
+                    {r.subtitle}
+                  </div>
+                ) : null}
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <span className="mono" style={{ fontSize: '0.78rem', color: r.kind === 'interactive' ? C.navyMid : C.navy, fontWeight: 600, letterSpacing: '0.04em', borderBottom: `1px solid ${r.kind === 'interactive' ? C.navyMid : C.navy}`, paddingBottom: '1px' }}>
+                  {r.ctaLabel}
+                </span>
+              </div>
+              <div className="row-arrow" style={{ fontSize: '1.5rem', color: C.navy, opacity: 0.7, transition: 'all 0.3s ease', textAlign: 'right', fontWeight: 300 }}>
+                →
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </section>
+
+      {/* FORMER CONTRIBUTING MEMBERS — kept, not deleted; sits at the bottom with the toolkit */}
+      <section id="former-members" style={{ padding: isMobile ? '3rem 1.25rem' : '4rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.9rem', paddingBottom: '1.1rem', marginBottom: isMobile ? '1.75rem' : '2.5rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)` }}>
+          <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate }}>
+            Former Contributing Members
+          </div>
+          <span style={{ fontSize: '0.82rem', color: C.slate, opacity: 0.7 }}>Year One practitioners whose work built the foundations.</span>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(130px, 1fr))', gap: isMobile ? '1rem 0.6rem' : '1.5rem 1.25rem' }}>
+          {formerMembers.map((m, i) => {
+            const initials = m.name.split(' ').map(n => n[0]).join('').slice(0, 2);
+            return (
+              <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ textAlign: 'center', cursor: 'pointer', opacity: 0.9 }}>
+                <div
+                  className="avatar"
+                  style={{
+                    width: isMobile ? '64px' : '96px',
+                    height: isMobile ? '64px' : '96px',
+                    borderRadius: '50%',
+                    margin: '0 auto 0.75rem',
+                    background: `linear-gradient(135deg, ${C.navyMid}, ${C.navyMid}99)`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: 'Fraunces, serif',
+                    fontSize: isMobile ? '1.1rem' : '1.6rem',
+                    fontWeight: 400,
+                    color: C.ivory,
+                    position: 'relative',
+                    overflow: 'hidden',
+                    filter: 'grayscale(0.35)',
+                  }}
+                >
+                  {m.photo ? (
+                    <img src={m.photo} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }} />
+                  ) : (
+                    <span style={{ position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>{initials}</span>
+                  )}
+                </div>
+                <div className="display" style={{ fontSize: '0.85rem', fontWeight: 500, marginBottom: '0.2rem', color: C.navy }}>{m.name}</div>
+                <div style={{ fontSize: '0.68rem', color: C.slate, lineHeight: 1.4, maxWidth: '20ch', margin: '0 auto' }}>{m.role}</div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer style={{ background: C.navy, color: C.ivory, padding: '4rem 2.5rem 2rem' }}>
         <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
@@ -1765,9 +1765,9 @@ function HCAIC_Final() {
             <div>
               <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '1rem' }}>The Council</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem', fontSize: '0.88rem' }}>
-                <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#library">Library</a>
-                <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#work">2026 Work</a>
+                <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#work">The Agenda</a>
                 <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#members">Members</a>
+                <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#library">The Toolkit</a>
                 <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#join">How to Participate</a>
               </div>
             </div>
