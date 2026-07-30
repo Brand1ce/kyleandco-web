@@ -664,7 +664,8 @@ function HCAIC_Final() {
     },
   ];
 
-  const underwriters = ['Workday', 'Findem', 'Warden AI', 'Humanly', 'GoodTime', 'Rival', 'isolved', 'Glider', 'CodeSignal', 'Gem', 'HiBob', 'SmartRecruiters'];
+  const underwritersYearTwo = ['isolved', 'Glider', 'CodeSignal', 'HiBob', 'GoodTime'];
+  const underwritersYearOne = ['Workday', 'Findem', 'Warden AI', 'Humanly', 'GoodTime', 'Rival', 'isolved', 'Glider', 'CodeSignal', 'Gem', 'HiBob', 'SmartRecruiters'];
 
   // EDITABLE: upcoming town halls, webinars, and replays
   // status values: 'upcoming' | 'replay' | 'live'
@@ -1470,7 +1471,7 @@ function HCAIC_Final() {
         </h2>
 
         <p style={{ fontSize: '1.05rem', lineHeight: 1.65, color: C.slate, marginBottom: '3.5rem', maxWidth: '62ch' }}>
-          Twelve underwriters fund this work, join practitioner dialogue, and help us keep everything the Council publishes free and open to every HR team. Here's how the model works — what they do, and what they don't.
+          Underwriters fund this work, join practitioner dialogue, and help us keep everything the Council publishes free and open to every HR team. Here's how the model works — what they do, and what they don't.
         </p>
 
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '3rem', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
@@ -1512,22 +1513,44 @@ function HCAIC_Final() {
           </div>
         </div>
 
-        {/* Underwriter logos */}
-        <div style={{ padding: '2.5rem 3rem', background: C.navy, color: C.ivory, borderRadius: '6px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '1.75rem', flexWrap: 'wrap', gap: '1rem' }}>
-            <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.7 }}>
-              2026 Underwriters · 12 partners
+        {/* Underwriters — Year Two (primary) */}
+        <div style={{ padding: isMobile ? '2rem 1.5rem' : '2.75rem 3rem', background: C.navy, color: C.ivory, borderRadius: '6px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
+            <div>
+              <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.cream, fontWeight: 500, marginBottom: '0.4rem' }}>
+                Year Two Underwriters
+              </div>
+              <div style={{ fontSize: '0.9rem', opacity: 0.7, maxWidth: '44ch', lineHeight: 1.5 }}>
+                The partners funding the Council's Year Two work. Room for a few more.
+              </div>
             </div>
-            <button onClick={() => setUnderwriterOpen(true)} className="underline-grow" style={{ color: C.cream, fontSize: '0.85rem', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-              Become an underwriter →
-            </button>
+            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <button onClick={() => setKcoOpen(true)} className="underline-grow" style={{ color: 'rgba(247,241,234,0.75)', fontSize: '0.82rem', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+                Follow the work →
+              </button>
+              <button onClick={() => { track('underwriter_cta_click', { location: 'logo_wall' }); setUnderwriterOpen(true); }} style={{ background: C.cream, color: C.navy, fontSize: '0.85rem', fontWeight: 600, border: 'none', borderRadius: '100px', padding: '0.7rem 1.4rem', cursor: 'pointer' }}>
+                Become an underwriter →
+              </button>
+            </div>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '1.25rem 1.75rem' : '1.75rem 3rem', alignItems: 'center', paddingTop: '0.5rem' }}>
+            {underwritersYearTwo.map((u) => (
+              <span key={u} className="display" style={{ fontSize: isMobile ? '1.35rem' : '1.9rem', fontWeight: 500, color: C.ivory, letterSpacing: '-0.01em', opacity: 0.92 }}>{u}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Underwriters — Year One (legacy, smaller) */}
+        <div style={{ marginTop: '1.5rem', padding: isMobile ? '1.5rem' : '1.75rem 3rem', background: 'rgba(157, 146, 173, 0.08)', borderRadius: '6px', border: `1px solid rgba(39, 55, 82, 0.08)` }}>
+          <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.1rem' }}>
+            Year One Underwriters · the partners who launched the Council
           </div>
           <div style={{ overflow: 'hidden' }}>
             <div className="marquee" style={{ alignItems: 'center', gap: '3rem' }}>
-              <img src="vendor-logos-line1.png" alt="Underwriters 1–6" style={{ height: '44px', width: 'auto', flexShrink: 0 }} />
-              <img src="vendor-logos-line2.png" alt="Underwriters 7–12" style={{ height: '44px', width: 'auto', flexShrink: 0 }} />
-              <img src="vendor-logos-line1.png" alt="Underwriters 1–6" style={{ height: '44px', width: 'auto', flexShrink: 0 }} />
-              <img src="vendor-logos-line2.png" alt="Underwriters 7–12" style={{ height: '44px', width: 'auto', flexShrink: 0 }} />
+              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
+              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
+              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
+              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'grayscale(1)', opacity: 0.65 }} />
             </div>
           </div>
         </div>
