@@ -15,7 +15,7 @@
 <title>Kyle &amp; Co: The Human-Centric AI Council</title>
 <meta name="description" content="The Human-Centric AI Council brings together senior HR leaders to build the frameworks and fluency that advance responsible, people-first AI adoption." />
 <meta property="og:title" content="The Human-Centric AI Council" />
-<meta property="og:description" content="Practitioner-built frameworks for HR leaders navigating AI. Four resources, free to access — built by the people doing this work inside real organizations." />
+<meta property="og:description" content="Year Two of the Human-Centric AI Council: five practitioner-led priorities shaping how HR adopts AI, plus a free, growing toolkit built by the people doing this work inside real organizations." />
 <meta property="og:image" content="https://kyleandco.com/aicouncil/social-preview.png" />
 <meta property="og:image:width" content="1080" />
 <meta property="og:image:height" content="1080" />
@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="Kyle &amp; Co" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="The Human-Centric AI Council" />
-<meta name="twitter:description" content="Practitioner-built frameworks for HR leaders navigating AI. Four resources, free to access." />
+<meta name="twitter:description" content="Year Two: five practitioner-led priorities shaping how HR adopts AI, plus a free toolkit built by the people doing this work." />
 <meta name="twitter:image" content="https://kyleandco.com/aicouncil/social-preview.png" />
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -36,7 +36,7 @@
 <script type="text/babel" data-presets="react">
 const { useState, useEffect } = React;
 
-// HCAIC — THE FINAL DIRECTION
+// HCAIC, THE FINAL DIRECTION
 // Hybrid: Option B's library-as-hero architecture + Option A's rhetorical clarity
 // + Option C's practitioner faces as proof.
 //
@@ -73,6 +73,9 @@ function HCAIC_Final() {
   const [momentumDownloadOpen, setMomentumDownloadOpen] = useState(false);
   const [momentumDownloadSubmitted, setMomentumDownloadSubmitted] = useState(false);
   const [pillarOpen, setPillarOpen] = useState(null);
+  const [outputsOpen, setOutputsOpen] = useState(null);
+  const [toolkitOpen, setToolkitOpen] = useState(false);
+  const [followSubmitted, setFollowSubmitted] = useState(false);
 
   // AI Momentum Model content (from Kyle & Co research report)
   const momentumDrivers = [
@@ -120,13 +123,13 @@ function HCAIC_Final() {
   }, []);
 
   useEffect(() => {
-    if (selectedResource || momentumOpen || gateOpen || applyOpen || kcoOpen || townhallOpen || underwriterOpen || momentumDownloadOpen || selectedMember || pillarOpen) {
+    if (selectedResource || gateOpen || applyOpen || kcoOpen || townhallOpen || underwriterOpen || selectedMember || pillarOpen || outputsOpen || toolkitOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
     return () => { document.body.style.overflow = ''; };
-  }, [selectedResource, momentumOpen, gateOpen, applyOpen, kcoOpen, townhallOpen, underwriterOpen, momentumDownloadOpen, selectedMember, pillarOpen]);
+  }, [selectedResource, gateOpen, applyOpen, kcoOpen, townhallOpen, underwriterOpen, selectedMember, pillarOpen, outputsOpen, toolkitOpen]);
 
   useEffect(() => {
     if (localStorage.getItem('hcaic_access') === '1') setAccessGranted(true);
@@ -212,6 +215,7 @@ function HCAIC_Final() {
   const ML_RESOURCE_GATE_URL = 'https://assets.mailerlite.com/jsonp/1555935/forms/185316851276842065/subscribe';
   const ML_APPLY_URL         = 'https://assets.mailerlite.com/jsonp/1555935/forms/159825956656120991/subscribe';
   const ML_KCO_URL           = 'https://assets.mailerlite.com/jsonp/1555935/forms/185371122148050837/subscribe';
+  const ML_FOLLOW_URL        = 'https://assets.mailerlite.com/jsonp/1555935/forms/194449693277685436/subscribe'; // AI Council Website – Followers group
   const ML_TOWNHALL_URL      = 'https://assets.mailerlite.com/jsonp/1555935/forms/185370079945295046/subscribe';
   const ML_UNDERWRITER_URL   = 'https://assets.mailerlite.com/jsonp/1555935/forms/159836007953335925/subscribe';
   const ML_MOMENTUM_URL      = 'https://assets.mailerlite.com/jsonp/1555935/forms/185372908239979993/subscribe';
@@ -325,51 +329,316 @@ function HCAIC_Final() {
 
   const filtered = activeFilter === 'all' ? resources : resources.filter(r => r.kind === activeFilter);
 
-  const focusAreas = [
+  // Single source of truth: pillar + champion + its Year Two agenda item + accent color.
+  // Pillars, agenda cards, and the pillar member modal all read from this, in this order.
+  const PILLARS = [
     {
-      n: 'F1',
-      t: "AI's Impact on HR",
-      sub: 'Strategic Workstream',
-      d: "A strategic workstream focused on how AI is changing HR itself: roles, team structures, operating models, required capabilities, and cross-functional relationships.",
-      output: 'The HR Operating Model of 2027',
+      n: '01',
+      name: 'AI Literacy & Education',
+      accent: '#9D92AD',
+      champion: { name: 'Kate Gilkey', photo: 'member-headshots/kate-gilkey.jpg' },
+      blurb: 'Structured learning and resources to build HR confidence and clarity around AI.',
+      full: 'Provide structured learning, experience-derived resources, and foundational knowledge to help HR professionals build confidence and clarity around AI within the functions and within the purview of HR. This work aims to demystify AI, break through market noise, and empower teams with the knowledge and understanding needed to engage meaningfully in AI conversations and initiatives.',
+      agenda: {
+        title: 'Scale AI Literacy into Practical Capability',
+        leader: { name: 'Jelena Marjanovic', photo: 'member-headshots/jelena-marjanovic.jpg' },
+        d: "Build on Year One's AI Literacy Toolkit and CodeSignal course, moving from awareness into role-specific, outcomes-anchored, Monday-morning-actionable capability.",
+        outputs: ['Practitioner playbook by role and business outcome', '“Force multiplier” framework', 'Use case library mapped to productivity, analytics, and cross-functional ROI', 'Expanded CodeSignal course content'],
+      },
     },
     {
-      n: 'F2',
-      t: 'HR AI Governance & Risk',
-      sub: 'Practical Workstream',
-      d: "Continuing the work we started: A practical workstream focused on helping HR leaders govern AI responsibly without stalling innovation.",
-      output: 'Governance Operating Model + HR AI Risk Framework',
+      n: '02',
+      name: 'AI Trust & Safety',
+      accent: '#6E8CA0',
+      champion: { name: 'Bruce Nichols', photo: 'member-headshots/bruce-nichols.png' },
+      blurb: 'Practical tools to evaluate AI through fairness, transparency, and accountability.',
+      full: 'Equip HR leaders with practical tools and guidance to evaluate AI solutions through a lens of fairness, transparency, and accountability. This includes resources on bias mitigation, ethical AI adoption, and curated updates on global regulations, positioning HR as a responsible steward of AI use across the employee lifecycle.',
+      agenda: {
+        title: 'Build a Practical HR AI Governance & Risk Framework',
+        leader: { name: 'Susan Jackson', photo: 'member-headshots/susan-jackson.jpg' },
+        d: "Help HR leaders govern AI responsibly in high-stakes processes, clarifying decision rights, human accountability, and how to move from “could we?” to “should we?”",
+        outputs: ['HR AI governance operating model', 'Risk typology for hiring, performance, pay, terminations', 'AI risk index by vendor and HR process', 'Governance maturity assessment and regulatory briefings'],
+      },
     },
     {
-      n: 'F3',
-      t: 'AI Literacy & Education',
-      sub: 'Always-On Enablement',
-      d: "Reframing as an always-on enablement workstream that translates HCAIC's body of work into learning experiences, tools, and practical development pathways.",
-      output: 'Role-Based AI Literacy Pathways',
+      n: '03',
+      name: 'AI Value Realization',
+      accent: '#B8894E',
+      champion: { name: 'Kate Warman', photo: 'member-headshots/kate-warman.jpg' },
+      blurb: 'Frameworks for defining business problems, building cases, and demonstrating AI ROI.',
+      full: 'Support HR in making the case for AI by defining real business problems, articulating ROI, and highlighting AI\'s impact on outcomes like efficiency, experience, and business alignment. This pillar includes frameworks for vendor evaluation, business case development, and a living repository of AI use cases and success stories.',
+      agenda: {
+        title: 'Launch the Human-Centric AI Impact Analysis Program',
+        leader: { name: 'Rob Devlin', photo: 'member-headshots/rob-devlin.jpg' },
+        d: "Capture how organizations are actually implementing AI in HR, going deep on what worked, what didn't, and what the human and business impact really looked like.",
+        outputs: ['Dual-dimension impact framework (business ROI + human impact)', '4–6 published impact analyses across functions and industries', 'Anonymous-first publishing with opt-in recognition', 'Lessons-learned synthesis'],
+      },
     },
     {
-      n: 'F4',
-      t: 'HCAI Case Studies',
-      sub: 'New for 2026',
-      d: 'A new program designed to showcase how organizations are actually putting these ideas into practice.',
-      output: 'Practitioner Case Study Series',
+      n: '04',
+      name: 'AI Adoption & Change Management',
+      accent: '#B07C8F',
+      champion: { name: 'Bill Musman', photo: 'member-headshots/bill-musman.png' },
+      blurb: 'Practical roadmaps to pilot, scale, and manage workforce impact of AI adoption.',
+      full: 'Guide HR through the responsible implementation of AI, from piloting new tools to scaling their use across functions. Emphasis is placed on practical adoption roadmaps, stakeholder alignment, and managing the workforce impact, including talent acquisition, reskilling, and job transformation.',
+      agenda: {
+        title: 'Define the Human-Centered HR Operating Model',
+        leader: { name: 'Clayton Rodgers', photo: 'member-headshots/clayton-rodgers.jpg' },
+        d: 'Clarify how HR must be restructured as AI becomes embedded in work, building a practical model around human strengths and AI-enabled capabilities.',
+        outputs: ['Role redesign guidance (TA, HRBPs, L&D, HR Ops)', 'HR operating model archetypes', '“Day in the life” before/after workflow comparisons', 'Executive translation guide'],
+      },
+    },
+    {
+      n: '05',
+      name: 'Forward-Thinking & Future-Ready AI',
+      accent: '#7C9473',
+      champion: { name: 'Adam Treitler', photo: 'member-headshots/adam-treitler.jpg' },
+      blurb: "Curated insights on emerging trends to help HR anticipate and lead what's next.",
+      full: 'Explore and interpret emerging technology trends to help HR leaders anticipate what\'s next. Through curated insights and conversations with technologists and scientific experts, this pillar ensures HR stays ahead of market shifts, and shapes the future of work and workforce strategy with confidence.',
+      agenda: {
+        title: "Map AI's Impact on HR",
+        leader: { name: 'Kirandeep Virdi', photo: 'member-headshots/kirandeep-virdi.jpg' },
+        d: "Track how AI is actively reshaping HR work, identifying what's being automated, augmented, and left to human judgment across the function.",
+        outputs: ['AI impact heatmap across HR functions', 'Human vs. AI work map (task-level)', 'Role-by-role analysis of shifting skills and scope', '“What’s changing now” briefs'],
+      },
     },
   ];
 
+  const PILLAR_ORDER = [
+    'AI Literacy & Education',
+    'AI Trust & Safety',
+    'AI Value Realization',
+    'AI Adoption & Change Management',
+    'Forward-Thinking & Future-Ready AI',
+  ];
+
   const members = [
+    // ── AI Literacy & Education ──
+    {
+      name: 'Kate Gilkey',
+      role: 'Sr. HR Systems Manager, CrowdStrike',
+      pillar: 'AI Literacy & Education',
+      champion: true,
+      photo: 'member-headshots/kate-gilkey.jpg',
+      linkedin: 'https://www.linkedin.com/in/kate-gilkey/',
+      bio: 'HR technology and employee experience leader with 15+ years driving workforce transformation across people strategy, product management, and digital innovation. At CrowdStrike she leads employee lifecycle technology strategy, launching an enterprise skills program, modernizing onboarding, and advancing AI education across HR teams. Previously led employee experience at Bezos Academy and held HR product and program roles at Amazon.',
+    },
+    {
+      name: 'Jelena Marjanovic, PhD',
+      role: 'Founder, AI at Work',
+      pillar: 'AI Literacy & Education',
+      photo: 'member-headshots/jelena-marjanovic.jpg',
+      linkedin: 'https://www.linkedin.com/in/marjanovicjelena/',
+      bio: 'AI adoption consultant and learning designer, and founder of AI at Work. Fifteen years designing training for organizations including KPMG, PwC, and the Canadian Red Cross. Helps companies build AI literacy and the genAI use cases that improve how they operate, with a focus on workflows, judgment, and adoption that lasts. Holds a PhD in technology-enhanced education.',
+    },
     {
       name: 'Rachel Bourne',
-      role: 'Host, The Shift Show',
+      role: 'Vice President, AI Transformation',
+      pillar: 'AI Literacy & Education',
       photo: 'member-headshots/rachel-bourne.jpg',
       linkedin: 'https://www.linkedin.com/in/rachel-bourne/',
       bio: 'Global HR executive and talent strategist with 20 years of Fortune 500 transformation experience. Host of The Shift Show, where she translates AI, automation, and future-of-work trends into practical career strategy. Systems thinker focused on designing work for the people doing it. Co-lead on the HCAIC AI Literacy Toolkit.',
     },
     {
+      name: 'Robyn Mather',
+      role: 'Founder & CEO, Leadership State of Mind',
+      pillar: 'AI Literacy & Education',
+      photo: 'member-headshots/robyn-mather.jpg',
+      linkedin: 'https://www.linkedin.com/in/robynmather/',
+      bio: '20+ years in leadership development, strategic planning, and culture design. Founder of Leadership State of Mind, a leadership advisory practice built on Culture Before Code™, the conviction that AI and technology fail when leaders and culture aren\'t ready to lead the change. Created an intensive leadership program that equipped 80+ mid-career women to lead at expanded levels.',
+    },
+    {
+      name: 'Sarika Lamont',
+      role: 'Chief People & AI Enablement Officer',
+      pillar: 'AI Literacy & Education',
+      photo: 'member-headshots/sarika-lamont.jpg',
+      linkedin: 'https://www.linkedin.com/in/sarikal/',
+      bio: 'VP of People and Culture at Vidyard, leading AI and automation transformation alongside HR, DEI, and culture. 20+ years in management consulting and talent strategy. Previously Chief Talent Officer at a global public SaaS company covering seven countries.',
+    },
+    {
+      name: 'Melissa Laswell',
+      role: 'Head of Executive Recruiting, Blue Origin',
+      pillar: 'AI Literacy & Education',
+      photo: 'member-headshots/melissa-laswell.jpg',
+      linkedin: 'https://www.linkedin.com/in/melissalaswell/',
+      bio: 'Head of Executive Recruiting at Blue Origin. Two decades leading talent acquisition, talent management, and organizational development at Apple, Walmart, and Pitney Bowes. Champions responsible, people-first technology that enhances the talent experience. Co-lead on the HCAIC AI Literacy Toolkit.',
+    },
+
+    // ── AI Trust & Safety ──
+    {
+      name: 'Bruce Nichols',
+      role: 'Fortune 100 HR Exec',
+      pillar: 'AI Trust & Safety',
+      champion: true,
+      photo: 'member-headshots/bruce-nichols.png',
+      linkedin: 'https://www.linkedin.com/in/brucernichols/',
+      bio: 'Fortune 100 HR executive across insurance, banking, tech, and renewable energy. Interim/fractional CHRO for companies from startups to large enterprises. Delivered millions in savings through talent optimization at Liberty Mutual. Norwich University graduate and former US Army officer.',
+    },
+    {
+      name: 'Bradley Clark',
+      role: 'Global Head of Talent Acquisition & Employer Brand',
+      pillar: 'AI Trust & Safety',
+      photo: 'member-headshots/bradley-clark.jpg',
+      linkedin: 'https://www.linkedin.com/in/bradmclark/',
+      bio: 'Leads global Talent Acquisition and Employer Branding at Article, where he built the TA function from the ground up and became an early practitioner of integrating AI into hiring. He now sits on Article\'s senior AI Council shaping its AI principles and adoption roadmap. Previously founded Bear Recruitment Consulting (Samsung R&D, Boeing Labs, Best Buy, Match Group) and co-founded candidate communications platform Keeyora.',
+    },
+    {
+      name: 'Christi Anthony',
+      role: 'Director, E&LR Governance & Compliance',
+      pillar: 'AI Trust & Safety',
+      photo: 'member-headshots/christi-anthony.jpg',
+    },
+    {
+      name: 'Jon Fraschetti',
+      role: 'Director, Talent Operations, Tech & Analytics',
+      pillar: 'AI Trust & Safety',
+      photo: 'member-headshots/jon-fraschetti.jpg',
+    },
+    {
+      name: 'Susan Jackson',
+      role: 'Executive Director, Global Talent Technology (fmr)',
+      pillar: 'AI Trust & Safety',
+      photo: 'member-headshots/susan-jackson.jpg',
+      linkedin: 'https://www.linkedin.com/in/jacksonsusan/',
+      bio: 'Talent Operations, Strategy & Insights Leader at The Estée Lauder Companies. Drives enterprise-wide talent transformation and technology implementation. Featured speaker on TA technology, innovation, and the evolving role of HR. Co-lead on the HCAIC Responsible AI Framework.',
+    },
+    {
+      name: 'Tara Torres',
+      role: 'Senior Manager, Talent Strategy & Operations (fmr)',
+      pillar: 'AI Trust & Safety',
+      photo: 'member-headshots/tara-torres.jpg',
+      linkedin: 'https://www.linkedin.com/in/taratorres/',
+      bio: 'Senior Manager of Talent Strategy and Programs at Coinbase, leading initiatives at the intersection of talent, technology, and AI. 20+ years transforming recruiting operations at Amazon, Stripe, and JPMorgan Chase. Co-lead on the HCAIC Responsible AI Framework.',
+    },
+
+    // ── AI Value Realization ──
+    {
+      name: 'Kate Warman',
+      role: 'Enterprise TA & HR Ops',
+      pillar: 'AI Value Realization',
+      champion: true,
+      photo: 'member-headshots/kate-warman.jpg',
+      linkedin: 'https://www.linkedin.com/in/katewarman/',
+      bio: 'Senior enterprise talent acquisition and HR operations leader. Led matrixed global TA organizations with 300+ resources, $50M+ budgets, and 8,000+ hires annually across 25+ countries. Expertise in AI-driven recruitment, ATS/CRM optimization, and TA transformation.',
+    },
+    {
+      name: 'Daniel Morales',
+      role: 'Senior Manager, People Solutions & AI',
+      pillar: 'AI Value Realization',
+      photo: 'member-headshots/daniel-morales.jpg',
+      linkedin: 'https://www.linkedin.com/in/danielcmorales/',
+      bio: "Senior leader in People AI & Tech Enablement at Chainlink Labs. Embeds AI across the People organization to simplify complexity and enable scale. Previously scaled Better.com's recruiting from 600 to 8,000 in under two years. Systems-first approach to people operations.",
+    },
+    {
       name: 'Dustin Cann',
-      role: 'Sr Director, Cisco TA',
+      role: 'Senior Director, Talent Acquisition Strategy & Ops',
+      pillar: 'AI Value Realization',
       photo: 'member-headshots/dustin-cann.jpg',
       linkedin: 'https://www.linkedin.com/in/dustincann/',
       bio: "Senior Director of Strategy and Operations for Cisco's Join & Connect talent acquisition organization. Drives strategy, planning, recruiting operations, technology transformation, enablement, and hiring compliance. Two decades consulting on talent management software before moving in-house at AWS, Splunk, and Cisco.",
+    },
+    {
+      name: 'Rita Domarkaite',
+      role: 'Senior Director, Talent Transformation',
+      pillar: 'AI Value Realization',
+      photo: 'member-headshots/rita-domarkaite.jpg',
+    },
+    {
+      name: 'Sarah Smart',
+      role: 'SVP, Global Talent Acquisition & Workforce Strategy',
+      pillar: 'AI Value Realization',
+      photo: 'member-headshots/sarah-smart.jpg',
+      linkedin: 'https://www.linkedin.com/in/sarahsmart/',
+      bio: "SVP of Global TA Strategy at Appian. Previously Co-Founder of HorizonHuman, designing HR transformation initiatives and evaluating AI and automation solutions. Led JPMorgan Chase's TA Product Organization and Hilton's Global Recruiting Function. MA in Organizational Behavior from Columbia. HCAIC Steering Committee.",
+    },
+
+    // ── AI Adoption & Change Management ──
+    {
+      name: 'Bill Musman',
+      role: 'Founder, Sixth Man Group',
+      pillar: 'AI Adoption & Change Management',
+      champion: true,
+      photo: 'member-headshots/bill-musman.png',
+      linkedin: 'https://www.linkedin.com/in/billmusman/',
+      bio: 'Founder of Sixth Man Human Capital Group. 25+ years designing and scaling global recruiting organizations across APAC, EMEA, India, LATAM, and North America. BS in Computer Science; bridges HR and technology with rare depth across platforms, automation, and analytics.',
+    },
+    {
+      name: 'Clayton Rodgers',
+      role: 'Senior HRBP, HR Enablement & AI Transformation',
+      pillar: 'AI Adoption & Change Management',
+      photo: 'member-headshots/clayton-rodgers.jpg',
+    },
+    {
+      name: 'Johnny Sanchez',
+      role: 'Head of Recruiting Ops & Technology',
+      pillar: 'AI Adoption & Change Management',
+      photo: 'member-headshots/johnny-sanchez.jpg',
+    },
+    {
+      name: 'Kaity Jacobsen',
+      role: 'Director, Talent Engagement, Xactly',
+      pillar: 'AI Adoption & Change Management',
+      photo: 'member-headshots/kaity-jacobsen.jpg',
+      linkedin: 'https://www.linkedin.com/in/kaityjacobsen/',
+      bio: "Leads forward-thinking people programs at the intersection of talent, technology, and AI at Xactly Corporation. Over a decade in high-growth environments aligning people performance with business strategy, guiding executive teams through rapid change, and designing resilient talent systems built for real-world execution. Co-founder of Alta, a community for women leading in Arizona's tech sector.",
+    },
+    {
+      name: 'Sydney Edman',
+      role: 'Head of People Operations, Pathpoint',
+      pillar: 'AI Adoption & Change Management',
+      photo: 'member-headshots/sydney-edman.jpg',
+      linkedin: 'https://www.linkedin.com/in/sydney-edman/',
+      bio: 'Strategic, hands-on HR leader with 10+ years building, operationalizing, and leading People Operations in high-growth startups. Founding People Operations leader for GitKraken and Pathpoint, with deep operational expertise across the employee lifecycle and a focus on scalable people practices that let employees and businesses thrive together.',
+    },
+
+    // ── Forward-Thinking & Future-Ready AI ──
+    {
+      name: 'Adam Treitler',
+      role: 'HR Systems Dir, Related',
+      pillar: 'Forward-Thinking & Future-Ready AI',
+      champion: true,
+      photo: 'member-headshots/adam-treitler.jpg',
+      linkedin: 'https://www.linkedin.com/in/adam-treitler/',
+      bio: 'Director, Head of HR Systems, Operations & Analytics at Related Companies, leading people infrastructure across a $70B property portfolio. Previously held HR Analytics and Technology roles at Pandora Jewelry, Twitter (X), and ViacomCBS. Specializes in AI-enabled workforce transformation.',
+    },
+    {
+      name: 'Bob Pulver',
+      role: 'Founder & Principal, Elevate Your AIQ',
+      pillar: 'Forward-Thinking & Future-Ready AI',
+      photo: 'member-headshots/bob-pulver.jpg',
+      linkedin: 'https://www.linkedin.com/in/bobpulver/',
+      bio: "Technology strategist and AI ethics advocate. Former IBM Global Program Leader for Watson's Cognitive Build and Principal Analyst at Talent Tech Labs. Now leads Elevate Your AIQ, his advisory practice focused on ethical AI use. Certified independent AI auditor and podcast host.",
+    },
+    {
+      name: 'Jeremy Lyons',
+      role: 'Co-Founder, RecOps Collective',
+      pillar: 'Forward-Thinking & Future-Ready AI',
+      photo: 'member-headshots/jeremy-lyons.jpg',
+    },
+    {
+      name: 'Kirandeep Virdi',
+      role: 'Head of People & Culture (fmr), Asper.ai',
+      pillar: 'Forward-Thinking & Future-Ready AI',
+      photo: 'member-headshots/kirandeep-virdi.jpg',
+      linkedin: 'https://www.linkedin.com/in/kirandeep-virdi-250787/',
+      bio: 'Builder connecting people, technology, and business growth, with 15+ years turning people functions into growth engines across AI tech, telecom, and financial services at Asper.ai, Sprinklr, NatWest, and Airtel. Currently completing an MS in Human Capital Analytics & Technology at NYU, prototyping AI-powered HR solutions and engineering systems that let businesses scale without losing their humanity.',
+    },
+    {
+      name: 'Rob Devlin',
+      role: 'Sr Global Program Manager, TA Technology',
+      pillar: 'Forward-Thinking & Future-Ready AI',
+      photo: 'member-headshots/rob-devlin.jpg',
+    },
+  ];
+
+  // Original-cohort members not on the Year Two roster, kept, not deleted.
+  const formerMembers = [
+    {
+      name: 'Tushar Pandit',
+      role: '3x CPO, Board Advisor',
+      photo: 'member-headshots/tushar-pandit.jpg',
+      linkedin: 'https://www.linkedin.com/in/tusharpandit/',
+      bio: '3x Chief People Officer, C-suite executive coach, and board advisor with 25+ years across human capital and enterprise transformation. Board roles at Kinfolk, ChangeEngine, and People Tech Advisors. Advocate for purpose-driven leadership across global tech and PE-backed firms.',
     },
     {
       name: 'Kelly Cartwright',
@@ -397,7 +666,7 @@ function HCAIC_Final() {
       role: 'People Insights, Procore',
       photo: 'member-headshots/martha-curioni.jpg',
       linkedin: 'https://www.linkedin.com/in/marthacurioni/',
-      bio: 'People Insights Partner at Procore. Connects workforce data to business strategy — translating HR analytics into decisions leaders actually act on. Data science + HR background, with prior roles at Deloitte and IQVIA. Led a restructuring that delivered $20M+ in savings.',
+      bio: 'People Insights Partner at Procore. Connects workforce data to business strategy, translating HR analytics into decisions leaders actually act on. Data science + HR background, with prior roles at Deloitte and IQVIA. Led a restructuring that delivered $20M+ in savings.',
     },
     {
       name: 'Adam Dayan',
@@ -405,27 +674,6 @@ function HCAIC_Final() {
       photo: 'member-headshots/adam-dayan.jpg',
       linkedin: 'https://www.linkedin.com/in/adamdayan/',
       bio: 'New York-based HR strategist. Combines positive psychology principles with data-driven analytics to design people-first solutions that strengthen culture and performance. 10+ years in talent management and organizational development. Advocate for responsible, ethical AI adoption in HR.',
-    },
-    {
-      name: 'Susan Jackson',
-      role: 'Talent Ops, Estée Lauder',
-      photo: 'member-headshots/susan-jackson.jpg',
-      linkedin: 'https://www.linkedin.com/in/jacksonsusan/',
-      bio: 'Talent Operations, Strategy & Insights Leader at The Estée Lauder Companies. Drives enterprise-wide talent transformation and technology implementation. Featured speaker on TA technology, innovation, and the evolving role of HR. Co-lead on the HCAIC Responsible AI Framework.',
-    },
-    {
-      name: 'Sarika Lamont',
-      role: 'VP People & Culture, Vidyard',
-      photo: 'member-headshots/sarika-lamont.jpg',
-      linkedin: 'https://www.linkedin.com/in/sarikal/',
-      bio: 'VP of People and Culture at Vidyard, leading AI and automation transformation alongside HR, DEI, and culture. 20+ years in management consulting and talent strategy. Previously Chief Talent Officer at a global public SaaS company covering seven countries.',
-    },
-    {
-      name: 'Melissa Laswell',
-      role: 'Head of Exec Recruiting, Blue Origin',
-      photo: 'member-headshots/melissa-laswell.jpg',
-      linkedin: 'https://www.linkedin.com/in/melissalaswell/',
-      bio: 'Head of Executive Recruiting at Blue Origin. Two decades leading talent acquisition, talent management, and organizational development at Apple, Walmart, and Pitney Bowes. Champions responsible, people-first technology that enhances the talent experience. Co-lead on the HCAIC AI Literacy Toolkit.',
     },
     {
       name: 'Logan Marsh',
@@ -442,74 +690,11 @@ function HCAIC_Final() {
       bio: 'Strategy-first transformation leader with 15+ years in innovation and data analytics. Co-founded a global behavioral insights community across 30+ countries. MA in Industrial/Organizational Psychology from the University of Maryland. Lead on the HCAIC Change Management & Adoption ebook.',
     },
     {
-      name: 'Daniel Morales',
-      role: 'People AI, Chainlink Labs',
-      photo: 'member-headshots/daniel-morales.jpg',
-      linkedin: 'https://www.linkedin.com/in/danielcmorales/',
-      bio: "Senior leader in People AI & Tech Enablement at Chainlink Labs. Embeds AI across the People organization to simplify complexity and enable scale. Previously scaled Better.com's recruiting from 600 to 8,000 in under two years. Systems-first approach to people operations.",
-    },
-    {
-      name: 'Bill Musman',
-      role: 'Founder, Sixth Man Group',
-      photo: 'member-headshots/bill-musman.png',
-      linkedin: 'https://www.linkedin.com/in/billmusman/',
-      bio: 'Founder of Sixth Man Human Capital Group. 25+ years designing and scaling global recruiting organizations across APAC, EMEA, India, LATAM, and North America. BS in Computer Science; bridges HR and technology with rare depth across platforms, automation, and analytics.',
-    },
-    {
-      name: 'Bruce Nichols',
-      role: 'Fortune 100 HR Exec',
-      photo: 'member-headshots/bruce-nichols.png',
-      linkedin: 'https://www.linkedin.com/in/brucernichols/',
-      bio: 'Fortune 100 HR executive across insurance, banking, tech, and renewable energy. Interim/fractional CHRO for companies from startups to large enterprises. Delivered millions in savings through talent optimization at Liberty Mutual. Norwich University graduate and former US Army officer.',
-    },
-    {
-      name: 'Tushar Pandit',
-      role: '3x CPO, Board Advisor',
-      photo: 'member-headshots/tushar-pandit.jpg',
-      linkedin: 'https://www.linkedin.com/in/tusharpandit/',
-      bio: '3x Chief People Officer, C-suite executive coach, and board advisor with 25+ years across human capital and enterprise transformation. Board roles at Kinfolk, ChangeEngine, and People Tech Advisors. Advocate for purpose-driven leadership across global tech and PE-backed firms.',
-    },
-    {
-      name: 'Bob Pulver',
-      role: 'Founder, Elevate Your AIQ',
-      photo: 'member-headshots/bob-pulver.jpg',
-      linkedin: 'https://www.linkedin.com/in/bobpulver/',
-      bio: "Technology strategist and AI ethics advocate. Former IBM Global Program Leader for Watson's Cognitive Build and Principal Analyst at Talent Tech Labs. Now leads Elevate Your AIQ, his advisory practice focused on ethical AI use. Certified independent AI auditor and podcast host.",
-    },
-    {
       name: 'Manjuri Sinha',
       role: 'VP HR, Miro',
       photo: 'member-headshots/manjuri-sinha.jpg',
       linkedin: 'https://www.linkedin.com/in/manjurisinha/',
       bio: 'VP HR and Global Head of GTM Org Success & People Partners at Miro. 21+ years in people and business success across high-growth tech and SaaS. Two-time Talent100 awardee. Featured in Times Square as a global thought leader on AI transformation in HR.',
-    },
-    {
-      name: 'Sarah Smart',
-      role: 'SVP, Global TA Strategy, Appian',
-      photo: 'member-headshots/sarah-smart.jpg',
-      linkedin: 'https://www.linkedin.com/in/sarahsmart/',
-      bio: "SVP of Global TA Strategy at Appian. Previously Co-Founder of HorizonHuman, designing HR transformation initiatives and evaluating AI and automation solutions. Led JPMorgan Chase's TA Product Organization and Hilton's Global Recruiting Function. MA in Organizational Behavior from Columbia. HCAIC Steering Committee.",
-    },
-    {
-      name: 'Tara Torres',
-      role: 'Sr Manager, Coinbase',
-      photo: 'member-headshots/tara-torres.jpg',
-      linkedin: 'https://www.linkedin.com/in/taratorres/',
-      bio: 'Senior Manager of Talent Strategy and Programs at Coinbase, leading initiatives at the intersection of talent, technology, and AI. 20+ years transforming recruiting operations at Amazon, Stripe, and JPMorgan Chase. Co-lead on the HCAIC Responsible AI Framework.',
-    },
-    {
-      name: 'Adam Treitler',
-      role: 'HR Systems Dir, Related',
-      photo: 'member-headshots/adam-treitler.jpg',
-      linkedin: 'https://www.linkedin.com/in/adam-treitler/',
-      bio: 'Director, Head of HR Systems, Operations & Analytics at Related Companies, leading people infrastructure across a $70B property portfolio. Previously held HR Analytics and Technology roles at Pandora Jewelry, Twitter (X), and ViacomCBS. Specializes in AI-enabled workforce transformation.',
-    },
-    {
-      name: 'Kate Warman',
-      role: 'Enterprise TA & HR Ops',
-      photo: 'member-headshots/kate-warman.jpg',
-      linkedin: 'https://www.linkedin.com/in/katewarman/',
-      bio: 'Senior enterprise talent acquisition and HR operations leader. Led matrixed global TA organizations with 300+ resources, $50M+ budgets, and 8,000+ hires annually across 25+ countries. Expertise in AI-driven recruitment, ATS/CRM optimization, and TA transformation.',
     },
     {
       name: 'Allie Wehling',
@@ -520,7 +705,8 @@ function HCAIC_Final() {
     },
   ];
 
-  const underwriters = ['Workday', 'Findem', 'Warden AI', 'Humanly', 'GoodTime', 'Rival', 'isolved', 'Glider', 'CodeSignal', 'Gem', 'HiBob', 'SmartRecruiters'];
+  const underwritersYearTwo = ['isolved', 'Glider', 'CodeSignal', 'HiBob', 'GoodTime'];
+  const underwritersYearOne = ['Workday', 'Findem', 'Warden AI', 'Humanly', 'GoodTime', 'Rival', 'isolved', 'Glider', 'CodeSignal', 'Gem', 'HiBob', 'SmartRecruiters'];
 
   // EDITABLE: upcoming town halls, webinars, and replays
   // status values: 'upcoming' | 'replay' | 'live'
@@ -528,11 +714,11 @@ function HCAIC_Final() {
     {
       status: 'upcoming',
       type: 'Town Hall',
-      title: 'Cohort Zero Toolkit Launch',
-      date: 'May 28, 2026 · 1:00pm ET',
-      summary: 'The Council walks through all four frameworks, why they exist, and how HR teams are putting them to work.',
-      cta: 'Register',
-      onClick: () => setTownhallOpen(true),
+      title: 'Year Two Launch Town Hall',
+      date: 'September 2, 2026 · time TBA',
+      summary: 'The Council kicks off Year Two: the five priorities, who is leading each, and how HR teams and vendors can get involved. Underwriters welcome.',
+      cta: 'Registration opening soon',
+      comingSoon: true,
     },
   ];
 
@@ -686,9 +872,11 @@ function HCAIC_Final() {
         ) : (
           <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', fontSize: '0.85rem' }}>
             <a href="https://kyleandco.com" style={{ color: C.navy, textDecoration: 'none', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><span aria-hidden="true">&larr;</span> Kyle &amp; Co</a>
-            <button onClick={() => document.querySelector('#library')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>The AI Transformation Toolkit</button>
-            <button onClick={() => document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>2026 Work</button>
+            <button onClick={() => document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>The Agenda</button>
             <button onClick={() => document.querySelector('#members')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>Members</button>
+            <button onClick={() => document.querySelector('#events')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>Townhalls</button>
+            <button onClick={() => document.querySelector('#underwriters')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>Underwriters</button>
+            <button onClick={() => document.querySelector('#library')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>The Toolkit</button>
             <button onClick={() => document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>How to Participate</button>
             <button
               onClick={() => document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' })}
@@ -705,9 +893,11 @@ function HCAIC_Final() {
         <div className="mobile-menu-overlay">
           <a href="https://kyleandco.com" style={{ fontSize: '1rem', color: C.slate, textDecoration: 'none', fontWeight: 400 }}><span aria-hidden="true">&larr;</span> Kyle &amp; Co</a>
           {[
-            { label: 'The AI Transformation Toolkit', id: '#library' },
-            { label: '2026 Work', id: '#work' },
+            { label: 'The Agenda', id: '#work' },
             { label: 'Members', id: '#members' },
+            { label: 'Townhalls', id: '#events' },
+            { label: 'Underwriters', id: '#underwriters' },
+            { label: 'The Toolkit', id: '#library' },
             { label: 'How to Participate', id: '#join' },
           ].map(item => (
             <button key={item.id} onClick={() => { document.querySelector(item.id)?.scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false); }}>
@@ -722,9 +912,9 @@ function HCAIC_Final() {
 
       {/* HERO */}
       <div style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Hero orbit graphic — full viewport width */}
+        {/* Hero orbit graphic, full viewport width */}
         {!isMobile && <img src="hero-orbit.svg" alt="" aria-hidden="true" style={{ position: 'absolute', right: 0, top: 0, width: '55%', height: '100%', objectFit: 'contain', objectPosition: 'right center', pointerEvents: 'none', zIndex: 0 }} />}
-      <section style={{ padding: isMobile ? '6rem 1.25rem 3rem' : '9rem 2.5rem 5rem', maxWidth: '1400px', margin: '0 auto', position: 'relative', overflow: 'visible', zIndex: 1 }} className="grid-overlay">
+      <section style={{ padding: isMobile ? '6rem 1.25rem 1.5rem' : '9rem 2.5rem 2rem', maxWidth: '1400px', margin: '0 auto', position: 'relative', overflow: 'visible', zIndex: 1 }} className="grid-overlay">
         {/* Ampersand watermark */}
         <img
           src={AMPERSAND_MARK}
@@ -742,7 +932,7 @@ function HCAIC_Final() {
           }}
         />
         <div className="reveal reveal-1 mono" style={{ fontSize: '0.72rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '2rem', color: C.slate, display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
-          <span className="live-dot" /> Cohort Two · 2026 · The Year of the Human
+          <span className="live-dot" /> Year Two · 2026 · The Year of the Human
         </div>
 
         <h1
@@ -769,7 +959,7 @@ function HCAIC_Final() {
 
         <div className="reveal reveal-4" style={{ display: 'flex', gap: '1.25rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <a
-            href="#library"
+            href="#work"
             style={{
               background: C.navy,
               color: C.ivory,
@@ -781,229 +971,261 @@ function HCAIC_Final() {
             }}
             className="link-arrow"
           >
-            Explore the Toolkit <span>→</span>
+            See the Year Two agenda <span>→</span>
           </a>
-          <a href="#work" className="underline-grow" style={{ color: C.navy, textDecoration: 'none', fontSize: '0.95rem', fontWeight: 500 }}>
-            What the Council is building in 2026
-          </a>
+          <button onClick={() => { track('underwriter_cta_click', { location: 'hero' }); setUnderwriterOpen(true); }} className="underline-grow" style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', color: C.navy, fontSize: '0.95rem', fontWeight: 500, padding: 0 }}>
+            Partner as an underwriter →
+          </button>
         </div>
 
       </section>
       </div>
 
-      {/* ABOUT THE COUNCIL */}
-      <section style={{ background: C.navy, padding: isMobile ? '4rem 1.25rem 0' : '7rem 2.5rem 0', overflow: 'hidden' }}>
+      {/* ABOUT THE COUNCIL — pillars */}
+      <section style={{ background: C.ivory, padding: isMobile ? '2rem 1.25rem 3rem' : '3rem 2.5rem 4rem' }}>
         <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
-          {/* Top: mission + CTAs */}
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '5rem', alignItems: 'end', marginBottom: isMobile ? '3rem' : '5rem' }}>
-            <div>
-              <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1.5rem' }}>
-                The Human-Centric AI Council
-              </div>
-              <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-0.02em', color: C.ivory, marginBottom: '1.5rem' }}>
-                Practitioner-led.<br /><span className="serif-italic" style={{ color: C.cream }}>Five pillars. One goal.</span>
-              </h2>
-              <p style={{ fontSize: '0.98rem', lineHeight: 1.7, color: 'rgba(247,241,234,0.75)', maxWidth: '48ch', marginBottom: '2.25rem' }}>
-                The Council brings together senior HR and talent leaders to build the frameworks and fluency that advance responsible, people-first AI adoption — through honest dialogue, shared learning, and co-creation grounded in real-world transformation needs.
-              </p>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <a href="#join" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: 'transparent', color: C.ivory, padding: '0.95rem 1.75rem', borderRadius: '100px', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500, border: '1px solid rgba(247,241,234,0.25)' }}>
-                  Get involved →
-                </a>
-              </div>
+          {/* Header, stacked above the pillars */}
+          <div style={{ maxWidth: '46ch', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
+            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1.25rem' }}>
+              The Human-Centric AI Council
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {[
-                { n: '01', name: 'AI Literacy & Education', blurb: 'Structured learning and resources to build HR confidence and clarity around AI.', full: 'Provide structured learning, experience-derived resources, and foundational knowledge to help HR professionals build confidence and clarity around AI within the functions and within the purview of HR. This work aims to demystify AI, break through market noise, and empower teams with the knowledge and understanding needed to engage meaningfully in AI conversations and initiatives.' },
-                { n: '02', name: 'AI Trust & Safety', blurb: 'Practical tools to evaluate AI through fairness, transparency, and accountability.', full: 'Equip HR leaders with practical tools and guidance to evaluate AI solutions through a lens of fairness, transparency, and accountability. This includes resources on bias mitigation, ethical AI adoption, and curated updates on global regulations — positioning HR as a responsible steward of AI use across the employee lifecycle.' },
-                { n: '03', name: 'AI Value Realization', blurb: 'Frameworks for defining business problems, building cases, and demonstrating AI ROI.', full: 'Support HR in making the case for AI by defining real business problems, articulating ROI, and highlighting AI\'s impact on outcomes like efficiency, experience, and business alignment. This pillar includes frameworks for vendor evaluation, business case development, and a living repository of AI use cases and success stories.' },
-                { n: '04', name: 'AI Adoption & Change Management', blurb: 'Practical roadmaps to pilot, scale, and manage workforce impact of AI adoption.', full: 'Guide HR through the responsible implementation of AI, from piloting new tools to scaling their use across functions. Emphasis is placed on practical adoption roadmaps, stakeholder alignment, and managing the workforce impact — including talent acquisition, reskilling, and job transformation.' },
-                { n: '05', name: 'Forward-Thinking & Future-Ready AI', blurb: 'Curated insights on emerging trends to help HR anticipate and lead what\'s next.', full: 'Explore and interpret emerging technology trends to help HR leaders anticipate what\'s next. Through curated insights and conversations with technologists and scientific experts, this pillar ensures HR stays ahead of market shifts — and shapes the future of work and workforce strategy with confidence.' },
-              ].map((p) => (
-                <div key={p.n} style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start', padding: '1rem 1.25rem', borderRadius: '6px', background: 'rgba(247,241,234,0.06)', borderLeft: `2px solid ${C.lilac}` }}>
-                  <span className="mono" style={{ fontSize: '0.6rem', color: C.lilac, fontWeight: 500, flexShrink: 0, paddingTop: '0.2rem' }}>{p.n}</span>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: '0.88rem', fontWeight: 500, color: C.ivory, marginBottom: '0.2rem' }}>{p.name}</div>
-                    <div style={{ fontSize: '0.78rem', color: 'rgba(247,241,234,0.6)', lineHeight: 1.5 }}>{p.blurb}</div>
-                    <button onClick={() => { track('pillar_open', { pillar_name: p.name }); setPillarOpen(p); }} style={{ marginTop: '0.5rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.72rem', color: C.lilac, fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.25rem', opacity: 0.85 }}>Read more →</button>
+            <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-0.02em', color: C.navy, marginBottom: '1.25rem' }}>
+              Practitioner-led.<br /><span className="serif-italic" style={{ color: C.lilac }}>Five pillars. One goal.</span>
+            </h2>
+            <p style={{ fontSize: '1rem', lineHeight: 1.7, color: C.slate, marginBottom: 0 }}>
+              The Council brings together senior HR and talent leaders to build the frameworks and fluency that advance responsible, people-first AI adoption. Each pillar is led by a champion, with a group of contributing members behind it.
+            </p>
+          </div>
+
+          {/* Pillar cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(270px, 1fr))', gap: '1.25rem' }}>
+            {PILLARS.map((p) => (
+              <div key={p.n} style={{ display: 'flex', flexDirection: 'column', background: C.white, borderRadius: '10px', borderTop: `3px solid ${p.accent}`, boxShadow: '0 1px 3px rgba(39,55,82,0.06)', padding: '1.75rem 1.6rem', overflow: 'hidden' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '1rem' }}>
+                  <span className="mono" style={{ fontSize: '0.72rem', fontWeight: 600, color: p.accent }}>{p.n}</span>
+                  <div style={{ fontSize: '0.98rem', fontWeight: 600, color: C.navy, lineHeight: 1.2 }}>{p.name}</div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '1rem' }}>
+                  <img src={p.champion.photo} alt={p.champion.name} style={{ width: '44px', height: '44px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${p.accent}` }} />
+                  <div>
+                    <div className="mono" style={{ fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: p.accent, fontWeight: 600, marginBottom: '0.1rem' }}>Champion</div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 500, color: C.navy }}>{p.champion.name}</div>
                   </div>
                 </div>
-              ))}
-            </div>
+                <p style={{ fontSize: '0.86rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.25rem', flex: 1 }}>{p.blurb}</p>
+                <button onClick={() => { track('pillar_open', { pillar_name: p.name }); setPillarOpen(p); }} style={{ alignSelf: 'flex-start', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600, color: C.navy, fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }} className="link-arrow">
+                  Meet the members <span>→</span>
+                </button>
+              </div>
+            ))}
           </div>
-
         </div>
       </section>
 
-      {/* FEATURED POST */}
-      <section style={{ background: C.navy, padding: isMobile ? '0 1.25rem 4rem' : '0 2.5rem 7rem' }}>
-        <a
-          href="https://kyleandco.com/ai-toolkit-for-hr-leaders/"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => track('featured_post_click', { post: 'ai-toolkit-for-hr-leaders' })}
-          style={{ display: 'block', maxWidth: '1500px', margin: '0 auto', textDecoration: 'none' }}
-        >
-          <div style={{ background: C.cream, borderRadius: '14px', padding: isMobile ? '1.75rem' : '2.25rem 3rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'auto 1fr auto', gap: isMobile ? '1rem' : '2.5rem', alignItems: 'center' }}>
-            <span className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, fontWeight: 700, whiteSpace: 'nowrap' }}>Featured post</span>
-            <h3 className="display" style={{ fontSize: isMobile ? '1.3rem' : '1.7rem', fontWeight: 400, lineHeight: 1.2, letterSpacing: '-0.01em', color: C.navy, margin: 0 }}>
-              Finally: A Practical AI Transformation Toolkit Built for <span className="serif-italic" style={{ color: C.lilac }}>HR Leaders</span>
-            </h3>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap', color: C.navy, fontWeight: 600, fontSize: '0.9rem' }}>Read Kyle's take →</span>
-          </div>
-        </a>
-      </section>
-
-      {/* THE LIBRARY — the star */}
-      <section id="library" style={{ padding: isMobile ? '4rem 1.25rem 3rem' : '7rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.5fr 1fr', gap: isMobile ? '2rem' : '5rem', marginBottom: '3rem', alignItems: 'end' }}>
-          <div>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
-              The Full Cohort Zero Toolkit
+      {/* JOIN THE COUNCIL — band between pillars and agenda */}
+      <section style={{ background: C.cream, padding: isMobile ? '2.5rem 1.25rem' : '3rem 2.5rem' }}>
+        <div style={{ maxWidth: '1500px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
+          <div style={{ maxWidth: '56ch' }}>
+            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.navy, opacity: 0.55, marginBottom: '0.5rem' }}>
+              Year Two · Practitioner seats
             </div>
-            <h2 className="display" style={{ fontSize: 'clamp(3rem, 5.5vw, 4.5rem)', fontWeight: 400, lineHeight: 1.0, letterSpacing: '-0.03em', maxWidth: '18ch' }}>
-              Four frameworks.<br />
-              Free. <span className="serif-italic" style={{ color: C.lilac }}>Built to be used.</span>
-            </h2>
+            <div className="display" style={{ fontSize: isMobile ? '1.35rem' : '1.65rem', fontWeight: 500, letterSpacing: '-0.01em', lineHeight: 1.2, color: C.navy }}>
+              If you lead HR and have moved AI work forward, <span className="serif-italic">we want you in the room.</span>
+            </div>
           </div>
-          <div style={{ borderTop: `2px solid ${C.lilac}`, paddingTop: '1.5rem' }}>
-            <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: C.slate, marginBottom: '1.75rem' }}>
-              Each framework is authored by a practitioner who has put it to work inside their own organization. Free to access — made possible by the Council's Underwriters.
-            </p>
-            <span style={{ display: 'inline-block', background: C.navy, color: C.ivory, fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.35rem 0.85rem', borderRadius: '100px' }}>
-              Updated April 2026
-            </span>
-          </div>
-        </div>
-
-        {/* Access all CTA */}
-        <div style={{ marginBottom: '2.5rem' }}>
-          <button
-            onClick={() => { track('toolkit_cta_click', {}); document.querySelector('#library')?.scrollIntoView({ behavior: 'smooth' }); }}
-            style={{ padding: '0.95rem 2rem', background: accessGranted ? C.lilac : C.navy, color: C.ivory, border: 'none', borderRadius: '100px', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', letterSpacing: '0.01em' }}
-          >
-            {accessGranted ? 'Browse the Toolkit ↓' : 'Access the Full Toolkit →'}
+          <button onClick={() => setApplyOpen(true)} className="link-arrow" style={{ background: C.navy, color: C.ivory, padding: '1rem 1.9rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '0.9rem', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+            Join the Council <span>→</span>
           </button>
-          <p style={{ marginTop: '0.65rem', fontSize: '0.8rem', color: C.slate, opacity: 0.75 }}>
-            {accessGranted ? 'You already have access — click any resource below to open it.' : 'Everything the Council publishes is free to use — thanks to our Underwriters.'}
-          </p>
+        </div>
+      </section>
+
+      {/* YEAR TWO AGENDA */}
+      <section id="work" style={{ background: C.ivory, padding: isMobile ? '4rem 1.25rem 3rem' : '6rem 2.5rem 4rem', scrollMarginTop: '80px' }}>
+        <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
+          <div style={{ marginBottom: isMobile ? '2.5rem' : '4rem', maxWidth: '52ch' }}>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1.25rem' }}>
+              Year Two · 2026 · The Agenda
+            </div>
+            <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 4rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em', color: C.navy, marginBottom: '1.25rem' }}>
+              This year, one question: <span className="serif-italic" style={{ color: C.lilac }}>what is human?</span>
+            </h2>
+            <p style={{ fontSize: '1.02rem', lineHeight: 1.6, color: C.slate }}>
+              Year One built the foundations. This year, the work gets harder. Five priorities, one for each pillar, each led by a practitioner.
+            </p>
+          </div>
+
+          <div id="year-two-priorities" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
+            {PILLARS.map((p) => (
+              <div key={p.n} style={{ display: 'flex', flexDirection: 'column', background: p.accent + '14', borderRadius: '10px', borderTop: `3px solid ${p.accent}`, padding: '1.9rem 1.7rem', minHeight: isMobile ? 'auto' : '340px' }}>
+                <div className="mono" style={{ fontSize: '0.6rem', letterSpacing: '0.13em', textTransform: 'uppercase', color: p.accent, fontWeight: 700, marginBottom: '0.9rem' }}>{p.n} · {p.name}</div>
+                <h3 className="display" style={{ fontSize: '1.3rem', fontWeight: 500, marginBottom: '0.85rem', letterSpacing: '-0.01em', lineHeight: 1.15, color: C.navy }}>{p.agenda.title}</h3>
+                <p style={{ fontSize: '0.88rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.25rem', flex: 1 }}>{p.agenda.d}</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.1rem' }}>
+                  <img src={p.agenda.leader.photo} alt={p.agenda.leader.name} style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${p.accent}` }} />
+                  <div>
+                    <div className="mono" style={{ fontSize: '0.54rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: C.slate, opacity: 0.7 }}>Led by</div>
+                    <div style={{ fontSize: '0.83rem', fontWeight: 500, color: C.navy }}>{p.agenda.leader.name}</div>
+                  </div>
+                </div>
+                <button onClick={() => { track('workstream_open', { pillar: p.name }); setOutputsOpen(p); }} style={{ alignSelf: 'flex-start', background: C.white, color: C.navy, border: `1px solid ${p.accent}`, borderRadius: '100px', padding: '0.55rem 1.15rem', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 600, fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }} className="link-arrow">
+                  Flagship outputs <span>→</span>
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HOW THIS IS FUNDED, honest vendor section */}
+      <section id="underwriters" style={{ padding: isMobile ? '3rem 1.25rem' : '4rem 2.5rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
+        <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
+          The partners funding this work
+        </div>
+        <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '2rem', maxWidth: '26ch', lineHeight: 1.05 }}>
+          The partners <span className="serif-italic" style={{ color: C.lilac }}>behind</span> the Council.
+        </h2>
+
+        <p style={{ fontSize: '1.05rem', lineHeight: 1.65, color: C.slate, marginBottom: '3.5rem', maxWidth: '62ch' }}>
+          Underwriters fund this work, join practitioner dialogue, and help us keep everything the Council publishes free and open to every HR team. Here's how the model works: what they do, and what they don't.
+        </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '3rem', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
+          <div style={{ borderTop: `2px solid ${C.navy}`, paddingTop: '2rem' }}>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.navy, fontWeight: 500 }}>
+              What the community does
+            </div>
+            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+              {[
+                'Bring real AI transformation experience from inside HR organizations.',
+                'Lead workstreams and author the frameworks under their own names.',
+                'Meet monthly to pressure-test ideas and share what is working in practice.',
+                'Set the agenda for what the Council produces next.',
+              ].map((x, i) => (
+                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
+                  <span className="mono" style={{ color: C.lilac, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span style={{ color: C.navy }}>{x}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div style={{ borderTop: `2px solid ${C.lilac}`, paddingTop: '2rem' }}>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.lilac, fontWeight: 500 }}>
+              What underwriters do
+            </div>
+            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+              {[
+                'Fund the work so it stays free and open to every HR team.',
+                'Join market-level dialogue with the practitioners they sell to.',
+                'Distribute Council outputs through their channels.',
+                "Underwriters don't set the Council's agenda or approve its output.",
+              ].map((x, i) => (
+                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
+                  <span className="mono" style={{ color: C.navy, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span style={{ color: C.navy }}>{x}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* Filter bar */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.25rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)`, marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
-          <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: C.slate }}>
-            {filtered.length} of {resources.length} resources
-          </div>
-          <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
-            {[
-              { id: 'all', label: 'All' },
-              { id: 'interactive', label: 'Interactive' },
-              { id: 'download', label: 'Downloads' },
-            ].map((f) => (
-              <button
-                key={f.id}
-                onClick={() => setActiveFilter(f.id)}
-                className="filter-pill"
-                style={{
-                  padding: '0.5rem 1.1rem',
-                  background: activeFilter === f.id ? C.navy : 'transparent',
-                  color: activeFilter === f.id ? C.ivory : C.navy,
-                  border: `1px solid ${activeFilter === f.id ? C.navy : 'rgba(39, 55, 82, 0.2)'}`,
-                  borderRadius: '100px',
-                  fontSize: '0.75rem',
-                  letterSpacing: '0.05em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                {f.label}
+        {/* Underwriters, Year Two (primary) */}
+        <div style={{ padding: isMobile ? '2rem 1.5rem' : '2.75rem 3rem', background: C.navy, color: C.ivory, borderRadius: '6px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
+            <div>
+              <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.cream, fontWeight: 500, marginBottom: '0.4rem' }}>
+                Year Two Underwriters
+              </div>
+              <div style={{ fontSize: '0.9rem', opacity: 0.7, maxWidth: '44ch', lineHeight: 1.5 }}>
+                The partners funding the Council's Year Two work. Room for a few more.
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <button onClick={() => { track('underwriter_cta_click', { location: 'logo_wall' }); setUnderwriterOpen(true); }} style={{ background: C.cream, color: C.navy, fontSize: '0.85rem', fontWeight: 600, border: 'none', borderRadius: '100px', padding: '0.7rem 1.4rem', cursor: 'pointer' }}>
+                Why vendors support the Council →
               </button>
+            </div>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '1.25rem 1.75rem' : '1.75rem 3rem', alignItems: 'center', paddingTop: '0.5rem' }}>
+            {underwritersYearTwo.map((u) => (
+              <span key={u} className="display" style={{ fontSize: isMobile ? '1.35rem' : '1.9rem', fontWeight: 500, color: C.ivory, letterSpacing: '-0.01em', opacity: 0.92 }}>{u}</span>
             ))}
           </div>
         </div>
 
-        {/* Library rows */}
-        <div>
-          {filtered.map((r, i) => (
-            <div
-              key={r.id}
-              className="resource-row"
-              onClick={() => {
-                track('resource_open', { resource_name: r.title, resource_type: r.tag });
-                const openKey = RESOURCE_KEY_MAP[r.id] ? RESOURCE_KEY_MAP[r.id] + '_opens' : null;
-                if (openKey) {
-                  fetch(CLICKS_URL + '/latest', { headers: { 'X-ACCESS-KEY': CLICKS_KEY } })
-                    .then(res => res.json())
-                    .then(data => {
-                      const counts = data.record;
-                      counts[openKey] = (counts[openKey] || 0) + 1;
-                      fetch(CLICKS_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'X-ACCESS-KEY': CLICKS_KEY }, body: JSON.stringify(counts) });
-                    }).catch(() => {});
-                }
-                setSelectedResource(r);
-              }}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: isMobile ? '1fr' : '60px 160px 1fr 150px 60px',
-                gap: isMobile ? '0.5rem' : '2rem',
-                padding: isMobile ? '1.25rem 0.75rem' : '2rem 1rem',
-                borderBottom: `1px solid rgba(39, 55, 82, 0.1)`,
-                alignItems: 'center',
-              }}
-            >
-              <div className="mono" style={{ fontSize: '1.1rem', fontWeight: 700, color: C.navy, opacity: 0.25, letterSpacing: '-0.01em' }}>
-                {String(i + 1).padStart(2, '0')}
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', alignItems: 'flex-start' }}>
-                <span className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: C.slate }}>
-                  {r.tag}
-                </span>
-                {r.kind === 'interactive' && (
-                  <span className="mono" style={{
-                    fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase',
-                    background: C.cream, color: C.navyDark,
-                    padding: '0.18rem 0.55rem', borderRadius: '2px', fontWeight: 500,
-                  }}>
-                    Live
-                  </span>
-                )}
-                {r.evolving && (
-                  <span className="mono" style={{
-                    fontSize: '0.58rem', letterSpacing: '0.08em', textTransform: 'uppercase',
-                    color: C.lilac, fontWeight: 500,
-                  }}>
-                    Interactive in dev
-                  </span>
-                )}
-              </div>
-              <div>
-                <h3 className="display row-title" style={{ fontSize: '1.7rem', fontWeight: 500, letterSpacing: '-0.01em', marginBottom: '0.5rem', lineHeight: 1.1, transition: 'color 0.3s', color: C.navy }}>
-                  {r.title}
-                </h3>
-                <p style={{ fontSize: '0.92rem', lineHeight: 1.55, color: C.slate, maxWidth: '64ch' }}>
-                  {r.short}
-                </p>
-                {r.subtitle ? (
-                  <div className="mono" style={{ fontSize: '0.7rem', color: C.slate, opacity: 0.65, marginTop: '0.6rem', letterSpacing: '0.05em' }}>
-                    {r.subtitle}
-                  </div>
-                ) : null}
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <span className="mono" style={{ fontSize: '0.78rem', color: r.kind === 'interactive' ? C.navyMid : C.navy, fontWeight: 600, letterSpacing: '0.04em', borderBottom: `1px solid ${r.kind === 'interactive' ? C.navyMid : C.navy}`, paddingBottom: '1px' }}>
-                  {r.ctaLabel}
-                </span>
-              </div>
-              <div className="row-arrow" style={{ fontSize: '1.5rem', color: C.navy, opacity: 0.7, transition: 'all 0.3s ease', textAlign: 'right', fontWeight: 300 }}>
-                →
-              </div>
+        {/* Underwriters, Year One (legacy, smaller) */}
+        <div style={{ marginTop: '1.5rem', padding: isMobile ? '1.5rem' : '1.75rem 3rem', background: 'rgba(157, 146, 173, 0.08)', borderRadius: '6px', border: `1px solid rgba(39, 55, 82, 0.08)` }}>
+          <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.1rem' }}>
+            Year One Underwriters · the partners who launched the Council
+          </div>
+          <div style={{ overflow: 'hidden' }}>
+            <div className="marquee" style={{ alignItems: 'center', gap: '3rem' }}>
+              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
+              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
+              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
+              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
             </div>
-          ))}
+          </div>
+        </div>
+      </section>
+
+      {/* THE PRACTITIONERS */}
+      <section id="members" style={{ padding: isMobile ? '3.5rem 1.25rem 2.5rem' : '4rem 2.5rem 3rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.3fr', gap: isMobile ? '1.5rem' : '5rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
+          <div>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.25rem' }}>
+              The Community
+            </div>
+            <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em' }}>
+              The people<br />
+              who've <span className="serif-italic" style={{ color: C.lilac }}>made it work.</span>
+            </h2>
+          </div>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: C.slate, maxWidth: '52ch', paddingBottom: '0.5rem' }}>
+              {members.length} senior HR leaders across five pillars, each finding traction with AI inside their own organizations. Every framework on this site carries their fingerprints. When we say practitioner-led, these are the practitioners.
+          </p>
         </div>
 
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(120px, 1fr))', gap: isMobile ? '1.5rem 0.75rem' : '2rem 1.25rem' }}>
+          {members.map((m, i) => {
+            const initials = m.name.split(' ').map(n => n[0]).join('').slice(0, 2);
+            return (
+              <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ textAlign: 'center', cursor: 'pointer' }}>
+                <div
+                  className="avatar"
+                  style={{
+                    width: isMobile ? '64px' : '90px',
+                    height: isMobile ? '64px' : '90px',
+                    borderRadius: '50%',
+                    margin: '0 auto 0.7rem',
+                    background: `linear-gradient(135deg, ${C.navyMid}, ${C.navyMid}99)`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: 'Fraunces, serif',
+                    fontSize: isMobile ? '1.1rem' : '1.5rem',
+                    fontWeight: 400,
+                    color: C.ivory,
+                    transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+                    position: 'relative',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {m.photo ? (
+                    <img src={m.photo} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }} />
+                  ) : (
+                    <span style={{ position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>{initials}</span>
+                  )}
+                </div>
+                <div className="display" style={{ fontSize: '0.85rem', fontWeight: 500, marginBottom: '0.2rem', color: C.navy, lineHeight: 1.2 }}>{m.name}</div>
+                <div style={{ fontSize: '0.7rem', color: C.slate, lineHeight: 1.35, maxWidth: '20ch', margin: '0 auto' }}>{m.role}</div>
+              </div>
+            );
+          })}
+        </div>
       </section>
 
       {/* UPCOMING & REPLAYS */}
-      <section id="events" style={{ padding: '6rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto' }}>
+      <section id="events" style={{ padding: isMobile ? '2.5rem 1.25rem 4rem' : '3rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '4rem', marginBottom: '3rem', alignItems: 'end' }}>
           <div>
             <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.25rem' }}>
@@ -1070,7 +1292,16 @@ function HCAIC_Final() {
                     {ev.summary}
                   </p>
                 </div>
-                {ev.onClick ? (
+                {ev.comingSoon ? (
+                  <span className="mono" style={{
+                    marginTop: 'auto', alignSelf: 'flex-start',
+                    fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase',
+                    color: C.slate, background: 'rgba(39, 55, 82, 0.06)',
+                    padding: '0.4rem 0.85rem', borderRadius: '100px', fontWeight: 500,
+                  }}>
+                    {ev.cta}
+                  </span>
+                ) : ev.onClick ? (
                   <button onClick={ev.onClick} style={{
                     background: 'none', border: 'none', padding: 0,
                     color: C.navy, fontSize: '0.85rem', fontWeight: 500,
@@ -1097,261 +1328,6 @@ function HCAIC_Final() {
           })}
         </div>
 
-      </section>
-
-      {/* 2026 WORK */}
-      <section id="work" style={{ background: C.navy, color: C.ivory, padding: isMobile ? '4rem 1.25rem' : '7rem 2.5rem' }}>
-        <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.4fr', gap: isMobile ? '1.5rem' : '4rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
-            <div>
-              <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.65, marginBottom: '1.25rem' }}>
-                Cohort 2 · 2026 · In Progress
-              </div>
-              <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 4rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em' }}>
-                This year, one question: <span className="serif-italic" style={{ color: C.cream }}>what is human?</span>
-              </h2>
-            </div>
-            <p style={{ fontSize: '1.05rem', lineHeight: 1.6, opacity: 0.85, maxWidth: '52ch' }}>
-              Cohort Zero built the foundations. This year, the work gets harder. AI is pushing HR to reconsider operating models, redesign processes, and overhaul decision-making. What stays human. What doesn't. Who decides.
-            </p>
-          </div>
-
-          <div id="cohort2-apply-grid" style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: '1px', background: 'rgba(247, 241, 234, 0.12)', border: `1px solid rgba(247, 241, 234, 0.12)` }}>
-            {focusAreas.map((f, i) => (
-              <div key={i} className="work-card" style={{ background: C.navy, padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '360px', borderBottom: '2px solid transparent' }}>
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1.5rem' }}>
-                    <span className="mono" style={{ fontSize: '0.75rem', color: C.cream, fontWeight: 500 }}>{f.n}</span>
-                    <span className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55 }}>{f.sub}</span>
-                  </div>
-                  <h3 className="display" style={{ fontSize: '1.7rem', fontWeight: 500, marginBottom: '1rem', letterSpacing: '-0.01em', lineHeight: 1.05 }}>{f.t}</h3>
-                  <p style={{ fontSize: '0.88rem', lineHeight: 1.55, opacity: 0.78 }}>{f.d}</p>
-                </div>
-                <div style={{ marginTop: '2rem', paddingTop: '1.25rem', borderTop: `1px dashed rgba(247, 241, 234, 0.2)` }}>
-                  <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '0.4rem' }}>
-                    Planned output
-                  </div>
-                  <div className="serif-italic" style={{ fontSize: '0.95rem', color: C.cream }}>{f.output}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* COHORT 2 APPLY CTA */}
-          <div style={{ marginTop: '3.5rem', padding: '2.5rem 2.75rem', background: 'rgba(247, 241, 234, 0.04)', border: `1px solid rgba(247, 241, 234, 0.15)`, borderRadius: '6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
-            <div style={{ maxWidth: '56ch' }}>
-              <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.cream, marginBottom: '0.5rem' }}>
-                Cohort 2 · Applications open
-              </div>
-              <div className="display" style={{ fontSize: '1.45rem', fontWeight: 500, letterSpacing: '-0.01em', lineHeight: 1.2 }}>
-                If you lead HR and have moved AI work forward, <span className="serif-italic" style={{ color: C.cream }}>we want you in the room.</span>
-              </div>
-            </div>
-            <button
-              onClick={() => setApplyOpen(true)}
-              style={{
-                background: C.cream,
-                color: C.navy,
-                padding: '1rem 1.9rem',
-                borderRadius: '100px',
-                border: 'none',
-                cursor: 'pointer',
-                fontSize: '0.9rem',
-                fontWeight: 500,
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                flexShrink: 0,
-              }}
-              className="link-arrow"
-            >
-              Apply to join the Council <span>→</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* THE PRACTITIONERS */}
-      <section id="members" style={{ padding: isMobile ? '4rem 1.25rem' : '7rem 2.5rem', maxWidth: '1500px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.3fr', gap: isMobile ? '1.5rem' : '5rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
-          <div>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.25rem' }}>
-              The Community
-            </div>
-            <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em' }}>
-              The people<br />
-              who've <span className="serif-italic" style={{ color: C.lilac }}>made it work.</span>
-            </h2>
-          </div>
-          <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: C.slate, maxWidth: '52ch', paddingBottom: '0.5rem' }}>
-              Senior HR leaders who have found traction with AI inside their own organizations. Every framework on this site carries their fingerprints. When we say practitioner-led, these are the practitioners.
-          </p>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(175px, 1fr))', gap: isMobile ? '1.25rem 0.75rem' : '2rem 1.5rem' }}>
-          {members.map((m, i) => {
-            const bgColors = [C.lilac, C.navyMid, C.cream, C.lilacLight];
-            const bg = bgColors[i % bgColors.length];
-            const initials = m.name.startsWith('+') ? '+' : m.name.split(' ').map(n => n[0]).join('').slice(0, 2);
-            return (
-              <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ textAlign: 'center', cursor: 'pointer' }}>
-                <div
-                  className="avatar"
-                  style={{
-                    width: isMobile ? '80px' : '140px',
-                    height: isMobile ? '80px' : '140px',
-                    borderRadius: '50%',
-                    margin: '0 auto 1.1rem',
-                    background: `linear-gradient(135deg, ${bg}, ${bg}99)`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: 'Fraunces, serif',
-                    fontSize: isMobile ? '1.4rem' : '2.3rem',
-                    fontWeight: 400,
-                    color: bg === C.cream ? C.navy : C.ivory,
-                    transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
-                    position: 'relative',
-                    overflow: 'hidden',
-                  }}
-                >
-                  {m.photo ? (
-                    <img
-                      src={m.photo}
-                      alt={m.name}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }}
-                    />
-                  ) : (
-                    <>
-                      <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(circle at 32% 30%, ${bg === C.cream ? 'rgba(255,255,255,0.4)' : 'rgba(247, 241, 234, 0.35)'}, transparent 60%)` }} />
-                      <span style={{ position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>{initials}</span>
-                    </>
-                  )}
-                </div>
-                <div className="display" style={{ fontSize: '1rem', fontWeight: 500, marginBottom: '0.3rem', color: C.navy }}>{m.name}</div>
-                <div style={{ fontSize: '0.78rem', color: C.slate, lineHeight: 1.45, maxWidth: '22ch', margin: '0 auto' }}>{m.role}</div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* HOW THIS IS FUNDED — honest vendor section */}
-      <section style={{ padding: isMobile ? '4rem 1.25rem' : '6rem 2.5rem', maxWidth: '1500px', margin: '0 auto' }}>
-        <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
-          The partners funding this work
-        </div>
-        <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '2rem', maxWidth: '26ch', lineHeight: 1.05 }}>
-          The partners <span className="serif-italic" style={{ color: C.lilac }}>behind</span> the Council.
-        </h2>
-
-        <p style={{ fontSize: '1.05rem', lineHeight: 1.65, color: C.slate, marginBottom: '3.5rem', maxWidth: '62ch' }}>
-          Twelve underwriters fund this work, join practitioner dialogue, and help us keep everything the Council publishes free and open to every HR team. Here's how the model works — what they do, and what they don't.
-        </p>
-
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '3rem', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
-          <div style={{ borderTop: `2px solid ${C.navy}`, paddingTop: '2rem' }}>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.navy, fontWeight: 500 }}>
-              What the community does
-            </div>
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
-              {[
-                'Bring real AI transformation experience from inside HR organizations.',
-                'Lead workstreams and author the frameworks under their own names.',
-                'Meet monthly to pressure-test ideas and share what is working in practice.',
-                'Set the agenda for what the Council produces next.',
-              ].map((x, i) => (
-                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
-                  <span className="mono" style={{ color: C.lilac, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
-                  <span style={{ color: C.navy }}>{x}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div style={{ borderTop: `2px solid ${C.lilac}`, paddingTop: '2rem' }}>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.lilac, fontWeight: 500 }}>
-              What underwriters do
-            </div>
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
-              {[
-                'Fund the work so it stays free and open to every HR team.',
-                'Join market-level dialogue with the practitioners they sell to.',
-                'Distribute Council outputs through their channels.',
-                "Underwriters don't set the Council's agenda or approve its output.",
-              ].map((x, i) => (
-                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
-                  <span className="mono" style={{ color: C.navy, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
-                  <span style={{ color: C.navy }}>{x}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Underwriter logos */}
-        <div style={{ padding: '2.5rem 3rem', background: C.navy, color: C.ivory, borderRadius: '6px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '1.75rem', flexWrap: 'wrap', gap: '1rem' }}>
-            <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.7 }}>
-              2026 Underwriters · 12 partners
-            </div>
-            <button onClick={() => setUnderwriterOpen(true)} className="underline-grow" style={{ color: C.cream, fontSize: '0.85rem', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-              Become an underwriter →
-            </button>
-          </div>
-          <div style={{ overflow: 'hidden' }}>
-            <div className="marquee" style={{ alignItems: 'center', gap: '3rem' }}>
-              <img src="vendor-logos-line1.png" alt="Underwriters 1–6" style={{ height: '44px', width: 'auto', flexShrink: 0 }} />
-              <img src="vendor-logos-line2.png" alt="Underwriters 7–12" style={{ height: '44px', width: 'auto', flexShrink: 0 }} />
-              <img src="vendor-logos-line1.png" alt="Underwriters 1–6" style={{ height: '44px', width: 'auto', flexShrink: 0 }} />
-              <img src="vendor-logos-line2.png" alt="Underwriters 7–12" style={{ height: '44px', width: 'auto', flexShrink: 0 }} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* AI MOMENTUM REPORT — Kyle & Co research */}
-      <section style={{ background: C.navy, color: C.ivory, padding: isMobile ? '4rem 1.25rem' : '6rem 2.5rem' }}>
-        <div style={{ maxWidth: '1500px', margin: '0 auto', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '5rem', alignItems: 'center' }}>
-          <div>
-            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <span>One more resource · From Kyle &amp; Co</span>
-            </div>
-            <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: '1.25rem', color: C.ivory }}>
-              AI is not about maturity.<br /><span className="serif-italic" style={{ color: C.cream }}>It's about momentum.</span>
-            </h2>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.65, color: 'rgba(247,241,234,0.8)', marginBottom: '2rem', maxWidth: '50ch' }}>
-              A companion resource — not Council work, but it pairs with it. The HCAIC frameworks tell you what to do. The AI Momentum Report, from Kyle &amp; Co, tells you where you actually are: nine archetypes, three drivers, and a diagnostic for what's holding your AI work back.
-            </p>
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <button onClick={() => setMomentumDownloadOpen(true)} style={{ background: C.cream, color: C.navyDark, padding: '0.95rem 1.75rem', borderRadius: '100px', border: 'none', fontSize: '0.9rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                Download the report →
-              </button>
-              <a href="https://kyleandco.typeform.com/to/uQrXm9NS" target="_blank" rel="noopener noreferrer" style={{ color: C.ivory, fontSize: '0.88rem', fontWeight: 500, textDecoration: 'none', borderBottom: '1px solid rgba(247,241,234,0.4)', paddingBottom: '2px' }}>
-                Take the assessment →
-              </a>
-            </div>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {[
-              { n: '01', label: 'Capability', q: 'Are we equipped with the foundations to apply AI in HR?' },
-              { n: '02', label: 'Posture', q: 'Are we committed and aligned on how to move?' },
-              { n: '03', label: 'Investment', q: 'Are we committing meaningful resources?' },
-            ].map((d) => (
-              <div key={d.n} style={{ padding: '1.25rem 1.5rem', background: 'rgba(247,241,234,0.07)', borderRadius: '6px', borderLeft: `3px solid ${C.lilac}` }}>
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'baseline' }}>
-                  <span className="mono" style={{ fontSize: '0.65rem', color: C.lilac, fontWeight: 500, flexShrink: 0 }}>{d.n}</span>
-                  <div>
-                    <div style={{ fontSize: '0.92rem', fontWeight: 500, color: C.ivory, marginBottom: '0.25rem' }}>{d.label}</div>
-                    <div style={{ fontSize: '0.8rem', color: 'rgba(247,241,234,0.65)', lineHeight: 1.5 }}>{d.q}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-            <button onClick={() => setMomentumOpen(true)} style={{ background: 'none', border: 'none', color: 'rgba(247,241,234,0.7)', fontSize: '0.82rem', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer', textAlign: 'left', padding: '0.25rem 0', borderBottom: '1px solid rgba(247,241,234,0.25)', paddingBottom: '2px', alignSelf: 'flex-start' }}>
-              See all drivers &amp; archetypes →
-            </button>
-          </div>
-        </div>
       </section>
 
       {/* K&CO CONSULTING PULL */}
@@ -1397,7 +1373,7 @@ function HCAIC_Final() {
             {
               label: 'HR leaders doing the work',
               title: 'Shape what the field builds next.',
-              sub: 'Join Cohort Two. Monthly working sessions with senior peers making AI work inside their organizations. Author the frameworks the rest of the field will end up using.',
+              sub: 'Join Year Two. Monthly working sessions with senior peers making AI work inside their organizations. Author the frameworks the rest of the field will end up using.',
               cta: 'Apply',
               primary: true,
               bg: C.navy,
@@ -1488,6 +1464,133 @@ function HCAIC_Final() {
             </div>
           ))}
         </div>
+
+        {/* Low-commitment follow: subscribe to Kyle & Co, tagged AI Council origin */}
+        <div style={{ marginTop: '1.5rem', padding: isMobile ? '1.75rem 1.5rem' : '2rem 2.5rem', background: 'rgba(157, 146, 173, 0.12)', borderRadius: '6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
+          {followSubmitted ? (
+            <div>
+              <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '0.5rem' }}>You're on the list</div>
+              <div style={{ fontSize: '0.95rem', color: C.navy, lineHeight: 1.5 }}>Check your inbox to confirm your subscription. That's it, you'll get the Council's work as it ships.</div>
+            </div>
+          ) : (
+            <>
+              <div style={{ maxWidth: '46ch' }}>
+                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.5rem' }}>Not joining or underwriting?</div>
+                <div style={{ fontSize: isMobile ? '1.1rem' : '1.25rem', fontWeight: 500, color: C.navy, lineHeight: 1.3 }}>Follow the Council's work. No commitment, just the frameworks and updates as they land.</div>
+              </div>
+              <form action={ML_FOLLOW_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('follow_subscribe', { source: 'ai_council_page' }); setTimeout(() => setFollowSubmitted(true), 1000); }} style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', flexShrink: 0 }}>
+                <input required type="email" name="fields[email]" placeholder="Work email" style={{ ...gateInput(C), minWidth: isMobile ? '100%' : '240px' }} />
+                <input type="hidden" name="ml-submit" value="1" />
+                <input type="hidden" name="anticsrf" value="true" />
+                <button type="submit" style={{ background: C.navy, color: C.ivory, padding: '0.85rem 1.6rem', borderRadius: '100px', border: 'none', fontSize: '0.9rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>Subscribe</button>
+              </form>
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* FEATURED POST */}
+      <section style={{ background: C.navy, padding: isMobile ? '3.5rem 1.25rem 3rem' : '5rem 2.5rem 4rem' }}>
+        <a
+          href="https://kyleandco.com/ai-toolkit-for-hr-leaders/"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track('featured_post_click', { post: 'ai-toolkit-for-hr-leaders' })}
+          style={{ display: 'block', maxWidth: '1500px', margin: '0 auto', textDecoration: 'none' }}
+        >
+          <div style={{ background: C.cream, borderRadius: '14px', padding: isMobile ? '1.75rem' : '2.25rem 3rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'auto 1fr auto', gap: isMobile ? '1rem' : '2.5rem', alignItems: 'center' }}>
+            <span className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, fontWeight: 700, whiteSpace: 'nowrap' }}>Featured post</span>
+            <h3 className="display" style={{ fontSize: isMobile ? '1.3rem' : '1.7rem', fontWeight: 400, lineHeight: 1.2, letterSpacing: '-0.01em', color: C.navy, margin: 0 }}>
+              Finally: A Practical AI Transformation Toolkit Built for <span className="serif-italic" style={{ color: C.lilac }}>HR Leaders</span>
+            </h3>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap', color: C.navy, fontWeight: 600, fontSize: '0.9rem' }}>Read Kyle's take →</span>
+          </div>
+        </a>
+      </section>
+
+      {/* THE LIBRARY, the star */}
+      <section id="library" style={{ padding: isMobile ? '3rem 1.25rem 2.5rem' : '4rem 2.5rem 3rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.5fr 1fr', gap: isMobile ? '2rem' : '5rem', marginBottom: '3rem', alignItems: 'end' }}>
+          <div>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
+The Year One Toolkit · proof of what the Council ships
+            </div>
+            <h2 className="display" style={{ fontSize: 'clamp(3rem, 5.5vw, 4.5rem)', fontWeight: 400, lineHeight: 1.0, letterSpacing: '-0.03em', maxWidth: '18ch' }}>
+              Four frameworks.<br />
+              Free. <span className="serif-italic" style={{ color: C.lilac }}>Built to be used.</span>
+            </h2>
+          </div>
+          <div style={{ borderTop: `2px solid ${C.lilac}`, paddingTop: '1.5rem' }}>
+            <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: C.slate, marginBottom: '1.75rem' }}>
+              Each framework is authored by a practitioner who has put it to work inside their own organization. Free to access, made possible by the Council's Underwriters.
+            </p>
+            <span style={{ display: 'inline-block', background: C.navy, color: C.ivory, fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.35rem 0.85rem', borderRadius: '100px' }}>
+              Updated April 2026
+            </span>
+          </div>
+        </div>
+
+        {/* Browse CTA — opens the full toolkit in a modal */}
+        <div>
+          <button
+            onClick={() => { track('toolkit_cta_click', {}); setToolkitOpen(true); }}
+            className="link-arrow"
+            style={{ padding: '0.95rem 2rem', background: C.navy, color: C.ivory, border: 'none', borderRadius: '100px', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', letterSpacing: '0.01em', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+          >
+            Browse the Toolkit <span>→</span>
+          </button>
+          <p style={{ marginTop: '0.65rem', fontSize: '0.8rem', color: C.slate, opacity: 0.75 }}>
+            {resources.length} frameworks and tools, free to use, thanks to our Underwriters.
+          </p>
+        </div>
+
+      </section>
+
+      {/* FORMER CONTRIBUTING MEMBERS, kept, not deleted; sits at the bottom with the toolkit */}
+      <section id="former-members" style={{ padding: isMobile ? '3rem 1.25rem' : '4rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.9rem', paddingBottom: '1.1rem', marginBottom: isMobile ? '1.75rem' : '2.5rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)` }}>
+          <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate }}>
+            Former Contributing Members
+          </div>
+          <span style={{ fontSize: '0.82rem', color: C.slate, opacity: 0.7 }}>Year One practitioners whose work built the foundations, thank you.</span>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(130px, 1fr))', gap: isMobile ? '1rem 0.6rem' : '1.5rem 1.25rem' }}>
+          {formerMembers.map((m, i) => {
+            const initials = m.name.split(' ').map(n => n[0]).join('').slice(0, 2);
+            return (
+              <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ textAlign: 'center', cursor: 'pointer', opacity: 0.9 }}>
+                <div
+                  className="avatar"
+                  style={{
+                    width: isMobile ? '64px' : '96px',
+                    height: isMobile ? '64px' : '96px',
+                    borderRadius: '50%',
+                    margin: '0 auto 0.75rem',
+                    background: `linear-gradient(135deg, ${C.navyMid}, ${C.navyMid}99)`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: 'Fraunces, serif',
+                    fontSize: isMobile ? '1.1rem' : '1.6rem',
+                    fontWeight: 400,
+                    color: C.ivory,
+                    position: 'relative',
+                    overflow: 'hidden',
+                    filter: 'grayscale(0.35)',
+                  }}
+                >
+                  {m.photo ? (
+                    <img src={m.photo} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }} />
+                  ) : (
+                    <span style={{ position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>{initials}</span>
+                  )}
+                </div>
+                <div className="display" style={{ fontSize: '0.85rem', fontWeight: 500, marginBottom: '0.2rem', color: C.navy }}>{m.name}</div>
+                <div style={{ fontSize: '0.68rem', color: C.slate, lineHeight: 1.4, maxWidth: '20ch', margin: '0 auto' }}>{m.role}</div>
+              </div>
+            );
+          })}
+        </div>
       </section>
 
       {/* FOOTER */}
@@ -1518,9 +1621,9 @@ function HCAIC_Final() {
             <div>
               <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '1rem' }}>The Council</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem', fontSize: '0.88rem' }}>
-                <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#library">Library</a>
-                <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#work">2026 Work</a>
+                <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#work">The Agenda</a>
                 <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#members">Members</a>
+                <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#library">The Toolkit</a>
                 <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#join">How to Participate</a>
               </div>
             </div>
@@ -1866,13 +1969,13 @@ function HCAIC_Final() {
             ) : (
               <>
                 <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>
-                  Cohort 2 · 2026
+                  Year Two · 2026
                 </div>
                 <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>
                   Apply to the Council.
                 </h3>
                 <p style={{ fontSize: '0.93rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>
-                  Cohort 2 is open to senior HR practitioners who have moved AI work forward inside their organizations. Monthly working sessions, framework co-creation, and a peer group that does not exist anywhere else.
+                  Year Two is open to senior HR practitioners who have moved AI work forward inside their organizations. Monthly working sessions, framework co-creation, and a peer group that does not exist anywhere else.
                 </p>
                 <form action={ML_APPLY_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'apply'}); setTimeout(() => setApplySubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                   <input required type="text" name="fields[name]" placeholder="Full name" style={gateInput(C)} />
@@ -1980,7 +2083,7 @@ function HCAIC_Final() {
                   We'll be in touch.
                 </h3>
                 <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate }}>
-                  Kyle & Co typically responds within two business days. In the meantime, take a look at the frameworks in the Library — they give you a sense of how we work.
+                  Kyle & Co typically responds within two business days. In the meantime, take a look at the frameworks in the Library. They give you a sense of how we work.
                 </p>
               </div>
             ) : (
@@ -2060,14 +2163,14 @@ function HCAIC_Final() {
             {townhallSubmitted ? (
               <div style={{ padding: '2rem 0' }}>
                 <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1rem' }}>You're registered</div>
-                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '1rem' }}>See you May 28.</h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate }}>A calendar invite and joining link will be sent to your email. The session runs 1:00–2:00pm ET.</p>
+                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '1rem' }}>See you September 2.</h3>
+                <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate }}>A calendar invite and joining link will be sent to your email once the time is confirmed.</p>
               </div>
             ) : (
               <>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>Town Hall · May 28, 2026 · 1:00pm ET</div>
-                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>Cohort Zero Toolkit Launch</h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>The Council walks through all four frameworks, why they exist, and how HR teams are putting them to work. Open to the full community.</p>
+                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>Town Hall · September 2, 2026 · time TBA</div>
+                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>Year Two Launch Town Hall</h3>
+                <p style={{ fontSize: '0.93rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>The Council kicks off Year Two: the five priorities, who is leading each, and how HR teams and vendors can get involved. Underwriters welcome.</p>
                 <form action={ML_TOWNHALL_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'townhall'}); setTimeout(() => setTownhallSubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
                     <input required type="text" name="fields[name]" placeholder="First name" style={gateInput(C)} />
@@ -2120,7 +2223,7 @@ function HCAIC_Final() {
                   Support the work.<br /><span className="serif-italic" style={{ color: C.lilac }}>Join the conversation.</span>
                 </h3>
                 <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate, marginBottom: '2rem' }}>
-                  The HCAIC is a practitioner-led initiative. HR technology providers and services firms underwrite the program to engage directly with senior HR decision-makers on responsible, value-creating uses of AI. Underwriters support the mission — they do not steer it.
+                  The HCAIC is a practitioner-led initiative. HR technology providers and services firms underwrite the program to engage directly with senior HR decision-makers on responsible, value-creating uses of AI. Underwriters support the mission. They do not steer it.
                 </p>
 
                 <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.navy, fontWeight: 500, marginBottom: '1rem' }}>What's included</div>
@@ -2186,49 +2289,7 @@ function HCAIC_Final() {
         </div>
       )}
 
-      {/* MOMENTUM REPORT DOWNLOAD MODAL */}
-      {momentumDownloadOpen && (
-        <div className="modal-overlay" onClick={() => { setMomentumDownloadOpen(false); setMomentumDownloadSubmitted(false); }}
-          style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.6)', zIndex: 250, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '5rem 2rem 3rem', overflowY: 'auto', animation: 'fadeUp 0.3s ease-out' }}>
-          <div onClick={(e) => e.stopPropagation()}
-            style={{ background: C.ivory, maxWidth: '520px', width: '100%', borderRadius: '8px', padding: '2.75rem 2.75rem 2.25rem', position: 'relative', boxShadow: '0 30px 80px rgba(23,35,57,0.3)' }}>
-            <button onClick={() => { setMomentumDownloadOpen(false); setMomentumDownloadSubmitted(false); }}
-              style={{ position: 'absolute', top: '1.1rem', right: '1.2rem', background: 'transparent', border: 'none', fontSize: '1.4rem', color: C.slate, cursor: 'pointer', padding: '0.4rem 0.7rem' }} aria-label="Close">×</button>
-            {momentumDownloadSubmitted ? (
-              <div style={{ padding: '2rem 0' }}>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1rem' }}>Report unlocked</div>
-                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '1rem' }}>Check your inbox.</h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate }}>The AI Momentum Report is on its way. You'll also receive a link to take the full assessment and find your archetype.</p>
-              </div>
-            ) : (
-              <>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>Research Report · Kyle &amp; Co</div>
-                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>The AI Momentum Report</h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>The model, the nine archetypes, and what it takes to build momentum. Research from Kyle &amp; Co, informed by work with senior HR leaders.</p>
-                <form action={ML_MOMENTUM_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'momentum_report'}); setTimeout(() => setMomentumDownloadSubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
-                    <input required type="text" name="fields[name]" placeholder="First name" style={gateInput(C)} />
-                    <input required type="text" name="fields[last_name]" placeholder="Last name" style={gateInput(C)} />
-                  </div>
-                  <input required type="email" name="fields[email]" placeholder="Work email" style={gateInput(C)} />
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
-                    <input required type="text" name="fields[job_title]" placeholder="Title" style={gateInput(C)} />
-                    <input required type="text" name="fields[company]" placeholder="Company" style={gateInput(C)} />
-                  </div>
-                  <input type="hidden" name="ml-submit" value="1" />
-                  <input type="hidden" name="anticsrf" value="true" />
-                  <button type="submit" style={{ marginTop: '0.5rem', background: C.navy, color: C.ivory, padding: '1rem 1.6rem', borderRadius: '100px', border: 'none', fontSize: '0.9rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                    Send me the report <span>→</span>
-                  </button>
-                  <div style={{ fontSize: '0.72rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>Kyle &amp; Co research. Free to download.</div>
-                </form>
-              </>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* AI MOMENTUM MODAL */}
+      {/* MEMBER DETAIL MODAL */}
       {selectedMember && (
         <div
           className="modal-overlay"
@@ -2237,7 +2298,7 @@ function HCAIC_Final() {
             position: 'fixed',
             inset: 0,
             background: 'rgba(23, 35, 57, 0.6)',
-            zIndex: 220,
+            zIndex: 260,
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
@@ -2282,9 +2343,11 @@ function HCAIC_Final() {
               </div>
             </div>
 
-            <p style={{ fontSize: '0.98rem', lineHeight: 1.65, color: C.slate, marginBottom: '1.75rem' }}>
-              {selectedMember.bio}
-            </p>
+            {selectedMember.bio && (
+              <p style={{ fontSize: '0.98rem', lineHeight: 1.65, color: C.slate, marginBottom: '1.75rem' }}>
+                {selectedMember.bio}
+              </p>
+            )}
 
             {selectedMember.linkedin && (
               <a
@@ -2310,137 +2373,185 @@ function HCAIC_Final() {
         </div>
       )}
 
-      {pillarOpen && (
-        <div className="modal-overlay" onClick={() => setPillarOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.6)', zIndex: 220, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', animation: 'fadeUp 0.3s ease-out' }}>
-          <div onClick={(e) => e.stopPropagation()} style={{ background: C.navy, borderRadius: '12px', padding: '2.5rem', maxWidth: '560px', width: '100%', position: 'relative' }}>
-            <button onClick={() => setPillarOpen(null)} style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'none', border: 'none', color: C.lilac, cursor: 'pointer', fontSize: '1.25rem', lineHeight: 1 }}>×</button>
-            <div className="mono" style={{ fontSize: '0.6rem', color: C.lilac, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>{pillarOpen.n} · Pillar</div>
-            <h3 style={{ fontSize: '1.3rem', fontWeight: 500, color: C.ivory, letterSpacing: '-0.01em', marginBottom: '1.25rem', lineHeight: 1.2 }}>{pillarOpen.name}</h3>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, color: 'rgba(247,241,234,0.8)' }}>{pillarOpen.full}</p>
+      {pillarOpen && (() => {
+        const roster = members.filter(m => m.pillar === pillarOpen.name);
+        const champ = roster.find(m => m.champion) || { name: pillarOpen.champion.name, photo: pillarOpen.champion.photo };
+        const others = roster.filter(m => !m.champion);
+        return (
+          <div className="modal-overlay" onClick={() => setPillarOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.6)', zIndex: 220, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '4rem 2rem 3rem', overflowY: 'auto', animation: 'fadeUp 0.3s ease-out' }}>
+            <div onClick={(e) => e.stopPropagation()} style={{ background: C.ivory, borderRadius: '12px', padding: isMobile ? '2rem 1.5rem' : '2.5rem', maxWidth: '640px', width: '100%', position: 'relative', borderTop: `4px solid ${pillarOpen.accent}` }}>
+              <button onClick={() => setPillarOpen(null)} style={{ position: 'absolute', top: '1.1rem', right: '1.2rem', background: 'none', border: 'none', color: C.slate, cursor: 'pointer', fontSize: '1.4rem', lineHeight: 1 }} aria-label="Close">×</button>
+              <div className="mono" style={{ fontSize: '0.6rem', color: pillarOpen.accent, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '0.6rem' }}>{pillarOpen.n} · {pillarOpen.name}</div>
+              <h3 className="display" style={{ fontSize: '1.5rem', fontWeight: 500, color: C.navy, letterSpacing: '-0.01em', marginBottom: '0.85rem', lineHeight: 1.15 }}>Meet the Contributing Members</h3>
+              <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: C.slate, marginBottom: '1.75rem' }}>{pillarOpen.full}</p>
+              <div className="member-card" onClick={() => setSelectedMember(champ)} style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', padding: '1rem', background: pillarOpen.accent + '14', borderRadius: '8px', marginBottom: '1.5rem', cursor: 'pointer' }}>
+                <img src={champ.photo} alt={champ.name} className="avatar" style={{ width: '56px', height: '56px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${pillarOpen.accent}` }} />
+                <div style={{ flex: 1 }}>
+                  <div className="mono" style={{ fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: pillarOpen.accent, fontWeight: 700, marginBottom: '0.15rem' }}>Champion</div>
+                  <div style={{ fontSize: '0.98rem', fontWeight: 600, color: C.navy }}>{champ.name}</div>
+                  {champ.role && <div style={{ fontSize: '0.8rem', color: C.slate, lineHeight: 1.3 }}>{champ.role}</div>}
+                </div>
+                <span className="mono" style={{ fontSize: '0.62rem', color: pillarOpen.accent, fontWeight: 600, whiteSpace: 'nowrap' }}>View bio →</span>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '0.9rem 1.25rem' }}>
+                {others.map((m, i) => (
+                  <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', cursor: 'pointer' }}>
+                    <img src={m.photo} alt={m.name} className="avatar" style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+                    <div>
+                      <div style={{ fontSize: '0.85rem', fontWeight: 500, color: C.navy, lineHeight: 1.2 }}>{m.name}</div>
+                      <div style={{ fontSize: '0.72rem', color: C.slate, lineHeight: 1.3 }}>{m.role}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
+      {outputsOpen && (
+        <div className="modal-overlay" onClick={() => setOutputsOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.6)', zIndex: 220, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '4rem 2rem 3rem', overflowY: 'auto', animation: 'fadeUp 0.3s ease-out' }}>
+          <div onClick={(e) => e.stopPropagation()} style={{ background: C.ivory, borderRadius: '12px', padding: isMobile ? '2rem 1.5rem' : '2.5rem', maxWidth: '560px', width: '100%', position: 'relative', borderTop: `4px solid ${outputsOpen.accent}` }}>
+            <button onClick={() => setOutputsOpen(null)} style={{ position: 'absolute', top: '1.1rem', right: '1.2rem', background: 'none', border: 'none', color: C.slate, cursor: 'pointer', fontSize: '1.4rem', lineHeight: 1 }} aria-label="Close">×</button>
+            <div className="mono" style={{ fontSize: '0.6rem', color: outputsOpen.accent, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '0.6rem' }}>{outputsOpen.n} · {outputsOpen.name}</div>
+            <h3 className="display" style={{ fontSize: '1.45rem', fontWeight: 500, color: C.navy, letterSpacing: '-0.01em', marginBottom: '0.5rem', lineHeight: 1.15 }}>{outputsOpen.agenda.title}</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.75rem' }}>
+              <img src={outputsOpen.agenda.leader.photo} alt={outputsOpen.agenda.leader.name} style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover' }} />
+              <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: C.slate }}>Led by {outputsOpen.agenda.leader.name}</div>
+            </div>
+            <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: outputsOpen.accent, fontWeight: 700, marginBottom: '1rem' }}>Flagship outputs</div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+              {outputsOpen.agenda.outputs.map((o, i) => (
+                <li key={i} style={{ display: 'flex', gap: '0.75rem', fontSize: '0.92rem', lineHeight: 1.5, color: C.navy }}>
+                  <span className="mono" style={{ color: outputsOpen.accent, fontWeight: 700, flexShrink: 0 }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span>{o}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       )}
 
-      {momentumOpen && (
-        <div
-          className="modal-overlay"
-          onClick={() => setMomentumOpen(false)}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'rgba(23, 35, 57, 0.6)',
-            zIndex: 220,
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-            padding: '4rem 2rem',
-            overflowY: 'auto',
-            animation: 'fadeUp 0.3s ease-out',
-          }}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              background: C.ivory,
-              maxWidth: '880px',
-              width: '100%',
-              borderRadius: '8px',
-              padding: '3rem 3rem 2.5rem',
-              position: 'relative',
-              boxShadow: '0 30px 80px rgba(23, 35, 57, 0.3)',
-            }}
-          >
-            <button
-              onClick={() => setMomentumOpen(false)}
-              style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', background: 'transparent', border: 'none', fontSize: '1.5rem', color: C.slate, cursor: 'pointer', padding: '0.4rem 0.7rem' }}
-              aria-label="Close"
-            >
-              ×
-            </button>
-            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.8rem' }}>
-              The AI Momentum Model
-            </div>
-            <h3 className="display" style={{ fontSize: '2rem', fontWeight: 500, lineHeight: 1.08, letterSpacing: '-0.02em', color: C.navy, marginBottom: '0.9rem' }}>
-              Momentum has three dimensions. <span className="serif-italic" style={{ color: C.lilac }}>Nine drivers behind them.</span>
-            </h3>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: C.slate, marginBottom: '2.25rem', maxWidth: '68ch' }}>
-              The model reframes AI adoption in HR: not maturity as a finish line, but momentum as a force to be built. Each dimension answers a diagnostic question, with three drivers underneath.
-            </p>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem', marginBottom: '2.5rem' }}>
-              {momentumDrivers.map((d, i) => (
-                <div key={i} style={{ padding: '1.35rem 1.35rem 1.5rem', background: 'rgba(157, 146, 173, 0.1)', borderRadius: '6px', borderTop: `2px solid ${C.lilac}` }}>
-                  <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.4rem' }}>
-                    Dimension
-                  </div>
-                  <div className="display" style={{ fontSize: '1.15rem', fontWeight: 500, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.4rem' }}>
-                    {d.dimension}
-                  </div>
-                  <div className="serif-italic" style={{ fontSize: '0.82rem', color: C.slate, marginBottom: '1rem', lineHeight: 1.4 }}>
-                    {d.question}
-                  </div>
-                  <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                    {d.drivers.map((dr, j) => (
-                      <li key={j} style={{ fontSize: '0.82rem', lineHeight: 1.4 }}>
-                        <div style={{ fontWeight: 500, color: C.navy }}>{dr.name}</div>
-                        <div style={{ color: C.slate, fontSize: '0.78rem' }}>{dr.note}</div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-
-            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '1rem' }}>
-              Nine archetypes, three categories
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
-              {momentumArchetypes.map((a, i) => (
-                <div key={i} style={{ padding: '1.15rem 1.25rem', background: C.white, border: `1px solid rgba(39, 55, 82, 0.1)`, borderRadius: '6px' }}>
-                  <div className="display" style={{ fontSize: '1rem', fontWeight: 500, color: C.navy, marginBottom: '0.35rem' }}>
-                    {a.category}
-                  </div>
-                  <div style={{ fontSize: '0.8rem', color: C.slate, marginBottom: '0.8rem', lineHeight: 1.45 }}>
-                    {a.blurb}
-                  </div>
-                  <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-                    {a.items.map((it, j) => (
-                      <li key={j} className="mono" style={{ fontSize: '0.72rem', color: C.navy, letterSpacing: '0.01em' }}>
-                        · {it}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap', paddingTop: '1rem', borderTop: `1px solid rgba(39, 55, 82, 0.1)` }}>
-              <a
-                href="https://kyleandco.typeform.com/to/uQrXm9NS"
-                target="_blank"
-                rel="noopener noreferrer"
+      {toolkitOpen && (
+        <div className="modal-overlay" onClick={() => setToolkitOpen(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.55)', zIndex: 200, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: isMobile ? '3rem 0.6rem' : '4rem 2rem', overflowY: 'auto', animation: 'fadeUp 0.3s ease-out' }}>
+          <div onClick={(e) => e.stopPropagation()} style={{ background: C.ivory, borderRadius: '12px', padding: isMobile ? '2rem 1.1rem' : '2.75rem 3rem', maxWidth: '1080px', width: '100%', position: 'relative' }}>
+            <button onClick={() => setToolkitOpen(false)} style={{ position: 'absolute', top: '1.1rem', right: '1.3rem', background: 'none', border: 'none', color: C.slate, cursor: 'pointer', fontSize: '1.5rem', lineHeight: 1, zIndex: 2 }} aria-label="Close">×</button>
+            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>The Year One Toolkit</div>
+            <h3 className="display" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.4rem)', fontWeight: 400, letterSpacing: '-0.02em', color: C.navy, marginBottom: '2rem', lineHeight: 1.05 }}>Four frameworks. <span className="serif-italic" style={{ color: C.lilac }}>Free. Built to be used.</span></h3>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.25rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)`, marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
+          <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: C.slate }}>
+            {filtered.length} of {resources.length} resources
+          </div>
+          <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+            {[
+              { id: 'all', label: 'All' },
+              { id: 'interactive', label: 'Interactive' },
+              { id: 'download', label: 'Downloads' },
+            ].map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setActiveFilter(f.id)}
+                className="filter-pill"
                 style={{
-                  background: C.navy,
-                  color: C.ivory,
-                  padding: '0.9rem 1.6rem',
+                  padding: '0.5rem 1.1rem',
+                  background: activeFilter === f.id ? C.navy : 'transparent',
+                  color: activeFilter === f.id ? C.ivory : C.navy,
+                  border: `1px solid ${activeFilter === f.id ? C.navy : 'rgba(39, 55, 82, 0.2)'}`,
                   borderRadius: '100px',
-                  textDecoration: 'none',
-                  fontSize: '0.88rem',
-                  fontWeight: 500,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
+                  fontSize: '0.75rem',
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase',
                 }}
               >
-                Take the assessment <span>→</span>
-              </a>
-              <span style={{ fontSize: '0.8rem', color: C.slate }}>Find your archetype in under 10 minutes.</span>
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Library rows */}
+        <div>
+          {filtered.map((r, i) => (
+            <div
+              key={r.id}
+              className="resource-row"
+              onClick={() => {
+                track('resource_open', { resource_name: r.title, resource_type: r.tag });
+                const openKey = RESOURCE_KEY_MAP[r.id] ? RESOURCE_KEY_MAP[r.id] + '_opens' : null;
+                if (openKey) {
+                  fetch(CLICKS_URL + '/latest', { headers: { 'X-ACCESS-KEY': CLICKS_KEY } })
+                    .then(res => res.json())
+                    .then(data => {
+                      const counts = data.record;
+                      counts[openKey] = (counts[openKey] || 0) + 1;
+                      fetch(CLICKS_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'X-ACCESS-KEY': CLICKS_KEY }, body: JSON.stringify(counts) });
+                    }).catch(() => {});
+                }
+                setSelectedResource(r);
+              }}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: isMobile ? '1fr' : '60px 160px 1fr 150px 60px',
+                gap: isMobile ? '0.5rem' : '2rem',
+                padding: isMobile ? '1.25rem 0.75rem' : '2rem 1rem',
+                borderBottom: `1px solid rgba(39, 55, 82, 0.1)`,
+                alignItems: 'center',
+              }}
+            >
+              <div className="mono" style={{ fontSize: '1.1rem', fontWeight: 700, color: C.navy, opacity: 0.25, letterSpacing: '-0.01em' }}>
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', alignItems: 'flex-start' }}>
+                <span className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: C.slate }}>
+                  {r.tag}
+                </span>
+                {r.kind === 'interactive' && (
+                  <span className="mono" style={{
+                    fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase',
+                    background: C.cream, color: C.navyDark,
+                    padding: '0.18rem 0.55rem', borderRadius: '2px', fontWeight: 500,
+                  }}>
+                    Live
+                  </span>
+                )}
+                {r.evolving && (
+                  <span className="mono" style={{
+                    fontSize: '0.58rem', letterSpacing: '0.08em', textTransform: 'uppercase',
+                    color: C.lilac, fontWeight: 500,
+                  }}>
+                    Interactive in dev
+                  </span>
+                )}
+              </div>
+              <div>
+                <h3 className="display row-title" style={{ fontSize: '1.7rem', fontWeight: 500, letterSpacing: '-0.01em', marginBottom: '0.5rem', lineHeight: 1.1, transition: 'color 0.3s', color: C.navy }}>
+                  {r.title}
+                </h3>
+                <p style={{ fontSize: '0.92rem', lineHeight: 1.55, color: C.slate, maxWidth: '64ch' }}>
+                  {r.short}
+                </p>
+                {r.subtitle ? (
+                  <div className="mono" style={{ fontSize: '0.7rem', color: C.slate, opacity: 0.65, marginTop: '0.6rem', letterSpacing: '0.05em' }}>
+                    {r.subtitle}
+                  </div>
+                ) : null}
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <span className="mono" style={{ fontSize: '0.78rem', color: r.kind === 'interactive' ? C.navyMid : C.navy, fontWeight: 600, letterSpacing: '0.04em', borderBottom: `1px solid ${r.kind === 'interactive' ? C.navyMid : C.navy}`, paddingBottom: '1px' }}>
+                  {r.ctaLabel}
+                </span>
+              </div>
+              <div className="row-arrow" style={{ fontSize: '1.5rem', color: C.navy, opacity: 0.7, transition: 'all 0.3s ease', textAlign: 'right', fontWeight: 300 }}>
+                →
+              </div>
             </div>
+          ))}
+        </div>
           </div>
         </div>
       )}
 
-      {/* FLOATING K&CO WIDGET — follows the scroll, dismissible */}
+      {/* FLOATING K&CO WIDGET, follows the scroll, dismissible */}
       {!widgetDismissed && (
         <div
           role="complementary"
