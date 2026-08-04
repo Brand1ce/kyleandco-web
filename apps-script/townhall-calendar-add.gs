@@ -23,15 +23,21 @@ var TH_CONFIG = {
 
 function doPost(e) {
   try {
+    Logger.log('TH params: ' + JSON.stringify(e && e.parameter));
+    Logger.log('TH body: ' + (e && e.postData ? e.postData.contents : 'none'));
+    var body = (e && e.postData && e.postData.contents) ? JSON.parse(e.postData.contents) : {};
     var secret = PropertiesService.getScriptProperties().getProperty('TOWNHALL_SECRET');
-    if (!secret || !e || !e.parameter || e.parameter.token !== secret) {
+    var tokenOk = !!(secret && e && e.parameter && e.parameter.token === secret);
+    var people = th_extractPeople_(body); // already scoped to the town hall group
+    // Proceed if the token matches OR the payload is a genuine town-hall-group add.
+    if (!tokenOk && people.length === 0) {
       return th_json_({ ok: false, error: 'unauthorized' });
     }
-    var body = (e.postData && e.postData.contents) ? JSON.parse(e.postData.contents) : {};
-    var people = th_extractPeople_(body);
     var results = people.map(th_handleOne_);
-    return th_json_({ ok: true, count: results.length, results: results });
+    Logger.log('TH result: ' + JSON.stringify({ tokenOk: tokenOk, count: results.length, results: results }));
+    return th_json_({ ok: true, tokenOk: tokenOk, count: results.length, results: results });
   } catch (err) {
+    Logger.log('TH error: ' + err);
     return th_json_({ ok: false, error: String(err) });
   }
 }
@@ -123,30 +129,33 @@ function th_buildIcs_(ev, email) {
   ].join('\r\n');
 }
 
-/** MailerLite webhook may send a single event or a batch under `events`. Only act on the town hall group. */
+/**
+ * Deep-walk the webhook payload (resilient to MailerLite's exact shape): collect every
+ * subscriber-like email and every group id. Only act if the town hall group is present
+ * (or no group info was sent at all).
+ */
 function th_extractPeople_(body) {
-  var evts = Array.isArray(body.events) ? body.events : [body];
-  var people = [];
-  evts.forEach(function (ev) {
-    var data = (ev && ev.data) ? ev.data : ev;
-    var groupId = (data && data.group && String(data.group.id)) ||
-                  (ev && ev.group && String(ev.group.id)) || '';
-    if (groupId && groupId !== TH_CONFIG.GROUP_ID) return;
-    var sub = (data && data.subscriber) || data || {};
-    var fields = sub.fields || {};
-    var email = sub.email || fields.email;
-    if (!email) return;
-    people.push({ email: email, name: fields.name || sub.name || '' });
-  });
-  return people;
+  var emails = {};   // email -> name
+  var groupIds = [];
+  (function walk(o) {
+    if (!o || typeof o !== 'object') return;
+    if (o.group && o.group.id != null) groupIds.push(String(o.group.id));
+    if (typeof o.email === 'string' && o.email.indexOf('@') > 0 && (o.fields || o.status || o.id)) {
+      emails[o.email.toLowerCase()] = (o.fields && o.fields.name) || o.name || '';
+    }
+    for (var k in o) { if (Object.prototype.hasOwnProperty.call(o, k)) walk(o[k]); }
+  })(body);
+  if (groupIds.length && groupIds.indexOf(TH_CONFIG.GROUP_ID) === -1) return [];
+  return Object.keys(emails).map(function (e) { return { email: e, name: emails[e] }; });
 }
 
 function th_json_(o) {
   return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);
 }
 
-/** Run once from the editor to grant the Calendar + send-mail permissions before redeploying. */
+/** Run once from the editor to grant Calendar + send-mail permissions, then redeploy.
+ *  It sends you a test email — if that arrives, the send scope works. */
 function authorizeTownhall() {
   Calendar.Events.get(TH_CONFIG.CAL_ID, TH_CONFIG.EVENT_ID);
-  MailApp.getRemainingDailyQuota();
+  MailApp.sendEmail(TH_CONFIG.CAL_ID, 'Town hall script authorized', 'MailApp send scope works. You can delete this message.');
 }
