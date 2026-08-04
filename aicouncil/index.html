@@ -218,7 +218,7 @@ function HCAIC_Final() {
   const ML_APPLY_URL         = 'https://assets.mailerlite.com/jsonp/1555935/forms/159825956656120991/subscribe';
   const ML_KCO_URL           = 'https://assets.mailerlite.com/jsonp/1555935/forms/185371122148050837/subscribe';
   const ML_FOLLOW_URL        = 'https://assets.mailerlite.com/jsonp/1555935/forms/194449693277685436/subscribe'; // AI Council Website – Followers group
-  const ML_TOWNHALL_URL      = 'https://assets.mailerlite.com/jsonp/1555935/forms/185370079945295046/subscribe';
+  const ML_TOWNHALL_URL      = 'https://assets.mailerlite.com/jsonp/1555935/forms/194886965915551586/subscribe'; // Year Two Town Hall group (194886957105415211)
   const ML_UNDERWRITER_URL   = 'https://assets.mailerlite.com/jsonp/1555935/forms/159836007953335925/subscribe';
   const ML_MOMENTUM_URL      = 'https://assets.mailerlite.com/jsonp/1555935/forms/185372908239979993/subscribe';
 
@@ -716,11 +716,11 @@ function HCAIC_Final() {
     {
       status: 'upcoming',
       type: 'Town Hall',
-      title: 'Year Two Launch Town Hall',
-      date: 'September 2, 2026 · time TBA',
-      summary: 'The Council kicks off Year Two: the five priorities, who is leading each, and how HR teams and vendors can get involved. Underwriters welcome.',
-      cta: 'Registration opening soon',
-      comingSoon: true,
+      title: 'The Human-Centric AI Council Year Two Town Hall',
+      date: 'August 27, 2026',
+      summary: 'We launch the Year Two agenda live. Each pillar champion walks the room through their workstream, and how HR teams and vendors can plug in. Register once and you are added to the calendar automatically.',
+      cta: 'Register',
+      onClick: () => setTownhallOpen(true),
     },
   ];
 
@@ -2218,14 +2218,14 @@ The Year One Toolkit · proof of what the Council ships
             {townhallSubmitted ? (
               <div style={{ padding: '2rem 0' }}>
                 <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1rem' }}>You're registered</div>
-                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '1rem' }}>See you September 2.</h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate }}>A calendar invite and joining link will be sent to your email once the time is confirmed.</p>
+                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '1rem' }}>See you August 27.</h3>
+                <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate }}>You've been added to the calendar for August 27. The invite and join link are on their way to your inbox, no button to click, it's already on your calendar.</p>
               </div>
             ) : (
               <>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>Town Hall · September 2, 2026 · time TBA</div>
-                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>Year Two Launch Town Hall</h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>The Council kicks off Year Two: the five priorities, who is leading each, and how HR teams and vendors can get involved. Underwriters welcome.</p>
+                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>Town Hall · August 27, 2026</div>
+                <h3 className="display" style={{ fontSize: '1.6rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>The Human-Centric AI Council <span className="serif-italic" style={{ color: C.lilac }}>Year Two Town Hall</span></h3>
+                <p style={{ fontSize: '0.93rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>We launch the Year Two agenda live. Each pillar champion walks the room through their workstream, what they're building this year, and how HR teams and vendors can plug in. Register once and you're added to the calendar automatically.</p>
                 <form action={ML_TOWNHALL_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'townhall'}); setTimeout(() => setTownhallSubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
                     <input required type="text" name="fields[name]" placeholder="First name" style={gateInput(C)} />
