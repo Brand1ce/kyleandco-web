@@ -15,7 +15,11 @@ Add the Meet/Zoom link to the event whenever — invites read the link off the e
 ## One-time setup (~3 min, no deployment)
 1. In the **Marketing KPIs Data** project, put the code in a file (e.g. `townhall`).
 2. **Services (+)** → add **Calendar API** (if not already added).
-3. Run **`authorizeTownhall`** once → approve permissions. You should get a "Town hall script
+3. **Add the manifest scopes** (this project declares explicit `oauthScopes`, so new scopes must be
+   added by hand). Project Settings (gear) → check "Show appsscript.json manifest file in editor" →
+   open `appsscript.json` → add to `oauthScopes`:
+   `https://www.googleapis.com/auth/calendar` and `https://www.googleapis.com/auth/script.send_mail`.
+4. Run **`authorizeTownhall`** once → approve the new permissions. You should get a "Town hall script
    authorized" test email — that proves Calendar + mail + MailerLite access all work.
 4. **Triggers** (clock icon, left sidebar) → **Add Trigger**:
    - Function: **pollTownhall**
