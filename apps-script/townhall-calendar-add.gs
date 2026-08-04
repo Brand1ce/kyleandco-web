@@ -1,54 +1,72 @@
 /**
- * Year Two Town Hall — auto calendar invite on registration.
+ * Year Two Town Hall — auto calendar invite for registrants (POLLING version).
  *
- * Add this as a NEW FILE inside your existing "Marketing KPIs Data" Apps Script
- * project (it only adds doPost + th_* helpers; it does not touch the dashboard's doGet).
+ * Add as a file in the existing "Marketing KPIs Data" project (reuses its ML_API_KEY).
+ * A time trigger runs pollTownhall() every few minutes: it reads the town hall group from
+ * the MailerLite API, and for anyone new, adds them to the event guest list (silently) and
+ * emails them a calendar invite (.ics built from the LIVE event, so the join link on the
+ * event flows through automatically). No webhook, no redeploys — time triggers run the
+ * latest saved code.
  *
- * Flow: reg modal -> MailerLite group "AI Council – Year Two Town Hall"
- *       -> webhook POSTs here (?token=SECRET)
- *       -> emails the registrant a calendar invite (.ics built from the LIVE event,
- *          so the join link on the event flows through automatically) and silently
- *          logs them onto the event guest list (no notification blast to others).
- *
- * Setup: see apps-script/SETUP.md
+ * One-time setup:
+ *   1. Services (+) → add Calendar API.
+ *   2. Run authorizeTownhall once → approve permissions (also sends you a test email).
+ *   3. Triggers (clock icon) → Add Trigger → function pollTownhall, event source
+ *      Time-driven, Minutes timer, Every 5 minutes.
+ *   (ML_API_KEY is already a Script Property in this project.)
  */
 
 var TH_CONFIG = {
-  CAL_ID:   'brandice@kyleandco.com',              // calendar that owns the event
-  EVENT_ID: '0b98lpeee9fophk2tc6sfseagv',          // Year Two Town Hall (Aug 27, 1pm ET)
-  GROUP_ID: '194886957105415211',                  // only act on this MailerLite group
+  CAL_ID:   'brandice@kyleandco.com',
+  EVENT_ID: '0b98lpeee9fophk2tc6sfseagv',
+  GROUP_ID: '194886957105415211',
   FROM_NAME:'The Human-Centric AI Council',
-  ADD_TO_GUEST_LIST: true,                         // silently log registrants (sendUpdates: none)
+  ADD_TO_GUEST_LIST: true,
 };
 
-function doPost(e) {
-  try {
-    Logger.log('TH params: ' + JSON.stringify(e && e.parameter));
-    Logger.log('TH body: ' + (e && e.postData ? e.postData.contents : 'none'));
-    var body = (e && e.postData && e.postData.contents) ? JSON.parse(e.postData.contents) : {};
-    var secret = PropertiesService.getScriptProperties().getProperty('TOWNHALL_SECRET');
-    var tokenOk = !!(secret && e && e.parameter && e.parameter.token === secret);
-    var people = th_extractPeople_(body); // already scoped to the town hall group
-    // Proceed if the token matches OR the payload is a genuine town-hall-group add.
-    if (!tokenOk && people.length === 0) {
-      return th_json_({ ok: false, error: 'unauthorized' });
-    }
-    var results = people.map(th_handleOne_);
-    Logger.log('TH result: ' + JSON.stringify({ tokenOk: tokenOk, count: results.length, results: results }));
-    return th_json_({ ok: true, tokenOk: tokenOk, count: results.length, results: results });
-  } catch (err) {
-    Logger.log('TH error: ' + err);
-    return th_json_({ ok: false, error: String(err) });
+/** Scheduled: invite any new members of the town hall group. */
+function pollTownhall() {
+  var props = PropertiesService.getScriptProperties();
+  var apiKey = props.getProperty('ML_API_KEY');
+  if (!apiKey) { Logger.log('TH: no ML_API_KEY property'); return; }
+
+  var processed = {};
+  JSON.parse(props.getProperty('TH_PROCESSED') || '[]').forEach(function (e) { processed[e] = 1; });
+
+  var ev = Calendar.Events.get(TH_CONFIG.CAL_ID, TH_CONFIG.EVENT_ID);
+  var url = 'https://connect.mailerlite.com/api/groups/' + TH_CONFIG.GROUP_ID + '/subscribers?limit=100';
+  var added = [];
+
+  while (url) {
+    var resp = UrlFetchApp.fetch(url, {
+      headers: { Authorization: 'Bearer ' + apiKey, Accept: 'application/json' },
+      muteHttpExceptions: true
+    });
+    if (resp.getResponseCode() >= 300) { Logger.log('TH ML fetch ' + resp.getResponseCode() + ': ' + resp.getContentText()); break; }
+    var data = JSON.parse(resp.getContentText());
+    (data.data || []).forEach(function (s) {
+      var email = (s.email || '').toLowerCase();
+      if (!email || processed[email]) return;
+      if (s.status && s.status !== 'active') return; // skip unconfirmed/unsubscribed
+      try {
+        th_handleOne_(email, (s.fields && s.fields.name) || '', ev);
+        processed[email] = 1;
+        added.push(email);
+      } catch (err) {
+        Logger.log('TH invite failed for ' + email + ': ' + err);
+      }
+    });
+    url = (data.links && data.links.next) || null;
   }
+
+  props.setProperty('TH_PROCESSED', JSON.stringify(Object.keys(processed)));
+  if (added.length) Logger.log('TH invited: ' + JSON.stringify(added));
 }
 
-function th_handleOne_(p) {
-  var email = (p.email || '').trim().toLowerCase();
-  if (!email) return { skipped: 'no email' };
+function th_handleOne_(email, name, ev) {
   var lock = LockService.getScriptLock();
   lock.waitLock(30000);
   try {
-    var ev = Calendar.Events.get(TH_CONFIG.CAL_ID, TH_CONFIG.EVENT_ID);
     if (TH_CONFIG.ADD_TO_GUEST_LIST) {
       var attendees = ev.attendees || [];
       var already = attendees.some(function (a) { return (a.email || '').toLowerCase() === email; });
@@ -57,8 +75,7 @@ function th_handleOne_(p) {
         Calendar.Events.patch({ attendees: attendees }, TH_CONFIG.CAL_ID, TH_CONFIG.EVENT_ID, { sendUpdates: 'none' });
       }
     }
-    th_sendInvite_(email, p.name, ev);
-    return { email: email, invited: true };
+    th_sendInvite_(email, name, ev);
   } finally {
     lock.releaseLock();
   }
@@ -129,33 +146,12 @@ function th_buildIcs_(ev, email) {
   ].join('\r\n');
 }
 
-/**
- * Deep-walk the webhook payload (resilient to MailerLite's exact shape): collect every
- * subscriber-like email and every group id. Only act if the town hall group is present
- * (or no group info was sent at all).
- */
-function th_extractPeople_(body) {
-  var emails = {};   // email -> name
-  var groupIds = [];
-  (function walk(o) {
-    if (!o || typeof o !== 'object') return;
-    if (o.group && o.group.id != null) groupIds.push(String(o.group.id));
-    if (typeof o.email === 'string' && o.email.indexOf('@') > 0 && (o.fields || o.status || o.id)) {
-      emails[o.email.toLowerCase()] = (o.fields && o.fields.name) || o.name || '';
-    }
-    for (var k in o) { if (Object.prototype.hasOwnProperty.call(o, k)) walk(o[k]); }
-  })(body);
-  if (groupIds.length && groupIds.indexOf(TH_CONFIG.GROUP_ID) === -1) return [];
-  return Object.keys(emails).map(function (e) { return { email: e, name: emails[e] }; });
-}
-
-function th_json_(o) {
-  return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);
-}
-
-/** Run once from the editor to grant Calendar + send-mail permissions, then redeploy.
- *  It sends you a test email — if that arrives, the send scope works. */
+/** Run once to grant Calendar + send-mail + external-request permissions. Sends you a test email. */
 function authorizeTownhall() {
   Calendar.Events.get(TH_CONFIG.CAL_ID, TH_CONFIG.EVENT_ID);
-  MailApp.sendEmail(TH_CONFIG.CAL_ID, 'Town hall script authorized', 'MailApp send scope works. You can delete this message.');
+  UrlFetchApp.fetch('https://connect.mailerlite.com/api/groups/' + TH_CONFIG.GROUP_ID + '/subscribers?limit=1', {
+    headers: { Authorization: 'Bearer ' + (PropertiesService.getScriptProperties().getProperty('ML_API_KEY') || ''), Accept: 'application/json' },
+    muteHttpExceptions: true
+  });
+  MailApp.sendEmail(TH_CONFIG.CAL_ID, 'Town hall script authorized', 'Calendar + mail + MailerLite access all work. You can delete this message.');
 }
