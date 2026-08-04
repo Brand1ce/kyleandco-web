@@ -1024,25 +1024,35 @@ function HCAIC_Final() {
             </p>
           </div>
 
-          {/* Pillar cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(270px, 1fr))', gap: '1.25rem' }}>
+          {/* Pillars — editorial index */}
+          <div style={{ borderBottom: `1px solid rgba(39,55,82,0.15)` }}>
             {PILLARS.map((p) => (
-              <div key={p.n} style={{ display: 'flex', flexDirection: 'column', background: C.white, borderRadius: '10px', borderTop: `3px solid ${p.accent}`, boxShadow: '0 1px 3px rgba(39,55,82,0.06)', padding: '1.75rem 1.6rem', overflow: 'hidden' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '1rem' }}>
-                  <span className="mono" style={{ fontSize: '0.72rem', fontWeight: 600, color: p.accent }}>{p.n}</span>
-                  <div style={{ fontSize: '0.98rem', fontWeight: 600, color: C.navy, lineHeight: 1.2 }}>{p.name}</div>
+              <div key={p.n} style={{
+                display: 'grid',
+                gridTemplateColumns: isMobile ? '1fr' : 'minmax(72px, auto) 1fr minmax(210px, 250px)',
+                gap: isMobile ? '0.5rem' : '2.5rem',
+                alignItems: 'start',
+                padding: isMobile ? '1.6rem 0 1.6rem 1.25rem' : '2.25rem 0 2.25rem 1.75rem',
+                borderTop: `1px solid rgba(39,55,82,0.15)`,
+                borderLeft: `3px solid ${p.accent}`,
+              }}>
+                <div className="display" style={{ fontSize: isMobile ? '1.9rem' : 'clamp(2.5rem, 4vw, 3.4rem)', fontWeight: 400, color: p.accent, lineHeight: 0.9, letterSpacing: '-0.02em' }}>{p.n}</div>
+                <div>
+                  <h3 className="display" style={{ fontSize: isMobile ? '1.4rem' : '1.75rem', fontWeight: 500, color: C.navy, lineHeight: 1.1, letterSpacing: '-0.015em', marginBottom: '0.7rem' }}>{p.name}</h3>
+                  <p style={{ fontSize: '0.94rem', lineHeight: 1.6, color: C.slate, maxWidth: '52ch' }}>{p.blurb}</p>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '1rem' }}>
-                  <img src={p.champion.photo} alt={p.champion.name} style={{ width: '44px', height: '44px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${p.accent}` }} />
-                  <div>
-                    <div className="mono" style={{ fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: p.accent, fontWeight: 600, marginBottom: '0.1rem' }}>Champion</div>
-                    <div style={{ fontSize: '0.85rem', fontWeight: 500, color: C.navy }}>{p.champion.name}</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem', alignItems: 'flex-start', paddingTop: isMobile ? '0.5rem' : '0.4rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                    <img src={p.champion.photo} alt={p.champion.name} style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+                    <div>
+                      <div className="mono" style={{ fontSize: '0.54rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: p.accent, fontWeight: 700 }}>Champion</div>
+                      <div style={{ fontSize: '0.85rem', fontWeight: 500, color: C.navy }}>{p.champion.name}</div>
+                    </div>
                   </div>
+                  <button onClick={() => { track('pillar_open', { pillar_name: p.name }); setPillarOpen(p); }} className="link-arrow" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', color: p.accent, fontSize: '0.82rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem', letterSpacing: '0.01em' }}>
+                    Meet the members <Arrow />
+                  </button>
                 </div>
-                <p style={{ fontSize: '0.86rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.25rem', flex: 1 }}>{p.blurb}</p>
-                <button onClick={() => { track('pillar_open', { pillar_name: p.name }); setPillarOpen(p); }} style={{ alignSelf: 'flex-start', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600, color: C.navy, fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }} className="link-arrow">
-                  Meet the members <Arrow />
-                </button>
               </div>
             ))}
           </div>
@@ -1082,22 +1092,35 @@ function HCAIC_Final() {
             </p>
           </div>
 
-          <div id="year-two-priorities" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
+          <div id="year-two-priorities" style={{ borderBottom: `1px solid rgba(39,55,82,0.15)` }}>
             {PILLARS.map((p) => (
-              <div key={p.n} style={{ display: 'flex', flexDirection: 'column', background: p.accent + '14', borderRadius: '10px', borderTop: `3px solid ${p.accent}`, padding: '1.9rem 1.7rem', minHeight: isMobile ? 'auto' : '340px' }}>
-                <div className="mono" style={{ fontSize: '0.6rem', letterSpacing: '0.13em', textTransform: 'uppercase', color: p.accent, fontWeight: 700, marginBottom: '0.9rem' }}>{p.n} · {p.name}</div>
-                <h3 className="display" style={{ fontSize: '1.3rem', fontWeight: 500, marginBottom: '0.85rem', letterSpacing: '-0.01em', lineHeight: 1.15, color: C.navy }}>{p.agenda.title}</h3>
-                <p style={{ fontSize: '0.88rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.25rem', flex: 1 }}>{p.agenda.d}</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.1rem' }}>
-                  <img src={p.agenda.leader.photo} alt={p.agenda.leader.name} style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${p.accent}` }} />
-                  <div>
-                    <div className="mono" style={{ fontSize: '0.54rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: C.slate, opacity: 0.7 }}>Led by</div>
-                    <div style={{ fontSize: '0.83rem', fontWeight: 500, color: C.navy }}>{p.agenda.leader.name}</div>
-                  </div>
+              <div key={p.n} style={{
+                display: 'grid',
+                gridTemplateColumns: isMobile ? '1fr' : 'minmax(72px, auto) 1fr minmax(210px, 250px)',
+                gap: isMobile ? '0.5rem' : '2.5rem',
+                alignItems: 'start',
+                padding: isMobile ? '1.6rem 0 1.6rem 1.25rem' : '2.5rem 0 2.5rem 1.75rem',
+                borderTop: `1px solid rgba(39,55,82,0.15)`,
+                borderLeft: `3px solid ${p.accent}`,
+              }}>
+                <div className="display" style={{ fontSize: isMobile ? '1.9rem' : 'clamp(2.5rem, 4vw, 3.4rem)', fontWeight: 400, color: p.accent, lineHeight: 0.9, letterSpacing: '-0.02em' }}>{p.n}</div>
+                <div>
+                  <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: p.accent, fontWeight: 700, marginBottom: '0.6rem' }}>{p.name}</div>
+                  <h3 className="display" style={{ fontSize: isMobile ? '1.5rem' : '1.95rem', fontWeight: 500, color: C.navy, lineHeight: 1.08, letterSpacing: '-0.015em', marginBottom: '0.8rem' }}>{p.agenda.title}</h3>
+                  <p style={{ fontSize: '0.94rem', lineHeight: 1.6, color: C.slate, maxWidth: '54ch' }}>{p.agenda.d}</p>
                 </div>
-                <button onClick={() => { track('workstream_open', { pillar: p.name }); setOutputsOpen(p); }} style={{ alignSelf: 'flex-start', background: C.white, color: C.navy, border: `1px solid ${p.accent}`, borderRadius: '100px', padding: '0.55rem 1.15rem', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 600, fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }} className="link-arrow">
-                  Flagship outputs <Arrow />
-                </button>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem', alignItems: 'flex-start', paddingTop: isMobile ? '0.5rem' : '0.4rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                    <img src={p.agenda.leader.photo} alt={p.agenda.leader.name} style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+                    <div>
+                      <div className="mono" style={{ fontSize: '0.54rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: C.slate, opacity: 0.7 }}>Led by</div>
+                      <div style={{ fontSize: '0.85rem', fontWeight: 500, color: C.navy }}>{p.agenda.leader.name}</div>
+                    </div>
+                  </div>
+                  <button onClick={() => { track('workstream_open', { pillar: p.name }); setOutputsOpen(p); }} className="link-arrow" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', color: p.accent, fontSize: '0.82rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem', letterSpacing: '0.01em' }}>
+                    Flagship outputs <Arrow />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
