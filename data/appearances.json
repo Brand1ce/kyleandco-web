@@ -65,14 +65,14 @@
   },
 
   {
-    "status": "upcoming",
+    "status": "past",
     "date": "2026-07-08",
     "month": "Jul",
     "day": "8",
     "type": "Webinar",
     "venue": "Greenhouse",
     "title": "Beyond AI hype: A framework for evaluating AI in a hiring platform",
-    "description": "Kyle joins Greenhouse and Velocity HCM to cut through vendor AI claims — what to ask, what to look for, and how to make a call you can defend. July 8, 11 AM ET.",
+    "description": "Kyle joins Greenhouse and Velocity HCM to cut through vendor AI claims, what to ask, what to look for, and how to make a call you can defend.",
     "url": "https://www.greenhouse.com/events/beyond-ai-hype-a-framework-for-evaluating-ai-in-a-hiring-platform",
     "image": ""
   },
