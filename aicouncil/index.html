@@ -76,6 +76,7 @@ function HCAIC_Final() {
   const [outputsOpen, setOutputsOpen] = useState(null);
   const [toolkitOpen, setToolkitOpen] = useState(false);
   const [followSubmitted, setFollowSubmitted] = useState(false);
+  const [yearOneOpen, setYearOneOpen] = useState(false);
   const pillarCloseRef = React.useRef(null);
   const pillarReturnRef = React.useRef(null);
 
@@ -728,8 +729,15 @@ function HCAIC_Final() {
     },
   ];
 
-  const underwritersYearTwo = ['isolved', 'Glider', 'CodeSignal', 'HiBob', 'GoodTime'];
   const underwritersYearOne = ['Workday', 'Findem', 'Warden AI', 'Humanly', 'GoodTime', 'Rival', 'isolved', 'Glider', 'CodeSignal', 'Gem', 'HiBob', 'SmartRecruiters'];
+  // Year Two underwriter logos. isolved + HiBob ship as white (reversed) files, so darken them for the light card.
+  const underwritersYearTwo = [
+    { name: 'isolved', src: 'underwriter-logos/isolved.png', dark: true },
+    { name: 'Glider', src: 'underwriter-logos/glider.webp', dark: false },
+    { name: 'CodeSignal', src: 'underwriter-logos/codesignal.svg', dark: false },
+    { name: 'HiBob', src: 'underwriter-logos/hibob.png', dark: true },
+    { name: 'GoodTime', src: 'underwriter-logos/goodtime.png', dark: false },
+  ];
 
   // EDITABLE: upcoming town halls, webinars, and replays
   // status values: 'upcoming' | 'replay' | 'live'
@@ -1151,99 +1159,6 @@ function HCAIC_Final() {
         </div>
       </section>
 
-      {/* HOW THIS IS FUNDED, honest vendor section */}
-      <section id="underwriters" style={{ padding: isMobile ? '3rem 1.25rem' : '4rem 2.5rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
-        <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
-          The partners funding this work
-        </div>
-        <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '2rem', maxWidth: '26ch', lineHeight: 1.05 }}>
-          The partners <span className="serif-italic" style={{ color: C.lilac }}>behind</span> the Council.
-        </h2>
-
-        <p style={{ fontSize: '1.05rem', lineHeight: 1.65, color: C.slate, marginBottom: '3.5rem', maxWidth: '62ch' }}>
-          Underwriters fund this work, join practitioner dialogue, and help us keep everything the Council publishes free and open to every HR team. Here's how the model works: what they do, and what they don't.
-        </p>
-
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '3rem', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
-          <div style={{ borderTop: `2px solid ${C.navy}`, paddingTop: '2rem' }}>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.navy, fontWeight: 500 }}>
-              What the community does
-            </div>
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
-              {[
-                'Bring real AI transformation experience from inside HR organizations.',
-                'Lead workstreams and author the frameworks under their own names.',
-                'Meet monthly to pressure-test ideas and share what is working in practice.',
-                'Set the agenda for what the Council produces next.',
-              ].map((x, i) => (
-                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
-                  <span className="mono" style={{ color: C.lilac, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
-                  <span style={{ color: C.navy }}>{x}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div style={{ borderTop: `2px solid ${C.lilac}`, paddingTop: '2rem' }}>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.lilac, fontWeight: 500 }}>
-              What underwriters do
-            </div>
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
-              {[
-                'Fund the work so it stays free and open to every HR team.',
-                'Join market-level dialogue with the practitioners they sell to.',
-                'Distribute Council outputs through their channels.',
-                "Underwriters don't set the Council's agenda or approve its output.",
-              ].map((x, i) => (
-                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
-                  <span className="mono" style={{ color: C.navy, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
-                  <span style={{ color: C.navy }}>{x}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Underwriters, Year Two (primary) */}
-        <div style={{ padding: isMobile ? '2rem 1.5rem' : '2.75rem 3rem', background: C.navy, color: C.ivory, borderRadius: '6px', position: 'relative', overflow: 'hidden', isolation: 'isolate' }}>
-          <FlowLines style={{ right: '-50px', bottom: '-70px', width: '360px', height: '270px', zIndex: -1 }} />
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
-            <div>
-              <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.cream, fontWeight: 500, marginBottom: '0.4rem' }}>
-                Year Two Underwriters
-              </div>
-              <div style={{ fontSize: '0.9rem', opacity: 0.7, maxWidth: '44ch', lineHeight: 1.5 }}>
-                The partners funding the Council's Year Two work. Room for a few more.
-              </div>
-            </div>
-            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-              <button onClick={() => { track('underwriter_cta_click', { location: 'logo_wall' }); setUnderwriterOpen(true); }} style={{ background: C.cream, color: C.navy, fontSize: '0.85rem', fontWeight: 600, border: 'none', borderRadius: '100px', padding: '0.7rem 1.4rem', cursor: 'pointer' }}>
-                Why vendors support the Council <Arrow />
-              </button>
-            </div>
-          </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '1.25rem 1.75rem' : '1.75rem 3rem', alignItems: 'center', paddingTop: '0.5rem' }}>
-            {underwritersYearTwo.map((u) => (
-              <span key={u} className="display" style={{ fontSize: isMobile ? '1.35rem' : '1.9rem', fontWeight: 500, color: C.ivory, letterSpacing: '-0.01em', opacity: 0.92 }}>{u}</span>
-            ))}
-          </div>
-        </div>
-
-        {/* Underwriters, Year One (legacy, smaller) */}
-        <div style={{ marginTop: '1.5rem', padding: isMobile ? '1.5rem' : '1.75rem 3rem', background: 'rgba(157, 146, 173, 0.08)', borderRadius: '6px', border: `1px solid rgba(39, 55, 82, 0.08)` }}>
-          <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.1rem' }}>
-            Year One Underwriters · the partners who launched the Council
-          </div>
-          <div style={{ overflow: 'hidden' }}>
-            <div className="marquee" style={{ alignItems: 'center', gap: '3rem' }}>
-              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
-              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
-              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
-              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* THE PRACTITIONERS */}
       <section id="members" style={{ padding: isMobile ? '3.5rem 1.25rem 2.5rem' : '4rem 2.5rem 3rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.3fr', gap: isMobile ? '1.5rem' : '5rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
@@ -1298,6 +1213,81 @@ function HCAIC_Final() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* HOW THIS IS FUNDED, honest vendor section */}
+      <section id="underwriters" style={{ padding: isMobile ? '3rem 1.25rem' : '4rem 2.5rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
+        <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
+          The partners funding this work
+        </div>
+        <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '2rem', maxWidth: '26ch', lineHeight: 1.05 }}>
+          The partners <span className="serif-italic" style={{ color: C.lilac }}>behind</span> the Council.
+        </h2>
+
+        <p style={{ fontSize: '1.05rem', lineHeight: 1.65, color: C.slate, marginBottom: '3.5rem', maxWidth: '62ch' }}>
+          Underwriters fund this work, join practitioner dialogue, and help us keep everything the Council publishes free and open to every HR team. Here's how the model works: what they do, and what they don't.
+        </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '3rem', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
+          <div style={{ borderTop: `2px solid ${C.navy}`, paddingTop: '2rem' }}>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.navy, fontWeight: 500 }}>
+              What the community does
+            </div>
+            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+              {[
+                'Bring real AI transformation experience from inside HR organizations.',
+                'Lead workstreams and author the frameworks under their own names.',
+                'Meet monthly to pressure-test ideas and share what is working in practice.',
+                'Set the agenda for what the Council produces next.',
+              ].map((x, i) => (
+                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
+                  <span className="mono" style={{ color: C.lilac, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span style={{ color: C.navy }}>{x}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div style={{ borderTop: `2px solid ${C.lilac}`, paddingTop: '2rem' }}>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.lilac, fontWeight: 500 }}>
+              What underwriters do
+            </div>
+            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+              {[
+                'Fund the work so it stays free and open to every HR team.',
+                'Join market-level dialogue with the practitioners they sell to.',
+                'Distribute Council outputs through their channels.',
+                "Underwriters don't set the Council's agenda or approve its output.",
+              ].map((x, i) => (
+                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
+                  <span className="mono" style={{ color: C.navy, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span style={{ color: C.navy }}>{x}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Underwriters, Year Two — real logos on a light card */}
+        <div style={{ padding: isMobile ? '2rem 1.5rem' : '2.5rem 3rem', background: C.white, borderRadius: '10px', border: '1px solid rgba(39,55,82,0.1)', boxShadow: '0 8px 24px rgba(23,35,57,0.06)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '2.25rem', flexWrap: 'wrap', gap: '1rem' }}>
+            <div>
+              <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, fontWeight: 700, marginBottom: '0.4rem' }}>
+                Year Two Underwriters
+              </div>
+              <div style={{ fontSize: '0.9rem', color: C.slate, maxWidth: '44ch', lineHeight: 1.5 }}>
+                The partners funding the Council's Year Two work. Room for a few more.
+              </div>
+            </div>
+            <button onClick={() => { track('underwriter_cta_click', { location: 'logo_wall' }); setUnderwriterOpen(true); }} style={{ background: C.navy, color: C.ivory, fontSize: '0.85rem', fontWeight: 600, border: 'none', borderRadius: '100px', padding: '0.7rem 1.4rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
+              Why vendors support the Council <Arrow />
+            </button>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '1.75rem 2.25rem' : '2.5rem 3.5rem', alignItems: 'center', justifyContent: isMobile ? 'center' : 'flex-start' }}>
+            {underwritersYearTwo.map((u) => (
+              <img key={u.name} src={u.src} alt={u.name} style={{ height: isMobile ? '28px' : '36px', width: 'auto', maxWidth: '150px', objectFit: 'contain', filter: u.dark ? 'brightness(0)' : 'none', opacity: 0.9 }} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -1624,15 +1614,32 @@ The Year One Toolkit · proof of what the Council ships
 
       </section>
 
-      {/* FORMER CONTRIBUTING MEMBERS, kept, not deleted; sits at the bottom with the toolkit */}
-      <section id="former-members" style={{ padding: isMobile ? '3rem 1.25rem' : '4rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.9rem', paddingBottom: '1.1rem', marginBottom: isMobile ? '1.75rem' : '2.5rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)` }}>
-          <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate }}>
-            Former Contributing Members
+      {/* THANK YOU — Year One partners (accordion: Year One underwriters + former members) */}
+      <section id="year-one" style={{ padding: isMobile ? '1rem 1.25rem 3.5rem' : '1.5rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto' }}>
+        <button onClick={() => setYearOneOpen(o => !o)} aria-expanded={yearOneOpen} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', background: 'none', border: 'none', borderTop: `1px solid rgba(39,55,82,0.15)`, padding: isMobile ? '1.5rem 0' : '1.75rem 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+          <span className="display" style={{ fontSize: isMobile ? '1.3rem' : '1.65rem', fontWeight: 500, letterSpacing: '-0.01em', color: C.navy }}>Thank you to our Year One partners</span>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', color: C.slate, flexShrink: 0 }}>
+            <span style={{ fontSize: '0.78rem' }}>{yearOneOpen ? 'Hide' : 'Show'}</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform: yearOneOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.25s ease' }} aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </button>
+        {yearOneOpen && (
+        <div style={{ paddingTop: isMobile ? '2rem' : '2.5rem', animation: 'fadeIn 0.25s ease-out' }}>
+          <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.25rem' }}>
+            Year One Underwriters · the partners who launched the Council
           </div>
-          <span style={{ fontSize: '0.82rem', color: C.slate, opacity: 0.7 }}>Year One practitioners whose work built the foundations, thank you.</span>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(130px, 1fr))', gap: isMobile ? '1rem 0.6rem' : '1.5rem 1.25rem' }}>
+          <div style={{ overflow: 'hidden', marginBottom: isMobile ? '2.5rem' : '3.5rem' }}>
+            <div className="marquee" style={{ alignItems: 'center', gap: '3rem' }}>
+              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.7 }} />
+              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.7 }} />
+              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.7 }} />
+              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.7 }} />
+            </div>
+          </div>
+          <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.5rem' }}>
+            Former Contributing Members · practitioners whose work built the foundations
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(130px, 1fr))', gap: isMobile ? '1rem 0.6rem' : '1.5rem 1.25rem' }}>
           {formerMembers.map((m, i) => {
             const initials = m.name.split(' ').map(n => n[0]).join('').slice(0, 2);
             return (
@@ -1668,7 +1675,9 @@ The Year One Toolkit · proof of what the Council ships
               </div>
             );
           })}
+          </div>
         </div>
+        )}
       </section>
 
       {/* FOOTER */}
