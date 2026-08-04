@@ -146,7 +146,7 @@ function th_json_(o) {
 }
 
 /** Run once from the editor to grant the Calendar + send-mail permissions before redeploying. */
-function authorizeTownhall_() {
+function authorizeTownhall() {
   Calendar.Events.get(TH_CONFIG.CAL_ID, TH_CONFIG.EVENT_ID);
   MailApp.getRemainingDailyQuota();
 }
