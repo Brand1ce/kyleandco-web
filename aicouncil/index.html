@@ -355,7 +355,7 @@ function HCAIC_Final() {
       n: '01',
       name: 'AI Literacy & Education',
       accent: '#9D92AD',
-      accentWash: '#EDEAF0',
+      accentWash: '#EAE7ED',
       champion: { name: 'Kate Gilkey', photo: 'member-headshots/kate-gilkey.jpg' },
       blurb: 'Structured learning and resources to build HR confidence and clarity around AI.',
       full: 'Provide structured learning, experience-derived resources, and foundational knowledge to help HR professionals build confidence and clarity around AI within the functions and within the purview of HR. This work aims to demystify AI, break through market noise, and empower teams with the knowledge and understanding needed to engage meaningfully in AI conversations and initiatives.',
@@ -369,8 +369,8 @@ function HCAIC_Final() {
     {
       n: '02',
       name: 'AI Trust & Safety',
-      accent: '#6E8CA0',
-      accentWash: '#E6ECF0',
+      accent: '#2D5C94',
+      accentWash: '#E1E9F3',
       champion: { name: 'Bruce Nichols', photo: 'member-headshots/bruce-nichols.png' },
       blurb: 'Practical tools to evaluate AI through fairness, transparency, and accountability.',
       full: 'Equip HR leaders with practical tools and guidance to evaluate AI solutions through a lens of fairness, transparency, and accountability. This includes resources on bias mitigation, ethical AI adoption, and curated updates on global regulations, positioning HR as a responsible steward of AI use across the employee lifecycle.',
@@ -384,8 +384,8 @@ function HCAIC_Final() {
     {
       n: '03',
       name: 'AI Value Realization',
-      accent: '#B8894E',
-      accentWash: '#F5EADA',
+      accent: '#6394C6',
+      accentWash: '#E7EFF9',
       champion: { name: 'Kate Warman', photo: 'member-headshots/kate-warman.jpg' },
       blurb: 'Frameworks for defining business problems, building cases, and demonstrating AI ROI.',
       full: 'Support HR in making the case for AI by defining real business problems, articulating ROI, and highlighting AI\'s impact on outcomes like efficiency, experience, and business alignment. This pillar includes frameworks for vendor evaluation, business case development, and a living repository of AI use cases and success stories.',
@@ -399,8 +399,8 @@ function HCAIC_Final() {
     {
       n: '04',
       name: 'AI Adoption & Change Management',
-      accent: '#B07C8F',
-      accentWash: '#F2E6EA',
+      accent: '#6D6079',
+      accentWash: '#EBE8EF',
       champion: { name: 'Bill Musman', photo: 'member-headshots/bill-musman.png' },
       blurb: 'Practical roadmaps to pilot, scale, and manage workforce impact of AI adoption.',
       full: 'Guide HR through the responsible implementation of AI, from piloting new tools to scaling their use across functions. Emphasis is placed on practical adoption roadmaps, stakeholder alignment, and managing the workforce impact, including talent acquisition, reskilling, and job transformation.',
@@ -414,8 +414,8 @@ function HCAIC_Final() {
     {
       n: '05',
       name: 'Forward-Thinking & Future-Ready AI',
-      accent: '#7C9473',
-      accentWash: '#E9EFE7',
+      accent: '#837390',
+      accentWash: '#ECE9F1',
       champion: { name: 'Adam Treitler', photo: 'member-headshots/adam-treitler.jpg' },
       blurb: "Curated insights on emerging trends to help HR anticipate and lead what's next.",
       full: 'Explore and interpret emerging technology trends to help HR leaders anticipate what\'s next. Through curated insights and conversations with technologists and scientific experts, this pillar ensures HR stays ahead of market shifts, and shapes the future of work and workforce strategy with confidence.',
@@ -1113,14 +1113,14 @@ function HCAIC_Final() {
         <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
           <div style={{ marginBottom: isMobile ? '2.5rem' : '4rem', maxWidth: '52ch' }}>
             <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '0.6rem' }}>
-              Year Two · 2026 · The Agenda
+              Year Two · 2026 · What we'll deliver
             </div>
             <Flourish style={{ marginBottom: '1.25rem' }} />
             <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 4rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em', color: C.navy, marginBottom: '1.25rem' }}>
-              This year, one question: <span className="serif-italic" style={{ color: C.lilac }}>what is human?</span>
+              What the Council <span className="serif-italic" style={{ color: C.lilac }}>ships this year.</span>
             </h2>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.6, color: C.slate }}>
-              Year One built the foundations. This year, the work gets harder. Five priorities, one for each pillar, each led by a practitioner.
+              Guided by one question, what is human? Five priorities, one per pillar, each led by a practitioner, each producing concrete tools and frameworks HR teams can put to work. Here's what each one delivers.
             </p>
           </div>
 
@@ -1150,7 +1150,7 @@ function HCAIC_Final() {
                     </div>
                   </div>
                   <button onClick={() => { track('workstream_open', { pillar: p.name }); setOutputsOpen(p); }} className="link-arrow" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', color: p.accent, fontSize: '0.82rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem', letterSpacing: '0.01em' }}>
-                    Flagship outputs <Arrow />
+                    See what we'll ship <Arrow />
                   </button>
                 </div>
               </div>
@@ -2514,7 +2514,7 @@ The Year One Toolkit · proof of what the Council ships
               <img src={outputsOpen.agenda.leader.photo} alt={outputsOpen.agenda.leader.name} style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover' }} />
               <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: C.slate }}>Led by {outputsOpen.agenda.leader.name}</div>
             </div>
-            <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: outputsOpen.accent, fontWeight: 700, marginBottom: '1rem' }}>Flagship outputs</div>
+            <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: outputsOpen.accent, fontWeight: 700, marginBottom: '1rem' }}>What we'll deliver</div>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
               {outputsOpen.agenda.outputs.map((o, i) => (
                 <li key={i} style={{ display: 'flex', gap: '0.75rem', fontSize: '0.92rem', lineHeight: 1.5, color: C.navy }}>
