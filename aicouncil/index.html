@@ -1012,9 +1012,10 @@ function HCAIC_Final() {
         <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
           {/* Header, stacked above the pillars */}
           <div style={{ maxWidth: '46ch', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
-            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1.25rem' }}>
+            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '0.6rem' }}>
               The Human-Centric AI Council
             </div>
+            <Flourish style={{ marginBottom: '1.25rem' }} />
             <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-0.02em', color: C.navy, marginBottom: '1.25rem' }}>
               Practitioner-led.<br /><span className="serif-italic" style={{ color: C.lilac }}>Five pillars. One goal.</span>
             </h2>
@@ -1069,9 +1070,10 @@ function HCAIC_Final() {
       <section id="work" style={{ background: C.ivory, padding: isMobile ? '4rem 1.25rem 3rem' : '6rem 2.5rem 4rem', scrollMarginTop: '80px' }}>
         <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
           <div style={{ marginBottom: isMobile ? '2.5rem' : '4rem', maxWidth: '52ch' }}>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1.25rem' }}>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '0.6rem' }}>
               Year Two · 2026 · The Agenda
             </div>
+            <Flourish style={{ marginBottom: '1.25rem' }} />
             <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 4rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em', color: C.navy, marginBottom: '1.25rem' }}>
               This year, one question: <span className="serif-italic" style={{ color: C.lilac }}>what is human?</span>
             </h2>
@@ -1155,7 +1157,8 @@ function HCAIC_Final() {
         </div>
 
         {/* Underwriters, Year Two (primary) */}
-        <div style={{ padding: isMobile ? '2rem 1.5rem' : '2.75rem 3rem', background: C.navy, color: C.ivory, borderRadius: '6px' }}>
+        <div style={{ padding: isMobile ? '2rem 1.5rem' : '2.75rem 3rem', background: C.navy, color: C.ivory, borderRadius: '6px', position: 'relative', overflow: 'hidden', isolation: 'isolate' }}>
+          <FlowLines style={{ right: '-50px', bottom: '-70px', width: '360px', height: '270px', zIndex: -1 }} />
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
               <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.cream, fontWeight: 500, marginBottom: '0.4rem' }}>
@@ -1198,9 +1201,10 @@ function HCAIC_Final() {
       <section id="members" style={{ padding: isMobile ? '3.5rem 1.25rem 2.5rem' : '4rem 2.5rem 3rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.3fr', gap: isMobile ? '1.5rem' : '5rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
           <div>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.25rem' }}>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.6rem' }}>
               The Community
             </div>
+            <Flourish style={{ marginBottom: '1.25rem' }} />
             <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em' }}>
               The people<br />
               who've <span className="serif-italic" style={{ color: C.lilac }}>made it work.</span>
@@ -1516,8 +1520,9 @@ function HCAIC_Final() {
       </section>
 
       {/* FEATURED POST */}
-      <section style={{ background: C.navy, padding: isMobile ? '3.5rem 1.25rem 3rem' : '5rem 2.5rem 4rem' }}>
-        <a
+      <section style={{ background: C.navy, padding: isMobile ? '3.5rem 1.25rem 3rem' : '5rem 2.5rem 4rem', position: 'relative', overflow: 'hidden', isolation: 'isolate' }}>
+        <FlowLines style={{ left: '-60px', top: '-40px', width: '380px', height: '260px', transform: 'scaleX(-1)', zIndex: -1 }} />
+        <
           href="https://kyleandco.com/ai-toolkit-for-hr-leaders/"
           target="_blank"
           rel="noopener noreferrer"
@@ -1620,7 +1625,8 @@ The Year One Toolkit · proof of what the Council ships
       </section>
 
       {/* FOOTER */}
-      <footer style={{ background: C.navy, color: C.ivory, padding: '4rem 2.5rem 2rem' }}>
+      <footer style={{ background: C.navy, color: C.ivory, padding: '4rem 2.5rem 2rem', position: 'relative', overflow: 'hidden', isolation: 'isolate' }}>
+        <FlowLines style={{ right: '-40px', top: '-50px', width: '420px', height: '300px', zIndex: -1 }} />
         <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
           <div className="display" style={{ fontSize: 'clamp(2.25rem, 5.5vw, 4.5rem)', lineHeight: 1, letterSpacing: '-0.02em', marginBottom: '3.5rem', opacity: 0.95 }}>
             Practitioner-led.<br />
