@@ -76,6 +76,9 @@ function HCAIC_Final() {
   const [outputsOpen, setOutputsOpen] = useState(null);
   const [toolkitOpen, setToolkitOpen] = useState(false);
   const [followSubmitted, setFollowSubmitted] = useState(false);
+  const [yearOneOpen, setYearOneOpen] = useState(false);
+  const pillarCloseRef = React.useRef(null);
+  const pillarReturnRef = React.useRef(null);
 
   // AI Momentum Model content (from Kyle & Co research report)
   const momentumDrivers = [
@@ -130,6 +133,20 @@ function HCAIC_Final() {
     }
     return () => { document.body.style.overflow = ''; };
   }, [selectedResource, gateOpen, applyOpen, kcoOpen, townhallOpen, underwriterOpen, selectedMember, pillarOpen, outputsOpen, toolkitOpen]);
+
+  // Pillar modal accessibility: Escape to close, focus the close control on open, return focus on close.
+  useEffect(() => {
+    if (!pillarOpen) return;
+    pillarReturnRef.current = document.activeElement;
+    const t = setTimeout(() => { if (pillarCloseRef.current) pillarCloseRef.current.focus(); }, 0);
+    const onKey = (e) => { if (e.key === 'Escape') setPillarOpen(null); };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      clearTimeout(t);
+      document.removeEventListener('keydown', onKey);
+      if (pillarReturnRef.current && pillarReturnRef.current.focus) pillarReturnRef.current.focus();
+    };
+  }, [pillarOpen]);
 
   useEffect(() => {
     if (localStorage.getItem('hcaic_access') === '1') setAccessGranted(true);
@@ -209,6 +226,8 @@ function HCAIC_Final() {
     slate: '#555961',
     cream: '#FDECCD',
     white: '#FFFFFF',
+    sky: '#9AB8DC',
+    red: '#D9342B',
   };
 
   // MAILERLITE: paste your form submission URLs below (get from MailerLite → Forms → Embedded → HTML source → <form action="...">)
@@ -216,7 +235,7 @@ function HCAIC_Final() {
   const ML_APPLY_URL         = 'https://assets.mailerlite.com/jsonp/1555935/forms/159825956656120991/subscribe';
   const ML_KCO_URL           = 'https://assets.mailerlite.com/jsonp/1555935/forms/185371122148050837/subscribe';
   const ML_FOLLOW_URL        = 'https://assets.mailerlite.com/jsonp/1555935/forms/194449693277685436/subscribe'; // AI Council Website – Followers group
-  const ML_TOWNHALL_URL      = 'https://assets.mailerlite.com/jsonp/1555935/forms/185370079945295046/subscribe';
+  const ML_TOWNHALL_URL      = 'https://assets.mailerlite.com/jsonp/1555935/forms/194886965915551586/subscribe'; // Year Two Town Hall group (194886957105415211)
   const ML_UNDERWRITER_URL   = 'https://assets.mailerlite.com/jsonp/1555935/forms/159836007953335925/subscribe';
   const ML_MOMENTUM_URL      = 'https://assets.mailerlite.com/jsonp/1555935/forms/185372908239979993/subscribe';
 
@@ -335,7 +354,8 @@ function HCAIC_Final() {
     {
       n: '01',
       name: 'AI Literacy & Education',
-      accent: '#9D92AD',
+      accent: '#2D5C94',
+      accentWash: '#DCE6F3',
       champion: { name: 'Kate Gilkey', photo: 'member-headshots/kate-gilkey.jpg' },
       blurb: 'Structured learning and resources to build HR confidence and clarity around AI.',
       full: 'Provide structured learning, experience-derived resources, and foundational knowledge to help HR professionals build confidence and clarity around AI within the functions and within the purview of HR. This work aims to demystify AI, break through market noise, and empower teams with the knowledge and understanding needed to engage meaningfully in AI conversations and initiatives.',
@@ -349,7 +369,8 @@ function HCAIC_Final() {
     {
       n: '02',
       name: 'AI Trust & Safety',
-      accent: '#6E8CA0',
+      accent: '#837390',
+      accentWash: '#E7E1EC',
       champion: { name: 'Bruce Nichols', photo: 'member-headshots/bruce-nichols.png' },
       blurb: 'Practical tools to evaluate AI through fairness, transparency, and accountability.',
       full: 'Equip HR leaders with practical tools and guidance to evaluate AI solutions through a lens of fairness, transparency, and accountability. This includes resources on bias mitigation, ethical AI adoption, and curated updates on global regulations, positioning HR as a responsible steward of AI use across the employee lifecycle.',
@@ -363,7 +384,8 @@ function HCAIC_Final() {
     {
       n: '03',
       name: 'AI Value Realization',
-      accent: '#B8894E',
+      accent: '#6394C6',
+      accentWash: '#DCE8F7',
       champion: { name: 'Kate Warman', photo: 'member-headshots/kate-warman.jpg' },
       blurb: 'Frameworks for defining business problems, building cases, and demonstrating AI ROI.',
       full: 'Support HR in making the case for AI by defining real business problems, articulating ROI, and highlighting AI\'s impact on outcomes like efficiency, experience, and business alignment. This pillar includes frameworks for vendor evaluation, business case development, and a living repository of AI use cases and success stories.',
@@ -377,7 +399,8 @@ function HCAIC_Final() {
     {
       n: '04',
       name: 'AI Adoption & Change Management',
-      accent: '#B07C8F',
+      accent: '#5B5064',
+      accentWash: '#E3DCE7',
       champion: { name: 'Bill Musman', photo: 'member-headshots/bill-musman.png' },
       blurb: 'Practical roadmaps to pilot, scale, and manage workforce impact of AI adoption.',
       full: 'Guide HR through the responsible implementation of AI, from piloting new tools to scaling their use across functions. Emphasis is placed on practical adoption roadmaps, stakeholder alignment, and managing the workforce impact, including talent acquisition, reskilling, and job transformation.',
@@ -391,7 +414,8 @@ function HCAIC_Final() {
     {
       n: '05',
       name: 'Forward-Thinking & Future-Ready AI',
-      accent: '#7C9473',
+      accent: '#172339',
+      accentWash: '#DCE0E7',
       champion: { name: 'Adam Treitler', photo: 'member-headshots/adam-treitler.jpg' },
       blurb: "Curated insights on emerging trends to help HR anticipate and lead what's next.",
       full: 'Explore and interpret emerging technology trends to help HR leaders anticipate what\'s next. Through curated insights and conversations with technologists and scientific experts, this pillar ensures HR stays ahead of market shifts, and shapes the future of work and workforce strategy with confidence.',
@@ -705,8 +729,15 @@ function HCAIC_Final() {
     },
   ];
 
-  const underwritersYearTwo = ['isolved', 'Glider', 'CodeSignal', 'HiBob', 'GoodTime'];
   const underwritersYearOne = ['Workday', 'Findem', 'Warden AI', 'Humanly', 'GoodTime', 'Rival', 'isolved', 'Glider', 'CodeSignal', 'Gem', 'HiBob', 'SmartRecruiters'];
+  // Year Two underwriter logos. isolved + HiBob ship as white (reversed) files, so darken them for the light card.
+  const underwritersYearTwo = [
+    { name: 'isolved', src: 'underwriter-logos/isolved.png', dark: true },
+    { name: 'Glider', src: 'underwriter-logos/glider.webp', dark: false },
+    { name: 'CodeSignal', src: 'underwriter-logos/codesignal.svg', dark: false },
+    { name: 'HiBob', src: 'underwriter-logos/hibob.png', dark: true },
+    { name: 'GoodTime', src: 'underwriter-logos/goodtime.png', dark: false },
+  ];
 
   // EDITABLE: upcoming town halls, webinars, and replays
   // status values: 'upcoming' | 'replay' | 'live'
@@ -714,21 +745,45 @@ function HCAIC_Final() {
     {
       status: 'upcoming',
       type: 'Town Hall',
-      title: 'Year Two Launch Town Hall',
-      date: 'September 2, 2026 · time TBA',
-      summary: 'The Council kicks off Year Two: the five priorities, who is leading each, and how HR teams and vendors can get involved. Underwriters welcome.',
-      cta: 'Registration opening soon',
-      comingSoon: true,
+      title: 'The Human-Centric AI Council Year Two Town Hall',
+      date: 'August 27, 2026 · 1:00pm ET',
+      summary: 'We launch the Year Two agenda live. Each pillar champion walks the room through their workstream, and how HR teams and vendors can plug in. Register once and you are added to the calendar automatically.',
+      cta: 'Register',
+      onClick: () => setTownhallOpen(true),
     },
   ];
 
+  // Brand-native inline SVG arrow (replaces Unicode →; 1.5px stroke, round caps)
+  const Arrow = ({ s = 15 }) => (
+    <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }} aria-hidden="true">
+      <line x1="4" y1="12" x2="18.5" y2="12" />
+      <polyline points="12.5 6 18.5 12 12.5 18" />
+    </svg>
+  );
+
+  // Kyle & Co signature: flowing hand-drawn loops, used as an edge/corner accent on navy
+  const FlowLines = ({ style }) => (
+    <svg viewBox="0 0 420 320" fill="none" aria-hidden="true" style={{ position: 'absolute', pointerEvents: 'none', ...style }}>
+      <path d="M-20 250 C 90 180, 60 90, 170 70 S 330 130, 300 40" stroke={C.lilac} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+      <path d="M20 300 C 140 240, 110 150, 220 130 S 400 190, 380 90" stroke={C.sky} strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
+      <path d="M-10 200 C 120 150, 150 60, 270 60 S 420 100, 430 30" stroke={C.cream} strokeWidth="1.5" strokeLinecap="round" opacity="0.35" />
+    </svg>
+  );
+
+  // Short hand-drawn underline flourish for section eyebrows
+  const Flourish = ({ color = C.lilac, style }) => (
+    <svg width="54" height="10" viewBox="0 0 54 10" fill="none" aria-hidden="true" style={{ display: 'block', ...style }}>
+      <path d="M1 6 C 12 1, 20 9, 30 5 S 46 1, 53 5" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+
   return (
-    <div style={{ background: C.ivory, color: C.navy, minHeight: '100vh', fontFamily: '"Inter", "Helvetica Neue", sans-serif' }}>
+    <div style={{ background: C.ivory, color: C.navy, minHeight: '100vh', fontFamily: '"Roboto", "Helvetica Neue", Arial, sans-serif' }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased; }
         .display { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; font-weight: 400; letter-spacing: -0.02em; }
         .serif-italic { font-family: 'Fraunces', Georgia, serif; font-style: italic; }
         .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
@@ -737,6 +792,8 @@ function HCAIC_Final() {
           from { opacity: 0; transform: translateY(18px); }
           to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .pillar-modal-overlay { animation: fadeIn 0.2s ease-out; }
         @keyframes flowLine {
           0% { stroke-dashoffset: 1200; }
           100% { stroke-dashoffset: 0; }
@@ -758,9 +815,9 @@ function HCAIC_Final() {
         .marquee { display: flex; gap: 4rem; animation: marqueeScroll 45s linear infinite; white-space: nowrap; }
 
         .live-dot {
-          width: 7px; height: 7px; border-radius: 50%; background: ${C.cream};
+          width: 7px; height: 7px; border-radius: 50%; background: ${C.red};
           display: inline-block; animation: pulseDot 2.2s ease-in-out infinite;
-          box-shadow: 0 0 0 3px rgba(253, 236, 205, 0.2);
+          box-shadow: 0 0 0 3px rgba(217, 52, 43, 0.2);
         }
 
         .resource-row { transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1); cursor: pointer; }
@@ -779,6 +836,11 @@ function HCAIC_Final() {
 
         .member-card { transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
         .member-card:hover .avatar { transform: scale(1.04); box-shadow: 0 12px 32px rgba(39, 55, 82, 0.12); }
+
+        .pillar-card { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+        .pillar-card:hover { transform: translateY(-3px); box-shadow: 0 24px 64px rgba(23, 35, 57, 0.4); }
+        .pillar-card:active { opacity: 0.9; }
+        .pillar-card:focus-visible { outline: 2px solid #9D92AD; outline-offset: 2px; }
 
         .link-arrow { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; transition: gap 0.3s ease; }
         .link-arrow:hover { gap: 0.9rem; }
@@ -971,53 +1033,60 @@ function HCAIC_Final() {
             }}
             className="link-arrow"
           >
-            See the Year Two agenda <span>→</span>
+            See the Year Two agenda <Arrow />
           </a>
           <button onClick={() => { track('underwriter_cta_click', { location: 'hero' }); setUnderwriterOpen(true); }} className="underline-grow" style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', color: C.navy, fontSize: '0.95rem', fontWeight: 500, padding: 0 }}>
-            Partner as an underwriter →
+            Partner as an underwriter <Arrow />
           </button>
         </div>
 
       </section>
       </div>
 
-      {/* ABOUT THE COUNCIL — pillars */}
-      <section style={{ background: C.ivory, padding: isMobile ? '2rem 1.25rem 3rem' : '3rem 2.5rem 4rem' }}>
+      {/* ABOUT THE COUNCIL — pillars (direction 4b: cards on navy band) */}
+      <section style={{ background: C.navy, padding: isMobile ? '2.75rem 1.25rem' : '44px' }}>
         <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
-          {/* Header, stacked above the pillars */}
-          <div style={{ maxWidth: '46ch', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
-            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1.25rem' }}>
-              The Human-Centric AI Council
-            </div>
-            <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-0.02em', color: C.navy, marginBottom: '1.25rem' }}>
-              Practitioner-led.<br /><span className="serif-italic" style={{ color: C.lilac }}>Five pillars. One goal.</span>
+          {/* Header */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', paddingBottom: '24px', borderBottom: '1px solid rgba(247,241,234,0.22)', marginBottom: '28px' }}>
+            <div style={{ fontSize: '12.5px', color: 'rgba(247,241,234,0.55)' }}>What the Council is</div>
+            <h2 className="display" style={{ margin: 0, fontSize: isMobile ? '28px' : '36px', fontWeight: 400, lineHeight: 1.08, letterSpacing: '-0.025em', color: C.ivory }}>
+              Practitioner-led. Five pillars. One goal.
             </h2>
-            <p style={{ fontSize: '1rem', lineHeight: 1.7, color: C.slate, marginBottom: 0 }}>
-              The Council brings together senior HR and talent leaders to build the frameworks and fluency that advance responsible, people-first AI adoption. Each pillar is led by a champion, with a group of contributing members behind it.
+            <p style={{ margin: 0, fontSize: '14.5px', lineHeight: 1.65, color: 'rgba(247,241,234,0.8)', maxWidth: '74ch' }}>
+              The Council brings together senior HR and talent leaders to build the frameworks and fluency that advance responsible, people-first AI adoption. Each pillar is led by a pillar lead, with a group of contributing members behind it.
             </p>
           </div>
 
-          {/* Pillar cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(270px, 1fr))', gap: '1.25rem' }}>
-            {PILLARS.map((p) => (
-              <div key={p.n} style={{ display: 'flex', flexDirection: 'column', background: C.white, borderRadius: '10px', borderTop: `3px solid ${p.accent}`, boxShadow: '0 1px 3px rgba(39,55,82,0.06)', padding: '1.75rem 1.6rem', overflow: 'hidden' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '1rem' }}>
-                  <span className="mono" style={{ fontSize: '0.72rem', fontWeight: 600, color: p.accent }}>{p.n}</span>
-                  <div style={{ fontSize: '0.98rem', fontWeight: 600, color: C.navy, lineHeight: 1.2 }}>{p.name}</div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '1rem' }}>
-                  <img src={p.champion.photo} alt={p.champion.name} style={{ width: '44px', height: '44px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${p.accent}` }} />
-                  <div>
-                    <div className="mono" style={{ fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: p.accent, fontWeight: 600, marginBottom: '0.1rem' }}>Champion</div>
-                    <div style={{ fontSize: '0.85rem', fontWeight: 500, color: C.navy }}>{p.champion.name}</div>
+          {/* Card grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', alignItems: 'stretch' }}>
+            {PILLARS.map((p) => {
+              const memberCount = members.filter((m) => m.pillar === p.name && !m.champion).length;
+              return (
+                <button key={p.n} type="button" className="pillar-card" onClick={() => { track('pillar_open', { pillar_name: p.name }); setPillarOpen(p); }} style={{
+                  position: 'relative', display: 'flex', flexDirection: 'column', textAlign: 'left',
+                  background: C.ivory, borderRadius: '12px', overflow: 'hidden', cursor: 'pointer',
+                  border: 'none', padding: 0, fontFamily: 'inherit', boxShadow: '0 8px 24px rgba(23,35,57,0.28)',
+                }}>
+                  <span aria-hidden="true" className="display" style={{ position: 'absolute', right: '10px', bottom: '60px', zIndex: 0, pointerEvents: 'none', fontSize: isMobile ? '64px' : '84px', fontWeight: 400, lineHeight: 1, color: p.accentWash }}>{p.n}</span>
+                  <div style={{ position: 'relative', padding: '26px 20px 20px', display: 'flex', flexDirection: 'column', gap: '14px', flex: 1 }}>
+                    <h3 className="display" style={{ margin: 0, fontSize: '20px', fontWeight: 600, lineHeight: 1.16, letterSpacing: '-0.015em', color: C.navy, maxWidth: '15ch', minHeight: '2.32em' }}>{p.name}</h3>
+                    <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.55, color: C.slate }}>{p.blurb}</p>
+                    <div style={{ flex: 1 }} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '11px', paddingTop: '6px' }}>
+                      <img src={p.champion.photo} alt={p.champion.name} style={{ width: '42px', height: '42px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+                      <div>
+                        <div style={{ fontSize: '11.5px', color: C.slate }}>Pillar lead</div>
+                        <div style={{ fontSize: '13.5px', fontWeight: 500, color: C.navy }}>{p.champion.name}</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <p style={{ fontSize: '0.86rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.25rem', flex: 1 }}>{p.blurb}</p>
-                <button onClick={() => { track('pillar_open', { pillar_name: p.name }); setPillarOpen(p); }} style={{ alignSelf: 'flex-start', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600, color: C.navy, fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }} className="link-arrow">
-                  Meet the members <span>→</span>
+                  <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', padding: '14px 20px', background: p.accentWash, color: C.navy, fontSize: '12.5px' }}>
+                    <span>{memberCount} contributing members</span>
+                    <svg width="17" height="10" viewBox="0 0 17 10" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M1 5h14M11.5 1 15.8 5l-4.3 4" /></svg>
+                  </div>
                 </button>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -1034,7 +1103,7 @@ function HCAIC_Final() {
             </div>
           </div>
           <button onClick={() => setApplyOpen(true)} className="link-arrow" style={{ background: C.navy, color: C.ivory, padding: '1rem 1.9rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '0.9rem', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
-            Join the Council <span>→</span>
+            Join the Council <Arrow />
           </button>
         </div>
       </section>
@@ -1043,36 +1112,107 @@ function HCAIC_Final() {
       <section id="work" style={{ background: C.ivory, padding: isMobile ? '4rem 1.25rem 3rem' : '6rem 2.5rem 4rem', scrollMarginTop: '80px' }}>
         <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
           <div style={{ marginBottom: isMobile ? '2.5rem' : '4rem', maxWidth: '52ch' }}>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1.25rem' }}>
-              Year Two · 2026 · The Agenda
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '0.6rem' }}>
+              Year Two · 2026 · What we'll deliver
             </div>
+            <Flourish style={{ marginBottom: '1.25rem' }} />
             <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 4rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em', color: C.navy, marginBottom: '1.25rem' }}>
-              This year, one question: <span className="serif-italic" style={{ color: C.lilac }}>what is human?</span>
+              What the Council <span className="serif-italic" style={{ color: C.lilac }}>ships this year.</span>
             </h2>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.6, color: C.slate }}>
-              Year One built the foundations. This year, the work gets harder. Five priorities, one for each pillar, each led by a practitioner.
+              Guided by one question, what is human? Five priorities, one per pillar, each led by a practitioner, each producing concrete tools and frameworks HR teams can put to work. Here's what each one delivers.
             </p>
           </div>
 
-          <div id="year-two-priorities" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
+          <div id="year-two-priorities" style={{ borderBottom: `1px solid rgba(39,55,82,0.15)` }}>
             {PILLARS.map((p) => (
-              <div key={p.n} style={{ display: 'flex', flexDirection: 'column', background: p.accent + '14', borderRadius: '10px', borderTop: `3px solid ${p.accent}`, padding: '1.9rem 1.7rem', minHeight: isMobile ? 'auto' : '340px' }}>
-                <div className="mono" style={{ fontSize: '0.6rem', letterSpacing: '0.13em', textTransform: 'uppercase', color: p.accent, fontWeight: 700, marginBottom: '0.9rem' }}>{p.n} · {p.name}</div>
-                <h3 className="display" style={{ fontSize: '1.3rem', fontWeight: 500, marginBottom: '0.85rem', letterSpacing: '-0.01em', lineHeight: 1.15, color: C.navy }}>{p.agenda.title}</h3>
-                <p style={{ fontSize: '0.88rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.25rem', flex: 1 }}>{p.agenda.d}</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.1rem' }}>
-                  <img src={p.agenda.leader.photo} alt={p.agenda.leader.name} style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${p.accent}` }} />
-                  <div>
-                    <div className="mono" style={{ fontSize: '0.54rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: C.slate, opacity: 0.7 }}>Led by</div>
-                    <div style={{ fontSize: '0.83rem', fontWeight: 500, color: C.navy }}>{p.agenda.leader.name}</div>
-                  </div>
+              <div key={p.n} style={{
+                display: 'grid',
+                gridTemplateColumns: isMobile ? '1fr' : 'minmax(72px, auto) 1fr minmax(210px, 250px)',
+                gap: isMobile ? '0.5rem' : '2.5rem',
+                alignItems: 'start',
+                padding: isMobile ? '1.6rem 0 1.6rem 1.25rem' : '2.5rem 0 2.5rem 1.75rem',
+                borderTop: `1px solid rgba(39,55,82,0.15)`,
+                borderLeft: `3px solid ${p.accent}`,
+              }}>
+                <div className="display" style={{ fontSize: isMobile ? '1.9rem' : 'clamp(2.5rem, 4vw, 3.4rem)', fontWeight: 400, color: p.accent, lineHeight: 0.9, letterSpacing: '-0.02em' }}>{p.n}</div>
+                <div>
+                  <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: p.accent, fontWeight: 700, marginBottom: '0.6rem' }}>{p.name}</div>
+                  <h3 className="display" style={{ fontSize: isMobile ? '1.5rem' : '1.95rem', fontWeight: 500, color: C.navy, lineHeight: 1.08, letterSpacing: '-0.015em', marginBottom: '0.8rem' }}>{p.agenda.title}</h3>
+                  <p style={{ fontSize: '0.94rem', lineHeight: 1.6, color: C.slate, maxWidth: '54ch' }}>{p.agenda.d}</p>
                 </div>
-                <button onClick={() => { track('workstream_open', { pillar: p.name }); setOutputsOpen(p); }} style={{ alignSelf: 'flex-start', background: C.white, color: C.navy, border: `1px solid ${p.accent}`, borderRadius: '100px', padding: '0.55rem 1.15rem', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 600, fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }} className="link-arrow">
-                  Flagship outputs <span>→</span>
-                </button>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem', alignItems: 'flex-start', paddingTop: isMobile ? '0.5rem' : '0.4rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                    <img src={p.agenda.leader.photo} alt={p.agenda.leader.name} style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+                    <div>
+                      <div className="mono" style={{ fontSize: '0.54rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: C.slate, opacity: 0.7 }}>Led by</div>
+                      <div style={{ fontSize: '0.85rem', fontWeight: 500, color: C.navy }}>{p.agenda.leader.name}</div>
+                    </div>
+                  </div>
+                  <button onClick={() => { track('workstream_open', { pillar: p.name }); setOutputsOpen(p); }} className="link-arrow" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', color: p.accent, fontSize: '0.82rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem', letterSpacing: '0.01em' }}>
+                    See what we'll ship <Arrow />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* THE PRACTITIONERS */}
+      <section id="members" style={{ padding: isMobile ? '3.5rem 1.25rem 2.5rem' : '4rem 2.5rem 3rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.3fr', gap: isMobile ? '1.5rem' : '5rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
+          <div>
+            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.6rem' }}>
+              The Community
+            </div>
+            <Flourish style={{ marginBottom: '1.25rem' }} />
+            <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em' }}>
+              The people<br />
+              who've <span className="serif-italic" style={{ color: C.lilac }}>made it work.</span>
+            </h2>
+          </div>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: C.slate, maxWidth: '52ch', paddingBottom: '0.5rem' }}>
+              {members.length} senior HR leaders across five pillars, each finding traction with AI inside their own organizations. Every framework on this site carries their fingerprints. When we say practitioner-led, these are the practitioners.
+          </p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(120px, 1fr))', gap: isMobile ? '1.5rem 0.75rem' : '2rem 1.25rem' }}>
+          {members.map((m, i) => {
+            const initials = m.name.split(' ').map(n => n[0]).join('').slice(0, 2);
+            return (
+              <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ textAlign: 'center', cursor: 'pointer' }}>
+                <div
+                  className="avatar"
+                  style={{
+                    width: isMobile ? '64px' : '90px',
+                    height: isMobile ? '64px' : '90px',
+                    borderRadius: '50%',
+                    margin: '0 auto 0.7rem',
+                    background: `linear-gradient(135deg, ${C.navyMid}, ${C.navyMid}99)`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: 'Fraunces, serif',
+                    fontSize: isMobile ? '1.1rem' : '1.5rem',
+                    fontWeight: 400,
+                    color: C.ivory,
+                    transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+                    position: 'relative',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {m.photo ? (
+                    <img src={m.photo} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }} />
+                  ) : (
+                    <span style={{ position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>{initials}</span>
+                  )}
+                </div>
+                <div className="display" style={{ fontSize: '0.85rem', fontWeight: 500, marginBottom: '0.2rem', color: C.navy, lineHeight: 1.2 }}>{m.name}</div>
+                <div style={{ fontSize: '0.7rem', color: C.slate, lineHeight: 1.35, maxWidth: '20ch', margin: '0 auto' }}>{m.role}</div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -1128,99 +1268,26 @@ function HCAIC_Final() {
           </div>
         </div>
 
-        {/* Underwriters, Year Two (primary) */}
-        <div style={{ padding: isMobile ? '2rem 1.5rem' : '2.75rem 3rem', background: C.navy, color: C.ivory, borderRadius: '6px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
+        {/* Underwriters, Year Two — real logos on a light card */}
+        <div style={{ padding: isMobile ? '2rem 1.5rem' : '2.5rem 3rem', background: C.white, borderRadius: '10px', border: '1px solid rgba(39,55,82,0.1)', boxShadow: '0 8px 24px rgba(23,35,57,0.06)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '2.25rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
-              <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.cream, fontWeight: 500, marginBottom: '0.4rem' }}>
+              <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, fontWeight: 700, marginBottom: '0.4rem' }}>
                 Year Two Underwriters
               </div>
-              <div style={{ fontSize: '0.9rem', opacity: 0.7, maxWidth: '44ch', lineHeight: 1.5 }}>
+              <div style={{ fontSize: '0.9rem', color: C.slate, maxWidth: '44ch', lineHeight: 1.5 }}>
                 The partners funding the Council's Year Two work. Room for a few more.
               </div>
             </div>
-            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-              <button onClick={() => { track('underwriter_cta_click', { location: 'logo_wall' }); setUnderwriterOpen(true); }} style={{ background: C.cream, color: C.navy, fontSize: '0.85rem', fontWeight: 600, border: 'none', borderRadius: '100px', padding: '0.7rem 1.4rem', cursor: 'pointer' }}>
-                Why vendors support the Council →
-              </button>
-            </div>
+            <button onClick={() => { track('underwriter_cta_click', { location: 'logo_wall' }); setUnderwriterOpen(true); }} style={{ background: C.navy, color: C.ivory, fontSize: '0.85rem', fontWeight: 600, border: 'none', borderRadius: '100px', padding: '0.7rem 1.4rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
+              Why vendors support the Council <Arrow />
+            </button>
           </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '1.25rem 1.75rem' : '1.75rem 3rem', alignItems: 'center', paddingTop: '0.5rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '1.75rem 2.25rem' : '2.5rem 3.5rem', alignItems: 'center', justifyContent: isMobile ? 'center' : 'flex-start' }}>
             {underwritersYearTwo.map((u) => (
-              <span key={u} className="display" style={{ fontSize: isMobile ? '1.35rem' : '1.9rem', fontWeight: 500, color: C.ivory, letterSpacing: '-0.01em', opacity: 0.92 }}>{u}</span>
+              <img key={u.name} src={u.src} alt={u.name} style={{ height: isMobile ? '28px' : '36px', width: 'auto', maxWidth: '150px', objectFit: 'contain', filter: u.dark ? 'brightness(0)' : 'none', opacity: 0.9 }} />
             ))}
           </div>
-        </div>
-
-        {/* Underwriters, Year One (legacy, smaller) */}
-        <div style={{ marginTop: '1.5rem', padding: isMobile ? '1.5rem' : '1.75rem 3rem', background: 'rgba(157, 146, 173, 0.08)', borderRadius: '6px', border: `1px solid rgba(39, 55, 82, 0.08)` }}>
-          <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.1rem' }}>
-            Year One Underwriters · the partners who launched the Council
-          </div>
-          <div style={{ overflow: 'hidden' }}>
-            <div className="marquee" style={{ alignItems: 'center', gap: '3rem' }}>
-              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
-              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
-              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
-              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.85 }} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* THE PRACTITIONERS */}
-      <section id="members" style={{ padding: isMobile ? '3.5rem 1.25rem 2.5rem' : '4rem 2.5rem 3rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.3fr', gap: isMobile ? '1.5rem' : '5rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
-          <div>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.25rem' }}>
-              The Community
-            </div>
-            <h2 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)', fontWeight: 400, lineHeight: 1, letterSpacing: '-0.02em' }}>
-              The people<br />
-              who've <span className="serif-italic" style={{ color: C.lilac }}>made it work.</span>
-            </h2>
-          </div>
-          <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: C.slate, maxWidth: '52ch', paddingBottom: '0.5rem' }}>
-              {members.length} senior HR leaders across five pillars, each finding traction with AI inside their own organizations. Every framework on this site carries their fingerprints. When we say practitioner-led, these are the practitioners.
-          </p>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(120px, 1fr))', gap: isMobile ? '1.5rem 0.75rem' : '2rem 1.25rem' }}>
-          {members.map((m, i) => {
-            const initials = m.name.split(' ').map(n => n[0]).join('').slice(0, 2);
-            return (
-              <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ textAlign: 'center', cursor: 'pointer' }}>
-                <div
-                  className="avatar"
-                  style={{
-                    width: isMobile ? '64px' : '90px',
-                    height: isMobile ? '64px' : '90px',
-                    borderRadius: '50%',
-                    margin: '0 auto 0.7rem',
-                    background: `linear-gradient(135deg, ${C.navyMid}, ${C.navyMid}99)`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: 'Fraunces, serif',
-                    fontSize: isMobile ? '1.1rem' : '1.5rem',
-                    fontWeight: 400,
-                    color: C.ivory,
-                    transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
-                    position: 'relative',
-                    overflow: 'hidden',
-                  }}
-                >
-                  {m.photo ? (
-                    <img src={m.photo} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }} />
-                  ) : (
-                    <span style={{ position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>{initials}</span>
-                  )}
-                </div>
-                <div className="display" style={{ fontSize: '0.85rem', fontWeight: 500, marginBottom: '0.2rem', color: C.navy, lineHeight: 1.2 }}>{m.name}</div>
-                <div style={{ fontSize: '0.7rem', color: C.slate, lineHeight: 1.35, maxWidth: '20ch', margin: '0 auto' }}>{m.role}</div>
-              </div>
-            );
-          })}
         </div>
       </section>
 
@@ -1310,7 +1377,7 @@ function HCAIC_Final() {
                     paddingBottom: '2px', alignSelf: 'flex-start',
                     display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
                   }}>
-                    {ev.cta} <span>→</span>
+                    {ev.cta} <Arrow />
                   </button>
                 ) : (
                   <a href={ev.href} className="link-arrow" style={{
@@ -1320,7 +1387,7 @@ function HCAIC_Final() {
                     alignSelf: 'flex-start', display: 'inline-flex',
                     alignItems: 'center', gap: '0.4rem',
                   }}>
-                    {ev.cta} <span>→</span>
+                    {ev.cta} <Arrow />
                   </a>
                 )}
               </div>
@@ -1344,7 +1411,7 @@ function HCAIC_Final() {
               Standing up governance. Running a rigorous market scan. Piloting a vendor with the right guardrails. Changing how a team works. That's where Kyle & Co comes in, as the implementation and advisory partner for teams ready to put the work into practice.
             </p>
             <button onClick={() => setKcoOpen(true)} style={{ background: C.navy, color: C.ivory, padding: '1rem 1.8rem', borderRadius: '100px', border: 'none', fontSize: '0.9rem', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontFamily: 'inherit' }}>
-              Talk to Kyle & Co <span>→</span>
+              Talk to Kyle & Co <Arrow />
             </button>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -1442,7 +1509,7 @@ function HCAIC_Final() {
                   gap: '0.4rem',
                   cursor: 'pointer',
                 }}>
-                  {c.cta} <span>→</span>
+                  {c.cta} <Arrow />
                 </button>
               ) : (
                 <a href="#" style={{
@@ -1458,7 +1525,7 @@ function HCAIC_Final() {
                   alignItems: 'center',
                   gap: '0.4rem',
                 }}>
-                  {c.cta} <span>→</span>
+                  {c.cta} <Arrow />
                 </a>
               )}
             </div>
@@ -1490,7 +1557,8 @@ function HCAIC_Final() {
       </section>
 
       {/* FEATURED POST */}
-      <section style={{ background: C.navy, padding: isMobile ? '3.5rem 1.25rem 3rem' : '5rem 2.5rem 4rem' }}>
+      <section style={{ background: C.navy, padding: isMobile ? '3.5rem 1.25rem 3rem' : '5rem 2.5rem 4rem', position: 'relative', overflow: 'hidden', isolation: 'isolate' }}>
+        <FlowLines style={{ left: '-60px', top: '-40px', width: '380px', height: '260px', transform: 'scaleX(-1)', zIndex: -1 }} />
         <a
           href="https://kyleandco.com/ai-toolkit-for-hr-leaders/"
           target="_blank"
@@ -1503,7 +1571,7 @@ function HCAIC_Final() {
             <h3 className="display" style={{ fontSize: isMobile ? '1.3rem' : '1.7rem', fontWeight: 400, lineHeight: 1.2, letterSpacing: '-0.01em', color: C.navy, margin: 0 }}>
               Finally: A Practical AI Transformation Toolkit Built for <span className="serif-italic" style={{ color: C.lilac }}>HR Leaders</span>
             </h3>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap', color: C.navy, fontWeight: 600, fontSize: '0.9rem' }}>Read Kyle's take →</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap', color: C.navy, fontWeight: 600, fontSize: '0.9rem' }}>Read Kyle's take <Arrow /></span>
           </div>
         </a>
       </section>
@@ -1537,7 +1605,7 @@ The Year One Toolkit · proof of what the Council ships
             className="link-arrow"
             style={{ padding: '0.95rem 2rem', background: C.navy, color: C.ivory, border: 'none', borderRadius: '100px', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', letterSpacing: '0.01em', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
           >
-            Browse the Toolkit <span>→</span>
+            Browse the Toolkit <Arrow />
           </button>
           <p style={{ marginTop: '0.65rem', fontSize: '0.8rem', color: C.slate, opacity: 0.75 }}>
             {resources.length} frameworks and tools, free to use, thanks to our Underwriters.
@@ -1546,15 +1614,32 @@ The Year One Toolkit · proof of what the Council ships
 
       </section>
 
-      {/* FORMER CONTRIBUTING MEMBERS, kept, not deleted; sits at the bottom with the toolkit */}
-      <section id="former-members" style={{ padding: isMobile ? '3rem 1.25rem' : '4rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.9rem', paddingBottom: '1.1rem', marginBottom: isMobile ? '1.75rem' : '2.5rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)` }}>
-          <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate }}>
-            Former Contributing Members
+      {/* THANK YOU — Year One partners (accordion: Year One underwriters + former members) */}
+      <section id="year-one" style={{ padding: isMobile ? '1rem 1.25rem 3.5rem' : '1.5rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto' }}>
+        <button onClick={() => setYearOneOpen(o => !o)} aria-expanded={yearOneOpen} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', background: 'none', border: 'none', borderTop: `1px solid rgba(39,55,82,0.15)`, padding: isMobile ? '1.5rem 0' : '1.75rem 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+          <span className="display" style={{ fontSize: isMobile ? '1.3rem' : '1.65rem', fontWeight: 500, letterSpacing: '-0.01em', color: C.navy }}>Thank you to our Year One partners</span>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', color: C.slate, flexShrink: 0 }}>
+            <span style={{ fontSize: '0.78rem' }}>{yearOneOpen ? 'Hide' : 'Show'}</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform: yearOneOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.25s ease' }} aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </button>
+        {yearOneOpen && (
+        <div style={{ paddingTop: isMobile ? '2rem' : '2.5rem', animation: 'fadeIn 0.25s ease-out' }}>
+          <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.25rem' }}>
+            Year One Underwriters · the partners who launched the Council
           </div>
-          <span style={{ fontSize: '0.82rem', color: C.slate, opacity: 0.7 }}>Year One practitioners whose work built the foundations, thank you.</span>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(130px, 1fr))', gap: isMobile ? '1rem 0.6rem' : '1.5rem 1.25rem' }}>
+          <div style={{ overflow: 'hidden', marginBottom: isMobile ? '2.5rem' : '3.5rem' }}>
+            <div className="marquee" style={{ alignItems: 'center', gap: '3rem' }}>
+              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.7 }} />
+              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.7 }} />
+              <img src="vendor-logos-line1.png" alt="Year One underwriters 1–6" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.7 }} />
+              <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.7 }} />
+            </div>
+          </div>
+          <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.5rem' }}>
+            Former Contributing Members · practitioners whose work built the foundations
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(130px, 1fr))', gap: isMobile ? '1rem 0.6rem' : '1.5rem 1.25rem' }}>
           {formerMembers.map((m, i) => {
             const initials = m.name.split(' ').map(n => n[0]).join('').slice(0, 2);
             return (
@@ -1590,11 +1675,14 @@ The Year One Toolkit · proof of what the Council ships
               </div>
             );
           })}
+          </div>
         </div>
+        )}
       </section>
 
       {/* FOOTER */}
-      <footer style={{ background: C.navy, color: C.ivory, padding: '4rem 2.5rem 2rem' }}>
+      <footer style={{ background: C.navy, color: C.ivory, padding: '4rem 2.5rem 2rem', position: 'relative', overflow: 'hidden', isolation: 'isolate' }}>
+        <FlowLines style={{ right: '-40px', top: '-50px', width: '420px', height: '300px', zIndex: -1 }} />
         <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
           <div className="display" style={{ fontSize: 'clamp(2.25rem, 5.5vw, 4.5rem)', lineHeight: 1, letterSpacing: '-0.02em', marginBottom: '3.5rem', opacity: 0.95 }}>
             Practitioner-led.<br />
@@ -1768,7 +1856,7 @@ The Year One Toolkit · proof of what the Council ships
                 <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.25rem' }}>
                   {selectedResource.interactivePreview.features.map((f, i) => (
                     <li key={i} style={{ display: 'flex', gap: '0.75rem', alignItems: 'start', fontSize: '0.88rem', color: 'rgba(247, 241, 234, 0.92)', lineHeight: 1.5 }}>
-                      <span style={{ color: C.cream, flexShrink: 0, fontWeight: 600 }}>→</span>
+                      <span style={{ color: C.cream, flexShrink: 0, fontWeight: 600, display: 'inline-flex' }}><Arrow /></span>
                       {f}
                     </li>
                   ))}
@@ -1779,7 +1867,7 @@ The Year One Toolkit · proof of what the Council ships
                   rel="noopener noreferrer"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: C.cream, color: C.navyDark, padding: '0.7rem 1.4rem', borderRadius: '100px', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}
                 >
-                  Open interactive version →
+                  Open interactive version <Arrow />
                 </a>
               </div>
             )}
@@ -1803,7 +1891,7 @@ The Year One Toolkit · proof of what the Council ships
                   fontFamily: 'inherit',
                 }}
               >
-                {selectedResource.modalCta || selectedResource.ctaLabel} <span>→</span>
+                {selectedResource.modalCta || selectedResource.ctaLabel} <Arrow />
               </button>
               {!accessGranted && (
                 <span style={{ fontSize: '0.78rem', color: C.slate, lineHeight: 1.4, maxWidth: '26ch' }}>
@@ -1904,7 +1992,7 @@ The Year One Toolkit · proof of what the Council ships
                   gap: '0.5rem',
                 }}
               >
-                Unlock the library <span>→</span>
+                Unlock the library <Arrow />
               </button>
               <div style={{ fontSize: '0.72rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>
                 By signing up you agree to occasional updates from Kyle &amp; Co. Nothing else.
@@ -2025,7 +2113,7 @@ The Year One Toolkit · proof of what the Council ships
                       gap: '0.5rem',
                     }}
                   >
-                    Submit application <span>→</span>
+                    Submit application <Arrow />
                   </button>
                   <div style={{ fontSize: '0.72rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>
                     Applications are reviewed on a rolling basis.
@@ -2140,7 +2228,7 @@ The Year One Toolkit · proof of what the Council ships
                       gap: '0.5rem',
                     }}
                   >
-                    Send message <span>→</span>
+                    Send message <Arrow />
                   </button>
                   <div style={{ fontSize: '0.72rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>
                     Kyle &amp; Co typically responds within two business days.
@@ -2163,14 +2251,14 @@ The Year One Toolkit · proof of what the Council ships
             {townhallSubmitted ? (
               <div style={{ padding: '2rem 0' }}>
                 <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1rem' }}>You're registered</div>
-                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '1rem' }}>See you September 2.</h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate }}>A calendar invite and joining link will be sent to your email once the time is confirmed.</p>
+                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '1rem' }}>See you August 27.</h3>
+                <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate }}>You've been added to the calendar for August 27, 1:00pm ET. The invite and join link are on their way to your inbox, no button to click, it's already on your calendar.</p>
               </div>
             ) : (
               <>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>Town Hall · September 2, 2026 · time TBA</div>
-                <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>Year Two Launch Town Hall</h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>The Council kicks off Year Two: the five priorities, who is leading each, and how HR teams and vendors can get involved. Underwriters welcome.</p>
+                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>Town Hall · August 27, 2026 · 1:00pm ET</div>
+                <h3 className="display" style={{ fontSize: '1.6rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>The Human-Centric AI Council <span className="serif-italic" style={{ color: C.lilac }}>Year Two Town Hall</span></h3>
+                <p style={{ fontSize: '0.93rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>We launch the Year Two agenda live. Each pillar champion walks the room through their workstream, what they're building this year, and how HR teams and vendors can plug in. Register once and you're added to the calendar automatically.</p>
                 <form action={ML_TOWNHALL_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'townhall'}); setTimeout(() => setTownhallSubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
                     <input required type="text" name="fields[name]" placeholder="First name" style={gateInput(C)} />
@@ -2192,7 +2280,7 @@ The Year One Toolkit · proof of what the Council ships
                   <input type="hidden" name="ml-submit" value="1" />
                   <input type="hidden" name="anticsrf" value="true" />
                   <button type="submit" style={{ marginTop: '0.5rem', background: C.navy, color: C.ivory, padding: '1rem 1.6rem', borderRadius: '100px', border: 'none', fontSize: '0.9rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                    Reserve my spot <span>→</span>
+                    Reserve my spot <Arrow />
                   </button>
                   <div style={{ fontSize: '0.72rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>Free and open to the full community.</div>
                 </form>
@@ -2278,7 +2366,7 @@ The Year One Toolkit · proof of what the Council ships
                     <input type="hidden" name="ml-submit" value="1" />
                     <input type="hidden" name="anticsrf" value="true" />
                     <button type="submit" style={{ marginTop: '0.5rem', background: C.navy, color: C.ivory, padding: '1rem 1.6rem', borderRadius: '100px', border: 'none', fontSize: '0.9rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                      Get the full overview <span>→</span>
+                      Get the full overview <Arrow />
                     </button>
                     <div style={{ fontSize: '0.72rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>Kyle &amp; Co will follow up within two business days.</div>
                   </form>
@@ -2366,7 +2454,7 @@ The Year One Toolkit · proof of what the Council ships
                   paddingBottom: '2px',
                 }}
               >
-                View LinkedIn profile <span>→</span>
+                View LinkedIn profile <Arrow />
               </a>
             )}
           </div>
@@ -2378,28 +2466,35 @@ The Year One Toolkit · proof of what the Council ships
         const champ = roster.find(m => m.champion) || { name: pillarOpen.champion.name, photo: pillarOpen.champion.photo };
         const others = roster.filter(m => !m.champion);
         return (
-          <div className="modal-overlay" onClick={() => setPillarOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.6)', zIndex: 220, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '4rem 2rem 3rem', overflowY: 'auto', animation: 'fadeUp 0.3s ease-out' }}>
-            <div onClick={(e) => e.stopPropagation()} style={{ background: C.ivory, borderRadius: '12px', padding: isMobile ? '2rem 1.5rem' : '2.5rem', maxWidth: '640px', width: '100%', position: 'relative', borderTop: `4px solid ${pillarOpen.accent}` }}>
-              <button onClick={() => setPillarOpen(null)} style={{ position: 'absolute', top: '1.1rem', right: '1.2rem', background: 'none', border: 'none', color: C.slate, cursor: 'pointer', fontSize: '1.4rem', lineHeight: 1 }} aria-label="Close">×</button>
-              <div className="mono" style={{ fontSize: '0.6rem', color: pillarOpen.accent, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '0.6rem' }}>{pillarOpen.n} · {pillarOpen.name}</div>
-              <h3 className="display" style={{ fontSize: '1.5rem', fontWeight: 500, color: C.navy, letterSpacing: '-0.01em', marginBottom: '0.85rem', lineHeight: 1.15 }}>Meet the Contributing Members</h3>
-              <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: C.slate, marginBottom: '1.75rem' }}>{pillarOpen.full}</p>
-              <div className="member-card" onClick={() => setSelectedMember(champ)} style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', padding: '1rem', background: pillarOpen.accent + '14', borderRadius: '8px', marginBottom: '1.5rem', cursor: 'pointer' }}>
-                <img src={champ.photo} alt={champ.name} className="avatar" style={{ width: '56px', height: '56px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${pillarOpen.accent}` }} />
-                <div style={{ flex: 1 }}>
-                  <div className="mono" style={{ fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: pillarOpen.accent, fontWeight: 700, marginBottom: '0.15rem' }}>Champion</div>
-                  <div style={{ fontSize: '0.98rem', fontWeight: 600, color: C.navy }}>{champ.name}</div>
-                  {champ.role && <div style={{ fontSize: '0.8rem', color: C.slate, lineHeight: 1.3 }}>{champ.role}</div>}
+          <div className="modal-overlay pillar-modal-overlay" onClick={() => setPillarOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.62)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isMobile ? '1rem' : '48px', zIndex: 220 }}>
+            <div role="dialog" aria-modal="true" aria-labelledby="pillar-modal-title" onClick={(e) => e.stopPropagation()} style={{ width: '100%', maxWidth: '900px', maxHeight: '100%', overflow: 'auto', background: C.ivory, borderRadius: '12px', boxShadow: '0 24px 64px rgba(23,35,57,0.4)' }}>
+              {/* Header */}
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: isMobile ? '1rem' : '32px', padding: isMobile ? '1.75rem 1.5rem 1.25rem' : '32px 40px 24px', borderBottom: '1px solid rgba(39,55,82,0.14)' }}>
+                <div>
+                  <div style={{ fontSize: '12.5px', color: C.slate }}>Pillar {pillarOpen.n} · contributing members</div>
+                  <h3 id="pillar-modal-title" className="display" style={{ margin: '8px 0 0', fontSize: isMobile ? '24px' : '30px', fontWeight: 600, lineHeight: 1.12, letterSpacing: '-0.02em', color: C.navy }}>{pillarOpen.name}</h3>
+                  <p style={{ margin: '10px 0 0', fontSize: '14px', lineHeight: 1.6, color: C.slate, maxWidth: '62ch' }}>{pillarOpen.full}</p>
                 </div>
-                <span className="mono" style={{ fontSize: '0.62rem', color: pillarOpen.accent, fontWeight: 600, whiteSpace: 'nowrap' }}>View bio →</span>
+                <button ref={pillarCloseRef} onClick={() => setPillarOpen(null)} aria-label="Close" style={{ flexShrink: 0, width: '34px', height: '34px', borderRadius: '50%', background: 'none', border: '1px solid rgba(39,55,82,0.2)', color: C.navy, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M1 1l12 12M13 1L1 13" /></svg>
+                </button>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '0.9rem 1.25rem' }}>
+              {/* Pillar lead strip */}
+              <div style={{ padding: isMobile ? '1.25rem 1.5rem' : '26px 40px 20px', background: '#EAE7ED', display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <img src={champ.photo} alt={champ.name} style={{ width: '44px', height: '44px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+                <div>
+                  <div style={{ fontSize: '12px', color: C.slate }}>Pillar lead</div>
+                  <div style={{ fontSize: '15px', fontWeight: 500, color: C.navy }}>{champ.name}</div>
+                </div>
+              </div>
+              {/* Members grid */}
+              <div style={{ padding: isMobile ? '1.5rem 1.5rem 2rem' : '28px 40px 36px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '20px 40px' }}>
                 {others.map((m, i) => (
-                  <div key={i} className="member-card" onClick={() => setSelectedMember(m)} style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', cursor: 'pointer' }}>
-                    <img src={m.photo} alt={m.name} className="avatar" style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '14px', paddingBottom: '16px', borderBottom: '1px solid rgba(39,55,82,0.1)' }}>
+                    <img src={m.photo} alt={m.name} style={{ width: '46px', height: '46px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
                     <div>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 500, color: C.navy, lineHeight: 1.2 }}>{m.name}</div>
-                      <div style={{ fontSize: '0.72rem', color: C.slate, lineHeight: 1.3 }}>{m.role}</div>
+                      <div style={{ fontSize: '14.5px', fontWeight: 500, color: C.navy, lineHeight: 1.25 }}>{m.name}</div>
+                      <div style={{ fontSize: '12.5px', color: C.slate, lineHeight: 1.4 }}>{m.role}</div>
                     </div>
                   </div>
                 ))}
@@ -2419,7 +2514,7 @@ The Year One Toolkit · proof of what the Council ships
               <img src={outputsOpen.agenda.leader.photo} alt={outputsOpen.agenda.leader.name} style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover' }} />
               <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: C.slate }}>Led by {outputsOpen.agenda.leader.name}</div>
             </div>
-            <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: outputsOpen.accent, fontWeight: 700, marginBottom: '1rem' }}>Flagship outputs</div>
+            <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: outputsOpen.accent, fontWeight: 700, marginBottom: '1rem' }}>What we'll deliver</div>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
               {outputsOpen.agenda.outputs.map((o, i) => (
                 <li key={i} style={{ display: 'flex', gap: '0.75rem', fontSize: '0.92rem', lineHeight: 1.5, color: C.navy }}>
@@ -2508,10 +2603,11 @@ The Year One Toolkit · proof of what the Council ships
                 {r.kind === 'interactive' && (
                   <span className="mono" style={{
                     fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase',
-                    background: C.cream, color: C.navyDark,
+                    background: C.red, color: C.white,
                     padding: '0.18rem 0.55rem', borderRadius: '2px', fontWeight: 500,
+                    display: 'inline-flex', alignItems: 'center', gap: '0.3rem',
                   }}>
-                    Live
+                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: C.white, display: 'inline-block' }} />Live
                   </span>
                 )}
                 {r.evolving && (
@@ -2541,8 +2637,8 @@ The Year One Toolkit · proof of what the Council ships
                   {r.ctaLabel}
                 </span>
               </div>
-              <div className="row-arrow" style={{ fontSize: '1.5rem', color: C.navy, opacity: 0.7, transition: 'all 0.3s ease', textAlign: 'right', fontWeight: 300 }}>
-                →
+              <div className="row-arrow" style={{ color: C.navy, opacity: 0.7, transition: 'all 0.3s ease', textAlign: 'right', display: 'flex', justifyContent: 'flex-end' }}>
+                <Arrow s={20} />
               </div>
             </div>
           ))}
@@ -2615,7 +2711,7 @@ The Year One Toolkit · proof of what the Council ships
               paddingRight: 0,
             }}
           >
-            See what that looks like <span>→</span>
+            See what that looks like <Arrow />
           </button>
         </div>
       )}
