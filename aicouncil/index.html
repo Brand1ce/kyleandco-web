@@ -242,7 +242,7 @@ function HCAIC_Final() {
   // Gate form input style helper
   const gateInput = (Cp) => ({
     padding: '0.85rem 1rem',
-    fontSize: '0.9rem',
+    fontSize: '1.02rem',
     fontFamily: 'inherit',
     border: `1px solid rgba(39, 55, 82, 0.18)`,
     borderRadius: '4px',
@@ -919,7 +919,7 @@ function HCAIC_Final() {
           <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', textDecoration: 'none' }}>
             <img src={LOGO_NAV} alt="Kyle & Co" style={{ height: '48px', width: 'auto', flexShrink: 0 }} />
             <span style={{ height: '30px', width: '1px', background: 'rgba(39, 55, 82, 0.25)' }} />
-            <span className="display" style={{ fontSize: '0.95rem', fontWeight: 500, color: C.navy, letterSpacing: '-0.005em', lineHeight: 1.1 }}>
+            <span className="display" style={{ fontSize: '1.07rem', fontWeight: 500, color: C.navy, letterSpacing: '-0.005em', lineHeight: 1.1 }}>
               The Human-Centric<br />
               <span className="serif-italic" style={{ color: C.lilac }}>AI Council</span>
             </span>
@@ -932,17 +932,23 @@ function HCAIC_Final() {
             <span style={{ transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }} />
           </button>
         ) : (
-          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', fontSize: '0.85rem' }}>
-            <a href="https://kyleandco.com" style={{ color: C.navy, textDecoration: 'none', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><span aria-hidden="true">&larr;</span> Kyle &amp; Co</a>
-            <button onClick={() => document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>The Agenda</button>
-            <button onClick={() => document.querySelector('#members')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>Members</button>
-            <button onClick={() => document.querySelector('#events')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>Townhalls</button>
-            <button onClick={() => document.querySelector('#underwriters')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>Underwriters</button>
-            <button onClick={() => document.querySelector('#library')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>The Toolkit</button>
-            <button onClick={() => document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>How to Participate</button>
+          <div style={{ display: 'flex', gap: '1.35rem', alignItems: 'center', fontSize: '1.1rem' }}>
+            <a href="https://kyleandco.com" style={{ color: C.navy, textDecoration: 'none', fontSize: '1.1rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><span aria-hidden="true">&larr;</span> Kyle &amp; Co</a>
+            <button onClick={() => document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '1.1rem', fontFamily: 'inherit', padding: 0 }}>The Agenda</button>
+            <button onClick={() => document.querySelector('#members')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '1.1rem', fontFamily: 'inherit', padding: 0 }}>Members</button>
+            <button onClick={() => document.querySelector('#events')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '1.1rem', fontFamily: 'inherit', padding: 0 }}>Townhalls</button>
+            <button onClick={() => document.querySelector('#underwriters')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '1.1rem', fontFamily: 'inherit', padding: 0 }}>Underwriters</button>
+            <button onClick={() => document.querySelector('#library')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '1.1rem', fontFamily: 'inherit', padding: 0 }}>The Toolkit</button>
+            <button onClick={() => document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '1.1rem', fontFamily: 'inherit', padding: 0 }}>How to Participate</button>
+            <button
+              onClick={() => { track('townhall_register', { location: 'nav' }); setTownhallOpen(true); }}
+              style={{ background: C.cream, color: C.navy, padding: '0.6rem 1.2rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '1.04rem', fontWeight: 600, letterSpacing: '0.01em', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}
+            >
+              <span className="live-dot" /> Town Hall · Aug 27
+            </button>
             <button
               onClick={() => document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' })}
-              style={{ background: C.navy, color: C.ivory, padding: '0.65rem 1.3rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 500, letterSpacing: '0.02em', fontFamily: 'inherit' }}
+              style={{ background: C.navy, color: C.ivory, padding: '0.6rem 1.2rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '1.04rem', fontWeight: 500, letterSpacing: '0.02em', fontFamily: 'inherit', whiteSpace: 'nowrap' }}
             >
               Join the Council
             </button>
@@ -966,6 +972,9 @@ function HCAIC_Final() {
               {item.label}
             </button>
           ))}
+          <button onClick={() => { track('townhall_register', { location: 'nav' }); setTownhallOpen(true); setMenuOpen(false); }} style={{ background: C.cream, color: C.navy, borderRadius: '100px', textAlign: 'center', border: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontWeight: 600 }}>
+            <span className="live-dot" /> Register for the Town Hall · Aug 27
+          </button>
           <button onClick={() => { document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false); }} style={{ background: C.navy, color: C.ivory, borderRadius: '100px', textAlign: 'center', border: 'none' }}>
             Join the Council
           </button>
@@ -993,7 +1002,7 @@ function HCAIC_Final() {
             zIndex: 0,
           }}
         />
-        <div className="reveal reveal-1 mono" style={{ fontSize: '0.72rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '2rem', color: C.slate, display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
+        <div className="reveal reveal-1 mono" style={{ fontSize: '0.84rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '2rem', color: C.slate, display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
           <span className="live-dot" /> Year Two · 2026 · The Year of the Human
         </div>
 
@@ -1028,14 +1037,14 @@ function HCAIC_Final() {
               padding: '1.05rem 2rem',
               borderRadius: '100px',
               textDecoration: 'none',
-              fontSize: '0.95rem',
+              fontSize: '1.07rem',
               fontWeight: 500,
             }}
             className="link-arrow"
           >
             See the Year Two agenda <Arrow />
           </a>
-          <button onClick={() => { track('underwriter_cta_click', { location: 'hero' }); setUnderwriterOpen(true); }} className="underline-grow" style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', color: C.navy, fontSize: '0.95rem', fontWeight: 500, padding: 0 }}>
+          <button onClick={() => { track('underwriter_cta_click', { location: 'hero' }); setUnderwriterOpen(true); }} className="underline-grow" style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', color: C.navy, fontSize: '1.07rem', fontWeight: 500, padding: 0 }}>
             Partner as an underwriter <Arrow />
           </button>
         </div>
@@ -1043,16 +1052,122 @@ function HCAIC_Final() {
       </section>
       </div>
 
+      {/* UPCOMING & REPLAYS */}
+      <section id="events" style={{ padding: isMobile ? '2.5rem 1.25rem 4rem' : '3rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '4rem', marginBottom: '3rem', alignItems: 'end' }}>
+          <div>
+            <div className="mono" style={{ fontSize: '0.84rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.25rem' }}>
+              Upcoming &amp; on demand
+            </div>
+            <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 400, lineHeight: 1.02, letterSpacing: '-0.02em', maxWidth: '20ch' }}>
+              Show up when <span className="serif-italic" style={{ color: C.lilac }}>the work is live.</span>
+            </h2>
+          </div>
+          <div style={{ paddingBottom: '0.5rem' }}>
+            <p style={{ fontSize: '1.1rem', lineHeight: 1.6, color: C.slate, maxWidth: '54ch' }}>
+              Monthly town halls, practitioner webinars, and a growing replay library. All free, all open. Council members present, underwriters sometimes host, and the rest of the industry is welcome in the room.
+            </p>
+          </div>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
+          {events.map((ev, i) => {
+            const isReplay = ev.status === 'replay';
+            return (
+              <div key={i} style={{
+                padding: '1.75rem 1.75rem 1.6rem',
+                background: isReplay ? 'rgba(157, 146, 173, 0.1)' : C.ivory,
+                border: `1px solid rgba(39, 55, 82, 0.1)`,
+                borderRadius: '6px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem',
+                minHeight: '220px',
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span className="mono" style={{
+                    fontSize: '0.74rem',
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    color: isReplay ? C.lilac : C.navy,
+                    fontWeight: 500,
+                  }}>
+                    {ev.type}
+                  </span>
+                  {ev.status === 'upcoming' && (
+                    <span className="mono" style={{
+                      fontSize: '0.84rem',
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      background: C.cream,
+                      color: C.navyDark,
+                      padding: '0.18rem 0.55rem',
+                      borderRadius: '2px',
+                      fontWeight: 500,
+                    }}>
+                      Upcoming
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <div className="display" style={{ fontSize: '1.2rem', fontWeight: 500, lineHeight: 1.2, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.4rem' }}>
+                    {ev.title}
+                  </div>
+                  <div className="mono" style={{ fontSize: '0.84rem', color: C.slate, letterSpacing: '0.03em', marginBottom: '0.7rem' }}>
+                    {ev.date}
+                  </div>
+                  <p style={{ fontSize: '0.99rem', lineHeight: 1.55, color: C.slate }}>
+                    {ev.summary}
+                  </p>
+                </div>
+                {ev.comingSoon ? (
+                  <span className="mono" style={{
+                    marginTop: 'auto', alignSelf: 'flex-start',
+                    fontSize: '1.04rem', letterSpacing: '0.12em', textTransform: 'uppercase',
+                    color: C.slate, background: 'rgba(39, 55, 82, 0.06)',
+                    padding: '0.4rem 0.85rem', borderRadius: '100px', fontWeight: 500,
+                  }}>
+                    {ev.cta}
+                  </span>
+                ) : ev.onClick ? (
+                  <button onClick={ev.onClick} style={{
+                    background: 'none', border: 'none', padding: 0,
+                    color: C.navy, fontSize: '1.1rem', fontWeight: 500,
+                    cursor: 'pointer', fontFamily: 'inherit',
+                    marginTop: 'auto', borderBottom: `1px solid ${C.navy}`,
+                    paddingBottom: '2px', alignSelf: 'flex-start',
+                    display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                  }}>
+                    {ev.cta} <Arrow />
+                  </button>
+                ) : (
+                  <a href={ev.href} className="link-arrow" style={{
+                    color: C.navy, fontSize: '1.1rem', fontWeight: 500,
+                    textDecoration: 'none', marginTop: 'auto',
+                    borderBottom: `1px solid ${C.navy}`, paddingBottom: '2px',
+                    alignSelf: 'flex-start', display: 'inline-flex',
+                    alignItems: 'center', gap: '0.4rem',
+                  }}>
+                    {ev.cta} <Arrow />
+                  </a>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+      </section>
+
       {/* ABOUT THE COUNCIL — pillars (direction 4b: cards on navy band) */}
       <section style={{ background: C.navy, padding: isMobile ? '2.75rem 1.25rem' : '44px' }}>
         <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
           {/* Header */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', paddingBottom: '24px', borderBottom: '1px solid rgba(247,241,234,0.22)', marginBottom: '28px' }}>
-            <div style={{ fontSize: '12.5px', color: 'rgba(247,241,234,0.55)' }}>What the Council is</div>
+            <div style={{ fontSize: '16px', color: 'rgba(247,241,234,0.55)' }}>What the Council is</div>
             <h2 className="display" style={{ margin: 0, fontSize: isMobile ? '28px' : '36px', fontWeight: 400, lineHeight: 1.08, letterSpacing: '-0.025em', color: C.ivory }}>
               Practitioner-led. Five pillars. One goal.
             </h2>
-            <p style={{ margin: 0, fontSize: '14.5px', lineHeight: 1.65, color: 'rgba(247,241,234,0.8)', maxWidth: '74ch' }}>
+            <p style={{ margin: 0, fontSize: '16px', lineHeight: 1.65, color: 'rgba(247,241,234,0.8)', maxWidth: '74ch' }}>
               The Council brings together senior HR and talent leaders to build the frameworks and fluency that advance responsible, people-first AI adoption. Each pillar is led by a pillar lead, with a group of contributing members behind it.
             </p>
           </div>
@@ -1069,18 +1184,18 @@ function HCAIC_Final() {
                 }}>
                   <span aria-hidden="true" className="display" style={{ position: 'absolute', right: '10px', bottom: '60px', zIndex: 0, pointerEvents: 'none', fontSize: isMobile ? '64px' : '84px', fontWeight: 400, lineHeight: 1, color: p.accentWash }}>{p.n}</span>
                   <div style={{ position: 'relative', padding: '26px 20px 20px', display: 'flex', flexDirection: 'column', gap: '14px', flex: 1 }}>
-                    <h3 className="display" style={{ margin: 0, fontSize: '20px', fontWeight: 600, lineHeight: 1.16, letterSpacing: '-0.015em', color: C.navy, maxWidth: '15ch', minHeight: '2.32em' }}>{p.name}</h3>
-                    <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.55, color: C.slate }}>{p.blurb}</p>
+                    <h3 className="display" style={{ margin: 0, fontSize: '22px', fontWeight: 600, lineHeight: 1.16, letterSpacing: '-0.015em', color: C.navy, maxWidth: '15ch', minHeight: '2.32em' }}>{p.name}</h3>
+                    <p style={{ margin: 0, fontSize: '16.5px', lineHeight: 1.55, color: C.slate }}>{p.blurb}</p>
                     <div style={{ flex: 1 }} />
                     <div style={{ display: 'flex', alignItems: 'center', gap: '11px', paddingTop: '6px' }}>
                       <img src={p.champion.photo} alt={p.champion.name} style={{ width: '42px', height: '42px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
                       <div>
-                        <div style={{ fontSize: '11.5px', color: C.slate }}>Pillar lead</div>
-                        <div style={{ fontSize: '13.5px', fontWeight: 500, color: C.navy }}>{p.champion.name}</div>
+                        <div style={{ fontSize: '15.5px', color: C.slate }}>Pillar lead</div>
+                        <div style={{ fontSize: '15.5px', fontWeight: 500, color: C.navy }}>{p.champion.name}</div>
                       </div>
                     </div>
                   </div>
-                  <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', padding: '14px 20px', background: p.accentWash, color: C.navy, fontSize: '12.5px' }}>
+                  <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', padding: '14px 20px', background: p.accentWash, color: C.navy, fontSize: '16px' }}>
                     <span>{memberCount} contributing members</span>
                     <svg width="17" height="10" viewBox="0 0 17 10" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M1 5h14M11.5 1 15.8 5l-4.3 4" /></svg>
                   </div>
@@ -1095,14 +1210,14 @@ function HCAIC_Final() {
       <section style={{ background: C.cream, padding: isMobile ? '2.5rem 1.25rem' : '3rem 2.5rem' }}>
         <div style={{ maxWidth: '1500px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
           <div style={{ maxWidth: '56ch' }}>
-            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.navy, opacity: 0.55, marginBottom: '0.5rem' }}>
+            <div className="mono" style={{ fontSize: '1.04rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.navy, opacity: 0.55, marginBottom: '0.5rem' }}>
               Year Two · Practitioner seats
             </div>
             <div className="display" style={{ fontSize: isMobile ? '1.35rem' : '1.65rem', fontWeight: 500, letterSpacing: '-0.01em', lineHeight: 1.2, color: C.navy }}>
               If you lead HR and have moved AI work forward, <span className="serif-italic">we want you in the room.</span>
             </div>
           </div>
-          <button onClick={() => setApplyOpen(true)} className="link-arrow" style={{ background: C.navy, color: C.ivory, padding: '1rem 1.9rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '0.9rem', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+          <button onClick={() => setApplyOpen(true)} className="link-arrow" style={{ background: C.navy, color: C.ivory, padding: '1rem 1.9rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '1.02rem', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
             Join the Council <Arrow />
           </button>
         </div>
@@ -1112,7 +1227,7 @@ function HCAIC_Final() {
       <section id="work" style={{ background: C.ivory, padding: isMobile ? '4rem 1.25rem 3rem' : '6rem 2.5rem 4rem', scrollMarginTop: '80px' }}>
         <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
           <div style={{ marginBottom: isMobile ? '2.5rem' : '4rem', maxWidth: '52ch' }}>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '0.6rem' }}>
+            <div className="mono" style={{ fontSize: '0.84rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, marginBottom: '0.6rem' }}>
               Year Two · 2026 · What we'll deliver
             </div>
             <Flourish style={{ marginBottom: '1.25rem' }} />
@@ -1137,19 +1252,19 @@ function HCAIC_Final() {
               }}>
                 <div className="display" style={{ fontSize: isMobile ? '1.9rem' : 'clamp(2.5rem, 4vw, 3.4rem)', fontWeight: 400, color: p.accent, lineHeight: 0.9, letterSpacing: '-0.02em' }}>{p.n}</div>
                 <div>
-                  <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: p.accent, fontWeight: 700, marginBottom: '0.6rem' }}>{p.name}</div>
+                  <div className="mono" style={{ fontSize: '0.74rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: p.accent, fontWeight: 700, marginBottom: '0.6rem' }}>{p.name}</div>
                   <h3 className="display" style={{ fontSize: isMobile ? '1.5rem' : '1.95rem', fontWeight: 500, color: C.navy, lineHeight: 1.08, letterSpacing: '-0.015em', marginBottom: '0.8rem' }}>{p.agenda.title}</h3>
-                  <p style={{ fontSize: '0.94rem', lineHeight: 1.6, color: C.slate, maxWidth: '54ch' }}>{p.agenda.d}</p>
+                  <p style={{ fontSize: '1.06rem', lineHeight: 1.6, color: C.slate, maxWidth: '54ch' }}>{p.agenda.d}</p>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem', alignItems: 'flex-start', paddingTop: isMobile ? '0.5rem' : '0.4rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                     <img src={p.agenda.leader.photo} alt={p.agenda.leader.name} style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
                     <div>
-                      <div className="mono" style={{ fontSize: '0.54rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: C.slate, opacity: 0.7 }}>Led by</div>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 500, color: C.navy }}>{p.agenda.leader.name}</div>
+                      <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: C.slate, opacity: 0.7 }}>Led by</div>
+                      <div style={{ fontSize: '1.1rem', fontWeight: 500, color: C.navy }}>{p.agenda.leader.name}</div>
                     </div>
                   </div>
-                  <button onClick={() => { track('workstream_open', { pillar: p.name }); setOutputsOpen(p); }} className="link-arrow" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', color: p.accent, fontSize: '0.82rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem', letterSpacing: '0.01em' }}>
+                  <button onClick={() => { track('workstream_open', { pillar: p.name }); setOutputsOpen(p); }} className="link-arrow" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', color: p.accent, fontSize: '1.06rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem', letterSpacing: '0.01em' }}>
                     See what we'll ship <Arrow />
                   </button>
                 </div>
@@ -1163,7 +1278,7 @@ function HCAIC_Final() {
       <section id="members" style={{ padding: isMobile ? '3.5rem 1.25rem 2.5rem' : '4rem 2.5rem 3rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.3fr', gap: isMobile ? '1.5rem' : '5rem', marginBottom: isMobile ? '2.5rem' : '4rem', alignItems: 'end' }}>
           <div>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.6rem' }}>
+            <div className="mono" style={{ fontSize: '0.84rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.6rem' }}>
               The Community
             </div>
             <Flourish style={{ marginBottom: '1.25rem' }} />
@@ -1208,8 +1323,8 @@ function HCAIC_Final() {
                     <span style={{ position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>{initials}</span>
                   )}
                 </div>
-                <div className="display" style={{ fontSize: '0.85rem', fontWeight: 500, marginBottom: '0.2rem', color: C.navy, lineHeight: 1.2 }}>{m.name}</div>
-                <div style={{ fontSize: '0.7rem', color: C.slate, lineHeight: 1.35, maxWidth: '20ch', margin: '0 auto' }}>{m.role}</div>
+                <div className="display" style={{ fontSize: '1.1rem', fontWeight: 500, marginBottom: '0.2rem', color: C.navy, lineHeight: 1.2 }}>{m.name}</div>
+                <div style={{ fontSize: '1.06rem', color: C.slate, lineHeight: 1.35, maxWidth: '20ch', margin: '0 auto' }}>{m.role}</div>
               </div>
             );
           })}
@@ -1218,7 +1333,7 @@ function HCAIC_Final() {
 
       {/* HOW THIS IS FUNDED, honest vendor section */}
       <section id="underwriters" style={{ padding: isMobile ? '3rem 1.25rem' : '4rem 2.5rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
-        <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
+        <div className="mono" style={{ fontSize: '0.84rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
           The partners funding this work
         </div>
         <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '2rem', maxWidth: '26ch', lineHeight: 1.05 }}>
@@ -1231,7 +1346,7 @@ function HCAIC_Final() {
 
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '3rem', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
           <div style={{ borderTop: `2px solid ${C.navy}`, paddingTop: '2rem' }}>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.navy, fontWeight: 500 }}>
+            <div className="mono" style={{ fontSize: '0.84rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.navy, fontWeight: 500 }}>
               What the community does
             </div>
             <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
@@ -1241,7 +1356,7 @@ function HCAIC_Final() {
                 'Meet monthly to pressure-test ideas and share what is working in practice.',
                 'Set the agenda for what the Council produces next.',
               ].map((x, i) => (
-                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
+                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '1.1rem', lineHeight: 1.55 }}>
                   <span className="mono" style={{ color: C.lilac, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
                   <span style={{ color: C.navy }}>{x}</span>
                 </li>
@@ -1249,7 +1364,7 @@ function HCAIC_Final() {
             </ul>
           </div>
           <div style={{ borderTop: `2px solid ${C.lilac}`, paddingTop: '2rem' }}>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.lilac, fontWeight: 500 }}>
+            <div className="mono" style={{ fontSize: '0.84rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem', color: C.lilac, fontWeight: 500 }}>
               What underwriters do
             </div>
             <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
@@ -1259,7 +1374,7 @@ function HCAIC_Final() {
                 'Distribute Council outputs through their channels.',
                 "Underwriters don't set the Council's agenda or approve its output.",
               ].map((x, i) => (
-                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '0.98rem', lineHeight: 1.55 }}>
+                <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'start', fontSize: '1.1rem', lineHeight: 1.55 }}>
                   <span className="mono" style={{ color: C.navy, flexShrink: 0, fontWeight: 500, paddingTop: '0.15rem' }}>{String(i + 1).padStart(2, '0')}</span>
                   <span style={{ color: C.navy }}>{x}</span>
                 </li>
@@ -1272,14 +1387,14 @@ function HCAIC_Final() {
         <div style={{ padding: isMobile ? '2rem 1.5rem' : '2.5rem 3rem', background: C.white, borderRadius: '10px', border: '1px solid rgba(39,55,82,0.1)', boxShadow: '0 8px 24px rgba(23,35,57,0.06)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '2.25rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
-              <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, fontWeight: 700, marginBottom: '0.4rem' }}>
+              <div className="mono" style={{ fontSize: '1.06rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.lilac, fontWeight: 700, marginBottom: '0.4rem' }}>
                 Year Two Underwriters
               </div>
-              <div style={{ fontSize: '0.9rem', color: C.slate, maxWidth: '44ch', lineHeight: 1.5 }}>
+              <div style={{ fontSize: '1.02rem', color: C.slate, maxWidth: '44ch', lineHeight: 1.5 }}>
                 The partners funding the Council's Year Two work. Room for a few more.
               </div>
             </div>
-            <button onClick={() => { track('underwriter_cta_click', { location: 'logo_wall' }); setUnderwriterOpen(true); }} style={{ background: C.navy, color: C.ivory, fontSize: '0.85rem', fontWeight: 600, border: 'none', borderRadius: '100px', padding: '0.7rem 1.4rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
+            <button onClick={() => { track('underwriter_cta_click', { location: 'logo_wall' }); setUnderwriterOpen(true); }} style={{ background: C.navy, color: C.ivory, fontSize: '1.1rem', fontWeight: 600, border: 'none', borderRadius: '100px', padding: '0.7rem 1.4rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
               Why vendors support the Council <Arrow />
             </button>
           </div>
@@ -1291,117 +1406,11 @@ function HCAIC_Final() {
         </div>
       </section>
 
-      {/* UPCOMING & REPLAYS */}
-      <section id="events" style={{ padding: isMobile ? '2.5rem 1.25rem 4rem' : '3rem 2.5rem 5rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '4rem', marginBottom: '3rem', alignItems: 'end' }}>
-          <div>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.25rem' }}>
-              Upcoming &amp; on demand
-            </div>
-            <h2 className="display" style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 400, lineHeight: 1.02, letterSpacing: '-0.02em', maxWidth: '20ch' }}>
-              Show up when <span className="serif-italic" style={{ color: C.lilac }}>the work is live.</span>
-            </h2>
-          </div>
-          <div style={{ paddingBottom: '0.5rem' }}>
-            <p style={{ fontSize: '0.98rem', lineHeight: 1.6, color: C.slate, maxWidth: '54ch' }}>
-              Monthly town halls, practitioner webinars, and a growing replay library. All free, all open. Council members present, underwriters sometimes host, and the rest of the industry is welcome in the room.
-            </p>
-          </div>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
-          {events.map((ev, i) => {
-            const isReplay = ev.status === 'replay';
-            return (
-              <div key={i} style={{
-                padding: '1.75rem 1.75rem 1.6rem',
-                background: isReplay ? 'rgba(157, 146, 173, 0.1)' : C.ivory,
-                border: `1px solid rgba(39, 55, 82, 0.1)`,
-                borderRadius: '6px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1rem',
-                minHeight: '220px',
-              }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span className="mono" style={{
-                    fontSize: '0.62rem',
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    color: isReplay ? C.lilac : C.navy,
-                    fontWeight: 500,
-                  }}>
-                    {ev.type}
-                  </span>
-                  {ev.status === 'upcoming' && (
-                    <span className="mono" style={{
-                      fontSize: '0.6rem',
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      background: C.cream,
-                      color: C.navyDark,
-                      padding: '0.18rem 0.55rem',
-                      borderRadius: '2px',
-                      fontWeight: 500,
-                    }}>
-                      Upcoming
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <div className="display" style={{ fontSize: '1.2rem', fontWeight: 500, lineHeight: 1.2, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.4rem' }}>
-                    {ev.title}
-                  </div>
-                  <div className="mono" style={{ fontSize: '0.72rem', color: C.slate, letterSpacing: '0.03em', marginBottom: '0.7rem' }}>
-                    {ev.date}
-                  </div>
-                  <p style={{ fontSize: '0.86rem', lineHeight: 1.55, color: C.slate }}>
-                    {ev.summary}
-                  </p>
-                </div>
-                {ev.comingSoon ? (
-                  <span className="mono" style={{
-                    marginTop: 'auto', alignSelf: 'flex-start',
-                    fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase',
-                    color: C.slate, background: 'rgba(39, 55, 82, 0.06)',
-                    padding: '0.4rem 0.85rem', borderRadius: '100px', fontWeight: 500,
-                  }}>
-                    {ev.cta}
-                  </span>
-                ) : ev.onClick ? (
-                  <button onClick={ev.onClick} style={{
-                    background: 'none', border: 'none', padding: 0,
-                    color: C.navy, fontSize: '0.85rem', fontWeight: 500,
-                    cursor: 'pointer', fontFamily: 'inherit',
-                    marginTop: 'auto', borderBottom: `1px solid ${C.navy}`,
-                    paddingBottom: '2px', alignSelf: 'flex-start',
-                    display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-                  }}>
-                    {ev.cta} <Arrow />
-                  </button>
-                ) : (
-                  <a href={ev.href} className="link-arrow" style={{
-                    color: C.navy, fontSize: '0.85rem', fontWeight: 500,
-                    textDecoration: 'none', marginTop: 'auto',
-                    borderBottom: `1px solid ${C.navy}`, paddingBottom: '2px',
-                    alignSelf: 'flex-start', display: 'inline-flex',
-                    alignItems: 'center', gap: '0.4rem',
-                  }}>
-                    {ev.cta} <Arrow />
-                  </a>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-      </section>
-
       {/* K&CO CONSULTING PULL */}
       <section style={{ background: 'rgba(157, 146, 173, 0.1)', padding: isMobile ? '4rem 1.25rem' : '6rem 2.5rem', borderTop: `1px solid rgba(39, 55, 82, 0.08)` }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '5rem', alignItems: 'center' }}>
           <div>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
+            <div className="mono" style={{ fontSize: '0.84rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
               Where Kyle & Co comes in
             </div>
             <h2 className="display" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '1.75rem' }}>
@@ -1410,7 +1419,7 @@ function HCAIC_Final() {
             <p style={{ fontSize: '1rem', lineHeight: 1.65, color: C.slate, marginBottom: '2rem', maxWidth: '46ch' }}>
               Standing up governance. Running a rigorous market scan. Piloting a vendor with the right guardrails. Changing how a team works. That's where Kyle & Co comes in, as the implementation and advisory partner for teams ready to put the work into practice.
             </p>
-            <button onClick={() => setKcoOpen(true)} style={{ background: C.navy, color: C.ivory, padding: '1rem 1.8rem', borderRadius: '100px', border: 'none', fontSize: '0.9rem', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontFamily: 'inherit' }}>
+            <button onClick={() => setKcoOpen(true)} style={{ background: C.navy, color: C.ivory, padding: '1rem 1.8rem', borderRadius: '100px', border: 'none', fontSize: '1.02rem', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontFamily: 'inherit' }}>
               Talk to Kyle & Co <Arrow />
             </button>
           </div>
@@ -1422,8 +1431,8 @@ function HCAIC_Final() {
               { title: 'AI literacy rollout', sub: 'Role-based pathways, applied learning, measurement' },
             ].map((s, i) => (
               <div key={i} style={{ padding: '1.25rem 1.5rem', background: C.ivory, border: `1px solid rgba(39, 55, 82, 0.1)`, borderRadius: '4px' }}>
-                <div style={{ fontWeight: 500, color: C.navy, fontSize: '0.95rem', marginBottom: '0.25rem' }}>{s.title}</div>
-                <div style={{ fontSize: '0.82rem', color: C.slate }}>{s.sub}</div>
+                <div style={{ fontWeight: 500, color: C.navy, fontSize: '1.07rem', marginBottom: '0.25rem' }}>{s.title}</div>
+                <div style={{ fontSize: '1.06rem', color: C.slate }}>{s.sub}</div>
               </div>
             ))}
           </div>
@@ -1484,11 +1493,11 @@ function HCAIC_Final() {
               minHeight: '340px',
             }}>
               <div>
-                <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.7, marginBottom: '2rem' }}>
+                <div className="mono" style={{ fontSize: '1.04rem', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.7, marginBottom: '2rem' }}>
                   {c.label}
                 </div>
                 <h3 className="display" style={{ fontSize: '1.85rem', fontWeight: 500, lineHeight: 1.05, marginBottom: '1rem', letterSpacing: '-0.01em' }}>{c.title}</h3>
-                <p style={{ fontSize: '0.95rem', lineHeight: 1.55, opacity: 0.85 }}>{c.sub}</p>
+                <p style={{ fontSize: '1.07rem', lineHeight: 1.55, opacity: 0.85 }}>{c.sub}</p>
               </div>
               {c.onClick ? (
                 <button onClick={c.onClick} style={{
@@ -1497,7 +1506,7 @@ function HCAIC_Final() {
                   borderBottom: '1px solid currentColor',
                   color: 'inherit',
                   fontFamily: 'inherit',
-                  fontSize: '0.9rem',
+                  fontSize: '1.02rem',
                   fontWeight: 500,
                   marginTop: '2rem',
                   paddingBottom: '3px',
@@ -1515,7 +1524,7 @@ function HCAIC_Final() {
                 <a href="#" style={{
                   color: 'inherit',
                   textDecoration: 'none',
-                  fontSize: '0.9rem',
+                  fontSize: '1.02rem',
                   fontWeight: 500,
                   marginTop: '2rem',
                   borderBottom: '1px solid currentColor',
@@ -1536,20 +1545,20 @@ function HCAIC_Final() {
         <div style={{ marginTop: '1.5rem', padding: isMobile ? '1.75rem 1.5rem' : '2rem 2.5rem', background: 'rgba(157, 146, 173, 0.12)', borderRadius: '6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
           {followSubmitted ? (
             <div>
-              <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '0.5rem' }}>You're on the list</div>
-              <div style={{ fontSize: '0.95rem', color: C.navy, lineHeight: 1.5 }}>Check your inbox to confirm your subscription. That's it, you'll get the Council's work as it ships.</div>
+              <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '0.5rem' }}>You're on the list</div>
+              <div style={{ fontSize: '1.07rem', color: C.navy, lineHeight: 1.5 }}>Check your inbox to confirm your subscription. That's it, you'll get the Council's work as it ships.</div>
             </div>
           ) : (
             <>
               <div style={{ maxWidth: '46ch' }}>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.5rem' }}>Not joining or underwriting?</div>
+                <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.5rem' }}>Not joining or underwriting?</div>
                 <div style={{ fontSize: isMobile ? '1.1rem' : '1.25rem', fontWeight: 500, color: C.navy, lineHeight: 1.3 }}>Follow the Council's work. No commitment, just the frameworks and updates as they land.</div>
               </div>
               <form action={ML_FOLLOW_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('follow_subscribe', { source: 'ai_council_page' }); setTimeout(() => setFollowSubmitted(true), 1000); }} style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', flexShrink: 0 }}>
                 <input required type="email" name="fields[email]" placeholder="Work email" style={{ ...gateInput(C), minWidth: isMobile ? '100%' : '240px' }} />
                 <input type="hidden" name="ml-submit" value="1" />
                 <input type="hidden" name="anticsrf" value="true" />
-                <button type="submit" style={{ background: C.navy, color: C.ivory, padding: '0.85rem 1.6rem', borderRadius: '100px', border: 'none', fontSize: '0.9rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>Subscribe</button>
+                <button type="submit" style={{ background: C.navy, color: C.ivory, padding: '0.85rem 1.6rem', borderRadius: '100px', border: 'none', fontSize: '1.02rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>Subscribe</button>
               </form>
             </>
           )}
@@ -1567,11 +1576,11 @@ function HCAIC_Final() {
           style={{ display: 'block', maxWidth: '1500px', margin: '0 auto', textDecoration: 'none' }}
         >
           <div style={{ background: C.cream, borderRadius: '14px', padding: isMobile ? '1.75rem' : '2.25rem 3rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'auto 1fr auto', gap: isMobile ? '1rem' : '2.5rem', alignItems: 'center' }}>
-            <span className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, fontWeight: 700, whiteSpace: 'nowrap' }}>Featured post</span>
+            <span className="mono" style={{ fontSize: '0.74rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, fontWeight: 700, whiteSpace: 'nowrap' }}>Featured post</span>
             <h3 className="display" style={{ fontSize: isMobile ? '1.3rem' : '1.7rem', fontWeight: 400, lineHeight: 1.2, letterSpacing: '-0.01em', color: C.navy, margin: 0 }}>
               Finally: A Practical AI Transformation Toolkit Built for <span className="serif-italic" style={{ color: C.lilac }}>HR Leaders</span>
             </h3>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap', color: C.navy, fontWeight: 600, fontSize: '0.9rem' }}>Read Kyle's take <Arrow /></span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap', color: C.navy, fontWeight: 600, fontSize: '1.02rem' }}>Read Kyle's take <Arrow /></span>
           </div>
         </a>
       </section>
@@ -1580,7 +1589,7 @@ function HCAIC_Final() {
       <section id="library" style={{ padding: isMobile ? '3rem 1.25rem 2.5rem' : '4rem 2.5rem 3rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.5fr 1fr', gap: isMobile ? '2rem' : '5rem', marginBottom: '3rem', alignItems: 'end' }}>
           <div>
-            <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
+            <div className="mono" style={{ fontSize: '0.84rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.5rem' }}>
 The Year One Toolkit · proof of what the Council ships
             </div>
             <h2 className="display" style={{ fontSize: 'clamp(3rem, 5.5vw, 4.5rem)', fontWeight: 400, lineHeight: 1.0, letterSpacing: '-0.03em', maxWidth: '18ch' }}>
@@ -1592,7 +1601,7 @@ The Year One Toolkit · proof of what the Council ships
             <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: C.slate, marginBottom: '1.75rem' }}>
               Each framework is authored by a practitioner who has put it to work inside their own organization. Free to access, made possible by the Council's Underwriters.
             </p>
-            <span style={{ display: 'inline-block', background: C.navy, color: C.ivory, fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.35rem 0.85rem', borderRadius: '100px' }}>
+            <span style={{ display: 'inline-block', background: C.navy, color: C.ivory, fontSize: '1.04rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.35rem 0.85rem', borderRadius: '100px' }}>
               Updated April 2026
             </span>
           </div>
@@ -1603,11 +1612,11 @@ The Year One Toolkit · proof of what the Council ships
           <button
             onClick={() => { track('toolkit_cta_click', {}); setToolkitOpen(true); }}
             className="link-arrow"
-            style={{ padding: '0.95rem 2rem', background: C.navy, color: C.ivory, border: 'none', borderRadius: '100px', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', letterSpacing: '0.01em', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            style={{ padding: '0.95rem 2rem', background: C.navy, color: C.ivory, border: 'none', borderRadius: '100px', fontSize: '1.02rem', fontWeight: 600, cursor: 'pointer', letterSpacing: '0.01em', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
           >
             Browse the Toolkit <Arrow />
           </button>
-          <p style={{ marginTop: '0.65rem', fontSize: '0.8rem', color: C.slate, opacity: 0.75 }}>
+          <p style={{ marginTop: '0.65rem', fontSize: '1.04rem', color: C.slate, opacity: 0.75 }}>
             {resources.length} frameworks and tools, free to use, thanks to our Underwriters.
           </p>
         </div>
@@ -1619,13 +1628,13 @@ The Year One Toolkit · proof of what the Council ships
         <button onClick={() => setYearOneOpen(o => !o)} aria-expanded={yearOneOpen} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', background: 'none', border: 'none', borderTop: `1px solid rgba(39,55,82,0.15)`, padding: isMobile ? '1.5rem 0' : '1.75rem 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
           <span className="display" style={{ fontSize: isMobile ? '1.3rem' : '1.65rem', fontWeight: 500, letterSpacing: '-0.01em', color: C.navy }}>Thank you to our Year One partners</span>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', color: C.slate, flexShrink: 0 }}>
-            <span style={{ fontSize: '0.78rem' }}>{yearOneOpen ? 'Hide' : 'Show'}</span>
+            <span style={{ fontSize: '1.02rem' }}>{yearOneOpen ? 'Hide' : 'Show'}</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform: yearOneOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.25s ease' }} aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
           </span>
         </button>
         {yearOneOpen && (
         <div style={{ paddingTop: isMobile ? '2rem' : '2.5rem', animation: 'fadeIn 0.25s ease-out' }}>
-          <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.25rem' }}>
+          <div className="mono" style={{ fontSize: '0.77rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.25rem' }}>
             Year One Underwriters · the partners who launched the Council
           </div>
           <div style={{ overflow: 'hidden', marginBottom: isMobile ? '2.5rem' : '3.5rem' }}>
@@ -1636,7 +1645,7 @@ The Year One Toolkit · proof of what the Council ships
               <img src="vendor-logos-line2.png" alt="Year One underwriters 7–12" style={{ height: '34px', width: 'auto', flexShrink: 0, filter: 'brightness(0)', opacity: 0.7 }} />
             </div>
           </div>
-          <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.5rem' }}>
+          <div className="mono" style={{ fontSize: '0.77rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, opacity: 0.8, marginBottom: '1.5rem' }}>
             Former Contributing Members · practitioners whose work built the foundations
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(auto-fill, minmax(130px, 1fr))', gap: isMobile ? '1rem 0.6rem' : '1.5rem 1.25rem' }}>
@@ -1670,8 +1679,8 @@ The Year One Toolkit · proof of what the Council ships
                     <span style={{ position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>{initials}</span>
                   )}
                 </div>
-                <div className="display" style={{ fontSize: '0.85rem', fontWeight: 500, marginBottom: '0.2rem', color: C.navy }}>{m.name}</div>
-                <div style={{ fontSize: '0.68rem', color: C.slate, lineHeight: 1.4, maxWidth: '20ch', margin: '0 auto' }}>{m.role}</div>
+                <div className="display" style={{ fontSize: '1.1rem', fontWeight: 500, marginBottom: '0.2rem', color: C.navy }}>{m.name}</div>
+                <div style={{ fontSize: '1.04rem', color: C.slate, lineHeight: 1.4, maxWidth: '20ch', margin: '0 auto' }}>{m.role}</div>
               </div>
             );
           })}
@@ -1702,13 +1711,13 @@ The Year One Toolkit · proof of what the Council ships
                   opacity: 0.95,
                 }}
               />
-              <p style={{ fontSize: '0.85rem', opacity: 0.7, maxWidth: '36ch', lineHeight: 1.6 }}>
+              <p style={{ fontSize: '1.1rem', opacity: 0.7, maxWidth: '36ch', lineHeight: 1.6 }}>
                 A modern research and advisory firm rethinking how we understand transformation in HR, talent, and technology.
               </p>
             </div>
             <div>
-              <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '1rem' }}>The Council</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem', fontSize: '0.88rem' }}>
+              <div className="mono" style={{ fontSize: '0.77rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '1rem' }}>The Council</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem', fontSize: '1rem' }}>
                 <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#work">The Agenda</a>
                 <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#members">Members</a>
                 <a style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }} href="#library">The Toolkit</a>
@@ -1716,20 +1725,20 @@ The Year One Toolkit · proof of what the Council ships
               </div>
             </div>
             <div>
-              <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '1rem' }}>Kyle & Co</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem', fontSize: '0.88rem' }}>
+              <div className="mono" style={{ fontSize: '0.77rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '1rem' }}>Kyle & Co</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem', fontSize: '1rem' }}>
                 <a href="https://kyleandco.com" style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }}>Main site</a>
                 <a href="https://kyleandco.com/insights/" target="_blank" style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }}>Research</a>
                 <a href="https://kyleandco.com/blog/" target="_blank" style={{ color: C.ivory, opacity: 0.85, textDecoration: 'none' }}>Blog</a>
               </div>
             </div>
             <div>
-              <div className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '1rem' }}>Get in touch</div>
-              <div style={{ fontSize: '0.88rem', opacity: 0.85, marginBottom: '0.4rem' }}>info@kyleandco.com</div>
-              <div style={{ fontSize: '0.78rem', opacity: 0.55 }}>Where Research Meets Reality.</div>
+              <div className="mono" style={{ fontSize: '0.77rem', letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.55, marginBottom: '1rem' }}>Get in touch</div>
+              <div style={{ fontSize: '1rem', opacity: 0.85, marginBottom: '0.4rem' }}>info@kyleandco.com</div>
+              <div style={{ fontSize: '1.02rem', opacity: 0.55 }}>Where Research Meets Reality.</div>
             </div>
           </div>
-          <div style={{ paddingTop: '1.5rem', borderTop: `1px solid rgba(247, 241, 234, 0.08)`, display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', opacity: 0.55, flexWrap: 'wrap', gap: '1rem' }}>
+          <div style={{ paddingTop: '1.5rem', borderTop: `1px solid rgba(247, 241, 234, 0.08)`, display: 'flex', justifyContent: 'space-between', fontSize: '1.02rem', opacity: 0.55, flexWrap: 'wrap', gap: '1rem' }}>
             <div>© 2026 Kyle & Co</div>
             <div className="mono" style={{ letterSpacing: '0.05em' }}>The Human-Centric AI Council</div>
           </div>
@@ -1786,12 +1795,12 @@ The Year One Toolkit · proof of what the Council ships
             </button>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
-              <span className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: C.slate }}>
+              <span className="mono" style={{ fontSize: '1.04rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: C.slate }}>
                 {selectedResource.tag}
               </span>
               {selectedResource.kind === 'interactive' && (
                 <span className="mono" style={{
-                  fontSize: '0.62rem', letterSpacing: '0.1em', textTransform: 'uppercase',
+                  fontSize: '0.74rem', letterSpacing: '0.1em', textTransform: 'uppercase',
                   background: C.cream, color: C.navyDark,
                   padding: '0.15rem 0.55rem', borderRadius: '2px', fontWeight: 500,
                 }}>
@@ -1800,7 +1809,7 @@ The Year One Toolkit · proof of what the Council ships
               )}
               {selectedResource.evolving && (
                 <span className="mono" style={{
-                  fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase',
+                  fontSize: '0.84rem', letterSpacing: '0.1em', textTransform: 'uppercase',
                   background: 'rgba(157, 146, 173, 0.2)', color: C.navy,
                   padding: '0.2rem 0.6rem', borderRadius: '2px', fontWeight: 500,
                 }}>
@@ -1812,7 +1821,7 @@ The Year One Toolkit · proof of what the Council ships
             <h3 className="display" style={{ fontSize: '2.25rem', fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.02em', color: C.navy, marginBottom: '1rem' }}>
               {selectedResource.title}
             </h3>
-            <div className="mono" style={{ fontSize: '0.75rem', color: C.slate, marginBottom: '2rem', letterSpacing: '0.03em' }}>
+            <div className="mono" style={{ fontSize: '0.87rem', color: C.slate, marginBottom: '2rem', letterSpacing: '0.03em' }}>
               Led by {selectedResource.authors} · {selectedResource.format}
             </div>
 
@@ -1821,12 +1830,12 @@ The Year One Toolkit · proof of what the Council ships
             </p>
 
             <div style={{ padding: '1.5rem', background: 'rgba(157, 146, 173, 0.08)', borderRadius: '6px', marginBottom: '2rem' }}>
-              <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: C.slate, marginBottom: '1rem' }}>
+              <div className="mono" style={{ fontSize: '1.06rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: C.slate, marginBottom: '1rem' }}>
                 What you get
               </div>
               <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                 {selectedResource.whatYouGet.map((w, i) => (
-                  <li key={i} style={{ display: 'flex', gap: '0.75rem', alignItems: 'start', fontSize: '0.92rem', color: C.navy, lineHeight: 1.5 }}>
+                  <li key={i} style={{ display: 'flex', gap: '0.75rem', alignItems: 'start', fontSize: '1.04rem', color: C.navy, lineHeight: 1.5 }}>
                     <span style={{ color: C.lilac, flexShrink: 0 }}>●</span>
                     {w}
                   </li>
@@ -1844,18 +1853,18 @@ The Year One Toolkit · proof of what the Council ships
                 position: 'relative',
                 overflow: 'hidden',
               }}>
-                <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '0.75rem' }}>
+                <div className="mono" style={{ fontSize: '1.04rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '0.75rem' }}>
                   Interactive version · Live now
                 </div>
                 <h4 className="display" style={{ fontSize: '1.45rem', fontWeight: 500, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '0.85rem', color: C.ivory }}>
                   {selectedResource.interactivePreview.title}
                 </h4>
-                <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: 'rgba(247, 241, 234, 0.85)', marginBottom: '1.25rem' }}>
+                <p style={{ fontSize: '1.07rem', lineHeight: 1.6, color: 'rgba(247, 241, 234, 0.85)', marginBottom: '1.25rem' }}>
                   {selectedResource.interactivePreview.description}
                 </p>
                 <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.25rem' }}>
                   {selectedResource.interactivePreview.features.map((f, i) => (
-                    <li key={i} style={{ display: 'flex', gap: '0.75rem', alignItems: 'start', fontSize: '0.88rem', color: 'rgba(247, 241, 234, 0.92)', lineHeight: 1.5 }}>
+                    <li key={i} style={{ display: 'flex', gap: '0.75rem', alignItems: 'start', fontSize: '1rem', color: 'rgba(247, 241, 234, 0.92)', lineHeight: 1.5 }}>
                       <span style={{ color: C.cream, flexShrink: 0, fontWeight: 600, display: 'inline-flex' }}><Arrow /></span>
                       {f}
                     </li>
@@ -1865,7 +1874,7 @@ The Year One Toolkit · proof of what the Council ships
                   href={selectedResource.interactivePreview.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: C.cream, color: C.navyDark, padding: '0.7rem 1.4rem', borderRadius: '100px', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: C.cream, color: C.navyDark, padding: '0.7rem 1.4rem', borderRadius: '100px', fontSize: '1.1rem', fontWeight: 600, textDecoration: 'none' }}
                 >
                   Open interactive version <Arrow />
                 </a>
@@ -1882,7 +1891,7 @@ The Year One Toolkit · proof of what the Council ships
                   borderRadius: '100px',
                   border: 'none',
                   textDecoration: 'none',
-                  fontSize: '0.9rem',
+                  fontSize: '1.02rem',
                   fontWeight: 500,
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -1894,7 +1903,7 @@ The Year One Toolkit · proof of what the Council ships
                 {selectedResource.modalCta || selectedResource.ctaLabel} <Arrow />
               </button>
               {!accessGranted && (
-                <span style={{ fontSize: '0.78rem', color: C.slate, lineHeight: 1.4, maxWidth: '26ch' }}>
+                <span style={{ fontSize: '1.02rem', color: C.slate, lineHeight: 1.4, maxWidth: '26ch' }}>
                   Free. One-time signup unlocks every framework.
                 </span>
               )}
@@ -1940,13 +1949,13 @@ The Year One Toolkit · proof of what the Council ships
             >
               ×
             </button>
-            <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>
+            <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>
               One-time signup
             </div>
             <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>
               All four frameworks, <span className="serif-italic" style={{ color: C.lilac }}>unlocked at once.</span>
             </h3>
-            <p style={{ fontSize: '0.93rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>
+            <p style={{ fontSize: '1.05rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>
               Tell us who you are, and the full library opens. No repeat forms, no sales calls. You can unsubscribe any time.
             </p>
             <form action={ML_RESOURCE_GATE_URL} method="post" target="ml-submit-frame" onSubmit={handleGateSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
@@ -1982,7 +1991,7 @@ The Year One Toolkit · proof of what the Council ships
                   padding: '1rem 1.6rem',
                   borderRadius: '100px',
                   border: 'none',
-                  fontSize: '0.9rem',
+                  fontSize: '1.02rem',
                   fontWeight: 500,
                   cursor: 'pointer',
                   fontFamily: 'inherit',
@@ -1994,7 +2003,7 @@ The Year One Toolkit · proof of what the Council ships
               >
                 Unlock the library <Arrow />
               </button>
-              <div style={{ fontSize: '0.72rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.84rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>
                 By signing up you agree to occasional updates from Kyle &amp; Co. Nothing else.
               </div>
             </form>
@@ -2044,25 +2053,25 @@ The Year One Toolkit · proof of what the Council ships
             </button>
             {applySubmitted ? (
               <div style={{ padding: '2rem 0' }}>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1rem' }}>
+                <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1rem' }}>
                   Application received
                 </div>
                 <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '1rem' }}>
                   Thanks for applying.
                 </h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate }}>
+                <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: C.slate }}>
                   We review applications on a rolling basis. If your experience is a good fit for the current cohort, you'll hear from us within two weeks.
                 </p>
               </div>
             ) : (
               <>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>
+                <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>
                   Year Two · 2026
                 </div>
                 <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>
                   Apply to the Council.
                 </h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>
+                <p style={{ fontSize: '1.05rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>
                   Year Two is open to senior HR practitioners who have moved AI work forward inside their organizations. Monthly working sessions, framework co-creation, and a peer group that does not exist anywhere else.
                 </p>
                 <form action={ML_APPLY_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'apply'}); setTimeout(() => setApplySubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
@@ -2103,7 +2112,7 @@ The Year One Toolkit · proof of what the Council ships
                       padding: '1rem 1.6rem',
                       borderRadius: '100px',
                       border: 'none',
-                      fontSize: '0.9rem',
+                      fontSize: '1.02rem',
                       fontWeight: 500,
                       cursor: 'pointer',
                       fontFamily: 'inherit',
@@ -2115,7 +2124,7 @@ The Year One Toolkit · proof of what the Council ships
                   >
                     Submit application <Arrow />
                   </button>
-                  <div style={{ fontSize: '0.72rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.84rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>
                     Applications are reviewed on a rolling basis.
                   </div>
                 </form>
@@ -2164,25 +2173,25 @@ The Year One Toolkit · proof of what the Council ships
             </button>
             {kcoSubmitted ? (
               <div style={{ padding: '2rem 0' }}>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1rem' }}>
+                <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1rem' }}>
                   Message received
                 </div>
                 <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '1rem' }}>
                   We'll be in touch.
                 </h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate }}>
+                <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: C.slate }}>
                   Kyle & Co typically responds within two business days. In the meantime, take a look at the frameworks in the Library. They give you a sense of how we work.
                 </p>
               </div>
             ) : (
               <>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>
+                <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>
                   Kyle &amp; Co
                 </div>
                 <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>
                   Let's talk about your work.
                 </h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>
+                <p style={{ fontSize: '1.05rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>
                   Implementation, advisory, and program design for HR teams putting the Council's frameworks into practice. Tell us where you're starting from.
                 </p>
                 <form action={ML_KCO_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'kco'}); setTimeout(() => setKcoSubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
@@ -2193,9 +2202,9 @@ The Year One Toolkit · proof of what the Council ships
                   <input required type="email" name="fields[email]" placeholder="Work email" style={gateInput(C)} />
                   <input required type="text" name="fields[company]" placeholder="Company" style={gateInput(C)} />
                   <div style={{ padding: '0.85rem 1rem', border: '1px solid rgba(39,55,82,0.18)', borderRadius: '4px', background: '#fff' }}>
-                    <div style={{ fontSize: '0.82rem', color: C.slate, marginBottom: '0.75rem', fontWeight: 500 }}>What would you like help with?</div>
+                    <div style={{ fontSize: '1.06rem', color: C.slate, marginBottom: '0.75rem', fontWeight: 500 }}>What would you like help with?</div>
                     {['General Advisory', 'GTM Strategy', 'Field Marketing Activation', 'Schedule an Analyst Briefing'].map((opt) => (
-                      <label key={opt} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.88rem', color: C.navy, marginBottom: '0.5rem', cursor: 'pointer' }}>
+                      <label key={opt} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', color: C.navy, marginBottom: '0.5rem', cursor: 'pointer' }}>
                         <input type="checkbox" name="fields[what_would_you_like_help_with][]" value={opt} style={{ accentColor: C.navy, width: '15px', height: '15px', flexShrink: 0 }} />
                         {opt}
                       </label>
@@ -2218,7 +2227,7 @@ The Year One Toolkit · proof of what the Council ships
                       padding: '1rem 1.6rem',
                       borderRadius: '100px',
                       border: 'none',
-                      fontSize: '0.9rem',
+                      fontSize: '1.02rem',
                       fontWeight: 500,
                       cursor: 'pointer',
                       fontFamily: 'inherit',
@@ -2230,7 +2239,7 @@ The Year One Toolkit · proof of what the Council ships
                   >
                     Send message <Arrow />
                   </button>
-                  <div style={{ fontSize: '0.72rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.84rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>
                     Kyle &amp; Co typically responds within two business days.
                   </div>
                 </form>
@@ -2250,15 +2259,15 @@ The Year One Toolkit · proof of what the Council ships
               style={{ position: 'absolute', top: '1.1rem', right: '1.2rem', background: 'transparent', border: 'none', fontSize: '1.4rem', color: C.slate, cursor: 'pointer', padding: '0.4rem 0.7rem' }} aria-label="Close">×</button>
             {townhallSubmitted ? (
               <div style={{ padding: '2rem 0' }}>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1rem' }}>You're registered</div>
+                <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1rem' }}>You're registered</div>
                 <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '1rem' }}>See you August 27.</h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate }}>You've been added to the calendar for August 27, 1:00pm ET. The invite and join link are on their way to your inbox, no button to click, it's already on your calendar.</p>
+                <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: C.slate }}>You've been added to the calendar for August 27, 1:00pm ET. The invite and join link are on their way to your inbox, no button to click, it's already on your calendar.</p>
               </div>
             ) : (
               <>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>Town Hall · August 27, 2026 · 1:00pm ET</div>
+                <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>Town Hall · August 27, 2026 · 1:00pm ET</div>
                 <h3 className="display" style={{ fontSize: '1.6rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>The Human-Centric AI Council <span className="serif-italic" style={{ color: C.lilac }}>Year Two Town Hall</span></h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>We launch the Year Two agenda live. Each pillar champion walks the room through their workstream, what they're building this year, and how HR teams and vendors can plug in. Register once and you're added to the calendar automatically.</p>
+                <p style={{ fontSize: '1.05rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>We launch the Year Two agenda live. Each pillar champion walks the room through their workstream, what they're building this year, and how HR teams and vendors can plug in. Register once and you're added to the calendar automatically.</p>
                 <form action={ML_TOWNHALL_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'townhall'}); setTimeout(() => setTownhallSubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
                     <input required type="text" name="fields[name]" placeholder="First name" style={gateInput(C)} />
@@ -2279,10 +2288,10 @@ The Year One Toolkit · proof of what the Council ships
                   </select>
                   <input type="hidden" name="ml-submit" value="1" />
                   <input type="hidden" name="anticsrf" value="true" />
-                  <button type="submit" style={{ marginTop: '0.5rem', background: C.navy, color: C.ivory, padding: '1rem 1.6rem', borderRadius: '100px', border: 'none', fontSize: '0.9rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                  <button type="submit" style={{ marginTop: '0.5rem', background: C.navy, color: C.ivory, padding: '1rem 1.6rem', borderRadius: '100px', border: 'none', fontSize: '1.02rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
                     Reserve my spot <Arrow />
                   </button>
-                  <div style={{ fontSize: '0.72rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>Free and open to the full community.</div>
+                  <div style={{ fontSize: '0.84rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>Free and open to the full community.</div>
                 </form>
               </>
             )}
@@ -2300,21 +2309,21 @@ The Year One Toolkit · proof of what the Council ships
               style={{ position: 'absolute', top: '1.1rem', right: '1.2rem', background: 'transparent', border: 'none', fontSize: '1.4rem', color: C.slate, cursor: 'pointer', padding: '0.4rem 0.7rem' }} aria-label="Close">×</button>
             {underwriterSubmitted ? (
               <div style={{ padding: '2rem 0' }}>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1rem' }}>Message received</div>
+                <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, marginBottom: '1rem' }}>Message received</div>
                 <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '1rem' }}>Thanks for reaching out.</h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate }}>Someone from Kyle & Co will be in touch within two business days to talk through what underwriting looks like for your organization.</p>
+                <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: C.slate }}>Someone from Kyle & Co will be in touch within two business days to talk through what underwriting looks like for your organization.</p>
               </div>
             ) : (
               <>
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>Underwriter Program</div>
+                <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>Underwriter Program</div>
                 <h3 className="display" style={{ fontSize: '2rem', fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.02em', color: C.navy, marginBottom: '0.75rem' }}>
                   Support the work.<br /><span className="serif-italic" style={{ color: C.lilac }}>Join the conversation.</span>
                 </h3>
-                <p style={{ fontSize: '0.93rem', lineHeight: 1.6, color: C.slate, marginBottom: '2rem' }}>
+                <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: C.slate, marginBottom: '2rem' }}>
                   The HCAIC is a practitioner-led initiative. HR technology providers and services firms underwrite the program to engage directly with senior HR decision-makers on responsible, value-creating uses of AI. Underwriters support the mission. They do not steer it.
                 </p>
 
-                <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.navy, fontWeight: 500, marginBottom: '1rem' }}>What's included</div>
+                <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.navy, fontWeight: 500, marginBottom: '1rem' }}>What's included</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
                   {[
                     { n: '01', title: 'Executive Level Networking', desc: 'Invitations to private roundtables, briefing calls, and Council events with HR and cross-functional leaders.' },
@@ -2325,17 +2334,17 @@ The Year One Toolkit · proof of what the Council ships
                     { n: '06', title: 'Curated Use-Case Showcasing', desc: 'Submit practitioner-verified use cases, ROI stories, and implementation playbooks for inclusion in the library.' },
                   ].map((item) => (
                     <div key={item.n} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', padding: '0.85rem 1rem', background: 'rgba(157,146,173,0.08)', borderRadius: '4px' }}>
-                      <span className="mono" style={{ fontSize: '0.65rem', color: C.lilac, fontWeight: 500, flexShrink: 0, paddingTop: '0.15rem' }}>{item.n}</span>
+                      <span className="mono" style={{ fontSize: '0.77rem', color: C.lilac, fontWeight: 500, flexShrink: 0, paddingTop: '0.15rem' }}>{item.n}</span>
                       <div>
-                        <div style={{ fontSize: '0.88rem', fontWeight: 500, color: C.navy, marginBottom: '0.2rem' }}>{item.title}</div>
-                        <div style={{ fontSize: '0.82rem', color: C.slate, lineHeight: 1.5 }}>{item.desc}</div>
+                        <div style={{ fontSize: '1rem', fontWeight: 500, color: C.navy, marginBottom: '0.2rem' }}>{item.title}</div>
+                        <div style={{ fontSize: '1.06rem', color: C.slate, lineHeight: 1.5 }}>{item.desc}</div>
                       </div>
                     </div>
                   ))}
                 </div>
 
                 <div style={{ borderTop: `1px solid rgba(39,55,82,0.12)`, paddingTop: '1.75rem' }}>
-                  <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '1rem' }}>Start the conversation</div>
+                  <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '1rem' }}>Start the conversation</div>
                   <form action={ML_UNDERWRITER_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'underwriter'}); setTimeout(() => setUnderwriterSubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
                       <input required type="text" name="fields[name]" placeholder="First name" style={gateInput(C)} />
@@ -2365,10 +2374,10 @@ The Year One Toolkit · proof of what the Council ships
                     />
                     <input type="hidden" name="ml-submit" value="1" />
                     <input type="hidden" name="anticsrf" value="true" />
-                    <button type="submit" style={{ marginTop: '0.5rem', background: C.navy, color: C.ivory, padding: '1rem 1.6rem', borderRadius: '100px', border: 'none', fontSize: '0.9rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                    <button type="submit" style={{ marginTop: '0.5rem', background: C.navy, color: C.ivory, padding: '1rem 1.6rem', borderRadius: '100px', border: 'none', fontSize: '1.02rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
                       Get the full overview <Arrow />
                     </button>
-                    <div style={{ fontSize: '0.72rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>Kyle &amp; Co will follow up within two business days.</div>
+                    <div style={{ fontSize: '0.84rem', color: C.slate, marginTop: '0.2rem', textAlign: 'center' }}>Kyle &amp; Co will follow up within two business days.</div>
                   </form>
                 </div>
               </>
@@ -2422,7 +2431,7 @@ The Year One Toolkit · proof of what the Council ships
                 ) : null}
               </div>
               <div>
-                <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.35rem' }}>
+                <div className="mono" style={{ fontSize: '1.04rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.35rem' }}>
                   {selectedMember.role}
                 </div>
                 <h3 className="display" style={{ fontSize: '1.75rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy }}>
@@ -2432,7 +2441,7 @@ The Year One Toolkit · proof of what the Council ships
             </div>
 
             {selectedMember.bio && (
-              <p style={{ fontSize: '0.98rem', lineHeight: 1.65, color: C.slate, marginBottom: '1.75rem' }}>
+              <p style={{ fontSize: '1.1rem', lineHeight: 1.65, color: C.slate, marginBottom: '1.75rem' }}>
                 {selectedMember.bio}
               </p>
             )}
@@ -2447,7 +2456,7 @@ The Year One Toolkit · proof of what the Council ships
                   alignItems: 'center',
                   gap: '0.5rem',
                   color: C.navy,
-                  fontSize: '0.88rem',
+                  fontSize: '1rem',
                   fontWeight: 500,
                   textDecoration: 'none',
                   borderBottom: `1px solid ${C.navy}`,
@@ -2471,9 +2480,9 @@ The Year One Toolkit · proof of what the Council ships
               {/* Header */}
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: isMobile ? '1rem' : '32px', padding: isMobile ? '1.75rem 1.5rem 1.25rem' : '32px 40px 24px', borderBottom: '1px solid rgba(39,55,82,0.14)' }}>
                 <div>
-                  <div style={{ fontSize: '12.5px', color: C.slate }}>Pillar {pillarOpen.n} · contributing members</div>
+                  <div style={{ fontSize: '16px', color: C.slate }}>Pillar {pillarOpen.n} · contributing members</div>
                   <h3 id="pillar-modal-title" className="display" style={{ margin: '8px 0 0', fontSize: isMobile ? '24px' : '30px', fontWeight: 600, lineHeight: 1.12, letterSpacing: '-0.02em', color: C.navy }}>{pillarOpen.name}</h3>
-                  <p style={{ margin: '10px 0 0', fontSize: '14px', lineHeight: 1.6, color: C.slate, maxWidth: '62ch' }}>{pillarOpen.full}</p>
+                  <p style={{ margin: '10px 0 0', fontSize: '16px', lineHeight: 1.6, color: C.slate, maxWidth: '62ch' }}>{pillarOpen.full}</p>
                 </div>
                 <button ref={pillarCloseRef} onClick={() => setPillarOpen(null)} aria-label="Close" style={{ flexShrink: 0, width: '34px', height: '34px', borderRadius: '50%', background: 'none', border: '1px solid rgba(39,55,82,0.2)', color: C.navy, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M1 1l12 12M13 1L1 13" /></svg>
@@ -2483,8 +2492,8 @@ The Year One Toolkit · proof of what the Council ships
               <div style={{ padding: isMobile ? '1.25rem 1.5rem' : '26px 40px 20px', background: '#EAE7ED', display: 'flex', alignItems: 'center', gap: '14px' }}>
                 <img src={champ.photo} alt={champ.name} style={{ width: '44px', height: '44px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
                 <div>
-                  <div style={{ fontSize: '12px', color: C.slate }}>Pillar lead</div>
-                  <div style={{ fontSize: '15px', fontWeight: 500, color: C.navy }}>{champ.name}</div>
+                  <div style={{ fontSize: '16px', color: C.slate }}>Pillar lead</div>
+                  <div style={{ fontSize: '16.5px', fontWeight: 500, color: C.navy }}>{champ.name}</div>
                 </div>
               </div>
               {/* Members grid */}
@@ -2493,8 +2502,8 @@ The Year One Toolkit · proof of what the Council ships
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '14px', paddingBottom: '16px', borderBottom: '1px solid rgba(39,55,82,0.1)' }}>
                     <img src={m.photo} alt={m.name} style={{ width: '46px', height: '46px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
                     <div>
-                      <div style={{ fontSize: '14.5px', fontWeight: 500, color: C.navy, lineHeight: 1.25 }}>{m.name}</div>
-                      <div style={{ fontSize: '12.5px', color: C.slate, lineHeight: 1.4 }}>{m.role}</div>
+                      <div style={{ fontSize: '16px', fontWeight: 500, color: C.navy, lineHeight: 1.25 }}>{m.name}</div>
+                      <div style={{ fontSize: '16px', color: C.slate, lineHeight: 1.4 }}>{m.role}</div>
                     </div>
                   </div>
                 ))}
@@ -2508,16 +2517,16 @@ The Year One Toolkit · proof of what the Council ships
         <div className="modal-overlay" onClick={() => setOutputsOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.6)', zIndex: 220, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '4rem 2rem 3rem', overflowY: 'auto', animation: 'fadeUp 0.3s ease-out' }}>
           <div onClick={(e) => e.stopPropagation()} style={{ background: C.ivory, borderRadius: '12px', padding: isMobile ? '2rem 1.5rem' : '2.5rem', maxWidth: '560px', width: '100%', position: 'relative', borderTop: `4px solid ${outputsOpen.accent}` }}>
             <button onClick={() => setOutputsOpen(null)} style={{ position: 'absolute', top: '1.1rem', right: '1.2rem', background: 'none', border: 'none', color: C.slate, cursor: 'pointer', fontSize: '1.4rem', lineHeight: 1 }} aria-label="Close">×</button>
-            <div className="mono" style={{ fontSize: '0.6rem', color: outputsOpen.accent, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '0.6rem' }}>{outputsOpen.n} · {outputsOpen.name}</div>
+            <div className="mono" style={{ fontSize: '0.84rem', color: outputsOpen.accent, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: '0.6rem' }}>{outputsOpen.n} · {outputsOpen.name}</div>
             <h3 className="display" style={{ fontSize: '1.45rem', fontWeight: 500, color: C.navy, letterSpacing: '-0.01em', marginBottom: '0.5rem', lineHeight: 1.15 }}>{outputsOpen.agenda.title}</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.75rem' }}>
               <img src={outputsOpen.agenda.leader.photo} alt={outputsOpen.agenda.leader.name} style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover' }} />
-              <div className="mono" style={{ fontSize: '0.66rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: C.slate }}>Led by {outputsOpen.agenda.leader.name}</div>
+              <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: C.slate }}>Led by {outputsOpen.agenda.leader.name}</div>
             </div>
-            <div className="mono" style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: outputsOpen.accent, fontWeight: 700, marginBottom: '1rem' }}>What we'll deliver</div>
+            <div className="mono" style={{ fontSize: '0.74rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: outputsOpen.accent, fontWeight: 700, marginBottom: '1rem' }}>What we'll deliver</div>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
               {outputsOpen.agenda.outputs.map((o, i) => (
-                <li key={i} style={{ display: 'flex', gap: '0.75rem', fontSize: '0.92rem', lineHeight: 1.5, color: C.navy }}>
+                <li key={i} style={{ display: 'flex', gap: '0.75rem', fontSize: '1.04rem', lineHeight: 1.5, color: C.navy }}>
                   <span className="mono" style={{ color: outputsOpen.accent, fontWeight: 700, flexShrink: 0 }}>{String(i + 1).padStart(2, '0')}</span>
                   <span>{o}</span>
                 </li>
@@ -2531,10 +2540,10 @@ The Year One Toolkit · proof of what the Council ships
         <div className="modal-overlay" onClick={() => setToolkitOpen(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(23,35,57,0.55)', zIndex: 200, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: isMobile ? '3rem 0.6rem' : '4rem 2rem', overflowY: 'auto', animation: 'fadeUp 0.3s ease-out' }}>
           <div onClick={(e) => e.stopPropagation()} style={{ background: C.ivory, borderRadius: '12px', padding: isMobile ? '2rem 1.1rem' : '2.75rem 3rem', maxWidth: '1080px', width: '100%', position: 'relative' }}>
             <button onClick={() => setToolkitOpen(false)} style={{ position: 'absolute', top: '1.1rem', right: '1.3rem', background: 'none', border: 'none', color: C.slate, cursor: 'pointer', fontSize: '1.5rem', lineHeight: 1, zIndex: 2 }} aria-label="Close">×</button>
-            <div className="mono" style={{ fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>The Year One Toolkit</div>
+            <div className="mono" style={{ fontSize: '1.04rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '0.75rem' }}>The Year One Toolkit</div>
             <h3 className="display" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.4rem)', fontWeight: 400, letterSpacing: '-0.02em', color: C.navy, marginBottom: '2rem', lineHeight: 1.05 }}>Four frameworks. <span className="serif-italic" style={{ color: C.lilac }}>Free. Built to be used.</span></h3>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.25rem', borderBottom: `1px solid rgba(39, 55, 82, 0.15)`, marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
-          <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: C.slate }}>
+          <div className="mono" style={{ fontSize: '0.84rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: C.slate }}>
             {filtered.length} of {resources.length} resources
           </div>
           <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
@@ -2553,7 +2562,7 @@ The Year One Toolkit · proof of what the Council ships
                   color: activeFilter === f.id ? C.ivory : C.navy,
                   border: `1px solid ${activeFilter === f.id ? C.navy : 'rgba(39, 55, 82, 0.2)'}`,
                   borderRadius: '100px',
-                  fontSize: '0.75rem',
+                  fontSize: '0.87rem',
                   letterSpacing: '0.05em',
                   textTransform: 'uppercase',
                 }}
@@ -2597,12 +2606,12 @@ The Year One Toolkit · proof of what the Council ships
                 {String(i + 1).padStart(2, '0')}
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', alignItems: 'flex-start' }}>
-                <span className="mono" style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: C.slate }}>
+                <span className="mono" style={{ fontSize: '0.77rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: C.slate }}>
                   {r.tag}
                 </span>
                 {r.kind === 'interactive' && (
                   <span className="mono" style={{
-                    fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase',
+                    fontSize: '0.84rem', letterSpacing: '0.1em', textTransform: 'uppercase',
                     background: C.red, color: C.white,
                     padding: '0.18rem 0.55rem', borderRadius: '2px', fontWeight: 500,
                     display: 'inline-flex', alignItems: 'center', gap: '0.3rem',
@@ -2612,7 +2621,7 @@ The Year One Toolkit · proof of what the Council ships
                 )}
                 {r.evolving && (
                   <span className="mono" style={{
-                    fontSize: '0.58rem', letterSpacing: '0.08em', textTransform: 'uppercase',
+                    fontSize: '1.06rem', letterSpacing: '0.08em', textTransform: 'uppercase',
                     color: C.lilac, fontWeight: 500,
                   }}>
                     Interactive in dev
@@ -2623,17 +2632,17 @@ The Year One Toolkit · proof of what the Council ships
                 <h3 className="display row-title" style={{ fontSize: '1.7rem', fontWeight: 500, letterSpacing: '-0.01em', marginBottom: '0.5rem', lineHeight: 1.1, transition: 'color 0.3s', color: C.navy }}>
                   {r.title}
                 </h3>
-                <p style={{ fontSize: '0.92rem', lineHeight: 1.55, color: C.slate, maxWidth: '64ch' }}>
+                <p style={{ fontSize: '1.04rem', lineHeight: 1.55, color: C.slate, maxWidth: '64ch' }}>
                   {r.short}
                 </p>
                 {r.subtitle ? (
-                  <div className="mono" style={{ fontSize: '0.7rem', color: C.slate, opacity: 0.65, marginTop: '0.6rem', letterSpacing: '0.05em' }}>
+                  <div className="mono" style={{ fontSize: '1.06rem', color: C.slate, opacity: 0.65, marginTop: '0.6rem', letterSpacing: '0.05em' }}>
                     {r.subtitle}
                   </div>
                 ) : null}
               </div>
               <div style={{ textAlign: 'right' }}>
-                <span className="mono" style={{ fontSize: '0.78rem', color: r.kind === 'interactive' ? C.navyMid : C.navy, fontWeight: 600, letterSpacing: '0.04em', borderBottom: `1px solid ${r.kind === 'interactive' ? C.navyMid : C.navy}`, paddingBottom: '1px' }}>
+                <span className="mono" style={{ fontSize: '1.02rem', color: r.kind === 'interactive' ? C.navyMid : C.navy, fontWeight: 600, letterSpacing: '0.04em', borderBottom: `1px solid ${r.kind === 'interactive' ? C.navyMid : C.navy}`, paddingBottom: '1px' }}>
                   {r.ctaLabel}
                 </span>
               </div>
@@ -2686,7 +2695,7 @@ The Year One Toolkit · proof of what the Council ships
           >
             ×
           </button>
-          <div className="mono" style={{ fontSize: '0.6rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.cream, marginBottom: '0.55rem' }}>
+          <div className="mono" style={{ fontSize: '0.84rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.cream, marginBottom: '0.55rem' }}>
             The frameworks are the first step.
           </div>
           <div className="display" style={{ fontSize: '1.05rem', fontWeight: 500, lineHeight: 1.25, marginBottom: '0.9rem', letterSpacing: '-0.01em' }}>
@@ -2698,7 +2707,7 @@ The Year One Toolkit · proof of what the Council ships
               background: 'none',
               border: 'none',
               color: C.cream,
-              fontSize: '0.82rem',
+              fontSize: '1.06rem',
               fontWeight: 500,
               fontFamily: 'inherit',
               cursor: 'pointer',
