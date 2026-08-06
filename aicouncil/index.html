@@ -942,7 +942,7 @@ function HCAIC_Final() {
             <button onClick={() => document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '1.1rem', fontFamily: 'inherit', padding: 0 }}>How to Participate</button>
             <button
               onClick={() => { track('townhall_register', { location: 'nav' }); setTownhallOpen(true); }}
-              style={{ background: C.cream, color: C.navy, padding: '0.6rem 1.2rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '1.04rem', fontWeight: 600, letterSpacing: '0.01em', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}
+              style={{ background: C.lilac, color: C.navy, padding: '0.7rem 1.5rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '0.92rem', fontWeight: 700, letterSpacing: '0.01em', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap', boxShadow: '0 4px 14px rgba(157,146,173,0.55)' }}
             >
               <span className="live-dot" /> Town Hall · Aug 27
             </button>
@@ -972,7 +972,7 @@ function HCAIC_Final() {
               {item.label}
             </button>
           ))}
-          <button onClick={() => { track('townhall_register', { location: 'nav' }); setTownhallOpen(true); setMenuOpen(false); }} style={{ background: C.cream, color: C.navy, borderRadius: '100px', textAlign: 'center', border: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontWeight: 600 }}>
+          <button onClick={() => { track('townhall_register', { location: 'nav' }); setTownhallOpen(true); setMenuOpen(false); }} style={{ background: C.lilac, color: C.navy, borderRadius: '100px', textAlign: 'center', border: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontWeight: 700 }}>
             <span className="live-dot" /> Register for the Town Hall · Aug 27
           </button>
           <button onClick={() => { document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false); }} style={{ background: C.navy, color: C.ivory, borderRadius: '100px', textAlign: 'center', border: 'none' }}>
@@ -1073,12 +1073,14 @@ function HCAIC_Final() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
           {events.map((ev, i) => {
             const isReplay = ev.status === 'replay';
+            const isUpcoming = ev.status === 'upcoming';
             return (
               <div key={i} style={{
-                padding: '1.75rem 1.75rem 1.6rem',
-                background: isReplay ? 'rgba(157, 146, 173, 0.1)' : C.ivory,
-                border: `1px solid rgba(39, 55, 82, 0.1)`,
-                borderRadius: '6px',
+                padding: '1.9rem 1.9rem 1.75rem',
+                background: isUpcoming ? C.lilac : isReplay ? 'rgba(157, 146, 173, 0.1)' : C.ivory,
+                border: isUpcoming ? 'none' : `1px solid rgba(39, 55, 82, 0.1)`,
+                boxShadow: isUpcoming ? '0 14px 36px rgba(39,55,82,0.16)' : 'none',
+                borderRadius: '10px',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1rem',
@@ -1113,10 +1115,10 @@ function HCAIC_Final() {
                   <div className="display" style={{ fontSize: '1.2rem', fontWeight: 500, lineHeight: 1.2, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.4rem' }}>
                     {ev.title}
                   </div>
-                  <div className="mono" style={{ fontSize: '0.84rem', color: C.slate, letterSpacing: '0.03em', marginBottom: '0.7rem' }}>
+                  <div className="mono" style={{ fontSize: '0.84rem', color: isUpcoming ? C.navy : C.slate, letterSpacing: '0.03em', marginBottom: '0.7rem' }}>
                     {ev.date}
                   </div>
-                  <p style={{ fontSize: '0.99rem', lineHeight: 1.55, color: C.slate }}>
+                  <p style={{ fontSize: '0.99rem', lineHeight: 1.55, color: isUpcoming ? C.navy : C.slate }}>
                     {ev.summary}
                   </p>
                 </div>
@@ -1130,13 +1132,13 @@ function HCAIC_Final() {
                     {ev.cta}
                   </span>
                 ) : ev.onClick ? (
-                  <button onClick={ev.onClick} style={{
-                    background: 'none', border: 'none', padding: 0,
-                    color: C.navy, fontSize: '1.1rem', fontWeight: 500,
+                  <button onClick={ev.onClick} className="link-arrow" style={{
+                    background: C.navy, border: 'none',
+                    color: C.ivory, fontSize: '0.98rem', fontWeight: 600,
                     cursor: 'pointer', fontFamily: 'inherit',
-                    marginTop: 'auto', borderBottom: `1px solid ${C.navy}`,
-                    paddingBottom: '2px', alignSelf: 'flex-start',
-                    display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                    marginTop: 'auto', borderRadius: '100px',
+                    padding: '0.75rem 1.6rem', alignSelf: 'flex-start',
+                    display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
                   }}>
                     {ev.cta} <Arrow />
                   </button>
