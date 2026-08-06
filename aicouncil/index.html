@@ -932,7 +932,7 @@ function HCAIC_Final() {
             <span style={{ transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }} />
           </button>
         ) : (
-          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', fontSize: '0.85rem' }}>
+          <div style={{ display: 'flex', gap: '1.35rem', alignItems: 'center', fontSize: '0.85rem' }}>
             <a href="https://kyleandco.com" style={{ color: C.navy, textDecoration: 'none', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><span aria-hidden="true">&larr;</span> Kyle &amp; Co</a>
             <button onClick={() => document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>The Agenda</button>
             <button onClick={() => document.querySelector('#members')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>Members</button>
@@ -941,8 +941,14 @@ function HCAIC_Final() {
             <button onClick={() => document.querySelector('#library')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>The Toolkit</button>
             <button onClick={() => document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '0.85rem', fontFamily: 'inherit', padding: 0 }}>How to Participate</button>
             <button
+              onClick={() => { track('townhall_register', { location: 'nav' }); setTownhallOpen(true); }}
+              style={{ background: C.cream, color: C.navy, padding: '0.6rem 1.2rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.01em', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}
+            >
+              <span className="live-dot" /> Register · Aug 27
+            </button>
+            <button
               onClick={() => document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' })}
-              style={{ background: C.navy, color: C.ivory, padding: '0.65rem 1.3rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 500, letterSpacing: '0.02em', fontFamily: 'inherit' }}
+              style={{ background: C.navy, color: C.ivory, padding: '0.6rem 1.2rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 500, letterSpacing: '0.02em', fontFamily: 'inherit', whiteSpace: 'nowrap' }}
             >
               Join the Council
             </button>
@@ -966,6 +972,9 @@ function HCAIC_Final() {
               {item.label}
             </button>
           ))}
+          <button onClick={() => { track('townhall_register', { location: 'nav' }); setTownhallOpen(true); setMenuOpen(false); }} style={{ background: C.cream, color: C.navy, borderRadius: '100px', textAlign: 'center', border: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontWeight: 600 }}>
+            <span className="live-dot" /> Register for the Town Hall · Aug 27
+          </button>
           <button onClick={() => { document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false); }} style={{ background: C.navy, color: C.ivory, borderRadius: '100px', textAlign: 'center', border: 'none' }}>
             Join the Council
           </button>
