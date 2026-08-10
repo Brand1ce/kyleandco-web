@@ -17,6 +17,9 @@ RewriteRule ^(index\.html)?$ /index.php [L]
 # Redirect removed Practitioners page (and any sub-path) -> AI Council
 RewriteRule ^practitioners(/.*)?$ /aicouncil/ [R=301,L]
 
+# Redirect old Insights page (and any sub-path) -> Research
+RewriteRule ^insights(/.*)?$ /research/ [R=301,L]
+
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
