@@ -260,9 +260,25 @@ body[data-page="home"] { --accent: var(--cream); --accent-deep: var(--cream-deep
   <a href="/" class="topbar-brand">
     <img src="/assets/img/logo-primary.svg" alt="Kyle &amp; Co">
   </a>
+  <style>
+  .kco-rd{position:relative;display:inline-block}
+  .kco-rd>a::after{content:" ▾";font-size:.7em;opacity:.6}
+  .kco-rd-menu{position:absolute;top:100%;left:0;min-width:180px;background:#fff;border:1px solid rgba(39,55,82,.12);border-radius:10px;box-shadow:0 12px 30px rgba(39,55,82,.14);padding:.4rem;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s ease,transform .16s ease;z-index:1000}
+  .kco-rd:hover .kco-rd-menu,.kco-rd:focus-within .kco-rd-menu{opacity:1;visibility:visible;transform:translateY(0)}
+  .kco-rd .kco-rd-menu a{display:block;padding:.5rem .7rem;font-size:.88rem;line-height:1.2;color:#273752;text-decoration:none;border-radius:6px;white-space:nowrap}
+  .kco-rd .kco-rd-menu a:hover{background:rgba(39,55,82,.07)}
+  </style>
   <div class="topbar-nav">
     <a href="/" class="active">Home</a>
-    <a href="/research/">Resources</a>
+    <span class="kco-rd">
+      <a href="/research/">Resources</a>
+      <div class="kco-rd-menu">
+        <a href="/research/#research">Research</a>
+        <a href="/research/#podcasts">Podcasts</a>
+        <a href="/research/#hosted">Webinars</a>
+        <a href="/research/#appearances">Appearances</a>
+      </div>
+    </span>
     <a href="/vendors/">For Vendors</a>
     <a href="/aicouncil">AI Council</a>
     <a href="/blog">Blog</a>
