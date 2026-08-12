@@ -474,32 +474,34 @@ function card(opts) {
 // ── Render ────────────────────────────────────────────────────────────
 // Podcast — Transformation Realness (Megaphone exports; send me new ones to refresh)
 var PODCAST = {
+  // Year to date (Jan 1 to Aug 12, 2026), Megaphone export.
+  // Delivered = downloads + streams. Listeners download far more than they stream.
   ranges: {
-    lastQuarter: { label: 'Last quarter', downloads: 1738, episodes: 36, avg: 48 },
+    ytd: { label: 'Year to date · Jan 1 to Aug 12', delivered: 3242, downloads: 3205, streams: 37, episodes: 38, avg: 85 },
   },
   topEpisodes: [
-    { title: 'From Shiny Objects to Real Solutions: Rebecca Carr on TA Tech', published: '2024-12-17', total: 262 },
+    { title: 'From Shiny Objects to Real Solutions: Rebecca Carr on TA Tech', published: '2024-12-17', total: 530 },
+    { title: 'Invisible Software, Real Impact: Paradox on Frictionless Hiring', published: '2025-02-25', total: 382 },
+    { title: 'From Buzzword to Business Impact: Lightcast on Skills-Based Transformation', published: '2025-02-18', total: 347 },
+    { title: "Workday's Big Play: Redefining HR Tech with Bold Innovation and Trust", published: '2025-02-12', total: 330 },
+    { title: 'Taming the Wild West of TA: How GoodTime Brings Order to Interview Chaos', published: '2025-02-04', total: 320 },
+    { title: 'How HiredScore Is Making Waves With Smarter, Sharper, Iconic Outcomes', published: '2025-01-28', total: 279 },
     { title: 'Beyond the Algorithm: Joe Shaker on Creativity in Recruitment Marketing', published: '2026-04-29', total: 225 },
-    { title: 'Invisible Software, Real Impact: Paradox on Frictionless Hiring', published: '2025-02-25', total: 155 },
-    { title: "Workday's Big Play: Redefining HR Tech", published: '2025-02-12', total: 133 },
-    { title: 'From Buzzword to Business Impact: Lightcast on Skills-Based Transformation', published: '2025-02-18', total: 132 },
-    { title: 'Taming the Wild West of TA: GoodTime on Interview Chaos', published: '2025-02-04', total: 125 },
-    { title: 'The Indispensable Recruiter: Rocki Howard on Staying Human in an AI World', published: '2026-05-06', total: 125 },
-    { title: 'How HiredScore Is Making Waves With Smarter, Sharper, Iconic Outcomes', published: '2025-01-28', total: 101 },
-    { title: "By the Numbers: GEM's Steve Bartel on the State of Recruiting", published: '2026-05-12', total: 72 },
-    { title: 'Bridging the Gap: Julia Levy on Supporting Graduates', published: '2026-05-14', total: 62 },
+    { title: 'From Burnout to Balance: Donald Knight on Resilient Leadership', published: '2024-12-19', total: 168 },
+    { title: 'The Indispensable Recruiter: Rocki Howard on Staying Human in an AI World', published: '2026-05-06', total: 123 },
+    { title: "By the Numbers: GEM's Steve Bartel on the Real State of Recruiting", published: '2026-05-12', total: 71 },
   ],
   recentEpisodes: [
-    { title: 'Redefining Human-Centric AI Strategies with Alicia Miller from the IRS', published: '2026-07-23', total: 5 },
-    { title: 'Reimagining HR and AI Integration with Kyle Forrest from Deloitte', published: '2026-07-09', total: 15 },
-    { title: 'Building Queer Spaces in HR Tech with Natalie Egan and Joseph Cole', published: '2026-07-02', total: 23 },
-    { title: 'Terraforming the Future: Tyler Weeks on Human-Centric AI at Marriott', published: '2026-06-25', total: 17 },
-    { title: 'The New ROI: Cathy Peterman (Wayfair) on Engineering Productivity', published: '2026-05-28', total: 28 },
-    { title: 'The Culture of Learning: Jason Desentz on Leading HR at Toshiba', published: '2026-05-21', total: 45 },
+    { title: 'The AI Productivity Promise with Matt Charney and Brandice Payne', published: '2026-08-06', total: 11 },
+    { title: 'Transforming HR Programs into Business Drivers with Jennifer Brunelle from NRG', published: '2026-07-31', total: 20 },
+    { title: 'Redefining Human-Centric AI Strategies with Alicia Miller from the IRS', published: '2026-07-23', total: 12 },
+    { title: 'Reimagining HR and AI Integration with Kyle Forrest from Deloitte', published: '2026-07-09', total: 14 },
+    { title: 'Building Queer Spaces in HR Tech with Natalie Egan and Joseph Cole', published: '2026-07-02', total: 17 },
+    { title: 'Terraforming the Future: Tyler Weeks on Human-Centric AI at Marriott', published: '2026-06-25', total: 15 },
+    { title: 'The New ROI: Cathy Peterman (Wayfair) on Engineering Productivity', published: '2026-05-28', total: 27 },
+    { title: 'The Culture of Learning: Jason Desentz on Leading HR at Toshiba', published: '2026-05-21', total: 41 },
     { title: 'Bridging the Gap: Julia Levy on Supporting Graduates', published: '2026-05-14', total: 62 },
-    { title: "By the Numbers: GEM's Steve Bartel on the State of Recruiting", published: '2026-05-12', total: 72 },
-    { title: 'The Indispensable Recruiter: Rocki Howard on Staying Human in an AI World', published: '2026-05-06', total: 125 },
-    { title: 'Beyond the Algorithm: Joe Shaker on Creativity in Recruitment Marketing', published: '2026-04-29', total: 225 },
+    { title: "By the Numbers: GEM's Steve Bartel on the Real State of Recruiting", published: '2026-05-12', total: 71 },
   ],
 };
 
@@ -783,18 +785,21 @@ function render(data) {
     html += '<div class="section-header"><div class="section-title">Podcast — Transformation Realness</div><div class="section-source">Megaphone</div></div>';
     html += '<div class="cards">';
 
-    // Quarter summary strip
-    var q = p.ranges.lastQuarter;
+    // YTD summary strip
+    var q = p.ranges.ytd;
     html += '<div class="card accent-podcast" style="grid-column:1/-1;">';
+    html += '<div style="font-size:.68rem;color:#9D92AD;margin-bottom:.6rem;">' + q.label + '</div>';
     html += '<div style="display:flex;gap:2.5rem;flex-wrap:wrap;">';
-    html += '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(q.downloads) + '</div><div class="card-sublabel">downloads · last quarter</div></div>';
-    html += '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(q.episodes) + '</div><div class="card-sublabel">episodes with plays</div></div>';
+    html += '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(q.delivered) + '</div><div class="card-sublabel">delivered</div></div>';
+    html += '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(q.downloads) + '</div><div class="card-sublabel">downloads</div></div>';
+    html += '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(q.streams) + '</div><div class="card-sublabel">streams</div></div>';
+    html += '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(q.episodes) + '</div><div class="card-sublabel">episodes</div></div>';
     html += '<div><div class="card-value" style="font-size:1.8rem;">' + fmt(q.avg) + '</div><div class="card-sublabel">avg / episode</div></div>';
     html += '</div></div>';
 
     // Side-by-side: top performers vs most recent
     html += '<div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;">';
-    html += podcastEpList('Top 10', 'Most downloads · Apr 1 to Jul 23', p.topEpisodes);
+    html += podcastEpList('Top 10', 'Most downloads · year to date', p.topEpisodes);
     html += podcastEpList('Most recent', 'Newest episodes and how they are performing', p.recentEpisodes);
     html += '</div>';
 
