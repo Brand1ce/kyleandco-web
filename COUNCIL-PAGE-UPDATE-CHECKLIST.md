@@ -17,7 +17,7 @@
 - [x] Naming: **Year Two**
 - [x] Priority 05: **Human-Centric AI Impact Analysis Program**
 - [x] Underwriters: **Year Two = isolved, Glider, CodeSignal, HiBob, GoodTime** (confirmed); **Year One** section keeps the full original 12
-- [x] Town hall placeholder: **August 27, 2026** (time TBA)
+- [x] Town hall placeholder: **September 8, 2026** (time TBA)
 - [x] Blog: coming soon — toolkit post holds the featured slot, one-line swap when live
 
 ## ⚠️ Still open — resolve before final ship
