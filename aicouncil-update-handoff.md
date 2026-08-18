@@ -35,7 +35,7 @@ Other data: `const underwriters` (~line 523) = `['Workday','Findem','Warden AI',
 
 **B. Rebuild the CTA strategy.** Primary audience is now **vendors/underwriters** (Kyle, 7/22: "we need more underwriters"). Use existing `ML_UNDERWRITER_URL` form. Secondary CTA: "follow along with the council's work" subscribe (`ML_KCO_URL`). Keep the practitioner apply form but demote it.
 
-**C. Fix `#events`.** Move the May 28 Cohort Zero Toolkit Launch to `status: 'replay'`. Add the **Year Two Launch Town Hall** entry: `date: 'September 8, 2026 · time TBA'`, `status: 'upcoming'`, wired to `ML_TOWNHALL_URL` — vendors explicitly invited. (Confirmed by Brandice 7/28; update time when set.)
+**C. Fix `#events`.** Move the May 28 Cohort Zero Toolkit Launch to `status: 'replay'`. Add the **Year Two Launch Town Hall** entry: `date: 'September 9, 2026 · time TBA'`, `status: 'upcoming'`, wired to `ML_TOWNHALL_URL` — vendors explicitly invited. (Confirmed by Brandice 7/28; update time when set.)
 
 **D. Copy pass on hero/meta.** **Naming decision (Brandice, 7/28): "Year Two."** Replace "Cohort Two" everywhere — hero badge (e.g. `Year Two · 2026 · The Year of the Human`), the `#cohort2-apply-grid` id, title/OG meta, and any body copy. Keep the "What is Human?" theme. Where the previous cohort is referenced, "Year One" / "Cohort Zero" per existing toolkit copy.
 
