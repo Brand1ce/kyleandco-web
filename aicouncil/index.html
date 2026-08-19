@@ -194,7 +194,8 @@ function HCAIC_Final() {
           fetch(CLICKS_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'X-ACCESS-KEY': CLICKS_KEY }, body: JSON.stringify(counts) });
         }).catch(() => {});
     }
-    if (resource.link) window.open(resource.link, "_blank");
+    // Navigation is handled by the anchor href (a real link is never popup-blocked,
+    // unlike window.open). This handler only records the click.
   };
 
   const handleGateSubmit = () => {
@@ -1884,7 +1885,10 @@ The Year One Toolkit · proof of what the Council ships
             )}
 
             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-              <button
+              <a
+                href={selectedResource.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => handleResourceCta(selectedResource)}
                 style={{
                   background: C.navy,
@@ -1903,7 +1907,7 @@ The Year One Toolkit · proof of what the Council ships
                 }}
               >
                 {selectedResource.modalCta || selectedResource.ctaLabel} <Arrow />
-              </button>
+              </a>
               {!accessGranted && (
                 <span style={{ fontSize: '1.02rem', color: C.slate, lineHeight: 1.4, maxWidth: '26ch' }}>
                   Free. One-time signup unlocks every framework.
