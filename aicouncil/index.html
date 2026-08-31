@@ -1558,6 +1558,7 @@ function HCAIC_Final() {
                 <div style={{ fontSize: isMobile ? '1.1rem' : '1.25rem', fontWeight: 500, color: C.navy, lineHeight: 1.3 }}>Follow the Council's work. No commitment, just the frameworks and updates as they land.</div>
               </div>
               <form action={ML_FOLLOW_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('follow_subscribe', { source: 'ai_council_page' }); setTimeout(() => setFollowSubmitted(true), 1000); }} style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', flexShrink: 0 }}>
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} />
                 <input required type="email" name="fields[email]" placeholder="Work email" style={{ ...gateInput(C), minWidth: isMobile ? '100%' : '240px' }} />
                 <input type="hidden" name="ml-submit" value="1" />
                 <input type="hidden" name="anticsrf" value="true" />
@@ -1965,6 +1966,7 @@ The Year One Toolkit · proof of what the Council ships
               Tell us who you are, and the full library opens. No repeat forms, no sales calls. You can unsubscribe any time.
             </p>
             <form action={ML_RESOURCE_GATE_URL} method="post" target="ml-submit-frame" onSubmit={handleGateSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} />
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
                 <input required type="text" name="fields[name]" placeholder="First name" style={gateInput(C)} />
                 <input required type="text" name="fields[last_name]" placeholder="Last name" style={gateInput(C)} />
@@ -2081,6 +2083,7 @@ The Year One Toolkit · proof of what the Council ships
                   Year Two is open to senior HR practitioners who have moved AI work forward inside their organizations. Monthly working sessions, framework co-creation, and a peer group that does not exist anywhere else.
                 </p>
                 <form action={ML_APPLY_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'apply'}); setTimeout(() => setApplySubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} />
                   <input required type="text" name="fields[name]" placeholder="Full name" style={gateInput(C)} />
                   <input required type="email" name="fields[email]" placeholder="Work email" style={gateInput(C)} />
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
@@ -2201,6 +2204,7 @@ The Year One Toolkit · proof of what the Council ships
                   Implementation, advisory, and program design for HR teams putting the Council's frameworks into practice. Tell us where you're starting from.
                 </p>
                 <form action={ML_KCO_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'kco'}); setTimeout(() => setKcoSubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} />
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
                     <input required type="text" name="fields[name]" placeholder="First name" style={gateInput(C)} />
                     <input required type="text" name="fields[last_name]" placeholder="Last name" style={gateInput(C)} />
@@ -2275,6 +2279,7 @@ The Year One Toolkit · proof of what the Council ships
                 <h3 className="display" style={{ fontSize: '1.6rem', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.01em', color: C.navy, marginBottom: '0.75rem' }}>The Human-Centric AI Council <span className="serif-italic" style={{ color: C.lilac }}>Year Two Town Hall</span></h3>
                 <p style={{ fontSize: '1.05rem', lineHeight: 1.55, color: C.slate, marginBottom: '1.75rem' }}>We launch the Year Two agenda live. Each pillar champion walks the room through their workstream, what they're building this year, and how HR teams and vendors can plug in. Register once and you're added to the calendar automatically.</p>
                 <form action={ML_TOWNHALL_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'townhall'}); setTimeout(() => setTownhallSubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} />
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
                     <input required type="text" name="fields[name]" placeholder="First name" style={gateInput(C)} />
                     <input required type="text" name="fields[last_name]" placeholder="Last name" style={gateInput(C)} />
@@ -2352,6 +2357,7 @@ The Year One Toolkit · proof of what the Council ships
                 <div style={{ borderTop: `1px solid rgba(39,55,82,0.12)`, paddingTop: '1.75rem' }}>
                   <div className="mono" style={{ fontSize: '1.02rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.slate, marginBottom: '1rem' }}>Start the conversation</div>
                   <form action={ML_UNDERWRITER_URL} method="post" target="ml-submit-frame" onSubmit={() => { track('form_submit', {form_name: 'underwriter'}); setTimeout(() => setUnderwriterSubmitted(true), 1000); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} />
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
                       <input required type="text" name="fields[name]" placeholder="First name" style={gateInput(C)} />
                       <input required type="text" name="fields[last_name]" placeholder="Last name" style={gateInput(C)} />
@@ -2737,5 +2743,6 @@ The Year One Toolkit · proof of what the Council ships
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<HCAIC_Final />);
 </script>
+<script src="/assets/js/antibot.js" defer></script>
 </body>
 </html>
