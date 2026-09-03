@@ -321,6 +321,26 @@ body {
   font-weight: 400; margin-bottom: 1.25rem;
 }
 
+
+/* — FEATURED PAIR (two posts published together) — */
+.featured-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.featured-row.unfeatured { display: contents; }
+.post-card.featured-half .post-card-img {
+  aspect-ratio: 16/10;
+  background: var(--ivory);
+}
+.post-card.featured-half .post-card-img img { object-fit: contain !important; }
+.post-card.featured-half .post-card-body { padding: 2rem; }
+.post-card.featured-half .post-card-title {
+  font-size: 1.35rem; line-height: 1.25;
+  font-weight: 400; margin-bottom: 1rem;
+}
+
 /* — EMPTY STATE — */
 .no-results {
   grid-column: 1 / -1; text-align: center;
@@ -340,6 +360,9 @@ body {
   .post-card.featured .post-card-img { width: 100%; min-height: 220px; aspect-ratio: 16/9; }
 }
 @media (max-width: 700px) {
+  .featured-row { grid-template-columns: 1fr; gap: 1.5rem; }
+  .post-card.featured-half .post-card-body { padding: 1.5rem; }
+  .post-card.featured-half .post-card-title { font-size: 1.2rem; }
   .topbar { padding: 0 1.25rem; }
   .topbar-links { display: none; }
   .blog-hero { padding: 8rem 1.5rem 4rem; }
@@ -413,28 +436,37 @@ body {
 <div class="blog-grid-wrap">
   <div class="blog-grid" id="blog-grid">
 
-    <a class="post-card featured fade-in" href="https://kyleandco.com/skip-the-megaproject-hr-ai-transformation/" data-category="Thought Leadership">
-      <div class="post-card-img"><img src="https://kyleandco.com/wp-content/uploads/2026/09/Dustin-Cann-blog-1-scaled.png" alt="Skip the Megaproject: Why the Best HR AI Transformations Start Small" loading="lazy" style="object-fit:contain !important;" /></div>
-      <div class="post-card-body">
-        <p class="featured-kicker">Latest</p>
-        <div class="post-card-meta"><span class="post-card-cat">Thought Leadership</span><span class="post-card-date">Sep 2, 2026</span></div>
-        <div class="post-card-title">Skip the Megaproject: Why the Best HR AI Transformations Start Small</div>
-        <p class="featured-desc">For decades, HR transformation meant waterfall projects and 12 to 18 months before anything went live. Council member Dustin Cann on why dozens of small agentic builds are outrunning the megaproject.</p>
-        <div class="featured-footer">
-          <div class="post-card-author">Dustin Cann</div>
-          <span class="featured-read">Read article →</span>
-        </div>
-      </div>
-    </a>
+    <div class="featured-row">
 
-    <a class="post-card fade-in" href="https://kyleandco.com/future-of-work-ai-choosing-not-predicting/" data-category="Thought Leadership">
-      <div class="post-card-img"><img src="https://kyleandco.com/wp-content/uploads/2026/09/Rob-Devlin-blog-1-scaled.png" alt="We're Not Predicting the Future of Work. We're Choosing It." loading="lazy" /></div>
-      <div class="post-card-body">
-        <div class="post-card-meta"><span class="post-card-cat">Thought Leadership</span><span class="post-card-date">Sep 2, 2026</span></div>
-        <div class="post-card-title">We're Not Predicting the Future of Work. We're Choosing It.</div>
-        <div class="post-card-author">Rob Devlin</div>
-      </div>
-    </a>
+      <a class="post-card featured-half fade-in" href="https://kyleandco.com/skip-the-megaproject-hr-ai-transformation/" data-category="Thought Leadership">
+        <div class="post-card-img"><img src="https://kyleandco.com/wp-content/uploads/2026/09/Dustin-Cann-blog-1-scaled.png" alt="Skip the Megaproject: Why the Best HR AI Transformations Start Small" loading="lazy" /></div>
+        <div class="post-card-body">
+          <p class="featured-kicker">Latest</p>
+          <div class="post-card-meta"><span class="post-card-cat">Thought Leadership</span><span class="post-card-date">Sep 2, 2026</span></div>
+          <div class="post-card-title">Skip the Megaproject: Why the Best HR AI Transformations Start Small</div>
+          <p class="featured-desc">For decades, HR transformation meant waterfall projects and 12 to 18 months before anything went live. Council member Dustin Cann on why dozens of small agentic builds are outrunning the megaproject.</p>
+          <div class="featured-footer">
+            <div class="post-card-author">Dustin Cann</div>
+            <span class="featured-read">Read article →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="post-card featured-half fade-in" href="https://kyleandco.com/future-of-work-ai-choosing-not-predicting/" data-category="Thought Leadership">
+        <div class="post-card-img"><img src="https://kyleandco.com/wp-content/uploads/2026/09/Rob-Devlin-blog-1-scaled.png" alt="We're Not Predicting the Future of Work. We're Choosing It." loading="lazy" /></div>
+        <div class="post-card-body">
+          <p class="featured-kicker">Latest</p>
+          <div class="post-card-meta"><span class="post-card-cat">Thought Leadership</span><span class="post-card-date">Sep 2, 2026</span></div>
+          <div class="post-card-title">We're Not Predicting the Future of Work. We're Choosing It.</div>
+          <p class="featured-desc">Every AI deployment is one of three choices: replace people, augment them, or redesign the work. Council member Rob Devlin on the questions to ask before you pick.</p>
+          <div class="featured-footer">
+            <div class="post-card-author">Rob Devlin</div>
+            <span class="featured-read">Read article →</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
 
     <a class="post-card fade-in" href="https://kyleandco.com/kyle-co-year-one-independent-hr-research/" data-category="Company News">
       <div class="post-card-img"><img src="https://kyleandco.com/wp-content/uploads/2026/08/A-year-with-my-name-on-the-door-scaled.png" alt="A year with my name on the door — Kyle &amp; Co Year One" loading="lazy" /></div>
@@ -814,11 +846,16 @@ btns.forEach(btn => {
       const cat = card.dataset.category;
       const show = filter === 'all' || cat === filter || (filter === 'AI Literacy &amp; Education' && cat === 'AI Literacy & Education');
       card.style.display = show ? '' : 'none';
-      // Remove featured class when filtering
-      if (filter !== 'all') card.classList.remove('featured');
-      if (filter === 'all' && i === 0) card.classList.add('featured');
       if (show) visibleCount++;
     });
+    // The featured pair only pairs up on "all"; otherwise the two cards
+    // flow into the main grid as ordinary cards.
+    const row = document.querySelector('.featured-row');
+    if (row) {
+      const paired = filter === 'all';
+      row.classList.toggle('unfeatured', !paired);
+      row.querySelectorAll('.post-card').forEach(c => c.classList.toggle('featured-half', paired));
+    }
     // Show/hide empty state
     let empty = document.querySelector('.no-results');
     if (visibleCount === 0) {
