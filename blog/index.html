@@ -329,6 +329,14 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 }
+.post-card.featured.unfeatured { grid-column: auto; flex-direction: column; }
+.post-card.featured.unfeatured .post-card-img { width: 100%; min-height: 0; aspect-ratio: 16/10; }
+.post-card.featured.unfeatured .post-card-body { padding: 1.5rem; }
+.post-card.featured.unfeatured .post-card-title { font-size: 1.05rem; }
+.post-card.featured.unfeatured .featured-kicker,
+.post-card.featured.unfeatured .featured-desc,
+.post-card.featured.unfeatured .featured-read { display: none; }
+
 .featured-row.unfeatured { display: contents; }
 .post-card.featured-half .post-card-img {
   aspect-ratio: 1/1;
@@ -436,12 +444,26 @@ body {
 <div class="blog-grid-wrap">
   <div class="blog-grid" id="blog-grid">
 
+    <a class="post-card featured fade-in" href="https://kyleandco.com/findem-studio-mcp-launch-analysis/" data-category="Tech Analysis">
+      <div class="post-card-img"><img src="https://kyleandco.com/wp-content/uploads/2026/09/findem-studio-featured-square.png" alt="Is Findem Studio America&#8217;s Next Top Model (Context Protocol)?" loading="lazy" /></div>
+      <div class="post-card-body">
+        <p class="featured-kicker">Latest</p>
+        <div class="post-card-meta"><span class="post-card-cat">Tech Analysis</span><span class="post-card-date">Sep 21, 2026</span></div>
+        <div class="post-card-title">Is Findem Studio America&#8217;s Next Top Model (Context Protocol)?</div>
+        <p class="featured-desc">Findem Studio launches into a category commoditizing in real time. Hari Kolam and Liv Anderman on why the MCP was never the hard part, what "finished work" has to clear, and the questions that didn't get answered.</p>
+        <div class="featured-footer">
+          <div class="post-card-author">Matt Charney</div>
+          <span class="featured-read">Read article &rarr;</span>
+        </div>
+      </div>
+    </a>
+
     <div class="featured-row">
 
       <a class="post-card featured-half fade-in" href="https://kyleandco.com/skip-the-megaproject-hr-ai-transformation/" data-category="Thought Leadership">
         <div class="post-card-img"><img src="https://kyleandco.com/wp-content/uploads/2026/09/Dustin-Cann-blog-1-scaled.png" alt="Skip the Megaproject: Why the Best HR AI Transformations Start Small" loading="lazy" /></div>
         <div class="post-card-body">
-          <p class="featured-kicker">Latest</p>
+          <p class="featured-kicker">Also new</p>
           <div class="post-card-meta"><span class="post-card-cat">Thought Leadership</span><span class="post-card-date">Sep 2, 2026</span></div>
           <div class="post-card-title">Skip the Megaproject: Why the Best HR AI Transformations Start Small</div>
           <p class="featured-desc">For decades, HR transformation meant waterfall projects and 12 to 18 months before anything went live. Council member Dustin Cann on why dozens of small agentic builds are outrunning the megaproject.</p>
@@ -455,7 +477,7 @@ body {
       <a class="post-card featured-half fade-in" href="https://kyleandco.com/future-of-work-ai-choosing-not-predicting/" data-category="Thought Leadership">
         <div class="post-card-img"><img src="https://kyleandco.com/wp-content/uploads/2026/09/Rob-Devlin-blog-1-scaled.png" alt="We're Not Predicting the Future of Work. We're Choosing It." loading="lazy" /></div>
         <div class="post-card-body">
-          <p class="featured-kicker">Latest</p>
+          <p class="featured-kicker">Also new</p>
           <div class="post-card-meta"><span class="post-card-cat">Thought Leadership</span><span class="post-card-date">Sep 2, 2026</span></div>
           <div class="post-card-title">We're Not Predicting the Future of Work. We're Choosing It.</div>
           <p class="featured-desc">Every AI deployment is one of three choices: replace people, augment them, or redesign the work. Council member Rob Devlin on the questions to ask before you pick.</p>
@@ -850,6 +872,8 @@ btns.forEach(btn => {
     });
     // The featured pair only pairs up on "all"; otherwise the two cards
     // flow into the main grid as ordinary cards.
+    const lead = document.querySelector('.post-card.featured');
+    if (lead) lead.classList.toggle('unfeatured', filter !== 'all');
     const row = document.querySelector('.featured-row');
     if (row) {
       const paired = filter === 'all';
