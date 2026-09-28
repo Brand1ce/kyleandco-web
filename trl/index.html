@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Analytics 4 (shared Kyle & Co property) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H95H1WFLGC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H95H1WFLGC');
+</script>
+
+<title>The Real Deal on Frontline Recruiting · Transformation Realness Live</title>
+<meta name="description" content="Transformation Realness Live with Kyle Lagunas. Thursday, October 1 at 1:00 PM ET. Josh Secrest (Workday), Deb Andrychuk (Joveo), and Sean Worden (Reelist) on why frontline hiring runs on different rules than corporate hiring. Free to attend.">
+<link rel="canonical" href="https://kyleandco.com/trl/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kyleandco.com/trl/">
+<meta property="og:title" content="The Real Deal on Frontline Recruiting · Transformation Realness Live">
+<meta property="og:description" content="Thursday, October 1 · 1:00 PM ET. Frontline hiring isn't corporate hiring with more applicants. Josh Secrest, Deb Andrychuk, and Sean Worden go at it live with Kyle Lagunas.">
+<meta property="og:image" content="https://kyleandco.com/assets/img/trl/og-frontline.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Real Deal on Frontline Recruiting · Transformation Realness Live">
+<meta name="twitter:description" content="Thursday, October 1 · 1:00 PM ET. Frontline hiring isn't corporate hiring with more applicants.">
+<meta name="twitter:image" content="https://kyleandco.com/assets/img/trl/og-frontline.png">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TRANSFORMATION REALNESS LIVE — event registration
+   Show palette sampled from the TRL cover art.
+   Kyle & Co navy/ivory carries the org chrome.
+   ============================================================ */
+:root{
+  --indigo:      #211848;   /* show deep navy */
+  --indigo-deep: #17103A;
+  --orchid:      #AF42A6;   /* show mid magenta */
+  --orchid-lite: #C75CBE;
+  --pink:        #E15DC9;   /* bright accent */
+  --pink-pale:   #F8DCE4;   /* cover field */
+  --pink-paler:  #FFF0F6;
+  --kc-navy:     #273752;
+  --kc-ivory:    #F7F1EA;
+  --kc-lilac:    #9D92AD;
+  --slate:       #555961;
+  --white:       #FFFFFF;
+  --display: 'Fraunces', Georgia, serif;
+  --body: 'Roboto', -apple-system, system-ui, sans-serif;
+  --wrap: 1080px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  color:var(--kc-navy);
+  background:var(--indigo-deep);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 1.5rem}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;z-index:99;background:var(--white);padding:.6rem 1rem;border-radius:6px}
+
+/* ---------- halftone texture, the cover's signature ---------- */
+.dots{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(currentColor 1.15px, transparent 1.2px);
+  background-size:7px 7px;
+  opacity:.16;
+}
+
+/* ---------- nav ---------- */
+.nav{
+  background:var(--indigo);
+  border-bottom:1px solid rgba(225,93,201,.25);
+  position:sticky;top:0;z-index:50;
+}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:60px}
+.nav__brand{
+  font-family:var(--display);font-weight:600;font-size:1.05rem;
+  color:var(--pink-pale);text-decoration:none;letter-spacing:-.01em;
+}
+.nav__brand span{color:var(--pink)}
+.nav__cta{
+  font-family:var(--body);font-weight:500;font-size:.85rem;
+  background:var(--pink);color:var(--indigo);text-decoration:none;
+  padding:.55rem 1.1rem;border-radius:999px;white-space:nowrap;
+  transition:background .18s ease,transform .18s ease;
+}
+.nav__cta:hover{background:var(--pink-pale);transform:translateY(-1px)}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  background:var(--indigo);
+  color:var(--pink-pale);
+  padding:3.5rem 0 4rem;
+}
+.hero .dots{color:var(--pink)}
+/* the diagonal pink field from the cover art */
+.hero::after{
+  content:"";position:absolute;top:0;right:0;bottom:0;width:46%;
+  background:linear-gradient(160deg,var(--pink-pale) 0%,#F4C9E4 100%);
+  clip-path:polygon(22% 0, 100% 0, 100% 100%, 0 100%);
+  opacity:.14;pointer-events:none;
+}
+.hero__inner{position:relative;z-index:2}
+.live{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--body);font-weight:700;font-size:.7rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  background:var(--pink);color:var(--indigo);
+  padding:.35rem .85rem;border-radius:999px;margin-bottom:1.4rem;
+}
+.live__dot{
+  width:7px;height:7px;border-radius:50%;background:var(--indigo);
+  animation:pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.live__dot{animation:none}}
+
+/* show wordmark, two-tone like the cover */
+.mark{
+  font-family:var(--body);font-weight:900;
+  font-size:clamp(1.5rem,4.6vw,2.6rem);line-height:.92;
+  letter-spacing:-.02em;text-transform:uppercase;
+  color:var(--orchid-lite);margin-bottom:.45rem;
+}
+.mark b{color:var(--pink-pale);font-weight:900}
+.mark em{
+  font-style:normal;color:var(--indigo);
+  background:var(--pink);padding:0 .12em;border-radius:3px;
+}
+.mark__sub{
+  display:block;font-size:.4em;letter-spacing:.06em;
+  color:var(--kc-lilac);font-weight:700;margin-top:.35rem;
+}
+.hero h1{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(2.3rem,6vw,4rem);line-height:1.02;
+  letter-spacing:-.02em;color:var(--white);
+  margin:1.75rem 0 1.25rem;max-width:16ch;text-wrap:pretty;
+}
+.hero h1 em{font-style:italic;color:var(--pink)}
+.hero__lede{
+  font-size:1.15rem;line-height:1.55;max-width:46ch;
+  color:#E4D5E4;margin-bottom:2rem;
+}
+.hero__when{
+  display:flex;flex-wrap:wrap;gap:0 2rem;align-items:baseline;
+  padding:1.25rem 0;margin-bottom:2rem;
+  border-top:1px solid rgba(225,93,201,.3);
+  border-bottom:1px solid rgba(225,93,201,.3);
+}
+.hero__when div{padding:.25rem 0}
+.hero__when dt{
+  font-size:.68rem;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--orchid-lite);margin-bottom:.2rem;
+}
+.hero__when dd{font-family:var(--display);font-size:1.25rem;color:var(--white);font-weight:500}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--body);font-weight:500;font-size:1rem;
+  background:var(--pink);color:var(--indigo);
+  padding:.95rem 1.9rem;border-radius:999px;
+  text-decoration:none;border:0;cursor:pointer;
+  transition:background .18s ease,transform .18s ease;
+}
+.btn:hover{background:var(--pink-pale);transform:translateY(-2px)}
+.btn--ghost{background:transparent;color:var(--pink-pale);border:1px solid rgba(225,93,201,.5)}
+.btn--ghost:hover{background:rgba(225,93,201,.12);color:var(--white)}
+.hero__actions{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center}
+.hero__free{font-size:.85rem;color:var(--kc-lilac)}
+
+/* ---------- section scaffolding ---------- */
+section{position:relative}
+.sec{padding:4.5rem 0}
+.sec--pink{background:var(--pink-pale)}
+.sec--ivory{background:var(--kc-ivory)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.7rem;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--orchid);margin-bottom:1rem;
+}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--orchid)}
+h2{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(1.8rem,4.2vw,2.6rem);line-height:1.1;
+  letter-spacing:-.015em;margin-bottom:1rem;text-wrap:pretty;
+}
+h2 em{font-style:italic;color:var(--orchid)}
+.sec__lede{font-size:1.08rem;max-width:58ch;color:var(--slate);margin-bottom:2.5rem}
+
+/* ---------- premise pull ---------- */
+.premise{
+  background:var(--indigo);color:var(--pink-pale);
+  padding:3.25rem 0;position:relative;overflow:hidden;
+}
+.premise .dots{color:var(--orchid)}
+.premise__inner{position:relative;z-index:2}
+.premise__inner p{max-width:26ch}
+.premise p{
+  font-family:var(--display);font-weight:500;font-style:italic;
+  font-size:clamp(1.45rem,3.4vw,2.05rem);line-height:1.3;
+  color:var(--white);
+}
+.premise p b{font-style:normal;font-weight:600;color:var(--pink)}
+
+/* ---------- panel ---------- */
+.panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1.5rem}
+.person{
+  background:var(--white);border-radius:14px;padding:1.6rem;
+  border:1px solid rgba(33,24,72,.09);
+  display:flex;flex-direction:column;gap:.9rem;
+}
+.person--host{background:var(--indigo);border-color:var(--indigo);color:var(--pink-pale)}
+.avatar{
+  width:74px;height:74px;border-radius:50%;
+  background:var(--orchid);color:var(--white);
+  font-family:var(--display);font-weight:600;font-size:1.5rem;
+  border:2px solid var(--pink);flex:none;
+}
+img.avatar{object-fit:cover;object-position:center top}
+span.avatar{display:flex;align-items:center;justify-content:center;letter-spacing:.02em}
+.person__name{font-family:var(--display);font-weight:600;font-size:1.2rem;line-height:1.2}
+.person__role{font-size:.9rem;color:var(--slate);line-height:1.45}
+.person--host .person__role{color:var(--kc-lilac)}
+.person__tag{
+  margin-top:auto;padding-top:.75rem;font-size:.78rem;line-height:1.5;
+  border-top:1px solid rgba(33,24,72,.1);color:var(--slate);
+}
+.person--host .person__tag{border-top-color:rgba(225,93,201,.3);color:#D9C7D9}
+
+/* ---------- questions ---------- */
+.qs{display:grid;gap:1px;background:rgba(33,24,72,.12);border-radius:14px;overflow:hidden}
+.q{background:var(--pink-pale);padding:1.7rem 1.8rem;display:flex;gap:1.3rem;align-items:flex-start}
+.q__n{
+  font-family:var(--display);font-weight:600;font-size:1.6rem;
+  color:var(--orchid);line-height:1;flex:none;width:1.6em;
+}
+.q__t{font-family:var(--display);font-weight:600;font-size:1.18rem;line-height:1.35;margin-bottom:.4rem}
+.q__d{font-size:.95rem;color:var(--slate);line-height:1.6}
+
+/* ---------- run of show ---------- */
+.run{display:grid;gap:0;max-width:640px}
+.run__row{
+  display:grid;grid-template-columns:78px 1fr;gap:1.3rem;
+  padding:1.05rem 0;border-bottom:1px solid rgba(33,24,72,.12);
+}
+.run__row:last-child{border-bottom:0}
+.run__t{
+  font-family:var(--body);font-weight:700;font-size:.75rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--orchid);padding-top:.25rem;
+}
+.run__h{font-family:var(--display);font-weight:600;font-size:1.05rem;line-height:1.3}
+.run__d{font-size:.92rem;color:var(--slate);margin-top:.15rem}
+
+/* ---------- registration ---------- */
+.reg{background:var(--indigo);color:var(--pink-pale);padding:4.5rem 0;position:relative;overflow:hidden}
+.reg .dots{color:var(--pink)}
+.reg__grid{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;
+}
+.reg h2{color:var(--white)}
+.reg h2 em{color:var(--pink)}
+.reg__lede{font-size:1.05rem;color:#DCC9DC;margin-bottom:1.5rem;max-width:40ch}
+.reg__points{list-style:none;display:grid;gap:.7rem}
+.reg__points li{
+  display:flex;gap:.7rem;font-size:.95rem;color:#DCC9DC;line-height:1.5;
+}
+.reg__points li::before{content:"→";color:var(--pink);font-weight:700;flex:none}
+.card{
+  background:var(--white);border-radius:16px;padding:2rem;
+  box-shadow:0 18px 50px rgba(0,0,0,.28);color:var(--kc-navy);
+}
+.card h3{font-family:var(--display);font-weight:600;font-size:1.5rem;margin-bottom:.4rem}
+.card__sub{font-size:.92rem;color:var(--slate);margin-bottom:1.4rem}
+.f{display:grid;gap:.85rem}
+.f__row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.f label{display:grid;gap:.3rem;font-size:.78rem;font-weight:500;color:var(--slate)}
+.f input{
+  font-family:inherit;font-size:.98rem;color:var(--kc-navy);
+  padding:.78rem .95rem;border:1px solid rgba(33,24,72,.22);
+  border-radius:9px;background:var(--white);outline:none;
+  transition:border-color .16s ease,box-shadow .16s ease;
+}
+.f input:focus{border-color:var(--orchid);box-shadow:0 0 0 3px rgba(175,66,166,.16)}
+.f .btn{justify-content:center;width:100%;margin-top:.4rem;background:var(--orchid);color:var(--white)}
+.f .btn:hover{background:var(--indigo)}
+.f__fine{font-size:.78rem;color:var(--slate);line-height:1.5;text-align:center}
+.sink{display:none}
+
+/* success state */
+.done{text-align:center}
+.done__check{
+  width:54px;height:54px;border-radius:50%;margin:0 auto 1.1rem;
+  background:var(--orchid);color:var(--white);
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+}
+.done h3{margin-bottom:.5rem}
+.done p{font-size:.95rem;color:var(--slate);margin-bottom:1.4rem}
+.cal{display:grid;gap:.6rem;margin-bottom:1.2rem}
+.cal a{
+  display:block;text-align:center;text-decoration:none;
+  font-size:.92rem;font-weight:500;color:var(--kc-navy);
+  padding:.7rem 1rem;border:1px solid rgba(33,24,72,.2);border-radius:9px;
+  transition:border-color .16s ease,background .16s ease;
+}
+.cal a:hover{border-color:var(--orchid);background:var(--pink-paler)}
+
+/* ---------- footer ---------- */
+.foot{background:var(--indigo-deep);color:var(--kc-lilac);padding:2.5rem 0;font-size:.88rem}
+.foot__inner{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
+.foot a{color:var(--pink-pale);text-decoration:none}
+.foot a:hover{color:var(--pink)}
+.foot__links{display:flex;flex-wrap:wrap;gap:1.4rem}
+
+/* ---------- responsive ---------- */
+@media (max-width:880px){
+  .reg__grid{grid-template-columns:1fr;gap:2.25rem}
+  .hero::after{width:70%;opacity:.1}
+}
+@media (max-width:560px){
+  .sec{padding:3.25rem 0}
+  .hero{padding:2.5rem 0 3rem}
+  .f__row{grid-template-columns:1fr}
+  .q{flex-direction:column;gap:.7rem;padding:1.4rem}
+  .hero__when{gap:0 1.25rem}
+  .run__row{grid-template-columns:1fr;gap:.25rem}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#register">Skip to registration</a>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="https://kyleandco.com">Kyle <span>&amp;</span> Co.</a>
+    <a class="nav__cta" href="#register" data-track="nav-register">Save my seat</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <span class="dots" aria-hidden="true"></span>
+  <div class="wrap hero__inner">
+
+    <span class="live"><span class="live__dot" aria-hidden="true"></span>Live · Free to attend</span>
+
+    <p class="mark" aria-label="Transformation Realness Live with Kyle Lagunas">
+      <em>Trans</em><b>formation</b><br>Realness <b>Live</b>
+      <span class="mark__sub">with Kyle Lagunas</span>
+    </p>
+
+    <h1>The real deal on <em>frontline recruiting.</em></h1>
+
+    <p class="hero__lede">Frontline hiring isn't corporate hiring with more applicants. It runs on different rules, and the employers still applying corporate assumptions to it are the ones losing shifts.</p>
+
+    <dl class="hero__when">
+      <div><dt>Date</dt><dd>Thursday, October 1</dd></div>
+      <div><dt>Time</dt><dd>1:00 PM ET</dd></div>
+      <div><dt>Length</dt><dd>One hour</dd></div>
+    </dl>
+
+    <div class="hero__actions">
+      <a class="btn" href="#register" data-track="hero-register">Register free <span aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn--ghost" href="#panel">Meet the panel</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PREMISE ============ -->
+<section class="premise">
+  <span class="dots" aria-hidden="true"></span>
+  <div class="wrap premise__inner">
+    <p>Employers tell us they're <b>drowning in applicants</b> and still can't staff a Saturday shift. That's the hour.</p>
+  </div>
+</section>
+
+<!-- ============ PANEL ============ -->
+<section class="sec sec--ivory" id="panel">
+  <div class="wrap">
+    <p class="eyebrow">Who's in the room</p>
+    <h2>Three people who actually <em>run this.</em></h2>
+    <p class="sec__lede">A platform leader, an operator who ran high-volume hiring inside a retailer before she moved to the vendor side, and a technologist who buys attention where hourly candidates actually spend it. They don't agree, and we're not smoothing that over.</p>
+
+    <div class="panel">
+
+      <article class="person">
+        <img class="avatar" src="/assets/img/trl/josh-secrest.jpg" alt="Josh Secrest" data-initials="JS" width="74" height="74">
+        <div>
+          <p class="person__name">Josh Secrest</p>
+          <p class="person__role">Workday</p>
+        </div>
+        <p class="person__tag">Ties speed straight to quality: hires made in three to five days clear the break-even point far more often than hires that take weeks.</p>
+      </article>
+
+      <article class="person">
+        <img class="avatar" src="/assets/img/trl/deb-andrychuk.jpg" alt="Deb Andrychuk" data-initials="DA" width="74" height="74">
+        <div>
+          <p class="person__name">Deb Andrychuk</p>
+          <p class="person__role">Joveo</p>
+        </div>
+        <p class="person__tag">Ran high-volume hiring at Lowe's. Watches teams pour media money into the top of the funnel while those same applicants sit in their CRM.</p>
+      </article>
+
+      <article class="person">
+        <img class="avatar" src="/assets/img/trl/sean-worden.jpg" alt="Sean Worden" data-initials="SW" width="74" height="74">
+        <div>
+          <p class="person__name">Sean Worden</p>
+          <p class="person__role">Reelist</p>
+        </div>
+        <p class="person__tag">Puts job ads on TikTok, Snapchat, and Facebook. Comes at hourly hiring as a technologist, not a recruiter.</p>
+      </article>
+
+      <article class="person person--host">
+        <img class="avatar" src="/assets/img/people/kyle.png" alt="Kyle Lagunas" data-initials="KL" width="74" height="74">
+        <div>
+          <p class="person__name">Kyle Lagunas</p>
+          <p class="person__role">Host · Kyle &amp; Co.</p>
+        </div>
+        <p class="person__tag">"I want to test this, not just nod at it."</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section class="sec sec--pink">
+  <div class="wrap">
+    <p class="eyebrow">On the table</p>
+    <h2>Four questions, and <em>nobody gets to dodge.</em></h2>
+    <p class="sec__lede">These are the actual questions going to the panel. No pre-approved answers, no vendor demos.</p>
+
+    <div class="qs">
+
+      <article class="q">
+        <span class="q__n" aria-hidden="true">01</span>
+        <div>
+          <p class="q__t">Is speed the quality strategy for hourly hiring? And where does that stop being true?</p>
+          <p class="q__d">In corporate hiring, moving fast can be a red flag. On the frontline it might be the whole game. So what happens with a licensed nurse, a CDL driver, a shift manager? Tell us where "fastest wins" breaks down.</p>
+        </div>
+      </article>
+
+      <article class="q">
+        <span class="q__n" aria-hidden="true">02</span>
+        <div>
+          <p class="q__t">Drowning in applicants, still can't staff Saturday. Is that a top-of-funnel problem?</p>
+          <p class="q__d">Or are employers buying more applicants to cover for what happens after people apply? This is the one we expect to disagree on, which is exactly why it's on the list.</p>
+        </div>
+      </article>
+
+      <article class="q">
+        <span class="q__n" aria-hidden="true">03</span>
+        <div>
+          <p class="q__t">The interview is the last human moment. Should it stay that way?</p>
+          <p class="q__d">Screening, scheduling, and offers can mostly be automated now. Where does each panelist draw the line, and what do candidates deserve to be told about the AI they're talking to?</p>
+        </div>
+      </article>
+
+      <article class="q">
+        <span class="q__n" aria-hidden="true">04</span>
+        <div>
+          <p class="q__t">"We need an AI strategy." For frontline hiring, is that the wrong thing to ask for?</p>
+          <p class="q__d">Boards want transformation. Frontline leaders need permission to fix two things really well. What should a CHRO actually bring upstairs?</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ RUN OF SHOW ============ -->
+<section class="sec sec--ivory">
+  <div class="wrap">
+    <p class="eyebrow">How the hour runs</p>
+    <h2>Sixty minutes, <em>no filler.</em></h2>
+
+    <div class="run">
+      <div class="run__row">
+        <span class="run__t">4 min</span>
+        <div><p class="run__h">Intro</p><p class="run__d">Kyle brings everyone on for a quick hello.</p></div>
+      </div>
+      <div class="run__row">
+        <span class="run__t">5 min</span>
+        <div><p class="run__h">Setting the table</p><p class="run__d">New research on the state of frontline hiring.</p></div>
+      </div>
+      <div class="run__row">
+        <span class="run__t">6 min</span>
+        <div><p class="run__h">One on one</p><p class="run__d">Kyle interviews each panelist solo, before the debate starts.</p></div>
+      </div>
+      <div class="run__row">
+        <span class="run__t">20 min</span>
+        <div><p class="run__h">Moderated panel</p><p class="run__d">All three on camera for the four questions above. Disagreeing is encouraged.</p></div>
+      </div>
+      <div class="run__row">
+        <span class="run__t">10 min</span>
+        <div><p class="run__h">Hot seat + your questions</p><p class="run__d">A surprise guest drops one spicy question on the panel. Then the chat takes over.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGISTER ============ -->
+<section class="reg" id="register">
+  <span class="dots" aria-hidden="true"></span>
+  <div class="wrap reg__grid">
+
+    <div>
+      <p class="eyebrow" style="color:var(--pink)">Registration</p>
+      <h2>Come for the debate, stay for the <em>receipts.</em></h2>
+      <p class="reg__lede">Thursday, October 1 at 1:00 PM ET. Free, live, and worth showing up for in real time.</p>
+      <ul class="reg__points">
+        <li>Register and the join link lands in your inbox before we go live.</li>
+        <li>Can't make it? Register anyway and we'll send you the replay.</li>
+        <li>Bring a question. Audience Q&amp;A is a real segment, not a courtesy.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+
+      <div id="regView">
+        <h3>Save your seat</h3>
+        <p class="card__sub">Takes about fifteen seconds.</p>
+
+        <iframe name="trl_sink" class="sink" tabindex="-1" aria-hidden="true" title="registration"></iframe>
+
+        <form class="f" id="regForm"
+              action="https://assets.mailerlite.com/jsonp/1555935/forms/199873708033049932/subscribe"
+              method="post" target="trl_sink">
+          <div class="f__row">
+            <label>First name<input type="text" name="fields[name]" required autocomplete="given-name"></label>
+            <label>Last name<input type="text" name="fields[last_name]" required autocomplete="family-name"></label>
+          </div>
+          <label>Work email<input type="email" name="fields[email]" required autocomplete="email"></label>
+          <div class="f__row">
+            <label>Job title<input type="text" name="fields[job_title]" autocomplete="organization-title"></label>
+            <label>Company<input type="text" name="fields[company]" autocomplete="organization"></label>
+          </div>
+          <input type="hidden" name="ml-submit" value="1">
+          <input type="hidden" name="anticsrf" value="true">
+          <button type="submit" class="btn">Register free <span aria-hidden="true">&rarr;</span></button>
+          <p class="f__fine">We'll email you the join link and the replay. No spam. Just signal.</p>
+        </form>
+      </div>
+
+      <div id="regDone" class="done" hidden>
+        <div class="done__check" aria-hidden="true">&#10003;</div>
+        <h3>You're in.</h3>
+        <p>Thursday, October 1 at 1:00 PM ET. Let's get it on your calendar so it doesn't get buried.</p>
+        <div class="cal">
+          <a id="calGoogle" target="_blank" rel="noopener">Add to Google Calendar</a>
+          <a id="calOutlook" target="_blank" rel="noopener">Add to Outlook</a>
+          <a id="calIcs" download="transformation-realness-live-oct-1.ics">Apple / download .ics</a>
+        </div>
+        <p class="f__fine">Your join link is on its way to your inbox.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <span>&copy; 2026 Kyle &amp; Co. No spam. Just signal.</span>
+    <nav class="foot__links">
+      <a href="https://kyleandco.com">Home</a>
+      <a href="https://kyleandco.com/research/">Research</a>
+      <a href="https://kyleandco.com/aicouncil">AI Council</a>
+      <a href="https://kyleandco.com/blog">Blog</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---- event definition: one place to change for the next episode ---- */
+  var EV = {
+    title: 'Transformation Realness Live: The Real Deal on Frontline Recruiting',
+    // Oct 1 2026, 1:00-2:00 PM ET (EDT = UTC-4)
+    startUTC: '20261001T170000Z',
+    endUTC:   '20261001T180000Z',
+    url:   'https://kyleandco.com/trl/',
+    descr: 'Josh Secrest (Workday), Deb Andrychuk (Joveo), and Sean Worden (Reelist) with Kyle Lagunas on why frontline hiring runs on different rules than corporate hiring. Your join link is in your email.'
+  };
+
+  function gcal(){
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+      + '&text=' + encodeURIComponent(EV.title)
+      + '&dates=' + EV.startUTC + '/' + EV.endUTC
+      + '&details=' + encodeURIComponent(EV.descr + '\n\n' + EV.url)
+      + '&location=' + encodeURIComponent(EV.url);
+  }
+  function outlook(){
+    function fmt(z){ // 20261001T170000Z -> 2026-10-01T17:00:00Z
+      return z.slice(0,4)+'-'+z.slice(4,6)+'-'+z.slice(6,8)+'T'
+           + z.slice(9,11)+':'+z.slice(11,13)+':'+z.slice(13,15)+'Z';
+    }
+    return 'https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent'
+      + '&subject=' + encodeURIComponent(EV.title)
+      + '&startdt=' + fmt(EV.startUTC)
+      + '&enddt='   + fmt(EV.endUTC)
+      + '&body='    + encodeURIComponent(EV.descr + '\n\n' + EV.url)
+      + '&location='+ encodeURIComponent(EV.url);
+  }
+  function ics(){
+    var lines = [
+      'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Kyle and Co//TRL//EN','CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT',
+      'UID:trl-frontline-20261001@kyleandco.com',
+      'DTSTAMP:' + EV.startUTC,
+      'DTSTART:' + EV.startUTC,
+      'DTEND:'   + EV.endUTC,
+      'SUMMARY:' + EV.title,
+      'DESCRIPTION:' + EV.descr.replace(/\n/g,'\\n') + '\\n\\n' + EV.url,
+      'URL:' + EV.url,
+      'LOCATION:' + EV.url,
+      'END:VEVENT','END:VCALENDAR'
+    ].join('\r\n');
+    return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(lines);
+  }
+
+  /* ---- headshot fallback: swap a missing image for its initials ---- */
+  Array.prototype.forEach.call(document.querySelectorAll('img.avatar'), function(img){
+    function swap(){
+      var s = document.createElement('span');
+      s.className = 'avatar';
+      s.setAttribute('aria-hidden','true');
+      s.textContent = img.getAttribute('data-initials') || '';
+      if (img.parentNode) img.parentNode.replaceChild(s, img);
+    }
+    img.addEventListener('error', swap);
+    if (img.complete && img.naturalWidth === 0) swap();
+  });
+
+  var form = document.getElementById('regForm');
+  form.addEventListener('submit', function(){
+    if (window.gtag) gtag('event', 'form_submit', { form_name: 'trl_frontline_registration' });
+    setTimeout(function(){
+      document.getElementById('calGoogle').href  = gcal();
+      document.getElementById('calOutlook').href = outlook();
+      document.getElementById('calIcs').href     = ics();
+      document.getElementById('regView').hidden = true;
+      document.getElementById('regDone').hidden = false;
+      document.getElementById('regDone').scrollIntoView({behavior:'smooth', block:'center'});
+    }, 900);
+  });
+})();
+</script>
+
+</body>
+</html>
