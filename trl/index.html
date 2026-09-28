@@ -51,7 +51,11 @@
   --purple:     #4B3F72;
   --pink-soft:  #F6C4EC;
   --white:      #FFFFFF;
-  --dots: radial-gradient(rgba(34,26,76,0.07) 1px, transparent 1px);
+  /* Kyle & Co surface, so the page reads as the main site with a TRL accent */
+  --ivory:      #F7F1EA;
+  --kc-navy:    #273752;
+  --hairline:   rgba(39,55,82,.09);
+  --dots: radial-gradient(rgba(34,26,76,0.05) 1px, transparent 1px);
   --font: 'Archivo', system-ui, -apple-system, sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -59,7 +63,7 @@ html{scroll-behavior:smooth}
 body{
   font-family:var(--font);
   color:var(--indigo);
-  background:var(--pink-field);
+  background:var(--ivory);
   background-image:var(--dots);
   background-size:26px 26px;
   line-height:1.55;
@@ -145,7 +149,7 @@ body{padding-top:60px}
 /* ----- right: panel + form ----- */
 .rail{display:flex;flex-direction:column;gap:1.5rem}
 @media (min-width:1061px){ .rail{position:sticky;top:78px} }
-.panelbox{background:var(--white);border-radius:14px;padding:1.6rem}
+.panelbox{background:var(--white);border:1px solid var(--hairline);border-radius:14px;padding:1.6rem}
 .panelbox .eyebrow{margin-bottom:.35rem}
 .panelbox__host{font-size:.88rem;color:var(--purple);margin-bottom:1.15rem}
 .panelbox__host b{font-weight:800;color:var(--indigo)}
@@ -166,7 +170,7 @@ body{padding-top:60px}
 .person--mystery .person__name{color:var(--magenta)}
 
 /* form card */
-.card{background:var(--white);border-radius:14px;padding:1.75rem}
+.card{background:var(--white);border:1px solid var(--hairline);border-radius:14px;padding:1.75rem}
 .card h2{font-size:1.25rem;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:.35rem}
 .card__sub{font-size:.85rem;color:var(--purple);margin-bottom:1.2rem}
 .f{display:grid;gap:.7rem}
@@ -202,13 +206,6 @@ body{padding-top:60px}
   transition:border-color .16s ease, background .16s ease;
 }
 .cal a:hover{border-color:var(--magenta);background:var(--pink-light)}
-
-/* ---------- footer ---------- */
-.foot{background:var(--indigo);color:rgba(252,239,244,.6);padding:1.75rem 0;font-size:.76rem;line-height:1.5}
-.foot__inner{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
-.foot a{color:var(--pink-light);text-decoration:none}
-.foot a:hover{color:var(--pink-soft)}
-.foot__links{display:flex;flex-wrap:wrap;gap:1.15rem}
 
 /* ---------- responsive ---------- */
 @media (max-width:1060px){
@@ -369,15 +366,16 @@ body{padding-top:60px}
   </div>
 </main>
 
-<footer class="foot">
-  <div class="wrap foot__inner">
-    <span>Transformation Realness with Kyle Lagunas<br>A Kyle &amp; Co production</span>
-    <nav class="foot__links">
-      <a href="https://kyleandco.com">Home</a>
-      <a href="https://kyleandco.com/research/">Research</a>
-      <a href="https://kyleandco.com/aicouncil">AI Council</a>
-      <a href="https://kyleandco.com/blog">Blog</a>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="/" class="footer-brand">Kyle &amp; Co</a>
+    <nav class="footer-links">
+      <a href="/research/">Resources</a>
+      <a href="/vendors/">For Vendors</a>
+      <a href="/aicouncil">AI Council</a>
+      <a href="/blog">Blog</a>
     </nav>
+    <div class="footer-copy">&copy; 2026 Kyle &amp; Co. No spam. Just signal.</div>
   </div>
 </footer>
 
