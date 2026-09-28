@@ -14,20 +14,20 @@
 </script>
 
 <title>The Real Deal on Frontline Recruiting &middot; Transformation Realness Live</title>
-<meta name="description" content="Transformation Realness Live with Kyle Lagunas. Thursday, October 1 at 1:00 PM ET. You have more applicants than ever and still can't staff a Saturday shift. Free to attend.">
+<meta name="description" content="Transformation Realness Live with Kyle Lagunas. Thursday, October 1 at 1:00 PM ET. Three vendors building frontline hiring technology, the same questions answered live, and you vote on the best answer. Free to attend.">
 <link rel="canonical" href="https://kyleandco.com/trl/">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kyleandco.com/trl/">
 <meta property="og:title" content="The Real Deal on Frontline Recruiting">
-<meta property="og:description" content="Thursday, October 1 at 1:00 PM ET. You have more applicants than ever and still can't staff a Saturday shift. Kyle Lagunas with Josh Secrest, Deb Andrychuk, and Sean Worden.">
-<meta property="og:image" content="https://kyleandco.com/assets/img/trl/og-frontline.png?v=2">
+<meta property="og:description" content="Thursday, October 1 at 1:00 PM ET. Three vendors, the same questions, answered live side by side. Kyle picks who's on stage. You pick who wins.">
+<meta property="og:image" content="https://kyleandco.com/assets/img/trl/og-frontline.png?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Real Deal on Frontline Recruiting">
-<meta name="twitter:description" content="Thursday, October 1 at 1:00 PM ET. You have more applicants than ever and still can't staff a Saturday shift.">
-<meta name="twitter:image" content="https://kyleandco.com/assets/img/trl/og-frontline.png?v=2">
+<meta name="twitter:description" content="Thursday, October 1 at 1:00 PM ET. Three vendors, the same questions, answered live. You pick who wins.">
+<meta name="twitter:image" content="https://kyleandco.com/assets/img/trl/og-frontline.png?v=3">
 
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -127,36 +127,47 @@ a{color:inherit}
   font-size:.68rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
   color:var(--magenta);margin-bottom:.9rem;
 }
+.ctx__note{font-size:.95rem;line-height:1.55;color:var(--purple);margin-bottom:1.1rem;max-width:50ch}
+.ctx__note b{font-weight:800;color:var(--indigo)}
 .list{list-style:none;border-top:1px solid rgba(34,26,76,.15)}
 .list li{
-  display:flex;gap:1.1rem;align-items:flex-start;
-  padding:1.05rem 0;border-bottom:1px solid rgba(34,26,76,.15);
-  font-size:1rem;line-height:1.45;color:var(--indigo);
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:.85rem 0;border-bottom:1px solid rgba(34,26,76,.15);
+  font-size:.95rem;line-height:1.5;color:var(--purple);
 }
-.list .n{font-weight:800;color:var(--magenta);flex:none;width:1.6rem}
-.ctx__cta{margin-top:1.9rem}
+.list .n,.vote .n{font-weight:800;color:var(--magenta);flex:none;width:1.5rem}
+.list b{font-weight:800;color:var(--indigo)}
+.vote{
+  display:flex;gap:1rem;align-items:flex-start;margin-top:.8rem;
+  background:var(--indigo);border-radius:10px;padding:1.1rem 1.25rem;
+  font-size:.95rem;line-height:1.5;color:var(--pink-light);
+}
+.vote .n{color:var(--pink-soft)}
+.vote b{font-weight:800;color:var(--pink-soft)}
+.ctx__cta{margin-top:1.75rem}
 
 /* ----- right: panel + form ----- */
 .rail{display:flex;flex-direction:column;gap:1.5rem}
+@media (min-width:1061px){ .rail{position:sticky;top:74px} }
 .panelbox{background:var(--white);border-radius:14px;padding:1.6rem}
 .panelbox .eyebrow{margin-bottom:.35rem}
 .panelbox__host{font-size:.88rem;color:var(--purple);margin-bottom:1.15rem}
 .panelbox__host b{font-weight:800;color:var(--indigo)}
-.people{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}
-.person{display:flex;flex-direction:column;gap:.5rem;min-width:0}
+.people{display:flex;flex-direction:column}
+.person{
+  display:grid;grid-template-columns:62px minmax(0,1fr);gap:.95rem;align-items:start;
+  padding:.85rem 0;border-top:1px solid rgba(34,26,76,.13);
+}
+.person:first-child{border-top:0;padding-top:.15rem}
 .person img,.person .sil{
-  width:100%;height:auto;aspect-ratio:1;object-fit:cover;object-position:center top;
-  border-radius:10px;background:var(--magenta);display:block;
+  width:62px;height:auto;aspect-ratio:1;object-fit:cover;object-position:center top;
+  border-radius:9px;background:var(--magenta);display:block;
 }
-.person .sil{background:var(--indigo);padding:0}
-.person__name{font-size:.82rem;font-weight:800;line-height:1.15;letter-spacing:-.01em}
-.person__org{font-size:.74rem;color:var(--purple);line-height:1.25}
+.person .sil{background:var(--indigo)}
+.person__name{font-size:.92rem;font-weight:800;line-height:1.2;letter-spacing:-.01em;margin-bottom:.15rem}
+.person__desc{font-size:.8rem;line-height:1.45;color:var(--purple)}
+.person__desc b{font-weight:800;color:var(--magenta)}
 .person--mystery .person__name{color:var(--magenta)}
-.hotseat{
-  margin-top:1.1rem;padding-top:1rem;border-top:1px solid rgba(34,26,76,.15);
-  font-size:.88rem;line-height:1.5;color:var(--purple);
-}
-.hotseat b{font-weight:800;color:var(--indigo)}
 
 /* form card */
 .card{background:var(--white);border-radius:14px;padding:1.75rem}
@@ -211,9 +222,6 @@ a{color:inherit}
 }
 @media (max-width:560px){
   .wrap{padding:0 1.25rem}
-  .people{grid-template-columns:repeat(2,1fr);gap:1rem}
-  .person__name{font-size:.9rem}
-  .person__org{font-size:.8rem}
   .f__row{grid-template-columns:1fr}
 }
 </style>
@@ -236,15 +244,22 @@ a{color:inherit}
     <span class="eyebrow">Transformation Realness Live</span>
     <h1>The Real Deal on <b>Frontline Recruiting</b></h1>
     <hr class="rule">
-    <p class="ctx__sub">You have more applicants than ever and still can't staff a Saturday shift. Kyle Lagunas and three frontline hiring leaders get into why corporate hiring rules keep losing shifts, and what to fix first.</p>
+    <p class="ctx__sub">Frontline hiring doesn't work like corporate hiring with more applicants. It runs on different rules, and the employers applying corporate assumptions to it are the ones losing shifts.</p>
+    <p class="ctx__sub">This Thursday, Kyle Lagunas goes live with three vendors building frontline hiring technology. Each company is solving the same problem a different way.</p>
     <p class="ctx__meta">Thursday, October 1 &middot; 1:00 PM ET &middot; Live stream &middot; 60 minutes</p>
 
-    <p class="ctx__label">What we'll get into</p>
-    <ul class="list">
-      <li><span class="n">01</span><span>Speed as the quality strategy for hourly hiring, and where "fastest wins" breaks down for nurses, CDL drivers, and shift managers.</span></li>
-      <li><span class="n">02</span><span>Whether you have an applicant problem or an after-they-apply problem.</span></li>
-      <li><span class="n">03</span><span>Where the human moment belongs once screening, scheduling, and offers are automated.</span></li>
-    </ul>
+    <p class="ctx__label">How TRL works</p>
+    <p class="ctx__note">Vendors usually explain their technology in their own collateral and release notes. On TRL, three of them explain it side by side, take the same questions live, and answer to each other. <b>Kyle picks who's on stage. You pick who wins.</b></p>
+    <ol class="list">
+      <li><span class="n">01</span><span><b>The research.</b> Kyle opens with new data on the state of frontline hiring.</span></li>
+      <li><span class="n">02</span><span><b>The 1:1s.</b> Each guest explains the problem their company is solving and how their approach works.</span></li>
+      <li><span class="n">03</span><span><b>The panel.</b> All three on camera, four questions, and room to disagree.</span></li>
+      <li><span class="n">04</span><span><b>The hot seat.</b> A surprise guest asks one question. Each panelist gets 90 seconds to answer. Then your questions from the chat.</span></li>
+    </ol>
+    <div class="vote">
+      <span class="n">05</span>
+      <span><b>The vote.</b> You pick the best answer. The winner gets a full episode of the Transformation Realness podcast and brings a guest of their choice.</span>
+    </div>
 
     <div class="ctx__cta"><a class="btn" href="#register" data-track="ctx-register">Save your seat</a></div>
   </section>
@@ -258,47 +273,44 @@ a{color:inherit}
 
       <div class="people">
         <article class="person">
-          <img src="/assets/img/trl/josh-secrest.jpg" alt="Josh Secrest" width="300" height="300">
-          <div>
-            <p class="person__name">Josh Secrest</p>
-            <p class="person__org">Workday</p>
+          <img src="/assets/img/trl/sean-worden.jpg" alt="Sean Worden" width="300" height="300">
+          <div class="person__body">
+            <p class="person__name">Sean Worden</p>
+            <p class="person__desc"><b>Reelist.</b> Builds job ads for TikTok, Snapchat, and Facebook that are trackable through to conversion.</p>
           </div>
         </article>
         <article class="person">
           <img src="/assets/img/trl/deb-andrychuk.jpg" alt="Deb Andrychuk" width="300" height="300">
-          <div>
+          <div class="person__body">
             <p class="person__name">Deb Andrychuk</p>
-            <p class="person__org">Joveo</p>
+            <p class="person__desc"><b>Joveo.</b> Ran high-volume hiring at Lowe's. Joveo has run recruitment media since 2017 and uses that data to find where hiring funnels stall.</p>
           </div>
         </article>
         <article class="person">
-          <img src="/assets/img/trl/sean-worden.jpg" alt="Sean Worden" width="300" height="300">
-          <div>
-            <p class="person__name">Sean Worden</p>
-            <p class="person__org">Reelist</p>
+          <img src="/assets/img/trl/josh-secrest.jpg" alt="Josh Secrest" width="300" height="300">
+          <div class="person__body">
+            <p class="person__name">Josh Secrest</p>
+            <p class="person__desc"><b>Workday.</b> Automates everything in hourly hiring except the interview.</p>
           </div>
         </article>
         <article class="person person--mystery">
           <svg class="sil" viewBox="0 0 100 100" role="img" aria-label="Silhouette of an unannounced guest">
             <rect width="100" height="100" fill="#221A4C"></rect>
-            <circle cx="50" cy="38" r="17" fill="#B246AE"></circle>
-            <path d="M16 100c0-19.9 15.2-33 34-33s34 13.1 34 33z" fill="#B246AE"></path>
-            <text x="50" y="47" text-anchor="middle" font-family="Archivo, sans-serif" font-size="24" font-weight="900" fill="#221A4C">?</text>
+            <circle cx="50" cy="35" r="18" fill="#B246AE"></circle>
+            <path d="M12 100c0-21.5 17-35.5 38-35.5S88 78.5 88 100z" fill="#B246AE"></path>
           </svg>
-          <div>
+          <div class="person__body">
             <p class="person__name">The Hot Seat</p>
-            <p class="person__org">Surprise guest</p>
+            <p class="person__desc"><b>Surprise guest.</b> One question, 90 seconds each, then the floor is yours.</p>
           </div>
         </article>
       </div>
-
-      <p class="hotseat">The last 10 minutes go to <b>your questions</b>, plus one from a surprise guest in the hot seat.</p>
     </section>
 
     <section class="card" id="register">
       <div id="regView">
         <h2>Save your seat</h2>
-        <p class="card__sub">Free to attend. Takes about fifteen seconds.</p>
+        <p class="card__sub">Watch live, bring your questions, and cast your vote.</p>
 
         <iframe name="trl_sink" class="sink" tabindex="-1" aria-hidden="true" title="registration"></iframe>
 
