@@ -33,6 +33,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Shared Kyle & Co header: styles + hamburger behavior -->
+<link rel="stylesheet" href="/assets/site.css">
+<script defer src="/assets/site.js"></script>
 
 <style>
 /* ============================================================
@@ -89,18 +92,11 @@ a{color:inherit}
 }
 .btn:hover{background:var(--magenta);transform:translateY(-2px)}
 
-/* ---------- nav ---------- */
-.nav{background:var(--indigo);position:sticky;top:0;z-index:50}
-.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:54px}
-.nav__brand{font-size:.92rem;font-weight:800;letter-spacing:-.01em;color:var(--pink-light);text-decoration:none}
-.nav__brand span{color:var(--magenta)}
-.nav__cta{
-  font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-  background:var(--magenta);color:var(--pink-light);text-decoration:none;
-  padding:.5rem 1rem;border-radius:100px;white-space:nowrap;
-  transition:background .18s ease,color .18s ease;
-}
-.nav__cta:hover{background:var(--pink-soft);color:var(--indigo)}
+/* ---------- shared topbar (site.css) sits fixed; clear it ---------- */
+body{padding-top:60px}
+@media (max-width:900px){ body{padding-top:56px} }
+/* Episode accent band, matching the persona bands on the main site */
+.persona-band.trl{background:linear-gradient(90deg,var(--magenta),var(--indigo))}
 
 /* ---------- two-column stage ---------- */
 .stage{
@@ -148,7 +144,7 @@ a{color:inherit}
 
 /* ----- right: panel + form ----- */
 .rail{display:flex;flex-direction:column;gap:1.5rem}
-@media (min-width:1061px){ .rail{position:sticky;top:74px} }
+@media (min-width:1061px){ .rail{position:sticky;top:78px} }
 .panelbox{background:var(--white);border-radius:14px;padding:1.6rem}
 .panelbox .eyebrow{margin-bottom:.35rem}
 .panelbox__host{font-size:.88rem;color:var(--purple);margin-bottom:1.15rem}
@@ -230,12 +226,36 @@ a{color:inherit}
 
 <a class="skip" href="#register">Skip to registration</a>
 
-<header class="nav">
-  <div class="wrap nav__inner">
-    <a class="nav__brand" href="https://kyleandco.com">Kyle <span>&amp;</span> Co.</a>
-    <a class="nav__cta" href="#register" data-track="nav-register">Save your seat</a>
+<nav class="topbar">
+  <a href="/" class="topbar-brand">
+    <img src="/assets/img/logo-primary.svg" alt="Kyle &amp; Co">
+  </a>
+  <style>
+  .kco-rd{position:relative;display:inline-block}
+  .kco-rd>a::after{content:" \25BE";font-size:.7em;opacity:.6}
+  .kco-rd-menu{position:absolute;top:100%;left:0;min-width:180px;background:#fff;border:1px solid rgba(39,55,82,.12);border-radius:10px;box-shadow:0 12px 30px rgba(39,55,82,.14);padding:.4rem;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s ease,transform .16s ease;z-index:1000}
+  .kco-rd:hover .kco-rd-menu,.kco-rd:focus-within .kco-rd-menu{opacity:1;visibility:visible;transform:translateY(0)}
+  .kco-rd .kco-rd-menu a{display:block;padding:.5rem .7rem;font-size:.88rem;line-height:1.2;color:#273752;text-decoration:none;border-radius:6px;white-space:nowrap}
+  .kco-rd .kco-rd-menu a:hover{background:rgba(39,55,82,.07)}
+  </style>
+  <div class="topbar-nav">
+    <a href="/">Home</a>
+    <span class="kco-rd">
+      <a href="/research/">Resources</a>
+      <div class="kco-rd-menu">
+        <a href="/research/#research">Research</a>
+        <a href="/research/#podcasts">Podcasts</a>
+        <a href="/research/#hosted">Webinars</a>
+        <a href="/research/#appearances">Appearances</a>
+      </div>
+    </span>
+    <a href="/vendors/">For Vendors</a>
+    <a href="/aicouncil">AI Council</a>
+    <a href="/blog">Blog</a>
   </div>
-</header>
+  <a href="#register" class="topbar-cta" data-track="nav-register">Save your seat</a>
+</nav>
+<div class="persona-band trl"></div>
 
 <main class="wrap stage">
 
