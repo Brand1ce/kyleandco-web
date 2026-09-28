@@ -37,9 +37,8 @@
 <style>
 /* ============================================================
    TRANSFORMATION REALNESS LIVE registration
-   Design language from the TRL Live Promo Kit (Claude Design):
-   palette, Archivo, uppercase 900 display, magenta rule,
-   halftone dot field, navy pill CTAs.
+   Two-column: session context left, panel + form right.
+   Design language from the TRL Live Promo Kit (Claude Design).
    ============================================================ */
 :root{
   --indigo:     #221A4C;
@@ -57,33 +56,34 @@ html{scroll-behavior:smooth}
 body{
   font-family:var(--font);
   color:var(--indigo);
-  background:var(--pink-light);
-  line-height:1.6;
+  background:var(--pink-field);
+  background-image:var(--dots);
+  background-size:26px 26px;
+  line-height:1.55;
   -webkit-font-smoothing:antialiased;
 }
 img{max-width:100%;display:block}
 a{color:inherit}
-.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 2rem}
+.wrap{width:100%;max-width:1220px;margin:0 auto;padding:0 2rem}
 .skip{position:absolute;left:-9999px}
 .skip:focus{left:1rem;top:1rem;z-index:99;background:var(--white);padding:.6rem 1rem;border-radius:6px}
 
 /* ---------- kit components ---------- */
 .eyebrow{
-  display:block;font-size:.7rem;font-weight:700;letter-spacing:.26em;
-  text-transform:uppercase;color:var(--magenta);margin-bottom:1.5rem;
+  display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--magenta);margin-bottom:1rem;
 }
 .eyebrow::before{content:"\25CF  "}
 .rule{width:64px;height:3px;background:var(--magenta);border:0}
 .display{
   font-weight:900;text-transform:uppercase;
-  line-height:.94;letter-spacing:-.02em;color:var(--indigo);
-  text-wrap:pretty;
+  line-height:.94;letter-spacing:-.02em;color:var(--indigo);text-wrap:pretty;
 }
 .display b{font-weight:900;color:var(--magenta)}
 .btn{
   display:inline-block;background:var(--indigo);color:var(--pink-light);
-  font-size:.875rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  padding:1rem 1.75rem;border-radius:100px;text-decoration:none;border:0;
+  font-size:.82rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:.95rem 1.7rem;border-radius:100px;text-decoration:none;border:0;
   cursor:pointer;font-family:inherit;
   transition:background .18s ease, transform .18s ease;
 }
@@ -91,136 +91,130 @@ a{color:inherit}
 
 /* ---------- nav ---------- */
 .nav{background:var(--indigo);position:sticky;top:0;z-index:50}
-.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:58px}
-.nav__brand{font-size:.95rem;font-weight:800;letter-spacing:-.01em;color:var(--pink-light);text-decoration:none}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:54px}
+.nav__brand{font-size:.92rem;font-weight:800;letter-spacing:-.01em;color:var(--pink-light);text-decoration:none}
 .nav__brand span{color:var(--magenta)}
 .nav__cta{
-  font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
   background:var(--magenta);color:var(--pink-light);text-decoration:none;
-  padding:.55rem 1.1rem;border-radius:100px;white-space:nowrap;
+  padding:.5rem 1rem;border-radius:100px;white-space:nowrap;
   transition:background .18s ease,color .18s ease;
 }
 .nav__cta:hover{background:var(--pink-soft);color:var(--indigo)}
 
-/* ---------- hero ---------- */
-.hero{
-  background:var(--pink-field);background-image:var(--dots);background-size:26px 26px;
-  padding:4.5rem 0 5rem;
-}
-.hero h1{
-  font-weight:900;text-transform:uppercase;
-  font-size:clamp(2.4rem,6.8vw,4.6rem);line-height:.92;letter-spacing:-.025em;
-  color:var(--indigo);max-width:15ch;text-wrap:pretty;
-}
-.hero h1 b{font-weight:900;color:var(--magenta)}
-.hero .rule{margin:2rem 0}
-.hero__sub{
-  font-size:clamp(1.05rem,2vw,1.25rem);line-height:1.55;
-  color:var(--purple);max-width:52ch;margin-bottom:2rem;
-}
-.hero__meta{
-  font-size:.85rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--indigo);margin-bottom:2.25rem;
+/* ---------- two-column stage ---------- */
+.stage{
+  display:grid;grid-template-columns:1.02fr .98fr;
+  gap:4rem;align-items:start;padding:3.25rem 0 4rem;
 }
 
-/* ---------- what we'll get into ---------- */
-.into{background:var(--pink-light);padding:4.5rem 0}
-.into h2{font-size:clamp(1.75rem,4vw,2.75rem);margin-bottom:2.5rem}
+/* ----- left: session context ----- */
+.ctx h1{
+  font-weight:900;text-transform:uppercase;
+  font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:.92;letter-spacing:-.025em;
+  color:var(--indigo);text-wrap:pretty;
+}
+.ctx h1 b{font-weight:900;color:var(--magenta)}
+.ctx .rule{margin:1.5rem 0}
+.ctx__sub{font-size:1.05rem;line-height:1.55;color:var(--purple);max-width:46ch;margin-bottom:1.5rem}
+.ctx__meta{
+  font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--indigo);padding:.9rem 0;
+  border-top:1px solid rgba(34,26,76,.18);border-bottom:1px solid rgba(34,26,76,.18);
+  margin-bottom:2rem;
+}
+.ctx__label{
+  font-size:.68rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--magenta);margin-bottom:.9rem;
+}
 .list{list-style:none;border-top:1px solid rgba(34,26,76,.15)}
 .list li{
-  display:flex;gap:1.5rem;align-items:flex-start;
-  padding:1.6rem 0;border-bottom:1px solid rgba(34,26,76,.15);
-  font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.45;color:var(--indigo);
+  display:flex;gap:1.1rem;align-items:flex-start;
+  padding:1.05rem 0;border-bottom:1px solid rgba(34,26,76,.15);
+  font-size:1rem;line-height:1.45;color:var(--indigo);
 }
-.list .n{font-weight:800;color:var(--magenta);flex:none;width:1.75rem}
+.list .n{font-weight:800;color:var(--magenta);flex:none;width:1.6rem}
+.ctx__cta{margin-top:1.9rem}
 
-/* ---------- panel ---------- */
-.panel{
-  background:var(--pink-field);background-image:var(--dots);background-size:26px 26px;
-  padding:4.5rem 0;
+/* ----- right: panel + form ----- */
+.rail{display:flex;flex-direction:column;gap:1.5rem}
+.panelbox{background:var(--white);border-radius:14px;padding:1.6rem}
+.panelbox .eyebrow{margin-bottom:.35rem}
+.panelbox__host{font-size:.88rem;color:var(--purple);margin-bottom:1.15rem}
+.panelbox__host b{font-weight:800;color:var(--indigo)}
+.people{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}
+.person{display:flex;flex-direction:column;gap:.5rem;min-width:0}
+.person img,.person .sil{
+  width:100%;height:auto;aspect-ratio:1;object-fit:cover;object-position:center top;
+  border-radius:10px;background:var(--magenta);display:block;
 }
-.panel h2{font-size:clamp(1.75rem,4vw,2.75rem);margin-bottom:.9rem}
-.panel__host{font-size:1.05rem;color:var(--purple);margin-bottom:2.5rem}
-.panel__host b{font-weight:800;color:var(--indigo)}
-.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.75rem}
-.person{display:flex;flex-direction:column;gap:.85rem}
-.person img{
-  width:100%;aspect-ratio:1;object-fit:cover;object-position:center top;
-  border-radius:12px;background:var(--magenta);
+.person .sil{background:var(--indigo);padding:0}
+.person__name{font-size:.82rem;font-weight:800;line-height:1.15;letter-spacing:-.01em}
+.person__org{font-size:.74rem;color:var(--purple);line-height:1.25}
+.person--mystery .person__name{color:var(--magenta)}
+.hotseat{
+  margin-top:1.1rem;padding-top:1rem;border-top:1px solid rgba(34,26,76,.15);
+  font-size:.88rem;line-height:1.5;color:var(--purple);
 }
-.person__name{font-size:1.15rem;font-weight:800;line-height:1.2}
-.person__org{font-size:.95rem;color:var(--purple);margin-top:-.35rem}
+.hotseat b{font-weight:800;color:var(--indigo)}
 
-/* ---------- closing ---------- */
-.close{background:var(--indigo);color:var(--pink-light);padding:4.5rem 0}
-.close .eyebrow{color:var(--pink-soft)}
-.close p{
-  font-size:clamp(1.3rem,3vw,2rem);line-height:1.35;font-weight:600;
-  color:var(--pink-light);max-width:34ch;margin-bottom:2.25rem;text-wrap:pretty;
-}
-.close .btn{background:var(--magenta);color:var(--pink-light)}
-.close .btn:hover{background:var(--pink-soft);color:var(--indigo)}
-
-/* ---------- registration ---------- */
-.reg{
-  background:var(--pink-field);background-image:var(--dots);background-size:26px 26px;
-  padding:4.5rem 0;
-}
-.reg__grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
-.reg h2{font-size:clamp(1.7rem,3.6vw,2.4rem);margin-bottom:1.25rem}
-.reg__note{font-size:1.05rem;color:var(--purple);max-width:34ch}
-.card{background:var(--white);border-radius:14px;padding:2.25rem}
-.card h3{font-size:1.35rem;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:1.4rem}
-.f{display:grid;gap:.85rem}
-.f__row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+/* form card */
+.card{background:var(--white);border-radius:14px;padding:1.75rem}
+.card h2{font-size:1.25rem;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:.35rem}
+.card__sub{font-size:.85rem;color:var(--purple);margin-bottom:1.2rem}
+.f{display:grid;gap:.7rem}
+.f__row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
 .f label{
-  display:grid;gap:.35rem;
-  font-size:.66rem;font-weight:700;letter-spacing:.14em;
+  display:grid;gap:.3rem;
+  font-size:.62rem;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;color:var(--purple);
 }
 .f input{
-  font-family:inherit;font-size:1rem;font-weight:400;color:var(--indigo);
-  padding:.8rem .95rem;border:1px solid rgba(34,26,76,.2);
+  font-family:inherit;font-size:.95rem;font-weight:400;color:var(--indigo);
+  padding:.7rem .85rem;border:1px solid rgba(34,26,76,.2);
   border-radius:8px;background:var(--white);outline:none;
   transition:border-color .16s ease, box-shadow .16s ease;
 }
 .f input:focus{border-color:var(--magenta);box-shadow:0 0 0 3px rgba(178,70,174,.15)}
-.f .btn{width:100%;margin-top:.5rem;text-align:center}
-.f__fine{font-size:.82rem;color:var(--purple);line-height:1.5;text-align:center}
+.f .btn{width:100%;margin-top:.35rem;text-align:center}
+.f__fine{font-size:.76rem;color:var(--purple);line-height:1.45;text-align:center}
 .sink{display:none}
 .done{text-align:center}
 .done__check{
-  width:52px;height:52px;border-radius:50%;margin:0 auto 1.1rem;
+  width:46px;height:46px;border-radius:50%;margin:0 auto .9rem;
   background:var(--magenta);color:var(--pink-light);
-  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+  display:flex;align-items:center;justify-content:center;font-size:1.35rem;
 }
-.done p{font-size:.98rem;color:var(--purple);margin:.5rem 0 1.4rem}
-.cal{display:grid;gap:.6rem;margin-bottom:1.1rem}
+.done p{font-size:.92rem;color:var(--purple);margin:.4rem 0 1.2rem}
+.cal{display:grid;gap:.5rem;margin-bottom:.9rem}
 .cal a{
   display:block;text-align:center;text-decoration:none;
-  font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--indigo);padding:.85rem 1rem;
+  font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--indigo);padding:.75rem 1rem;
   border:1px solid rgba(34,26,76,.2);border-radius:100px;
   transition:border-color .16s ease, background .16s ease;
 }
 .cal a:hover{border-color:var(--magenta);background:var(--pink-light)}
 
 /* ---------- footer ---------- */
-.foot{background:var(--indigo);color:rgba(252,239,244,.6);padding:2.25rem 0;font-size:.8rem;line-height:1.5}
+.foot{background:var(--indigo);color:rgba(252,239,244,.6);padding:1.75rem 0;font-size:.76rem;line-height:1.5}
 .foot__inner{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
 .foot a{color:var(--pink-light);text-decoration:none}
 .foot a:hover{color:var(--pink-soft)}
-.foot__links{display:flex;flex-wrap:wrap;gap:1.25rem}
+.foot__links{display:flex;flex-wrap:wrap;gap:1.15rem}
 
 /* ---------- responsive ---------- */
-@media (max-width:860px){ .reg__grid{grid-template-columns:1fr;gap:2.25rem} }
+@media (max-width:1060px){
+  .stage{grid-template-columns:1fr;gap:2.5rem;padding:2.5rem 0 3rem}
+  .ctx__sub{max-width:none}
+  .ctx__cta{display:none}
+}
 @media (max-width:560px){
   .wrap{padding:0 1.25rem}
-  .hero{padding:3rem 0 3.5rem}
-  .into,.panel,.close,.reg{padding:3.25rem 0}
+  .people{grid-template-columns:repeat(2,1fr);gap:1rem}
+  .person__name{font-size:.9rem}
+  .person__org{font-size:.8rem}
   .f__row{grid-template-columns:1fr}
-  .list li{gap:1rem}
-  .people{grid-template-columns:repeat(2,1fr);gap:1.25rem}
 }
 </style>
 </head>
@@ -235,87 +229,76 @@ a{color:inherit}
   </div>
 </header>
 
-<main>
+<main class="wrap stage">
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="wrap">
+  <!-- ============ LEFT: SESSION CONTEXT ============ -->
+  <section class="ctx">
     <span class="eyebrow">Transformation Realness Live</span>
     <h1>The Real Deal on <b>Frontline Recruiting</b></h1>
     <hr class="rule">
-    <p class="hero__sub">You have more applicants than ever and still can't staff a Saturday shift. Kyle Lagunas and three frontline hiring leaders get into why corporate hiring rules keep losing shifts, and what to fix first.</p>
-    <p class="hero__meta">Thursday, October 1 &middot; 1:00 PM ET &middot; Live stream &middot; 60 minutes</p>
-    <a class="btn" href="#register" data-track="hero-register">Save your seat</a>
-  </div>
-</section>
+    <p class="ctx__sub">You have more applicants than ever and still can't staff a Saturday shift. Kyle Lagunas and three frontline hiring leaders get into why corporate hiring rules keep losing shifts, and what to fix first.</p>
+    <p class="ctx__meta">Thursday, October 1 &middot; 1:00 PM ET &middot; Live stream &middot; 60 minutes</p>
 
-<!-- ============ WHAT WE'LL GET INTO ============ -->
-<section class="into">
-  <div class="wrap">
-    <span class="eyebrow">On the table</span>
-    <h2 class="display">What we'll <b>get into</b></h2>
+    <p class="ctx__label">What we'll get into</p>
     <ul class="list">
       <li><span class="n">01</span><span>Speed as the quality strategy for hourly hiring, and where "fastest wins" breaks down for nurses, CDL drivers, and shift managers.</span></li>
       <li><span class="n">02</span><span>Whether you have an applicant problem or an after-they-apply problem.</span></li>
       <li><span class="n">03</span><span>Where the human moment belongs once screening, scheduling, and offers are automated.</span></li>
     </ul>
-  </div>
-</section>
 
-<!-- ============ PANEL ============ -->
-<section class="panel">
-  <div class="wrap">
-    <span class="eyebrow">The panel</span>
-    <h2 class="display">Who's <b>in the room</b></h2>
-    <p class="panel__host">Hosted by <b>Kyle Lagunas</b>, Kyle &amp; Co</p>
-    <div class="people">
-      <article class="person">
-        <img src="/assets/img/trl/josh-secrest.jpg" alt="Josh Secrest" width="300" height="300">
-        <div>
-          <p class="person__name">Josh Secrest</p>
-          <p class="person__org">Workday</p>
-        </div>
-      </article>
-      <article class="person">
-        <img src="/assets/img/trl/deb-andrychuk.jpg" alt="Deb Andrychuk" width="300" height="300">
-        <div>
-          <p class="person__name">Deb Andrychuk</p>
-          <p class="person__org">Joveo</p>
-        </div>
-      </article>
-      <article class="person">
-        <img src="/assets/img/trl/sean-worden.jpg" alt="Sean Worden" width="300" height="300">
-        <div>
-          <p class="person__name">Sean Worden</p>
-          <p class="person__org">Reelist</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
+    <div class="ctx__cta"><a class="btn" href="#register" data-track="ctx-register">Save your seat</a></div>
+  </section>
 
-<!-- ============ CLOSING ============ -->
-<section class="close">
-  <div class="wrap">
-    <span class="eyebrow">The hot seat</span>
-    <p>The last 10 minutes go to your questions, plus one from a surprise guest in the hot seat.</p>
-    <a class="btn" href="#register" data-track="close-register">Save your seat</a>
-  </div>
-</section>
+  <!-- ============ RIGHT: PANEL + FORM ============ -->
+  <div class="rail">
 
-<!-- ============ REGISTER ============ -->
-<section class="reg" id="register">
-  <div class="wrap reg__grid">
+    <section class="panelbox">
+      <span class="eyebrow">The panel</span>
+      <p class="panelbox__host">Hosted by <b>Kyle Lagunas</b>, Kyle &amp; Co</p>
 
-    <div>
-      <span class="eyebrow">Registration</span>
-      <h2 class="display">Free, live, <b>and worth the hour</b></h2>
-      <p class="reg__note">Thursday, October 1 at 1:00 PM ET. Register and we'll send the join link before we go live, plus the replay if you can't make it.</p>
-    </div>
+      <div class="people">
+        <article class="person">
+          <img src="/assets/img/trl/josh-secrest.jpg" alt="Josh Secrest" width="300" height="300">
+          <div>
+            <p class="person__name">Josh Secrest</p>
+            <p class="person__org">Workday</p>
+          </div>
+        </article>
+        <article class="person">
+          <img src="/assets/img/trl/deb-andrychuk.jpg" alt="Deb Andrychuk" width="300" height="300">
+          <div>
+            <p class="person__name">Deb Andrychuk</p>
+            <p class="person__org">Joveo</p>
+          </div>
+        </article>
+        <article class="person">
+          <img src="/assets/img/trl/sean-worden.jpg" alt="Sean Worden" width="300" height="300">
+          <div>
+            <p class="person__name">Sean Worden</p>
+            <p class="person__org">Reelist</p>
+          </div>
+        </article>
+        <article class="person person--mystery">
+          <svg class="sil" viewBox="0 0 100 100" role="img" aria-label="Silhouette of an unannounced guest">
+            <rect width="100" height="100" fill="#221A4C"></rect>
+            <circle cx="50" cy="38" r="17" fill="#B246AE"></circle>
+            <path d="M16 100c0-19.9 15.2-33 34-33s34 13.1 34 33z" fill="#B246AE"></path>
+            <text x="50" y="47" text-anchor="middle" font-family="Archivo, sans-serif" font-size="24" font-weight="900" fill="#221A4C">?</text>
+          </svg>
+          <div>
+            <p class="person__name">The Hot Seat</p>
+            <p class="person__org">Surprise guest</p>
+          </div>
+        </article>
+      </div>
 
-    <div class="card">
+      <p class="hotseat">The last 10 minutes go to <b>your questions</b>, plus one from a surprise guest in the hot seat.</p>
+    </section>
+
+    <section class="card" id="register">
       <div id="regView">
-        <h3>Save your seat</h3>
+        <h2>Save your seat</h2>
+        <p class="card__sub">Free to attend. Takes about fifteen seconds.</p>
 
         <iframe name="trl_sink" class="sink" tabindex="-1" aria-hidden="true" title="registration"></iframe>
 
@@ -340,7 +323,7 @@ a{color:inherit}
 
       <div id="regDone" class="done" hidden>
         <div class="done__check" aria-hidden="true">&#10003;</div>
-        <h3>You're in</h3>
+        <h2>You're in</h2>
         <p>Thursday, October 1 at 1:00 PM ET. Get it on your calendar so it doesn't get buried.</p>
         <div class="cal">
           <a id="calGoogle" target="_blank" rel="noopener">Google Calendar</a>
@@ -349,11 +332,9 @@ a{color:inherit}
         </div>
         <p class="f__fine">Your join link is on its way to your inbox.</p>
       </div>
-    </div>
+    </section>
 
   </div>
-</section>
-
 </main>
 
 <footer class="foot">
@@ -425,7 +406,6 @@ a{color:inherit}
       document.getElementById('calIcs').href     = ics();
       document.getElementById('regView').hidden = true;
       document.getElementById('regDone').hidden = false;
-      document.getElementById('regDone').scrollIntoView({behavior:'smooth', block:'center'});
     }, 900);
   });
 })();
