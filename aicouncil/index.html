@@ -159,10 +159,6 @@ function HCAIC_Final() {
       setTimeout(() => setGateOpen(true), 400);
       return;
     }
-    if (hash === '#register') {
-      setTimeout(() => setTownhallOpen(true), 400);
-      return;
-    }
     if (hash === '#apply') {
       setTimeout(() => setApplyOpen(true), 400);
       return;
@@ -745,13 +741,13 @@ function HCAIC_Final() {
   // status values: 'upcoming' | 'replay' | 'live'
   const events = [
     {
-      status: 'upcoming',
+      status: 'replay',
       type: 'Town Hall',
       title: 'The Human-Centric AI Council Year Two Town Hall',
-      date: 'September 9, 2026 · 1:00pm ET',
-      summary: 'We launch the Year Two agenda live. Each pillar champion walks the room through their workstream, and how HR teams and vendors can plug in. Register once and you are added to the calendar automatically.',
-      cta: 'Register',
-      onClick: () => setTownhallOpen(true),
+      date: 'Recorded September 9, 2026',
+      summary: 'The Year Two agenda, live. Each pillar champion walks through what their group is accountable for this year, and each workstream leader covers what they are shipping and when.',
+      cta: 'Watch the replay',
+      href: 'https://youtu.be/n66-YMkUIJQ',
     },
   ];
 
@@ -942,12 +938,13 @@ function HCAIC_Final() {
             <button onClick={() => document.querySelector('#underwriters')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '1.1rem', fontFamily: 'inherit', padding: 0 }}>Underwriters</button>
             <button onClick={() => document.querySelector('#library')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '1.1rem', fontFamily: 'inherit', padding: 0 }}>The Toolkit</button>
             <button onClick={() => document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.navy, fontSize: '1.1rem', fontFamily: 'inherit', padding: 0 }}>How to Participate</button>
-            <button
-              onClick={() => { track('townhall_register', { location: 'nav' }); setTownhallOpen(true); }}
-              style={{ background: C.lilac, color: C.navy, padding: '0.7rem 1.5rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '0.92rem', fontWeight: 700, letterSpacing: '0.01em', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap', boxShadow: '0 4px 14px rgba(157,146,173,0.55)' }}
+            <a
+              href="https://youtu.be/n66-YMkUIJQ" target="_blank" rel="noopener noreferrer"
+              onClick={() => track('townhall_replay', { location: 'nav' })}
+              style={{ background: C.lilac, color: C.navy, padding: '0.7rem 1.5rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '0.92rem', fontWeight: 700, letterSpacing: '0.01em', fontFamily: 'inherit', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap', boxShadow: '0 4px 14px rgba(157,146,173,0.55)' }}
             >
-              <span className="live-dot" /> Town Hall · Sept 9
-            </button>
+              Town Hall replay
+            </a>
             <button
               onClick={() => document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' })}
               style={{ background: C.navy, color: C.ivory, padding: '0.6rem 1.2rem', borderRadius: '100px', border: 'none', cursor: 'pointer', fontSize: '1.04rem', fontWeight: 500, letterSpacing: '0.02em', fontFamily: 'inherit', whiteSpace: 'nowrap' }}
@@ -974,9 +971,9 @@ function HCAIC_Final() {
               {item.label}
             </button>
           ))}
-          <button onClick={() => { track('townhall_register', { location: 'nav' }); setTownhallOpen(true); setMenuOpen(false); }} style={{ background: C.lilac, color: C.navy, borderRadius: '100px', textAlign: 'center', border: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontWeight: 700 }}>
-            <span className="live-dot" /> Register for the Town Hall · Sept 9
-          </button>
+          <a href="https://youtu.be/n66-YMkUIJQ" target="_blank" rel="noopener noreferrer" onClick={() => { track('townhall_replay', { location: 'nav' }); setMenuOpen(false); }} style={{ background: C.lilac, color: C.navy, borderRadius: '100px', textAlign: 'center', border: 'none', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontWeight: 700 }}>
+            Watch the Town Hall replay
+          </a>
           <button onClick={() => { document.querySelector('#join')?.scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false); }} style={{ background: C.navy, color: C.ivory, borderRadius: '100px', textAlign: 'center', border: 'none' }}>
             Join the Council
           </button>
@@ -1145,7 +1142,7 @@ function HCAIC_Final() {
                     {ev.cta} <Arrow />
                   </button>
                 ) : (
-                  <a href={ev.href} className="link-arrow" style={{
+                  <a href={ev.href} target="_blank" rel="noopener noreferrer" className="link-arrow" style={{
                     color: C.navy, fontSize: '1.1rem', fontWeight: 500,
                     textDecoration: 'none', marginTop: 'auto',
                     borderBottom: `1px solid ${C.navy}`, paddingBottom: '2px',
