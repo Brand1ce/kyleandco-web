@@ -14,6 +14,12 @@ RewriteBase /
 RewriteCond %{QUERY_STRING} (^|&)(p|page_id|preview|preview_id|elementor-preview)= [NC]
 RewriteRule ^(index\.html)?$ /index.php [L]
 
+# /live/TRL -> the static TRL watch page.
+# Aliased rather than served from a real live/ directory: /live/ is a WordPress
+# page, and creating live/ on disk would make the WordPress rule below
+# (RewriteCond %{REQUEST_FILENAME} !-d) stop matching, breaking /live/.
+RewriteRule ^live/TRL/?$ /trl/live/index.html [NC,L]
+
 # Redirect removed Practitioners page (and any sub-path) -> AI Council
 RewriteRule ^practitioners(/.*)?$ /aicouncil/ [R=301,L]
 

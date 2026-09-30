@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Analytics 4 (shared Kyle & Co property) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H95H1WFLGC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H95H1WFLGC');
+</script>
+
+<title>Watch live &middot; Transformation Realness Live</title>
+<meta name="description" content="Watch Transformation Realness Live with Kyle Lagunas. The stream starts automatically on this page when we go on air.">
+<link rel="canonical" href="https://kyleandco.com/live/TRL">
+<meta name="robots" content="noindex">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kyleandco.com/live/TRL">
+<meta property="og:title" content="Watch Transformation Realness Live">
+<meta property="og:description" content="The stream starts automatically on this page when we go on air.">
+<meta property="og:image" content="https://kyleandco.com/assets/img/trl/og-frontline.png?v=3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kyleandco.com/assets/img/trl/og-frontline.png?v=3">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<script defer src="/assets/site.js"></script>
+
+<style>
+/* ============================================================
+   TRL watch page. Same shape as /live/, branded for the show.
+   ============================================================ */
+:root{
+  --indigo:     #221A4C;
+  --magenta:    #B246AE;
+  --pink-field: #F8DDE8;
+  --pink-light: #FCEFF4;
+  --purple:     #4B3F72;
+  --pink-soft:  #F6C4EC;
+  --white:      #FFFFFF;
+  --ivory:      #F7F1EA;
+  --hairline:   rgba(39,55,82,.09);
+  --dots: radial-gradient(rgba(34,26,76,0.05) 1px, transparent 1px);
+  --font: 'Archivo', system-ui, -apple-system, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);color:var(--indigo);
+  background:var(--ivory);background-image:var(--dots);background-size:26px 26px;
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+  padding-top:60px;
+}
+@media (max-width:900px){ body{padding-top:56px} }
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:100%;max-width:900px;margin:0 auto;padding:0 1.5rem}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;z-index:99;background:var(--white);padding:.6rem 1rem;border-radius:6px}
+.persona-band.trl{background:linear-gradient(90deg,var(--magenta),var(--indigo))}
+
+.stage{padding:2.5rem 0 3.5rem}
+
+/* show lockup */
+.lockup{display:flex;align-items:center;gap:1rem;margin-bottom:1.75rem}
+.lockup img{width:64px;height:64px;border-radius:12px;flex:none}
+.lockup__eyebrow{
+  font-size:.68rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--magenta);
+}
+.lockup__eyebrow::before{content:"\25CF  "}
+.lockup__name{font-size:.98rem;font-weight:700;color:var(--indigo);margin-top:.2rem}
+
+h1{
+  font-weight:900;text-transform:uppercase;
+  font-size:clamp(2rem,5.4vw,3.2rem);line-height:.94;letter-spacing:-.025em;
+  color:var(--indigo);text-wrap:pretty;
+}
+h1 b{font-weight:900;color:var(--magenta)}
+.rule{width:64px;height:3px;background:var(--magenta);border:0;margin:1.5rem 0}
+.lede{font-size:1.05rem;line-height:1.6;color:var(--purple);max-width:56ch;margin-bottom:2rem}
+
+/* player */
+.player{
+  position:relative;width:100%;aspect-ratio:16/9;
+  background:var(--indigo);border-radius:14px;overflow:hidden;
+  border:1px solid var(--hairline);box-shadow:0 18px 50px rgba(34,26,76,.16);
+}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+
+.note{
+  font-size:.95rem;line-height:1.55;color:var(--purple);
+  padding:1.1rem 0 0;margin-bottom:2.25rem;
+}
+.note b{font-weight:800;color:var(--indigo)}
+
+/* replay card */
+.replay{
+  background:var(--white);border:1px solid var(--hairline);border-radius:14px;padding:1.9rem;
+}
+.replay__eyebrow{
+  font-size:.68rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--magenta);margin-bottom:.5rem;
+}
+.replay h2{
+  font-size:clamp(1.35rem,3vw,1.75rem);font-weight:900;text-transform:uppercase;
+  letter-spacing:-.02em;line-height:1.05;margin-bottom:.6rem;
+}
+.replay__sub{font-size:.95rem;line-height:1.55;color:var(--purple);margin-bottom:1.3rem;max-width:52ch}
+.f{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+.f input{
+  flex:1 1 200px;min-width:0;font-family:inherit;font-size:.98rem;color:var(--indigo);
+  padding:.8rem .95rem;border:1px solid rgba(34,26,76,.2);border-radius:8px;
+  background:var(--white);outline:none;transition:border-color .16s ease,box-shadow .16s ease;
+}
+.f input:focus{border-color:var(--magenta);box-shadow:0 0 0 3px rgba(178,70,174,.15)}
+.btn{
+  flex:none;background:var(--indigo);color:var(--pink-light);border:0;cursor:pointer;
+  font-family:inherit;font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:.9rem 1.6rem;border-radius:100px;transition:background .18s ease,transform .18s ease;
+}
+.btn:hover{background:var(--magenta);transform:translateY(-2px)}
+.f__fine{width:100%;font-size:.8rem;color:var(--purple);margin-top:.2rem}
+.sink{display:none}
+/* an explicit display wins over the hidden attribute's UA rule, so restate it */
+[hidden]{display:none!important}
+.done{display:flex;gap:.9rem;align-items:flex-start}
+.done__check{
+  width:36px;height:36px;border-radius:50%;flex:none;background:var(--magenta);
+  color:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:1.05rem;
+}
+.done p{font-size:.98rem;color:var(--purple)}
+.done b{font-weight:800;color:var(--indigo);display:block;margin-bottom:.15rem}
+
+@media (max-width:560px){
+  .stage{padding:1.75rem 0 2.5rem}
+  .replay{padding:1.4rem}
+  .btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#player">Skip to the stream</a>
+
+<nav class="topbar">
+  <a href="/" class="topbar-brand">
+    <img src="/assets/img/logo-primary.svg" alt="Kyle &amp; Co">
+  </a>
+  <div class="topbar-nav">
+    <a href="/">Home</a>
+    <a href="/research/">Resources</a>
+    <a href="/vendors/">For Vendors</a>
+    <a href="/aicouncil">AI Council</a>
+    <a href="/blog">Blog</a>
+  </div>
+  <a href="/trl/" class="topbar-cta">About the show</a>
+</nav>
+<div class="persona-band trl"></div>
+
+<main class="wrap stage">
+
+  <div class="lockup">
+    <img src="/assets/img/trl/trl-cover.jpg" alt="Transformation Realness" width="64" height="64">
+    <div>
+      <p class="lockup__eyebrow">Live stream</p>
+      <p class="lockup__name">Transformation Realness Live</p>
+    </div>
+  </div>
+
+  <h1>Welcome. You're <b>in the right room.</b></h1>
+  <hr class="rule">
+  <p class="lede">This is where Kyle Lagunas hosts Transformation Realness Live. The stream starts automatically below when we go on air. If you're early, hang tight, and say hello in the chat.</p>
+
+  <div class="player" id="player">
+    <iframe
+      src="https://streaming.player.evmux.com/evplayer?liveId=c68e76ab-7165-44d2-ba38-fd4208913aa4&amp;embed=true"
+      title="Transformation Realness Live"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+
+  <p class="note"><b>Questions during the session?</b> Drop them in the chat. We read everything, and the last stretch of the show is yours.</p>
+
+  <section class="replay">
+    <div id="replayView">
+      <p class="replay__eyebrow">Didn't register?</p>
+      <h2>Get the replay sent to you</h2>
+      <p class="replay__sub">Drop your details below and we'll send you the recording once the session wraps. No gate, no pitch.</p>
+
+      <iframe name="trl_replay_sink" class="sink" tabindex="-1" aria-hidden="true" title="replay signup"></iframe>
+
+      <form class="f" id="replayForm"
+            action="https://assets.mailerlite.com/jsonp/1555935/forms/200051788948178271/subscribe"
+            method="post" target="trl_replay_sink">
+        <input type="text" name="fields[name]" placeholder="First name" required autocomplete="given-name" aria-label="First name">
+        <input type="email" name="fields[email]" placeholder="Work email" required autocomplete="email" aria-label="Work email">
+        <input type="hidden" name="fields[source]" value="live-trl">
+        <input type="hidden" name="ml-submit" value="1">
+        <input type="hidden" name="anticsrf" value="true">
+        <button type="submit" class="btn">Send me the replay</button>
+        <p class="f__fine">No spam. Just signal.</p>
+      </form>
+    </div>
+
+    <div id="replayDone" class="done" hidden>
+      <div class="done__check" aria-hidden="true">&#10003;</div>
+      <p><b>You're on the list.</b> We'll send the replay to your inbox once the session wraps.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="/" class="footer-brand">Kyle &amp; Co</a>
+    <nav class="footer-links">
+      <a href="/trl/">Transformation Realness Live</a>
+      <a href="/research/">Resources</a>
+      <a href="/aicouncil">AI Council</a>
+      <a href="/blog">Blog</a>
+    </nav>
+    <div class="footer-copy">&copy; 2026 Kyle &amp; Co. No spam. Just signal.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form = document.getElementById('replayForm');
+  form.addEventListener('submit', function(){
+    if (window.gtag) gtag('event', 'form_submit', { form_name: 'trl_live_replay' });
+    setTimeout(function(){
+      document.getElementById('replayView').hidden = true;
+      document.getElementById('replayDone').hidden = false;
+    }, 1000);
+  });
+})();
+</script>
+
+</body>
+</html>
