@@ -123,6 +123,31 @@ body{padding-top:60px}
   border-top:1px solid rgba(34,26,76,.18);border-bottom:1px solid rgba(34,26,76,.18);
   margin-bottom:2rem;
 }
+/* Event-day watch CTA */
+.watch{
+  display:flex;align-items:center;gap:1rem;
+  background:var(--indigo);color:var(--pink-light);
+  border-radius:12px;padding:1.05rem 1.35rem;margin:0 0 2rem;
+  text-decoration:none;
+  transition:background .18s ease, transform .18s ease;
+}
+.watch:hover{background:var(--magenta);transform:translateY(-2px)}
+.watch__dot{
+  width:11px;height:11px;border-radius:50%;background:var(--magenta);flex:none;
+  animation:watchPulse 1.6s ease-out infinite;
+}
+/* the dot would disappear against the magenta hover fill */
+.watch:hover .watch__dot{background:var(--pink-soft);animation:none}
+@keyframes watchPulse{
+  0%{box-shadow:0 0 0 0 rgba(178,70,174,.65)}
+  70%{box-shadow:0 0 0 12px rgba(178,70,174,0)}
+  100%{box-shadow:0 0 0 0 rgba(178,70,174,0)}
+}
+@media (prefers-reduced-motion:reduce){ .watch__dot{animation:none} }
+.watch__txt{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.watch__txt b{font-size:.95rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.watch__txt span{font-size:.85rem;color:var(--pink-soft);margin-top:.22rem}
+.watch__arrow{margin-left:auto;font-size:1.15rem;flex:none}
 .ctx__label{
   font-size:.68rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
   color:var(--magenta);margin-bottom:.9rem;
@@ -260,7 +285,7 @@ body{padding-top:60px}
     <a href="/aicouncil">AI Council</a>
     <a href="/blog">Blog</a>
   </div>
-  <a href="#register" class="topbar-cta" data-track="nav-register">Save your seat</a>
+  <a href="/live/TRL" class="topbar-cta" data-track="nav-watch">Watch now</a>
 </nav>
 <div class="persona-band trl"></div>
 
@@ -274,6 +299,15 @@ body{padding-top:60px}
     <p class="ctx__sub">Frontline hiring doesn't work like corporate hiring with more applicants. It runs on different rules, and the employers applying corporate assumptions to it are the ones losing shifts.</p>
     <p class="ctx__sub">This Thursday, Kyle Lagunas goes live with three vendors building frontline hiring technology. Each company is solving the same problem a different way.</p>
     <p class="ctx__meta">Thursday, October 1 &middot; 1:00 PM ET &middot; Live stream &middot; 60 minutes</p>
+
+    <a class="watch" href="/live/TRL" data-track="ctx-watch">
+      <span class="watch__dot" aria-hidden="true"></span>
+      <span class="watch__txt">
+        <b>Watch now</b>
+        <span>Live at 1:00 PM ET</span>
+      </span>
+      <span class="watch__arrow" aria-hidden="true">&rarr;</span>
+    </a>
 
     <p class="ctx__label">How TRL works</p>
     <p class="ctx__note">You usually meet these companies one demo at a time, and each one says it has frontline hiring figured out. On TRL, three of them sit side by side, take the same questions, and have to explain how their approach differs from the other two. <b>At the end, you vote on who made the best case.</b></p>
