@@ -310,3 +310,4 @@ td.term .icon{margin-right:8px;vertical-align:-1px}
 /* sponsor bar sits inside the cover's text column, not edge to edge */
 .cover__sponsor{width:calc(100% - 2 * clamp(20px,5vw,64px));max-width:calc(1100px - 2 * clamp(20px,5vw,64px));margin:0 auto 32px;padding:20px 28px}
 @media (max-width:720px){.cover__sponsor{padding:16px 18px;margin-bottom:20px}}
+#side ul,#side ol{margin:0}#side li{margin:0}
