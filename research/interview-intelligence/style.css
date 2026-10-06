@@ -862,3 +862,24 @@ blockquote{font-size:clamp(14px,1.05vw,15.5px)}
 .art .panel div[style*="position:relative;width:"]{max-width:720px}
 .beat.stack .art .panel div.sbarw[style],.art .panel div.sbarw[style]{max-width:none;width:100%!important}
 .art .panel div[style*="position:relative;width:"]{max-width:720px!important}
+
+/* ======== summary: employers vs candidates pairs ======== */
+.l-pairs{background:var(--navy);color:var(--ivory)}
+.l-pairs .wrap{padding-top:52px;padding-bottom:52px}
+.pr-lede{color:var(--ivory);font-size:clamp(17px,1.5vw,21px)!important;max-width:40rem;margin:0 0 28px!important}
+.pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.pr{display:block;text-decoration:none;color:var(--ivory);border:1px solid rgba(247,241,234,.16);background:rgba(247,241,234,.04);padding:16px 18px 18px;transition:background .2s,border-color .2s}
+.pr:hover{background:rgba(247,241,234,.09);border-color:rgba(247,241,234,.4)}
+.pr-head{font-family:Fraunces,serif;font-weight:600;font-size:15px;line-height:1.25;margin:0 0 14px!important;color:var(--ivory)}
+.pr-sides{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pr-side{display:flex;flex-direction:column;gap:5px;min-width:0}
+.pr-who{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,241,234,.7);font-weight:500}
+.pr-n{font-family:Fraunces,serif;font-weight:300;font-size:30px;line-height:1;letter-spacing:-.02em}
+.pr-n sup{font-size:.45em;top:.2em}
+.pr-bar{display:block;height:6px;border-radius:3px;width:var(--w);background:linear-gradient(90deg,var(--ll),var(--ivory));transform-origin:0 50%}
+.pr-b .pr-bar{background:linear-gradient(90deg,var(--l700),var(--ll))}
+.pr-cap{font-size:12.5px;line-height:1.4;color:rgba(247,241,234,.82)}
+.js .pr .pr-bar{transform:scaleX(0);transition:transform 1s cubic-bezier(.2,.7,.2,1) .2s}
+.js .pr.in .pr-bar{transform:none}
+@media (max-width:760px){.pairs{grid-template-columns:1fr}.pr-n{font-size:26px}}
+@media (prefers-reduced-motion:reduce){.js .pr .pr-bar{transform:none!important}}
