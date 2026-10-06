@@ -307,3 +307,6 @@ td.term .icon{margin-right:8px;vertical-align:-1px}
 .seg--tiny b{position:absolute;left:calc(100% + 6px);color:var(--navy)}
 .js .fig.in .nps-row .stack{clip-path:inset(0 -60px 0 0)}
 @media (max-width:720px){.sec{padding:36px 0}.ll-row{grid-template-columns:minmax(0,1fr) 92px}.contrast{padding:28px 0}}
+/* sponsor bar sits inside the cover's text column, not edge to edge */
+.cover__sponsor{width:calc(100% - 2 * clamp(20px,5vw,64px));max-width:calc(1100px - 2 * clamp(20px,5vw,64px));margin:0 auto 32px;padding:20px 28px}
+@media (max-width:720px){.cover__sponsor{padding:16px 18px;margin-bottom:20px}}
