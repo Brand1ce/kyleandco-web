@@ -14,19 +14,19 @@
 </script>
 
 <title>The Real Deal on Frontline Recruiting &middot; Transformation Realness Live</title>
-<meta name="description" content="Transformation Realness Live with Kyle Lagunas. Thursday, October 1 at 1:00 PM ET. Three vendors building frontline hiring technology, the same questions answered live, and you vote on the best answer. Free to attend.">
+<meta name="description" content="Watch the replay. Kyle Lagunas with three vendors building frontline hiring technology, the same questions answered side by side, recorded October 1.">
 <link rel="canonical" href="https://kyleandco.com/trl/">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kyleandco.com/trl/">
 <meta property="og:title" content="The Real Deal on Frontline Recruiting">
-<meta property="og:description" content="Thursday, October 1 at 1:00 PM ET. Three vendors, the same questions, answered live side by side. Kyle picks who's on stage. You pick who wins.">
+<meta property="og:description" content="Watch the replay. Three vendors, the same questions, answered side by side. Kyle picks who's on stage. You pick who wins.">
 <meta property="og:image" content="https://kyleandco.com/assets/img/trl/og-frontline.png?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Real Deal on Frontline Recruiting">
-<meta name="twitter:description" content="Thursday, October 1 at 1:00 PM ET. Three vendors, the same questions, answered live. You pick who wins.">
+<meta name="twitter:description" content="Watch the replay. Three vendors, the same questions, answered side by side.">
 <meta name="twitter:image" content="https://kyleandco.com/assets/img/trl/og-frontline.png?v=3">
 
 <link rel="icon" type="image/png" href="/favicon.png">
@@ -132,18 +132,12 @@ body{padding-top:60px}
   transition:background .18s ease, transform .18s ease;
 }
 .watch:hover{background:var(--magenta);transform:translateY(-2px)}
-.watch__dot{
-  width:11px;height:11px;border-radius:50%;background:var(--magenta);flex:none;
-  animation:watchPulse 1.6s ease-out infinite;
+.watch__play{
+  width:0;height:0;flex:none;margin-left:.15rem;
+  border-left:13px solid var(--magenta);
+  border-top:8px solid transparent;border-bottom:8px solid transparent;
 }
-/* the dot would disappear against the magenta hover fill */
-.watch:hover .watch__dot{background:var(--pink-soft);animation:none}
-@keyframes watchPulse{
-  0%{box-shadow:0 0 0 0 rgba(178,70,174,.65)}
-  70%{box-shadow:0 0 0 12px rgba(178,70,174,0)}
-  100%{box-shadow:0 0 0 0 rgba(178,70,174,0)}
-}
-@media (prefers-reduced-motion:reduce){ .watch__dot{animation:none} }
+.watch:hover .watch__play{border-left-color:var(--pink-soft)}
 .watch__txt{display:flex;flex-direction:column;line-height:1.2;min-width:0}
 .watch__txt b{font-size:.95rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 .watch__txt span{font-size:.85rem;color:var(--pink-soft);margin-top:.22rem}
@@ -170,6 +164,22 @@ body{padding-top:60px}
 .vote .n{color:var(--pink-soft)}
 .vote b{font-weight:800;color:var(--pink-soft)}
 .ctx__cta{margin-top:1.75rem}
+
+/* ---------- replay modal ---------- */
+.rm{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:2rem 1.25rem}
+.rm[open]{display:flex}
+.rm__veil{position:absolute;inset:0;background:rgba(34,26,76,.82);backdrop-filter:blur(3px)}
+.rm__box{position:relative;width:100%;max-width:1100px}
+.rm__bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.7rem}
+.rm__title{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-soft)}
+.rm__x{
+  background:none;border:0;cursor:pointer;color:var(--pink-light);
+  font-size:1.5rem;line-height:1;padding:.25rem .5rem;border-radius:6px;font-family:inherit;
+}
+.rm__x:hover{background:rgba(252,239,244,.14)}
+.rm__frame{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden}
+.rm__frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+body.rm-open{overflow:hidden}
 
 /* ----- right: panel + form ----- */
 .rail{display:flex;flex-direction:column;gap:1.5rem}
@@ -285,7 +295,7 @@ body{padding-top:60px}
     <a href="/aicouncil">AI Council</a>
     <a href="/blog">Blog</a>
   </div>
-  <a href="/live/TRL" class="topbar-cta" data-track="nav-watch">Watch now</a>
+  <a href="/live/TRL" class="topbar-cta" data-replay data-track="nav-replay">Watch the replay</a>
 </nav>
 <div class="persona-band trl"></div>
 
@@ -297,14 +307,14 @@ body{padding-top:60px}
     <h1>The Real Deal on <b>Frontline Recruiting</b></h1>
     <hr class="rule">
     <p class="ctx__sub">Frontline hiring doesn't work like corporate hiring with more applicants. It runs on different rules, and the employers applying corporate assumptions to it are the ones losing shifts.</p>
-    <p class="ctx__sub">This Thursday, Kyle Lagunas goes live with three vendors building frontline hiring technology. Each company is solving the same problem a different way.</p>
-    <p class="ctx__meta">Thursday, October 1 &middot; 1:00 PM ET &middot; Live stream &middot; 60 minutes</p>
+    <p class="ctx__sub">Kyle Lagunas went live with three vendors building frontline hiring technology. Each company is solving the same problem a different way. The full session is yours to watch.</p>
+    <p class="ctx__meta">Recorded Thursday, October 1 &middot; 60 minutes</p>
 
-    <a class="watch" href="/live/TRL" data-track="ctx-watch">
-      <span class="watch__dot" aria-hidden="true"></span>
+    <a class="watch" href="/live/TRL" data-replay data-track="ctx-replay">
+      <span class="watch__play" aria-hidden="true"></span>
       <span class="watch__txt">
-        <b>Watch now</b>
-        <span>Live at 1:00 PM ET</span>
+        <b>Watch the replay</b>
+        <span>The full 60-minute session</span>
       </span>
       <span class="watch__arrow" aria-hidden="true">&rarr;</span>
     </a>
@@ -322,7 +332,7 @@ body{padding-top:60px}
       <span><b>The vote.</b> You pick the best answer. The winner gets a full episode of the Transformation Realness podcast and brings a guest of their choice.</span>
     </div>
 
-    <div class="ctx__cta"><a class="btn" href="#register" data-track="ctx-register">Save your seat</a></div>
+    <div class="ctx__cta"><a class="btn" href="/live/TRL" data-replay data-track="ctx-replay-btn">Watch the replay</a></div>
   </section>
 
   <!-- ============ RIGHT: PANEL + FORM ============ -->
@@ -370,13 +380,13 @@ body{padding-top:60px}
 
     <section class="card" id="register">
       <div id="regView">
-        <h2>Save your seat</h2>
-        <p class="card__sub">Watch live, bring your questions, and cast your vote.</p>
+        <h2>Don't miss the next one</h2>
+        <p class="card__sub">Get this replay in your inbox, plus a heads up when the next TRL goes live.</p>
 
         <iframe name="trl_sink" class="sink" tabindex="-1" aria-hidden="true" title="registration"></iframe>
 
         <form class="f" id="regForm"
-              action="https://assets.mailerlite.com/jsonp/1555935/forms/199873708033049932/subscribe"
+              action="https://assets.mailerlite.com/jsonp/1555935/forms/200051788948178271/subscribe"
               method="post" target="trl_sink">
           <div class="f__row">
             <label>First name<input type="text" name="fields[name]" required autocomplete="given-name"></label>
@@ -389,27 +399,35 @@ body{padding-top:60px}
           </div>
           <input type="hidden" name="ml-submit" value="1">
           <input type="hidden" name="anticsrf" value="true">
-          <button type="submit" class="btn">Save your seat</button>
-          <p class="f__fine">We'll email you the join link and the replay. No spam. Just signal.</p>
+          <button type="submit" class="btn">Send it to me</button>
+          <p class="f__fine">No spam. Just signal.</p>
         </form>
       </div>
 
       <div id="regDone" class="done" hidden>
         <div class="done__check" aria-hidden="true">&#10003;</div>
-        <h2>You're registered</h2>
-        <p class="done__when">Thursday, October 1 &middot; 1:00 PM ET</p>
-        <p class="done__cal"><b>We're adding this to your calendar.</b> It lands within about five minutes, and shows as Free so it will not block your day.</p>
-        <p class="done__fine">Not a Google Calendar user, or don't see it? Add it here:</p>
-        <div class="cal">
-          <a id="calGoogle" target="_blank" rel="noopener">Google Calendar</a>
-          <a id="calOutlook" target="_blank" rel="noopener">Outlook</a>
-          <a id="calIcs" download="transformation-realness-live-oct-1.ics">Apple / .ics</a>
-        </div>
+        <h2>You're on the list</h2>
+        <p class="done__cal">The replay is on its way to your inbox, and you'll hear from us before the next one.</p>
       </div>
     </section>
 
   </div>
 </main>
+
+<!-- ============ REPLAY MODAL ============ -->
+<div class="rm" id="replayModal" role="dialog" aria-modal="true" aria-label="Replay: The Real Deal on Frontline Recruiting">
+  <div class="rm__veil" data-rm-close></div>
+  <div class="rm__box">
+    <div class="rm__bar">
+      <span class="rm__title">The Real Deal on Frontline Recruiting</span>
+      <button class="rm__x" type="button" data-rm-close aria-label="Close replay">&times;</button>
+    </div>
+    <div class="rm__frame">
+      <!-- src is set on open so a 2GB video never loads on page view -->
+      <iframe id="replayFrame" title="Replay" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
 
 <footer class="site-footer">
   <div class="footer-inner">
@@ -426,59 +444,41 @@ body{padding-top:60px}
 
 <script>
 (function(){
-  /* ---- event definition: one place to change for the next episode ---- */
-  var EV = {
-    title: 'Transformation Realness Live: The Real Deal on Frontline Recruiting',
-    // Oct 1 2026, 1:00-2:00 PM ET (EDT = UTC-4)
-    startUTC: '20261001T170000Z',
-    endUTC:   '20261001T180000Z',
-    url:   'https://kyleandco.com/trl/',
-    descr: 'Kyle Lagunas with Josh Secrest, Deb Andrychuk, and Sean Worden on why corporate hiring rules keep losing shifts. Your join link is in your email.'
-  };
+  var SRC   = 'https://drive.google.com/file/d/1RZ7xJhpT7bn6G-wtbVXSr7DRHqKrFgJi/preview';
+  var modal = document.getElementById('replayModal');
+  var frame = document.getElementById('replayFrame');
+  var last  = null;
 
-  function gcal(){
-    return 'https://calendar.google.com/calendar/render?action=TEMPLATE'
-      + '&text=' + encodeURIComponent(EV.title)
-      + '&dates=' + EV.startUTC + '/' + EV.endUTC
-      + '&details=' + encodeURIComponent(EV.descr + '\n\n' + EV.url)
-      + '&location=' + encodeURIComponent(EV.url);
+  function open(e){
+    if (e) e.preventDefault();
+    last = document.activeElement;
+    frame.src = SRC;                           // lazy: never loaded until asked
+    modal.setAttribute('open','');
+    document.body.classList.add('rm-open');
+    modal.querySelector('.rm__x').focus();
+    if (window.gtag) gtag('event', 'replay_open', { page: 'trl_registration' });
   }
-  function outlook(){
-    function fmt(z){ // 20261001T170000Z -> 2026-10-01T17:00:00Z
-      return z.slice(0,4)+'-'+z.slice(4,6)+'-'+z.slice(6,8)+'T'
-           + z.slice(9,11)+':'+z.slice(11,13)+':'+z.slice(13,15)+'Z';
-    }
-    return 'https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent'
-      + '&subject=' + encodeURIComponent(EV.title)
-      + '&startdt=' + fmt(EV.startUTC)
-      + '&enddt='   + fmt(EV.endUTC)
-      + '&body='    + encodeURIComponent(EV.descr + '\n\n' + EV.url)
-      + '&location='+ encodeURIComponent(EV.url);
+  function close(){
+    modal.removeAttribute('open');
+    document.body.classList.remove('rm-open');
+    frame.src = 'about:blank';                 // tears the player down so audio stops
+    if (last) last.focus();
   }
-  function ics(){
-    var lines = [
-      'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Kyle and Co//TRL//EN','CALSCALE:GREGORIAN',
-      'BEGIN:VEVENT',
-      'UID:trl-frontline-20261001@kyleandco.com',
-      'DTSTAMP:' + EV.startUTC,
-      'DTSTART:' + EV.startUTC,
-      'DTEND:'   + EV.endUTC,
-      'SUMMARY:' + EV.title,
-      'DESCRIPTION:' + EV.descr.replace(/\n/g,'\\n') + '\\n\\n' + EV.url,
-      'URL:' + EV.url,
-      'LOCATION:' + EV.url,
-      'END:VEVENT','END:VCALENDAR'
-    ].join('\r\n');
-    return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(lines);
-  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-replay]'), function(el){
+    el.addEventListener('click', open);
+  });
+  Array.prototype.forEach.call(modal.querySelectorAll('[data-rm-close]'), function(el){
+    el.addEventListener('click', close);
+  });
+  document.addEventListener('keydown', function(ev){
+    if (ev.key === 'Escape' && modal.hasAttribute('open')) close();
+  });
 
   var form = document.getElementById('regForm');
   form.addEventListener('submit', function(){
-    if (window.gtag) gtag('event', 'form_submit', { form_name: 'trl_frontline_registration' });
+    if (window.gtag) gtag('event', 'form_submit', { form_name: 'trl_replay_updates' });
     setTimeout(function(){
-      document.getElementById('calGoogle').href  = gcal();
-      document.getElementById('calOutlook').href = outlook();
-      document.getElementById('calIcs').href     = ics();
       document.getElementById('regView').hidden = true;
       document.getElementById('regDone').hidden = false;
     }, 900);
