@@ -522,3 +522,9 @@ html{scroll-padding-top:76px}
   .sec .wrap>p,.sec .wrap>blockquote,.more-body>p,.more-body>blockquote,.frame{max-width:920px}
   .more-body.cols{max-width:none}
 }
+.cover__ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.cover__ctas .dl{margin-top:0}
+.dl--blog{background:transparent;color:var(--navy-dark);border:1.5px solid var(--navy-dark);padding:7.5px 16px}
+.dl--blog::before{display:none}
+.dl--blog::after{content:"\2192";margin-left:2px}
+.dl--blog:hover{background:var(--navy-dark);color:var(--ivory)}
