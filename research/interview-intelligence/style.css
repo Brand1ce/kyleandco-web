@@ -479,3 +479,46 @@ html{scroll-padding-top:76px}
 .cover__body{padding-top:28px;padding-bottom:20px;flex:none}
 .cover__grid{flex:none;padding:28px 0 24px;align-items:center}
 .cover__art{max-height:440px}
+
+/* ======== large screens: use the width ======== */
+@media (min-width:1600px){
+  :root{--wrap:1080px;--side:250px}
+  body{font-size:15px}
+  .cover__body{max-width:1340px;padding-left:56px;padding-right:56px}
+  .cover__sponsor{max-width:calc(1340px - 112px)}
+  .cover h1{font-size:78px}
+  .tagline{font-size:24px}
+  .cover__art{max-height:500px}
+  .pairs{gap:16px}
+  .band img{max-height:150px}
+  .band{grid-template-columns:minmax(0,1fr) 230px}
+}
+@media (min-width:2000px){
+  :root{--wrap:1240px;--side:270px}
+  body{font-size:16px}
+  .cover__body{max-width:1560px}
+  .cover__sponsor{max-width:calc(1560px - 112px)}
+  .cover h1{font-size:90px}
+  .tagline{font-size:27px}
+  .author{font-size:14px}
+  .cover__art{max-height:560px}
+  .h-page{font-size:36px}
+  .band h2{font-size:34px}
+  .band img{max-height:170px}
+  .band{grid-template-columns:minmax(0,1fr) 260px}
+  .pr-n{font-size:34px}
+  .finding__title,.takeaway__title{font-size:17px}
+  .finding__body,.takeaway p{font-size:15px}
+  .fig figcaption,.fig-note,.legend{font-size:12.5px}
+  .bar-row,.rk-row{font-size:13.5px}
+  #side{font-size:13.5px}
+}
+@media (min-width:2600px){
+  :root{--wrap:1400px}
+  .cover__body{max-width:1760px}
+  .cover__sponsor{max-width:calc(1760px - 112px)}
+}
+@media (min-width:1600px){
+  .sec .wrap>p,.sec .wrap>blockquote,.more-body>p,.more-body>blockquote,.frame{max-width:920px}
+  .more-body.cols{max-width:none}
+}
