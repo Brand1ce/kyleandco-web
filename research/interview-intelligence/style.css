@@ -474,3 +474,8 @@ html{scroll-padding-top:76px}
 }
 
 #side{padding-top:14px}
+/* cover: no dead space between the nav and the title */
+.cover{min-height:0}
+.cover__body{padding-top:28px;padding-bottom:20px;flex:none}
+.cover__grid{flex:none;padding:28px 0 24px;align-items:center}
+.cover__art{max-height:440px}
