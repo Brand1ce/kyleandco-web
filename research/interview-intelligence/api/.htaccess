@@ -1,0 +1,4 @@
+# Never serve the token file directly (defense in depth; it also returns no output)
+<Files "gate-secret.php">
+  Require all denied
+</Files>

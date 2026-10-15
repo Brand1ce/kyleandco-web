@@ -3,6 +3,55 @@
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var html = document.documentElement;
 
+
+  /* ---- access gate: email unlocks the page (MailerLite via api/gate.php; fails open) ---- */
+  (function () {
+    var KEY = 'ii_report_access', ENDPOINT = 'api/gate.php';
+    var gate = $('#gate'); if (!gate) return;
+    function has() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+    function unlock() {
+      try { localStorage.setItem(KEY, '1'); } catch (e) {}
+      html.classList.remove('gated'); gate.hidden = true;
+      if (window.gtag) window.gtag('event', 'generate_lead', { content_type: 'report_gate', item_id: 'interview_intelligence' });
+    }
+    if (has()) { html.classList.remove('gated'); return; }
+    gate.hidden = false; html.classList.add('gated');
+    var email = $('#gateEmail'), s1 = $('#gateEmailStep'), s2 = $('#gateNewStep');
+    setTimeout(function () { email.focus(); }, 50);
+    function post(body) {
+      return fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+        .then(function (r) { return r.json(); });
+    }
+    $('#gateEmailForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var b = $('#gateEmailSubmit'), label = b.textContent; b.disabled = true; b.textContent = '…';
+      post({ email: email.value.trim() })
+        .then(function (d) {
+          if (d && d.status === 'new') { s1.hidden = true; s2.hidden = false; var f = s2.querySelector('input'); if (f) f.focus(); }
+          else if (d && d.status === 'error') { email.setCustomValidity('Please enter a valid email'); email.reportValidity(); email.setCustomValidity(''); }
+          else unlock();
+        })
+        .catch(unlock)
+        .then(function () { b.disabled = false; b.textContent = label; });
+    });
+    $('#gateNewForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = e.target, v = function (n) { return (f.querySelector('[name="' + n + '"]').value || '').trim(); };
+      $('#gateNewSubmit').disabled = true;
+      post({ email: email.value.trim(), subscribe: true, name: v('name'), last_name: v('last_name'), company: v('company') })
+        .then(unlock, unlock);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Tab' && !gate.hidden) {   // keep focus inside the dialog
+        var els = $$('input,button', gate).filter(function (x) { return x.offsetParent; });
+        if (!els.length) return;
+        var first = els[0], last = els[els.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  })();
+
   /* progress + current section in the side nav */
   var prog = $('#progress');
   function onScroll() { prog.style.width = (100 * window.pageYOffset / Math.max(1, html.scrollHeight - html.clientHeight)) + '%'; }
