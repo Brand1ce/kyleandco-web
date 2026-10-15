@@ -378,3 +378,11 @@ td.term .icon{margin-right:8px;vertical-align:-1px}
 .fig .scale{margin:8px 14px 0}
 .dot.up2 b{bottom:36px}
 @media (max-width:720px){.scale{height:110px}.dot.up2 b{bottom:40px}.dot.up b{bottom:18px}.dist .seg{padding:0 4px}}
+/* download */
+.dl{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;text-decoration:none;padding:9px 16px;margin-top:20px;background:var(--navy-dark);color:var(--ivory)}
+.dl::before{content:"";width:10px;height:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translate(-2px,-2px)}
+.dl:hover{background:var(--navy-mid);color:var(--ivory)}
+.dl--dark{background:var(--ivory);color:var(--navy-dark)}.dl--dark:hover{background:var(--light-blue);color:var(--navy-dark)}
+.sd-dl{padding:14px 18px 4px;border-top:1px solid rgba(247,241,234,.12)}
+.dl--side{margin:0;font-size:12px;padding:8px 12px;background:none;border:1px solid rgba(247,241,234,.5);color:var(--ivory)!important;width:100%}
+.dl--side:hover{background:rgba(247,241,234,.1)}
