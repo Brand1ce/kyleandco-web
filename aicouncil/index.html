@@ -727,6 +727,9 @@ function HCAIC_Final() {
     },
   ];
 
+  const councilPosts = [
+    { pillar: 'Value Realization', title: 'When a Great AI KPI Tells an Incomplete Story', author: 'Kate Warman', href: '/blog/ai-value-realization-baseline/' },
+  ];
   const underwritersYearOne = ['Workday', 'Findem', 'Warden AI', 'Humanly', 'GoodTime', 'Rival', 'isolved', 'Glider', 'CodeSignal', 'Gem', 'HiBob', 'SmartRecruiters'];
   // Year Two underwriter logos. isolved + HiBob ship as white (reversed) files, so darken them for the light card.
   const underwritersYearTwo = [
@@ -1585,6 +1588,20 @@ function HCAIC_Final() {
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap', color: C.navy, fontWeight: 600, fontSize: '1.02rem' }}>Read Kyle's take <Arrow /></span>
           </div>
         </a>
+      </section>
+
+      {/* FROM THE COUNCIL: pillar blogs. Add a post = add one object to councilPosts. */}
+      <section id="council-blogs" style={{ padding: isMobile ? '3rem 1.25rem 1rem' : '4rem 2.5rem 1rem', maxWidth: '1500px', margin: '0 auto', scrollMarginTop: '80px' }}>
+        <div className="mono" style={{ fontSize: '0.84rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: C.slate, marginBottom: '1.25rem' }}>From the Council · Year Two pillar blogs</div>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '1.25rem' }}>
+          {councilPosts.map(post => (
+            <a key={post.href} href={post.href} onClick={() => track('council_blog_click', { post: post.href })} style={{ display: 'block', background: C.cream, borderRadius: '14px', padding: '1.75rem', textDecoration: 'none', color: C.navy }}>
+              <span className="mono" style={{ fontSize: '0.74rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.lilac, fontWeight: 700 }}>{post.pillar}</span>
+              <h3 className="display" style={{ fontSize: '1.4rem', fontWeight: 400, lineHeight: 1.2, margin: '0.75rem 0 1rem' }}>{post.title}</h3>
+              <span style={{ fontSize: '0.95rem', color: C.slate }}>{post.author}</span>
+            </a>
+          ))}
+        </div>
       </section>
 
       {/* THE LIBRARY, the star */}
