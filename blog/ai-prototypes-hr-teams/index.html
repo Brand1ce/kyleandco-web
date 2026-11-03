@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H95H1WFLGC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H95H1WFLGC');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/aicouncil/ampersand-favicon.png" />
+<title>AI Prototypes in HR: Progress Beyond the Launch | Kyle &amp; Co</title>
+<meta name="description" content="A prototype that never launches can still pay off. Daniel Morales on what People teams learn from building AI tools and how to count it." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="canonical" href="https://kyleandco.com/blog/ai-prototypes-hr-teams/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Progress Doesn&#x27;t Always Look Like a Launch" />
+<meta property="og:description" content="A prototype that never launches can still pay off. Daniel Morales on what People teams learn from building AI tools and how to count it." />
+<meta property="og:image" content="https://kyleandco.com/blog-assets/what-is-human/council-blog-featured.png" />
+<meta property="og:url" content="https://kyleandco.com/blog/ai-prototypes-hr-teams/" />
+<meta property="og:site_name" content="Kyle &amp; Co" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Progress Doesn&#x27;t Always Look Like a Launch" />
+<meta name="twitter:description" content="A prototype that never launches can still pay off. Daniel Morales on what People teams learn from building AI tools and how to count it." />
+<meta name="twitter:image" content="https://kyleandco.com/blog-assets/what-is-human/council-blog-featured.png" />
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #273752;
+  --navy-dark: #172339;
+  --navy-mid: #2D5C94;
+  --lilac: #9D92AD;
+  --ivory: #F7F1EA;
+  --slate: #555961;
+  --cream: #FDECCD;
+  --lilac-light: #C1BACD;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--ivory);
+  color: var(--navy);
+  line-height: 1.6;
+}
+
+/* — NAV — */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--navy); padding: 0 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px; border-bottom: 1px solid rgba(247,241,234,0.1);
+}
+.topbar-brand { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac); font-weight: 500; text-decoration: none; flex-shrink: 0; }
+.topbar-nav { display: flex; gap: 1.75rem; align-items: center; }
+.topbar-nav a { font-size: 0.82rem; color: rgba(247,241,234,0.65); text-decoration: none; transition: color 0.15s; }
+.topbar-nav a:hover { color: var(--ivory); }
+
+/* — ARTICLE LAYOUT — */
+main.article-wrap { padding-top: 56px; }
+article.post {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 0;
+}
+
+/* — POST META + TITLE — */
+.post-meta {
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500;
+  display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.post-meta .tag {
+  background: var(--cream); color: var(--navy-dark);
+  padding: 0.3rem 0.7rem; border-radius: 100px;
+  letter-spacing: 0.12em; font-weight: 600;
+}
+.post-meta .dot { color: rgba(39,55,82,0.3); }
+
+h1.post-title {
+  font-weight: 300;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.05; letter-spacing: -0.025em;
+  margin-bottom: 1.5rem; color: var(--navy);
+  text-wrap: balance;
+}
+h1.post-title em { font-style: italic; color: var(--lilac); }
+
+.byline {
+  display: flex; gap: 0.6rem; align-items: center;
+  margin-bottom: 2.5rem;
+  color: var(--slate); font-size: 0.92rem;
+}
+.byline .author { color: var(--navy); font-weight: 500; }
+
+/* — HERO IMAGE — */
+.hero-image {
+  margin: 0 0 3rem;
+  border-radius: 8px; overflow: hidden;
+  aspect-ratio: 16/9;
+  background: var(--navy);
+}
+.hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; filter: none !important; opacity: 1 !important; }
+
+/* — BODY TEXT — */
+.post p {
+  font-size: 1.05rem; line-height: 1.75;
+  color: #3a4558; margin: 0 0 1.4rem;
+  text-wrap: pretty;
+}
+.post p.lede {
+  font-size: 1.25rem; line-height: 1.6; color: var(--navy);
+  margin-bottom: 1.75rem; font-weight: 400;
+}
+.post p.lede em { font-style: italic; color: var(--lilac); }
+
+/* — SECTION HEADERS — */
+.sec-kicker {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin: 0 0 1rem;
+}
+h2.sec {
+  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 400;
+  line-height: 1.15; letter-spacing: -0.02em;
+  margin: 0 0 1.5rem; color: var(--navy);
+  text-wrap: balance;
+}
+h2.sec em { font-style: italic; color: var(--lilac); }
+
+/* — INLINE PHOTOS — */
+figure.inline { margin: 2.5rem 0; }
+figure.inline .img-wrap {
+  border-radius: 8px; overflow: hidden;
+  background: var(--navy);
+}
+figure.inline .img-wrap.portrait { max-width: 420px; margin: 0 auto; aspect-ratio: 3/4; }
+figure.inline .img-wrap.landscape { aspect-ratio: 16/9; }
+figure.inline .img-wrap.wide { aspect-ratio: 4/3; }
+figure.inline img { width: 100%; height: 100%; object-fit: cover; display: block; filter: none !important; opacity: 1 !important; }
+figure.inline figcaption {
+  margin-top: 0.75rem; text-align: center;
+  font-size: 0.75rem; color: var(--lilac);
+  letter-spacing: 0.05em; font-style: italic;
+}
+
+/* — TWO-UP PHOTOS — */
+.photo-pair {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin: 2.5rem 0;
+}
+.photo-pair figure.inline { margin: 0; }
+.photo-pair figure.inline .img-wrap { aspect-ratio: 4/3; }
+
+/* — PULL QUOTE — */
+.pullquote {
+  border-left: 3px solid var(--cream);
+  padding: 1.5rem 2rem; margin: 2.5rem 0;
+  background: rgba(253,236,205,0.25);
+  border-radius: 0 6px 6px 0;
+}
+.pullquote p {
+  font-size: 1.2rem; font-style: italic; font-weight: 400;
+  color: var(--navy); margin: 0; line-height: 1.5;
+  text-wrap: balance;
+}
+
+/* — CALLOUT BOX — */
+.callout {
+  background: var(--navy); border-radius: 8px;
+  padding: 2rem 2.5rem; margin: 2.5rem 0;
+  color: var(--ivory);
+}
+.callout p {
+  color: rgba(247,241,234,0.85); font-size: 0.95rem; margin: 0;
+}
+.callout p + p { margin-top: 0.75rem; }
+.callout strong { color: var(--cream); }
+
+/* — DIVIDER — */
+.rule { border: none; border-top: 1px solid rgba(39,55,82,0.12); margin: 3.5rem 0; }
+
+/* — CTA BLOCK — */
+.cta-block {
+  background: var(--navy); color: var(--ivory);
+  border-radius: 12px; padding: 3rem;
+  margin: 4rem 0 0;
+}
+.cta-block h3 {
+  font-size: 1.5rem; font-weight: 400;
+  margin: 0 0 0.5rem; letter-spacing: -0.01em;
+  color: var(--ivory);
+}
+.cta-block h3 em { font-style: italic; color: var(--cream); }
+.cta-block > p {
+  color: rgba(247,241,234,0.75); margin: 0 0 1.75rem;
+  font-size: 0.95rem; max-width: 52ch;
+}
+.cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.cta-row a {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.85rem 1.5rem; border-radius: 100px;
+  font-size: 0.85rem; font-weight: 600; text-decoration: none;
+}
+.cta-row a.primary { background: var(--cream); color: var(--navy-dark); }
+.cta-row a.primary:hover { background: #f5e0b5; }
+.cta-row a.secondary {
+  background: transparent; color: var(--ivory);
+  border: 1px solid rgba(247,241,234,0.4);
+}
+.cta-row a.secondary:hover { background: rgba(247,241,234,0.08); }
+
+/* — SUBSCRIBE FOOTER — */
+.subscribe-footer {
+  background: var(--navy); margin-top: 5rem;
+  padding: 5rem 2.5rem;
+}
+.subscribe-inner {
+  max-width: 560px; margin: 0 auto; text-align: center;
+}
+.subscribe-kicker {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1rem;
+}
+.subscribe-footer h3 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 300;
+  color: var(--ivory); letter-spacing: -0.02em;
+  line-height: 1.15; margin-bottom: 0.75rem;
+}
+.subscribe-footer h3 em { font-style: italic; color: var(--cream); }
+.subscribe-footer p {
+  font-size: 0.92rem; color: rgba(247,241,234,0.6);
+  margin-bottom: 2rem; line-height: 1.6;
+}
+.subscribe-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.5rem; max-width: 540px; margin: 0 auto 1rem;
+}
+.subscribe-form input[type="hidden"] { display: none; }
+.subscribe-form input[type="email"] {
+  flex: 1; padding: 0.85rem 1.25rem;
+  background: rgba(247,241,234,0.08);
+  border: 1px solid rgba(247,241,234,0.2);
+  border-radius: 100px; color: var(--ivory);
+  font-size: 0.88rem; font-family: inherit;
+  outline: none; transition: border-color 0.15s;
+}
+.subscribe-form input[type="email"]::placeholder { color: rgba(247,241,234,0.35); }
+.subscribe-form input[type="email"]:focus { border-color: rgba(247,241,234,0.5); }
+.subscribe-form button {
+  background: var(--cream); color: var(--navy-dark);
+  border: none; border-radius: 100px;
+  padding: 0.85rem 1.5rem; font-size: 0.85rem;
+  font-weight: 600; font-family: inherit;
+  cursor: pointer; white-space: nowrap; transition: background 0.15s;
+}
+.subscribe-form button:hover { background: #f5e0b5; }
+.subscribe-note {
+  font-size: 0.7rem; color: rgba(247,241,234,0.35);
+  letter-spacing: 0.04em;
+}
+.subscribe-divider {
+  border: none; border-top: 1px solid rgba(247,241,234,0.1);
+  margin: 3rem auto 2rem; max-width: 560px;
+}
+.page-footer-bar {
+  max-width: 760px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.72rem; color: rgba(247,241,234,0.35);
+  flex-wrap: wrap; gap: 0.75rem; padding: 0 2.5rem 3rem;
+}
+.page-footer-bar a { color: rgba(247,241,234,0.5); text-decoration: none; }
+.page-footer-bar a:hover { color: var(--ivory); }
+
+/* — FADE IN — */
+.fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* — RESPONSIVE — */
+@media (max-width: 700px) {
+  .topbar { padding: 0 1.25rem; }
+  .topbar-nav { gap: .9rem; }
+  .topbar-nav a { font-size: .72rem; }
+  .subscribe-form { grid-template-columns: 1fr; }
+  .subscribe-form input[type="text"],
+  .subscribe-form input[type="email"],
+  .subscribe-form button { border-radius: 8px; }
+  article.post { padding: 2.5rem 1.25rem 0; }
+  .cta-block { padding: 2rem 1.5rem; }
+  .page-footer { padding: 2rem 1.25rem; }
+  .pullquote { padding: 1.25rem 1.5rem; margin: 2rem 0; }
+  .photo-pair { grid-template-columns: 1fr; }
+  .callout { padding: 1.5rem; }
+}
+</style>
+<style>.post-list{margin:0 0 1.6rem 1.25rem;color:#3a4558;font-size:1.05rem;line-height:1.7}.post-list li{margin-bottom:.7rem}.draft-banner{background:#FDECCD;color:#172339;text-align:center;padding:.6rem 1rem;font-size:.85rem;position:relative;z-index:101;margin-top:56px}</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Progress Doesn't Always Look Like a Launch", "description": "A prototype that never launches can still pay off. Daniel Morales on what People teams learn from building AI tools and how to count it.", "author": {"@type": "Person", "name": "Daniel Morales"}, "publisher": {"@type": "Organization", "name": "Kyle & Co", "url": "https://kyleandco.com"}, "image": "https://kyleandco.com/blog-assets/what-is-human/council-blog-featured.png", "mainEntityOfPage": "https://kyleandco.com/blog/ai-prototypes-hr-teams/", "keywords": "AI prototypes, building AI in HR, People analytics, HR AI, HCAIC", "articleSection": "Thought Leadership"}</script>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topbar">
+  <a href="https://kyleandco.com" class="topbar-brand">Kyle &amp; Co</a>
+  <div class="topbar-nav">
+    <a href="https://kyleandco.com">Home</a>
+    <a href="../../blog-index.html">Insights</a>
+    <a href="https://kyleandco.com/aicouncil">AI Council</a>
+  </div>
+</nav>
+
+<div class="draft-banner">DRAFT PREVIEW. Not published. Hidden from search engines.</div>
+<main class="article-wrap" style="padding-top:0">
+  <article class="post">
+
+    <!-- META + TITLE -->
+    <div class="post-meta">
+      <span class="tag">Thought Leadership</span>
+      <span>Nov 2026</span>
+      <span class="dot">·</span>
+      <span>5 min read</span>
+    </div>
+
+    <h1 class="post-title">Progress Doesn&#x27;t Always Look Like a Launch</h1>
+
+    <div class="byline">
+      <span class="author">Daniel Morales</span>
+      <span>·</span>
+      <span>Senior Manager, People Solutions & AI, Human-Centric AI Council</span>
+    </div>
+
+    <figure class="hero-image">
+      <img src="https://kyleandco.com/blog-assets/what-is-human/council-blog-featured.png" alt="Human-Centric AI Council" />
+    </figure>
+
+        <p class="lede">When a team has invested time in building a tool, people usually want to know whether it’s live and what impact it’s had. The work leading up to that decision can produce valuable results of its own.</p>
+    <p>A prototype can help you understand what users need, clarify your company’s requirements, and show what your team can build. It can lead you to change the scope or decide an idea isn’t worth pursuing. The skills and relationships developed along the way can also give your team a head start on the next project.</p>
+    <p>For People and Talent teams using AI to build custom solutions, getting the tool to work is one part of the job. You’re also taking on responsibilities a product team would normally handle, which may be unfamiliar if you’ve mostly bought and configured software. Which data can it use? How will access be controlled? What will Security and IT require before launch? Who keeps it working afterward? Working through these questions gives your team knowledge it can use on future projects, even if the first version never launches.</p>
+    <h2 class="sec">Give people something to react to.</h2>
+    <p>In a previous role, my team wanted to make our People data more useful by helping leaders find relevant insights and act on them. Building everything we envisioned would take time, so we started with a smaller tool and used AI to help with the build.</p>
+    <p>The initial tool used a limited set of data and simple thresholds to flag cases for business partners to review. We built a visual interface so they could see where attention might be needed and decide whether to act.</p>
+    <p>Having a prototype made our conversations with them much more useful. Business partners could point to what helped, what needed work, and what would save them time. Seeing the tool also prompted new questions and ideas for how they could use it.</p>
+    <p>Our business partners were involved throughout the build and agreed on what we were developing. By the time we were ready to launch, though, they were too busy to start using it. Adoption required capacity as well as agreement. With a broader tool already in development, they chose to hold off on using the first version.</p>
+    <p>That broader tool brought together additional signals from our People data and incorporated the initial threshold model. Feedback on the first interface helped shape the new one. The first version became a foundation for what we built next.</p>
+    <h2 class="sec">Each build gives the next one a head start.</h2>
+    <p>Building your first internal tool teaches you a lot about what it takes to run and support it. As you work through security requirements, data access, and support for an actual application, you get a clearer picture of what's needed and uncover questions to address.</p>
+    <p>For us, that meant figuring out security and access requirements, data flows, where the tool would be hosted, and which technology to use. We also got a better sense of what we could build and where we needed help.</p>
+    <p>We already had relationships with Security, IT, and our People and Talent partners. Bringing them into the build gave them something concrete to respond to. They could see what we were trying to accomplish and contribute while there was still room to make changes.</p>
+    <p>By the next build, we could draw on those conversations and reuse much of the technical work. We had a better sense of what people needed from the interface and how the tool would fit into their day. That understanding helped us build faster and get subsequent tools live sooner. Each project still needed its own review, but our experience helped us make informed choices earlier.</p>
+    <p>Using AI to build real prototypes taught us what it would take to make them work in our organization. Someone has to respond when the data looks wrong or the tool breaks. Users need a way to give feedback, and someone needs to be responsible for acting on it. All of that needs a plan before the tool goes live.</p>
+    <h2 class="sec">Be specific about what you learned.</h2>
+    <p>People and Talent teams should be willing to try ambitious work and build toward it in smaller steps. That approach gives us room to test, get feedback, and adjust as we learn. We also need to explain what came out of the effort. If we say we learned a lot, we should be able to point to something we changed, reused, or decided against as a result.</p>
+    <p>Before starting another project, I recommend working with the team to agree on the question the first version needs to answer and how much time we're prepared to spend answering it. I'd involve users and internal partners early enough for their feedback to shape the work. Before committing to another phase, I'd assess whether there's enough value to continue and whether people have the capacity to use and support what’s being built. Sometimes that will mean changing the scope or stopping.</p>
+    <p>Learning doesn't automatically make every experiment worthwhile, but when it changes a decision or makes the next build easier, it deserves to factor into how we assess the work.</p>
+    <p>For us, some of the first prototype’s value showed up in the tools that followed. Looking only at whether that first version launched and what it delivered on its own would have missed that. A launch is one kind of progress, and what we learn and carry forward should be counted, too.</p>
+
+    <!-- CTA -->
+    <div class="cta-block fade-in">
+      <h3>Shape the work of the<br /><em>Human-Centric AI Council.</em></h3>
+      <p>A practitioner-powered think tank of senior HR leaders navigating AI transformation together, backed by underwriters from across HR tech. Join as a practitioner or underwrite the work.</p>
+      <div class="cta-row">
+        <a href="https://kyleandco.com/aicouncil/?utm_source=blog&utm_medium=cta_button&utm_campaign=ai_prototypes_hr_teams&utm_content=join#join" class="primary">Join the Council →</a>
+        <a href="https://kyleandco.com/aicouncil/?utm_source=blog&utm_medium=cta_button&utm_campaign=ai_prototypes_hr_teams&utm_content=underwrite#underwriters" class="secondary">Underwrite the Council</a>
+      </div>
+    </div>
+
+  </article>
+</main>
+
+<!-- SUBSCRIBE FOOTER -->
+<footer class="subscribe-footer">
+  <div class="subscribe-inner">
+    <p class="subscribe-kicker">Kyle &amp; Co · Insights</p>
+    <h3>Don't miss what's<br /><em>next.</em></h3>
+    <p>New analysis, takes, and practitioner perspectives — straight to your inbox. No noise, no vendor pitches. Just the work.</p>
+    <form class="subscribe-form" action="https://assets.mailerlite.com/jsonp/1555935/forms/155676694376613273/subscribe" method="post" target="ml-submit-frame">
+      <input type="text" name="fields[name]" placeholder="First name" required />
+      <input type="email" name="fields[email]" placeholder="Work email" required />
+      <input type="hidden" name="ml-submit" value="1" />
+      <input type="hidden" name="anticsrf" value="true" />
+      <button type="submit">Subscribe →</button>
+    </form>
+    <iframe name="ml-submit-frame" style="display:none;"></iframe>
+    <p class="subscribe-note">No spam. Unsubscribe anytime.</p>
+  </div>
+  <hr class="subscribe-divider" />
+  <div class="page-footer-bar">
+    <span>© 2026 Kyle &amp; Co</span>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="../../blog-index.html">← All Insights</a>
+      <a href="https://kyleandco.com/aicouncil">AI Council</a>
+      <a href="https://kyleandco.com">kyleandco.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+<script src="/assets/js/antibot.js" defer></script>
+</body>
+</html>

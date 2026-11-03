@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H95H1WFLGC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H95H1WFLGC');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/aicouncil/ampersand-favicon.png" />
+<title>AI Value Realization: Why One KPI Isn&#x27;t Enough | Kyle &amp; Co</title>
+<meta name="description" content="An 80% time savings was a great KPI, but not the whole story. Kate Warman shares three questions to set the baseline that proves AI value." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="canonical" href="https://kyleandco.com/blog/ai-value-realization/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="When a Great AI KPI Tells an Incomplete Story" />
+<meta property="og:description" content="An 80% time savings was a great KPI, but not the whole story. Kate Warman shares three questions to set the baseline that proves AI value." />
+<meta property="og:image" content="https://kyleandco.com/blog-assets/what-is-human/council-blog-featured.png" />
+<meta property="og:url" content="https://kyleandco.com/blog/ai-value-realization/" />
+<meta property="og:site_name" content="Kyle &amp; Co" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="When a Great AI KPI Tells an Incomplete Story" />
+<meta name="twitter:description" content="An 80% time savings was a great KPI, but not the whole story. Kate Warman shares three questions to set the baseline that proves AI value." />
+<meta name="twitter:image" content="https://kyleandco.com/blog-assets/what-is-human/council-blog-featured.png" />
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #273752;
+  --navy-dark: #172339;
+  --navy-mid: #2D5C94;
+  --lilac: #9D92AD;
+  --ivory: #F7F1EA;
+  --slate: #555961;
+  --cream: #FDECCD;
+  --lilac-light: #C1BACD;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--ivory);
+  color: var(--navy);
+  line-height: 1.6;
+}
+
+/* — NAV — */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--navy); padding: 0 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px; border-bottom: 1px solid rgba(247,241,234,0.1);
+}
+.topbar-brand { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac); font-weight: 500; text-decoration: none; flex-shrink: 0; }
+.topbar-nav { display: flex; gap: 1.75rem; align-items: center; }
+.topbar-nav a { font-size: 0.82rem; color: rgba(247,241,234,0.65); text-decoration: none; transition: color 0.15s; }
+.topbar-nav a:hover { color: var(--ivory); }
+
+/* — ARTICLE LAYOUT — */
+main.article-wrap { padding-top: 56px; }
+article.post {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 0;
+}
+
+/* — POST META + TITLE — */
+.post-meta {
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500;
+  display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.post-meta .tag {
+  background: var(--cream); color: var(--navy-dark);
+  padding: 0.3rem 0.7rem; border-radius: 100px;
+  letter-spacing: 0.12em; font-weight: 600;
+}
+.post-meta .dot { color: rgba(39,55,82,0.3); }
+
+h1.post-title {
+  font-weight: 300;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.05; letter-spacing: -0.025em;
+  margin-bottom: 1.5rem; color: var(--navy);
+  text-wrap: balance;
+}
+h1.post-title em { font-style: italic; color: var(--lilac); }
+
+.byline {
+  display: flex; gap: 0.6rem; align-items: center;
+  margin-bottom: 2.5rem;
+  color: var(--slate); font-size: 0.92rem;
+}
+.byline .author { color: var(--navy); font-weight: 500; }
+
+/* — HERO IMAGE — */
+.hero-image {
+  margin: 0 0 3rem;
+  border-radius: 8px; overflow: hidden;
+  aspect-ratio: 16/9;
+  background: var(--navy);
+}
+.hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; filter: none !important; opacity: 1 !important; }
+
+/* — BODY TEXT — */
+.post p {
+  font-size: 1.05rem; line-height: 1.75;
+  color: #3a4558; margin: 0 0 1.4rem;
+  text-wrap: pretty;
+}
+.post p.lede {
+  font-size: 1.25rem; line-height: 1.6; color: var(--navy);
+  margin-bottom: 1.75rem; font-weight: 400;
+}
+.post p.lede em { font-style: italic; color: var(--lilac); }
+
+/* — SECTION HEADERS — */
+.sec-kicker {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin: 0 0 1rem;
+}
+h2.sec {
+  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 400;
+  line-height: 1.15; letter-spacing: -0.02em;
+  margin: 0 0 1.5rem; color: var(--navy);
+  text-wrap: balance;
+}
+h2.sec em { font-style: italic; color: var(--lilac); }
+
+/* — INLINE PHOTOS — */
+figure.inline { margin: 2.5rem 0; }
+figure.inline .img-wrap {
+  border-radius: 8px; overflow: hidden;
+  background: var(--navy);
+}
+figure.inline .img-wrap.portrait { max-width: 420px; margin: 0 auto; aspect-ratio: 3/4; }
+figure.inline .img-wrap.landscape { aspect-ratio: 16/9; }
+figure.inline .img-wrap.wide { aspect-ratio: 4/3; }
+figure.inline img { width: 100%; height: 100%; object-fit: cover; display: block; filter: none !important; opacity: 1 !important; }
+figure.inline figcaption {
+  margin-top: 0.75rem; text-align: center;
+  font-size: 0.75rem; color: var(--lilac);
+  letter-spacing: 0.05em; font-style: italic;
+}
+
+/* — TWO-UP PHOTOS — */
+.photo-pair {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin: 2.5rem 0;
+}
+.photo-pair figure.inline { margin: 0; }
+.photo-pair figure.inline .img-wrap { aspect-ratio: 4/3; }
+
+/* — PULL QUOTE — */
+.pullquote {
+  border-left: 3px solid var(--cream);
+  padding: 1.5rem 2rem; margin: 2.5rem 0;
+  background: rgba(253,236,205,0.25);
+  border-radius: 0 6px 6px 0;
+}
+.pullquote p {
+  font-size: 1.2rem; font-style: italic; font-weight: 400;
+  color: var(--navy); margin: 0; line-height: 1.5;
+  text-wrap: balance;
+}
+
+/* — CALLOUT BOX — */
+.callout {
+  background: var(--navy); border-radius: 8px;
+  padding: 2rem 2.5rem; margin: 2.5rem 0;
+  color: var(--ivory);
+}
+.callout p {
+  color: rgba(247,241,234,0.85); font-size: 0.95rem; margin: 0;
+}
+.callout p + p { margin-top: 0.75rem; }
+.callout strong { color: var(--cream); }
+
+/* — DIVIDER — */
+.rule { border: none; border-top: 1px solid rgba(39,55,82,0.12); margin: 3.5rem 0; }
+
+/* — CTA BLOCK — */
+.cta-block {
+  background: var(--navy); color: var(--ivory);
+  border-radius: 12px; padding: 3rem;
+  margin: 4rem 0 0;
+}
+.cta-block h3 {
+  font-size: 1.5rem; font-weight: 400;
+  margin: 0 0 0.5rem; letter-spacing: -0.01em;
+  color: var(--ivory);
+}
+.cta-block h3 em { font-style: italic; color: var(--cream); }
+.cta-block > p {
+  color: rgba(247,241,234,0.75); margin: 0 0 1.75rem;
+  font-size: 0.95rem; max-width: 52ch;
+}
+.cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.cta-row a {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.85rem 1.5rem; border-radius: 100px;
+  font-size: 0.85rem; font-weight: 600; text-decoration: none;
+}
+.cta-row a.primary { background: var(--cream); color: var(--navy-dark); }
+.cta-row a.primary:hover { background: #f5e0b5; }
+.cta-row a.secondary {
+  background: transparent; color: var(--ivory);
+  border: 1px solid rgba(247,241,234,0.4);
+}
+.cta-row a.secondary:hover { background: rgba(247,241,234,0.08); }
+
+/* — SUBSCRIBE FOOTER — */
+.subscribe-footer {
+  background: var(--navy); margin-top: 5rem;
+  padding: 5rem 2.5rem;
+}
+.subscribe-inner {
+  max-width: 560px; margin: 0 auto; text-align: center;
+}
+.subscribe-kicker {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1rem;
+}
+.subscribe-footer h3 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 300;
+  color: var(--ivory); letter-spacing: -0.02em;
+  line-height: 1.15; margin-bottom: 0.75rem;
+}
+.subscribe-footer h3 em { font-style: italic; color: var(--cream); }
+.subscribe-footer p {
+  font-size: 0.92rem; color: rgba(247,241,234,0.6);
+  margin-bottom: 2rem; line-height: 1.6;
+}
+.subscribe-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.5rem; max-width: 540px; margin: 0 auto 1rem;
+}
+.subscribe-form input[type="hidden"] { display: none; }
+.subscribe-form input[type="email"] {
+  flex: 1; padding: 0.85rem 1.25rem;
+  background: rgba(247,241,234,0.08);
+  border: 1px solid rgba(247,241,234,0.2);
+  border-radius: 100px; color: var(--ivory);
+  font-size: 0.88rem; font-family: inherit;
+  outline: none; transition: border-color 0.15s;
+}
+.subscribe-form input[type="email"]::placeholder { color: rgba(247,241,234,0.35); }
+.subscribe-form input[type="email"]:focus { border-color: rgba(247,241,234,0.5); }
+.subscribe-form button {
+  background: var(--cream); color: var(--navy-dark);
+  border: none; border-radius: 100px;
+  padding: 0.85rem 1.5rem; font-size: 0.85rem;
+  font-weight: 600; font-family: inherit;
+  cursor: pointer; white-space: nowrap; transition: background 0.15s;
+}
+.subscribe-form button:hover { background: #f5e0b5; }
+.subscribe-note {
+  font-size: 0.7rem; color: rgba(247,241,234,0.35);
+  letter-spacing: 0.04em;
+}
+.subscribe-divider {
+  border: none; border-top: 1px solid rgba(247,241,234,0.1);
+  margin: 3rem auto 2rem; max-width: 560px;
+}
+.page-footer-bar {
+  max-width: 760px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.72rem; color: rgba(247,241,234,0.35);
+  flex-wrap: wrap; gap: 0.75rem; padding: 0 2.5rem 3rem;
+}
+.page-footer-bar a { color: rgba(247,241,234,0.5); text-decoration: none; }
+.page-footer-bar a:hover { color: var(--ivory); }
+
+/* — FADE IN — */
+.fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* — RESPONSIVE — */
+@media (max-width: 700px) {
+  .topbar { padding: 0 1.25rem; }
+  .topbar-nav { gap: .9rem; }
+  .topbar-nav a { font-size: .72rem; }
+  .subscribe-form { grid-template-columns: 1fr; }
+  .subscribe-form input[type="text"],
+  .subscribe-form input[type="email"],
+  .subscribe-form button { border-radius: 8px; }
+  article.post { padding: 2.5rem 1.25rem 0; }
+  .cta-block { padding: 2rem 1.5rem; }
+  .page-footer { padding: 2rem 1.25rem; }
+  .pullquote { padding: 1.25rem 1.5rem; margin: 2rem 0; }
+  .photo-pair { grid-template-columns: 1fr; }
+  .callout { padding: 1.5rem; }
+}
+</style>
+<style>.post-list{margin:0 0 1.6rem 1.25rem;color:#3a4558;font-size:1.05rem;line-height:1.7}.post-list li{margin-bottom:.7rem}.draft-banner{background:#FDECCD;color:#172339;text-align:center;padding:.6rem 1rem;font-size:.85rem;position:relative;z-index:101;margin-top:56px}</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "When a Great AI KPI Tells an Incomplete Story", "description": "An 80% time savings was a great KPI, but not the whole story. Kate Warman shares three questions to set the baseline that proves AI value.", "author": {"@type": "Person", "name": "Kate Warman"}, "publisher": {"@type": "Organization", "name": "Kyle & Co", "url": "https://kyleandco.com"}, "image": "https://kyleandco.com/blog-assets/what-is-human/council-blog-featured.png", "mainEntityOfPage": "https://kyleandco.com/blog/ai-value-realization/", "keywords": "AI value realization, AI KPIs, AI baseline, HR AI, HCAIC", "articleSection": "Thought Leadership"}</script>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topbar">
+  <a href="https://kyleandco.com" class="topbar-brand">Kyle &amp; Co</a>
+  <div class="topbar-nav">
+    <a href="https://kyleandco.com">Home</a>
+    <a href="../../blog-index.html">Insights</a>
+    <a href="https://kyleandco.com/aicouncil">AI Council</a>
+  </div>
+</nav>
+
+<div class="draft-banner">DRAFT PREVIEW. Not published. Hidden from search engines.</div>
+<main class="article-wrap" style="padding-top:0">
+  <article class="post">
+
+    <!-- META + TITLE -->
+    <div class="post-meta">
+      <span class="tag">Thought Leadership</span>
+      <span>Nov 2026</span>
+      <span class="dot">·</span>
+      <span>5 min read</span>
+    </div>
+
+    <h1 class="post-title">When a Great AI KPI Tells an Incomplete Story</h1>
+
+    <div class="byline">
+      <span class="author">Kate Warman</span>
+      <span>·</span>
+      <span>AI Value Realization Pillar Champion, Human-Centric AI Council</span>
+    </div>
+
+    <figure class="hero-image">
+      <img src="https://kyleandco.com/blog-assets/what-is-human/council-blog-featured.png" alt="Human-Centric AI Council" />
+    </figure>
+
+        <p class="lede">There is a lot of pressure right now to demonstrate value from AI. Understandably, we tend to gravitate toward things we can count: time saved, cost savings, adoption rates, productivity gains.</p>
+    <p>Those things matter, but they don't always tell the whole story.</p>
+    <p>I saw this firsthand in an AI project I led a couple of years ago. We built a job-posting generator to solve a problem we'd wrestled with for years: creating and maintaining high-quality, consistent job postings at a global scale.</p>
+    <p>We had tried creating a global library of job postings for recruiters to reuse. In theory, it made perfect sense. In practice, roles and messaging changed faster than we could maintain it.</p>
+    <p>We knew the issues:</p>
+    <ul class="post-list">
+      <li><strong>Too much time spent creating postings:</strong> Recruiters started from old postings or a blank page and spent valuable time creating and refining content.</li>
+      <li><strong>Outdated and inconsistent content:</strong> Roles and messaging changed faster than we could maintain the library. Plus, postings varied across geographies, job levels, and recruiters.</li>
+      <li><strong>A disconnect from job architecture:</strong> What we advertised externally didn't always align with the role the organization had actually designed.</li>
+      <li><strong>Missed brand and employee value proposition (EVP) opportunities:</strong> The messaging Marketing had carefully developed wasn't consistently making its way into what candidates saw.</li>
+      <li><strong>A weak starting point for recruiters:</strong> Recruiters needed a stronger foundation for job-launch conversations with hiring managers.</li>
+    </ul>
+    <p>AI gave us a different way to solve the problem. Instead of trying to maintain a static library, we could generate a current posting when we needed one, in nine languages, using a consistent framework.</p>
+    <p>And it worked. We estimated the solution reduced the time required to create a posting by a whopping 80%.</p>
+    <p>80%! That's a fantastic outcome. It's exactly the kind of clear, compelling KPI we want when demonstrating the value of AI.</p>
+    <p>And time savings wasn't the only outcome. The solution also:</p>
+    <ul class="post-list">
+      <li><strong>Created global consistency and stronger alignment with job architecture</strong> by anchoring postings to the role the organization had actually designed, so the same role was represented consistently across countries and regions.</li>
+      <li><strong>Addressed risk</strong> by replacing outdated, inconsistent content with a more standardized approach.</li>
+      <li><strong>Strengthened alignment with Marketing</strong> by consistently bringing our brand, tone of voice, and EVP into candidate-facing content.</li>
+      <li><strong>Empowered recruiters</strong> by giving them a strong starting point for job-launch conversations. If a hiring manager wanted to substantially change the posting, the recruiter had a basis for asking whether we were still hiring for the role that had actually been defined.</li>
+    </ul>
+    <p>That's the point. The 80% time savings was a great KPI, and only one part of a much broader value story.</p>
+    <h2 class="sec">Your baseline shapes the value you can demonstrate</h2>
+    <p>We intentionally designed the solution to deliver all of those outcomes, but the problem was that we hadn't established equally strong baselines for all of them.</p>
+    <p>Time was relatively easy to figure out. We could ask recruiters how long creating a posting used to take and compare that with the new experience. We knew the other problems existed too, but much of our evidence was anecdotal. That made it much harder to demonstrate increased consistency, improved brand alignment, reduced risk, or empowered recruiters.</p>
+    <p>An 80% reduction in posting creation time also makes for a much cleaner KPI than “recruiters were better equipped to challenge role misalignment.”</p>
+    <p>But harder to measure doesn't make something less valuable.</p>
+    <p>Going into an AI project today, I’d spend more time understanding where we’re starting: what’s happening now, what we want to improve, and what evidence we’ll need to show we’ve made a difference.</p>
+    <h2 class="sec">Three questions I would ask now</h2>
+    <p>If I were starting that project again, I’d build the same solution and spend more time upfront answering three questions:</p>
+    <p><strong>1. What problem are we actually trying to solve?</strong> Understand the process, the data, and the experience of the people doing the work. Then decide whether AI is the right solution, whether it needs to be paired with other changes, or whether another approach would work better.</p>
+    <p><strong>2. So what?</strong> If we solve it, what gets better? Is it faster? Cheaper? Higher quality? A better experience? Less risk? And, importantly, why does that matter to the business or the people it serves?</p>
+    <p><strong>3. How will we know it worked?</strong> What do we know about the current state, and what evidence will tell us later that it improved? Some of that evidence will be quantitative, and some won't be. Candidate and employee surveys, stakeholder feedback, open-text comments, interviews, and focus groups reveal things that aren't visible in operational data alone.</p>
+    <p>The numbers may tell you where to look, while the narrative may tell you what to fix.</p>
+    <p>You can start experimenting with AI while you work out how to measure its value. Thinking upfront about the benefits you expect, and how you’ll recognize them, puts you in a better position to show what improved, even when those benefits don’t have a dollar amount attached.</p>
+    <p>Understanding where we are, where we want to go, and why it matters gives us a stronger foundation for showing AI’s value. When the results come in, we’re ready to tell the whole story.</p>
+
+    <!-- CTA -->
+    <div class="cta-block fade-in">
+      <h3>Shape the work of the<br /><em>Human-Centric AI Council.</em></h3>
+      <p>A practitioner-powered think tank of senior HR leaders navigating AI transformation together, backed by underwriters from across HR tech. Join as a practitioner or underwrite the work.</p>
+      <div class="cta-row">
+        <a href="https://kyleandco.com/aicouncil/?utm_source=blog&utm_medium=cta_button&utm_campaign=ai_value_realization&utm_content=join#join" class="primary">Join the Council →</a>
+        <a href="https://kyleandco.com/aicouncil/?utm_source=blog&utm_medium=cta_button&utm_campaign=ai_value_realization&utm_content=underwrite#underwriters" class="secondary">Underwrite the Council</a>
+      </div>
+    </div>
+
+  </article>
+</main>
+
+<!-- SUBSCRIBE FOOTER -->
+<footer class="subscribe-footer">
+  <div class="subscribe-inner">
+    <p class="subscribe-kicker">Kyle &amp; Co · Insights</p>
+    <h3>Don't miss what's<br /><em>next.</em></h3>
+    <p>New analysis, takes, and practitioner perspectives — straight to your inbox. No noise, no vendor pitches. Just the work.</p>
+    <form class="subscribe-form" action="https://assets.mailerlite.com/jsonp/1555935/forms/155676694376613273/subscribe" method="post" target="ml-submit-frame">
+      <input type="text" name="fields[name]" placeholder="First name" required />
+      <input type="email" name="fields[email]" placeholder="Work email" required />
+      <input type="hidden" name="ml-submit" value="1" />
+      <input type="hidden" name="anticsrf" value="true" />
+      <button type="submit">Subscribe →</button>
+    </form>
+    <iframe name="ml-submit-frame" style="display:none;"></iframe>
+    <p class="subscribe-note">No spam. Unsubscribe anytime.</p>
+  </div>
+  <hr class="subscribe-divider" />
+  <div class="page-footer-bar">
+    <span>© 2026 Kyle &amp; Co</span>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="../../blog-index.html">← All Insights</a>
+      <a href="https://kyleandco.com/aicouncil">AI Council</a>
+      <a href="https://kyleandco.com">kyleandco.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+<script src="/assets/js/antibot.js" defer></script>
+</body>
+</html>
