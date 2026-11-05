@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H95H1WFLGC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H95H1WFLGC');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/aicouncil/ampersand-favicon.png" />
+<title>AI Governance in HR: Not a Brake Pedal | Kyle &amp; Co</title>
+<meta name="description" content="AI governance isn&#x27;t a brake pedal. Bruce Nichols of the Human-Centric AI Council on how HR leaders can use governance to move faster with AI, safely." />
+
+<link rel="canonical" href="https://kyleandco.com/blog/ai-governance-hr/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="AI Governance Is Not a Brake Pedal" />
+<meta property="og:description" content="AI governance isn&#x27;t a brake pedal. Bruce Nichols of the Human-Centric AI Council on how HR leaders can use governance to move faster with AI, safely." />
+<meta property="og:image" content="https://kyleandco.com/blog-assets/ai-governance-hr/ai-governance-hr-hero.png" />
+<meta property="og:url" content="https://kyleandco.com/blog/ai-governance-hr/" />
+<meta property="og:site_name" content="Kyle &amp; Co" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI Governance Is Not a Brake Pedal" />
+<meta name="twitter:description" content="AI governance isn&#x27;t a brake pedal. Bruce Nichols of the Human-Centric AI Council on how HR leaders can use governance to move faster with AI, safely." />
+<meta name="twitter:image" content="https://kyleandco.com/blog-assets/ai-governance-hr/ai-governance-hr-hero.png" />
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #273752;
+  --navy-dark: #172339;
+  --navy-mid: #2D5C94;
+  --lilac: #9D92AD;
+  --ivory: #F7F1EA;
+  --slate: #555961;
+  --cream: #FDECCD;
+  --lilac-light: #C1BACD;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--ivory);
+  color: var(--navy);
+  line-height: 1.6;
+}
+
+/* — NAV — */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--navy); padding: 0 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px; border-bottom: 1px solid rgba(247,241,234,0.1);
+}
+.topbar-brand { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac); font-weight: 500; text-decoration: none; flex-shrink: 0; }
+.topbar-nav { display: flex; gap: 1.75rem; align-items: center; }
+.topbar-nav a { font-size: 0.82rem; color: rgba(247,241,234,0.65); text-decoration: none; transition: color 0.15s; }
+.topbar-nav a:hover { color: var(--ivory); }
+
+/* — ARTICLE LAYOUT — */
+main.article-wrap { padding-top: 56px; }
+article.post {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 0;
+}
+
+/* — POST META + TITLE — */
+.post-meta {
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500;
+  display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.post-meta .tag {
+  background: var(--cream); color: var(--navy-dark);
+  padding: 0.3rem 0.7rem; border-radius: 100px;
+  letter-spacing: 0.12em; font-weight: 600;
+}
+.post-meta .dot { color: rgba(39,55,82,0.3); }
+
+h1.post-title {
+  font-weight: 300;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.05; letter-spacing: -0.025em;
+  margin-bottom: 1.5rem; color: var(--navy);
+  text-wrap: balance;
+}
+h1.post-title em { font-style: italic; color: var(--lilac); }
+
+.byline {
+  display: flex; gap: 0.6rem; align-items: center;
+  margin-bottom: 2.5rem;
+  color: var(--slate); font-size: 0.92rem;
+}
+.byline .author { color: var(--navy); font-weight: 500; }
+
+/* — HERO IMAGE — */
+.hero-image {
+  margin: 0 0 3rem;
+  border-radius: 8px; overflow: hidden;
+  aspect-ratio: 16/9;
+  background: var(--navy);
+}
+.hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; filter: none !important; opacity: 1 !important; }
+
+/* — BODY TEXT — */
+.post p {
+  font-size: 1.05rem; line-height: 1.75;
+  color: #3a4558; margin: 0 0 1.4rem;
+  text-wrap: pretty;
+}
+.post p.lede {
+  font-size: 1.25rem; line-height: 1.6; color: var(--navy);
+  margin-bottom: 1.75rem; font-weight: 400;
+}
+.post p.lede em { font-style: italic; color: var(--lilac); }
+
+/* — SECTION HEADERS — */
+.sec-kicker {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin: 0 0 1rem;
+}
+h2.sec {
+  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 400;
+  line-height: 1.15; letter-spacing: -0.02em;
+  margin: 0 0 1.5rem; color: var(--navy);
+  text-wrap: balance;
+}
+h2.sec em { font-style: italic; color: var(--lilac); }
+
+/* — INLINE PHOTOS — */
+figure.inline { margin: 2.5rem 0; }
+figure.inline .img-wrap {
+  border-radius: 8px; overflow: hidden;
+  background: var(--navy);
+}
+figure.inline .img-wrap.portrait { max-width: 420px; margin: 0 auto; aspect-ratio: 3/4; }
+figure.inline .img-wrap.landscape { aspect-ratio: 16/9; }
+figure.inline .img-wrap.wide { aspect-ratio: 4/3; }
+figure.inline img { width: 100%; height: 100%; object-fit: cover; display: block; filter: none !important; opacity: 1 !important; }
+figure.inline figcaption {
+  margin-top: 0.75rem; text-align: center;
+  font-size: 0.75rem; color: var(--lilac);
+  letter-spacing: 0.05em; font-style: italic;
+}
+
+/* — TWO-UP PHOTOS — */
+.photo-pair {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin: 2.5rem 0;
+}
+.photo-pair figure.inline { margin: 0; }
+.photo-pair figure.inline .img-wrap { aspect-ratio: 4/3; }
+
+/* — PULL QUOTE — */
+.pullquote {
+  border-left: 3px solid var(--cream);
+  padding: 1.5rem 2rem; margin: 2.5rem 0;
+  background: rgba(253,236,205,0.25);
+  border-radius: 0 6px 6px 0;
+}
+.pullquote p {
+  font-size: 1.2rem; font-style: italic; font-weight: 400;
+  color: var(--navy); margin: 0; line-height: 1.5;
+  text-wrap: balance;
+}
+
+/* — CALLOUT BOX — */
+.callout {
+  background: var(--navy); border-radius: 8px;
+  padding: 2rem 2.5rem; margin: 2.5rem 0;
+  color: var(--ivory);
+}
+.callout p {
+  color: rgba(247,241,234,0.85); font-size: 0.95rem; margin: 0;
+}
+.callout p + p { margin-top: 0.75rem; }
+.callout strong { color: var(--cream); }
+
+/* — DIVIDER — */
+.rule { border: none; border-top: 1px solid rgba(39,55,82,0.12); margin: 3.5rem 0; }
+
+/* — CTA BLOCK — */
+.cta-block {
+  background: var(--navy); color: var(--ivory);
+  border-radius: 12px; padding: 3rem;
+  margin: 4rem 0 0;
+}
+.cta-block h3 {
+  font-size: 1.5rem; font-weight: 400;
+  margin: 0 0 0.5rem; letter-spacing: -0.01em;
+  color: var(--ivory);
+}
+.cta-block h3 em { font-style: italic; color: var(--cream); }
+.cta-block > p {
+  color: rgba(247,241,234,0.75); margin: 0 0 1.75rem;
+  font-size: 0.95rem; max-width: 52ch;
+}
+.cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.cta-row a {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.85rem 1.5rem; border-radius: 100px;
+  font-size: 0.85rem; font-weight: 600; text-decoration: none;
+}
+.cta-row a.primary { background: var(--cream); color: var(--navy-dark); }
+.cta-row a.primary:hover { background: #f5e0b5; }
+.cta-row a.secondary {
+  background: transparent; color: var(--ivory);
+  border: 1px solid rgba(247,241,234,0.4);
+}
+.cta-row a.secondary:hover { background: rgba(247,241,234,0.08); }
+
+/* — SUBSCRIBE FOOTER — */
+.subscribe-footer {
+  background: var(--navy); margin-top: 5rem;
+  padding: 5rem 2.5rem;
+}
+.subscribe-inner {
+  max-width: 560px; margin: 0 auto; text-align: center;
+}
+.subscribe-kicker {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lilac); font-weight: 500; margin-bottom: 1rem;
+}
+.subscribe-footer h3 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 300;
+  color: var(--ivory); letter-spacing: -0.02em;
+  line-height: 1.15; margin-bottom: 0.75rem;
+}
+.subscribe-footer h3 em { font-style: italic; color: var(--cream); }
+.subscribe-footer p {
+  font-size: 0.92rem; color: rgba(247,241,234,0.6);
+  margin-bottom: 2rem; line-height: 1.6;
+}
+.subscribe-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.5rem; max-width: 540px; margin: 0 auto 1rem;
+}
+.subscribe-form input[type="hidden"] { display: none; }
+.subscribe-form input[type="email"] {
+  flex: 1; padding: 0.85rem 1.25rem;
+  background: rgba(247,241,234,0.08);
+  border: 1px solid rgba(247,241,234,0.2);
+  border-radius: 100px; color: var(--ivory);
+  font-size: 0.88rem; font-family: inherit;
+  outline: none; transition: border-color 0.15s;
+}
+.subscribe-form input[type="email"]::placeholder { color: rgba(247,241,234,0.35); }
+.subscribe-form input[type="email"]:focus { border-color: rgba(247,241,234,0.5); }
+.subscribe-form button {
+  background: var(--cream); color: var(--navy-dark);
+  border: none; border-radius: 100px;
+  padding: 0.85rem 1.5rem; font-size: 0.85rem;
+  font-weight: 600; font-family: inherit;
+  cursor: pointer; white-space: nowrap; transition: background 0.15s;
+}
+.subscribe-form button:hover { background: #f5e0b5; }
+.subscribe-note {
+  font-size: 0.7rem; color: rgba(247,241,234,0.35);
+  letter-spacing: 0.04em;
+}
+.subscribe-divider {
+  border: none; border-top: 1px solid rgba(247,241,234,0.1);
+  margin: 3rem auto 2rem; max-width: 560px;
+}
+.page-footer-bar {
+  max-width: 760px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.72rem; color: rgba(247,241,234,0.35);
+  flex-wrap: wrap; gap: 0.75rem; padding: 0 2.5rem 3rem;
+}
+.page-footer-bar a { color: rgba(247,241,234,0.5); text-decoration: none; }
+.page-footer-bar a:hover { color: var(--ivory); }
+
+/* — FADE IN — */
+.fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* — RESPONSIVE — */
+@media (max-width: 700px) {
+  .topbar { padding: 0 1.25rem; }
+  .topbar-nav { gap: .9rem; }
+  .topbar-nav a { font-size: .72rem; }
+  .subscribe-form { grid-template-columns: 1fr; }
+  .subscribe-form input[type="text"],
+  .subscribe-form input[type="email"],
+  .subscribe-form button { border-radius: 8px; }
+  article.post { padding: 2.5rem 1.25rem 0; }
+  .cta-block { padding: 2rem 1.5rem; }
+  .page-footer { padding: 2rem 1.25rem; }
+  .pullquote { padding: 1.25rem 1.5rem; margin: 2rem 0; }
+  .photo-pair { grid-template-columns: 1fr; }
+  .callout { padding: 1.5rem; }
+}
+</style>
+<style>.post-list{margin:0 0 1.6rem 1.25rem;color:#3a4558;font-size:1.05rem;line-height:1.7}.post-list li{margin-bottom:.7rem}.draft-banner{background:#FDECCD;color:#172339;text-align:center;padding:.6rem 1rem;font-size:.85rem;position:relative;z-index:101;margin-top:56px}</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "AI Governance Is Not a Brake Pedal", "description": "AI governance isn't a brake pedal. Bruce Nichols of the Human-Centric AI Council on how HR leaders can use governance to move faster with AI, safely.", "author": {"@type": "Person", "name": "Bruce Nichols"}, "publisher": {"@type": "Organization", "name": "Kyle & Co", "url": "https://kyleandco.com"}, "image": "https://kyleandco.com/blog-assets/ai-governance-hr/ai-governance-hr-hero.png", "mainEntityOfPage": "https://kyleandco.com/blog/ai-governance-hr/", "keywords": "AI governance, HR AI, AI trust and safety, responsible AI, HCAIC", "articleSection": "Thought Leadership"}</script>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topbar">
+  <a href="https://kyleandco.com" class="topbar-brand">Kyle &amp; Co</a>
+  <div class="topbar-nav">
+    <a href="https://kyleandco.com">Home</a>
+    <a href="../../blog-index.html">Insights</a>
+    <a href="https://kyleandco.com/aicouncil">AI Council</a>
+  </div>
+</nav>
+
+<main class="article-wrap">
+  <article class="post">
+
+    <!-- META + TITLE -->
+    <div class="post-meta">
+      <span class="tag">Thought Leadership</span>
+      <span>Nov 3, 2026</span>
+      <span class="dot">·</span>
+      <span>7 min read</span>
+    </div>
+
+    <h1 class="post-title">AI Governance Is Not a Brake Pedal</h1>
+
+    <div class="byline">
+      <span class="author">Bruce Nichols</span>
+      <span>·</span>
+      <span>AI Trust & Safety Pillar Champion, Human-Centric AI Council</span>
+    </div>
+
+    <figure class="hero-image">
+      <img src="https://kyleandco.com/blog-assets/ai-governance-hr/ai-governance-hr-hero.png" alt="AI Governance Is Not a Brake Pedal hero image" />
+    </figure>
+
+        <p class="lede"><strong>AI governance is not a brake pedal. It is the high-performance steering system that allows your enterprise to go fast without driving off a cliff.</strong></p>
+    <p>If you are a C-suite executive or HR leader today, your inbox is an endless graveyard of pitch decks. Every vendor promises that their generative AI tool will double your recruiting throughput, automate your performance reviews, or predict employee turnover with miraculous precision. Yet, when you step into boardrooms, you see the exact same quiet anxiety. Leaders are caught in a classic trap. They feel immense pressure from leadership to adopt AI quickly, but they are terrified of the legal, ethical, and cultural landmines hidden just beneath the surface.</p>
+    <p>For too long, the corporate world has treated governance as a reactive compliance check, a necessary evil owned by Risk and Legal that exists solely to say “no.” That mindset is actively killing innovation.</p>
+    <p>Through our work at the Human-Centric AI Council (HCAIC), which brings together real-world examples and practical lessons from global organizations, one truth stands out: effective governance provides the foundational architecture that unlocks genuine business value. When you build transparent, ethical, and actionable guardrails, you give your organization the green light to move quickly, experiment safely, and scale AI adoption with absolute confidence.</p>
+    <p>It is time for HR leaders to step up and redefine what practical AI governance actually looks like.</p>
+    <h2 class="sec">Moving From "Could We?" to "Should We?"</h2>
+    <p>In the early days of corporate AI adoption, the primary question in executive meetings was always technical: "Could we build or buy a model to do this?"</p>
+    <p>If the technology existed, organizations rushed to deploy it. We quickly learned that technical feasibility is a low bar. Just because an algorithm can screen ten thousand resumes in thirty seconds does not mean it should be left to make hiring decisions without human intervention. Just because a predictive tool can evaluate performance data does not mean it understands context, personal hardship, or nuanced team dynamics.</p>
+    <p>The true competitive advantage in the modern economy belongs to the company that builds the governance infrastructure required to answer the harder question: "Should we?"</p>
+    <figure style="margin:2rem 0;width:100%;aspect-ratio:auto;height:auto"><img src="/blog-assets/ai-governance-hr/could-we-should-we.png" alt="Diagram: early AI adoption asks Could we? while practical governance asks Should we?, covering fairness, ethics and workforce trust." style="width:100%;height:auto;max-height:none;object-fit:contain;border-radius:12px;display:block" /></figure>
+    <p>Evaluating the "Should We?" requires looking beyond immediate operational efficiency to examine long-term impact on fairness, organizational ethics, and workforce trust. When employees suspect black-box algorithms are making decisions about their compensation, promotions, or livelihoods, trust evaporates instantly. Once human trust is broken, no amount of shiny new technology will save your corporate culture or stop top-tier talent from walking out the door.</p>
+    <p>Transitioning from "Could We?" to "Should We?" requires us to evaluate AI tools through the core HCAIC pillars: Value Realization, Trust &amp; Safety, and Future-Ready AI. True value realization happens only when technology enhances human capability without eroding your workforce's core values.</p>
+    <h2 class="sec">Operationalizing Human Accountability</h2>
+    <p>If we want our teams to trust AI, we must establish non-negotiable boundaries around ethical decision rights. This brings us to a foundational rule of human-centric leadership: AI should <em>inform</em> decisions, but humans must always <em>own</em> them.</p>
+    <p>High-stakes talent moments, such as talent acquisition, performance evaluations, executive succession, compensation adjustments, and terminations, demand human accountability. We cannot outsource our empathy, ethical judgment, or leadership responsibility to a software protocol.</p>
+    <p>Operationalizing human-in-the-loop oversight means building explicit operational protocols. For example, if an AI candidate-screening tool flags an applicant as low fit, a qualified human recruiter must review that determination before rejecting any candidate. If an AI platform suggests salary adjustments based on market benchmark data, a manager must validate the human context behind those numbers.</p>
+    <p>Setting these clear boundaries protects your brand reputation, prevents algorithmic bias from compounding across your talent pipeline, and ensures that your workforce views AI as a supportive co-pilot rather than a hidden adversary.</p>
+    <h2 class="sec">Cutting Through Vendor Hype With Risk Intelligence</h2>
+    <p>Every HR leader has heard the grand vendor promises: "Our platform is completely unbiased," or "Our system is 100 percent compliant out of the box."</p>
+    <p>Part of our job as executive stewards is to look past glossy marketing slicks and apply rigorous, objective risk intelligence. You need to ask vendor sales teams hard questions.</p>
+    <ul class="post-list">
+      <li>Where was their training data sourced?</li>
+      <li>How do they test for algorithmic drift and demographic bias over time?</li>
+      <li>What explicit safety measures prevent hallucinations or data leaks?</li>
+    </ul>
+    <figure style="margin:2rem 0;width:100%;aspect-ratio:auto;height:auto"><img src="/blog-assets/ai-governance-hr/vendor-questions.png" alt="Checklist of three questions to ask every AI vendor: training data source, drift and bias testing, and safety measures against hallucinations and data leaks." style="width:100%;height:auto;max-height:none;object-fit:contain;border-radius:12px;display:block" /></figure>
+    <p>A robust internal risk typology framework lets you evaluate every incoming AI tool against standardized criteria before it touches employee data. By categorizing tools by risk tier, from low-risk administrative automation to high-stakes decision-support engines, you create a clear roadmap for deployment. This structured approach lets you greenlight safe, high-value tools rapidly while subjecting sensitive platforms to the intense scrutiny they deserve.</p>
+    <h2 class="sec">HR as the Bridge: Driving Cross-Functional Stewardship</h2>
+    <p>One of the biggest missteps organizations make during AI transformation is allowing functions to operate in silos. IT approaches AI purely from an infrastructure and security perspective. Legal views it entirely through the lens of liability mitigation. Meanwhile, business units experiment with shadow AI tools behind closed doors to hit their quarterly targets.</p>
+    <p>This fragmented approach creates dangerous vulnerabilities. HR is uniquely positioned to break down these silos and serve as the unifying bridge across Legal, IT, Risk, business units, and C-suite leadership.</p>
+    <p>We understand the operational reality of how work gets done on the ground, and the human dynamics that drive performance. By leading cross-functional governance committees, HR turns disparate departmental agendas into a unified enterprise strategy. We ensure technical implementation aligns with legal standards while remaining practical, user-friendly, and culturally aligned for our employees.</p>
+    <h2 class="sec">Translating Regulatory Readiness Into Operational Reality</h2>
+    <p>Global regulatory frameworks are already shaping operational requirements. Legislation like the EU AI Act and local measures like NYC Local Law 144 are actively reshaping how businesses deploy technology.</p>
+    <p>Waiting for regulators to hand down fines before you update your HR practices is a disastrous strategy. Effective governance translates complex global compliance requirements into daily operational updates well before deadlines arrive.</p>
+    <p>Regulatory readiness requires turning policy into everyday practice and building AI literacy across your enterprise. It means training your talent acquisition teams to audit job descriptions for fair inputs, educating managers on how data protection laws impact employee monitoring, and giving your entire workforce the skills they need to use generative AI tools safely and ethically.</p>
+    <p>When your workforce understands both the capabilities and the limits of AI, compliance becomes embedded in daily decisions and routines.</p>
+    <h2 class="sec">The Path Forward</h2>
+    <p>Governance provides a direct path to sustainable AI transformation.</p>
+    <p>When you establish clear decision rights, demand vendor transparency, lead cross-functional alignment, and build proactive regulatory readiness, you empower your enterprise with the confidence to move forward. You create an environment where your people feel safe to innovate, experiment, and push business boundaries because they know the foundation beneath them is solid.</p>
+    <p>In our upcoming posts for this series, we will break down each of these deliverables in greater detail, sharing practical toolkits, framework templates, and real-world executive lessons to help you lead AI transformation in your organization.</p>
+    <p>The future of enterprise growth belongs to organizations that combine cutting-edge technology with unyielding human trust. Let us build that future together.</p>
+
+    <!-- CTA -->
+    <div class="cta-block fade-in">
+      <h3>Shape the work of the<br /><em>Human-Centric AI Council.</em></h3>
+      <p>A practitioner-powered think tank of senior HR leaders navigating AI transformation together, backed by underwriters from across HR tech. Join as a practitioner or underwrite the work.</p>
+      <div class="cta-row">
+        <a href="https://kyleandco.com/aicouncil/?utm_source=blog&utm_medium=cta_button&utm_campaign=ai_governance_hr&utm_content=join#join" class="primary">Join the Council →</a>
+        <a href="https://kyleandco.com/aicouncil/?utm_source=blog&utm_medium=cta_button&utm_campaign=ai_governance_hr&utm_content=underwrite#underwriters" class="secondary">Underwrite the Council</a>
+      </div>
+    </div>
+
+  </article>
+</main>
+
+<!-- SUBSCRIBE FOOTER -->
+<footer class="subscribe-footer">
+  <div class="subscribe-inner">
+    <p class="subscribe-kicker">Kyle &amp; Co · Insights</p>
+    <h3>Don't miss what's<br /><em>next.</em></h3>
+    <p>New analysis, takes, and practitioner perspectives — straight to your inbox. No noise, no vendor pitches. Just the work.</p>
+    <form class="subscribe-form" action="https://assets.mailerlite.com/jsonp/1555935/forms/155676694376613273/subscribe" method="post" target="ml-submit-frame">
+      <input type="text" name="fields[name]" placeholder="First name" required />
+      <input type="email" name="fields[email]" placeholder="Work email" required />
+      <input type="hidden" name="ml-submit" value="1" />
+      <input type="hidden" name="anticsrf" value="true" />
+      <button type="submit">Subscribe →</button>
+    </form>
+    <iframe name="ml-submit-frame" style="display:none;"></iframe>
+    <p class="subscribe-note">No spam. Unsubscribe anytime.</p>
+  </div>
+  <hr class="subscribe-divider" />
+  <div class="page-footer-bar">
+    <span>© 2026 Kyle &amp; Co</span>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="../../blog-index.html">← All Insights</a>
+      <a href="https://kyleandco.com/aicouncil">AI Council</a>
+      <a href="https://kyleandco.com">kyleandco.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+<script src="/assets/js/antibot.js" defer></script>
+</body>
+</html>
