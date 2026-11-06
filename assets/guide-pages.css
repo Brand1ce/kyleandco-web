@@ -1,0 +1,101 @@
+/* HCAIC guide pages (change-management, solution-decision). Loads after site.css and the
+   page's own <style>, and brings the old layout in line with the design system:
+   Fraunces + Roboto, soft fills, rounded corners, no outlines or left rules, sentence-case labels. */
+body { font-family: var(--font-body); line-height: 1.6; }
+h1, h2, h3, h4 { font-family: var(--font-display); }
+em { font-style: normal; }
+
+/* Nav: solid ivory */
+.topbar { background: var(--ivory); height: 60px; border-bottom: 0; }
+.topbar-brand { font-family: var(--font-display); font-size: 1rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--navy); }
+.topbar-title { font-size: .9375rem; color: var(--slate); }
+.topbar-cta { background: var(--navy); color: var(--ivory); font-size: .875rem; font-weight: 500; padding: .65rem 1.25rem; }
+.topbar-cta:hover { background: var(--navy-700); }
+.layout { padding-top: 60px; }
+
+/* Side nav: soft panel, pill links */
+.sidenav { top: 60px; height: calc(100vh - 60px); background: var(--lilac-100, #F2F2F5); border-right: 0; padding: 1.5rem 1rem; }
+.sidenav-label { font-size: .875rem; letter-spacing: 0; text-transform: none; color: var(--lilac-900); padding: 0 .75rem; }
+.sidenav a { border-left: 0; border-radius: var(--r-pill); padding: .6rem .9rem; font-size: .875rem; }
+.sidenav a:hover { background: var(--lilac-200); }
+.sidenav a.active { background: var(--lilac-200); border-left-color: transparent; font-weight: 500; }
+
+/* Labels: sentence case, no tracking, no mono */
+.hero-eyebrow, .chapter-label, .card-num, .tactic-num, .about-strip h4,
+.bbbb-label, .kpi-box-label, .level-nature strong, .level-tab .tab-num {
+  font-family: var(--font-body); font-size: .875rem; font-weight: 500;
+  letter-spacing: 0; text-transform: none; color: var(--lilac-900);
+}
+.hero-eyebrow { color: var(--lilac-300); }
+.readiness-table th { letter-spacing: 0; font-size: .875rem; }
+
+/* Headlines: Fraunces semibold, one style */
+.hero h1, .chapter h2, .download-section h2, .toolkit-section h2, .success-state h3 { font-weight: 600; letter-spacing: -.01em; }
+.hero h1 em, .chapter h2 em, .download-section h2 em, .toolkit-section h2 em, .success-state h3 em { font-style: normal; color: inherit; }
+.hero-stat-num, .pillar-letter { font-family: var(--font-display); font-weight: 600; }
+
+/* Hero */
+.hero-cta { background: var(--ivory); color: var(--navy); font-weight: 500; }
+.hero-cta:hover { background: var(--lilac-200); }
+.hero-stat { border-left: 0; border-radius: var(--r-lg); background: var(--navy-700); }
+.hero-stat-label, .hero-meta { color: var(--ivory); }
+
+/* Body copy */
+.chapter { border-top: 0; }
+.chapter p { color: var(--navy); }
+
+/* Quote */
+.pullquote { border-left: 0; background: var(--cream); border-radius: var(--r-xl); padding: 2rem 2.25rem; }
+.pullquote p { font-family: var(--font-display); font-style: normal; font-weight: 500; font-size: 1.35rem; line-height: 1.4; }
+
+/* Cards: fills, no left rules */
+.card, .tactic, .pilot-box, .scan-step, .kpi-box { border-left: 0; border-top: 0; border-radius: var(--r-lg); }
+.card.accent, .pilot-box.pilot { background: var(--navy-50); }
+.card.cream, .card.cream-card { background: var(--cream); }
+.card.navy-card { background: var(--navy); }
+.card.navy-card h3, .card.navy-card p { color: var(--ivory); }
+.card h3, .tactic-body h4, .scan-step h4, .kpi-box h3, .pilot-box h3 { font-family: var(--font-display); font-weight: 500; }
+.card p, .tactic-body p, .pilot-box ul li, .kpi-list li, .scan-step p { color: var(--navy); }
+.pillar, .conclusion-block { border-radius: var(--r-xl); }
+.pillar { background: var(--navy); }
+.pilot-box .goal { font-style: normal; border-bottom: 0; color: var(--lilac-900); }
+.scan-step .tip { font-style: normal; color: var(--lilac-900); }
+.scan-step-num { font-family: var(--font-body); letter-spacing: 0; }
+.conclusion-block p { color: var(--ivory); }
+.conclusion-block strong, .pillar-letter { color: var(--ivory); }
+
+/* Tables and tabs */
+.readiness-table { border-collapse: separate; border-spacing: 0; }
+.readiness-table th:first-child { border-top-left-radius: var(--r-md); }
+.readiness-table th:last-child { border-top-right-radius: var(--r-md); }
+.readiness-table td { border-bottom: 0; }
+.readiness-table tr:nth-child(even) td { background: var(--navy-25, #F3F6FB); }
+.level-selector { border: 0; gap: .5rem; border-radius: 0; overflow: visible; flex-wrap: wrap; }
+.level-tab { border: 0 !important; border-radius: var(--r-pill); background: var(--lilac-200); color: var(--navy); }
+.level-tab:hover { background: var(--lilac-300); }
+.level-tab.active { background: var(--navy); color: var(--ivory); }
+.level-tab.active .tab-num { color: var(--lilac-300); }
+.level-panel { border: 0; border-radius: var(--r-lg); margin-top: 1rem; }
+.level-panel-header { border-bottom: 0; }
+.level-posture { background: var(--lilac-200); }
+.bbbb-card { border-top: 0; border-radius: var(--r-lg); }
+.bbbb-build { background: var(--lilac-200); }
+.bbbb-buy { background: var(--navy-50); }
+.bbbb-borrow { background: var(--lilac-300); }
+.bbbb-bot { background: var(--cream); }
+.bbbb-build .bbbb-label, .bbbb-buy .bbbb-label, .bbbb-borrow .bbbb-label, .bbbb-bot .bbbb-label { color: var(--navy); }
+.bbbb-card p { color: var(--navy); }
+
+/* Download / toolkit gate */
+.download-section, .toolkit-section { border: 0; border-radius: var(--r-xl); }
+.form-field label { letter-spacing: 0; font-size: .875rem; color: var(--navy); }
+.form-field input, .form-field select { border: 1px solid var(--lilac-600, #9684A4); border-radius: var(--r-md); }
+.form-field input:focus, .form-field select:focus { outline: 2px solid #3C77B1; outline-offset: 2px; border-color: var(--lilac-600, #9684A4); }
+.submit-btn { font-weight: 500; }
+.submit-btn:hover, .success-state a:hover { background: var(--navy-700); }
+
+.about-strip { border-top: 0; }
+.page-footer { color: var(--ivory); }
+.page-footer a { color: var(--ivory); text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-width: 900px) { .sidenav { display: none; } }
