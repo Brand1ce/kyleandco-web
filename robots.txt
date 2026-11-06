@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /happy-hour/
+Disallow: /trl/live/
+Disallow: /research/interview-intelligence/full.html
+Disallow: /blog-index.html
+Disallow: /blog-next-chapter.html
+Disallow: /KyleandCo_new_homepage.html
+Disallow: /marketing-dashboard.html
+Disallow: /website-launch-email.html
+Disallow: /contentcalendar/
+
+Sitemap: https://kyleandco.com/wp-sitemap.xml
+Sitemap: https://kyleandco.com/sitemap-static.xml
