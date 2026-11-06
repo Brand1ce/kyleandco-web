@@ -24,8 +24,8 @@ h1.post-title em, h2.sec em, .post p.lede em, .cta-block h3 em { font-style: nor
 .post p.lede { font-size: 1.25rem; line-height: 1.6; margin-bottom: 1.75rem; }
 .post-list { margin: 0 0 1.6rem 1.25rem; color: var(--navy); font-size: 1.05rem; line-height: 1.7; }
 .post-list li { margin-bottom: .7rem; }
-.post a:not(.btn-primary) { color: var(--navy); text-decoration: underline; text-decoration-color: var(--lilac-400); text-underline-offset: 4px; }
-.post a:not(.btn-primary):hover { text-decoration-color: var(--navy); }
+.post a:not(.btn-primary):not(.primary):not(.secondary) { color: var(--navy); text-decoration: underline; text-decoration-color: var(--lilac-400); text-underline-offset: 4px; }
+.post a:not(.btn-primary):not(.primary):not(.secondary):hover { text-decoration-color: var(--navy); }
 
 .sec-kicker { font-size: .875rem; font-weight: 500; color: var(--lilac-900); margin: 0 0 1rem; }
 h2.sec {
