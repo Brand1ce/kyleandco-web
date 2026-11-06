@@ -14,7 +14,7 @@
     try { return KEYS.some(function (k) { return localStorage.getItem(k) === '1'; }); } catch (e) { return false; }
   }
   function direct() {
-    $$('[data-pdf]').forEach(function (a) { a.innerHTML = 'Download the report <span aria-hidden="true">→</span>'; });
+    $$('[data-pdf]').forEach(function (a) { a.innerHTML = 'Read the Yearbook <span aria-hidden="true">→</span>'; });
   }
   function openForm() {
     $('#gateOpen').hidden = true; forms.hidden = false;
