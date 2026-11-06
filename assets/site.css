@@ -460,7 +460,7 @@ body {
 
 /* — Resources dropdown (shared nav) — */
 .kco-rd { position: relative; display: inline-block; }
-.kco-rd > a::after { content: " ▾"; font-size: .7em; }
+.kco-rd > a::after { content: ""; display: inline-block; width: .38em; height: .38em; margin: 0 0 .2em .5em; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); }
 .kco-rd-menu {
   position: absolute; top: 100%; left: 0; min-width: 190px;
   background: var(--white); border-radius: var(--r-lg);
