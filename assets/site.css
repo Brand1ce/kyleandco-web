@@ -456,3 +456,19 @@ body {
   .section, .section-narrow { padding: 4rem 1.5rem; }
   .site-footer { padding: 2.5rem 1.5rem; }
 }
+
+/* — Resources dropdown (shared nav) — */
+.kco-rd { position: relative; display: inline-block; }
+.kco-rd > a::after { content: " ▾"; font-size: .7em; }
+.kco-rd-menu {
+  position: absolute; top: 100%; left: 0; min-width: 190px;
+  background: var(--white); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm); padding: .5rem;
+  opacity: 0; visibility: hidden; transition: opacity .16s ease; z-index: 1000;
+}
+.kco-rd:hover .kco-rd-menu, .kco-rd:focus-within .kco-rd-menu { opacity: 1; visibility: visible; }
+.kco-rd .kco-rd-menu a { display: block; padding: .6rem .9rem; border-radius: var(--r-pill); white-space: nowrap; }
+@media (max-width: 900px) {
+  .kco-rd { display: block; }
+  .kco-rd-menu { position: static; opacity: 1; visibility: visible; box-shadow: none; background: transparent; padding: 0 0 0 1rem; }
+}
