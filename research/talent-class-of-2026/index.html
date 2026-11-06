@@ -35,12 +35,12 @@
 .yb-sec h2 { font-size: clamp(2.1rem, 3.6vw, 3rem); line-height: 1.08; margin-bottom: 1.5rem; }
 .yb-sec p, .yb-hero p { font-family: var(--font-body); font-size: 1.125rem; line-height: 1.65; }
 .yb-sec.light { background: var(--ivory); color: var(--navy); }
-.yb-sec.light h2 em { font-style: italic; color: var(--yb-navy-mid); }
+.yb-sec.light h2 em { font-style: normal; color: inherit; font-weight: inherit; }
 .yb-sec.light p { color: var(--slate); }
 .yb-sec.navy { background: var(--navy); color: var(--ivory); }
-.yb-sec.navy h2 em, .yb-hero h1 em { font-style: italic; color: var(--sky); }
+.yb-sec.navy h2 em, .yb-hero h1 em { font-style: normal; color: inherit; font-weight: inherit; }
 .yb-sec.mid { background: var(--yb-navy-mid); color: var(--ivory); }
-.yb-sec.mid h2 em { font-style: italic; color: var(--ivory); }
+.yb-sec.mid h2 em { font-style: normal; color: inherit; font-weight: inherit; }
 .yb-num { font-family: var(--font-display); font-weight: 300; line-height: .9; letter-spacing: -.03em; font-variant-numeric: lining-nums; }
 
 /* brand shapes (flat, tone on tone) */
@@ -55,11 +55,11 @@
 .yb-hero .shape.leaf { width: 220px; height: 220px; left: -70px; top: -70px; background: rgba(193,186,205,.08); }
 .yb-hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 4rem; align-items: center; }
 .yb-hero h1 { font-size: clamp(2.8rem, 5.6vw, 5rem); line-height: 1; color: var(--ivory); margin-bottom: 1.75rem; }
-.yb-hero h1 em { display: block; }
+.yb-hero h1 em { display: block; font-style: normal; color: inherit; font-weight: inherit; }
 .yb-hero p.sub { color: var(--ivory); max-width: 50ch; margin-bottom: 2.25rem; font-weight: 300; font-size: 1.25rem; }
 .yb-stage { background: var(--yb-grad); border-radius: var(--r-lg); padding: 3rem 2.5rem; display: flex; justify-content: center; }
-.yb-stage img { display: block; width: 100%; max-width: 340px; height: auto; border-radius: var(--r-md); }
-.yb-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid rgba(247,241,234,.2); }
+.yb-stage img { display: block; width: 100%; max-width: 340px; height: auto; border-radius: var(--r-lg); }
+.yb-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 4rem; padding-top: 2.5rem; }
 .yb-stats .yb-num { display: block; font-size: clamp(3rem, 5vw, 4.5rem); color: var(--ivory); margin-bottom: .75rem; }
 .yb-stats span.cap { display: block; font-size: 1.0625rem; line-height: 1.5; color: var(--ivory); max-width: 28ch; }
 
@@ -74,7 +74,7 @@
 .yb-btn { display: inline-flex; align-items: center; gap: .55rem; background: var(--ivory); color: var(--navy); border: none; border-radius: var(--r-pill); padding: 1.05rem 2rem; font: 500 1rem var(--font-body); text-decoration: none; cursor: pointer; transition: background .2s; align-self: flex-start; }
 .yb-btn:hover { background: #fff; }
 .yb-gate .kc-modal-btn { background: var(--ivory); color: var(--navy); align-self: flex-start; }
-.yb-btn-ghost { color: var(--ivory); text-decoration: none; font: 500 1rem var(--font-body); border: 1px solid rgba(247,241,234,.55); border-radius: var(--r-pill); padding: 1.05rem 2rem; transition: background .2s; }
+.yb-btn-ghost { color: var(--ivory); text-decoration: none; font: 500 1rem var(--font-body); border: 1px solid var(--lilac-400); border-radius: var(--r-pill); padding: 1.05rem 2rem; transition: background .2s; }
 .yb-btn-ghost:hover { background: rgba(247,241,234,.12); }
 
 /* predicted / checked */
@@ -167,14 +167,6 @@
   <a href="/" class="topbar-brand">
     <img src="/assets/img/logo-primary.svg" alt="Kyle &amp; Co">
   </a>
-  <style>
-  .kco-rd{position:relative;display:inline-block}
-  .kco-rd>a::after{content:" ▾";font-size:.7em;opacity:.6}
-  .kco-rd-menu{position:absolute;top:100%;left:0;min-width:180px;background:#fff;border:1px solid rgba(39,55,82,.12);border-radius:10px;box-shadow:0 12px 30px rgba(39,55,82,.14);padding:.4rem;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s ease,transform .16s ease;z-index:1000}
-  .kco-rd:hover .kco-rd-menu,.kco-rd:focus-within .kco-rd-menu{opacity:1;visibility:visible;transform:translateY(0)}
-  .kco-rd .kco-rd-menu a{display:block;padding:.5rem .7rem;font-size:.88rem;line-height:1.2;color:#273752;text-decoration:none;border-radius:6px;white-space:nowrap}
-  .kco-rd .kco-rd-menu a:hover{background:rgba(39,55,82,.07)}
-  </style>
   <div class="topbar-nav">
     <a href="/">Home</a>
     <span class="kco-rd">
@@ -365,20 +357,20 @@
   </div>
 </div>
 <style>
-.kc-modal-overlay{display:none;position:fixed;inset:0;background:rgba(23,35,57,.55);z-index:300;align-items:flex-start;justify-content:center;padding:5rem 1.5rem 3rem;overflow-y:auto;}
-.kc-modal-overlay.open{display:flex;animation:kcFadeUp .3s cubic-bezier(.22,1,.36,1);}
+.kc-modal-overlay{ display: none; position: fixed; inset: 0; background: rgba(23,35,57,.55); z-index: 300; align-items: flex-start; justify-content: center; padding: 5rem 1.5rem 3rem; overflow-y: auto; }
+.kc-modal-overlay.open{ display: flex; animation: kcFadeUp .3s cubic-bezier(.22,1,.36,1); }
 @keyframes kcFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.kc-modal-box{background:var(--ivory);max-width:540px;width:100%;border-radius:16px;padding:2.75rem;position:relative;box-shadow:0 30px 80px rgba(23,35,57,.25);}
-.kc-modal-close{position:absolute;top:1rem;right:1.25rem;background:none;border:none;font-size:1.2rem;color:var(--slate);cursor:pointer;padding:.3rem .6rem;line-height:1;}
-.kc-modal-eyebrow{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lilac);font-weight:500;margin-bottom:.9rem;}
-.kc-modal-title{font-family:var(--font-display);font-size:1.85rem;font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--navy);margin-bottom:.9rem;}
-.kc-modal-title em{font-style:italic;color:var(--lilac);}
-.kc-modal-sub{font-size:.93rem;color:var(--slate);line-height:1.6;margin-bottom:1.75rem;}
-.kc-input{width:100%;padding:.8rem 1rem;border:1px solid rgba(39,55,82,.16);border-radius:8px;font-size:.9rem;font-family:inherit;color:var(--navy);background:#fff;outline:none;transition:border-color .15s;display:block;}
-.kc-input:focus{border-color:var(--navy);}
-.kc-input::placeholder{color:var(--lilac);}
-.kc-modal-btn{margin-top:.25rem;background:var(--navy);color:var(--ivory);border:none;border-radius:100px;padding:1rem 1.75rem;font-size:.9rem;font-weight:500;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:opacity .15s;}
-.kc-modal-btn:hover{opacity:.88;}
+.kc-modal-box{ background: var(--ivory); max-width: 540px; width: 100%; border-radius: 16px; padding: 2.75rem; position: relative; box-shadow: 0 30px 80px rgba(23,35,57,.25); }
+.kc-modal-close{ position: absolute; top: 1rem; right: 1.25rem; background: none; border: none; font-size: 1.2rem; color: var(--slate); cursor: pointer; padding: .3rem .6rem; line-height: 1; }
+.kc-modal-eyebrow{ font-family: var(--font-mono); font-size: .875rem; color: var(--lilac-900); font-weight: 500; margin-bottom: .9rem; }
+.kc-modal-title{ font-family: var(--font-display); font-size: 1.85rem; font-weight: 400; line-height: 1.1; letter-spacing: -.02em; color: var(--navy); margin-bottom: .9rem; }
+.kc-modal-title em{ font-style: normal; color: inherit; font-weight: inherit; }
+.kc-modal-sub{ font-size: .93rem; color: var(--slate); line-height: 1.6; margin-bottom: 1.75rem; }
+.kc-input{ width: 100%; padding: .8rem 1rem; border: 1px solid #9684A4; border-radius: 8px; font-size: .9rem; font-family: inherit; color: var(--navy); background: #fff; outline: none; transition: border-color .15s; display: block; }
+.kc-input:focus{ border-color: var(--navy); }
+.kc-input::placeholder{ color: var(--lilac); }
+.kc-modal-btn{ margin-top: .25rem; background: var(--navy); color: var(--ivory); border: none; border-radius: 100px; padding: 1rem 1.75rem; font-size: .9rem; font-weight: 500; font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: .5rem; transition: opacity .15s; }
+.kc-modal-btn:hover{ opacity: .88; }
 </style>
 <script>document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll(".kc-modal-overlay.open").forEach(function(m){m.classList.remove("open");});});</script>
 

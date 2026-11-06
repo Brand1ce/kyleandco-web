@@ -123,6 +123,7 @@ body {
   transition: background .2s cubic-bezier(.22,1,.36,1), border-color .2s, color .2s, transform .2s;
   letter-spacing: .005em;
   font-family: var(--font-body);
+  border: 0; cursor: pointer;
 }
 .btn-primary {
   background: var(--navy); color: var(--ivory);
