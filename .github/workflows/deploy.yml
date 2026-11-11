@@ -24,6 +24,7 @@ jobs:
           rsync -avzr \
             --exclude='.git' \
             --exclude='.github' \
+            --exclude='.claude' \
             --exclude='*.md' \
             --exclude='.DS_Store' \
             --exclude='apps-script' \
