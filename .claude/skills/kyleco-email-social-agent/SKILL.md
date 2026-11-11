@@ -84,6 +84,28 @@ Posting schedule (default, confirm with Brandice): Mon, Wed and Thu at 9:00 AM E
 
 Put every post in the monday.com Content Calendar (board 9622147123, current quarter group): name "LinkedIn (DRAFT): <topic>", Work Type LinkedIn, Status Not Started, Assigned Shamelle Crawford (user id 77199208), Scheduled Date and Scheduled Time set, Notes with source URL. Add captions, first comment, asset link and open items as an update on the item. Shamelle posts to LinkedIn herself from the item. Never post or schedule on LinkedIn directly. Respect LinkedIn platform rules and the cadence calendar.
 
+## Onboarding sequence (new subscribers)
+Kyle & Co has no welcome or nurture series. Confirmation workflows exist per form (Council sign up, toolkit and report downloads, event registrations, "AI Council Followers — Welcome"), but a person who joins the general list gets nothing. Build one when Brandice says "build the onboarding sequence". Draft only: the automation stays disabled until she enables it herself.
+
+Before building:
+- Find the trigger. Site signup facts as of Nov 11, 2026: the static site's "Stay in the Loop" button links to /insights-signup/, which returns a WordPress 404 (report this until fixed; the website manager owns the fix). The blog and research pages embed MailerLite form 155676694376613273 ("Launch Page"), which most likely feeds group "Launch Group" (155756177475503327, about 400 subscribers); the group "Blog Subscribers" (179862032525296646) also exists. Confirm the form's group in the MailerLite dashboard or with get_form, then trigger on subscriber joins that group. Propose adding the same trigger for the other general signup groups. Exclude anyone already in a Council, event or download group so nobody gets two welcomes in a week.
+- Pull live content for the links: latest research report, newest Transformation Realness episode and TRL Live replay, one Council post by a real author, the Council page, the Vendors page. Verify every URL returns 200.
+- Ask nothing. State assumptions in the report. Automation emails are not counted against the 3 campaigns per quarter cap (they are 1:1 and evergreen), but say so in the report so Brandice can overrule.
+
+The sequence (5 emails, about 3 weeks, send 9:00 AM ET):
+1. Day 0, from Kyle: what Kyle & Co is (research meets reality), what they will get and how often, one ask: reply with the one thing you are working on this quarter. One link: the latest research.
+2. Day 3, the research: one report, one answer-first stat with the source, what to do with it. CTA: read the report.
+3. Day 7, Transformation Realness: the newest podcast episode and the latest TRL Live replay, one quotable line each. CTA: watch or listen. Disclosure lines where a guest is a client.
+4. Day 12, the Human-Centric AI Council: what it is, who is in it, one Council post by its real author. CTA: follow the Council, join the Council (UTMs as the blog publisher uses them).
+5. Day 18, choose your lane: two links, "I work in HR or TA" and "I build or sell HR tech". Each click adds the subscriber to the existing group "1. Practitioner" (157018385748592505) or "2. Vendor" (157018878691509691); do not create new groups. Practitioners get the next town hall or event; vendors get the Vendors page and advisory. Then they drop into the regular newsletter.
+
+Build rules:
+- Same design system as the newsletter but the lighter letter layout: white page, one ivory panel, Kyle headshot and signature on email 1 and 5, one pill button per email, no hero image. Fraunces headings, Roboto body, no eyebrows, no em dashes, no banned words.
+- Subject lines: no emoji, sentence case, 6 words or fewer where possible, run validate_subject_lines. Preheader on every email.
+- UTMs: utm_source=mailerlite&utm_medium=automation&utm_campaign=onboarding&utm_content=email<n>_<slug>.
+- Build with build_automation or create_automation, run dry_run_automation, keep it disabled. Send a test to brandice@kyleandco.com only if asked.
+- Report: dashboard link, the trigger group, the five subjects, every link, open items, and the line "Disabled until you enable it".
+
 ## Reporting to demand gen
 The kyleco-demand-gen-agent manages this lane. At the start of every run, check the Content Calendar for briefs from it and from the content repurposer, and follow them over your own priorities. At the end of every run, post an update on the monday.com item starting with "STATUS:" with: done, late, blocked on (Brandice, Kyle or Shamelle), and decisions needed. The repurposer owns what to say (brief and caption copy); you finalize captions, build assets, and place posts on the calendar.
 
